@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import sampleNewsDocs from "./sample-data-news.js";
 
 test("WikiBM25 - cancer", () => {
-  const query = "new cancer";
+  const query = "cancer";
 
   var results = sampleNewsDocs
     .map((doc, index) => {
