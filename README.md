@@ -20,9 +20,7 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 
 ### BM25 Formula
 
-$$
-\text{score}(D,Q) = \sum_{i=1}^{N} \text{IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}
-$$
+$$\text{score}(D,Q) = \sum_{i=1}^{N} \text{IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
 
 ### Wikipedia API Search
 
