@@ -17,11 +17,11 @@ Wiki-BM25 unlike BM25 solves the need to pass in all docs to compute against all
 
 
 ### Statistics
-862,580 words of English alphanumerics like az09, punctuation like -/, and diacritics like éï, but filter out numbers and foreign language.
+862,580 words between 3 to 23 characters of English alphanumerics like az09, punctuation like -/, and diacritics like éï, but filter out numbers and foreign language.
 
 - *Total Articles (Wiki-en-2020)*: 5,989,879 
-- *Total Terms (frequency>=8)*: 862,580
-- *Filesize (JSON, frequency>=8)*: 11.5MB
+- *Total Terms (frequency>=8)*: 860117
+- *Filesize (JSON, frequency>=8)*: 11MB
 
 ### BM25 Formula
 
