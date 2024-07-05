@@ -1,4 +1,4 @@
-import wikiTermFrequency from "../data/wiki-word-freq-860k.js";
+import wikiTermFrequency from "../data/wiki-word-freq-min16.js";
 
 /**
  * Calculate term specificity for a single doc with BM25 formula 

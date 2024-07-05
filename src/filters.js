@@ -1,4 +1,4 @@
-import wikiTermFrequency from "../data/wiki-word-freq-860k.js";
+import wikiTermFrequency from "../data/wiki-word-freq-min16.js";
 import fs from "fs";
 
 function removeNonEnglish(text) {
@@ -26,5 +26,5 @@ for (let term of words) {
 
 console.log(Object.keys(wikiTermFrequency).length);
 
-fs.writeFileSync("./data/wiki-word-freq-860k.js", 
-    "export default " +JSON.stringify(wikiTermFrequency));
+// fs.writeFileSync("./data/wiki-word-freq-860k.js", 
+//     "export default " +JSON.stringify(wikiTermFrequency));
