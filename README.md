@@ -17,9 +17,14 @@ Wiki-BM25 unlike BM25 solves the need to pass in all docs to compute against all
 
 
 ### Statistics
-525K words with frequencies of at least 16 wikipages, between 3 to 23 characters of English alphanumerics like az09, punctuation like -/, and diacritics like éï, but filter out numbers and foreign language.
+325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of English alphanumerics like az09, punctuation like -/, and diacritics like éï, but filter out numbers and foreign language.
 
 - *Total Articles (Wiki-en-2020)*: 5,989,879
+
+
+- *Total Terms (frequency>=32)*: 324896
+- *Filesize (JSON, frequency>=32)*: 4MB 
+
 
 - *Total Terms (frequency>=16)*: 525674
 - *Filesize (JSON, frequency>=16)*: 7MB 
@@ -49,7 +54,7 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
 
 *   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
 
->> ([Qdrant developed BM42](https://qdrant.tech/articles/bm42/) in 2024 to replace term frequency with average word weights by self-attention tansformer language models. This scores word importance better than BM25 in short documents which are too short to use word frequency as the key weight. BM42 is not used but it is benchmarked and implemented with Transformers.js BERT model.)
+> ([Qdrant developed BM42](https://qdrant.tech/articles/bm42/) in 2024 to replace term frequency with average word weights by self-attention tansformer language models. This scores word importance better than BM25 in short documents which are too short to use word frequency as the key weight. BM42 is not used but it is benchmarked and implemented with Transformers.js BERT model.)
 
 * ritvikmath (2023). "BM25 : The Most Important Text Metric in Data Science". https://www.youtube.com/watch?v=ruBm9WywevM 
 

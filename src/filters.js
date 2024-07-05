@@ -1,4 +1,4 @@
-import wikiTermFrequency from "../data/wiki-word-freq-min16.js";
+import wikiTermFrequency from "../data/wiki-word-freq-min32.js";
 import fs from "fs";
 
 function removeNonEnglish(text) {
@@ -12,11 +12,19 @@ function removeNonEnglish(text) {
 
 var words = Object.keys(wikiTermFrequency);
 for (let term of words) {
-    if (term.length <= 2 ||  term.length >= 24) {
+    if (term.length <= 2 ||  term.length >= 23) {
                 delete wikiTermFrequency[term];
 
     }
 
+    if ((term.endsWith(".") && term.split(".").length==2) || term.includes("/")) {
+                console.log(term);
+
+        delete wikiTermFrequency[term];
+    }
+
+    if (wikiTermFrequency[term] < 32)
+        delete wikiTermFrequency[term];
     // if (removeNonEnglish(term)) {
     //     console.log(term);
 
@@ -26,5 +34,5 @@ for (let term of words) {
 
 console.log(Object.keys(wikiTermFrequency).length);
 
-// fs.writeFileSync("./data/wiki-word-freq-860k.js", 
+// fs.writeFileSync("./data/wiki-word-freq-min32.js", 
 //     "export default " +JSON.stringify(wikiTermFrequency));
