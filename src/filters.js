@@ -9,9 +9,11 @@ function removeNonEnglish(text) {
     return regex.test(text);
 }
 
-
+var totalWikiPages = 6000000;
 var words = Object.keys(wikiTermFrequency);
 for (let term of words) {
+
+
     if (term.length <= 2 ||  term.length >= 23) {
                 delete wikiTermFrequency[term];
 
@@ -25,14 +27,14 @@ for (let term of words) {
 
     if (wikiTermFrequency[term] < 32)
         delete wikiTermFrequency[term];
-    // if (removeNonEnglish(term)) {
-    //     console.log(term);
+    if (removeNonEnglish(term)) {
+        console.log(term);
 
-    //     delete wikiTermFrequency[term];
-    // }
+        delete wikiTermFrequency[term];
+    }
 }
 
 console.log(Object.keys(wikiTermFrequency).length);
 
-// fs.writeFileSync("./data/wiki-word-freq-min32.js", 
-//     "export default " +JSON.stringify(wikiTermFrequency));
+fs.writeFileSync("./data/wiki-word-freq-min32-scores.js", 
+    "export default " +JSON.stringify(wikiTermFrequency));
