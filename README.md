@@ -19,7 +19,10 @@ Wiki-BM25 unlike BM25 solves the need to pass in all docs to compute against all
 ### Statistics
 525K words with frequencies of at least 16 wikipages, between 3 to 23 characters of English alphanumerics like az09, punctuation like -/, and diacritics like éï, but filter out numbers and foreign language.
 
-- *Total Articles (Wiki-en-2020)*: 5,989,879 
+- *Total Articles (Wiki-en-2020)*: 5,989,879
+
+- *Total Terms (frequency>=16)*: 525674
+- *Filesize (JSON, frequency>=16)*: 11MB 
 - *Total Terms (frequency>=8)*: 860117
 - *Filesize (JSON, frequency>=8)*: 11MB
 
