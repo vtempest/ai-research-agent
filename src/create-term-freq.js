@@ -16,7 +16,7 @@ function getWikiTermFrequency() {
   const minFreq = 6;
 
   var endFile = false;
-  var writeStream = fs.createWriteStream("./data/wiki-term-freq8-1M.js", { flags: endFile ? "a" :"w" });
+  var writeStream = fs.createWriteStream("./data/wiki-word-freq-1m.js.js", { flags: endFile ? "a" :"w" });
   
   if (endFile){
   writeStream.write("};\n");
