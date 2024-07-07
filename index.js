@@ -1,2 +1,2 @@
-import {searchWikipedia} from './src/search-wikipedia.js';
-import {calculateWikiBM25} from './src/wiki-bm25.js';
+import {searchWikipedia} from './src/search/search-wikipedia.js';
+import {calculateWikiBM25} from './src/frequency/wiki-bm25.js';

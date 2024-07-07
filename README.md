@@ -1,23 +1,41 @@
-<p align="center">
-<img src="https://i.imgur.com/5tCLYrA.png"  > 
+<p align="center"><img width="200px" src="https://i.imgur.com/4GOOM9s.jpeg"> 
 </p>
 
 
-### Wikipedia Outline Relational Lexicon Dataset (WORLD) Model
+
+#### WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
+
+ Search and outline a research base using Wikipedia's 35K popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.
 
 
 * 35k terms - wikipedia most popular pages titles and its related mapping to dictionary phrase - the core world model of popular related topics 
 * 162k terms - lexicon combinining OpenEnglish WordNet, a better updated version of Wordnet - multiple definitions per term, 120k synonyms, 45 concept categories
-* JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text
+* JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
 
 
-### WINTER Wikipedia Important Named Topic Entity Recognition
+#### DSEEK: Domain-Specific Extraction of Entities and Keywords
+This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
+
+1. Split into sentences with Compromise
+2. Tokenize, normalize, and get nouns with Compromise
+3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art"
+4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases 
+5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF
+6. Pass to the next layer only a cut  of top keyphrases sorted by frequency ^ word count
+7. Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link 
+8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence.
+9. Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph centrality 
+10. Returns Top Sentences (and  keyphrases for each sentence) and Top Keyphrases (and which sentences for each keyphrase). 
+11. WebUI: The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics
+12. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank.
+
+#### WINTER: Wikipedia Important Named Topic Entity Recognition
 
  * Given document text, recognizes wikipedia page titles
  * Using list of 35K popular pages 300kb
  * Returns page titles, match indexes, and count
 
-#### WikiBM25 Term Specificity Search for a Single Doc
+#### WikiBM25: Term Specificity Search for a Single Doc
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. 
 
@@ -26,7 +44,10 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 ### Use Cases
 - **WikiIDF** - Wikipedia Occurrences Word Specificity - Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.
 
-- **DSEEK** - Domain-Specific Extraction of Entities and Keywords - This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
+
+- **Autocomplete & Phrase-based Query Search** - search-on-keystroke and load this 10MB index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "react hooks" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
+
+
 
 - **LLM RAG Chunk to Query Similarity** - As [explained in this video](https://youtu.be/9QJXvNiJIG8?si=aCX-1-vewhJtFqIb&t=1645), when we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand. It is also possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
@@ -73,3 +94,4 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
 https://www.mediawiki.org/wiki/API:Opensearch
 
 * Trelis Research (2024). "Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers." July 5, 2024. https://www.youtube.com/watch?v=9QJXvNiJIG8
+

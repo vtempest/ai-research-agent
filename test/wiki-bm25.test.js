@@ -1,6 +1,6 @@
-import { calculateWikiBM25 } from "../src/wiki-bm25.js";
+import { calculateWikiBM25 } from "../src/frequency/wiki-bm25.js";
 import { test, expect } from "vitest";
-import sampleNewsDocs from "./sample-data-news.js";
+import sampleNewsDocs from "./data/sample-data-news.js";
 
 test("WikiBM25 - cancer", () => {
   const query = "cancer";
