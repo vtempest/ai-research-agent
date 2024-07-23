@@ -2,7 +2,7 @@ import LanguageTokenizer from "compromise";
 
 import TextRank  from "./graph-centrality-rank.js";
 import extractNounEdgeGrams  from "./ngrams.js";
-import  weightWikiWordSpecificity from "./wiki-word-specificity.js";
+import  weightWikiWordSpecificity from "../frequency/wiki-word-specificity.js";
 
 // import nlpWikipedia from "../../node_modules/compromise-wikipedia/builds/compromise-wikipedia.mjs";
 // LanguageTokenizer.extend(nlpWikipedia);
@@ -14,6 +14,17 @@ import  weightWikiWordSpecificity from "./wiki-word-specificity.js";
  * concepts refered to most by other sentences. Based on the
  * TextRank & PageRank algorithms, it randomly surfs links to nodes
  * to find probability of being at that node, thus ranking influence.
+ * 
+ * 
+ * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
+ * "An Improved TextRank Multi-feature Fusion Algorithm For
+ * Keyword Extraction of Educational Resources"
+ * https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
+ *
+ * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based
+ * Content Extraction. Proceedings of the 28th International
+ * Conference on Computational Linguistics.
+ * https://aclanthology.org/2020.coling-main.144.pdf
  *
  * @param {string} inputString
  * @param {object} options
@@ -26,7 +37,7 @@ import  weightWikiWordSpecificity from "./wiki-word-specificity.js";
     minKeyPhraseLength = 5,
  * @returns {Array<Object>} [{text, keyphrases, weight}] array of sentences
  */
-export function weightKeySentences(inputString, options = {}) {
+export function weightKeyPhrasesSentences(inputString, options = {}) {
   var {
     maxWords = 5,
     minWords = 2,
@@ -225,17 +236,3 @@ export function weightKeySentences(inputString, options = {}) {
   return { sorted_sentences, keyphraseGrams, sentences: sentencesPOS };
 }
 
-/**
- * Weights sentences using TextRank to find which centralize
- * and tie together keyphrases, boosts weight to keyphrase query
- * to find sentences relevant to user's query.
- *
- * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based
- * Content Extraction. Proceedings of the 28th International
- * Conference on Computational Linguistics.
- * https://aclanthology.org/2020.coling-main.144.pdf
- *
- * @param {Array<Object>} sorted_sentences
- * @param {string} query
- * @returns {Array<Object>} [{text, keyphrases, weight}] array of sentences
- */

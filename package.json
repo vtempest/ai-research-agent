@@ -1,21 +1,24 @@
 {
   "name": "wiki-world-model",
   "module": "index.js",
-  "type": "module",
   "scripts": {
     "test": "vitest"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "axios": "^1.7.2",
+    "fast-xml-parser": "^4.4.0",
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "adm-zip": "^0.5.14",
     "compromise": "^14.13.0",
     "compromise-wikipedia": "^0.1.0",
     "sbd": "^1.0.19",
-    "wink-distance": "^2.0.2"
+    "wink-distance": "^2.0.2",
+    "wink-lemmatizer": "^3.0.4"
   }
 }

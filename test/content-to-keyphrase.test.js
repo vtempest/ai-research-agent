@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
-  weightKeySentences,
+  weightKeyPhrasesSentences,
 } from "../src/keyphrases/dseek-keyphrases.js";
 import {test3} from "./data/data-long-article.js"
 
@@ -9,7 +9,7 @@ import fs from 'fs';
 describe("top sentences textrank", () => {
   it("get top sentences specific to a query", async () => {
 
-    let summary_obj = weightKeySentences(test3, {
+    let summary_obj = weightKeyPhrasesSentences(test3, {
       heavyWeightQuery: "self attention",
       limitTopSentences : 10
     });

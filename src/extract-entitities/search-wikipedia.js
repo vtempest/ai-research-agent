@@ -19,7 +19,7 @@ import stringDistance from "wink-distance";
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
  */
-export default async function searchWikipedia(query, options = {}) {
+export async function searchWikipedia(query, options = {}) {
   // Set default options
   var {
     plainText = false,

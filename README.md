@@ -13,6 +13,8 @@
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
 
 
+#### [Sample Output](https://github.com/vtempest/Wiki-World-Model/blob/master/test/data/output-keyphrases.json)
+
 #### DSEEK: Domain-Specific Extraction of Entities and Keywords
 This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
 
@@ -45,11 +47,11 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 - **WikiIDF** - Wikipedia Occurrences Word Specificity - Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.
 
 
-- **Autocomplete & Phrase-based Query Search** - search-on-keystroke and load this 10MB index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "react hooks" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
+- **Autocomplete & Phrase-based Query Search** - search-on-keystroke and load this 10MB index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
 
 
-- **LLM RAG Chunk to Query Similarity** - As [explained in this video](https://youtu.be/9QJXvNiJIG8?si=aCX-1-vewhJtFqIb&t=1645), when we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand. It is also possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
+- **LLM RAG Chunk to Query Similarity** - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand. It is also possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
 - **LLM Ground Truth Model** - Wikipedia's top 35K popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
@@ -95,3 +97,11 @@ https://www.mediawiki.org/wiki/API:Opensearch
 
 * Trelis Research (2024). "Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers." July 5, 2024. https://www.youtube.com/watch?v=9QJXvNiJIG8
 
+ * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021 "An Improved TextRank Multi-feature Fusion Algorithm For Keyword Extraction of Educational Resources" https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
+
+ * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based Content Extraction. Proceedings of the 28th International Conference on Computational Linguistics. https://aclanthology.org/2020.coling-main.144.pdf
+
+ * Goodwin, Danny (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
+
+
+* "See, also: Featured visualizations of Wikipedia"  [Visualizations built on Wikipedia data](https://seealso.org/)

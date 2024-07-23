@@ -1,96 +1,73 @@
 {
   "sorted_sentences": [
     {
-      "index": 82,
-      "text": "In practice, we compute the attention function on a set of queries simultaneously, packed together into a matrix Q .",
+      "index": 242,
+      "text": "3 English Constituency Parsing   </p>       <p>   To evaluate if the Transformer can generalize to other tasks we performed experiments on English constituency parsing.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 96,
-      "text": "With a single attention head, averaging inhibits this.",
+      "index": 215,
+      "text": "Table 2 summarizes our results and compares our translation quality and training costs to other model architectures from the literature.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 43,
-      "text": "In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output.",
+      "index": 200,
+      "text": "1 Machine Translation   </p>       <p>   On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table 2) outperforms the best previously reported models (including ensembles) by more than 2 .",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 109,
-      "text": "• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to all positions in the decoder up to and including that position.",
+      "index": 208,
+      "text": "The Transformer (big) model trained for English-to-French used dropout rate P = 0 .",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 53,
-      "text": "In the following sections, we will describe the Transformer, motivate self-attention and discuss its advantages over models such as [17, 18] and [9].",
+      "index": 20,
+      "text": "We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
       "keyphrases": [
-        "self attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 149,
-      "text": "To improve computational performance for tasks involving very long sequences, self-attention could be restricted to considering only a neighborhood of size r in the input sequence centered around the respective output position.",
+      "index": 16,
+      "text": "4 BLEU on the WMT 2014 Englishto-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU.",
       "keyphrases": [
-        "self attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 25,
-      "text": "Noam proposed scaled dot-product attention, multi-head attention and the parameter-free position representation and became the other person involved in nearly every detail.",
+      "index": 162,
+      "text": "1 Training Data and Batching   </p>       <p>   We trained on the standard WMT 2014 English-German dataset consisting of about 4.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "dot product",
-        "head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 42,
-      "text": "In all but a few cases [ 27 ], however, such attention mechanisms are used in conjunction with a recurrent network.",
+      "index": 206,
+      "text": "On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41 .",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention"
+        "english to german translation"
       ]
     },
     {
-      "index": 60,
-      "text": "The Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively.",
+      "index": 218,
+      "text": "2 Model Variations   </p>       <p>   To evaluate the importance of different components of the Transformer, we varied our base model in different ways, measuring the change in performance on English-to-German translation on the   </p>       <p>   8 [ 8 ] Table 3: Variations on the Transformer architecture.",
       "keyphrases": [
-        "self attention",
-        "encoder decoder",
-        "encoder and decoder"
+        "english to german translation"
       ]
     },
     {
-      "index": 84,
-      "text": "We compute the matrix of outputs as:   </p>       <p>   Attention( Q, K, V ) = softmax( QK     <p>   √ d     <p>   ) V (1) The two most commonly used attention functions are additive attention [ 2 ], and dot-product (multiplicative) attention.",
+      "index": 220,
+      "text": "All metrics are on the English-to-German translation development set, newstest2013.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "dot product",
-        "head attention"
+        "english to german translation"
       ]
     }
   ],
