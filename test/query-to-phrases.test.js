@@ -11,12 +11,15 @@ var sample =["what is  albert einstein's favorite programming language?"]
 
 test("query to keyphrases", async () => {
 
-    for (var q of queries.slice(100,500)){
+    for (var q of queries.slice(1600,1900)){
+
+        // q =     "i like to make black music, gold medal red wine lucid dreaming wine tasting opinion on openai";
+
     //example usage
     var result = queryPhrase(q)
-    //"i like to make black music, gold medal red wine lucid dreaming wine tasting opinion on openai");
     
-    var str = result.map(r=> (r.w||"") + " " + r.full+ " " + r.s).join(", ")
+    var str = result.map(r=>  r.full + (r.full.includes(" ")? " (Phrase)" : "") 
+        + " " + (r.w? "(Wiki: " + r.w  + ")":"") ).join("   ")
     console.log(str);
 
     }

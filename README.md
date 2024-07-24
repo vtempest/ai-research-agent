@@ -56,17 +56,17 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 - **LLM Ground Truth Model** - Wikipedia's top 35K popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
-### Statistics
+### WikiIDF Frequency Statistics
 
-325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.
+All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.
 
 - *Total Terms (frequency>=32)*: 324896
 - *Filesize (JSON, frequency>=32)*: 4MB 
 - *Total Articles (Wiki-en-2020)*: 5,989,879
 
-### BM25 Formula
+### WikiBM25 Formula
 
-$$\text{score}(D,Q) = \sum_{i=1}^{N} \text{W-IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
+$$\text{score}(D,Q) = \sum_{i=1}^{N} \text{Wiki-IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
 
 ### Wikipedia Search API 
 
@@ -85,8 +85,6 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
 ### References
 
 *   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
-
-> [Qdrant developed BM42](https://qdrant.tech/articles/bm42/) in 2024 to replace term frequency with average word weights by self-attention tansformer language models. This scores word importance better than BM25 in short documents which are too short to use word frequency as the key weight. BM42 is not used but it is benchmarked and implemented with Transformers.js BERT model.
 
 * ritvikmath (2023). "BM25 : The Most Important Text Metric in Data Science". https://www.youtube.com/watch?v=ruBm9WywevM 
 

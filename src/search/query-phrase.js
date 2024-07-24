@@ -7,11 +7,11 @@ var dict = JSON.parse(fs.readFileSync("./data/wiki-world-model.json", "utf8"))
  * Query Resolution to Phrase & Topic Tokenization - 
  * returns a list of phrases that are found in 
  * the WikiWorldModel that match the input phrase, or just the single word if found
- * 
  * @param {string} phrase 
- * @returns {Array<{n: string, s: number, f: number, full: string}>
  */
 export default function queryPhraseTokenizer(phrase) {
+
+    //strip non-alphanumeric characters from query
     phrase = phrase.replace(/[^a-zA-Z0-9\s]/g, "");
 
     //split into words
@@ -36,32 +36,37 @@ export default function queryPhraseTokenizer(phrase) {
             
             });
 
+
             var nextWords = "";
             for (var j = 1; j<words.length-i; j++) {
                 nextWords += (words[i+j] || "") + " " ;
 
-                if(nextWords.length < maxPhraseLength)
+                if(nextWords.length >= maxPhraseLength)
                     break;
             }
 
-            
 
             for (var phrase of possiblePhrases){
-                if (phrase.s==1){
+                
+                //if no next phrase, preserve the single word
+                //it culd also be not in the dict first word
+                if (phrase && !phrase.n){
                     phrase.full = word
-                    singleWordObj = (phrase);
+                    singleWordObj = phrase;
+                } else {
 
-                }
 
-                if (phrase.s>1){
                     //add next word to the phrase up to maxPhraseLength
-                                
+                        
+                    //check if next words match the phrase
+
                     if(!isPhraseFound && nextWords.startsWith(phrase.n)){
+
                         phrase.full = word + " " + phrase.n;
                         topics.push(phrase);
 
                         //skip looping thru the next words added to phrase
-                       // i += phrase.n?.split(" ").length - 1; //TODO fi
+                        i += phrase.n?.split(" ").length ; //TODO fi
 
                         //suppress single-word "red" if "red wine" is found
                         isPhraseFound = true;
@@ -73,9 +78,11 @@ export default function queryPhraseTokenizer(phrase) {
             };
 
             //if no phrases then add the single word
-            if (singleWordObj && !isPhraseFound){
+            if ( !isPhraseFound){
+                singleWordObj = singleWordObj || {full: word}; // could be not in dict but starter of hrases
                 topics.push(singleWordObj);
             }
+
 
            
         }

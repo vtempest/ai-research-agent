@@ -22,46 +22,32 @@ var dictDefs = JSON.parse(fs.readFileSync("./data/en-dict-defs.json", "utf8"));
 var wikiNouns = fs.readFileSync("./data/dict-to-wiki-topics-35k.json", "utf8");
 wikiNouns = JSON.parse(wikiNouns);
 
+var wikiTopPages = fs.readFileSync("./data/wiki-pages-100k.json", "utf8");
+wikiTopPages = JSON.parse(wikiTopPages);
+
+
 var wordsPhrasesTree = {}
 
-// build dict_phrase -> wikiNouns Map phrases tree
-for (var key of Object.keys(wikiNouns)) {
-    var pageTitle = wikiNouns[key];
 
 
-    //add the dictionary word term to the tree with wikipage
-    var words = key.split(" ");
-    var firstWord = words[0];
-    var phraseSize = words.length;
-    var nextWords = words.slice(1)?.join(" ");
-    
-    if (OPTION_ADD_WIKI_RELATED_WORDS) 
-    if (phraseSize > 1) {
-            // console.log("nextWords: ", nextWords);  
-            if (firstWord in wordsPhrasesTree) {
-                wordsPhrasesTree[firstWord].push({"n": nextWords,  "w": pageTitle});
-            } else {
-                wordsPhrasesTree[firstWord] = [{"n": nextWords,  "w": pageTitle}];
-            }
-    } else if (phraseSize == 1) {
-        if (firstWord in wordsPhrasesTree) {
-            wordsPhrasesTree[firstWord].push({  "w": pageTitle });
-        } else {
-            wordsPhrasesTree[firstWord] = [{  "w": pageTitle }];
-        }
-    }
-
-
+// build TOP 100K WIKI TOPICS
     //add the WIKI PAGE TITLE to the tree with the wikipage
+for (var pageTitle of wikiTopPages) {
+
+    //if has parenthesis, skip 
+    if (pageTitle.includes("(") || pageTitle.includes(")")) continue;
 
     // remove everything in (parentesis) and [brackets] from the title with regex
-    var wpt_words = pageTitle.replace(/ *\([^)]*\) */g, "").replace(/ *\[[^)]*\] */g, "")
+    var wpt_words = pageTitle.replace(/ *\([^)]*\)/g, "").replace(/ *\[[^)]*\]/g, "")
+    .replace(/^List_of_/, "").replace(/^The_/, "").replace(/^A_/, "").replace(/^An_/, "")
     // remove everything after a comma
     .split(",")[0]
     .replace(/[^a-zA-Z_0-9\-]/g, "").toLowerCase().split("_");
     var wpt_firstWord = wpt_words[0];
     var wpt_phraseSize = wpt_words.length;
     var wpt_nextWords = wpt_words.slice(1)?.join(" ");
+
+    if (wpt_words.join().length < 4) continue;
 
     if (wpt_phraseSize > 1) {
             // console.log("nextWords: ", nextWords);  
@@ -82,6 +68,67 @@ for (var key of Object.keys(wikiNouns)) {
 
 }
 
+
+
+/**
+// build dict_phrase -> wikiNouns Map phrases tree
+for (var key of Object.keys(wikiNouns)) {
+    var pageTitle = wikiNouns[key];
+
+
+    //add the dictionary word term to the tree with wikipage
+    var words = key.split(" ");
+    var firstWord = words[0];
+    var phraseSize = words.length;
+    var nextWords = words.slice(1)?.join(" ");
+    
+    if (OPTION_ADD_WIKI_RELATED_WORDS) 
+    if (phraseSize > 1) {
+            // console.log("nextWords: ", nextWords);  
+            if (firstWord in wordsPhrasesTree) {
+                wordsPhrasesTree[firstWord].push({"n": nextWords,  "w": pageTitle});
+            } else {
+                wordsPhrasesTree[firstWord] = [{"n": nextWords,  "w": pageTitle}];
+            }
+    } else if (phraseSize == 1 ) {
+        if (firstWord in wordsPhrasesTree) {
+            wordsPhrasesTree[firstWord].push({  "w": pageTitle });
+        } else {
+            wordsPhrasesTree[firstWord] = [{  "w": pageTitle }];
+        }
+    }
+
+
+    //add the WIKI PAGE TITLE to the tree with the wikipage
+
+    // remove everything in (parentesis) and [brackets] from the title with regex
+    var wpt_words = pageTitle.replace(/ *\([^)]*\)/g, "").replace(/ *\[[^)]*\]/g, "")
+    // remove everything after a comma
+    .split(",")[0]
+    .replace(/[^a-zA-Z_0-9\-]/g, "").toLowerCase().split("_");
+    var wpt_firstWord = wpt_words[0];
+    var wpt_phraseSize = wpt_words.length;
+    var wpt_nextWords = wpt_words.slice(1)?.join(" ");
+
+    if (wpt_phraseSize > 1) {
+            // console.log("nextWords: ", nextWords);  
+            if (wpt_firstWord in wordsPhrasesTree) {
+                wordsPhrasesTree[wpt_firstWord].push({"n": wpt_nextWords,  "w": pageTitle});
+            } else {
+                wordsPhrasesTree[wpt_firstWord] = [{"n": wpt_nextWords, "w": pageTitle}];
+            }
+    } else if (wpt_phraseSize == 1&& pageTitle.length > 2) {
+        if (wpt_firstWord in wordsPhrasesTree) {
+            wordsPhrasesTree[wpt_firstWord].push({ "w": pageTitle });
+        } else {
+            wordsPhrasesTree[wpt_firstWord] = [{  "w": pageTitle }];
+        }
+    }
+
+
+
+}
+*/
 
 
 
@@ -130,10 +177,10 @@ for (var key of Object.keys(dict)) {
         }
     } else if (phraseSize == 1) {
         if (firstWord in wordsPhrasesTree && wordsPhrasesTree[firstWord].push) {
-                wordsPhrasesTree[firstWord].push({  "s": synonyms, "c": posType, "p": pos});
+                wordsPhrasesTree[firstWord].push(synonyms.length ? {  "s": synonyms, "c": posType, "p": pos} : {  "c": posType, "p": pos});
            
         } else {
-            wordsPhrasesTree[firstWord] = [{  "s": synonyms, "c": posType, "p": pos }];
+            wordsPhrasesTree[firstWord] = synonyms.length ? [{  "s": synonyms, "c": posType, "p": pos }] : [{   "c": posType, "p": pos }];
         }
     }
 
