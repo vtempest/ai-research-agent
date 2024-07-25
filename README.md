@@ -5,11 +5,11 @@
 
 #### WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
- Search and outline a research base using Wikipedia's 35K popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.
+ Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.
 
 
-* 35k terms - wikipedia most popular pages titles and its related mapping to dictionary phrase - the core world model of popular related topics 
-* 162k terms - lexicon combinining OpenEnglish WordNet, a better updated version of Wordnet - multiple definitions per term, 120k synonyms, 45 concept categories
+* 100k wiki terms - wikipedia most popular pages titles and its related mapping to dictionary phrase - the core world model of popular related topics 
+* 162k dict terms - lexicon combinining OpenEnglish WordNet, a better updated version of Wordnet - multiple definitions per term, 120k synonyms, 45 concept categories
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
 
 
@@ -34,7 +34,7 @@ This can be used to find unique, domain-specific keyphrases using noun Ngrams. D
 #### WINTER: Wikipedia Important Named Topic Entity Recognition
 
  * Given document text, recognizes wikipedia page titles
- * Using list of 35K popular pages 300kb
+ * Using list of 100k popular pages 300kb
  * Returns page titles, match indexes, and count
 
 #### WikiBM25: Term Specificity Search for a Single Doc
@@ -53,7 +53,7 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 
 - **LLM RAG Chunk to Query Similarity** - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand. It is also possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
-- **LLM Ground Truth Model** - Wikipedia's top 35K popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
+- **LLM Ground Truth Model** - Wikipedia's top 100k popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
 ### WikiIDF Frequency Statistics

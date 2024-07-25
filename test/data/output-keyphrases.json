@@ -1,412 +1,144 @@
 {
-  "sorted_sentences": [
+  "top_sentences": [
     {
-      "index": 51,
-      "text": "End-to-end memory networks are based on a recurrent attention mechanism instead of sequencealigned recurrence and have been shown to perform well on simple-language question answering and language modeling tasks [34].",
+      "index": 30,
+      "text": "</p>   Work performed while at Google Research.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 148,
-      "text": "In terms of computational complexity, self-attention layers are faster than recurrent layers when the sequence 6 [ 6 ] length n is smaller than the representation dimensionality d , which is most often the case with sentence representations used by state-of-the-art models in machine translations, such as word-piece [ 38 ] and byte-pair [ 31 ] representations.",
+      "index": 4,
+      "text": "com   </p>       <p>   Jakob Uszkoreit     <p>   Google Research   </p>       <p>   usz@google.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 13,
-      "text": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+      "index": 0,
+      "text": "<h2>   Provided proper attribution is provided, Google hereby grants permission to reproduce the tables and figures in this paper solely for use in journalistic or scholarly works.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 96,
-      "text": "With a single attention head, averaging inhibits this.",
+      "index": 8,
+      "text": "edu   </p>       <p>   Łukasz Kaiser     <p>   Google Brain   </p>       <p>   lukaszkaiser@google.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 25,
-      "text": "Noam proposed scaled dot-product attention, multi-head attention and the parameter-free position representation and became the other person involved in nearly every detail.",
+      "index": 5,
+      "text": "com   </p>       <p>   Llion Jones     <p>   Google Research   </p>       <p>   llion@google.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "dot product",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 139,
-      "text": "Motivating our use of self-attention we consider three desiderata.",
+      "index": 2,
+      "text": "com   </p>       <p>   Noam Shazeer     <p>   Google Brain   </p>       <p>   noam@google.",
       "keyphrases": [
-        "self attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 114,
-      "text": "3 Position-wise Feed-Forward Networks   </p>       <p>   In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically.",
+      "index": 1,
+      "text": "</h2>        <h1>   Attention Is All You Need   </h1>        <p>   Ashish Vaswani     <p>   Google Brain   </p>       <p>   avaswani@google.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "encoder and decoder",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 147,
-      "text": "As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires O ( n ) sequential operations.",
+      "index": 3,
+      "text": "com   </p>       <p>   Niki Parmar     <p>   Google Research   </p>       <p>   nikip@google.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 88,
-      "text": "While for small values of d the two mechanisms perform similarly, additive attention outperforms dot product attention without scaling for larger values of d [ 3 ].",
+      "index": 29,
+      "text": "</p>   Work performed while at Google Brain.",
       "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "dot product",
-        "head attention"
+        "google hereby grants permission"
       ]
     },
     {
-      "index": 99,
-      "text": "In this work we employ h = 8 parallel attention layers, or heads.",
-      "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "head attention"
-      ]
+      "index": 6,
+      "text": "com   </p>       <p>   Aidan N.  Gomez     <p>   University of Toronto   </p>       <p>   aidan@cs.",
+      "keyphrases": []
     }
   ],
-  "keyphraseGrams": [
+  "keyphrases": [
     {
       "keyphrase": "self attention",
-      "sentences": [
-        106,
-        109,
-        137,
-        148,
-        107,
-        147,
-        156,
-        12,
-        43,
-        49,
-        51,
-        64,
-        13,
-        41,
-        42,
-        105,
-        271,
-        23,
-        50,
-        52,
-        53,
-        60,
-        71,
-        125,
-        126,
-        139,
-        149,
-        157,
-        266,
-        25,
-        74,
-        82,
-        92,
-        93,
-        75,
-        76,
-        99,
-        103,
-        79,
-        84,
-        86,
-        88,
-        96,
-        114,
-        158,
-        234,
-        237
-      ],
-      "words": 3,
-      "weight": 20256,
-      "specificity": 4
+      "sentences": "139,64,71,106,109,137,148,107,147,156,12,43,49,51,13,41,42,105,271,23,50,52,53,60,125,126,149,157,266,25,74,82,92,93,75,76,99,103,79,84,86,88,96,114,158,234,237",
+      "words": 5,
+      "weight": 30373.199999999997,
+      "specificity": 6
     },
     {
       "keyphrase": "dot product attention",
-      "sentences": [
-        75,
-        79,
-        25,
-        85,
-        87,
-        88,
-        111,
-        12,
-        43,
-        49,
-        51,
-        64,
-        13,
-        41,
-        42,
-        105,
-        271,
-        84,
-        238,
-        71,
-        74,
-        82,
-        92,
-        93,
-        76,
-        99,
-        103,
-        106,
-        109,
-        137,
-        148,
-        86,
-        96,
-        107,
-        147,
-        156,
-        114,
-        158,
-        234,
-        237
-      ],
-      "words": 4,
-      "weight": 246.9999999999999,
-      "specificity": 4
+      "sentences": "75,25,79,85,87,88,111,12,43,49,51,64,13,41,42,105,271,84,238,71,74,82,92,93,76,99,103,106,109,137,148,86,96,107,147,156,114,158,234,237",
+      "words": 5,
+      "weight": 353.6999999999998,
+      "specificity": 6
     },
     {
       "keyphrase": "multi head attention",
-      "sentences": [
-        48,
-        75,
-        76,
-        92,
-        95,
-        12,
-        43,
-        49,
-        51,
-        64,
-        13,
-        41,
-        42,
-        105,
-        271,
-        25,
-        101,
-        235,
-        71,
-        74,
-        82,
-        93,
-        99,
-        103,
-        106,
-        109,
-        137,
-        148,
-        79,
-        84,
-        86,
-        88,
-        96,
-        107,
-        147,
-        156,
-        114,
-        158,
-        234,
-        237
-      ],
-      "words": 3,
-      "weight": 190.66666666666657,
-      "specificity": 4
+      "sentences": "75,25,48,76,92,95,12,43,49,51,64,13,41,42,105,271,101,235,71,74,82,93,99,103,106,109,137,148,79,84,86,88,96,107,147,156,114,158,234,237",
+      "words": 5,
+      "weight": 257.19999999999993,
+      "specificity": 6
     },
     {
-      "keyphrase": "encoder decoder",
-      "sentences": [
-        60,
-        195,
-        35,
-        54,
-        103,
-        105,
-        266,
-        62,
-        128,
-        69,
-        71,
-        121
-      ],
-      "words": 3,
-      "weight": 178.66666666666669,
-      "specificity": 8
+      "keyphrase": "attention mechanism",
+      "sentences": "234,237,12,43,49,51,64,13,41,42,105,271,25,71,74,82,92,93,75,76,99,103,106,109,137,148,79,84,86,88,96,107,147,156,114,158",
+      "words": 5,
+      "weight": 250.79999999999998,
+      "specificity": 6
     },
     {
-      "keyphrase": "encoder decoder architectures",
-      "sentences": [
-        35,
-        266,
-        54,
-        103,
-        105,
-        62,
-        128,
-        195,
-        69,
-        71,
-        121
-      ],
-      "words": 3,
-      "weight": 168.00000000000006,
-      "specificity": 8
+      "keyphrase": "head attention",
+      "sentences": "25,69,103,48,75,76,92,95,101,235,71,74,82,93,99,106,109,137,148,79,84,86,88,96,107,147,156,114,158,234,237",
+      "words": 2,
+      "weight": 234,
+      "specificity": 6
+    },
+    {
+      "keyphrase": "encoder decoder attention layers",
+      "sentences": "103,105,35,266,54,12,43,49,51,64,13,41,42,271,25,62,128,195,69,71,74,82,92,93,75,76,99,106,109,137,148,79,84,86,88,96,107,147,156,114,121,158,234,237,253,258",
+      "words": 4,
+      "weight": 232.5,
+      "specificity": 6
+    },
+    {
+      "keyphrase": "english to french translation task",
+      "sentences": "17,206,268,183,208,200,218,220,248,16,20,242,249,44,215,162,165",
+      "words": 5,
+      "weight": 190.79999999999998,
+      "specificity": 6
+    },
+    {
+      "keyphrase": "english to french",
+      "sentences": "183,268,200,218,220,248,16,17,206,208,20,242,249,162,165",
+      "words": 5,
+      "weight": 171.9,
+      "specificity": 6
     },
     {
       "keyphrase": "encoder and decoder",
-      "sentences": [
-        60,
-        195,
-        62,
-        128,
-        12,
-        114,
-        35,
-        54,
-        103,
-        105,
-        266,
-        69,
-        71,
-        121
-      ],
+      "sentences": "60,195,62,128,12,114,35,54,103,105,266,69,71,121",
       "words": 5,
       "weight": 168.00000000000003,
       "specificity": 6
     },
     {
-      "keyphrase": "rnn sequence to sequence",
-      "sentences": [
-        244,
-        265,
-        105,
-        11,
-        54,
-        120,
-        138,
-        143,
-        266,
-        34,
-        41,
-        38,
-        136,
-        125,
-        166
-      ],
-      "words": 4,
-      "weight": 131.25,
-      "specificity": 7
-    },
-    {
       "keyphrase": "dot product",
-      "sentences": [
-        75,
-        79,
-        25,
-        84,
-        85,
-        87,
-        88,
-        111,
-        238
-      ],
+      "sentences": "75,79,25,84,85,87,88,111,238",
       "words": 3,
-      "weight": 126.66666666666666,
-      "specificity": 5
-    },
-    {
-      "keyphrase": "google brain",
-      "sentences": [
-        1,
-        2,
-        8,
-        29,
-        3,
-        4,
-        5,
-        30
-      ],
-      "words": 2,
-      "weight": 120,
-      "entity": true,
-      "specificity": 5
-    },
-    {
-      "keyphrase": "head attention",
-      "sentences": [
-        25,
-        69,
-        103,
-        48,
-        75,
-        76,
-        92,
-        95,
-        101,
-        235,
-        71,
-        74,
-        82,
-        93,
-        99,
-        106,
-        109,
-        137,
-        148,
-        79,
-        84,
-        86,
-        88,
-        96,
-        107,
-        147,
-        156,
-        114,
-        158,
-        234,
-        237
-      ],
-      "words": 2,
-      "weight": 117,
-      "specificity": 3
+      "weight": 152,
+      "specificity": 6
     }
   ],
   "sentences": [

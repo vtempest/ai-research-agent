@@ -2,6 +2,7 @@ import fs from "fs";
 
 import weightWikiWordSpecificity from "../frequency/wiki-word-specificity.js";
 
+const OPTION_FILETYPE_JS = 0;
 const OPTION_PRINT_SPACING = 0;
 const OPTION_ADD_WIKI_RELATED_WORDS = 0;
 const OPTION_MAX_SYNONYMS = 0;
@@ -19,11 +20,9 @@ const pos_categories = [  "n","v", "r", "a", "s"] //a and s is for adjectives
 var dict = fs.readFileSync("./data/en-dict-index.json", "utf8");
 dict = JSON.parse(dict);
 var dictDefs = JSON.parse(fs.readFileSync("./data/en-dict-defs.json", "utf8"));
-var wikiNouns = fs.readFileSync("./data/dict-to-wiki-topics-35k.json", "utf8");
-wikiNouns = JSON.parse(wikiNouns);
 
 var wikiTopPages = fs.readFileSync("./data/wiki-pages-100k.json", "utf8");
-wikiTopPages = JSON.parse(wikiTopPages);
+wikiTopPages = JSON.parse(wikiTopPages).slice(0, 10000);
 
 
 var wordsPhrasesTree = {}
@@ -39,9 +38,9 @@ for (var pageTitle of wikiTopPages) {
 
     // remove everything in (parentesis) and [brackets] from the title with regex
     var wpt_words = pageTitle.replace(/ *\([^)]*\)/g, "").replace(/ *\[[^)]*\]/g, "")
-    .replace(/^List_of_/, "").replace(/^The_/, "").replace(/^A_/, "").replace(/^An_/, "")
+    .replace(/^List_of_/, "")
     // remove everything after a comma
-    .split(",")[0]
+    // .split(",")[0]
     .replace(/[^a-zA-Z_0-9\-]/g, "").toLowerCase().split("_");
     var wpt_firstWord = wpt_words[0];
     var wpt_phraseSize = wpt_words.length;
@@ -49,86 +48,18 @@ for (var pageTitle of wikiTopPages) {
 
     if (wpt_words.join().length < 4) continue;
 
-    if (wpt_phraseSize > 1) {
-            // console.log("nextWords: ", nextWords);  
-            if (wpt_firstWord in wordsPhrasesTree) {
-                wordsPhrasesTree[wpt_firstWord].push({"n": wpt_nextWords,  "w": pageTitle});
-            } else {
-                wordsPhrasesTree[wpt_firstWord] = [{"n": wpt_nextWords, "w": pageTitle}];
-            }
-    } else if (wpt_phraseSize == 1) {
-        if (wpt_firstWord in wordsPhrasesTree) {
-            wordsPhrasesTree[wpt_firstWord].push({ "w": pageTitle });
-        } else {
-            wordsPhrasesTree[wpt_firstWord] = [{  "w": pageTitle }];
-        }
-    }
+    var wikiObj = {"w": pageTitle}
+    if (wpt_phraseSize > 1) 
+        wikiObj.n = wpt_nextWords;
 
+    if (wpt_firstWord in wordsPhrasesTree) 
+        wordsPhrasesTree[wpt_firstWord].push(wikiObj)
+    else 
+        wordsPhrasesTree[wpt_firstWord] = [wikiObj];
 
 
 }
 
-
-
-/**
-// build dict_phrase -> wikiNouns Map phrases tree
-for (var key of Object.keys(wikiNouns)) {
-    var pageTitle = wikiNouns[key];
-
-
-    //add the dictionary word term to the tree with wikipage
-    var words = key.split(" ");
-    var firstWord = words[0];
-    var phraseSize = words.length;
-    var nextWords = words.slice(1)?.join(" ");
-    
-    if (OPTION_ADD_WIKI_RELATED_WORDS) 
-    if (phraseSize > 1) {
-            // console.log("nextWords: ", nextWords);  
-            if (firstWord in wordsPhrasesTree) {
-                wordsPhrasesTree[firstWord].push({"n": nextWords,  "w": pageTitle});
-            } else {
-                wordsPhrasesTree[firstWord] = [{"n": nextWords,  "w": pageTitle}];
-            }
-    } else if (phraseSize == 1 ) {
-        if (firstWord in wordsPhrasesTree) {
-            wordsPhrasesTree[firstWord].push({  "w": pageTitle });
-        } else {
-            wordsPhrasesTree[firstWord] = [{  "w": pageTitle }];
-        }
-    }
-
-
-    //add the WIKI PAGE TITLE to the tree with the wikipage
-
-    // remove everything in (parentesis) and [brackets] from the title with regex
-    var wpt_words = pageTitle.replace(/ *\([^)]*\)/g, "").replace(/ *\[[^)]*\]/g, "")
-    // remove everything after a comma
-    .split(",")[0]
-    .replace(/[^a-zA-Z_0-9\-]/g, "").toLowerCase().split("_");
-    var wpt_firstWord = wpt_words[0];
-    var wpt_phraseSize = wpt_words.length;
-    var wpt_nextWords = wpt_words.slice(1)?.join(" ");
-
-    if (wpt_phraseSize > 1) {
-            // console.log("nextWords: ", nextWords);  
-            if (wpt_firstWord in wordsPhrasesTree) {
-                wordsPhrasesTree[wpt_firstWord].push({"n": wpt_nextWords,  "w": pageTitle});
-            } else {
-                wordsPhrasesTree[wpt_firstWord] = [{"n": wpt_nextWords, "w": pageTitle}];
-            }
-    } else if (wpt_phraseSize == 1&& pageTitle.length > 2) {
-        if (wpt_firstWord in wordsPhrasesTree) {
-            wordsPhrasesTree[wpt_firstWord].push({ "w": pageTitle });
-        } else {
-            wordsPhrasesTree[wpt_firstWord] = [{  "w": pageTitle }];
-        }
-    }
-
-
-
-}
-*/
 
 
 
@@ -159,30 +90,18 @@ for (var key of Object.keys(dict)) {
     .join(",")
 
 
+    var phraseObj = {} //{  "c": posType, "p": pos}
+    if (phraseSize > 1)
+        phraseObj.n = words.slice(1)?.join(" ");
+    if (synonyms.length) 
+        phraseObj.s = synonyms;
 
-
-    if (phraseSize > 1) {
-        for (var i = 0; i < phraseSize - 1; i++) {
-            var nextWords = words.slice(i+1).join(" ");
-            if (words[i] in wordsPhrasesTree && wordsPhrasesTree[words[i]].push) {
-                wordsPhrasesTree[words[i]].push(synonyms.length ? 
-                    {"n": nextWords,  "s": synonyms, "c": posType, "p": pos} 
-                    : {"n": nextWords,  "c": posType, "p": pos} 
-                );
-            } else {
-                wordsPhrasesTree[words[i]] = synonyms.length ? 
-                    [{"n": nextWords,  "s": synonyms, "c": posType, "p": pos}  ] 
-                    : [{"n": nextWords,  "c": posType, "p": pos}];
-            }
-        }
-    } else if (phraseSize == 1) {
+    
         if (firstWord in wordsPhrasesTree && wordsPhrasesTree[firstWord].push) {
-                wordsPhrasesTree[firstWord].push(synonyms.length ? {  "s": synonyms, "c": posType, "p": pos} : {  "c": posType, "p": pos});
-           
+                wordsPhrasesTree[firstWord].push(phraseObj)
         } else {
-            wordsPhrasesTree[firstWord] = synonyms.length ? [{  "s": synonyms, "c": posType, "p": pos }] : [{   "c": posType, "p": pos }];
+            wordsPhrasesTree[firstWord] =  [phraseObj];
         }
-    }
 
 }
 
@@ -244,7 +163,11 @@ for (var key of Object.keys(wordsPhrasesTree)) {
     }
 }
 
-
-fs.writeFileSync("./data/wiki-world-model.json", OPTION_PRINT_SPACING ? JSON.stringify(firstTwoLettersTree, null, 2): JSON.stringify(firstTwoLettersTree), "utf8");
-
+if (OPTION_FILETYPE_JS)
+    fs.writeFileSync("./data/wiki-world-model.js",
+"export default " + (OPTION_PRINT_SPACING ? JSON.stringify(firstTwoLettersTree, null, 2): JSON.stringify(firstTwoLettersTree)), "utf8");
+else 
+fs.writeFileSync("./data/wiki-world-model.json",
+    (OPTION_PRINT_SPACING ? JSON.stringify(firstTwoLettersTree, null, 2): JSON.stringify(firstTwoLettersTree)), "utf8");
+    
 

@@ -1,11 +1,8 @@
 import LanguageTokenizer from "compromise";
 
-import TextRank  from "./graph-centrality-rank.js";
-import extractNounEdgeGrams  from "./ngrams.js";
-import  weightWikiWordSpecificity from "../frequency/wiki-word-specificity.js";
-
-// import nlpWikipedia from "../../node_modules/compromise-wikipedia/builds/compromise-wikipedia.mjs";
-// LanguageTokenizer.extend(nlpWikipedia);
+import TextRank from "./graph-centrality-rank.js";
+import extractNounEdgeGrams from "./ngrams.js";
+import queryPhraseTokenizer from "../search/phrase-tokenizer.js";
 
 /**
  * DSEEK - Domain Specific Extraction of Entities & Keyphrases
@@ -46,19 +43,19 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     limitTopSentences = 5,
     limitTopKeyphrases = 10,
     minKeyPhraseLength = 5,
-    heavyWeightQuery = ""
+    heavyWeightQuery = "",
   } = options;
 
   //if not string throw error
   if (typeof inputString != "string") {
     throw new Error("inputString must be a string");
   }
-  
+
   //add space before < to ensure split sentences
   inputString = inputString
     .replace(/</g, " <")
     .replace(/>/g, "> ")
-    .replace(/&.{4};/g, "");
+    .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
   var nGrams = {};
 
   var sentencesPOS = LanguageTokenizer(inputString)
@@ -138,18 +135,15 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
       }
     }
 
-    if (shouldAddCurrent && keyphraseGram.sentences.length >= 2)
+    if (shouldAddCurrent && keyphraseGram.sentences.length >= 1)
       keyphrasesFolded.push(keyphraseGram);
   }
 
-  
-//heavy weight query - bias towards query or user-clicked keyphrase
+  //heavy weight query - bias towards query or user-clicked keyphrase
   if (heavyWeightQuery)
-  keyphrasesFolded
-    .forEach((keyphrase) => {
-      if (keyphrase.keyphrase == heavyWeightQuery) 
-        keyphrase.weight += 5000;
-    })
+    keyphrasesFolded.forEach((keyphrase) => {
+      if (keyphrase.keyphrase == heavyWeightQuery) keyphrase.weight += 5000;
+    });
 
   keyphraseGrams = keyphrasesFolded.sort((a, b) => b.weight - a.weight);
 
@@ -160,8 +154,6 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
       keyphrase.sentences = [...new Set(keyphrase.sentences)];
       if (keyphraseGramsUnique[keyphrase.keyphrase]) return false;
       keyphraseGramsUnique[keyphrase.keyphrase] = 1;
-
-      
 
       return keyphrase;
     })
@@ -176,24 +168,21 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
   //weight wiki entities
   keyphraseGrams = keyphraseGrams
     .map((keyphraseGram) => {
-      var phraseTokenized = LanguageTokenizer(keyphraseGram.keyphrase);
+      // var phraseTokenized = LanguageTokenizer(keyphraseGram.keyphrase);
+      var phraseTokenized = queryPhraseTokenizer(phrase);
 
-      var isEntity = phraseTokenized.topics().out("array").length;
+      var isEntity = phraseTokenized.filter((r) => r.w).length;
       if (isEntity) {
-        keyphraseGram.entity = true;
+        keyphraseGram.wiki = true;
         keyphraseGram.weight = keyphraseGram.weight * 2;
       }
-      var weightDomainSpecificity = weightWikiWordSpecificity(
-        keyphraseGram.keyphrase
-      );
-      keyphraseGram.specificity = weightDomainSpecificity;
-      keyphraseGram.weight = keyphraseGram.weight * weightDomainSpecificity;
-      // var wikiEntities = phraseTokenized.wikipedia().json();
-      // if (wikiEntities.length) {
-      //   keyphraseGram.wikiEntity = wikiEntities[0].text;
-      //   keyphraseGram.weight = keyphraseGram.weight * 2;
-      //   console.log(keyphraseGram.wikiEntity);
-      // }
+
+      var tokensWithFreq = phraseTokenized.filter((r) => r.u);
+
+      keyphraseGram.specificity =
+        tokensWithFreq.reduce((acc, r) => acc + r.u, 0) / tokensWithFreq.length;
+
+      keyphraseGram.weight = keyphraseGram.weight * keyphraseGram.specificity;
 
       return keyphraseGram;
     })
@@ -216,23 +205,26 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
       sentenceKeysMap[sentenceNumber].keyphrases.push({ keyphrase, weight });
   });
 
-
   //run text rank
-  var sorted_sentences = TextRank(sentenceKeysMap);
+  var top_sentences = TextRank(sentenceKeysMap);
 
-  if (sorted_sentences)
-    sorted_sentences = sorted_sentences.sort((a, b) => {
+  if (top_sentences)
+    top_sentences = top_sentences.sort((a, b) => {
       return b.weight - a.weight;
     });
 
   //cut off top K limit
-  sorted_sentences = sorted_sentences?.slice(0, limitTopSentences).map((s) => ({
+  top_sentences = top_sentences?.slice(0, limitTopSentences).map((s) => ({
     index: s.index,
     text: s.text, //remove to not show text
     keyphrases: s.keyphrases.map((k) => k.keyphrase),
   }));
   keyphraseGrams = keyphraseGrams.slice(0, limitTopKeyphrases);
 
-  return { sorted_sentences, keyphraseGrams, sentences: sentencesPOS };
-}
+  var keyphrases = keyphraseGrams.map((k) => {
+    k.sentences = k.sentences.join(",");
+    return k;
+  });
 
+  return { top_sentences, keyphrases, sentences: sentencesPOS };
+}

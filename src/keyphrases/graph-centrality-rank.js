@@ -55,7 +55,8 @@ export default function TextRank(arraySentenceKeyphrases) {
   if (graphkey_list.length == 0) {
     return ;//error
   }
-  let key = graphkey_list[Math.floor(Math.random() * graphkey_list.length)];
+  // let key = graphkey_list[Math.floor(Math.random() * graphkey_list.length)];
+  let key = graphkey_list[0];
   let vertex = graph.getVertex(key);
   let probability_list = [];
   for (let i = 0; i < 10000; i++) {
