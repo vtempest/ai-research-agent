@@ -22,7 +22,7 @@ dict = JSON.parse(dict);
 var dictDefs = JSON.parse(fs.readFileSync("./data/en-dict-defs.json", "utf8"));
 
 var wikiTopPages = fs.readFileSync("./data/wiki-pages-100k.json", "utf8");
-wikiTopPages = JSON.parse(wikiTopPages).slice(0, 10000);
+wikiTopPages = JSON.parse(wikiTopPages).slice(0, 100000);
 
 
 var wordsPhrasesTree = {}

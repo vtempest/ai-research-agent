@@ -34,7 +34,7 @@ This can be used to find unique, domain-specific keyphrases using noun Ngrams. D
 #### WINTER: Wikipedia Important Named Topic Entity Recognition
 
  * Given document text, recognizes wikipedia page titles
- * Using list of 100k popular pages 300kb
+ * Using list of 100k popular pages 
  * Returns page titles, match indexes, and count
 
 #### WikiBM25: Term Specificity Search for a Single Doc
