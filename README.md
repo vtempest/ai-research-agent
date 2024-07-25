@@ -25,17 +25,12 @@ This can be used to find unique, domain-specific keyphrases using noun Ngrams. D
 5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF
 6. Pass to the next layer only a cut  of top keyphrases sorted by frequency ^ word count
 7. Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link 
-8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence.
+8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence. There's also random jumps to prevent stuck in a loop around same sentences.
 9. Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph centrality 
 10. Returns Top Sentences (and  keyphrases for each sentence) and Top Keyphrases (and which sentences for each keyphrase). 
 11. WebUI: The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics
 12. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank.
 
-#### WINTER: Wikipedia Important Named Topic Entity Recognition
-
- * Given document text, recognizes wikipedia page titles
- * Using list of 100k popular pages 
- * Returns page titles, match indexes, and count
 
 #### WikiBM25: Term Specificity Search for a Single Doc
 

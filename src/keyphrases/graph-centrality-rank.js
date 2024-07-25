@@ -56,10 +56,11 @@ export default function TextRank(arraySentenceKeyphrases) {
     return ;//error
   }
   let key = graphkey_list[Math.floor(Math.random() * graphkey_list.length)];
-  // let key = graphkey_list[0];
   let vertex = graph.getVertex(key);
   let probability_list = [];
   for (let i = 0; i < 10000; i++) {
+   
+
     let full_weight = 0;
 
     vertex.adjacent.forEach((value, key, map) => {
@@ -75,10 +76,16 @@ export default function TextRank(arraySentenceKeyphrases) {
     let sentence =
       probability_list[Math.floor(Math.random() * probability_list.length)];
 
+
     for (var s = 0; s < arraySentenceKeyphrases.length; s++)
       if (arraySentenceKeyphrases[s].text == sentence) 
         arraySentenceKeyphrases[s].weight += 1;
 
+
+    //randomize to prevent infinite loop in "island" graphs
+    if (i % 1000 == 0) 
+      sentence = graphkey_list[Math.floor(Math.random() * graphkey_list.length)];
+     
     vertex = graph.getVertex(sentence);
     probability_list = [];
   }

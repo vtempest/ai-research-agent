@@ -1,19 +1,6 @@
 {
   "top_sentences": [
     {
-      "index": 125,
-      "text": "n is the sequence length, d is the representation dimension, k is the kernel size of convolutions and r the size of the neighborhood in restricted self-attention.",
-      "keyphrases": [
-        "self attention",
-        "sequence transduction",
-        "output sequences",
-        "sequence modeling and transduction",
-        "sequence of symbol representations",
-        "rnn sequence to sequence",
-        "sequence to sequence"
-      ]
-    },
-    {
       "index": 43,
       "text": "In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output.",
       "keyphrases": [
@@ -24,6 +11,41 @@
         "encoder decoder attention layers",
         "input and output",
         "transformer model architecture"
+      ]
+    },
+    {
+      "index": 64,
+      "text": "The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network.",
+      "keyphrases": [
+        "self attention",
+        "dot product attention",
+        "multi head attention",
+        "attention mechanism",
+        "encoder decoder attention layers",
+        "feed forward network"
+      ]
+    },
+    {
+      "index": 271,
+      "text": "We plan to extend the Transformer to problems involving input and output modalities other than text and to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs such as images, audio and video.",
+      "keyphrases": [
+        "self attention",
+        "dot product attention",
+        "multi head attention",
+        "attention mechanism",
+        "encoder decoder attention layers",
+        "input and output",
+        "output sequences",
+        "output of each sub-layer",
+        "output length to input length",
+        "output length during inference",
+        "input tokens and output tokens",
+        "output where the query",
+        "value pairs to an output",
+        "outputs such as images audio",
+        "output tokens to vectors",
+        "fact that the output embeddings",
+        "output modalities other than text"
       ]
     },
     {
@@ -45,6 +67,32 @@
       ]
     },
     {
+      "index": 105,
+      "text": "This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9].",
+      "keyphrases": [
+        "self attention",
+        "dot product attention",
+        "multi head attention",
+        "attention mechanism",
+        "encoder decoder attention layers",
+        "encoder and decoder",
+        "encoder decoder",
+        "rnn sequence to sequence",
+        "sequence to sequence",
+        "position in the decoder",
+        "decoder layer and the memory",
+        "information flow in the decoder",
+        "decoder the decoder"
+      ]
+    },
+    {
+      "index": 53,
+      "text": "In the following sections, we will describe the Transformer, motivate self-attention and discuss its advantages over models such as [17, 18] and [9].",
+      "keyphrases": [
+        "self attention"
+      ]
+    },
+    {
       "index": 106,
       "text": "• The encoder contains self-attention layers.",
       "keyphrases": [
@@ -57,44 +105,16 @@
       ]
     },
     {
-      "index": 96,
-      "text": "With a single attention head, averaging inhibits this.",
+      "index": 107,
+      "text": "In a self-attention layer all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder.",
       "keyphrases": [
         "self attention",
         "dot product attention",
         "multi head attention",
         "attention mechanism",
         "head attention",
-        "encoder decoder attention layers"
-      ]
-    },
-    {
-      "index": 41,
-      "text": "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences [ 2 , 19 ].",
-      "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "attention mechanism",
         "encoder decoder attention layers",
-        "sequence transduction",
-        "input and output",
-        "output sequences",
-        "sequence modeling and transduction",
-        "sequence of symbol representations",
-        "rnn sequence to sequence",
-        "sequence to sequence",
-        "output of each sub-layer",
-        "language modeling and machine translation",
-        "output length to input length",
-        "output length during inference",
-        "input tokens and output tokens",
-        "output where the query",
-        "value pairs to an output",
-        "outputs such as images audio",
-        "output tokens to vectors",
-        "fact that the output embeddings",
-        "output modalities other than text"
+        "keys values and queries"
       ]
     },
     {
@@ -110,33 +130,8 @@
       ]
     },
     {
-      "index": 86,
-      "text": "Additive attention computes the compatibility function using a feed-forward network with a single hidden layer.",
-      "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "attention mechanism",
-        "head attention",
-        "encoder decoder attention layers",
-        "feed forward network"
-      ]
-    },
-    {
-      "index": 12,
-      "text": "The best performing models also connect the encoder and decoder through an attention mechanism.",
-      "keyphrases": [
-        "self attention",
-        "dot product attention",
-        "multi head attention",
-        "attention mechanism",
-        "encoder decoder attention layers",
-        "encoder and decoder"
-      ]
-    },
-    {
-      "index": 76,
-      "text": "(right) Multi-Head Attention consists of several attention layers running in parallel.",
+      "index": 82,
+      "text": "In practice, we compute the attention function on a set of queries simultaneously, packed together into a matrix Q .",
       "keyphrases": [
         "self attention",
         "dot product attention",
