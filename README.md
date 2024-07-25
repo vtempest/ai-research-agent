@@ -5,15 +5,21 @@
 
 #### WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
- Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.
+ Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph. 
 
 
-* 100k wiki terms - wikipedia most popular pages titles and its related mapping to dictionary phrase - the core world model of popular related topics 
-* 162k dict terms - lexicon combinining OpenEnglish WordNet, a better updated version of Wordnet - multiple definitions per term, 120k synonyms, 45 concept categories
+* 240K total words & phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - wikipedia most popular pages titles. Also includes domain specificity score and what letters shoudl be capital.
+* 84K  words and 67K phrases in dictionary lexicon  OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
 
+### Live Demos
 
-#### [Sample Output](https://github.com/vtempest/Wiki-World-Model/blob/master/test/data/output-keyphrases.json)
+* [Autocomplete Server Demo](https://wiki-phrases-tokenizer.vtempest.workers.dev)
+
+
+* [Sample Output](https://github.com/vtempest/wiki-phrases-model-240k/blob/master/test/data/output-keyphrases.json)
+
+* NPM Tests --  Run demos with `npm run test` to customize to your data.
 
 #### DSEEK: Domain-Specific Extraction of Entities and Keywords
 This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
@@ -51,13 +57,21 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 - **LLM Ground Truth Model** - Wikipedia's top 100k popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
-### WikiIDF Frequency Statistics
+### Statistics Metadata
+
+Total Phrase Starter First Words:  104556
+Total Terms:  204169
+Dict single words:  84493
+Dict phrases:  67444
+
+**WikiIDF Frequency Statistics**
 
 All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.
 
 - *Total Terms (frequency>=32)*: 324896
 - *Filesize (JSON, frequency>=32)*: 4MB 
 - *Total Articles (Wiki-en-2020)*: 5,989,879
+
 
 ### WikiBM25 Formula
 

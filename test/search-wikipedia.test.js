@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import searchWikipedia from "../src/extract-entitities/search-wikipedia.js";
+import searchWikipedia from "../src/search-wiki-api/search-wikipedia.js";
 
 test("search wiki", async () => {
   var result = await searchWikipedia("bm25 search", {

@@ -1,7 +1,7 @@
 import fs from 'fs';
-import wikiWordFrequency from "../../data/wiki-word-freq-min32.js";
-// import phrasesModel from "../../data/wiki-world-model.js";
-
+var wikiWordFrequency = JSON.parse(
+  fs.readFileSync("./data/wiki-word-freq-325k.json", "utf8")
+);
 /** 
  * Find domain-specific unique words for a single doc with BM25 formula 
  * by using Wikipedia term frequencies as the common words corpus.
