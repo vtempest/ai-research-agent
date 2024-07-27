@@ -8,7 +8,7 @@
  Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph. 
 
 
-* 240K total words & phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - wikipedia most popular pages titles. Also includes domain specificity score and what letters shoudl be capital.
+* 240K total words & phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - Wikipedia most popular pages titles. Also includes domain specificity score and what letters should be capital.
 * 84K  words and 67K phrases in dictionary lexicon  OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
 
@@ -59,10 +59,14 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 
 ### Statistics Metadata
 
-Total Phrase Starter First Words:  104556
-Total Terms:  204169
-Dict single words:  84493
-Dict phrases:  67444
+
+- Phrase Starter Words and Single Words:  104556
+
+- Total Terms:  204169
+
+- Dict single words:  84493
+
+- Dict phrases:  67444
 
 **WikiIDF Frequency Statistics**
 
@@ -73,7 +77,7 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 - *Total Articles (Wiki-en-2020)*: 5,989,879
 
 
-### WikiBM25 Formula
+**WikiBM25 Formula**
 
 $$\text{score}(D,Q) = \sum_{i=1}^{N} \text{Wiki-IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
 
@@ -89,6 +93,21 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
  * searchInTitleOnly = false, // Search in title only
  * rerankByTitleSimilarity = true, // Rerank results by query to title Jaro-Winkler distance softmax
  * filterDisambiguation = true, // Filter disambiguation pages like "may refer to"
+
+### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
+
+Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Negative Lookaheads (?=
+bar(?=bar) finds the 1st bar ("bar" which has "bar" after it). Single line function that can be used anywhere:
+```
+var matchedTerms = document_text.match(
+    new RegExp("(?=(.|[\r\n])*" + search_term
+    .match(/"([^"]+)"|[\w]+/gi)
+    .join(")((.|[\?=r\n])*")
+    .replace(/\"/g,'')+")(.|[\r\n])+", "ig")
+)
+```
+
+
 
 
 ### References

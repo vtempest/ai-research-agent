@@ -1,11 +1,8 @@
 import { json } from '@sveltejs/kit';
-import { config } from 'dotenv';
-
-config();
 export async function GET({ url, fetch }) {
 
-    const githubUrl = process.env.PHRASES_MODEL_URL;
 
+    const githubUrl = 'https://raw.githubusercontent.com/vtempest/wiki-phrase-tokenizer/master/data/wiki-phrases-model-240k.json'
     if (!githubUrl) {
         return json({ error: 'No GitHub URL provided' }, { status: 400 });
     }

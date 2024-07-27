@@ -2,6 +2,9 @@
  * Script to download, decompress, parse and process 
  * Quora question pairs dataset, great for training
  *  a semantic similarity model or Query-Response model
+ * 
+ https://huggingface.co/datasets/BeIR/quora/resolve/main/corpus.jsonl.gz?download=true
+ https://huggingface.co/datasets/BeIR/quora/resolve/main/queries.jsonl.gz?download=true
 */
 const https = require('https');
 const fs = require('fs');

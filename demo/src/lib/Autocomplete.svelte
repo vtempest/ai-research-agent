@@ -81,6 +81,7 @@
     searchText = suggestion.name;
     showSuggestions = false;
     // Perform search or other actions here
+    handleSubmit()
     console.log("Selected:", searchText);
   }
 
@@ -92,7 +93,9 @@
 
   function handleSubmit() {
     // Perform search or other actions here
-    console.log("Submitted:", searchText);
+    var searchURL =  "https://www.google.com/search?q="+searchText;
+
+    window.open(searchURL, "_blank");
     showSuggestions = false;
   }
 
@@ -145,7 +148,7 @@
   .search-container {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: top;
   }
 
   .search-input {
@@ -182,7 +185,7 @@
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
-    max-height: 200px;
+    max-height: 500px;
     overflow-y: auto;
     list-style-type: none;
     padding: 0;
