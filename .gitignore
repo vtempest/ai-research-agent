@@ -11,7 +11,8 @@ lerna-debug.log*
 .pnpm-debug.log*
 bun.lockb
 # Caches
-
+demo/.cloudflare/public/
+.cloudflare
 .cache
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
