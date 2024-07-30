@@ -37,14 +37,38 @@ This can be used to find unique, domain-specific keyphrases using noun Ngrams. D
 12. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank.
 
 
-#### WikiBM25: Term Specificity Search for a Single Doc
+#### BM25 with WikiIDF: Term Specificity Search for a Single Doc
+
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. 
 
 WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.
 
+Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain. 
+
+Example: Given a query "Superbowl wins by year" we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domains-specific. This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score.
+
+### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
+
+Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
+bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere:
+```js
+var document_text = `
+Ask not what your country can do for you, ask what you can do for your country.
+There is nothing to fear but fear itself.
+`;
+var search_query = ` "Ask not" "but fear itself" nothing`;
+
+var isFound = new RegExp("(?=.*" +
+    search_query
+      .match(/"([^"]+)"|[\w]+/gi)
+      .join(")(?=.*")
+      .replace(/\"/g, "") +
+    ").+","ig"
+).test(document_text.replace(/\n/g, " "));
+```
+
 ### Use Cases
-- **WikiIDF** - Wikipedia Occurrences Word Specificity - Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.
 
 
 - **Autocomplete & Phrase-based Query Search** - search-on-keystroke and load this 10MB index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
@@ -53,7 +77,7 @@ WikiBM25 unlike BM25 solves the need to pass in all docs to compute against all 
 
 - **LLM RAG Chunk to Query Similarity** - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand. It is also possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
-- **LLM Ground Truth Model** - Wikipedia's top 100k popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
+- **LLM GraphRAG Topic Model** - Wikipedia's top 100k popular pages are the core topics that most of thinking in the collective conciousness revolves around. If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
 ### Statistics Metadata
@@ -93,29 +117,9 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
  * rerankByTitleSimilarity = true, // Rerank results by query to title Jaro-Winkler distance softmax
  * filterDisambiguation = true, // Filter disambiguation pages like "may refer to"
 
-### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
-
-Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
-bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere:
-```js
-var document_text = `
-Ask not what your country can do for you, ask what you can do for your country.
-There is nothing to fear but fear itself.
-`;
-var search_query = ` "Ask not" "but fear itself" nothing`;
-
-var isFound = new RegExp("(?=.*" +
-    search_query
-      .match(/"([^"]+)"|[\w]+/gi)
-      .join(")(?=.*")
-      .replace(/\"/g, "") +
-    ").+","ig"
-).test(document_text.replace(/\n/g, " "));
-```
 
 ### Further Research
 
-*   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
 
 * ritvikmath (2023). "BM25 : The Most Important Text Metric in Data Science". https://www.youtube.com/watch?v=ruBm9WywevM 
 
@@ -125,6 +129,8 @@ var isFound = new RegExp("(?=.*" +
 https://www.mediawiki.org/wiki/API:Opensearch
 
 * Trelis Research (2024). "Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers." July 5, 2024. https://www.youtube.com/watch?v=9QJXvNiJIG8
+
+*   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
 
  * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021 "An Improved TextRank Multi-feature Fusion Algorithm For Keyword Extraction of Educational Resources" https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
 
