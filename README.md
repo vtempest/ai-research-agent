@@ -7,7 +7,7 @@
 * [Autocomplete Server Demo](https://wiki-phrases-tokenizer.vtempest.workers.dev)
 
 
-* [Sample Output](https://github.com/vtempest/wiki-phrases-model-240k/blob/master/test/data/output-keyphrases.json)
+* [Sample Output](https://github.com/vtempest/wiki-phrase-tokenizer/blob/master/test/data/output-keyphrases.json)
 
 * NPM Tests --  `npm run test` to customize to your data
 
@@ -96,21 +96,25 @@ Function to query phrase in Wikipedia Search API and return page titles, images 
 
 ### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
 
-Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Negative Lookaheads (?=
-bar(?=bar) finds the 1st bar ("bar" which has "bar" after it). Single line function that can be used anywhere:
+Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
+bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere:
+```js
+var document_text = `
+Ask not what your country can do for you, ask what you can do for your country.
+There is nothing to fear but fear itself.
+`;
+var search_query = ` "Ask not" "but fear itself" nothing`;
+
+var isFound = new RegExp("(?=.*" +
+    search_query
+      .match(/"([^"]+)"|[\w]+/gi)
+      .join(")(?=.*")
+      .replace(/\"/g, "") +
+    ").+","ig"
+).test(document_text.replace(/\n/g, " "));
 ```
-var matchedTerms = document_text.match(
-    new RegExp("(?=(.|[\r\n])*" + search_term
-    .match(/"([^"]+)"|[\w]+/gi)
-    .join(")((.|[\?=r\n])*")
-    .replace(/\"/g,'')+")(.|[\r\n])+", "ig")
-)
-```
 
-
-
-
-### References
+### Further Research
 
 *   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
 
