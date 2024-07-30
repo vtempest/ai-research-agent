@@ -9,7 +9,7 @@
 
 * [Sample Output](https://github.com/vtempest/wiki-phrase-tokenizer/blob/master/test/data/output-keyphrases.json)
 
-* NPM Tests --  `npm run test` to customize to your data
+* NPM Tests --  `npm run test` to run many tests custom to your data
 
 #### WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
@@ -18,8 +18,7 @@
 
 * 240K total words & phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - Wikipedia most popular pages titles. Also includes domain specificity score and what letters should be capital.
 * 84K  words and 67K phrases in dictionary lexicon  OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories
-* JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. 
-
+* JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.   There is ["unanimous consensus"](https://johnresig.com/blog/javascript-trie-performance-analysis/) that Prefix Trie [O(1) lookups](https://github.com/daviddwlee84/LeetCode/blob/master/Notes/DataStructure/Trie_PrefixTree.md) (instead of thaving to loop through the index for each lookup)  makes it the best data type for this task.
 
 #### DSEEK: Domain-Specific Extraction of Entities and Keywords
 This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
