@@ -1,8 +1,9 @@
-import LanguageTokenizer from "compromise";
-
+import sbd from "sbd";
 import TextRank from "./graph-centrality-rank.js";
 import extractNounEdgeGrams from "./ngrams.js";
-import queryPhraseTokenizer from "../search/phrase-tokenizer.js";
+import tokenizeWikiPhrases from "../tokenize/phrase-tokenizer.js";
+
+import fs from "fs";
 
 /**
  * DSEEK - Domain Specific Extraction of Entities & Keyphrases
@@ -11,18 +12,7 @@ import queryPhraseTokenizer from "../search/phrase-tokenizer.js";
  * concepts refered to most by other sentences. Based on the
  * TextRank & PageRank algorithms, it randomly surfs links to nodes
  * to find probability of being at that node, thus ranking influence.
- * 
- * 
- * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
- * "An Improved TextRank Multi-feature Fusion Algorithm For
- * Keyword Extraction of Educational Resources"
- * https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
- *
- * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based
- * Content Extraction. Proceedings of the 28th International
- * Conference on Computational Linguistics.
- * https://aclanthology.org/2020.coling-main.144.pdf
- *
+
  * @param {string} inputString
  * @param {object} options
     maxWords = 5,
@@ -58,32 +48,42 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
   var nGrams = {};
 
-  var sentencesPOS = LanguageTokenizer(inputString)
-    .normalize({
-      possessives: true,
-      plurals: true,
-    })
-    .json() // [...{text: "", terms: [...{tags:[], text, normal, pre, post}] }]
-    .map((sentence, sentenceNumber) => {
-      if (sentence.text.includes("<p>")) {
-        sentence.startsParagraph = true;
-      }
-      for (var i = 0; i < sentence.terms.length; i++) {
-        for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++) {
-          extractNounEdgeGrams(
-            nGramSize,
-            sentence.terms,
-            i,
-            nGrams,
-            minWordLength,
-            sentenceNumber
-          );
-        }
-      }
+  //load models or pass them in
+  if (!phrasesModel)
+    var phrasesModel = JSON.parse(
+      fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8")
+    );
 
-      return sentence.text;
-      // return {startsPar: sentence.startsParagraph, text: sentence.text, index: sentenceNumber};
+  // //check for typos
+  if (!typosModel)
+    var typosModel = JSON.parse(
+      fs.readFileSync("./data/misspelled-typos-8k.json", "utf8")
+    );
+
+  //split into sentences
+  var sentencesPOS = sbd.sentences(inputString).map((text, sentenceNumber) => {
+    var sentence = { text };
+
+    sentence.terms = tokenizeWikiPhrases(sentence.text, {
+      phrasesModel,
+      typosModel,
     });
+
+    for (var i = 0; i < sentence.terms.length; i++) {
+      for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++) {
+        extractNounEdgeGrams(
+          nGramSize,
+          sentence.terms,
+          i,
+          nGrams,
+          minWordLength,
+          sentenceNumber
+        );
+      }
+    }
+
+    return sentence.text;
+  });
 
   //give keyphrases weight of num_occurences ^ word_count
   var keyphraseGrams = [];
@@ -168,21 +168,26 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
   //weight wiki entities
   keyphraseGrams = keyphraseGrams
     .map((keyphraseGram) => {
-      // var phraseTokenized = LanguageTokenizer(keyphraseGram.keyphrase);
-      var phraseTokenized = queryPhraseTokenizer(phrase);
+      var phraseTokenized = tokenizeWikiPhrases(keyphraseGram.keyphrase, {
+        phrasesModel,
+        typosModel,
+      });
 
-      var isEntity = phraseTokenized.filter((r) => r.w).length;
+      var isEntity = phraseTokenized.filter((r) => r[0]).length;
       if (isEntity) {
         keyphraseGram.wiki = true;
         keyphraseGram.weight = keyphraseGram.weight * 2;
       }
 
-      var tokensWithFreq = phraseTokenized.filter((r) => r.u);
+      var tokensWithFreq = phraseTokenized.filter((r) => r[2]);
 
-      keyphraseGram.specificity =
-        tokensWithFreq.reduce((acc, r) => acc + r.u, 0) / tokensWithFreq.length;
+      keyphraseGram.specificity = Math.floor(
+        tokensWithFreq.reduce((acc, r) => acc + r[2], 0) / tokensWithFreq.length
+      );
 
-      keyphraseGram.weight = keyphraseGram.weight * keyphraseGram.specificity;
+      keyphraseGram.weight = Math.floor(
+        keyphraseGram.weight * keyphraseGram.specificity
+      );
 
       return keyphraseGram;
     })

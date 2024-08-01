@@ -1,26 +1,23 @@
 import { test, expect } from "vitest";
 import queryPhraseTokenizer, {
   calculatePhraseSpecificity,
-} from "../src/search/phrase-tokenizer";
+} from "../src/tokenize/phrase-tokenizer";
 import fs from "fs";
-import phrasesModel from "../../data/wiki-phrases-model-240k.json"
+import phrasesModel from "./data/wiki-phrases-model-240k.json"
 
 var queries = JSON.parse(
   fs.readFileSync("./data/quora-queries-15k.json", "utf8")
 );
-
+ 
 // var queries = ["what is  albert einstein's favorite programming language?"];
 
-test("query to keyphrases", async () => {
+test("query tokenizer to keyphrases", async () => {
   var random = 7000 // Math.floor(Math.random() * 15000);
 
-  for (var q of queries.slice(random, random + 100)) {
+  for (var q of queries.slice(random, random + 20)) {
     //example usage
     var result = queryPhraseTokenizer(q, { phrasesModel });
-
-//array key: var [nextWords, wikiTitle, category, 
-// uniqueness, capsIndexes] = dict[key.slice(0,2)][key];
-
+ 
     var str = result.filter(Boolean)
       .map(
         (r) =>

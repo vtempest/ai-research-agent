@@ -10,21 +10,15 @@
     "@types/bun": "latest",
     "axios": "^1.7.2",
     "fast-xml-parser": "^4.4.0",
-    "vitest": "^1.6.0"
-  },
-  "dependencies": {
+    "vitest": "^1.6.0",
     "adm-zip": "^0.5.14",
     "cheerio": "^1.0.0-rc.12",
-    "compromise": "^14.13.0",
-    "compromise-wikipedia": "^0.1.0",
-    "js-yaml": "^4.1.0",
-    "natural": "^7.1.0",
+    "js-yaml": "^4.1.0"
+  },
+  "dependencies": {
     "sbd": "^1.0.19",
     "wink-distance": "^2.0.2",
     "wink-eng-lite-web-model": "^1.8.0",
-    "wink-lemmatizer": "^3.0.4",
-    "wink-nlp": "^2.3.0",
-    "wink-porter2-stemmer": "^2.0.1",
     "wink-pos-tagger": "^2.2.2"
   }
 }

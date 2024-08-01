@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import queryAutocomplete from "../../../src/search/autocomplete.js";
+  import queryAutocomplete from "../../../src/autocomplete/autocomplete.js";
 
   let phrasesModel = null;
   let searchText = "";

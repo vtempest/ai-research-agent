@@ -23,8 +23,8 @@
 #### DSEEK: Domain-Specific Extraction of Entities and Keywords
 This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
 
-1. Split into sentences with Compromise
-2. Tokenize, normalize, and get nouns with Compromise
+1. Split into sentences with SBD, normalize into root lemmas if needed with Wink-pos-taggger
+2. Use the Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns
 3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art"
 4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases 
 5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF

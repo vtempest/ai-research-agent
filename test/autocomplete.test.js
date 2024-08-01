@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import queryAutocomplete from "../src/search/autocomplete";
+import queryAutocomplete from "../src/autocomplete/autocomplete";
 import fs from "fs";
 import phrasesModel from "../../data/wiki-phrases-model-240k.json"
 

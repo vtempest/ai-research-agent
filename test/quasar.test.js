@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import matchQuasar from "../src/search/quasar";
+import matchQuasar from "../src/tokenize/quasar";
 
 test("quasar: match phrases in quotes ", async () => {
   var document_text = `
