@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.14",
+    "cheerio": "^1.0.0-rc.12",
     "compromise": "^14.13.0",
     "compromise-wikipedia": "^0.1.0",
+    "js-yaml": "^4.1.0",
     "natural": "^7.1.0",
     "sbd": "^1.0.19",
     "wink-distance": "^2.0.2",

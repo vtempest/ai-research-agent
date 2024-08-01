@@ -138,5 +138,7 @@ https://www.mediawiki.org/wiki/API:Opensearch
 
  * Goodwin, Danny (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
 
+ * "NLP Datasets" https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file
+
 
 * "See, also: Featured visualizations of Wikipedia"  [Visualizations built on Wikipedia data](https://seealso.org/)
