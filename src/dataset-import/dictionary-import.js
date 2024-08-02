@@ -300,31 +300,31 @@ main();
 01 - relational adjectives (pertainyms) eg: acoustic
 02 - all adverbs
 03 - unique beginner for nouns
-04 - nouns denoting acts or actions eg: gift
-05 - nouns denoting animals eg: tadpole
-06 - nouns denoting man-made objects eg: tag
-07 - nouns denoting attributes of people and objects eg: talkativeness
-08 - nouns denoting body parts eg: finger
-09 - nouns denoting cognitive processes and contents eg: flavor
-10 - nouns denoting communicative processes and contents eg: fluency
-11 - nouns denoting natural events eg: germination
-12 - nouns denoting feelings and emotions eg: glee
-13 - nouns denoting foods and drinks eg: gluten
-14 - nouns denoting groupings of people or objects eg: government
-15 - nouns denoting spatial position eg: harbor
-16 - nouns denoting goals eg: incentive
-17 - nouns denoting natural objects (not man-made) eg: river
-18 - nouns denoting people eg: artison
-19 - nouns denoting natural phenomena eg: aurora
-20 - nouns denoting plants eg: asparagus
-21 - nouns denoting possession and transfer of possession eg: assignment
-22 - nouns denoting natural processes eg: biosynthesis
-23 - nouns denoting quantities and units of measure eg: bit
-24 - nouns denoting relations between people or things or ideas eg: bond
-25 - nouns denoting two and three dimensional shapes eg: bulge
-26 - nouns denoting stable states of affairs eg: calcification
-27 - nouns denoting substances eg: calcium
-28 - nouns denoting time and temporal relations eg: centenary
+04 - acts or actions eg: gift
+05 - animals eg: tadpole
+06 - man-made objects eg: tag
+07 - attributes of people and objects eg: talkativeness
+08 - body parts eg: finger
+09 - cognitive processes and contents eg: flavor
+10 - communicative processes and contents eg: fluency
+11 - natural events eg: germination
+12 - feelings and emotions eg: glee
+13 - foods and drinks eg: gluten
+14 - groupings of people or objects eg: government
+15 - spatial position eg: harbor
+16 - goals eg: incentive
+17 - natural objects (not man-made) eg: river
+18 - people eg: artison
+19 - natural phenomena eg: aurora
+20 - plants eg: asparagus
+21 - possession and transfer of possession eg: assignment
+22 - natural processes eg: biosynthesis
+23 - quantities and units of measure eg: bit
+24 - relations between people or things or ideas eg: bond
+25 - two and three dimensional shapes eg: bulge
+26 - stable states of affairs eg: calcification
+27 - substances eg: calcium
+28 - time and temporal relations eg: centenary
 29 - verbs of grooming, dressing and bodily care eg: cleanse
 30 - verbs of size, temperature change, intensifying, etc. eg: elongate
 31 - verbs of thinking, judging, analyzing, doubting eg: elucidate

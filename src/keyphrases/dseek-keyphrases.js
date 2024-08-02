@@ -1,9 +1,7 @@
-import sbd from "sbd";
+import splitSentences from "../tokenize/sentences.js";
+import tokenizeWikiPhrases from "../tokenize/tokenize-topics.js";
 import TextRank from "./graph-centrality-rank.js";
 import extractNounEdgeGrams from "./ngrams.js";
-import tokenizeWikiPhrases from "../tokenize/phrase-tokenizer.js";
-
-import fs from "fs";
 
 /**
  * DSEEK - Domain Specific Extraction of Entities & Keyphrases
@@ -26,6 +24,8 @@ import fs from "fs";
  */
 export function weightKeyPhrasesSentences(inputString, options = {}) {
   var {
+    phrasesModel,
+    typosModel,
     maxWords = 5,
     minWords = 2,
     minWordLength = 3,
@@ -48,20 +48,9 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
   var nGrams = {};
 
-  //load models or pass them in
-  if (!phrasesModel)
-    var phrasesModel = JSON.parse(
-      fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8")
-    );
-
-  // //check for typos
-  if (!typosModel)
-    var typosModel = JSON.parse(
-      fs.readFileSync("./data/misspelled-typos-8k.json", "utf8")
-    );
-
+ 
   //split into sentences
-  var sentencesPOS = sbd.sentences(inputString).map((text, sentenceNumber) => {
+  var sentencesPOS = splitSentences(inputString).map((text, sentenceNumber) => {
     var sentence = { text };
 
     sentence.terms = tokenizeWikiPhrases(sentence.text, {

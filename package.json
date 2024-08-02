@@ -1,6 +1,6 @@
 {
-  "name": "wiki-phrase-tokenizer",
-  "version": "1.1.0",
+  "name": "research-topic-model",
+  "version": "2.0.0",
   "module": "index.js",
   "license": "MIT",
   "scripts": {
@@ -12,13 +12,8 @@
     "fast-xml-parser": "^4.4.0",
     "vitest": "^1.6.0",
     "adm-zip": "^0.5.14",
-    "cheerio": "^1.0.0-rc.12",
-    "js-yaml": "^4.1.0"
+    "cheerio": "^1.0.0-rc.12"
   },
   "dependencies": {
-    "sbd": "^1.0.19",
-    "wink-distance": "^2.0.2",
-    "wink-eng-lite-web-model": "^1.8.0",
-    "wink-pos-tagger": "^2.2.2"
   }
 }

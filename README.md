@@ -23,8 +23,8 @@
 #### DSEEK: Domain-Specific Extraction of Entities and Keywords
 This can be used to find unique, domain-specific keyphrases using noun Ngrams. Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
 
-1. Split into sentences with SBD, normalize into root lemmas if needed with Wink-pos-taggger
-2. Use the Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns
+1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc.
+2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found.
 3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art"
 4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases 
 5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF
@@ -48,7 +48,7 @@ Use this list to Replace or Combine with All Documents IDF - Many websites may h
 
 Example: Given a query "Superbowl wins by year" we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domains-specific. This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score.
 
-### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
+#### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
 
 Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
 bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere:
@@ -107,15 +107,6 @@ $$\text{score}(D,Q) = \sum_{i=1}^{N} \text{Wiki-IDF}(q_i) \times \frac{f(q_i, D)
 ### Wikipedia Search API 
 
 Function to query phrase in Wikipedia Search API and return page titles, images and first few sentences of each result.  Wikipedia Search API is has complex [documentation](https://www.mediawiki.org/wiki/API:Opensearch) and is dificult to parse and clean up results.
-
- * plainText = false, // Return plain text instead of HTML
- * summarySentenceLimit = 3, // Limit summary to this many sentences
- * limitSearchResults = 1, // Limit number of search results
- * images = true, // Include image in results
- * imageSize = 200, // Image size in pixels
- * searchInTitleOnly = false, // Search in title only
- * rerankByTitleSimilarity = true, // Rerank results by query to title Jaro-Winkler distance softmax
- * filterDisambiguation = true, // Filter disambiguation pages like "may refer to"
 
 
 ### Further Research

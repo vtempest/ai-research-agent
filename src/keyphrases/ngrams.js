@@ -1,4 +1,4 @@
-import { stopWords } from "../tokenize/phrase-tokenizer";
+import { stopWords } from "../tokenize/stopwords";
 
 /**
  * Searches terms from index for ngram of given size
@@ -48,7 +48,7 @@ export default function extractNounEdgeGrams(
  * @returns
  */
 export function isNoun(token) {
-  return token[1] >= 3 && token[1] <= 28;
+  return token[1] >= 3 && token[1] <= 28 ||  token[1] == 50;
 }
 
 /**

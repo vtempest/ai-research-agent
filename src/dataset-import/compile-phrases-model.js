@@ -155,8 +155,8 @@ for (var key of Object.keys(wordsPhrasesTree)) {
     var phrase = thisKey + " " + (next.n || "");
     // add uniqueness to the phrase
     next.u = weightWikiWordSpecificity(phrase);
-
-    var nextArray = [next.n, next.w,  next.cat, next.u, next.caps]
+// next.w,  , next.caps
+    var nextArray = [next.n,  next.cat, next.u]
       .map((x) => x || 0);
     return nextArray;
 

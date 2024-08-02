@@ -5,7 +5,8 @@
  *  Makes a weighted graph with edges that connect sentences 
  *  to matching keyphrases. Randomly surfs millions of times 
  *  and counts walks to each node to distribute probability of
- *  being at that node.
+ *  being at that node. There's also random jumps to prevent 
+ *  stuck in a loop around same sentences.
  *  
  * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
  * "An Improved TextRank Multi-feature Fusion Algorithm For

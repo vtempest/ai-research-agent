@@ -1,5 +1,4 @@
-import sbd from "sbd";
-import stringDistance from "wink-distance";
+import splitSentences from "../tokenize/sentences-old.js";
 
 /**
  * Search Wikipedia for a query, return result's title, summary, and image. 
@@ -12,14 +11,12 @@ import stringDistance from "wink-distance";
  * @param {object.options} images = true, // Include image in results
  * @param {object.options} imageSize = 200, // Image size in pixels
  * @param {object.options} searchInTitleOnly = false, // Search in title only
- * @param {object.options} rerankByTitleSimilarity = true, // Rerank results by query to 
- *  title Jaro-Winkler distance softmax
  * @param {object.options} filterDisambiguation = true, // Filter disambiguation pages
  * @example await searchWikipedia("JavaScript", { plainText: true })
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
  */
-export async function searchWikipedia(query, options = {}) {
+export default async function searchWikipedia(query, options = {}) {
   // Set default options
   var {
     plainText = false,
@@ -28,7 +25,6 @@ export async function searchWikipedia(query, options = {}) {
     images = true,
     imageSize = 200,
     searchInTitleOnly = true,
-    rerankByTitleSimilarity = false,
     filterDisambiguation = true,
   } = options;
 
@@ -75,7 +71,7 @@ export async function searchWikipedia(query, options = {}) {
     // Use sentence boundary detection to limit summary to a few sentences
     pageData.summary =
       summarySentenceLimit > 0
-        ? sbd.sentences(extract).slice(0, summarySentenceLimit).join(" ")
+        ? splitSentences(extract).slice(0, summarySentenceLimit).join(" ")
         : extract;
 
     // Check if page is a disambiguation page
@@ -96,42 +92,10 @@ export async function searchWikipedia(query, options = {}) {
   if (filterDisambiguation)
     resultsObjects = resultsObjects.filter((i) => !i.isDisambiguation);
 
-  //compare string distance of page titles to query, and sort by proximity
-  if (rerankByTitleSimilarity)
-    resultsObjects = rerankByTitleSimilarityToQuery(resultsObjects, query);
-
   return { results: resultsObjects };
 }
 
-/**
- * Compare string distance of page titles to query, and sort by proximity
- * @param {array} resultsObjects
- * @param {string} query
- */
-export function rerankByTitleSimilarityToQuery(resultsObjects, query) {
 
-  resultsObjects
-    .map((element) => {
-      element.similarity = stringDistance.string.jaroWinkler(
-        query.toUpperCase(),
-        element.title.toUpperCase()
-      );
-      return element;
-    })
-
-  var similarityList = softmax(
-    resultsObjects.map((i) => 10 - 10 * i.similarity)
-  ).map((i) => Math.floor(i * 100));
-
-  resultsObjects.forEach(
-    (i, index) => (i.similarity = similarityList[index])
-  );
-
-  resultsObjects = resultsObjects 
-  .sort((a, b) => b.similarity - a.similarity);
-
-  return resultsObjects;
-}
 
 /**
  * Compute the softmax of an array of numbers.

@@ -1,5 +1,5 @@
 import fs from "fs";
-import {searchWikipedia} from  './search-wikipedia.js';
+import searchWikipedia from  './search-wikipedia.js';
 
 var wikiNouns = JSON.parse(fs.readFileSync("./data/wiki-pages-100k.json", "utf8"));
 

@@ -9,7 +9,6 @@ test("search wiki", async () => {
     images: true,
     imageSize: 200,
     searchInTitleOnly: 0,
-    rerankByTitleSimilarity: 0,
     filterDisambiguation: 1,
   }); 
   console.log(result);
