@@ -1,4 +1,4 @@
-import { calculateWikiBM25 } from "../src/frequency/wiki-bm25.js";
+import { calculateWikiBM25 } from "../src/match/wiki-bm25.js";
 import { test, expect } from "vitest";
 import sampleNewsDocs from "./data/sample-data-news.js";
 

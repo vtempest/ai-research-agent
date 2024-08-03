@@ -1,19 +1,28 @@
 {
-  "name": "research-topic-model",
-  "version": "2.0.0",
+  "name": "research-agent-model",
+  "version": "3.0.0",
   "module": "index.js",
+  "author": "vtempest",
+  "description": "Search and outline a research base with LLM Research Agents",
   "license": "MIT",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "test-ui": "vitest --ui",
+    "compile": "bun run ./src/dataset-import/compile-phrases-model.js"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "axios": "^1.7.2",
-    "fast-xml-parser": "^4.4.0",
-    "vitest": "^1.6.0",
+    "@vitest/ui": "^2.0.5",
     "adm-zip": "^0.5.14",
-    "cheerio": "^1.0.0-rc.12"
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "fast-xml-parser": "^4.4.0",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
+    "@postlight/parser": "^2.2.3",
+    "@xenova/transformers": "github:xenova/transformers.js#v3",
+    "chrono-node": "^2.7.6",
+    "linkedom": "^0.18.4"
   }
 }

@@ -1,9 +1,9 @@
-import wikiTermFrequency from "../../data/wiki-word-freq-min32.js";
+import wikiTermFrequency from "../../data/wiki-word-freq-325k.json";
 
 /**
  * Calculate term specificity for a single doc with BM25 formula 
  * by using Wikipedia term frequencies as the baseline IDF.
- * 
+ *
  * @param {string} query phrase to search tf and idf for each word
  * @param {string} document a single document to calculate the score for
  * @param {number} saturationWeight saturationWeight controls the impact of term frequency saturation.

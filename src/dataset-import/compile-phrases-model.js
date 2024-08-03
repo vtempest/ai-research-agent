@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import weightWikiWordSpecificity from "../frequency/wiki-word-specificity.js";
+import weightWikiWordSpecificity from "../match/wiki-word-specificity.js";
 
 const OPTION_PRINT_SPACING = 0;
 const OPTION_MAX_SYNONYMS = 0;

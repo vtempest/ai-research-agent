@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
 import queryAutocomplete from "../src/autocomplete/autocomplete";
 import fs from "fs";
-import phrasesModel from "../../data/wiki-phrases-model-240k.json"
+import phrasesModel from "../data/wiki-phrases-model-240k.json"
 
 var queries = JSON.parse(
   fs.readFileSync("./data/quora-queries-15k.json", "utf8")

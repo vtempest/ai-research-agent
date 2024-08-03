@@ -11,10 +11,10 @@ export default function splitSentences(inputText, userConfig = {}) {
 
   // Merge default and user configurations
   const config = {
-    splitOnNewlines: true,
-    splitOnHtmlTags: true,
-    minSize: 20,
-    maxSize: 400,
+    splitOnNewlines: true, // Split on newlines and markdown line breaks
+    splitOnHtmlTags: true, // Split on HTML tags like <p>, <div>, <ul>, <ol>
+    minSize: 20, // Minimum size for a sentence
+    maxSize: 600, // Maximum size for a sentence
     ...userConfig,
   };
 

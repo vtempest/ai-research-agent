@@ -46,33 +46,37 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     .replace(/</g, " <")
     .replace(/>/g, "> ")
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
-  var nGrams = {};
 
- 
+
   //split into sentences
-  var sentencesPOS = splitSentences(inputString).map((text, sentenceNumber) => {
-    var sentence = { text };
+  var sentencesArray = splitSentences(inputString)
+  var sentenceNumber = 0;
 
-    sentence.terms = tokenizeWikiPhrases(sentence.text, {
+  //extract ngrams
+  var nGrams = {};
+  var tokensPerSentence = [];
+
+  for (var sentenceText of sentencesArray) {
+  
+    var tokens = tokenizeWikiPhrases(sentenceText, {
       phrasesModel,
       typosModel,
     });
+    
+    tokensPerSentence.push(tokens);
 
-    for (var i = 0; i < sentence.terms.length; i++) {
-      for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++) {
+    for (var i = 0; i < tokens.length; i++) 
+      for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++) 
         extractNounEdgeGrams(
           nGramSize,
-          sentence.terms,
+          tokens,
           i,
           nGrams,
           minWordLength,
-          sentenceNumber
+          sentenceNumber++
         );
-      }
-    }
-
-    return sentence.text;
-  });
+      
+  }
 
   //give keyphrases weight of num_occurences ^ word_count
   var keyphraseGrams = [];
@@ -87,7 +91,8 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
         };
       })
     );
-  //sort keyphrases by words
+
+  //sort keyphrases by word count
   keyphraseGrams = keyphraseGrams.sort((a, b) => b.words - a.words);
 
   //fold smaller keyphrases that are subsets of larger ones
@@ -127,6 +132,7 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     if (shouldAddCurrent && keyphraseGram.sentences.length >= 1)
       keyphrasesFolded.push(keyphraseGram);
   }
+  
 
   //heavy weight query - bias towards query or user-clicked keyphrase
   if (heavyWeightQuery)
@@ -187,9 +193,9 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
 
   // create sentenceKeysMap  [{text,index,keyphrases:[{text,weight}] }]
   var sentenceKeysMap = [];
-  for (var i = 0; i < sentencesPOS.length; i++)
+  for (var i = 0; i < sentencesArray.length; i++)
     sentenceKeysMap.push({
-      text: sentencesPOS[i],
+      text: sentencesArray[i],
       index: i,
       keyphrases: [],
     });
@@ -220,5 +226,5 @@ export function weightKeyPhrasesSentences(inputString, options = {}) {
     return k;
   });
 
-  return { top_sentences, keyphrases, sentences: sentencesPOS };
+  return { top_sentences, keyphrases, sentences: sentencesArray };
 }

@@ -1,4 +1,4 @@
-import splitSentences from "../tokenize/sentences-old.js";
+import splitSentences from "../tokenize/sentences.js";
 
 /**
  * Search Wikipedia for a query, return result's title, summary, and image. 

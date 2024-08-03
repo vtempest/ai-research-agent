@@ -1,6 +1,5 @@
 /**
- * Stems a given word using the Porter Stemming Algorithm.
- * The Porter Stemming Algorithm is a process for removing the commoner
+ * Stems a word using the Porter Stemmer for removing the commoner
  * morphological and inflexional endings from words in English.
  * https://snowballstem.org/algorithms/porter/stemmer.html
  *

@@ -86,7 +86,7 @@ export default function tokenizeTopicModel(phrase, options = {}) {
           //add next word to the phrase up to maxPhraseLength
           if (!isPhraseFound && nextWords.startsWith(phrase[0])) {
             phrase.push(word + " " + phrase[0]);
-            topics.push(phrase?.slice(1)); // remove first which is next words
+            topics.push(phrase?.slice(1,4)); // remove first which is next words
 
             //skip looping thru the next words added to phrase
             i += phrase[0]?.split(" ").length; //TODO fi
@@ -102,7 +102,7 @@ export default function tokenizeTopicModel(phrase, options = {}) {
       //if no phrases then add the single word
       if (!isPhraseFound) {
         singleWordObj = singleWordObj; //|| { full: word }; // could be not in dict but starter of phrases
-        topics.push(singleWordObj?.slice(1));
+        topics.push(singleWordObj?.slice(1,4));
       }
     }
   }
@@ -120,7 +120,7 @@ export function calculatePhraseSpecificity(phrase, options) {
   var tokensWithFreq = tokenizeWikiPhrases(phrase, options);
 
   return (
-    tokensWithFreq.reduce((acc, r) => acc + (r[3] || 4), 0) /
+    tokensWithFreq.reduce((acc, r) => acc + (r[1] || 4), 0) /
     tokensWithFreq.length
   ).toFixed(1);
 }
