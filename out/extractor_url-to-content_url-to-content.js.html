@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> extractor/url-to-content/url-to-content.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocomplete">autocomplete</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractRootDomain">extractRootDomain</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#parseName">parseName</a></li><li><a href="global.html#recognizeHumanName">recognizeHumanName</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li><li><a href="global.html#weighTopicDistributionLDA">weighTopicDistributionLDA</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>extractor/url-to-content/url-to-content.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import extractContent from "../html-to-content/html-to-content.js";
+import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
+import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
+// import fetch from "node-fetch";
+
+/**
+ * 🚜📜 Tractor the Text Extractor -
+ * Extract URL or HTML to main content with Readability or Postlight Parser,
+ * which is an improved version with 100+ custom adapters for major websites.
+ * Strips to basic HTML for reading mode or saving research notes.
+ * Youtube - get full transcript for video if detected a youtube video.
+ * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
+ * footnotes, and adding linebreaks based on standard deviation of range text height.
+ * @param {document} urlOrDoc - url or dom object with article content
+ * @param {Object} options
+ * @param {boolean} options.keyphrases - extract key phrases
+ * @param {boolean} options.images - include images
+ * @param {boolean} options.links - include links
+ * @param {boolean} options.formatting - preserve formatting
+ * @param {boolean} options.absoluteURLs - convert URLs to absolute
+ * @returns {Object} - {author, date, title, source, content, image}
+ */
+export async function extract(urlOrDoc, options = {}) {
+  options = options || {
+    keyphrases: true,
+    images: true,
+    links: true,
+    formatting: true,
+    absoluteURLs: true,
+  };
+  var response = {};
+
+  let isPdf;
+
+  if (typeof urlOrDoc === "string") {
+    var url = urlOrDoc;
+
+    isPdf = url.endsWith(".pdf");
+
+    if (!isPdf) isPdf = await isUrlPDF(url);
+
+    if (isPdf) {
+      // pdf checker
+      response = await extractPDF(url, {});
+      var youtubeID = getURLYoutubeVideo(url);
+
+      // check youtube
+    } else if (youtubeID) {
+      var { content, timestamps } = await extractYoutubeText(url);
+
+      response.html = `&lt;iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/${youtubeID}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        &lt;/iframe> ${content}`;
+    } else {
+      try {
+        var html = await (
+          await fetch(url, {
+            timeout: 2000,
+          })
+        ).text();
+      } catch (e) {
+        return { error: "Error in fetch" };
+      }
+
+      options.url = url;
+      response = await extractContent(html, options);
+    }
+  } else if (typeof urlOrDoc == "object") {
+    //if passing in dom object document
+
+    var url = urlOrDoc.location.href;
+
+    //pdf checker for embeded docs
+    if (urlOrDoc?.querySelectorAll)
+      isPdf = urlOrDoc?.querySelectorAll(
+        'embed[type="application/pdf"]'
+      )?.length;
+    var youtubeID = getURLYoutubeVideo(url);
+
+    if (isPdf)
+      // pdf checker
+      response = await extractPDF(url, {});
+    if (youtubeID) {
+      var { content, timestamps } = await extractYoutubeText(url);
+
+      response.html = `&lt;iframe width="560" height="315" 
+      src="https://www.youtube.com/embed/${youtubeID}"
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      &lt;/iframe> ${content}`;
+    } //pass doc to extract
+    else response = await extractContent(urlOrDoc, options);
+  }
+
+  if (!response.html || response.html?.length == 0) return { error: "No text" };
+
+  //check html for bot block messages
+  var commonBlocks = [
+    "Cloudflare Ray ID found ",
+    "Please verify you are a human",
+    "Sorry, we just need to make sure you're not a robot",
+    "Access to this page has been denied",
+    "Please make sure your browser supports JavaScript",
+    "Please complete the security check to access",
+  ];
+
+  if (commonBlocks.filter((msg) => response?.html?.indexOf(msg) > -1).length)
+    return { error: "Bot detected" }; //, html: response.html };
+
+  //word count of full text original, no html
+  response.word_count = response.html
+    ?.replace(/&lt;[^>]*>/g, " ")
+    .split(" ").length;
+
+  //put url on top
+  response = Object.assign({ url }, response);
+
+  return response;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

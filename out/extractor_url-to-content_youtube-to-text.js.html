@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> extractor/url-to-content/youtube-to-text.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocomplete">autocomplete</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractRootDomain">extractRootDomain</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#parseName">parseName</a></li><li><a href="global.html#recognizeHumanName">recognizeHumanName</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li><li><a href="global.html#weighTopicDistributionLDA">weighTopicDistributionLDA</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>extractor/url-to-content/youtube-to-text.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * fetch youtube.com video's webpage HTML for embedded transcript
+ * if blocked, use scraper of youtubetranscript.com
+ * @param {string} videoUrl
+ * @param {boolean} boolTimestamps - true to return timestamps, default true
+ * @return {Object} {content, timestamps} where content is the full text of
+ * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
+ */
+export async function extractYoutubeText(videoUrl, boolTimestamps = true) {
+  try {
+    var transcript = await fetchTranscript(videoUrl);
+  } catch (e) {
+    console.log(e.message);
+    transcript = await fetchViaYoutubeTranscript(videoUrl);
+  }
+
+  var content = "";
+  var timestamps = [];
+  transcript.forEach(({ offset, text }) => {
+    if (boolTimestamps) timestamps.push([content.length, Math.floor(offset, 0)]);
+
+    content += text + " ";
+  });
+
+  if (!boolTimestamps) return { content };
+
+  content = content
+    .replace(/&amp;amp;#39;/g, "'")
+    .replace(/&amp;#39;/g, "'")
+    .replace(/&amp;quot;/g, '"');
+
+  var word_count = content.split(" ").length;
+  return { content, timestamps, word_count, format: "video" };
+}
+
+const USER_AGENT =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)";
+const RE_YOUTUBE = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&amp;]v=)|youtu\.be\/)([^"&amp;?\/\s]{11})/i;
+const RE_XML_TRANSCRIPT = /&lt;text start="([^"]*)" dur="([^"]*)">([^&lt;]*)&lt;\/text>/g;
+
+function YouTubeTranscriptError(message) {
+  return new Error(`🚨 ${message}`);
+}
+
+async function fetchTranscript(videoId, config = {}) {
+  const identifier = getURLYoutubeVideo(videoId);
+  const videoPageResponse = await fetch(`https://www.youtube.com/watch?v=${identifier}`, {
+    headers: {
+      ...(config.lang &amp;&amp; { "Accept-Language": config.lang }),
+      "User-Agent": USER_AGENT
+    }
+  });
+  const videoPageBody = await videoPageResponse.text();
+
+  if (videoPageBody.includes('class="g-recaptcha"')) {
+    throw YouTubeTranscriptError("Too many requests. YouTube requires solving a captcha.");
+  }
+
+  if (!videoPageBody.includes('"playabilityStatus":')) {
+    throw YouTubeTranscriptError(`The video is no longer available (${videoId})`);
+  }
+
+  const [, captionsJson] = videoPageBody.split('"captions":');
+  if (!captionsJson) {
+    throw YouTubeTranscriptError(`Transcript is disabled on this video (${videoId})`);
+  }
+
+  const captions = JSON.parse(captionsJson.split(',"videoDetails')[0].replace("\n", ""))?.playerCaptionsTracklistRenderer;
+  if (!captions?.captionTracks) {
+    throw YouTubeTranscriptError(`No transcripts are available for this video (${videoId})`);
+  }
+
+  const track = config.lang ? captions.captionTracks.find((track) => track.languageCode === config.lang) : captions.captionTracks[0];
+
+  if (!track) {
+    throw YouTubeTranscriptError(
+      `No transcripts are available in ${config.lang} for this video (${videoId}). Available languages: ${captions.captionTracks.map((t) => t.languageCode).join(", ")}`
+    );
+  }
+
+  const transcriptResponse = await fetch(track.baseUrl, {
+    headers: {
+      ...(config.lang &amp;&amp; { "Accept-Language": config.lang }),
+      "User-Agent": USER_AGENT
+    }
+  });
+
+  if (!transcriptResponse.ok) {
+    throw YouTubeTranscriptError(`Failed to fetch transcript for video (${videoId})`);
+  }
+
+  const transcriptBody = await transcriptResponse.text();
+  const results = [...transcriptBody.matchAll(RE_XML_TRANSCRIPT)];
+
+  return results.map(([, start, duration, text]) => ({
+    text,
+    duration: parseFloat(duration),
+    offset: parseFloat(start),
+    lang: track.languageCode
+  }));
+}
+
+/**
+ * Get YouTube transcript of most YouTube videos,
+ * except if disabled by uploader
+ * fetch-based scraper of youtubetranscript.com
+ *
+ * @param {string} videoUrl
+ * @return {Object} {content, timestamps} where content is the full text of
+ * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
+ */
+export async function fetchViaYoutubeTranscript(videoUrl) {
+  const videoId = getURLYoutubeVideo(videoUrl);
+  const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
+
+  const response = await fetch(url);
+  const html = await response.text();
+
+  const transcriptRegex = /&lt;text data-start="([\d.]+)".*?>(.*?)&lt;\/text>/g;
+  const matches = [...html.matchAll(transcriptRegex)];
+
+  const transcript = matches.map((match) => ({
+    text: decodeHTMLEntities(match[2]),
+    offset: parseFloat(match[1])
+  }));
+
+  const content = transcript.map((item) => item.text).join(" ");
+  const timestamps = [];
+  let charIndex = 0;
+
+  transcript.forEach((item) => {
+    timestamps.push([charIndex, item.offset]);
+    charIndex += item.text.length + 1; // +1 for the space we added
+  });
+
+  return { content, timestamps };
+}
+
+// Helper function to decode HTML entities
+function decodeHTMLEntities(text) {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
+}
+
+// Assuming getURLYoutubeVideo function is defined elsewhere
+// function getURLYoutubeVideo(url) { ... }
+
+/**
+ * Test if URL is to youtube video and return video id if true
+ * @param {string} url - youtube video URL
+ * @return {string|boolean} video ID or false
+ */
+export function getURLYoutubeVideo(url) {
+  var match = url?.match(
+    /(?:\/embed\/|v=|v\/|vi\/|youtu\.be\/|\/v\/|^https?:\/\/(?:www\.)?youtube\.com\/(?:(?:watch)?\?.*v=|(?:embed|v|vi|user)\/))([^#\&amp;\?]*).*/
+  );
+  return match ? match[1] : false;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

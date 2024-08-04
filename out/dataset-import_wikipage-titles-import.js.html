@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> dataset-import/wikipage-titles-import.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#Readability">Readability</a></li><li><a href="global.html#autocomplete">autocomplete</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractRootDomain">extractRootDomain</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#fileToCompressedZipToBase64">fileToCompressedZipToBase64</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getHumanNames">getHumanNames</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#https">https</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#parseName">parseName</a></li><li><a href="global.html#recognizeHumanName">recognizeHumanName</a></li><li><a href="global.html#rerankDocChunksRelevance">rerankDocChunksRelevance</a></li><li><a href="global.html#researchAgent">researchAgent</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#seekTopKeyphrases">seekTopKeyphrases</a></li><li><a href="global.html#softmax">softmax</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weightDocRelevance">weightDocRelevance</a></li><li><a href="global.html#weightTopicDistributionLDA">weightTopicDistributionLDA</a></li><li><a href="global.html#writeBase64ToJSFile">writeBase64ToJSFile</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>dataset-import/wikipage-titles-import.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Script to download, decompress, parse and process 
+ * WIki Page Titles by Views dataset, random day sample,
+ * compiled by Wikimedia Foundation
+*/
+
+const fs = require('fs');
+const readline = require('readline');
+const https = require('https');
+const zlib = require('zlib');
+const path = require('path');
+
+const maxPagesCount = 200000; //somewill be filtered to get to 100k
+const baseUrl = 'https://dumps.wikimedia.org/other/pageviews/2024/2024-07/';
+
+function getRandomPageviewUrl() {
+    const currentDate = new Date();
+    const randomDaysAgo = Math.floor(Math.random() * 4); // 0 to 3 days ago
+    const randomHour = Math.floor(Math.random() * 24);
+    
+    const targetDate = new Date(currentDate.getTime() - randomDaysAgo * 24 * 60 * 60 * 1000);
+    targetDate.setHours(randomHour, 0, 0, 0);
+    
+    const year = targetDate.getFullYear();
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    const day = String(targetDate.getDate()).padStart(2, '0');
+    const hour = String(targetDate.getHours()).padStart(2, '0');
+    
+    const fileName = `pageviews-${year}${month}${day}-${hour}0000.gz`;
+    return `${baseUrl}${fileName}`;
+}
+
+const url = getRandomPageviewUrl();
+console.log('Using Data:', url);
+const gzipFilePath =  'data/pageviews-temp.gz'
+const extractedFilePath =  'data/pageviews-temp'
+const outputFilePath =  'data/wiki-pages-200k.json'
+
+function downloadFile(fileUrl, outputPath) {
+    return new Promise((resolve, reject) => {
+        const file = fs.createWriteStream(outputPath);
+        https.get(fileUrl, (response) => {
+            response.pipe(file);
+            file.on('finish', () => {
+                file.close(resolve);
+            });
+        }).on('error', (error) => {
+            fs.unlink(outputPath, () => reject(error));
+        });
+    });
+}
+
+function decompressGzip(inputPath, outputPath) {
+    return new Promise((resolve, reject) => {
+        const gunzip = zlib.createGunzip();
+        const inputStream = fs.createReadStream(inputPath);
+        const outputStream = fs.createWriteStream(outputPath);
+
+        inputStream.pipe(gunzip).pipe(outputStream);
+
+        outputStream.on('finish', resolve);
+        outputStream.on('error', reject);
+    });
+}
+
+async function parseWikiPageviews(inputFile) {
+    const fileStream = fs.createReadStream(inputFile);
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity,
+    });
+
+    var pageviews = [];
+
+    for await (const line of rl) {
+        const match = line?.match(/^\s*\S+\s+(.+?)\s+(\d+)/);
+        if (match) {
+            const [, pageTitle, viewCount] = match;
+            pageviews.push({ pageTitle, viewCount: parseInt(viewCount, 10) });
+        }
+    }
+
+    // This regex keeps English letters, numbers, common punctuation, and spaces
+    pageviews = pageviews
+        .filter(
+            ({ pageTitle }) =>
+                !pageTitle.includes(":") &amp;&amp;
+                !["Main_Page", "-"].includes(pageTitle) &amp;&amp;
+                !/[^\x00-\x7F]/.test(pageTitle)
+        )
+        .sort((a, b) => b.viewCount - a.viewCount)
+        .slice(0, maxPagesCount)
+        .map((pageview) => pageview.pageTitle);
+
+    //unique
+    pageviews = [...new Set(pageviews)];
+
+    return pageviews;
+}
+
+async function main() {
+    try {
+        console.log('Creating data directory...');
+        fs.mkdirSync(path.dirname(gzipFilePath), { recursive: true });
+
+        console.log('Downloading file...');
+        await downloadFile(url, gzipFilePath);
+        console.log('Download complete.');
+
+        console.log('Decompressing file...');
+        await decompressGzip(gzipFilePath, extractedFilePath);
+        console.log('Decompression complete.');
+
+        console.log('Parsing Wikipedia pageviews...');
+        const sortedPageviews = await parseWikiPageviews(extractedFilePath);
+
+        console.log('Writing results to file...');
+        fs.writeFileSync(outputFilePath, JSON.stringify(sortedPageviews, null, 2));
+        console.log('Process completed successfully.');
+
+        // Delete temporary files
+        console.log('Cleaning up temporary files...');
+        await fs.promises.unlink(gzipFilePath);
+        await fs.promises.unlink(extractedFilePath);
+        console.log('Temporary files deleted.');
+
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
+
+main();</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

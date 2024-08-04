@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> search-web/search-web.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocomplete">autocomplete</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractRootDomain">extractRootDomain</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#parseName">parseName</a></li><li><a href="global.html#recognizeHumanName">recognizeHumanName</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li><li><a href="global.html#weighTopicDistributionLDA">weighTopicDistributionLDA</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>search-web/search-web.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Search Web via SearXNG metasearch of all major search engines.
+ * Options are 10 search categories, recency, and how many
+ * times to retry other domains if first time fails.
+ * @param {string} query
+ * @param {object} options
+ * @returns {Promise&lt;Array[]>} {title, url, snippet, engines, cached}
+ */
+export async function searchWeb(query, options = {}) {
+  const {
+    categoryIndex = 0,
+    recencyIndex = 0,
+    selectedDomain = null,
+    maxRetries = 3,
+  } = options;
+
+  const CATEGORY_LIST = [
+    "general",
+    "videos",
+    "news",
+    "images",
+    "science",
+    "map",
+    "music",
+    "it",
+    "files",
+    "social+media",
+  ];
+  const RECENCY_LIST = ["", "day", "week", "month", "year"];
+
+  const SEARX_DOMAINS =
+    "baresearch.org,copp.gg,darmarit.org,etsi.me,fairsuch.net,nogoo.me,northboot.xyz,nyc1.sx.ggtyler.dev,ooglester.com,opnxng.com,paulgo.io,priv.au,s.mble.dk,s.trung.fun,search.blitzw.in,search.bus-hit.me,search.charliewhiskey.net,search.citw.lgbt,search.darkness.services,search.datura.network,search.dotone.nl,search.einfachzocken.eu,search.gcomm.ch,search.hbubli.cc,search.im-in.space,search.incogniweb.net,search.indst.eu,search.inetol.net,search.leptons.xyz,search.mdosch.de,search.nadeko.net,search.nerdvpn.de,search.ngn.tf,search.ononoki.org,search.privacyredirect.com,search.projectsegfau.lt,search.rhscz.eu,search.rowie.at,search.sapti.me,search.smnz.de,search.tommy-tran.com,searx.aleteoryx.me,searx.ankha.ac,searx.be,searx.catfluori.de,searx.colbster937.dev,searx.daetalytica.io,searx.dresden.network,searx.electroncash.de,searx.foss.family,searx.hu,searx.juancord.xyz,searx.lunar.icu,searx.mv-software.de,searx.mxchange.org,searx.namejeff.xyz,searx.nobulart.com,searx.numeriquement.fr,searx.oakleycord.dev,searx.ox2.fr,searx.perennialte.ch,searx.rhscz.eu,searx.ro,searx.sev.monster,searx.thefloatinglab.world,searx.tiekoetter.com,searx.tuxcloud.net,searx.work,searx.zhenyapav.com,searxng.brihx.fr,searxng.ch,searxng.hweeren.com,searxng.online,searxng.shreven.org,searxng.site,skyrimhater.com,sx.ca.zorby.top,sx.catgirl.cloud,sx.thatxtreme.dev,sx.zorby.top,www.gruble.de,www.jabber-germany.de,xo.wtf".split(
+      ","
+    );
+  try {
+    //select a random domain if none is provided
+    const searchDomain =
+      selectedDomain ||
+      SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
+
+    const category = CATEGORY_LIST[categoryIndex]; // Using the first category as default
+    const timeRange = RECENCY_LIST[recencyIndex]; // Using the first time range as default
+
+    const url = `https://${searchDomain}/search?q=${encodeURIComponent(query)}&amp;category_${category}=1&amp;language=auto&amp;time_range=${timeRange}&amp;safesearch=0`;
+
+    const resultJSON = await (
+      await fetch(url, { headers: { "accept-language": "en" } })
+    ).text();
+
+    let results = [];
+    const resultRegex = /&lt;article class="result[^>]*>[\s\S]*?&lt;\/article>/g;
+    const titleUrlRegex = /&lt;h3>&lt;a href="([^"]*)"[^>]*>(.*?)&lt;\/a>&lt;\/h3>/;
+    const snippetRegex = /&lt;p class="content">\s*(.*?)\s*&lt;\/p>/;
+    const enginesRegex = /&lt;span>(bing|duckduckgo|yahoo|google)&lt;\/span>/g;
+    const linksRegex =
+      /&lt;a href="([^"]*)" class="(cache_link|proxyfied_link)"[^>]*>(cached|proxied)&lt;\/a>/g;
+
+    let match;
+    while ((match = resultRegex.exec(resultJSON)) !== null) {
+      const resultHtml = match[0];
+      const titleUrlMatch = titleUrlRegex.exec(resultHtml);
+      const snippetMatch = snippetRegex.exec(resultHtml);
+
+      if (titleUrlMatch &amp;&amp; titleUrlMatch[1] &amp;&amp; titleUrlMatch[2]) {
+        const url = titleUrlMatch[1];
+        const title = titleUrlMatch[2].replace(/&lt;\/?[^>]+(>|$)/g, "");
+        const snippet = snippetMatch
+          ? snippetMatch[1].replace(/&lt;\/?[^>]+(>|$)/g, "")
+          : "";
+
+        const engines = [];
+        let engineMatch;
+        while ((engineMatch = enginesRegex.exec(resultHtml)) !== null) {
+          engines.push(engineMatch[1]);
+        }
+
+        let cached = null;
+        let linkMatch;
+        while ((linkMatch = linksRegex.exec(resultHtml)) !== null) {
+          cached = linkMatch[1];
+        }
+
+        results.push({ title, url, snippet, engines, cached });
+      }
+    }
+
+    if (results.length === 0 &amp;&amp; maxRetries > 0) {
+      console.log("No results found with ", searchDomain);
+      results = await searchWeb(query, {
+        categoryIndex,
+        recencyIndex,
+        maxRetries: maxRetries - 1,
+      });
+    }
+
+    return results;
+  } catch (error) {
+    console.error(`Error fetching search results: ${error.message}`);
+    return [];
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
