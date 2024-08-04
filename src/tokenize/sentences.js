@@ -7,7 +7,7 @@
  *   and to set min and max sentence sizes for chunking.
  * @returns {Array<string>} An array of sentences.
  */
-export default function splitSentences(inputText, userConfig = {}) {
+export function splitSentences(inputText, userConfig = {}) {
 
   // Merge default and user configurations
   const config = {
@@ -125,7 +125,7 @@ export default function splitSentences(inputText, userConfig = {}) {
           continue;
         }
 
-        if (beginsNewSentence(tokens[i + 1])) {
+        if (isBeginsNewSentence(tokens[i + 1])) {
           if (isAbbreviatedTime(token, tokens[i + 1])) {
             continue;
           }
@@ -251,7 +251,8 @@ export default function splitSentences(inputText, userConfig = {}) {
  * Checks if a word ends with a specific character or characters.
  * @param {string} word - The word to check.
  * @param {string} char - The character(s) to check for at the end of the word.
- * @returns {boolean} True if the word ends with the specified character(s), false otherwise.
+   * @private
+* @returns {boolean} True if the word ends with the specified character(s), false otherwise.
  */
 function hasEndPunctuation(word, char) {
   return char.length > 1
@@ -264,6 +265,7 @@ function hasEndPunctuation(word, char) {
  * @param {string} word - The word to check.
  * @param {string} ending - The ending string to check for.
  * @returns {boolean} True if the word ends with the specified string, false otherwise.
+  * @private
  */
 function endsWith(word, ending) {
   return word.slice(word.length - ending.length) === ending;
@@ -273,6 +275,7 @@ function endsWith(word, ending) {
  * Checks if a string is capitalized or a number.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is capitalized or a number, false otherwise.
+  * @private
  */
 function isCapitalizedOrNumeric(str) {
   return /^[A-Z][a-z].*/.test(str) || isNumeric(str);
@@ -282,8 +285,9 @@ function isCapitalizedOrNumeric(str) {
  * Checks if a string is likely to begin a new sentence.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is likely to begin a new sentence, false otherwise.
- */
-function beginsNewSentence(str) {
+  * @private
+*/
+function isBeginsNewSentence(str) {
   return isCapitalizedOrNumeric(str) || /``|"|'/.test(str.substring(0, 2));
 }
 
@@ -291,7 +295,8 @@ function beginsNewSentence(str) {
  * Checks if a string is in the list of common abbreviations.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is a common abbreviation, false otherwise.
- */
+  * @private
+*/
 function isInCommonAbbreviationList(str, COMMON_ABBR_LIST) {
   const cleaned = str
     .toLowerCase()
@@ -304,7 +309,8 @@ function isInCommonAbbreviationList(str, COMMON_ABBR_LIST) {
  * @param {string} word - The current word.
  * @param {string} nextWord - The next word in the sequence.
  * @returns {boolean} True if it's an abbreviated time followed by 'day', false otherwise.
- */
+  * @private
+*/
 function isAbbreviatedTime(word, nextWord) {
   if (word === "a.m." || word === "p.m.") {
     const nextWordEnd = nextWord.replace(/\W+/g, "").slice(-3).toLowerCase();
@@ -317,7 +323,8 @@ function isAbbreviatedTime(word, nextWord) {
  * Checks if a word or phrase is a complex abbreviation.
  * @param {string} word - The word or phrase to check.
  * @returns {boolean} True if it's a complex abbreviation, false otherwise.
- */
+  * @private
+*/
 function isComplexAbbreviation(word) {
   // Check for common multi-part abbreviations like U.S. or U.K.
   if (/^([A-Za-z]\.){2,}[A-Za-z]?\.?(\s*\([^)]+\))?$/.test(word)) {
@@ -333,7 +340,8 @@ function isComplexAbbreviation(word) {
  * Checks if a string is a custom abbreviation (short or capitalized).
  * @param {string} str - The string to check.
  * @returns {boolean} True if it's a custom abbreviation, false otherwise.
- */
+  * @private
+*/
 function isCustomAbbreviation(str) {
   return str.length <= 3 || isCapitalizedOrNumeric(str);
 }
@@ -343,6 +351,7 @@ function isCustomAbbreviation(str) {
  * @param {number} wordCount - The current word count in the sentence.
  * @param {string[]} words - A sequence of words to check.
  * @returns {boolean} True if the sequence represents an abbreviated name, false otherwise.
+ * @private
  */
 function isAbbreviatedName(wordCount, words) {
   if (words.length > 0) {
@@ -366,7 +375,8 @@ function isAbbreviatedName(wordCount, words) {
  * @param {string} str - The string to check.
  * @param {number} [startPos] - The position to start checking from.
  * @returns {boolean} True if the string is numeric, false otherwise.
- */
+  * @private
+*/
 function isNumeric(str, startPos) {
   if (startPos != null) {
     str = str.slice(startPos - 1, startPos + 2);
@@ -400,6 +410,7 @@ function isValidUrl(str) {
  * Attempts to split a word that might contain multiple sentences.
  * @param {string} word - The word to check and potentially split.
  * @returns {string[]|false} An array with the split parts if found, false otherwise.
+ * @private
  */
 function splitConcatenatedSentences(word) {
   const boundaryIndex = word.search(/[.!?]/);
@@ -416,6 +427,7 @@ function splitConcatenatedSentences(word) {
  * Checks if a token is a sentence boundary character.
  * @param {string} token - The token to check.
  * @returns {boolean} True if the token is a sentence boundary character, false otherwise.
+ * @private
  */
 function isSentenceEnd(token) {
   return [".", "!", "?"].includes(token);

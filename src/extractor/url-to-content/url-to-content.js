@@ -1,15 +1,26 @@
 import extractContent from "../html-to-content/html-to-content.js";
-import { getURLYoutubeVideo, fetchYoutubeText } from "./youtube-to-text.js";
+import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
 import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 /**
- * Extract cite info and main formatted text content
- * Checks if URL is PDF, HTML or Youtube.
- * @param {document} urlOrDoc url or dom object with article content
- * @returns {object} {author, date, title, source, content, image}
+ * 🚜📜 Tractor the Text Extractor -
+ * Extract URL or HTML to main content with Readability or Postlight Parser,
+ * which is an improved version with 100+ custom adapters for major websites.
+ * Strips to basic HTML for reading mode or saving research notes.
+ * Youtube - get full transcript for video if detected a youtube video.
+ * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
+ * footnotes, and adding linebreaks based on standard deviation of range text height.
+ * @param {document} urlOrDoc - url or dom object with article content
+ * @param {Object} options
+ * @param {boolean} options.keyphrases - extract key phrases
+ * @param {boolean} options.images - include images
+ * @param {boolean} options.links - include links
+ * @param {boolean} options.formatting - preserve formatting
+ * @param {boolean} options.absoluteURLs - convert URLs to absolute
+ * @returns {Object} - {author, date, title, source, content, image}
  */
-export default async function extract(urlOrDoc, options = {}) {
+export async function extract(urlOrDoc, options = {}) {
   options = options || {
     keyphrases: true,
     images: true,
@@ -35,7 +46,7 @@ export default async function extract(urlOrDoc, options = {}) {
 
       // check youtube
     } else if (youtubeID) {
-      var { content, timestamps } = await fetchYoutubeText(url);
+      var { content, timestamps } = await extractYoutubeText(url);
 
       response.html = `<iframe width="560" height="315" 
         src="https://www.youtube.com/embed/${youtubeID}"
@@ -57,20 +68,23 @@ export default async function extract(urlOrDoc, options = {}) {
       options.url = url;
       response = await extractContent(html, options);
     }
-  } else if (typeof urlOrDoc == "object"){
+  } else if (typeof urlOrDoc == "object") {
     //if passing in dom object document
 
     var url = urlOrDoc.location.href;
 
     //pdf checker for embeded docs
-    isPdf = urlOrDoc.querySelectorAll('embed[type="application/pdf"]')?.length;
+    if (urlOrDoc?.querySelectorAll)
+      isPdf = urlOrDoc?.querySelectorAll(
+        'embed[type="application/pdf"]'
+      )?.length;
     var youtubeID = getURLYoutubeVideo(url);
 
     if (isPdf)
       // pdf checker
       response = await extractPDF(url, {});
     if (youtubeID) {
-      var { content, timestamps } = await fetchYoutubeText(url);
+      var { content, timestamps } = await extractYoutubeText(url);
 
       response.html = `<iframe width="560" height="315" 
       src="https://www.youtube.com/embed/${youtubeID}"
@@ -82,12 +96,11 @@ export default async function extract(urlOrDoc, options = {}) {
     else response = await extractContent(urlOrDoc, options);
   }
 
-  if ( !response.html || response.html?.length == 0)
-    return { error: "No text" };
+  if (!response.html || response.html?.length == 0) return { error: "No text" };
 
   //check html for bot block messages
-  var commonBlockMessages = [
-    "Cloudflare Ray ID found at the bottom of this page",
+  var commonBlocks = [
+    "Cloudflare Ray ID found ",
     "Please verify you are a human",
     "Sorry, we just need to make sure you're not a robot",
     "Access to this page has been denied",
@@ -95,15 +108,12 @@ export default async function extract(urlOrDoc, options = {}) {
     "Please complete the security check to access",
   ];
 
-  if (commonBlockMessages.filter((msg) =>
-    response?.html?.indexOf(msg) > -1).length)
-
-    return { error: "Bot detected", html: response.html };
+  if (commonBlocks.filter((msg) => response?.html?.indexOf(msg) > -1).length)
+    return { error: "Bot detected" }; //, html: response.html };
 
   //word count of full text original, no html
   response.word_count = response.html
     ?.replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
     .split(" ").length;
 
   //put url on top
@@ -111,4 +121,3 @@ export default async function extract(urlOrDoc, options = {}) {
 
   return response;
 }
-

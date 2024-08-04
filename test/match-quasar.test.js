@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import matchQuasar from "../src/match/match-quasar";
+import {matchQUASAR} from "..";
 
 test("quasar: match phrases in quotes ", async () => {
 
@@ -9,7 +9,7 @@ test("quasar: match phrases in quotes ", async () => {
 
   var search_query = ` "Ask not" "but fear itself" nothing`;
 
-  var res = matchQuasar(document_text, search_query);
+  var res = matchQUASAR(document_text, search_query);
 
   expect(res).toBe(true);
 });

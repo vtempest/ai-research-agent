@@ -8,12 +8,16 @@ import extractMetadata from "./metadata-to-cite.js";
 import { recognizeHumanName } from "./human-names-recognize.js";
 
 /**
- * Extract cite info from document using meta tags and common class names
+ * Extract author, date, source, and title from HTML using meta tags 
+ * and common class names. Validates human name from author string to check 
+ * against common list of 3k first names, last names,and organizations to infer 
+ * if it should be reversed starting by author last name (accounting for affixes/titles), 
+ * since organizations are not reversed.
  *
  * @param {document} documentHTML  dom object or html string with article content
  * @returns {object} {author, date, title, source}
  */
-export default function extractCite(document) {
+export function extractCite(document) {
   //if passing in html string, convert to dom object
   if (typeof document === "string") document = parseHTML(document)?.document;
 

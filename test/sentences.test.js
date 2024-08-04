@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import splitSentences from "../src/tokenize/sentences";
+import {splitSentences} from ".."
 
 test("split sentences", async () => {
   

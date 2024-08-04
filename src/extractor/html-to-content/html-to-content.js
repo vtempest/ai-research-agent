@@ -1,8 +1,8 @@
 import { parseDate } from "chrono-node";
 import Parser from "@postlight/parser";
 import { Readability } from "./readability.js";
-import extractCite from "../html-to-cite/index.js";
-import convertHTMLToBasicHTML from "./html-to-basic-html.js";
+import {extractCite} from "../html-to-cite/index.js";
+import {convertHTMLToBasicHTML} from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
 
 export default async function extractContent(documentOrHTML, options = {}) {
@@ -41,12 +41,14 @@ export default async function extractContent(documentOrHTML, options = {}) {
 
   var { author, author_cite, author_short, date, title, source } =
     extractCite(html);
+  
+    if (!article || !article?.content)
+    return { error: "No content found" };
 
-  // author = article.author || author;
-  // title = article.title || title;
-  // date = date_published || date;
+  author = article.author || author;
+  title = article.title || title;
+  date = article.date_published || date;
 
-  if (article?.content)
     var html = convertHTMLToBasicHTML(article?.content, options);
 
   return {

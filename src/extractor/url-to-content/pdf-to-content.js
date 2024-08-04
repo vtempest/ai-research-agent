@@ -1,21 +1,19 @@
 import {getDocumentProxy } from "unpdf"
 import * as chrono from "chrono-node";
-
 /**
- *  Extracts formatted text from PDF with parsing of headings,
- *  page headers, footnotes, and adding linebreaks based on
- *  standard deviation of range from average text height
+ * Extracts formatted text from PDF with parsing of headings,
+ * page headers, footnotes, and adding linebreaks based on
+ * standard deviation of range from average text height
  *
- * @param {string} pdfURL - url to a PDF file or buffer from fs.readFile
- * @param {object} options
- * addHeadingsTags = true, adds H1 tags to heading titles in document
- * addPageNumbers = true, adds [ # ] to end of each page
- * addSentenceLineBreaks = true, inserts line breaks at the end of sentence ranges
- * removePageHeaders = true, removes repeated headers found on each page
- * removeHyphens = true, removes hyphens at end of lines
- * moveFootnotes = true, moves footnotes to end of document
- *
- * @returns {string} html formatted text or {error} if error in parsing
+ * @param {string} pdfURL - URL to a PDF file or buffer from fs.readFile
+ * @param {Object} options
+ * @param {boolean} [options.addHeadingsTags=true] - Adds H1 tags to heading titles in document
+ * @param {boolean} [options.addPageNumbers=true] - Adds [ # ] to end of each page
+ * @param {boolean} [options.addSentenceLineBreaks=true] - Inserts line breaks at the end of sentence ranges
+ * @param {boolean} [options.removePageHeaders=true] - Removes repeated headers found on each page
+ * @param {boolean} [options.removeHyphens=true] - Removes hyphens at end of lines
+ * @param {boolean} [options.moveFootnotes=true] - Moves footnotes to end of document
+ * @returns {string|Object} HTML formatted text or {error} if error in parsing
  */
 export async function extractPDF(pdfURL, options = {}) {
   try {
@@ -79,7 +77,7 @@ export async function extractPDF(pdfURL, options = {}) {
       }
     }
     const articleAvgHeight = mean(articleCharHeights);
-    const articlesStandardDev = standardDeviation(articleCharHeights);
+    const articlesStandardDev = calculateStandardDeviation(articleCharHeights);
 
     const rangeTokens = []; // array of ranges {newline, mode, text}
     let newline = true;
@@ -94,7 +92,7 @@ export async function extractPDF(pdfURL, options = {}) {
       }
 
       const avgHeight = mean(charHeights);
-      const standardDeviationHeight = standardDeviation(charHeights);
+      const calculateStandardDeviationHeight = calculateStandardDeviation(charHeights);
 
       // use text height to infer headings and footnotes based on
       // standard deviation to the average text heights
@@ -105,7 +103,7 @@ export async function extractPDF(pdfURL, options = {}) {
           mode = "h2";
         } else if (
           textItem.height &&
-          textItem.height < avgHeight - standardDeviationHeight
+          textItem.height < avgHeight - calculateStandardDeviationHeight
         ) {
           mode = "footnote";
         } else if (textItem.height) {
@@ -207,10 +205,6 @@ export async function extractPDF(pdfURL, options = {}) {
 
 
 
-/**
- * @param {array} array
- * @returns {int} average or mean of array
- */
 const mean = function (array) {
   return array.length == 0 ? 0 : array.reduce((a, b) => a + b) / array.length;
 }
@@ -221,18 +215,21 @@ const mean = function (array) {
  * @param {array} array
  * @returns {int} number of standard deviation from average
  */
-const standardDeviation = function (array) {
+const calculateStandardDeviation = function (array) {
   var mean2 = mean(array);
   return Math.sqrt(mean(array.map((x) => (x - mean2) ** 2)));
 }
 
 
 /**
- * Compute the softmax of an array of numbers.
- * @param {T} arr The array of numbers to compute the softmax of.
- * @returns {T} The softmax array.
+ * Calculate softmax of array to convert a vector of K real numbers
+ *  into a probability distribution of K possible outcomes. 
+ * https://en.wikipedia.org/wiki/Softmax_function
+ * 
+ * @param {Array} arr The array of numbers to compute the calculateSoftmax of.
+ * @returns {Array} The Softmax array.
  */
-export function softmax(arr) {
+export function calculateSoftmax(arr) {
   // Compute the maximum value in the array
   const maxVal = Math.max(...arr);
 
@@ -243,10 +240,10 @@ export function softmax(arr) {
   // @ts-ignore
   const sumExps = exps.reduce((acc, val) => acc + val, 0);
 
-  // Compute the softmax values
-  const softmaxArr = exps.map(x => x / sumExps);
+  // Compute the calculateSoftmax values
+  const calculateSoftmaxArr = exps.map(x => x / sumExps);
 
-  return softmaxArr;
+  return calculateSoftmaxArr;
 }
 
 

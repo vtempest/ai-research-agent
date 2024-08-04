@@ -1,7 +1,7 @@
 const { pipeline } = await import("@xenova/transformers");
 
 
-export async function vectorizeTextAsConceptAPI(sentences, model, apiKey) {
+export async function vectorizeTextAsConceptAPI(source_sentence, sentences, model, apiKey) {
   const url = `https://api-inference.huggingface.co/models/${model}`;
   const response = await fetch(url, {
     method: "POST",
@@ -11,8 +11,8 @@ export async function vectorizeTextAsConceptAPI(sentences, model, apiKey) {
     },
     body: JSON.stringify({
       inputs: {
-        source_sentence: sentences[0],
-        sentences: sentences.slice(1)
+        source_sentence,
+        sentences
       }
     })
   });
@@ -28,14 +28,15 @@ export async function vectorizeTextAsConceptAPI(sentences, model, apiKey) {
 
 /**
  * Rerank documents's chunks based on relevance to query,
- * based on cosine similarity of their embeddings
+ * based on cosine similarity of their concept vectors generated
+ * by a MiniLM transformer model.
  *
  * @param {Array<string>} documents
  * @param {string} query
  * @param {Object} config
  * @returns {Promise<Array<{content: string, similarity: number}>>}
  */
-export async function rerankDocChunksRelevance(documents, query, config = {}) {
+export async function weighRelevanceConceptVector(documents, query, config = {}) {
   const docEmbeddings = await vectorizeTextAsConcept(documents, config);
 
   const queryEmbedding = await vectorizeTextAsConcept(query, config);
@@ -43,7 +44,7 @@ export async function rerankDocChunksRelevance(documents, query, config = {}) {
   let sortedDocs = docEmbeddings
     .map((docEmbedding, i) => ({
       index: i,
-      similarity: cosineSimilarity(queryEmbedding[0], docEmbedding),
+      similarity: calculateCosineSimilarity(queryEmbedding[0], docEmbedding),
     }))
     .filter((sim) => sim.similarity > 0.5)
     .sort((a, b) => b.similarity - a.similarity)
@@ -76,7 +77,7 @@ export async function vectorizeTextAsConcept(input, config = {}) {
   const processedTexts = stripNewLines
     ? texts.map((t) => t.replace(/\n/g, " "))
     : texts;
-  const batches = chunkArray(processedTexts, batchSize);
+  const batches = splitArrayToChunks(processedTexts, batchSize);
 
   const pipe = await pipeline("feature-extraction", modelName);
 
@@ -95,7 +96,7 @@ export async function vectorizeTextAsConcept(input, config = {}) {
  * @param {number} chunkSize
  * @returns {Array<Array>}
  */
-function chunkArray(array, chunkSize) {
+function splitArrayToChunks(array, chunkSize) {
   const chunks = [];
   for (let i = 0; i < array.length; i += chunkSize) {
     chunks.push(array.slice(i, i + chunkSize));
@@ -104,12 +105,19 @@ function chunkArray(array, chunkSize) {
 }
 
 /**
- * Calculate cosine similarity between two vectors
+ * Cosine similarity is a measure of similarity between two vectors
+ * in an inner product space. It determines the degree to 
+ * which two vectors are pointing in the same direction by 
+ * calculating the cosine of the angle between them. 
+ * Cosine similarity is commonly used in text analysis 
+ * to measure the similarity between documents based on 
+ * the frequency of words or phrases they contain.
+ * https://en.wikipedia.org/wiki/Cosine_similarity
  * @param {Array<number>} vecA
  * @param {Array<number>} vecB
  * @returns {number}
  */
-function cosineSimilarity(vecA, vecB) {
+function calculateCosineSimilarity(vecA, vecB) {
   return (
     vecA.reduce((sum, a, i) => sum + a * vecB[i], 0) /
     (Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0)) *

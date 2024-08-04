@@ -6,7 +6,7 @@
  * @param {string} word - The word to be stemmed
  * @returns {string} The stemmed word
  */
-export default function stemmer(word) {
+export function stemRootWord(word) {
   // Return short words (less than 3 characters) without stemming
   if (word.length < 3) return word;
 

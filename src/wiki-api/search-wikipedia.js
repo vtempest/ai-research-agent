@@ -1,4 +1,4 @@
-import splitSentences from "../tokenize/sentences.js";
+import {splitSentences} from "../..";
 
 /**
  * Search Wikipedia for a query, return result's title, summary, and image. 
@@ -16,7 +16,7 @@ import splitSentences from "../tokenize/sentences.js";
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
  */
-export default async function searchWikipedia(query, options = {}) {
+export async function searchWikipedia(query, options = {}) {
   // Set default options
   var {
     plainText = false,

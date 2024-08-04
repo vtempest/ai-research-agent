@@ -4,7 +4,7 @@
  * @param {string} query
  * @returns {Array}
  */
-export default function queryAutocomplete(query, options = {}) {
+export function autocomplete(query, options = {}) {
   let {
     phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results

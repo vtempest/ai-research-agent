@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 
 import {similarity} from "../";
 
-const {rerankDocChunksRelevance,  vectorizeTextAsConcept,
+const {weighRelevanceConceptVector,  vectorizeTextAsConcept,
   vectorizeTextAsConceptAPI} = similarity;
 
 describe("rerank similar conceptually with HF-llm", () => {
@@ -18,7 +18,7 @@ describe("rerank similar conceptually with HF-llm", () => {
     ];
     const query2 = "What does the fox say?";
 
-    const sortedDocs = await rerankDocChunksRelevance(documents, query2);
+    const sortedDocs = await weighRelevanceConceptVector(documents, query2);
 
     console.log("Most relevant documents:", sortedDocs);
 
@@ -40,8 +40,10 @@ it("API - rerank similar conceptually", async () => {
     "Where there's a will, there's a way."
   ];
 
+  let query3 = "What does the fox say?";
 
-    let similarities = await vectorizeTextAsConceptAPI(sampleSentences, model, apiKey);
+
+    let similarities = await vectorizeTextAsConceptAPI(query3, sampleSentences, model, apiKey);
 
     console.log(JSON.stringify(similarities, null, 2));
 

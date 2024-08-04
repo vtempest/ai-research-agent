@@ -6,7 +6,7 @@
  * @param {string} query
  * @returns {boolean} true if doc has all words and "in phrases"
  */
-export default function matchQuasar(document, query) {
+export function matchQUASAR(document, query) {
   return new RegExp(
     "(?=.*" +
       query

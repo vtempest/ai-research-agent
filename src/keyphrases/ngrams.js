@@ -1,4 +1,4 @@
-import { stopWords } from "../tokenize/stopwords";
+import stopWords from "../tokenize/stopwords";
 
 /**
  * Searches terms from index for ngram of given size
@@ -24,12 +24,14 @@ export default function extractNounEdgeGrams(
   if (!nGrams[nGramSize]) nGrams[nGramSize] = {};
 
   var nextWords = terms.slice(index, index + nGramSize);
+  // is noun or is a stop word like 'state of the art'
   if (
     isNoun(nextWords[0]) &&
     isNoun(nextWords[nGramSize - 1]) &&
     nextWords.every(
       (word) =>
-        word[4]?.length >= minWordLength && (isNoun(word) || isStopWord(word)) // or is a stop word like 'state of the art'
+        word[4]?.length >= minWordLength && 
+      (isNoun(word) || stopWords.includes(word[4])) 
     )
   ) {
     var nextWordsString = nextWords.map((v) => v[4]).join(" ");
@@ -48,16 +50,5 @@ export default function extractNounEdgeGrams(
  * @returns
  */
 export function isNoun(token) {
-  return token[1] >= 3 && token[1] <= 28 ||  token[1] == 50;
-}
-
-/**
- * Checks if token is a commonly-ignored stop word
- * @param {Object} token
- * @returns
- */
-export function isStopWord(token) {
-  var stopWordsArray = stopWords.split(",");
-
-  return stopWordsArray.includes(token[4]);
+  return (token[1] >= 3 && token[1] <= 28) || token[1] == 50;
 }

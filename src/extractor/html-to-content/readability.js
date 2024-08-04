@@ -22,6 +22,7 @@
 
 /**
  * Public constructor.
+ * @private
  * @param {HTMLDocument} doc     The document to parse.
  * @param {Object}       options The options object.
  */

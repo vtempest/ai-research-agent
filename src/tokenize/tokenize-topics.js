@@ -1,4 +1,13 @@
-import stemmer from "./stemmer";
+import {stemRootWord} from "./stemmer";
+import stopWords from "./stopwords";
+
+/**
+ * @typedef {Array} Token
+ * @property {number} termCategory - The category of the term
+ * @property {number} uniqueness - The uniqueness score of the term
+ * @property {string} term - The actual term or phrase
+ */
+
 
 /**
  * Query Resolution to Phrase & Topic Tokenization -
@@ -9,15 +18,17 @@ import stemmer from "./stemmer";
  * @param {Object} options.phrasesModel - remote model
  * @param {Object} options.typosModel - remote model
  * @param {number} options.checkTypos - check for typos
+ * @param {number} options.ignoreStopWords - ignore 300+ overused words
  * @param {number} options.checkRootWords - check for word's root stem
- * @returns {Array<Array>}  ex. [[50, 0, "Albert Einstein"] , [20, 5, "physics"]]
+ * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"] , [20, 5, "physics"]]
  */
-export default function tokenizeTopicModel(phrase, options = {}) {
+export function tokenizeTopics(phrase, options = {}) {
   let {
     phrasesModel, //pass in remote model
     typosModel,
     checkTypos = 0,
     checkRootWords = 1,
+    ignoreStopWords = 1,
   } = options;
 
   if (!phrasesModel )
@@ -39,6 +50,10 @@ export default function tokenizeTopicModel(phrase, options = {}) {
   for (var i = 0; i < words.length; i++) {
     var word = words[i];
 
+    //ignore 300+ common stop words
+    if (ignoreStopWords && stopWords.includes(word))
+      continue;
+
     //Find next word phrase completion list
     var firstTwoLetters = word.slice(0, 2);
     var possiblePhrases = phrasesModel[firstTwoLetters]
@@ -47,7 +62,7 @@ export default function tokenizeTopicModel(phrase, options = {}) {
 
     //check for root words like "gaming" -> "game"
     if (!possiblePhrases && checkRootWords) {
-      var rootWord = stemmer(word);
+      var rootWord = stemRootWord(word);
       if (rootWord !== word)
         possiblePhrases = phrasesModel[rootWord.slice(0, 2)]
           ? phrasesModel[rootWord.slice(0, 2)][rootWord]
@@ -109,18 +124,4 @@ export default function tokenizeTopicModel(phrase, options = {}) {
 
 
   return topics.filter(Boolean);
-}
-
-/**
- * Calculate overall domain-speicificity after Query Resolution to Phrases
- * @param {string} phrase
- * @returns {number} domain specificity 0-12~
- */
-export function calculatePhraseSpecificity(phrase, options) {
-  var tokensWithFreq = tokenizeWikiPhrases(phrase, options);
-
-  return (
-    tokensWithFreq.reduce((acc, r) => acc + (r[1] || 4), 0) /
-    tokensWithFreq.length
-  ).toFixed(1);
 }

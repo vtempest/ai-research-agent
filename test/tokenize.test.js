@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
-import tokenizeWikiPhrases, {
-  calculatePhraseSpecificity,
-} from "../src/tokenize/tokenize-topics";
+import  {
+  tokenizeTopics
+} from "..";
 import fs from "fs";
 
 var phrasesModel = JSON.parse(
@@ -21,7 +21,7 @@ test("tokenize query  to keyphrases", async () => {
   for (var q of queries.slice(random, random + 20)) {
 
     //example usage
-    var result = tokenizeWikiPhrases(q, { phrasesModel });
+    var result = tokenizeTopics(q, { phrasesModel });
  
     var str = result.filter(Boolean)
       .map(

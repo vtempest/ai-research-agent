@@ -6,7 +6,7 @@
  * @param {object} options
  * @returns {Promise<Array[]>} {title, url, snippet, engines, cached}
  */
-export default async function searchWeb(query, options = {}) {
+export async function searchWeb(query, options = {}) {
   const {
     categoryIndex = 0,
     recencyIndex = 0,

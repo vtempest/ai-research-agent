@@ -6,7 +6,7 @@
  * @param {object} options {images: 0, links: 1, sections: 1, formatting: 1 }
  * @returns {string} sanitized html
  */
-export default function convertHTMLToBasicHTML(html, options = {}) {
+export  function convertHTMLToBasicHTML(html, options = {}) {
   var {
     images = 1,
     links = 1,

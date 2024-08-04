@@ -6,7 +6,7 @@
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  */
-export async function fetchYoutubeText(videoUrl, boolTimestamps = true) {
+export async function extractYoutubeText(videoUrl, boolTimestamps = true) {
   try {
     var transcript = await fetchTranscript(videoUrl);
   } catch (e) {

@@ -1,4 +1,4 @@
-import { calculateWikiBM25 } from "../src/match/wiki-bm25.js";
+import { weighRelevanceTermFrequency } from "..";
 import { test, expect } from "vitest";
 import sampleNewsDocs from "./data/sample-data-news.js";
 
@@ -8,7 +8,7 @@ test("WikiBM25 - cancer", () => {
   var results = sampleNewsDocs
     .map((doc, index) => {
       var docText = doc.title + " " + doc.content;
-      var score = calculateWikiBM25(query, docText);
+      var score = weighRelevanceTermFrequency(query, docText);
 
       return { score, title: doc.title };
     })
@@ -28,7 +28,7 @@ test("WikiBM25 - climate change", () => {
   var results = sampleNewsDocs
     .map((doc, index) => {
       var docText = doc.title + " " + doc.content;
-      var score = calculateWikiBM25(query, docText);
+      var score = weighRelevanceTermFrequency(query, docText);
 
       return { score, title: doc.title };
     })
