@@ -47,7 +47,7 @@ export default function extractNounEdgeGrams(
 /**
  * Checks if token is a noun
  * @param {Object} token
- * @returns
+ * @returns {boolean}
  */
 export function isNoun(token) {
   return (token[1] >= 3 && token[1] <= 28) || token[1] == 50;

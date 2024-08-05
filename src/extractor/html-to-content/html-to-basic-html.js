@@ -55,7 +55,7 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
       return el;
     })
     .reduce((acc, el) => {
-      if (el.text) acc += `${el.text}`;
+      if (el.text) acc += el.text;
       else if (el.tag)
         acc += `<${el.tag}${Object.keys(el)
           .filter((key) => key != "tag")

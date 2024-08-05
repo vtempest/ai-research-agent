@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ai-research-agent similarity/similarity-concept.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent Docs</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Github
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://wiki-phrases-tokenizer.vtempest.workers.dev"
+                        >
+                            Demo
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocompleteNextWords">autocompleteNextWords</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractAuthor">extractAuthor</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractDate">extractDate</a></li><li><a href="global.html#extractHumanName">extractHumanName</a></li><li><a href="global.html#extractHumanNameParts">extractHumanNameParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractSource">extractSource</a></li><li><a href="global.html#extractTitle">extractTitle</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li><li><a href="global.html#softmax">softmax</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>similarity/similarity-concept.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { pipeline } = await import("@xenova/transformers");
+
+
+export async function vectorizeTextAsConceptAPI(source_sentence, sentences, model, apiKey) {
+  const url = `https://api-inference.huggingface.co/models/${model}`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      inputs: {
+        source_sentence,
+        sentences
+      }
+    })
+  });
+
+  if (!response.ok) {
+    console.error("API request failed:", await response.text());
+    return null;
+  }
+
+  return await response.json();
+}
+
+
+/**
+ * Rerank documents's chunks based on relevance to query,
+ * based on cosine similarity of their concept vectors generated
+ * by a MiniLM transformer model.
+ *
+ * @param {Array&lt;string>} documents
+ * @param {string} query
+ * @param {Object} config
+ * @returns {Promise&lt;Array&lt;{content: string, similarity: number}>>}
+ */
+export async function weighRelevanceConceptVector(documents, query, config = {}) {
+  const docEmbeddings = await vectorizeTextAsConcept(documents, config);
+
+  const queryEmbedding = await vectorizeTextAsConcept(query, config);
+
+  let sortedDocs = docEmbeddings
+    .map((docEmbedding, i) => ({
+      index: i,
+      similarity: calculateCosineSimilarity(queryEmbedding[0], docEmbedding),
+    }))
+    .filter((sim) => sim.similarity > 0.5)
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, 5)
+    .map((sim) => ({
+      content: documents[sim.index],
+      similarity: sim.similarity,
+    }));
+
+  return sortedDocs;
+}
+
+/**
+ * Convert text to concept vector int[] of length m, where
+ * m is number of features extracted by MiniLM-L6-v2
+ * and values are similar if words are similar by that feature 
+ * within m-dimensional "concept space" 
+ * @param {string|Array&lt;string>} input
+ * @param {Object} config
+ * @returns {Promise&lt;Array&lt;Array&lt;number>>>}
+ */
+export async function vectorizeTextAsConcept(input, config = {}) {
+  const {
+    batchSize = 512,
+    stripNewLines = true,
+    modelName = "Xenova/all-MiniLM-L6-v2",
+  } = config;
+
+  const texts = Array.isArray(input) ? input : [input];
+  const processedTexts = stripNewLines
+    ? texts.map((t) => t.replace(/\n/g, " "))
+    : texts;
+  const batches = splitArrayToChunks(processedTexts, batchSize);
+
+  const pipe = await pipeline("feature-extraction", modelName);
+
+  const batchRequests = batches.map(async (batch) => {
+    const output = await pipe(batch, { pooling: "mean", normalize: true });
+    return output.tolist();
+  });
+
+  const batchResponses = await Promise.all(batchRequests);
+  return batchResponses.flat();
+}
+
+/**
+ * Split an array into chunks
+ * @param {Array} array
+ * @param {number} chunkSize
+ * @returns {Array&lt;Array>}
+ */
+function splitArrayToChunks(array, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i &lt; array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
+/**
+ * Cosine similarity is a measure of similarity between two vectors
+ * in an inner product space. It determines the degree to 
+ * which two vectors are pointing in the same direction by 
+ * calculating the cosine of the angle between them. 
+ * Cosine similarity is commonly used in text analysis 
+ * to measure the similarity between documents based on 
+ * the frequency of words or phrases they contain.
+ * https://en.wikipedia.org/wiki/Cosine_similarity
+ * @param {Array&lt;number>} vecA
+ * @param {Array&lt;number>} vecB
+ * @returns {number}
+ */
+function calculateCosineSimilarity(vecA, vecB) {
+  return (
+    vecA.reduce((sum, a, i) => sum + a * vecB[i], 0) /
+    (Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0)) *
+      Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0)))
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

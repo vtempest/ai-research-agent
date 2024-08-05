@@ -12,7 +12,7 @@ import dataHumanNames from "./human-names-data.js";
  * @param {string} author
  * @returns {object} {author_cite, author_short, author_type}
  */
-export function recognizeHumanName(author) {
+export function extractHumanName(author) {
   const enumAuthorTypes = [
     "single",
     "two-author",
@@ -75,7 +75,7 @@ export function recognizeHumanName(author) {
   if (authorType == 3) {
     author_short = author;
   } else {
-    var authorObj = parseName(author);
+    var authorObj = extractHumanNameParts(author);
     if (authorObj) {
       author =
         authorObj.lastname +
@@ -106,7 +106,7 @@ export function recognizeHumanName(author) {
  * @param {string} input - The full name to parse.
  * @returns {Object}
  */
-const parseName = (input) => {
+const extractHumanNameParts = (input) => {
   // Initialize the result object
   const result = {
     prefix: "", //van der von de

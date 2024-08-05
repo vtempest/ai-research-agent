@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ai-research-agent wiki-api/search-wikipedia.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent Docs</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Github
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://wiki-phrases-tokenizer.vtempest.workers.dev"
+                        >
+                            Demo
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocompleteNextWords">autocompleteNextWords</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractAuthor">extractAuthor</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractDate">extractDate</a></li><li><a href="global.html#extractHumanName">extractHumanName</a></li><li><a href="global.html#extractHumanNameParts">extractHumanNameParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractSource">extractSource</a></li><li><a href="global.html#extractTitle">extractTitle</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li><li><a href="global.html#softmax">softmax</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>wiki-api/search-wikipedia.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {splitSentences} from "../..";
+
+/**
+ * Search Wikipedia for a query, return result's title, summary, and image. 
+ *
+ * @param {string} query search phrase 
+ * @param {object} options Options object with the following properties and defaults:
+ * @param {boolean} options.plainText = false, // Return plain text instead of HTML
+ * @param {number} options.summarySentenceLimit = 3, // Limit summary to this many sentences
+ * @param {number} options.limitSearchResults = 1, // Limit number of search results
+ * @param {boolean} options.images = true, // Include image in results
+ * @param {number} options.imageSize = 200, // Image size in pixels
+ * @param {boolean} options.searchInTitleOnly = false, // Search in title only
+ * @param {boolean} options.filterDisambiguation = true, // Filter disambiguation pages
+ * @example await searchWikipedia("JavaScript", { plainText: true })
+ * @returns {object} {results: [ {title, summary, image}, ...]}
+ * @returns {object} Returns {error} if no results found. {error: "No results"}
+ */
+export async function searchWikipedia(query, options = {}) {
+  // Set default options
+  var {
+    plainText = false,
+    summarySentenceLimit = 3,
+    limitSearchResults = 2,
+    images = true,
+    imageSize = 200,
+    searchInTitleOnly = true,
+    filterDisambiguation = true,
+  } = options;
+
+  // Formet URL for Wikipedia search
+  var url =
+    "https://en.wikipedia.org/w/api.php?action=query&amp;gsrlimit=" +
+    limitSearchResults +
+    "&amp;origin=*&amp;" +
+    (plainText ? "explaintext=1&amp;exsectionformat=plain" : "") +
+    "&amp;generator=search&amp;exintro=&amp;inprop=url&amp;prop=" +
+    (images ? "extracts|pageimages|info" : "extracts|info") +
+    "&amp;format=json&amp;gsrsearch=" +
+    (searchInTitleOnly ? "intitle:" : "") +
+    query.replace(/ /g, "%20");
+
+  // Fetch search results as JSON
+  var info = await (await fetch(url)).json();
+
+  // Return error if no results found
+  if (!info || !info.query || !Object.keys(info?.query?.pages).length)
+    return { error: "No results" };
+
+  var resultsKeys = Object.keys(info.query.pages);
+  var resultsObjects = [];
+
+  for (var i = 0; i &lt; resultsKeys.length; i++) {
+    // Get first search result
+    var pageObject = info.query.pages[resultsKeys[i]];
+
+    // Create page data object with title
+    var pageData = { title: pageObject.title };
+    pageData.url = pageObject.fullurl;
+
+    //preserve basic html but remove links and spans of wiki-classes
+    var extract = plainText
+      ? pageObject.extract?.replace(/[\n\r]/g, " ")
+      : pageObject.extract
+          ?.replace(/&lt;(link|span|\/span)[^>]*>/g, " ")
+          ?.replace(/( class=\"mw-empty-elt\")/g, "")
+          .replace(/[\n\r]/g, " ")
+          .replace(/&lt;p>[ ]*&lt;\/p>/g, "")
+          .replace(/&lt;p>/g, ""); //remove all paragraphs since we get a few sentences
+
+    // Use sentence boundary detection to limit summary to a few sentences
+    pageData.summary =
+      summarySentenceLimit > 0
+        ? splitSentences(extract).slice(0, summarySentenceLimit).join(" ")
+        : extract;
+
+    // Check if page is a disambiguation page
+    if (extract.includes(" may refer to: &lt;/p>"))
+      pageData.isDisambiguation = true;
+
+    // Get image if requested in size specified
+    if (images)
+      pageData.image = pageObject.thumbnail
+        ? pageObject.thumbnail.source.replace("/50px", "/" + imageSize + "px")
+        : null;
+
+    // push into results the page data object with title, summary, and image
+    resultsObjects.push(pageData);
+  }
+
+  //remove disambiguation pages like "___ may refer to"
+  if (filterDisambiguation)
+    resultsObjects = resultsObjects.filter((i) => !i.isDisambiguation);
+
+  return { results: resultsObjects };
+}
+
+
+
+/**
+ * Compute the softmax of an array of numbers.
+ * https://en.wikipedia.org/wiki/Softmax_function
+ *
+ * Softmax is a generalization of the logistic sigmoid function used in
+ * logistic regression. It is commonly used in machine learning models
+ * for multi-class classification problems where there are more than two
+ * possible output classes. The softmax function takes a vector of arbitrary
+ * real-valued scores and squashes it to a vector of values between 0 and 1
+ * that sum to 1. This allows the output to be interpreted as a probability
+ * distribution over the possible classes.
+ *
+ * @param {array} arr The array of numbers to compute the softmax of.
+ * @returns {array} The softmax array.
+ */
+
+export function softmax(array) {
+  return array.map(
+    (val, index) =>
+      Math.exp(array[index]) /
+      array.map((y) => Math.exp(y)).reduce((a, b) => a + b)
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

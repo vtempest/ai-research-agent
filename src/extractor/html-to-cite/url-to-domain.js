@@ -9,7 +9,7 @@
  * @param {string} domain 
  * @returns {string} rootDomain 
  */
-export function extractRootDomain(domain) {
+export function convertURLToDomain(domain) {
   var tldRegExp = new RegExp(
     "(?=[^^]).(fr|de|cz|at|com|wiki|co|edu|g ov|info|mil|id|"+
     "gv|tv|int|name|net|org|pro|ac|me|ltd|parliament)(.|$).*$"

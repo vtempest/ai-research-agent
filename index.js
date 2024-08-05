@@ -19,9 +19,9 @@ import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-te
 
 import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
 
-import { weighTopicDistributionLDA } from "./src/similarity/topic-distribution.js";
+import { weighTopicDirichletDistribution } from "./src/topic-distribution/topic-distribution.js";
 
-import { autocomplete } from "./src/autocomplete/autocomplete.js";
+import { autocompleteNextWords } from "./src/autocomplete/autocomplete.js";
 import { tokenizeTopics } from "./src/tokenize/tokenize-topics.js";
 import { splitSentences } from "./src/tokenize/sentences.js";
 import { searchWikipedia } from "./src/wiki-api/search-wikipedia.js";
@@ -38,13 +38,13 @@ export {
   extractSEEKTOPIC,
   weighRelevanceConceptVector,
   vectorizeTextAsConcept,
-  autocomplete,
+  autocompleteNextWords,
   tokenizeTopics,
   splitSentences,
   searchWikipedia,
   weighRelevanceTermFrequency,
   matchQUASAR,
-  weighTopicDistributionLDA,
+  weighTopicDirichletDistribution,
 };
 
 //also export them as a single object

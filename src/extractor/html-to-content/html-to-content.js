@@ -5,6 +5,12 @@ import {extractCite} from "../html-to-cite/index.js";
 import {convertHTMLToBasicHTML} from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
 
+/**
+ * Extracts the main content and cite from a document or HTML string
+ * @param {string|object} documentOrHTML 
+ * @param {object} options 
+ * @returns {object} {title, author_cite, author_short, author, date, source, html}
+ */
 export default async function extractContent(documentOrHTML, options = {}) {
   options = options || {
     images: true,
@@ -44,6 +50,7 @@ export default async function extractContent(documentOrHTML, options = {}) {
   
     if (!article || !article?.content)
     return { error: "No content found" };
+    //TODO comapre by name recognition
 
   author = article.author || author;
   title = article.title || title;

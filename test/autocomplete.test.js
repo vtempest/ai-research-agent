@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import {autocomplete} from ".."
+import {autocompleteNextWords} from ".."
 import fs from "fs";
 import phrasesModel from "../data/wiki-phrases-model-240k.json"
 
@@ -14,7 +14,7 @@ test("query autocomplete", async () => {
 
   // for (var q of queries.slice(random, random + 100)) {
     //example usage
-    var autocompletes = autocomplete(q, {phrasesModel});
+    var autocompletes = autocompleteNextWords(q, {phrasesModel});
     // autocompletes = JSON.stringify(autocompletes, null, 0)
 
 

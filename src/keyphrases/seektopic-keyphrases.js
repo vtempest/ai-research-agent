@@ -1,11 +1,11 @@
-import {splitSentences} from  "../../index.js";
-import {tokenizeTopics} from "../../index.js";
-import TextRank from "./graph-centrality-rank.js";
+import { splitSentences } from "../../index.js";
+import { tokenizeTopics } from "../../index.js";
+import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js";
 import extractNounEdgeGrams from "./ngrams.js";
 
 /**
- * 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities, 
- * Keywords, and Topic Outline Phrases Important to Content 
+ * 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities,
+ * Keywords, and Topic Outline Phrases Important to Context
  * Weights sentences using TextRank noun keyphrase frequency
  * to find which sentences centralize and tie together keyphrase
  * concepts referred to most by other sentences. Based on the
@@ -24,6 +24,7 @@ import extractNounEdgeGrams from "./ngrams.js";
  * @param {number} options.minKeyPhraseLength - minimum length of a keyphrase (default: 5)
  * @param {string} options.heavyWeightQuery - query to give heavy weight to
  * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
+ * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
  */
 export function extractSEEKTOPIC(inputString, options = {}) {
   var {
@@ -50,26 +51,33 @@ export function extractSEEKTOPIC(inputString, options = {}) {
     .replace(/>/g, "> ")
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
 
-
   //split into sentences
-  var sentencesArray = splitSentences(inputString)
+  var sentencesArray = splitSentences(inputString);
   var sentenceNumber = 0;
 
   //extract ngrams
   var nGrams = {};
-  var tokensPerSentence = [];
 
-  for (var sentenceText of sentencesArray) {
-  
-    var tokens = tokenizeTopics(sentenceText, {
+  // create sentenceKeysMap  [{text,index,tokens,keyphrases:[{text,weight}] }]
+  var sentenceKeysMap = [];
+
+  for (var i = 0; i < sentencesArray.length; i++) {
+    var text = sentencesArray[i];
+
+    var tokens = tokenizeTopics(text, {
       phrasesModel,
       typosModel,
     });
-    
-    tokensPerSentence.push(tokens);
 
-    for (var i = 0; i < tokens.length; i++) 
-      for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++) 
+    sentenceKeysMap.push({
+      text,
+      index: i,
+      keyphrases: [],
+      tokens,
+    });
+
+    for (var i = 0; i < tokens.length; i++)
+      for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++)
         extractNounEdgeGrams(
           nGramSize,
           tokens,
@@ -78,13 +86,12 @@ export function extractSEEKTOPIC(inputString, options = {}) {
           minWordLength,
           sentenceNumber++
         );
-      
   }
 
   //give keyphrases weight of num_occurences ^ word_count
-  var keyphraseGrams = [];
+  var keyphraseObjects = [];
   for (var nGramSize = minWords; nGramSize <= maxWords; nGramSize++)
-    keyphraseGrams = keyphraseGrams.concat(
+    keyphraseObjects = keyphraseObjects.concat(
       Object.entries(nGrams[nGramSize]).map(([keyphrase, sentences]) => {
         return {
           keyphrase,
@@ -96,16 +103,16 @@ export function extractSEEKTOPIC(inputString, options = {}) {
     );
 
   //sort keyphrases by word count
-  keyphraseGrams = keyphraseGrams.sort((a, b) => b.words - a.words);
+  keyphraseObjects = keyphraseObjects.sort((a, b) => b.words - a.words);
 
   //fold smaller keyphrases that are subsets of larger ones
   var keyphrasesFolded = [];
 
-  for (var keyphraseGram of keyphraseGrams) {
+  for (var keyphraseObject of keyphraseObjects) {
     var shouldAddCurrent = true;
 
     for (var i = 0; i < keyphrasesFolded.length; i++) {
-      var phrase = keyphraseGram.keyphrase;
+      var phrase = keyphraseObject.keyphrase;
       var lastWordIndex = phrase.lastIndexOf(" ");
 
       //check if larger includes smaller phrase or smaller phrase minus last word
@@ -118,44 +125,39 @@ export function extractSEEKTOPIC(inputString, options = {}) {
       ) {
         //combine weight of smaller keyphrase into larger, divided by word count
         keyphrasesFolded[i].weight +=
-          keyphraseGram.weight /
+          keyphraseObject.weight /
           keyphrasesFolded[i].keyphrase.split(" ").length;
         keyphrasesFolded[i].sentences = keyphrasesFolded[i].sentences.concat(
-          keyphraseGram.sentences
+          keyphraseObject.sentences
         );
 
         // use whatever version has greater weight as keyphrase text
-        if (keyphrasesFolded[i].weight < keyphraseGram.weight)
-          keyphrasesFolded[i].keyphrase = keyphraseGram.keyphrase;
+        if (keyphrasesFolded[i].weight < keyphraseObject.weight)
+          keyphrasesFolded[i].keyphrase = keyphraseObject.keyphrase;
 
         shouldAddCurrent = false;
       }
     }
 
-    if (shouldAddCurrent && keyphraseGram.sentences.length >= 1)
-      keyphrasesFolded.push(keyphraseGram);
+    if (shouldAddCurrent && keyphraseObject.sentences.length >= 1)
+      keyphrasesFolded.push(keyphraseObject);
   }
-  
 
   //heavy weight query - bias towards query or user-clicked keyphrase
+  // TODO - compare concept similarity of keyphrases to heavyWeightQuery
   if (heavyWeightQuery)
     keyphrasesFolded.forEach((keyphrase) => {
       if (keyphrase.keyphrase == heavyWeightQuery) keyphrase.weight += 5000;
     });
 
-  keyphraseGrams = keyphrasesFolded.sort((a, b) => b.weight - a.weight);
 
+    var keysUniqueMap = {};
   //deduplicate and enforce unique values
-  var keyphraseGramsUnique = {};
-  keyphraseGrams = keyphraseGrams
-    .map((keyphrase) => {
-      keyphrase.sentences = [...new Set(keyphrase.sentences)];
-      if (keyphraseGramsUnique[keyphrase.keyphrase]) return false;
-      keyphraseGramsUnique[keyphrase.keyphrase] = 1;
 
-      return keyphrase;
-    })
-    .filter(Boolean);
+  keyphraseObjects = keyphrasesFolded
+    .sort((a, b) => b.weight - a.weight)
+    .filter(k=>!keysUniqueMap[k.keyphrase] && (keysUniqueMap[k.keyphrase] = 1))
+    .map(k => ({sentences: [...new Set(k.sentences)], ...k}));
 
   var limitKeyPhrases = Math.floor(
     keyphrasesFolded.length * topKeyphrasesPercent
@@ -164,70 +166,56 @@ export function extractSEEKTOPIC(inputString, options = {}) {
     limitKeyPhrases = limitTopKeyphrases;
 
   //weight wiki entities
-  keyphraseGrams = keyphraseGrams
-    .map((keyphraseGram) => {
-      var phraseTokenized = tokenizeTopics(keyphraseGram.keyphrase, {
+  keyphraseObjects = keyphraseObjects
+    .map((keyphraseObject) => {
+      var phraseTokenized = tokenizeTopics(keyphraseObject.keyphrase, {
         phrasesModel,
         typosModel,
       });
-
-      var isEntity = phraseTokenized.filter((r) => r[0]).length;
-      if (isEntity) {
-        keyphraseGram.wiki = true;
-        keyphraseGram.weight = keyphraseGram.weight * 2;
+      //if wiki entity, triple weight
+      if (phraseTokenized.filter((r) => r[0] == 50)[0]) {
+        keyphraseObject.wiki = true;
+        keyphraseObject.weight *= 3;
       }
 
-      var tokensWithFreq = phraseTokenized.filter((r) => r[2]);
-
-      keyphraseGram.specificity = Math.floor(
-        tokensWithFreq.reduce((acc, r) => acc + r[2], 0) / tokensWithFreq.length
+      //multiply weight by rarity of keyphrase to boost domain-specificity
+      keyphraseObject.weight = Math.floor(
+        (keyphraseObject.weight *
+          phraseTokenized.reduce((acc, r) => acc + (r[1] || 4), 0)) /
+          phraseTokenized.length
       );
 
-      keyphraseGram.weight = Math.floor(
-        keyphraseGram.weight * keyphraseGram.specificity
-      );
-
-      return keyphraseGram;
+      return keyphraseObject;
     })
+    //filter out keyphrases that are too short
     .filter((k) => k.keyphrase.length > minKeyPhraseLength)
     .sort((a, b) => b.weight - a.weight)
     //limit to top % of keyphrases to give weights to
     .slice(0, limitKeyPhrases);
 
-  // create sentenceKeysMap  [{text,index,keyphrases:[{text,weight}] }]
-  var sentenceKeysMap = [];
-  for (var i = 0; i < sentencesArray.length; i++)
-    sentenceKeysMap.push({
-      text: sentencesArray[i],
-      index: i,
-      keyphrases: [],
-    });
-
-  keyphraseGrams.forEach(({ keyphrase, sentences, weight }) => {
+  //add keyphrases to sentences Map
+  for (var keyphraseObject of keyphraseObjects) {
+    const { keyphrase, sentences, weight } = keyphraseObject;
     for (var sentenceNumber of sentences)
       sentenceKeysMap[sentenceNumber].keyphrases.push({ keyphrase, weight });
-  });
+  }
 
   //run text rank
-  var top_sentences = TextRank(sentenceKeysMap);
+  var topSentences = rankSentencesCentralToKeyphrase(sentenceKeysMap)
+    ?.sort((a, b) => b.weight - a.weight)
+    .slice(0, limitTopSentences)    //cut off top S limit
+    .map(s => ({
+      text: s.text, //remove to not show text
+      keyphrases: s.keyphrases.map(k => k.keyphrase),
+      ...s
+    }));
 
-  if (top_sentences)
-    top_sentences = top_sentences.sort((a, b) => {
-      return b.weight - a.weight;
-    });
-
-  //cut off top K limit
-  top_sentences = top_sentences?.slice(0, limitTopSentences).map((s) => ({
-    index: s.index,
-    text: s.text, //remove to not show text
-    keyphrases: s.keyphrases.map((k) => k.keyphrase),
+  // limit keyphrases to top K
+  var keyphrases = keyphraseObjects
+  .slice(0, limitTopKeyphrases).map(k => ({
+    sentences: k.sentences.join(","),
+    ...k,
   }));
-  keyphraseGrams = keyphraseGrams.slice(0, limitTopKeyphrases);
 
-  var keyphrases = keyphraseGrams.map((k) => {
-    k.sentences = k.sentences.join(",");
-    return k;
-  });
-
-  return { top_sentences, keyphrases, sentences: sentencesArray };
+  return { topSentences, keyphrases, sentences: sentencesArray };
 }

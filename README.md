@@ -8,9 +8,11 @@
 </a>
 </p>
 
-[![NPM](https://nodei.co/npm/ai-researcher.png?compact=true)](https://npmjs.org/package/ai-researcher)
+[![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
-##  Demos
+### [JS API Docs ](https://vtempest.github.io/ai-research-agent/docs/index.html)
+
+###  Demos
 
 * [Autocomplete Server Demo](https://wiki-phrases-tokenizer.vtempest.workers.dev)
 
@@ -18,6 +20,8 @@
 * [Sample Output](https://github.com/vtempest/wiki-phrase-tokenizer/blob/master/test/data/output-keyphrases.json)
 
 * NPM Tests --  `npm run test` to run many tests custom to your data
+
+
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
 
@@ -35,7 +39,7 @@
 * PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
 * Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 3k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
 
-#### 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities, Keywords, and Topic Outline Phrases Important to Content 
+#### 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities, Keywords, and Topic Outline Phrases Important to Context 
 
 This can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 

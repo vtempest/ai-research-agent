@@ -3,8 +3,9 @@
  * If typing 2+ letters of a word, return all possible words matching those few letters
  * @param {string} query
  * @returns {Array}
+ * @example autocomplete("self att") => ["self attention", "self attract", "self attack"]
  */
-export function autocomplete(query, options = {}) {
+export function autocompleteNextWords(query, options = {}) {
   let {
     phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results

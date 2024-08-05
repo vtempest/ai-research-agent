@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ai-research-agent keyphrases/seektopic-keyphrases.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent Docs</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Github
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://wiki-phrases-tokenizer.vtempest.workers.dev"
+                        >
+                            Demo
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocompleteNextWords">autocompleteNextWords</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractAuthor">extractAuthor</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractDate">extractDate</a></li><li><a href="global.html#extractHumanName">extractHumanName</a></li><li><a href="global.html#extractHumanNameParts">extractHumanNameParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractSource">extractSource</a></li><li><a href="global.html#extractTitle">extractTitle</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li><li><a href="global.html#softmax">softmax</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>keyphrases/seektopic-keyphrases.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { splitSentences } from "../../index.js";
+import { tokenizeTopics } from "../../index.js";
+import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js";
+import extractNounEdgeGrams from "./ngrams.js";
+
+/**
+ * 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities,
+ * Keywords, and Topic Outline Phrases Important to Context
+ * Weights sentences using TextRank noun keyphrase frequency
+ * to find which sentences centralize and tie together keyphrase
+ * concepts referred to most by other sentences. Based on the
+ * TextRank &amp; PageRank algorithms, it randomly surfs links to nodes
+ * to find probability of being at that node, thus ranking influence.
+ * @param {string} inputString - input text to analyze
+ * @param {Object} options
+ * @param {Object} options.phrasesModel - phrases model
+ * @param {Object} options.typosModel - typos model
+ * @param {number} options.maxWords - maximum words in a keyphrase (default: 5)
+ * @param {number} options.minWords - minimum words in a keyphrase (default: 2)
+ * @param {number} options.minWordLength - minimum length of a word (default: 3)
+ * @param {number} options.topKeyphrasesPercent - percentage of top keyphrases to consider (default: 0.2)
+ * @param {number} options.limitTopSentences - maximum number of top sentences to return (default: 5)
+ * @param {number} options.limitTopKeyphrases - maximum number of top keyphrases to return (default: 10)
+ * @param {number} options.minKeyPhraseLength - minimum length of a keyphrase (default: 5)
+ * @param {string} options.heavyWeightQuery - query to give heavy weight to
+ * @returns {Array&lt;Object>} - [{text, keyphrases, weight}] array of sentences
+ * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
+ */
+export function extractSEEKTOPIC(inputString, options = {}) {
+  var {
+    phrasesModel,
+    typosModel,
+    maxWords = 5,
+    minWords = 2,
+    minWordLength = 3,
+    topKeyphrasesPercent = 0.2,
+    limitTopSentences = 5,
+    limitTopKeyphrases = 10,
+    minKeyPhraseLength = 5,
+    heavyWeightQuery = "",
+  } = options;
+
+  //if not string throw error
+  if (typeof inputString != "string") {
+    throw new Error("inputString must be a string");
+  }
+
+  //add space before &lt; to ensure split sentences
+  inputString = inputString
+    .replace(/&lt;/g, " &lt;")
+    .replace(/>/g, "> ")
+    .replace(/&amp;.{2,5};/g, ""); //&amp;quot; &amp;amp; &amp;lt; &amp;gt; &amp;nbsp;
+
+  //split into sentences
+  var sentencesArray = splitSentences(inputString);
+  var sentenceNumber = 0;
+
+  //extract ngrams
+  var nGrams = {};
+
+  // create sentenceKeysMap  [{text,index,tokens,keyphrases:[{text,weight}] }]
+  var sentenceKeysMap = [];
+
+  for (var i = 0; i &lt; sentencesArray.length; i++) {
+    var text = sentencesArray[i];
+
+    var tokens = tokenizeTopics(text, {
+      phrasesModel,
+      typosModel,
+    });
+
+    sentenceKeysMap.push({
+      text,
+      index: i,
+      keyphrases: [],
+      tokens,
+    });
+
+    for (var i = 0; i &lt; tokens.length; i++)
+      for (var nGramSize = minWords; nGramSize &lt;= maxWords; nGramSize++)
+        extractNounEdgeGrams(
+          nGramSize,
+          tokens,
+          i,
+          nGrams,
+          minWordLength,
+          sentenceNumber++
+        );
+  }
+
+  //give keyphrases weight of num_occurences ^ word_count
+  var keyphraseObjects = [];
+  for (var nGramSize = minWords; nGramSize &lt;= maxWords; nGramSize++)
+    keyphraseObjects = keyphraseObjects.concat(
+      Object.entries(nGrams[nGramSize]).map(([keyphrase, sentences]) => {
+        return {
+          keyphrase,
+          sentences,
+          words: nGramSize,
+          weight: sentences.length * nGramSize,
+        };
+      })
+    );
+
+  //sort keyphrases by word count
+  keyphraseObjects = keyphraseObjects.sort((a, b) => b.words - a.words);
+
+  //fold smaller keyphrases that are subsets of larger ones
+  var keyphrasesFolded = [];
+
+  for (var keyphraseObject of keyphraseObjects) {
+    var shouldAddCurrent = true;
+
+    for (var i = 0; i &lt; keyphrasesFolded.length; i++) {
+      var phrase = keyphraseObject.keyphrase;
+      var lastWordIndex = phrase.lastIndexOf(" ");
+
+      //check if larger includes smaller phrase or smaller phrase minus last word
+      if (
+        keyphrasesFolded[i].keyphrase.indexOf(phrase) > -1 ||
+        (lastWordIndex > 5 &amp;&amp;
+          keyphrasesFolded[i].keyphrase.includes(
+            phrase.substring(0, lastWordIndex)
+          ))
+      ) {
+        //combine weight of smaller keyphrase into larger, divided by word count
+        keyphrasesFolded[i].weight +=
+          keyphraseObject.weight /
+          keyphrasesFolded[i].keyphrase.split(" ").length;
+        keyphrasesFolded[i].sentences = keyphrasesFolded[i].sentences.concat(
+          keyphraseObject.sentences
+        );
+
+        // use whatever version has greater weight as keyphrase text
+        if (keyphrasesFolded[i].weight &lt; keyphraseObject.weight)
+          keyphrasesFolded[i].keyphrase = keyphraseObject.keyphrase;
+
+        shouldAddCurrent = false;
+      }
+    }
+
+    if (shouldAddCurrent &amp;&amp; keyphraseObject.sentences.length >= 1)
+      keyphrasesFolded.push(keyphraseObject);
+  }
+
+  //heavy weight query - bias towards query or user-clicked keyphrase
+  // TODO - compare concept similarity of keyphrases to heavyWeightQuery
+  if (heavyWeightQuery)
+    keyphrasesFolded.forEach((keyphrase) => {
+      if (keyphrase.keyphrase == heavyWeightQuery) keyphrase.weight += 5000;
+    });
+
+
+    var keysUniqueMap = {};
+  //deduplicate and enforce unique values
+
+  keyphraseObjects = keyphrasesFolded
+    .sort((a, b) => b.weight - a.weight)
+    .filter(k=>!keysUniqueMap[k.keyphrase] &amp;&amp; (keysUniqueMap[k.keyphrase] = 1))
+    .map(k => ({sentences: [...new Set(k.sentences)], ...k}));
+
+  var limitKeyPhrases = Math.floor(
+    keyphrasesFolded.length * topKeyphrasesPercent
+  );
+  if (limitKeyPhrases &lt; limitTopKeyphrases)
+    limitKeyPhrases = limitTopKeyphrases;
+
+  //weight wiki entities
+  keyphraseObjects = keyphraseObjects
+    .map((keyphraseObject) => {
+      var phraseTokenized = tokenizeTopics(keyphraseObject.keyphrase, {
+        phrasesModel,
+        typosModel,
+      });
+      //if wiki entity, triple weight
+      if (phraseTokenized.filter((r) => r[0] == 50)[0]) {
+        keyphraseObject.wiki = true;
+        keyphraseObject.weight *= 3;
+      }
+
+      //multiply weight by rarity of keyphrase to boost domain-specificity
+      keyphraseObject.weight = Math.floor(
+        (keyphraseObject.weight *
+          phraseTokenized.reduce((acc, r) => acc + (r[1] || 4), 0)) /
+          phraseTokenized.length
+      );
+
+      return keyphraseObject;
+    })
+    //filter out keyphrases that are too short
+    .filter((k) => k.keyphrase.length > minKeyPhraseLength)
+    .sort((a, b) => b.weight - a.weight)
+    //limit to top % of keyphrases to give weights to
+    .slice(0, limitKeyPhrases);
+
+  //add keyphrases to sentences Map
+  for (var keyphraseObject of keyphraseObjects) {
+    const { keyphrase, sentences, weight } = keyphraseObject;
+    for (var sentenceNumber of sentences)
+      sentenceKeysMap[sentenceNumber].keyphrases.push({ keyphrase, weight });
+  }
+
+  //run text rank
+  var topSentences = rankSentencesCentralToKeyphrase(sentenceKeysMap)
+    ?.sort((a, b) => b.weight - a.weight)
+    .slice(0, limitTopSentences)    //cut off top S limit
+    .map(s => ({
+      text: s.text, //remove to not show text
+      keyphrases: s.keyphrases.map(k => k.keyphrase),
+      ...s
+    }));
+
+  // limit keyphrases to top K
+  var keyphrases = keyphraseObjects
+  .slice(0, limitTopKeyphrases).map(k => ({
+    sentences: k.sentences.join(","),
+    ...k,
+  }));
+
+  return { topSentences, keyphrases, sentences: sentencesArray };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

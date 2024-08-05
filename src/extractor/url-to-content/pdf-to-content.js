@@ -1,4 +1,4 @@
-import {getDocumentProxy } from "unpdf"
+import { resolvePDFJS } from 'pdfjs-serverless'
 import * as chrono from "chrono-node";
 /**
  * Extracts formatted text from PDF with parsing of headings,
@@ -7,12 +7,12 @@ import * as chrono from "chrono-node";
  *
  * @param {string} pdfURL - URL to a PDF file or buffer from fs.readFile
  * @param {Object} options
- * @param {boolean} [options.addHeadingsTags=true] - Adds H1 tags to heading titles in document
- * @param {boolean} [options.addPageNumbers=true] - Adds [ # ] to end of each page
- * @param {boolean} [options.addSentenceLineBreaks=true] - Inserts line breaks at the end of sentence ranges
- * @param {boolean} [options.removePageHeaders=true] - Removes repeated headers found on each page
- * @param {boolean} [options.removeHyphens=true] - Removes hyphens at end of lines
- * @param {boolean} [options.moveFootnotes=true] - Moves footnotes to end of document
+ * @param {boolean} options.addHeadingsTags=true - Adds H1 tags to heading titles in document
+ * @param {boolean} options.addPageNumbers=true - Adds  #  to end of each page
+ * @param {boolean} options.addSentenceLineBreaks=true - Inserts line breaks at the end of sentence ranges
+ * @param {boolean} options.removePageHeaders=true - Removes repeated headers found on each page
+ * @param {boolean} options.removeHyphens=true - Removes hyphens at end of lines
+ * @param {boolean} options.moveFootnotes=true - Moves footnotes to end of document
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
  */
 export async function extractPDF(pdfURL, options = {}) {
@@ -32,9 +32,16 @@ export async function extractPDF(pdfURL, options = {}) {
 
     var doc;
     try {
-      doc = await getDocumentProxy( 
-         new Uint8Array(buffer),
-        {verbosity: 0});
+
+      const { getDocument } = await resolvePDFJS()
+      doc = await getDocument({
+        data:  new Uint8Array(buffer),
+        useSystemFonts: true,
+        verbosity: 0
+      }).promise
+
+      
+
     } catch (e) {
       return { error: e.message };
     }

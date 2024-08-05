@@ -1,14 +1,15 @@
 {
-  "name": "ai-researcher",
+  "name": "ai-research-agent",
   "version": "0.9.0",
   "module": "index.js",
+  "type": "module",
   "author": "vtempest",
-  "description": "Search and outline a research base with LLM Research Agents",
+  "description": "Search and outline a topic base with AI Research Agent",
   "license": "MIT",
   "scripts": {
-  "docs": "jsdoc -c jsdoc.json src/keyphrases/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*   src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/",
+    "docs": "jsdoc -c jsdoc.json src/keyphrases/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/",
     "test": "vitest",
-    "test-ui": "vitest --ui",
+    "test-ui": "vitest --ui --watch",
     "compile": "bun run ./src/dataset-import/compile-topic-model.js"
   },
   "devDependencies": {
@@ -18,16 +19,16 @@
     "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.4.0",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "@jsdoc/salty": "^0.2.8",
+    "better-docs": "^2.7.3"
   },
   "dependencies": {
-    "@jsdoc/salty": "^0.2.8",
     "@postlight/parser": "^2.2.3",
     "@xenova/transformers": "github:xenova/transformers.js#v3",
-    "better-docs": "^2.7.3",
     "chrono-node": "^2.7.6",
     "linkedom": "^0.18.4",
     "node-fetch": "^3.3.2",
-    "unpdf": "^0.11.0"
+    "pdfjs-serverless": "^0.5.1"
   }
 }
