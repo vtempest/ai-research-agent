@@ -21,6 +21,7 @@ import stopWords from "./stopwords";
  * @param {number} options.ignoreStopWords - ignore 300+ overused words
  * @param {number} options.checkRootWords - check for word's root stem
  * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"] , [20, 5, "physics"]]
+ * @category Tokenizer
  */
 export function tokenizeTopics(phrase, options = {}) {
   let {

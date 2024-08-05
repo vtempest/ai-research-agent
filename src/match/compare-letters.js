@@ -4,7 +4,8 @@
  * @param {string} s1 First string
  * @param {string} s2 Second string
  * @returns {number} Jaro-Winkler similarity score (0-1)
- */
+  * @category Math
+*/
 export function calculateSimilarityByCharacter(s1, s2) {
   if (s1 === s2) return 1;
 

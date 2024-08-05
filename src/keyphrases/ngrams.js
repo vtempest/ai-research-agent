@@ -11,6 +11,7 @@ import stopWords from "../tokenize/stopwords";
  * @param {Object} nGrams
  * @param {number} minWordLength
  * @param {number} sentenceNumber
+* @category Topics
  */
 export default function extractNounEdgeGrams(
   nGramSize,
@@ -47,7 +48,8 @@ export default function extractNounEdgeGrams(
 /**
  * Checks if token is a noun
  * @param {Object} token
- * @returns {boolean}
+ * @returns {boolean}  
+ * @private
  */
 export function isNoun(token) {
   return (token[1] >= 3 && token[1] <= 28) || token[1] == 50;

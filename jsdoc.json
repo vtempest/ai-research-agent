@@ -16,8 +16,8 @@
   },
   "plugins": ["node_modules/better-docs/category"],
   "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false,
+    "cleverLinks": true,
+    "monospaceLinks": true,
     "search": true,
     "better-docs": {
       "name": "AI Research Agent Docs",

@@ -25,7 +25,8 @@ import extractNounEdgeGrams from "./ngrams.js";
  * @param {string} options.heavyWeightQuery - query to give heavy weight to
  * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
  * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
- */
+* @category Topics
+*/
 export function extractSEEKTOPIC(inputString, options = {}) {
   var {
     phrasesModel,

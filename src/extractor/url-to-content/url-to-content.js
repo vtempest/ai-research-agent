@@ -19,6 +19,7 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
  * @param {boolean} options.formatting - preserve formatting
  * @param {boolean} options.absoluteURLs - convert URLs to absolute
  * @returns {Object} - {author, date, title, source, content, image}
+ * @category Extractor
  */
 export async function extract(urlOrDoc, options = {}) {
   options = options || {

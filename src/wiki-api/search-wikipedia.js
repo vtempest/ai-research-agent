@@ -15,6 +15,7 @@ import {splitSentences} from "../..";
  * @example await searchWikipedia("JavaScript", { plainText: true })
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
+ * @category Search
  */
 export async function searchWikipedia(query, options = {}) {
   // Set default options
@@ -95,28 +96,3 @@ export async function searchWikipedia(query, options = {}) {
   return { results: resultsObjects };
 }
 
-
-
-/**
- * Compute the softmax of an array of numbers.
- * https://en.wikipedia.org/wiki/Softmax_function
- *
- * Softmax is a generalization of the logistic sigmoid function used in
- * logistic regression. It is commonly used in machine learning models
- * for multi-class classification problems where there are more than two
- * possible output classes. The softmax function takes a vector of arbitrary
- * real-valued scores and squashes it to a vector of values between 0 and 1
- * that sum to 1. This allows the output to be interpreted as a probability
- * distribution over the possible classes.
- *
- * @param {array} arr The array of numbers to compute the softmax of.
- * @returns {array} The softmax array.
- */
-
-export function softmax(array) {
-  return array.map(
-    (val, index) =>
-      Math.exp(array[index]) /
-      array.map((y) => Math.exp(y)).reduce((a, b) => a + b)
-  );
-}

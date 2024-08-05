@@ -5,7 +5,8 @@
  * @param {boolean} boolTimestamps - true to return timestamps, default true
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
- */
+  * @category Extractor
+*/
 export async function extractYoutubeText(videoUrl, boolTimestamps = true) {
   try {
     var transcript = await fetchTranscript(videoUrl);
@@ -108,6 +109,7 @@ async function fetchTranscript(videoId, config = {}) {
  * @param {string} videoUrl
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
+ * @private
  */
 export async function fetchViaYoutubeTranscript(videoUrl) {
   const videoId = getURLYoutubeVideo(videoUrl);
@@ -150,6 +152,7 @@ function decodeHTMLEntities(text) {
  * Test if URL is to youtube video and return video id if true
  * @param {string} url - youtube video URL
  * @return {string|boolean} video ID or false
+ * @private
  */
 export function getURLYoutubeVideo(url) {
   var match = url?.match(

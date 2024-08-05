@@ -14,6 +14,7 @@ import * as chrono from "chrono-node";
  * @param {boolean} options.removeHyphens=true - Removes hyphens at end of lines
  * @param {boolean} options.moveFootnotes=true - Moves footnotes to end of document
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
+ * @category Extractor
  */
 export async function extractPDF(pdfURL, options = {}) {
   try {
@@ -221,6 +222,7 @@ const mean = function (array) {
  * https://en.wikipedia.org/wiki/Standard_error
  * @param {array} array
  * @returns {int} number of standard deviation from average
+ * @category Math
  */
 const calculateStandardDeviation = function (array) {
   var mean2 = mean(array);
@@ -229,12 +231,19 @@ const calculateStandardDeviation = function (array) {
 
 
 /**
- * Calculate softmax of array to convert a vector of K real numbers
- *  into a probability distribution of K possible outcomes. 
+ * 
+ * Softmax is a generalization of the logistic sigmoid function used in
+ * logistic regression. It is commonly used in machine learning models
+ * for multi-class classification problems where there are more than two
+ * possible output classes. The softmax function takes a vector of arbitrary
+ * real-valued scores and squashes it to a vector of values between 0 and 1
+ * that sum to 1. This allows the output to be interpreted as a probability
+ * distribution over the possible classes.
  * https://en.wikipedia.org/wiki/Softmax_function
  * 
- * @param {Array} arr The array of numbers to compute the calculateSoftmax of.
- * @returns {Array} The Softmax array.
+ * @param {Array} arr  array of numbers .
+ * @returns {Array}  Softmax array.
+ * @category Math
  */
 export function calculateSoftmax(arr) {
   // Compute the maximum value in the array
@@ -260,6 +269,7 @@ export function calculateSoftmax(arr) {
  * Useful for hidden pdf url that does not end with pdf
  * @param {string} url - The URL to check.
  * @returns {Promise<boolean>} True if the URL points to a PDF, false otherwise.
+ * @category Extractor
  */
 export async function isUrlPDF(url) {
   let response;

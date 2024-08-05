@@ -5,6 +5,7 @@
  * @param {string} query
  * @param {object} options
  * @returns {Promise<Array[]>} {title, url, snippet, engines, cached}
+ * @category Search
  */
 export async function searchWeb(query, options = {}) {
   const {

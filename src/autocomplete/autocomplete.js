@@ -4,6 +4,7 @@
  * @param {string} query
  * @returns {Array}
  * @example autocomplete("self att") => ["self attention", "self attract", "self attack"]
+ * @category Search
  */
 export function autocompleteNextWords(query, options = {}) {
   let {

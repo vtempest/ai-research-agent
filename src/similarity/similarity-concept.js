@@ -35,6 +35,7 @@ export async function vectorizeTextAsConceptAPI(source_sentence, sentences, mode
  * @param {string} query
  * @param {Object} config
  * @returns {Promise<Array<{content: string, similarity: number}>>}
+ * @category Relevance
  */
 export async function weighRelevanceConceptVector(documents, query, config = {}) {
   const docEmbeddings = await vectorizeTextAsConcept(documents, config);
@@ -65,7 +66,8 @@ export async function weighRelevanceConceptVector(documents, query, config = {})
  * @param {string|Array<string>} input
  * @param {Object} config
  * @returns {Promise<Array<Array<number>>>}
- */
+  * @category Relevance
+*/
 export async function vectorizeTextAsConcept(input, config = {}) {
   const {
     batchSize = 512,
@@ -95,6 +97,7 @@ export async function vectorizeTextAsConcept(input, config = {}) {
  * @param {Array} array
  * @param {number} chunkSize
  * @returns {Array<Array>}
+ * @private
  */
 function splitArrayToChunks(array, chunkSize) {
   const chunks = [];
@@ -116,6 +119,7 @@ function splitArrayToChunks(array, chunkSize) {
  * @param {Array<number>} vecA
  * @param {Array<number>} vecB
  * @returns {number}
+ * @category Math
  */
 function calculateCosineSimilarity(vecA, vecB) {
   return (

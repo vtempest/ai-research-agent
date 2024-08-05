@@ -6,7 +6,8 @@
  * @param {Object} userConfig - Options to split on newlines and HTML tags, 
  *   and to set min and max sentence sizes for chunking.
  * @returns {Array<string>} An array of sentences.
- */
+  * @category Tokenizer
+*/
 export function splitSentences(inputText, userConfig = {}) {
 
   // Merge default and user configurations
@@ -388,6 +389,7 @@ function isNumeric(str, startPos) {
  * Checks if a string matches a phone number pattern.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string matches a phone number pattern, false otherwise.
+ * @private
  */
 function isPhoneNumber(str) {
   const phoneRegex =
@@ -399,6 +401,7 @@ function isPhoneNumber(str) {
  * Checks if a string is a valid URL.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is a valid URL, false otherwise.
+ * @private
  */
 function isValidUrl(str) {
   const urlRegex =

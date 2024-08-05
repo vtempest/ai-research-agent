@@ -49,7 +49,8 @@ const CLEAN_AUTHOR_RE = /^\s*(posted |written )?by\s*:?\s*(.*)/i;
  *
  * @param {Document} document
  * @returns {object|null} {author_cite, author_short, author_type} or null if no valid author found
- */
+  * @private
+*/
 export function extractAuthor(document) {
   
 
@@ -135,7 +136,8 @@ const extractAndValidateHumanName = (author) => {
  *
  * @param {document} document document or dom object with article content
  * @returns {object} date
- */
+  * @private
+*/
 export function extractDate(document) {
   var mainText = document.body.innerText.slice(0, 5000);
 
@@ -212,7 +214,8 @@ export function extractDate(document) {
  *
  * @param {document} document document or dom object with article content
  * @returns {object} source
- */
+  * @private
+*/
 export function extractSource(document) {
   var source, arrSources;
 
@@ -242,6 +245,7 @@ export function extractSource(document) {
  *
  * @param {document} document document or dom object with article content
  * @returns {object} title
+ * @private
  */
 export function extractTitle(document) {
   var title, arrTitles;

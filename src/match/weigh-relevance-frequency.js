@@ -20,6 +20,7 @@ import {tokenizeTopics} from "../..";
  * @param {number} avgDocWordCount Estimated average word count of all documents
  * @param {number} totalWikiPages Total number of Wikipedia pages used to calculate IDF
  * @returns {number} score for term specificity 
+ * @category Relevance
  */
 export function weighRelevanceTermFrequency(
   query,
@@ -60,6 +61,7 @@ export function weighRelevanceTermFrequency(
  * Calculate overall domain-speicificity after Query Resolution to Phrases
  * @param {string} phrase
  * @returns {number} domain specificity 0-12~
+ * @category Relevance
  */
 export  function calculatePhraseSpecificity(phrase, options) {
   var tokensWithFreq = tokenizeTopics(phrase, options);

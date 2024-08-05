@@ -10,7 +10,8 @@ import { parseHTML } from "linkedom";
  * @param {string|object} documentOrHTML 
  * @param {object} options 
  * @returns {object} {title, author_cite, author_short, author, date, source, html}
- */
+  * @category Extractor
+*/
 export default async function extractContent(documentOrHTML, options = {}) {
   options = options || {
     images: true,

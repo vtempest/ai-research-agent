@@ -5,6 +5,7 @@
  * @param {string} html
  * @param {object} options {images: 0, links: 1, sections: 1, formatting: 1 }
  * @returns {string} sanitized html
+ * @category Extractor
  */
 export  function convertHTMLToBasicHTML(html, options = {}) {
   var {
@@ -77,6 +78,7 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
  * Flat array is faster than DOMParser which uses nested trees.
  * @param {string} html
  * @returns {array}
+ * @category Extractor
  */
 export function convertHTMLToTokens(html) {
   if (!html) return;

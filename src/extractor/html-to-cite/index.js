@@ -18,6 +18,7 @@ import { extractHumanName } from "./human-names-recognize.js";
  *
  * @param {document} documentHTML  dom object or html string with article content
  * @returns {object} {author, date, title, source}
+ * @category Extractor
  */
 export function extractCite(document) {
   //if passing in html string, convert to dom object

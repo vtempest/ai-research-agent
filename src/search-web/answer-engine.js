@@ -11,7 +11,7 @@ import {extract} from "../..";
  * @param {string} query
  * @param {object} options
  * @returns {Promise<Array[]>} 
- * 
+ * @category Search
  */
 export async function searchSTREAM(query, options = {}) {
   const {

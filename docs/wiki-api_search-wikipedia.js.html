@@ -92,7 +92,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#autocompleteNextWords">autocompleteNextWords</a></li><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractAuthor">extractAuthor</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractDate">extractDate</a></li><li><a href="global.html#extractHumanName">extractHumanName</a></li><li><a href="global.html#extractHumanNameParts">extractHumanNameParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#extractSource">extractSource</a></li><li><a href="global.html#extractTitle">extractTitle</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#fetchViaYoutubeTranscript">fetchViaYoutubeTranscript</a></li><li><a href="global.html#getURLYoutubeVideo">getURLYoutubeVideo</a></li><li><a href="global.html#isNoun">isNoun</a></li><li><a href="global.html#isPhoneNumber">isPhoneNumber</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li><li><a href="global.html#softmax">softmax</a></li><li><a href="global.html#splitArrayToChunks">splitArrayToChunks</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3><a href="global.html">Global</a></h3></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertHTMLToTokens">convertHTMLToTokens</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractHumanName">extractHumanName</a></li><li><a href="global.html#extractHumanNameParts">extractHumanNameParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div><div class="category"><h2>Relevance</h2><h3>Global</h3><ul><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div><div class="category"><h2>Search</h2><h3>Global</h3><ul><li><a href="global.html#autocompleteNextWords">autocompleteNextWords</a></li><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li></ul></div><div class="category"><h2>Tokenizer</h2><h3>Global</h3><ul><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#stemRootWord">stemRootWord</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li></ul></div><div class="category"><h2>Topics</h2><h3>Global</h3><ul><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li></ul></div>
                 
             </nav>
         </div>
@@ -126,6 +126,7 @@
  * @example await searchWikipedia("JavaScript", { plainText: true })
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
+ * @category Search
  */
 export async function searchWikipedia(query, options = {}) {
   // Set default options
@@ -206,31 +207,6 @@ export async function searchWikipedia(query, options = {}) {
   return { results: resultsObjects };
 }
 
-
-
-/**
- * Compute the softmax of an array of numbers.
- * https://en.wikipedia.org/wiki/Softmax_function
- *
- * Softmax is a generalization of the logistic sigmoid function used in
- * logistic regression. It is commonly used in machine learning models
- * for multi-class classification problems where there are more than two
- * possible output classes. The softmax function takes a vector of arbitrary
- * real-valued scores and squashes it to a vector of values between 0 and 1
- * that sum to 1. This allows the output to be interpreted as a probability
- * distribution over the possible classes.
- *
- * @param {array} arr The array of numbers to compute the softmax of.
- * @returns {array} The softmax array.
- */
-
-export function softmax(array) {
-  return array.map(
-    (val, index) =>
-      Math.exp(array[index]) /
-      array.map((y) => Math.exp(y)).reduce((a, b) => a + b)
-  );
-}
 </code></pre>
         </article>
     </section>

@@ -11,6 +11,7 @@ import dataHumanNames from "./human-names-data.js";
  * where organization is a non-human name that is not reversed.
  * @param {string} author
  * @returns {object} {author_cite, author_short, author_type}
+ * @category Extractor
  */
 export function extractHumanName(author) {
   const enumAuthorTypes = [
@@ -105,6 +106,7 @@ export function extractHumanName(author) {
  * https://en.wikipedia.org/wiki/List_of_family_name_affixes
  * @param {string} input - The full name to parse.
  * @returns {Object}
+ * @category Extractor
  */
 const extractHumanNameParts = (input) => {
   // Initialize the result object

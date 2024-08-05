@@ -22,6 +22,7 @@ import stopWords from "../tokenize/stopwords";
  * @param {number} options.valueBurnIn=100 - Number of burn-in iterations.
  * @param {number} options.valueSampleLag=10 - Lag between samples.
  * @returns {Array} - Array of topics, each containing term-probability pairs.
+ * @category Topics
  */
 export function weighTopicDirichletDistribution(sentences, options = {}) {
   const {
