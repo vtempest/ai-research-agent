@@ -1,4 +1,4 @@
-// import { resolvePDFJS } from "pdfjs-serverless";
+import { resolvePDFJS } from "pdfjs-serverless";
 import * as chrono from "chrono-node";
 
 
