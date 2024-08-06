@@ -1,10 +1,13 @@
-import { resolvePDFJS } from 'pdfjs-serverless'
+// import { resolvePDFJS } from "pdfjs-serverless";
 import * as chrono from "chrono-node";
+
+
+
 /**
  * Extracts formatted text from PDF with parsing of headings,
  * page headers, footnotes, and adding linebreaks based on
  * standard deviation of range from average text height
- *
+ * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
  * @param {string} pdfURL - URL to a PDF file or buffer from fs.readFile
  * @param {Object} options
  * @param {boolean} options.addHeadingsTags=true - Adds H1 tags to heading titles in document
@@ -26,29 +29,24 @@ export async function extractPDF(pdfURL, options = {}) {
       removeHyphens = true,
       moveFootnotes = true,
       addCitation = true,
-    } = options ;
+    } = options;
 
+    // download all pdf data and convert to array buffer
     var buffer = await (await fetch(pdfURL)).arrayBuffer();
 
-
-    var doc;
     try {
-
-      const { getDocument } = await resolvePDFJS()
-      doc = await getDocument({
-        data:  new Uint8Array(buffer),
+      const { getDocument } = await resolvePDFJS();
+      var doc = await getDocument({
+        data: new Uint8Array(buffer),
         useSystemFonts: true,
-        verbosity: 0
-      }).promise
-
-      
-
+        verbosity: 0,
+      }).promise;
     } catch (e) {
       return { error: e.message };
     }
     // get text ranges with pdf.js which gives pages
     // with few word ranges with {str, hasEOL, height}
-    var pages = [];
+    var pages = []; //[ [{str, hasEOL, height}, ...], ...]
     for (let i = 1; i <= doc.numPages; i++) {
       const page = await doc.getPage(i);
       var contentObjects = await page.getTextContent();
@@ -100,7 +98,8 @@ export async function extractPDF(pdfURL, options = {}) {
       }
 
       const avgHeight = mean(charHeights);
-      const calculateStandardDeviationHeight = calculateStandardDeviation(charHeights);
+      const calculateStandardDeviationHeight =
+        calculateStandardDeviation(charHeights);
 
       // use text height to infer headings and footnotes based on
       // standard deviation to the average text heights
@@ -211,11 +210,9 @@ export async function extractPDF(pdfURL, options = {}) {
   }
 }
 
-
-
 const mean = function (array) {
   return array.length == 0 ? 0 : array.reduce((a, b) => a + b) / array.length;
-}
+};
 
 /**
  * Calculate standard deviation of array
@@ -227,11 +224,10 @@ const mean = function (array) {
 const calculateStandardDeviation = function (array) {
   var mean2 = mean(array);
   return Math.sqrt(mean(array.map((x) => (x - mean2) ** 2)));
-}
-
+};
 
 /**
- * 
+ *
  * Softmax is a generalization of the logistic sigmoid function used in
  * logistic regression. It is commonly used in machine learning models
  * for multi-class classification problems where there are more than two
@@ -240,7 +236,7 @@ const calculateStandardDeviation = function (array) {
  * that sum to 1. This allows the output to be interpreted as a probability
  * distribution over the possible classes.
  * https://en.wikipedia.org/wiki/Softmax_function
- * 
+ *
  * @param {Array} arr  array of numbers .
  * @returns {Array}  Softmax array.
  * @category Math
@@ -250,21 +246,20 @@ export function calculateSoftmax(arr) {
   const maxVal = Math.max(...arr);
 
   // Compute the exponentials of the array values
-  const exps = arr.map(x => Math.exp(x - maxVal));
+  const exps = arr.map((x) => Math.exp(x - maxVal));
 
   // Compute the sum of the exponentials
   // @ts-ignore
   const sumExps = exps.reduce((acc, val) => acc + val, 0);
 
   // Compute the calculateSoftmax values
-  const calculateSoftmaxArr = exps.map(x => x / sumExps);
+  const calculateSoftmaxArr = exps.map((x) => x / sumExps);
 
   return calculateSoftmaxArr;
 }
 
-
 /**
- * Detects if a given URL points to a PDF file by checking 
+ * Detects if a given URL points to a PDF file by checking
  * the stream's first bytes for %PDF-  then ends  the request.
  * Useful for hidden pdf url that does not end with pdf
  * @param {string} url - The URL to check.
@@ -276,7 +271,6 @@ export async function isUrlPDF(url) {
   try {
     // Fetch the URL with a stream response
     response = await fetch(url);
-    
 
     const reader = response.body.getReader();
     const chunk = new Uint8Array(5);
@@ -284,26 +278,27 @@ export async function isUrlPDF(url) {
 
     while (bytesRead < 5) {
       const { value, done } = await reader.read();
-      
+
       if (done) break;
 
       const remainingBytes = 5 - bytesRead;
       const bytesToCopy = Math.min(remainingBytes, value.length);
-      
+
       chunk.set(value.subarray(0, bytesToCopy), bytesRead);
       bytesRead += bytesToCopy;
     }
 
     // Check if we read 5 bytes and if they match the PDF signature
-    return bytesRead === 5 && 
-           chunk[0] === 0x25 && // %
-           chunk[1] === 0x50 && // P
-           chunk[2] === 0x44 && // D
-           chunk[3] === 0x46 && // F
-           chunk[4] === 0x2D;   // -
-
+    return (
+      bytesRead === 5 &&
+      chunk[0] === 0x25 && // %
+      chunk[1] === 0x50 && // P
+      chunk[2] === 0x44 && // D
+      chunk[3] === 0x46 && // F
+      chunk[4] === 0x2d
+    ); // -
   } catch (error) {
-    console.error('Error checking URL:', error);
+    console.error("Error checking URL:", error);
     return false;
-  } 
+  }
 }

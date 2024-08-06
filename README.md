@@ -22,6 +22,8 @@
 * NPM Tests --  `npm run test` to run many tests custom to your data
 
 
+> Being is Becoming: Whatever the future of search can be, that is what it must become.
+
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
 

@@ -4,7 +4,7 @@ import { Readability } from "./readability.js";
 import {extractCite} from "../html-to-cite/index.js";
 import {convertHTMLToBasicHTML} from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
-
+import {extractHumanName} from "../html-to-cite/human-names-recognize.js";
 /**
  * Extracts the main content and cite from a document or HTML string
  * @param {string|object} documentOrHTML 
@@ -13,37 +13,27 @@ import { parseHTML } from "linkedom";
   * @category Extractor
 */
 export default async function extractContent(documentOrHTML, options = {}) {
-  options = options || {
-    images: true,
-    links: true,
-    formatting: true,
-    absoluteURLs: 1,
-    url: "",
-    usePostlightExtractor: 1,
-  };
+  const {
+    images = true,
+    links = true,
+    formatting = true,
+    absoluteURLs = 1,
+    url = "",
+    usePostlightExtractor = 1,
+  } = options;
   if (typeof documentOrHTML === "string") var html = documentOrHTML;
   else var html = documentOrHTML.documentElement.innerHTML;
 
-  var url = options.url;
   var article;
   try {
-    if (options.usePostlightExtractor) {
-      article = await new Promise(function (resolve, reject) {
-        Parser.parse(url, {
-          html: document.documentElement.innerHTML,
-        })
-          .then(resolve)
-          .catch((e) => {
-            console.log(e);
-            reject();
-          });
-      });
+    if (usePostlightExtractor) {
+      article = await  Parser.parse(url, {html})
     } else {
       var document = parseHTML(html)?.document;
       article = new Readability(document).parse();
     }
   } catch (e) {
-    return { error: "Error in fetch" };
+    return { error: "Error in Parsing" };
   }
 
   var { author, author_cite, author_short, date, title, source } =
@@ -53,10 +43,11 @@ export default async function extractContent(documentOrHTML, options = {}) {
     return { error: "No content found" };
     //TODO comapre by name recognition
 
-  author = article.author || author;
+  author = article.author && extractHumanName(article.author)?.author_type  ? article.author :  author;
   title = article.title || title;
-  date = article.date_published || date;
+  date = parseDate(article.date_published)?.toISOString().split("T")?.[0] || date;
 
+  
     var html = convertHTMLToBasicHTML(article?.content, options);
 
   return {

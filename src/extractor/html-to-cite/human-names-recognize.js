@@ -1,5 +1,4 @@
-import dataHumanNames from "./human-names-data.js";
-
+import dataHumanNames from "../../../data/human-names-92k.json";
 /**
  * Validates human name from author string to check against common list of first 
  * names, last names, name affixes, and organizations to infer if it should be
@@ -14,18 +13,14 @@ import dataHumanNames from "./human-names-data.js";
  * @category Extractor
  */
 export function extractHumanName(author) {
-  const enumAuthorTypes = [
-    "single",
-    "two-author",
-    "more-than-two",
-    "organization",
-    "error",
-  ];
+  
   var authorType = 4;
+
+  if (!author || !author.split) return { author_cite: "", author_short: "", author_type: 4 };
 
   // recognize human names in author
   var names = author.split(" ").map((name) => {
-    var enumTypes = ["last", "male", "female", "neutral", "multipos"];
+    var enumTypes = ["", "first", "last",  "org"];
 
     //standardize name as Title Case
     var nameTitle = name[0]?.toUpperCase() + name.slice(1).toLowerCase();

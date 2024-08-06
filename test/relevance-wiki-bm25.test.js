@@ -1,4 +1,4 @@
-import { weighRelevanceTermFrequency } from "..";
+import { weighRelevanceTermFrequency } from "../index.js";
 import { test, expect } from "vitest";
 import sampleNewsDocs from "./data/sample-data-news.js";
 

@@ -1,16 +1,18 @@
 import stopWords from "../tokenize/stopwords";
+import {stemRootWord} from "../tokenize/stemmer.js";
+
 /**
- * Latent Dirichlet Allocation creates a docs-topics-words matrix.
- * Latent Dirichlet allocation (pronounced dee-rik-ley) is a statistical model used
+ * Latent Dirichlet (pronounced Dee-ruesh-ley) allocation  is used
  * in natural language processing to discover abstract topics in a
  * collection of documents. It is a generative probabilistic model
  * that assumes documents are mixtures of topics, where a topic
  * is a probability distribution over words. LDA uses Bayesian
  * inference to simultaneously learn the topics and topic mixtures
- * for each document in an unsupervised manner.
+ * that occur around each other in an unsupervised manner.
  * https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation
  * https://www.youtube.com/watch?v=aPRjj8i_6yE
  * https://www.geeksforgeeks.org/latent-dirichlet-allocation/
+ * https://www.youtube.com/watch?v=yK7nN3FcgUs
  *
  * @param {string[]} sentences - Array of input sentences.
  * @param {Object} options - Configuration options for LDA.
@@ -26,8 +28,8 @@ import stopWords from "../tokenize/stopwords";
  */
 export function weighTopicDirichletDistribution(sentences, options = {}) {
   const {
-    topicCount = 10,
-    numberOfTermsPerTopic = 10,
+    topicCount = 8,
+    numberOfTermsPerTopic = 4,
     alpha = 0.1,
     beta = 0.01,
     numberOfIterations = 1000,
@@ -54,7 +56,7 @@ export function weighTopicDirichletDistribution(sentences, options = {}) {
       let cleanedWord = word
         .toLowerCase()
         .replace(/[^a-z\'A-Z0-9\u00C0-\u00ff ]+/g, "");
-      let stemmedWord = cleanedWord; //stemmer(cleanedWord);
+      let stemmedWord = stemRootWord(cleanedWord);
 
       if (
         cleanedWord !== "" &&

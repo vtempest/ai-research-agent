@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { extractSEEKTOPIC } from "..";
+import { extractSEEKTOPIC } from "../index.js";
 import { test3 } from "./data/data-long-article.js";
 
 import fs from "fs";

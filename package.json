@@ -7,7 +7,7 @@
   "description": "Search and outline a topic base with AI Research Agent",
   "license": "MIT",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json src/keyphrases/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/",
+    "docs": "jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/",
     "test": "vitest",
     "test-ui": "vitest --ui --watch",
     "compile": "bun run ./src/dataset-import/compile-topic-model.js"

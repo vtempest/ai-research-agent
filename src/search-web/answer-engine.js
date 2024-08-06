@@ -51,4 +51,6 @@ export async function searchSTREAM(query, options = {}) {
     // html.html = splitSentences.default(html.html);
     console.log("Extracted content:", extraction);
   }
+
+  return results;
 }

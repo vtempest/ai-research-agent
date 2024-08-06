@@ -20,8 +20,8 @@
     "monospaceLinks": true,
     "search": true,
     "better-docs": {
-      "name": "AI Research Agent Docs",
-      "title": "ai-research-agent", 
+      "name": "AI Research Agent",
+      "title": "AI Research Agent - Docs", 
       "trackingCode": "<script async src= \"https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF \"></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>",
       "hideGenerator": false,
       "navLinks": [

@@ -3,21 +3,21 @@
  * and infering acronyms, numbers, URLs, times, names, etc. 
  * 
  * @param {string} inputText - The text to be split into sentences.
- * @param {Object} userConfig - Options to split on newlines and HTML tags, 
- *   and to set min and max sentence sizes for chunking.
+ * @param {Object} options - Options for sentence splitting.
+ * @param {boolean} options.splitOnNewlines=true - Split on newlines and markdown line breaks.
+ * @param {boolean} options.splitOnHtmlTags=true - Split on HTML tags like P, DIV, UL, OL.
+ * @param {number} options.minSize=20 - Minimum size for a sentence.
+ * @param {number} options.maxSize=600 - Maximum size for a sentence.
  * @returns {Array<string>} An array of sentences.
-  * @category Tokenizer
-*/
-export function splitSentences(inputText, userConfig = {}) {
-
-  // Merge default and user configurations
-  const config = {
-    splitOnNewlines: true, // Split on newlines and markdown line breaks
-    splitOnHtmlTags: true, // Split on HTML tags like <p>, <div>, <ul>, <ol>
-    minSize: 20, // Minimum size for a sentence
-    maxSize: 600, // Maximum size for a sentence
-    ...userConfig,
-  };
+ * @category Tokenizer
+ */
+export function splitSentences(inputText, options = {}) {
+  const {
+    splitOnNewlines = true,
+    splitOnHtmlTags = true,
+    minSize = 20,
+    maxSize = 600,
+  } = options;
 
     // List of 222 common abbreviations for various categories
   const COMMON_ABBR_LIST = (
@@ -52,14 +52,14 @@ export function splitSentences(inputText, userConfig = {}) {
 
   // Preprocess text
   let processedText = inputText;
-  if (config.splitOnNewlines) {
+  if (splitOnNewlines) {
     processedText = processedText.replace(
       LINEBREAK_BOUNDARY_REGEX,
       LINEBREAK_MARKER
     );
   }
 
-  if (config.splitOnHtmlTags) {
+  if (splitOnHtmlTags) {
     const htmlTagsToSplit = ["p", "div", "ul", "ol"];
     const htmlSplitRegex = new RegExp(
       `(<br\\s*\\/?>|<\\/(${htmlTagsToSplit.join("|")})>)`,
@@ -99,7 +99,7 @@ export function splitSentences(inputText, userConfig = {}) {
       token === LINEBREAK_MARKER_TRIMMED
     ) {
       if (
-        (config.splitOnNewlines || config.splitOnHtmlTags) &&
+        (splitOnNewlines || splitOnHtmlTags) &&
         token === LINEBREAK_MARKER_TRIMMED
       ) {
         currentGroup.pop();
@@ -221,16 +221,16 @@ export function splitSentences(inputText, userConfig = {}) {
       let sentence = group.join(" ");
 
       // Apply minSize and maxSize constraints
-      if (sentence.length < config.minSize) {
+      if (sentence.length < minSize) {
         // If the sentence is too short, combine it with the next one if possible
         if (index < finalResult.length - 1) {
           finalResult[index + 1] = group.concat(finalResult[index + 1]);
           return null;
         }
-      } else if (sentence.length > config.maxSize) {
+      } else if (sentence.length > maxSize) {
         // If the sentence is too long, split it at the last punctuation mark before maxSize
-        const lastPunctuation = sentence.lastIndexOf(".", config.maxSize);
-        if (lastPunctuation > config.minSize) {
+        const lastPunctuation = sentence.lastIndexOf(".", maxSize);
+        if (lastPunctuation > minSize) {
           finalResult.splice(
             index + 1,
             0,

@@ -39,11 +39,11 @@ export async function extract(urlOrDoc, options = {}) {
     isPdf = url.endsWith(".pdf");
 
     if (!isPdf) isPdf = await isUrlPDF(url);
+    var youtubeID = getURLYoutubeVideo(url);
 
     if (isPdf) {
       // pdf checker
       response = await extractPDF(url, {});
-      var youtubeID = getURLYoutubeVideo(url);
 
       // check youtube
     } else if (youtubeID) {

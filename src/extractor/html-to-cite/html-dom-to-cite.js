@@ -1,4 +1,4 @@
-import { extractHumanName } from "./human-name-extractor.js";
+import { extractHumanName } from "./human-names-recognize.js";
 import { parseDate } from "chrono-node";
 
 const AUTHOR_META_TAGS = [
@@ -141,9 +141,12 @@ const extractAndValidateHumanName = (author) => {
 export function extractDate(document) {
   var mainText = document.body.innerText.slice(0, 5000);
 
-  var date =
-    parseDate(mainText)?.toISOString().split("T")?.[0] ||
-    mainText.match(/\b\d{1,2}\/\d{1,2}\/(\d{2}|\d{4})\b/) || //Match m/d/yy to mm/dd/yyyy
+  // sometimes this over-extracts to get random dates like rec yt vids
+  // var date =
+  //   parseDate(mainText)?.toISOString().split("T")?.[0] 
+    
+    
+  var date = mainText.match(/\b\d{1,2}\/\d{1,2}\/(\d{2}|\d{4})\b/) || //Match m/d/yy to mm/dd/yyyy
     mainText.match(
       /\b(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])-(?:[0-9]{2})?[0-9]{2}\b/
     ) ||
