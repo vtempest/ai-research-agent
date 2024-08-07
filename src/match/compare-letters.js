@@ -1,10 +1,9 @@
 /**
  * Compute Jaro-Winkler similarity between two strings
  * The Jaro winkler is a modification of Jaro similarity. It is designed to give more weight to the common prefix of the strings. This is going to give greater score to strings that have the first l characters in common. Its formula is:
-
-
- * https://en.wikipedia.org/wiki/Jaro%E2%80%
- * https://yassineelkhal.medium.com/the-complete-guide-to-string-similarity-algorithms-1290ad07c6b7
+ * https://en.wikipedia.org/wiki/Jaro%E2%80% \
+  Jaro vs Levenshtein https://www.analyticsvidhya.com/blog/2021/02/a-simple-guide-to-metrics-for-calculating-string-similarity/ \
+  https://yassineelkhal.medium.com/the-complete-guide-to-string-similarity-algorithms-1290ad07c6b7
  * @param {string} s1 First string
  * @param {string} s2 Second string
  * @returns {number} Jaro-Winkler similarity score (0-1)

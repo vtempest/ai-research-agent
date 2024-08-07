@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import {extract} from ".."
+import {extract} from "../index.js"
 
 test("extract url", async () => {
 

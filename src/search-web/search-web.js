@@ -2,10 +2,23 @@
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many
  * times to retry other domains if first time fails.
- * @param {string} query
- * @param {object} options
- * @returns {Promise<Array[]>} {title, url, snippet, engines, cached}
+ *
+ * @async
+ * @function searchWeb
+ * @param {string} query - The search query string.
+ * @param {object} options={} - Optional configuration for the search.
+ * @param {number} options.categoryIndex=0 - Index of the search category (0-9).
+ * @param {number} options.recencyIndex=0 - Index representing the recency of results.
+ * @param {string|null} options.selectedDomain=null - Specific domain to search, if any.
+ * @param {number} options.maxRetries=3 - Maximum number of retry attempts if the initial search fails.
+ * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[], cached: string}>>} An array of search result objects.
+ * @throws {Error} Throws an error if the search fails after all retry attempts.
  * @category Search
+ * @example  const advancedResults = await searchWeb('Node.js', {
+ *   categoryIndex: 2,
+ *   recencyIndex: 1,
+ *   maxRetries: 5
+ * });
  */
 export async function searchWeb(query, options = {}) {
   const {

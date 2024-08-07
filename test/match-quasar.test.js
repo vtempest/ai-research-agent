@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import {matchQUASAR} from "..";
+import {matchQUASAR} from "../index.js";
 
 test("quasar: match phrases in quotes ", async () => {
 

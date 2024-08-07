@@ -6,29 +6,34 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
 /**
  * 🚜📜 Tractor the Text Extractor -
  * Extract URL or HTML to main content with Readability or Postlight Parser,
- * which is an improved version with 100+ custom adapters for major websites.
- * Strips to basic HTML for reading mode or saving research notes.
- * Youtube - get full transcript for video if detected a youtube video.
+ * which is an improved version with 100+ custom adapters for major websites. <br>
+ * Strips to basic HTML for reading mode or saving research notes. <br>
+ * Youtube - get full transcript for video if detected a youtube video.  <br>
  * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
- * footnotes, and adding linebreaks based on standard deviation of range text height.
+ * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
  * @param {document} urlOrDoc - url or dom object with article content
  * @param {Object} options
- * @param {boolean} options.keyphrases - extract key phrases
- * @param {boolean} options.images - include images
- * @param {boolean} options.links - include links
- * @param {boolean} options.formatting - preserve formatting
- * @param {boolean} options.absoluteURLs - convert URLs to absolute
+ * @param {boolean} options.keyphrases=true - extract key phrases
+ * @param {boolean} options.images=true - include images
+ * @param {boolean} options.links=true - include links
+ * @param {boolean} options.formatting=true - preserve formatting
+ * @param {boolean} options.absoluteURLs=true - convert URLs to absolute
+ * @param {boolean} options.usePostlightParser=true - PostlightParser is an 
+ * improved version of Readability with 100+ custom adapters for major websites. 
+ * @param {boolean} options.timeout=5 - http request timeout
  * @returns {Object} - {author, date, title, source, content, image}
  * @category Extractor
  */
 export async function extract(urlOrDoc, options = {}) {
-  options = options || {
-    keyphrases: true,
-    images: true,
-    links: true,
-    formatting: true,
-    absoluteURLs: true,
-  };
+  var {
+    keyphrases = true,
+    images = true,
+    links = true,
+    formatting = true,
+    absoluteURLs = true,
+    usePostlightParser = false,
+    timeout = 5
+  } = options
   var response = {};
 
   let isPdf;
@@ -43,11 +48,11 @@ export async function extract(urlOrDoc, options = {}) {
 
     if (isPdf) {
       // pdf checker
-      response = await extractPDF(url, {});
+      response = await extractPDF(url, options);
 
       // check youtube
     } else if (youtubeID) {
-      var { content, timestamps } = await extractYoutubeText(url);
+      var { content, timestamps } = await extractYoutubeText(url, options);
 
       response.html = `<iframe width="560" height="315" 
         src="https://www.youtube.com/embed/${youtubeID}"
@@ -58,9 +63,7 @@ export async function extract(urlOrDoc, options = {}) {
     } else {
       try {
         var html = await (
-          await fetch(url, {
-            timeout: 2000,
-          })
+          await fetch(url, { signal: AbortSignal.timeout(timeout * 1000) })
         ).text();
       } catch (e) {
         return { error: "Error in fetch" };

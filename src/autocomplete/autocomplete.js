@@ -3,8 +3,8 @@
  * If typing 2+ letters of a word, return all possible words matching those few letters
  * @param {string} query
  * @returns {Array}
- * @example autocomplete("self att") => ["self attention", "self attract", "self attack"]
- * @category Tokenizer
+ * @example autocompleteNextWords("self att") => ["self attention", "self attract", "self attack"]
+ * @category Tokenize
  */
 export function autocompleteNextWords(query, options = {}) {
   let {

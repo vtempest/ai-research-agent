@@ -20,7 +20,7 @@ test("WikiBM25 - cancer", () => {
   );
 
   console.log(results);
-});
+}, 3000);
 
 test("WikiBM25 - climate change", () => {
   const query = "climate change"
@@ -41,4 +41,4 @@ test("WikiBM25 - climate change", () => {
       "Global Climate Summit Ends with New Emissions Agreement"
 );
 
-});
+}, 3000);

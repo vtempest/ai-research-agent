@@ -1,5 +1,1272 @@
 {
-  "keyphrases": [],
+  "topSentences": [
+    {
+      "text": "03762v7 [cs. CL] 2 Aug 2023 [ 1 ] 1 Introduction </h2> <p> Recurrent neural networks, long short-term memory [ 13 ] and gated recurrent [ 7 ] neural networks in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation [ 35 , 2 , 5 ]. Numerous efforts have since continued to push the boundaries of recurrent language models and encoder-decoder architectures [38, 24, 15].",
+      "index": "34",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "transformer",
+        "transformer",
+        "sequence",
+        "lengths memory",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "translation",
+        "decoder",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "simple language question",
+        "simple language question",
+        "simple language question",
+        "state of the art",
+        "convolutional neural network basic building block",
+        "convolutional neural network basic building block",
+        "aug 2023",
+        "aug 2023",
+        "aug 2023",
+        "machine translation superior quality",
+        "exception recurrent neural network",
+        "exception recurrent neural network",
+        "particular"
+      ],
+      "tokens": [
+        [
+          "03762v7",
+          0,
+          0,
+          ""
+        ],
+        [
+          "cs",
+          27,
+          5
+        ],
+        [
+          "cl",
+          27,
+          5
+        ],
+        [
+          "2",
+          23,
+          5
+        ],
+        [
+          "aug",
+          28,
+          7
+        ],
+        [
+          "2023",
+          50,
+          5
+        ],
+        [
+          "1",
+          23,
+          5
+        ],
+        [
+          "1",
+          23,
+          5
+        ],
+        [
+          "introduction",
+          4,
+          4
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "recurrent neural network",
+          50,
+          5
+        ],
+        [
+          "short",
+          2,
+          2
+        ],
+        [
+          "term",
+          32,
+          3
+        ],
+        [
+          "memory",
+          50,
+          4
+        ],
+        [
+          "13",
+          23,
+          5
+        ],
+        [
+          "recurrent",
+          0,
+          7
+        ],
+        [
+          "7",
+          23,
+          5
+        ],
+        [
+          "neural network",
+          50,
+          5
+        ],
+        [
+          "particular",
+          9,
+          3
+        ],
+        [
+          "firmly",
+          2,
+          6
+        ],
+        [
+          "established",
+          0,
+          2
+        ],
+        [
+          "state of the art",
+          26,
+          1
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "modeling",
+          6,
+          6
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "problems",
+          26,
+          4
+        ],
+        [
+          "language",
+          50,
+          3
+        ],
+        [
+          "modeling",
+          6,
+          6
+        ],
+        [
+          "machine translation",
+          9,
+          4
+        ],
+        [
+          "2",
+          23,
+          5
+        ],
+        [
+          "5",
+          23,
+          5
+        ],
+        [
+          "numerous",
+          0,
+          3
+        ],
+        [
+          "continued",
+          0,
+          2
+        ],
+        [
+          "push",
+          38,
+          5
+        ],
+        [
+          "recurrent",
+          0,
+          7
+        ],
+        [
+          "language",
+          50,
+          3
+        ],
+        [
+          "encoder",
+          0,
+          0,
+          ""
+        ],
+        [
+          "decoder",
+          18,
+          8
+        ],
+        [
+          "architectures",
+          0,
+          0,
+          ""
+        ],
+        [
+          "38",
+          0,
+          5
+        ],
+        [
+          "24",
+          23,
+          5
+        ],
+        [
+          "15",
+          23,
+          5
+        ]
+      ],
+      "weight": 38
+    },
+    {
+      "text": "For the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals.",
+      "index": "206",
+      "keyphrases": [
+        "checkpoints",
+        "minute"
+      ],
+      "tokens": [
+        [
+          "base",
+          14,
+          3
+        ],
+        [
+          "single",
+          35,
+          2
+        ],
+        [
+          "model",
+          36,
+          3
+        ],
+        [
+          "obtained",
+          40,
+          4
+        ],
+        [
+          "averaging",
+          0,
+          0,
+          ""
+        ],
+        [
+          "5",
+          23,
+          5
+        ],
+        [
+          "checkpoints",
+          15,
+          7
+        ],
+        [
+          "written",
+          0,
+          2
+        ],
+        [
+          "10",
+          23,
+          5
+        ],
+        [
+          "minute",
+          28,
+          4
+        ],
+        [
+          "intervals",
+          0,
+          0,
+          ""
+        ]
+      ],
+      "weight": 37
+    },
+    {
+      "text": "For the big models, we averaged the last 20 checkpoints.",
+      "index": "207",
+      "keyphrases": [
+        "checkpoints"
+      ],
+      "tokens": [
+        [
+          "big",
+          2,
+          3
+        ],
+        [
+          "averaged",
+          0,
+          0,
+          ""
+        ],
+        [
+          "20",
+          23,
+          5
+        ],
+        [
+          "checkpoints",
+          15,
+          7
+        ]
+      ],
+      "weight": 33
+    },
+    {
+      "text": "</p> <h2> 7 Conclusion </h2> <p> In this work, we presented the Transformer, the first sequence transduction model based entirely on attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with multi-headed self-attention.",
+      "index": "244",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "transformer",
+        "transformer",
+        "transformer",
+        "sequence",
+        "attention",
+        "attention",
+        "attention",
+        "transduction problems language modeling machine translation",
+        "decoder",
+        "modeling transduction problems language modeling",
+        "presented"
+      ],
+      "tokens": [
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "7",
+          23,
+          5
+        ],
+        [
+          "conclusion",
+          9,
+          4
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "work",
+          41,
+          2
+        ],
+        [
+          "presented",
+          28,
+          2
+        ],
+        [
+          "transformer",
+          50,
+          7
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "model",
+          36,
+          3
+        ],
+        [
+          "based",
+          0,
+          2
+        ],
+        [
+          "entirely",
+          2,
+          4
+        ],
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "replacing",
+          4,
+          4
+        ],
+        [
+          "recurrent",
+          0,
+          7
+        ],
+        [
+          "layers",
+          35,
+          5
+        ],
+        [
+          "commonly",
+          2,
+          3
+        ],
+        [
+          "encoder",
+          0,
+          0,
+          ""
+        ],
+        [
+          "decoder",
+          18,
+          8
+        ],
+        [
+          "architectures",
+          0,
+          0,
+          ""
+        ],
+        [
+          "multi",
+          0,
+          0,
+          ""
+        ],
+        [
+          "headed",
+          0,
+          4
+        ],
+        [
+          "self",
+          1,
+          5
+        ],
+        [
+          "attention",
+          9,
+          3
+        ]
+      ],
+      "weight": 32
+    },
+    {
+      "text": "</p> <h2> 4 Why Self-Attention </h2> <p> In this section we compare various aspects of self-attention layers to the recurrent and convolutional layers commonly used for mapping one variable-length sequence of symbol representations </p>",
+      "index": "140",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence",
+        "lengths memory",
+        "lengths memory",
+        "attention",
+        "attention",
+        "maximum path length",
+        "maximum path length",
+        "positions",
+        "path length",
+        "path length",
+        "mapping variable",
+        "mapping variable",
+        "mapping variable",
+        "mapping variable",
+        "length"
+      ],
+      "tokens": [
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "4",
+          23,
+          5
+        ],
+        [
+          "self",
+          1,
+          5
+        ],
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "section",
+          35,
+          3
+        ],
+        [
+          "compare",
+          31,
+          6
+        ],
+        [
+          "aspects",
+          9,
+          5
+        ],
+        [
+          "self",
+          1,
+          5
+        ],
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "layers",
+          35,
+          5
+        ],
+        [
+          "recurrent",
+          0,
+          7
+        ],
+        [
+          "layers",
+          35,
+          5
+        ],
+        [
+          "commonly",
+          2,
+          3
+        ],
+        [
+          "mapping",
+          24,
+          6
+        ],
+        [
+          "variable",
+          17,
+          5
+        ],
+        [
+          "length",
+          7,
+          3
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "symbol",
+          50,
+          4
+        ],
+        [
+          "representations",
+          42,
+          4
+        ],
+        [
+          "p",
+          10,
+          5
+        ]
+      ],
+      "weight": 31
+    },
+    {
+      "text": "We used beam search as described in the previous section, but no checkpoint averaging.",
+      "index": "221",
+      "keyphrases": [
+        "checkpoints"
+      ],
+      "tokens": [
+        [
+          "beam",
+          29,
+          5
+        ],
+        [
+          "search",
+          35,
+          4
+        ],
+        [
+          "described",
+          0,
+          2
+        ],
+        [
+          "previous",
+          0,
+          3
+        ],
+        [
+          "section",
+          35,
+          3
+        ],
+        [
+          "checkpoint",
+          15,
+          7
+        ],
+        [
+          "averaging",
+          0,
+          0,
+          ""
+        ]
+      ],
+      "weight": 30
+    },
+    {
+      "text": "Learning long-range dependencies is a key challenge in many sequence transduction tasks.",
+      "index": "147",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "transformer",
+        "sequence",
+        "transduction problems language modeling machine translation",
+        "modeling transduction problems language modeling",
+        "entailment learning",
+        "dependencies",
+        "dependencies"
+      ],
+      "tokens": [
+        [
+          "learning",
+          50,
+          4
+        ],
+        [
+          "long",
+          37,
+          2
+        ],
+        [
+          "range",
+          42,
+          3
+        ],
+        [
+          "dependencies",
+          10,
+          5
+        ],
+        [
+          "key",
+          18,
+          3
+        ],
+        [
+          "challenge",
+          32,
+          4
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "tasks",
+          41,
+          4
+        ]
+      ],
+      "weight": 29
+    },
+    {
+      "text": "To the best of our knowledge, however, the Transformer is the first transduction model relying entirely on self-attention to compute representations of its input and output without using sequencealigned RNNs or convolution.",
+      "index": "49",
+      "keyphrases": [
+        "sequence transduction",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "transformer",
+        "attention",
+        "transduction problems language modeling machine translation",
+        "best setting quality",
+        "modeling transduction problems language modeling",
+        "recurrence convolution order model t",
+        "convolutional neural network basic building block",
+        "knowledge"
+      ],
+      "tokens": [
+        [
+          "best",
+          50,
+          2
+        ],
+        [
+          "knowledge",
+          50,
+          4
+        ],
+        [
+          "transformer",
+          50,
+          7
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "model",
+          36,
+          3
+        ],
+        [
+          "relying",
+          0,
+          0,
+          ""
+        ],
+        [
+          "entirely",
+          2,
+          4
+        ],
+        [
+          "self",
+          1,
+          5
+        ],
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "compute",
+          31,
+          7
+        ],
+        [
+          "representations",
+          42,
+          4
+        ],
+        [
+          "input",
+          35,
+          5
+        ],
+        [
+          "output",
+          36,
+          5
+        ],
+        [
+          "sequencealigned",
+          0,
+          0,
+          ""
+        ],
+        [
+          "rnns",
+          0,
+          0,
+          ""
+        ],
+        [
+          "convolution",
+          50,
+          9
+        ]
+      ],
+      "weight": 27
+    },
+    {
+      "text": "<h2> 3 Model Architecture </h2> <p> Most competitive neural sequence transduction models have an encoder-decoder structure [ 5 , 2 , 35 ]. Here, the encoder maps an input sequence of symbol representations ( x , .",
+      "index": "51",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "transformer",
+        "sequence",
+        "sequence",
+        "transduction problems language modeling machine translation",
+        "decoder",
+        "decoder",
+        "modeling transduction problems language modeling",
+        "architecture",
+        "positions",
+        "structure"
+      ],
+      "tokens": [
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "3",
+          23,
+          5
+        ],
+        [
+          "model",
+          36,
+          3
+        ],
+        [
+          "architecture",
+          50,
+          4
+        ],
+        [
+          "h2",
+          0,
+          0,
+          ""
+        ],
+        [
+          "p",
+          10,
+          5
+        ],
+        [
+          "competitive",
+          4,
+          4
+        ],
+        [
+          "neural",
+          1,
+          6
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "encoder",
+          0,
+          0,
+          ""
+        ],
+        [
+          "decoder",
+          18,
+          8
+        ],
+        [
+          "structure",
+          50,
+          3
+        ],
+        [
+          "5",
+          23,
+          5
+        ],
+        [
+          "2",
+          23,
+          5
+        ],
+        [
+          "35",
+          0,
+          5
+        ],
+        [
+          "encoder",
+          0,
+          0,
+          ""
+        ],
+        [
+          "input",
+          35,
+          5
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "symbol",
+          50,
+          4
+        ],
+        [
+          "representations",
+          42,
+          4
+        ],
+        [
+          "x",
+          10,
+          5
+        ]
+      ],
+      "weight": 24
+    },
+    {
+      "text": "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences [ 2 , 19 ]. In all but a few cases [ 27 ], however, such attention mechanisms are used in conjunction with a recurrent network.",
+      "index": "40",
+      "keyphrases": [
+        "sequence transduction",
+        "sequence transduction",
+        "sequence transduction",
+        "transformer",
+        "sequence",
+        "attention",
+        "attention",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "transduction problems language modeling machine translation",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "modeling transduction problems language modeling",
+        "dependencies",
+        "integral"
+      ],
+      "tokens": [
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "mechanisms",
+          0,
+          0,
+          ""
+        ],
+        [
+          "integral",
+          50,
+          5
+        ],
+        [
+          "compelling",
+          0,
+          6
+        ],
+        [
+          "sequence",
+          50,
+          4
+        ],
+        [
+          "modeling",
+          6,
+          6
+        ],
+        [
+          "transduction",
+          22,
+          7
+        ],
+        [
+          "tasks",
+          41,
+          4
+        ],
+        [
+          "allowing",
+          41,
+          3
+        ],
+        [
+          "modeling",
+          6,
+          6
+        ],
+        [
+          "dependencies",
+          10,
+          5
+        ],
+        [
+          "regard",
+          31,
+          5
+        ],
+        [
+          "distance",
+          42,
+          3
+        ],
+        [
+          "input",
+          35,
+          5
+        ],
+        [
+          "output",
+          36,
+          5
+        ],
+        [
+          "sequences",
+          0,
+          0,
+          ""
+        ],
+        [
+          "2",
+          23,
+          5
+        ],
+        [
+          "19",
+          23,
+          5
+        ],
+        [
+          "cases",
+          39,
+          3
+        ],
+        [
+          "27",
+          23,
+          5
+        ],
+        [
+          "attention",
+          9,
+          3
+        ],
+        [
+          "mechanisms",
+          0,
+          0,
+          ""
+        ],
+        [
+          "conjunction",
+          7,
+          5
+        ],
+        [
+          "recurrent",
+          0,
+          7
+        ],
+        [
+          "network",
+          32,
+          3
+        ]
+      ],
+      "weight": 21
+    }
+  ],
+  "keyphrases": [
+    {
+      "sentences": "140,140,140,140,140,140,17,51,118,142,147,244,34,40,34,37,139,46,51,140,105,232,243,122,167,141,17,34,36,37,40,46,46,51,51,52,53,104,105,105,118,122,127,127,139,140,141,142,147,151,152,167,232,232,243,243,244,17,34,40,49,51,118,142,147,244",
+      "keyphrase": "sequence transduction",
+      "words": 5,
+      "weight": 1612
+    },
+    {
+      "sentences": "1,3,13,31,5,7,9,32,0,1,2,3,4,5,6,7,8,9,10,13,14,31,32,1,3,13,31",
+      "keyphrase": "google brain",
+      "words": 2,
+      "weight": 1075
+    },
+    {
+      "sentences": "49,49,49,34,49,49,49,103,189,215,244,247,17,34,40,49,51,118,142,147,244,18,21,21,49,198,224,245,19,22,26,41,42,45,49,50,56,57,103,182,189,190,198,204,214,215,230,233,236,238,238,243,244,245,247",
+      "keyphrase": "transformer",
+      "words": 4,
+      "weight": 1037
+    },
+    {
+      "sentences": "21,202,245,42,211,204,217,21,21,42,198,202,211,214,217,235,245,245,21,167,167,182,202,204,245",
+      "keyphrase": "french translation",
+      "words": 2,
+      "weight": 950
+    },
+    {
+      "sentences": "127,141,17,34,36,37,40,46,46,51,51,52,53,104,105,105,118,122,127,127,139,140,141,142,147,151,152,167,232,232,243,243,244",
+      "keyphrase": "sequence",
+      "words": 2,
+      "weight": 925
+    },
+    {
+      "sentences": "37,37,103,122,140,208,210,34,37,48,103,37,121,139,122,122,140,141,146,148,149,151,153,156,167,208,210,210,239,239",
+      "keyphrase": "lengths memory",
+      "words": 2,
+      "weight": 555
+    },
+    {
+      "sentences": "18,60,18,103,105,18,41,46,48,60,27,60,101,223,223,225,244,18,19,25,27,40,40,41,45,45,46,46,47,48,49,50,57,60,65,67,69,70,71,72,72,75,78,81,81,81,81,83,85,88,89,90,93,94,96,98,101,102,103,103,105,105,106,108,112,122,122,125,140,140,143,150,151,152,159,160,161,162,223,223,224,225,235,244,244,246,247",
+      "keyphrase": "attention",
+      "words": 3,
+      "weight": 462
+    },
+    {
+      "sentences": "121,121,121,145,44,45,121,145,121,145,212,223,44,45,121,145,150,179,212,212,223,235,121,145,121,145,150,179",
+      "keyphrase": "minimum number sequential operation",
+      "words": 4,
+      "weight": 437
+    },
+    {
+      "sentences": "118,118,118,127,234,63,76,76,101,118,122,129,134,135",
+      "keyphrase": "dimension",
+      "words": 3,
+      "weight": 433
+    },
+    {
+      "sentences": "34,34,34,34,34,34,20,34,40,34,34,34,48,34,40,42,211,48,151,217,17,34,40,49,51,118,142,147,244,20,34,151,197,21,21,42,198,202,211,214,217,235,245,245,34,34,40,40,48,34,247,34,34,48,48,170",
+      "keyphrase": "transduction problems language modeling machine translation",
+      "words": 5,
+      "weight": 418
+    }
+  ],
   "sentences": [
     "<h2> Provided proper attribution is provided, Google hereby grants permission to reproduce the tables and figures in this paper solely for use in journalistic or scholarly works.",
     "</h2> <h1> Attention Is All You Need </h1> <p> Ashish Vaswani <p> Google Brain </p>",

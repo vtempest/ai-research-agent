@@ -5,7 +5,7 @@
  *
  * @param {string} word - The word to be stemmed
  * @returns {string} The stemmed word
- * @category Tokenizer
+ * @category Tokenize
  */
 export function stemRootWord(word) {
   // Return short words (less than 3 characters) without stemming

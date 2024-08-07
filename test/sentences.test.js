@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import {splitSentences} from ".."
+import {splitSentences} from "../index.js"
 
 test("split sentences", async () => {
   

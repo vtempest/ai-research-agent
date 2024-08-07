@@ -1,4 +1,4 @@
-import {tokenizeTopics} from "../..";
+import {tokenizeTopics} from "../../index.js";
 
 /**
  * Calculate term specificity for a single doc with BM25 formula 

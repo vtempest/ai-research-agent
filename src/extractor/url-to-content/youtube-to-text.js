@@ -2,23 +2,27 @@
  * fetch youtube.com video's webpage HTML for embedded transcript
  * if blocked, use scraper of youtubetranscript.com
  * @param {string} videoUrl
- * @param {boolean} boolTimestamps - true to return timestamps, default true
+ * @param {object} options
+ * @param {boolean} options.boolTimestamps=true - true to return timestamps, default true
+ * @param {boolean} options.timeout=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
-  * @category Extractor
-*/
-export async function extractYoutubeText(videoUrl, boolTimestamps = true) {
-  try {
-    var transcript = await fetchTranscript(videoUrl);
-  } catch (e) {
-    console.log(e.message);
-    transcript = await fetchViaYoutubeTranscript(videoUrl);
-  }
+ * @category Extractor
+ */
+export async function extractYoutubeText(videoUrl, options={}) {
+  const {
+    boolTimestamps = true,
+    timeout = 5    
+  } = options
+
+  var transcript = await fetchTranscript(videoUrl, options);
+  if (transcript.error) transcript = await fetchViaYoutubeTranscript(videoUrl, options);
 
   var content = "";
   var timestamps = [];
   transcript.forEach(({ offset, text }) => {
-    if (boolTimestamps) timestamps.push([content.length, Math.floor(offset, 0)]);
+    if (boolTimestamps)
+      timestamps.push([content.length, Math.floor(offset, 0)]);
 
     content += text + " ";
   });
@@ -34,70 +38,63 @@ export async function extractYoutubeText(videoUrl, boolTimestamps = true) {
   return { content, timestamps, word_count, format: "video" };
 }
 
-const USER_AGENT =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)";
-const RE_YOUTUBE = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
-const RE_XML_TRANSCRIPT = /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g;
-
-function YouTubeTranscriptError(message) {
-  return new Error(`🚨 ${message}`);
-}
-
-async function fetchTranscript(videoId, config = {}) {
+async function fetchTranscript(videoId, options = {}) {
+  const {
+    timeout = 5    
+  } = options;
   const identifier = getURLYoutubeVideo(videoId);
-  const videoPageResponse = await fetch(`https://www.youtube.com/watch?v=${identifier}`, {
+
+  const HEADER = {
     headers: {
-      ...(config.lang && { "Accept-Language": config.lang }),
-      "User-Agent": USER_AGENT
-    }
-  });
+      "Accept-Language": "en",
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)",
+    },
+     signal: AbortSignal.timeout(timeout * 1000) 
+  };
+
+  const videoPageResponse = await fetch(
+    `https://www.youtube.com/watch?v=${identifier}`,
+    HEADER
+  );
   const videoPageBody = await videoPageResponse.text();
 
-  if (videoPageBody.includes('class="g-recaptcha"')) {
-    throw YouTubeTranscriptError("Too many requests. YouTube requires solving a captcha.");
-  }
+  const captions = JSON.parse(
+    videoPageBody
+      .split('"captions":')?.[1]
+      ?.split(',"videoDetails')[0]
+      .replace("\n", "")
+  )?.playerCaptionsTracklistRenderer;
 
-  if (!videoPageBody.includes('"playabilityStatus":')) {
-    throw YouTubeTranscriptError(`The video is no longer available (${videoId})`);
-  }
+  if (
+    videoPageBody.includes('class="g-recaptcha"') ||
+    !videoPageBody.includes('"playabilityStatus":') ||
+    !captions?.captionTracks
+  )
+    return { error: true };
 
-  const [, captionsJson] = videoPageBody.split('"captions":');
-  if (!captionsJson) {
-    throw YouTubeTranscriptError(`Transcript is disabled on this video (${videoId})`);
-  }
+  const track = captions.captionTracks.find(
+    (track) => track.languageCode === "en"
+  );
 
-  const captions = JSON.parse(captionsJson.split(',"videoDetails')[0].replace("\n", ""))?.playerCaptionsTracklistRenderer;
-  if (!captions?.captionTracks) {
-    throw YouTubeTranscriptError(`No transcripts are available for this video (${videoId})`);
-  }
+  if (!track) return { error: true };
 
-  const track = config.lang ? captions.captionTracks.find((track) => track.languageCode === config.lang) : captions.captionTracks[0];
+  const transcriptResponse = await fetch(track.baseUrl, HEADER);
 
-  if (!track) {
-    throw YouTubeTranscriptError(
-      `No transcripts are available in ${config.lang} for this video (${videoId}). Available languages: ${captions.captionTracks.map((t) => t.languageCode).join(", ")}`
-    );
-  }
-
-  const transcriptResponse = await fetch(track.baseUrl, {
-    headers: {
-      ...(config.lang && { "Accept-Language": config.lang }),
-      "User-Agent": USER_AGENT
-    }
-  });
-
-  if (!transcriptResponse.ok) {
-    throw YouTubeTranscriptError(`Failed to fetch transcript for video (${videoId})`);
-  }
+  if (!transcriptResponse.ok) return { error: true };
 
   const transcriptBody = await transcriptResponse.text();
-  const results = [...transcriptBody.matchAll(RE_XML_TRANSCRIPT)];
+  const results = [
+    ...transcriptBody.matchAll(
+      /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g
+    ),
+  ];
 
   return results.map(([, start, duration, text]) => ({
     text,
     duration: parseFloat(duration),
     offset: parseFloat(start),
-    lang: track.languageCode
+    lang: track.languageCode,
   }));
 }
 
@@ -111,11 +108,16 @@ async function fetchTranscript(videoId, config = {}) {
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @private
  */
-export async function fetchViaYoutubeTranscript(videoUrl) {
+export async function fetchViaYoutubeTranscript(videoUrl, options={}) {
+  const {
+    timeout = 5    
+  } = options;
   const videoId = getURLYoutubeVideo(videoUrl);
   const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
 
-  const response = await fetch(url);
+  const response = await fetch(url,
+    { signal: AbortSignal.timeout(timeout * 1000) }
+  );
   const html = await response.text();
 
   const transcriptRegex = /<text data-start="([\d.]+)".*?>(.*?)<\/text>/g;
@@ -123,7 +125,7 @@ export async function fetchViaYoutubeTranscript(videoUrl) {
 
   const transcript = matches.map((match) => ({
     text: decodeHTMLEntities(match[2]),
-    offset: parseFloat(match[1])
+    offset: parseFloat(match[1]),
   }));
 
   const content = transcript.map((item) => item.text).join(" ");
@@ -144,9 +146,6 @@ function decodeHTMLEntities(text) {
   textarea.innerHTML = text;
   return textarea.value;
 }
-
-// Assuming getURLYoutubeVideo function is defined elsewhere
-// function getURLYoutubeVideo(url) { ... }
 
 /**
  * Test if URL is to youtube video and return video id if true

@@ -4,9 +4,11 @@ import * as chrono from "chrono-node";
 
 
 /**
- * Extracts formatted text from PDF with parsing of headings,
- * page headers, footnotes, and adding linebreaks based on
- * standard deviation of range from average text height
+ * Extracts formatted text from PDF with parsing of linebreaks ,
+ * page headers, footnotes, and infering section headings based on
+ * standard deviation of range from average text height <br>
+ * https://en.wikipedia.org/wiki/History_of_PDF <br>
+ * https://github.com/mozilla/pdf.js/releases <br>
  * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
  * @param {string} pdfURL - URL to a PDF file or buffer from fs.readFile
  * @param {Object} options
@@ -16,6 +18,7 @@ import * as chrono from "chrono-node";
  * @param {boolean} options.removePageHeaders=true - Removes repeated headers found on each page
  * @param {boolean} options.removeHyphens=true - Removes hyphens at end of lines
  * @param {boolean} options.moveFootnotes=true - Moves footnotes to end of document
+ * @param {boolean} options.timeout=5 - http request timeout
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
  * @category Extractor
  */
@@ -29,10 +32,11 @@ export async function extractPDF(pdfURL, options = {}) {
       removeHyphens = true,
       moveFootnotes = true,
       addCitation = true,
+      timeout = 5
     } = options;
 
     // download all pdf data and convert to array buffer
-    var buffer = await (await fetch(pdfURL)).arrayBuffer();
+    var buffer = await (await fetch(pdfURL, { signal: AbortSignal.timeout(timeout * 1000) })).arrayBuffer();
 
     try {
       const { getDocument } = await resolvePDFJS();

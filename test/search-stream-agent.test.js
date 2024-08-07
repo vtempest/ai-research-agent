@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { searchSTREAM } from "..";
+import { searchSTREAM } from "../index.js";
 
 test("test STREAM search answer angine", async () => {
   var query = " how to get structured output from chatgpt ";

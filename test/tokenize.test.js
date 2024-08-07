@@ -1,7 +1,7 @@
 import { test, expect } from "vitest";
 import  {
   tokenizeTopics
-} from "..";
+} from "../index.js";
 import fs from "fs";
 
 var phrasesModel = JSON.parse(

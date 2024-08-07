@@ -9,7 +9,7 @@
  * @param {number} options.minSize=20 - Minimum size for a sentence.
  * @param {number} options.maxSize=600 - Maximum size for a sentence.
  * @returns {Array<string>} An array of sentences.
- * @category Tokenizer
+ * @category Tokenize
  */
 export function splitSentences(inputText, options = {}) {
   const {

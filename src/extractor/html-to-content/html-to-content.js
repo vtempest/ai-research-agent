@@ -5,6 +5,7 @@ import {extractCite} from "../html-to-cite/index.js";
 import {convertHTMLToBasicHTML} from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
 import {extractHumanName} from "../html-to-cite/human-names-recognize.js";
+
 /**
  * Extracts the main content and cite from a document or HTML string
  * @param {string|object} documentOrHTML 
@@ -21,6 +22,7 @@ export default async function extractContent(documentOrHTML, options = {}) {
     url = "",
     usePostlightExtractor =0,
   } = options;
+  
   if (typeof documentOrHTML === "string") var html = documentOrHTML;
   else var html = documentOrHTML.documentElement.innerHTML;
 

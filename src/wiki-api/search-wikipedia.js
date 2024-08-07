@@ -1,17 +1,17 @@
-import {splitSentences} from "../..";
+import {splitSentences} from "../../index.js";
 
 /**
  * Search Wikipedia for a query, return result's title, summary, and image. 
  *
  * @param {string} query search phrase 
- * @param {object} options Options object with the following properties and defaults:
- * @param {boolean} options.plainText = false, // Return plain text instead of HTML
- * @param {number} options.summarySentenceLimit = 3, // Limit summary to this many sentences
- * @param {number} options.limitSearchResults = 1, // Limit number of search results
- * @param {boolean} options.images = true, // Include image in results
- * @param {number} options.imageSize = 200, // Image size in pixels
- * @param {boolean} options.searchInTitleOnly = false, // Search in title only
- * @param {boolean} options.filterDisambiguation = true, // Filter disambiguation pages
+ * @param {object} options Options object 
+ * @param {boolean} options.plainText=false Return plain text instead of HTML
+ * @param {number} options.summarySentenceLimit=3 Limit summary to this many sentences
+ * @param {number} options.limitSearchResults=1 Limit number of search results
+ * @param {boolean} options.images=true Include image in results
+ * @param {number} options.imageSize=200 Image size in pixels
+ * @param {boolean} options.searchInTitleOnly=false Search in title only
+ * @param {boolean} options.filterDisambiguation=true Filter disambiguation pages
  * @example await searchWikipedia("JavaScript", { plainText: true })
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}

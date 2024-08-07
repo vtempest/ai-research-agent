@@ -1,9 +1,10 @@
 /**
- * Checks word is not in 320 commonly ignored "stop words" in queries
+ * Checks word is in 320 commonly ignored "stop words" 
+ * in queries, using method with O(1) complexity Trie lookup 
  * https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt
  * @param {string} word
  * @returns {Boolean}
- * @Category Tokenize
+ * @category Tokenize
 */
 export function isStopWord(word) {
   return {

@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { searchWikipedia} from ".."
+import { searchWikipedia} from "../index.js"
 
 test("search wiki", async () => {
   var result = await searchWikipedia("bm25 search", {

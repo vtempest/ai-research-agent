@@ -1,5 +1,5 @@
 import { test, expect, test } from 'vitest';
-import { weighTopicDirichletDistribution, splitSentences } from ".."
+import { weighTopicDirichletDistribution, splitSentences } from "../index.js"
 
 test('topic distribution Test', () => {
   // Function to generate a random collection of documents

@@ -1,4 +1,5 @@
 import fs from "fs";
+import wikiWordFrequency from "../../data/wiki-word-freq-325k.json"
 
 
 const OPTION_PRINT_SPACING = 0;
@@ -162,7 +163,6 @@ for (var key of Object.keys(wordsPhrasesTree)) {
   });
 }
 
-import wikiWordFrequency from "../../data/wiki-word-freq-325k.json"
 
 /** 
  * Find domain-specific unique words for a single doc with BM25 formula 

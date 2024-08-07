@@ -20,8 +20,8 @@ import {isStopWord} from "./stopwords";
  * @param {number} options.checkTypos - check for typos
  * @param {number} options.ignoreStopWords - ignore 300+ overused words
  * @param {number} options.checkRootWords - check for word's root stem
- * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"] , [20, 5, "physics"]]
- * @category Tokenizer
+ * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"],...]
+ * @category Tokenize
  */
 export function tokenizeTopics(phrase, options = {}) {
   let {
