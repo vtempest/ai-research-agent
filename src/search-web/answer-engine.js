@@ -21,6 +21,8 @@ export async function searchSTREAM(query, options = {}) {
     maxTopResultsToExtract = 6,
   } = options;
 
+  var timerStart = Date.now();
+
   //try archive.org if original url fails or bot-blocked
 
   const optionUseCacheBackup = 1;
@@ -37,20 +39,27 @@ export async function searchSTREAM(query, options = {}) {
   }
 
   results = results.slice(0, maxTopResultsToExtract);
-  console.log("Search results:", results);
 
-  for (const r of results) {
-    let extraction = await extract(r.url);
+  for (var i in results) {
+    
+    let {url, cached} = results[i];
+
+    let extraction = await extract(url);
 
     if (optionUseCacheBackup && extraction.error)
-      extraction = await extract(r.cached);
+      extraction = await extract(cached);
 
     if (extraction.error) console.error("error", extraction);
-
+  else{
+    results[i] = extraction;
+  }
     // extraction.html = "";
     // html.html = splitSentences.default(html.html);
-    console.log("Extracted content:", extraction);
+    // console.log("Extracted content:", extraction);
   }
 
-  return results;
+
+  var timeElapsed = Date.now() - timerStart;
+
+  return {results, timeElapsed};
 }

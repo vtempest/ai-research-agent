@@ -18,7 +18,7 @@
  * @returns {Array<Object>} Updated array with added weights: [{text, keyphrases, weight}]
  * @category Topics
 */
-function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases) {
+export function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases) {
   // Define graph data structure
   const graph = {
     vertices: new Map(),
@@ -106,8 +106,8 @@ function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases) {
   let probabilityDistribution = [];
 
   // Perform random walks to distribute weights
-  const ITERATIONS = 10000;
-  const RESET_INTERVAL = 1000; // Reset to a random vertex to avoid getting stuck
+  const ITERATIONS = 1000;
+  const RESET_INTERVAL = 100; // Reset to a random vertex to avoid getting stuck
   for (let i = 0; i < ITERATIONS; i++) {
     let totalWeight = 0;
 

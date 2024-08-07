@@ -1,4 +1,4 @@
-import stopWords from "../tokenize/stopwords";
+import {isStopWord} from "../tokenize/stopwords";
 import {stemRootWord} from "../tokenize/stemmer.js";
 
 /**
@@ -62,8 +62,8 @@ export function weighTopicDirichletDistribution(sentences, options = {}) {
         cleanedWord !== "" &&
         stemmedWord &&
         cleanedWord.length > 1 &&
-        !combinedStopwords.includes(cleanedWord.replace("'", "")) &&
-        !combinedStopwords.includes(stemmedWord)
+        !isStopWord(cleanedWord.replace("'", "")) &&
+        !isStopWord(stemmedWord)
       ) {
         if (termFrequency[stemmedWord]) {
           termFrequency[stemmedWord]++;

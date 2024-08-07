@@ -19,7 +19,7 @@ export default async function extractContent(documentOrHTML, options = {}) {
     formatting = true,
     absoluteURLs = 1,
     url = "",
-    usePostlightExtractor = 1,
+    usePostlightExtractor =0,
   } = options;
   if (typeof documentOrHTML === "string") var html = documentOrHTML;
   else var html = documentOrHTML.documentElement.innerHTML;

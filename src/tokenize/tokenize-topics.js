@@ -1,5 +1,5 @@
 import {stemRootWord} from "./stemmer";
-import stopWords from "./stopwords";
+import {isStopWord} from "./stopwords";
 
 /**
  * @typedef {Array} Token
@@ -45,14 +45,15 @@ export function tokenizeTopics(phrase, options = {}) {
   var words = phrase.toLowerCase().split(/\W+/);
 
   //check for typos
-  if (checkTypos) words = words.map((word) => typosModel[word] || word);
+  
+  // if (checkTypos && typosModel) words = words.map((word) => typosModel[word] || word);
 
   var topics = [];
   for (var i = 0; i < words.length; i++) {
     var word = words[i];
 
     //ignore 300+ common stop words
-    if (ignoreStopWords && stopWords.includes(word))
+    if (ignoreStopWords && isStopWord(word))
       continue;
 
     //Find next word phrase completion list
@@ -73,7 +74,7 @@ export function tokenizeTopics(phrase, options = {}) {
     }
 
     //if word still not in dict, add it as a single word
-    if (!possiblePhrases) topics.push([0, 0, word]);
+    if (!possiblePhrases) topics.push([word, 0, 0, "" ]);
 
     if (possiblePhrases) {
       var maxPhraseLength = 1; 
@@ -95,14 +96,17 @@ export function tokenizeTopics(phrase, options = {}) {
       for (var phrase of possiblePhrases) {
         //if no next phrase, preserve the single word
         //it culd also be not in the dict first word
-        if (phrase && !phrase[0]) {
-          phrase.push(word);
+        if (phrase && !phrase[0] && !singleWordObj) {
+          phrase = phrase?.slice(1,3)
+          phrase.unshift(word); //add to start
           singleWordObj = phrase;
         } else {
           //add next word to the phrase up to maxPhraseLength
           if (!isPhraseFound && nextWords.startsWith(phrase[0])) {
-            phrase.push(word + " " + phrase[0]);
-            topics.push(phrase?.slice(1,4)); // remove first which is next words
+            var fullPhrase = word + " " + phrase[0]
+            phrase = phrase?.slice(1,3)
+            phrase.unshift(fullPhrase);
+            topics.push(phrase); // remove first which is next words
 
             //skip looping thru the next words added to phrase
             i += phrase[0]?.split(" ").length; //TODO fi
@@ -118,7 +122,7 @@ export function tokenizeTopics(phrase, options = {}) {
       //if no phrases then add the single word
       if (!isPhraseFound) {
         singleWordObj = singleWordObj; //|| { full: word }; // could be not in dict but starter of phrases
-        topics.push(singleWordObj?.slice(1,4));
+        topics.push(singleWordObj);
       }
     }
   }

@@ -1,4 +1,4 @@
-import stopWords from "../tokenize/stopwords";
+import {isStopWord} from "../tokenize/stopwords";
 
 /**
  * Searches terms from index for ngram of given size
@@ -26,16 +26,16 @@ export default function extractNounEdgeGrams(
 
   var nextWords = terms.slice(index, index + nGramSize);
   // is noun or is a stop word like 'state of the art'
+
   if (
     isNoun(nextWords[0]) &&
-    isNoun(nextWords[nGramSize - 1]) &&
-    nextWords.every(
+    isNoun(nextWords[nGramSize - 1]) 
+    && nextWords.every(
       (word) =>
-        word[4]?.length >= minWordLength && 
-      (isNoun(word) || stopWords.includes(word[4])) 
-    )
+        word[0]?.length >= minWordLength && 
+      (isNoun(word) || isStopWord(word[0]))  )
   ) {
-    var nextWordsString = nextWords.map((v) => v[4]).join(" ");
+    var nextWordsString = nextWords.map(v => v[0]).join(" ");
     if (!nGrams[nGramSize][nextWordsString])
       nGrams[nGramSize][nextWordsString] = [];
 

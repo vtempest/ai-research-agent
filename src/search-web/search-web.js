@@ -29,10 +29,32 @@ export async function searchWeb(query, options = {}) {
   ];
   const RECENCY_LIST = ["", "day", "week", "month", "year"];
 
-  const SEARX_DOMAINS =
-    "baresearch.org,copp.gg,darmarit.org,etsi.me,fairsuch.net,nogoo.me,northboot.xyz,nyc1.sx.ggtyler.dev,ooglester.com,opnxng.com,paulgo.io,priv.au,s.mble.dk,s.trung.fun,search.blitzw.in,search.bus-hit.me,search.charliewhiskey.net,search.citw.lgbt,search.darkness.services,search.datura.network,search.dotone.nl,search.einfachzocken.eu,search.gcomm.ch,search.hbubli.cc,search.im-in.space,search.incogniweb.net,search.indst.eu,search.inetol.net,search.leptons.xyz,search.mdosch.de,search.nadeko.net,search.nerdvpn.de,search.ngn.tf,search.ononoki.org,search.privacyredirect.com,search.projectsegfau.lt,search.rhscz.eu,search.rowie.at,search.sapti.me,search.smnz.de,search.tommy-tran.com,searx.aleteoryx.me,searx.ankha.ac,searx.be,searx.catfluori.de,searx.colbster937.dev,searx.daetalytica.io,searx.dresden.network,searx.electroncash.de,searx.foss.family,searx.hu,searx.juancord.xyz,searx.lunar.icu,searx.mv-software.de,searx.mxchange.org,searx.namejeff.xyz,searx.nobulart.com,searx.numeriquement.fr,searx.oakleycord.dev,searx.ox2.fr,searx.perennialte.ch,searx.rhscz.eu,searx.ro,searx.sev.monster,searx.thefloatinglab.world,searx.tiekoetter.com,searx.tuxcloud.net,searx.work,searx.zhenyapav.com,searxng.brihx.fr,searxng.ch,searxng.hweeren.com,searxng.online,searxng.shreven.org,searxng.site,skyrimhater.com,sx.ca.zorby.top,sx.catgirl.cloud,sx.thatxtreme.dev,sx.zorby.top,www.gruble.de,www.jabber-germany.de,xo.wtf".split(
-      ","
-    );
+  const SEARX_DOMAINS = ['baresearch.org', 'copp.gg', 'darmarit.org', 
+    'etsi.me', 'fairsuch.net', 'nogoo.me', 'northboot.xyz', 
+    'nyc1.sx.ggtyler.dev', 'ooglester.com', 'opnxng.com', 'paulgo.io', 
+    'priv.au', 's.mble.dk', 's.trung.fun', 'search.blitzw.in', 
+     'search.charliewhiskey.net', 'search.citw.lgbt', 
+    'search.darkness.services', 'search.datura.network', 'search.dotone.nl', 
+    'search.einfachzocken.eu', 'search.gcomm.ch', 'search.hbubli.cc', 
+    'search.im-in.space', 'search.incogniweb.net', 'search.indst.eu', 
+    'search.inetol.net', 'search.leptons.xyz', 'search.mdosch.de', 
+    'search.nadeko.net', 'search.nerdvpn.de', 'search.ngn.tf', 
+    'search.ononoki.org', 'search.privacyredirect.com', 'search.sapti.me', 
+    'search.rhscz.eu', 'search.rowie.at', 'search.projectsegfau.lt', 
+    'search.tommy-tran.com', 'searx.aleteoryx.me', 'searx.ankha.ac', 
+    'searx.be', 'searx.catfluori.de', 'searx.colbster937.dev', 
+    'searx.daetalytica.io', 'searx.dresden.network', 'searx.electroncash.de', 
+    'searx.foss.family', 'searx.hu', 'searx.juancord.xyz', 'searx.lunar.icu', 
+    'searx.mv-software.de', 'searx.mxchange.org', 'searx.namejeff.xyz', 
+    'searx.nobulart.com', 'searx.numeriquement.fr', 'searx.oakleycord.dev', 
+    'searx.ox2.fr', 'searx.perennialte.ch', 'searx.rhscz.eu', 'searx.ro', 
+    'searx.sev.monster', 'searx.thefloatinglab.world', 'searx.tiekoetter.com', 
+    'searx.tuxcloud.net', 'searx.work', 'searx.zhenyapav.com', 
+    'searxng.brihx.fr', 'searxng.ch', 'searxng.hweeren.com', 'search.smnz.de', 
+    'searxng.online', 'searxng.shreven.org', 'searxng.site', 'skyrimhater.com', 
+    'sx.ca.zorby.top', 'sx.catgirl.cloud', 'sx.thatxtreme.dev', 
+    'sx.zorby.top', 'www.gruble.de', 'www.jabber-germany.de', 'xo.wtf'];
+
   try {
     //select a random domain if none is provided
     const searchDomain =

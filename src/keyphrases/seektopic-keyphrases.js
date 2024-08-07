@@ -11,7 +11,7 @@ import extractNounEdgeGrams from "./ngrams.js";
  * concepts referred to most by other sentences. Based on the
  * TextRank & PageRank algorithms, it randomly surfs links to nodes
  * to find probability of being at that node, thus ranking influence.
- * @param {string} inputString - input text to analyze
+ * @param {string} docText - input text to analyze
  * @param {Object} options
  * @param {Object} options.phrasesModel - phrases model
  * @param {Object} options.typosModel - typos model
@@ -25,16 +25,16 @@ import extractNounEdgeGrams from "./ngrams.js";
  * @param {string} options.heavyWeightQuery - query to give heavy weight to
  * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
  * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
-* @category Topics
-*/
-export function extractSEEKTOPIC(inputString, options = {}) {
+ * @category Topics
+ */
+export function extractSEEKTOPIC(docText, options = {}) {
   var {
     phrasesModel,
     typosModel,
     maxWords = 5,
-    minWords = 2,
+    minWords = 1,
     minWordLength = 3,
-    topKeyphrasesPercent = 0.2,
+    topKeyphrasesPercent = 0.5,
     limitTopSentences = 5,
     limitTopKeyphrases = 10,
     minKeyPhraseLength = 5,
@@ -42,18 +42,18 @@ export function extractSEEKTOPIC(inputString, options = {}) {
   } = options;
 
   //if not string throw error
-  if (typeof inputString != "string") {
-    throw new Error("inputString must be a string");
+  if (typeof docText != "string") {
+    throw new Error("docText must be a string");
   }
 
   //add space before < to ensure split sentences
-  inputString = inputString
+  docText = docText
     .replace(/</g, " <")
     .replace(/>/g, "> ")
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
 
   //split into sentences
-  var sentencesArray = splitSentences(inputString);
+  var sentencesArray = splitSentences(docText);
   var sentenceNumber = 0;
 
   //extract ngrams
@@ -62,17 +62,17 @@ export function extractSEEKTOPIC(inputString, options = {}) {
   // create sentenceKeysMap  [{text,index,tokens,keyphrases:[{text,weight}] }]
   var sentenceKeysMap = [];
 
-  for (var i = 0; i < sentencesArray.length; i++) {
-    var text = sentencesArray[i];
+  for (var index in sentencesArray) {
+    var text = sentencesArray[index];
 
     var tokens = tokenizeTopics(text, {
       phrasesModel,
-      typosModel,
+      // typosModel,
     });
 
     sentenceKeysMap.push({
       text,
-      index: i,
+      index,
       keyphrases: [],
       tokens,
     });
@@ -85,7 +85,7 @@ export function extractSEEKTOPIC(inputString, options = {}) {
           i,
           nGrams,
           minWordLength,
-          sentenceNumber++
+          index
         );
   }
 
@@ -151,14 +151,15 @@ export function extractSEEKTOPIC(inputString, options = {}) {
       if (keyphrase.keyphrase == heavyWeightQuery) keyphrase.weight += 5000;
     });
 
-
-    var keysUniqueMap = {};
+  var keysUniqueMap = {};
   //deduplicate and enforce unique values
 
   keyphraseObjects = keyphrasesFolded
     .sort((a, b) => b.weight - a.weight)
-    .filter(k=>!keysUniqueMap[k.keyphrase] && (keysUniqueMap[k.keyphrase] = 1))
-    .map(k => ({sentences: [...new Set(k.sentences)], ...k}));
+    .filter(
+      (k) => !keysUniqueMap[k.keyphrase] && (keysUniqueMap[k.keyphrase] = 1)
+    )
+    .map((k) => ({ sentences: [...new Set(k.sentences)], ...k }));
 
   var limitKeyPhrases = Math.floor(
     keyphrasesFolded.length * topKeyphrasesPercent
@@ -171,7 +172,7 @@ export function extractSEEKTOPIC(inputString, options = {}) {
     .map((keyphraseObject) => {
       var phraseTokenized = tokenizeTopics(keyphraseObject.keyphrase, {
         phrasesModel,
-        typosModel,
+        // typosModel,
       });
       //if wiki entity, triple weight
       if (phraseTokenized.filter((r) => r[0] == 50)[0]) {
@@ -198,24 +199,23 @@ export function extractSEEKTOPIC(inputString, options = {}) {
   for (var keyphraseObject of keyphraseObjects) {
     const { keyphrase, sentences, weight } = keyphraseObject;
     for (var sentenceNumber of sentences)
-      sentenceKeysMap[sentenceNumber].keyphrases.push({ keyphrase, weight });
+      sentenceKeysMap[sentenceNumber].keyphrases?.push({ keyphrase, weight });
   }
 
   //run text rank
   var topSentences = rankSentencesCentralToKeyphrase(sentenceKeysMap)
     ?.sort((a, b) => b.weight - a.weight)
-    .slice(0, limitTopSentences)    //cut off top S limit
-    .map(s => ({
+    .slice(0, limitTopSentences) //cut off top S limit
+    .map((s) => ({
+      ...s,
       text: s.text, //remove to not show text
-      keyphrases: s.keyphrases.map(k => k.keyphrase),
-      ...s
+      keyphrases: s.keyphrases.map((k) => k.keyphrase),
     }));
 
   // limit keyphrases to top K
-  var keyphrases = keyphraseObjects
-  .slice(0, limitTopKeyphrases).map(k => ({
-    sentences: k.sentences.join(","),
+  var keyphrases = keyphraseObjects.slice(0, limitTopKeyphrases).map((k) => ({
     ...k,
+    sentences: k.sentences.join(","),
   }));
 
   return { topSentences, keyphrases, sentences: sentencesArray };

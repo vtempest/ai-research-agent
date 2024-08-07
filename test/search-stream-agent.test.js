@@ -1,8 +1,8 @@
 import { test, expect } from "vitest";
 import { searchSTREAM } from "..";
 
-test("test ai answer angine", async () => {
-  var query = "what will claude ai look like ";
+test("test STREAM search answer angine", async () => {
+  var query = " how to get structured output from chatgpt ";
 
   var result = await searchSTREAM(query);
 
