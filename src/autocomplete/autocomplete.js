@@ -13,8 +13,8 @@ export function autocompleteNextWords(query, options = {}) {
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions
   } = options;
 
-  //strip non-alphanumeric characters from query
-  query = query.trim().replace(/[^a-zA-Z0-9\s]/g, "");
+  //strip non-alphanumeric characters from query and -'
+  query = query.trim().replace(/[^a-zA-Z0-9\s\-\']/g, "");
 
   //split into words
   var words = query.toLowerCase().split(/\W+/);

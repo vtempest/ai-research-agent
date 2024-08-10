@@ -64,11 +64,11 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
           .join(" ")}>`;
       return acc;
     }, "")
-    .replace(/[\u0300-\u036f]/g, "") //special chars
     .replace(/ \s+/g, " ")
     .replace(/<p><\/p>/g, " ")
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
 
+  basicHtml = convertHTMLSpecialChars(basicHtml);
   return basicHtml;
 }
 
@@ -142,4 +142,86 @@ export function convertHTMLToTokens(html) {
 
 
   return dom;
+}
+
+
+
+/**
+ * Converts HTML special characters like &<>"'`&rsquo; to entities or vice versa.
+ * It handles named entities, decimal numeric character references, and hexadecimal numeric character references.
+ *
+ * @param {string} str - The string to process.
+ * @param {boolean} unescape=true - If true, converts entities to characters. 
+ *                                     If false, converts characters to entities.
+ * @return {string} The processed string.
+ * @category Extractor
+ * @example
+ * convertHTMLSpecialChars('&lt;p&gt;This &amp; that &copy; 2023 &quot;Quotes&quot; &#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
+ * // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
+ */
+export function convertHTMLSpecialChars(str, unescape = true ) {
+  const entityMap  = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    ' ': '&nbsp;',
+    "'": '&#39;',
+    '`': '&#96;',
+    '¢': '&cent;',
+    '£': '&pound;',
+    '¥': '&yen;',
+    '€': '&euro;',
+    '©': '&copy;',
+    '®': '&reg;',
+    '™': '&trade;',
+    '"': '&ldquo;',  // Left double curly quote
+    '"': '&rdquo;',  // Right double curly quote
+    '\'': '&lsquo;',  // Left single curly quote
+    '\'': '&rsquo;'   // Right single curly quote
+  };
+
+  // Add numeric character references for Latin-1 Supplement characters
+  for (let i = 160; i <= 255; i++) {
+    entityMap[String.fromCharCode(i)] = `&#${i};`;
+  }
+
+  if (unescape) {
+    // Create a reverse mapping for unescaping
+    const reverseEntityMap = 
+      Object.fromEntries(Object.entries(entityMap).map(([k, v]) => [v, k]));
+    
+    // Add alternative representations
+    reverseEntityMap['&apos;'] = "'";
+    reverseEntityMap['&laquo;'] = '«';
+    reverseEntityMap['&raquo;'] = '»';
+    
+    // Regex to match all types of HTML entities
+    const entityRegex = new RegExp(
+      Object.keys(reverseEntityMap).join('|') + '|&#[0-9]+;|&#x[0-9a-fA-F]+;',
+      'g'
+    );
+
+
+
+    str = str.replace(entityRegex, entity => {
+      if (entity.startsWith('&#x')) {
+        // Convert hexadecimal numeric character reference
+        return String.fromCharCode(parseInt(entity.slice(3, -1), 16));
+      } else if (entity.startsWith('&#')) {
+        // Convert decimal numeric character reference
+        return String.fromCharCode(parseInt(entity.slice(2, -1), 10));
+      }
+      // Convert named entity
+      return reverseEntityMap[entity] || entity;
+    });
+
+    str = str.replace(/[\u0300-\u036f]/g, "") //special chars
+
+    return str;
+  } else {
+    // Regex to match all characters that need to be escaped
+    const charRegex = new RegExp(`[${Object.keys(entityMap).join('')}]`, 'g');
+    return str.replace(charRegex, char => entityMap[char]);
+  }
 }

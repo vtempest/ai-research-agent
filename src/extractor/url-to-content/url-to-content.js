@@ -1,7 +1,6 @@
 import extractContent from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
 import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
-// import fetch from "node-fetch";
 
 /**
  * 🚜📜 Tractor the Text Extractor -
@@ -18,8 +17,8 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
  * @param {boolean} options.links=true - include links
  * @param {boolean} options.formatting=true - preserve formatting
  * @param {boolean} options.absoluteURLs=true - convert URLs to absolute
- * @param {boolean} options.usePostlightParser=true - PostlightParser is an 
- * improved version of Readability with 100+ custom adapters for major websites. 
+ * @param {boolean} options.usePostlightParser=true - PostlightParser is an
+ * improved version of Readability with 100+ custom adapters for major websites.
  * @param {boolean} options.timeout=5 - http request timeout
  * @returns {Object} - {author, date, title, source, content, image}
  * @category Extractor
@@ -32,8 +31,8 @@ export async function extract(urlOrDoc, options = {}) {
     formatting = true,
     absoluteURLs = true,
     usePostlightParser = false,
-    timeout = 5
-  } = options
+    timeout = 5,
+  } = options;
   var response = {};
 
   let isPdf;
@@ -62,9 +61,7 @@ export async function extract(urlOrDoc, options = {}) {
         </iframe> ${content}`;
     } else {
       try {
-        var html = await (
-          await fetch(url, { signal: AbortSignal.timeout(timeout * 1000) })
-        ).text();
+        var html = await (await fetchURL(url)).text();
       } catch (e) {
         return { error: "Error in fetch" };
       }
@@ -124,4 +121,40 @@ export async function extract(urlOrDoc, options = {}) {
   response = Object.assign({ url }, response);
 
   return response;
+}
+
+/**
+ * Fetch with timeout and redirects
+ * @param {string} url - url to fetch
+ * @param {object} options
+ * @param {number} options.timeout=5 -  abort request if not retrived, in seconds
+ * @param {number} options.maxRedirects=3 - max redirects to follow
+ * @param {number} options.redirectCount=0 - current redirect count
+ * @returns {Promise<Response>|Object} - fetch response or error object
+ * @category Extractor
+ * @example await fetchURL("https://hckrnews.com", {timeout: 5, maxRedirects: 5})
+ */
+export async function fetchURL(url, options = {}) {
+  try {
+    let {  timeout = 5, redirectCount = 0, maxRedirects = 3 } = options;
+
+
+    options = { ...options, signal: AbortSignal.timeout(timeout * 1000) };
+
+    const response = await fetch(url, options);
+
+    if (response.redirected) {
+      
+      if (redirectCount > maxRedirects)
+        return { error: "Max redirects exceeded" };
+      redirectCount++;
+      options = { ...options, redirectCount };
+
+      return fetchURL(response.url, options);
+    }
+
+    return response;
+  } catch (e) {
+    return { error: "Error in fetch" };
+  }
 }

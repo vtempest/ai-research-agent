@@ -12,7 +12,7 @@ import dataHumanNames from "../../../data/human-names-92k.json";
  * @returns {object} {author_cite, author_short, author_type}
  * @category Extractor
  */
-export function extractHumanName(author) {
+export function extractNamedEntity(author) {
   
   var authorType = 4;
 
@@ -71,7 +71,7 @@ export function extractHumanName(author) {
   if (authorType == 3) {
     author_short = author;
   } else {
-    var authorObj = extractHumanNameParts(author);
+    var authorObj = extractNamedEntityParts(author);
     if (authorObj) {
       author =
         authorObj.lastname +
@@ -103,7 +103,7 @@ export function extractHumanName(author) {
  * @returns {Object}
  * @category Extractor
  */
-const extractHumanNameParts = (input) => {
+const extractNamedEntityParts = (input) => {
   // Initialize the result object
   const result = {
     prefix: "", //van der von de

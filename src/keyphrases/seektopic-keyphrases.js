@@ -14,15 +14,14 @@ import extractNounEdgeGrams from "./ngrams.js";
  * @param {string} docText - input text to analyze
  * @param {Object} options
  * @param {Object} options.phrasesModel - phrases model
- * @param {Object} options.typosModel - typos model
- * @param {number} options.maxWords - maximum words in a keyphrase (default: 5)
- * @param {number} options.minWords - minimum words in a keyphrase (default: 2)
- * @param {number} options.minWordLength - minimum length of a word (default: 3)
- * @param {number} options.topKeyphrasesPercent - percentage of top keyphrases to consider (default: 0.2)
- * @param {number} options.limitTopSentences - maximum number of top sentences to return (default: 5)
- * @param {number} options.limitTopKeyphrases - maximum number of top keyphrases to return (default: 10)
- * @param {number} options.minKeyPhraseLength - minimum length of a keyphrase (default: 5)
- * @param {string} options.heavyWeightQuery - query to give heavy weight to
+ * @param {number} options.maxWords=5 - maximum words in a keyphrase 
+ * @param {number} options.minWords=1 - minimum words in a keyphrase
+ * @param {number} options.minWordLength=3 - minimum length of a word 
+ * @param {number} options.topKeyphrasesPercent=0.2 - percentage of top keyphrases to consider
+ * @param {number} options.limitTopSentences=5 - maximum number of top sentences to return 
+ * @param {number} options.limitTopKeyphrases=10 - maximum number of top keyphrases to return 
+ * @param {number} options.minKeyPhraseLength=6 - minimum length of a keyphrase 
+ * @param {string} options.heavyWeightQuery  - query to give heavy weight to
  * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
  * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
  * @category Topics
@@ -30,15 +29,15 @@ import extractNounEdgeGrams from "./ngrams.js";
 export function extractSEEKTOPIC(docText, options = {}) {
   var {
     phrasesModel,
-    typosModel,
     maxWords = 5,
-    minWords = 1,
+    minWords = 2,
     minWordLength = 3,
     topKeyphrasesPercent = 0.5,
     limitTopSentences = 5,
     limitTopKeyphrases = 10,
     minKeyPhraseLength = 5,
     heavyWeightQuery = "",
+    removeHTML = true,
   } = options;
 
   //if not string throw error
@@ -51,6 +50,10 @@ export function extractSEEKTOPIC(docText, options = {}) {
     .replace(/</g, " <")
     .replace(/>/g, "> ")
     .replace(/&.{2,5};/g, ""); //&quot; &amp; &lt; &gt; &nbsp;
+
+  //remove html tags
+  if (removeHTML)
+  docText = docText.replace(/<[^>]*>/g, "");
 
   //split into sentences
   var sentencesArray = splitSentences(docText);
@@ -72,9 +75,9 @@ export function extractSEEKTOPIC(docText, options = {}) {
 
     sentenceKeysMap.push({
       text,
-      index,
+      index: Number(index),
       keyphrases: [],
-      tokens,
+      // tokens,
     });
 
     for (var i = 0; i < tokens.length; i++)
@@ -111,31 +114,30 @@ export function extractSEEKTOPIC(docText, options = {}) {
 
   for (var keyphraseObject of keyphraseObjects) {
     var shouldAddCurrent = true;
+      //check if larger includes smaller phrase or smaller phrase minus last word
 
     for (var i = 0; i < keyphrasesFolded.length; i++) {
       var phrase = keyphraseObject.keyphrase;
       var lastWordIndex = phrase.lastIndexOf(" ");
 
-      //check if larger includes smaller phrase or smaller phrase minus last word
-      if (
-        keyphrasesFolded[i].keyphrase.indexOf(phrase) > -1 ||
-        (lastWordIndex > 5 &&
-          keyphrasesFolded[i].keyphrase.includes(
-            phrase.substring(0, lastWordIndex)
-          ))
-      ) {
+      var largerKeyphraseSplit = keyphrasesFolded[i].keyphrase.split(" ")
+      // compare sorted arrays of words, see if at least 2 words different
+        var diff =  phrase.split(" ").filter(x => !largerKeyphraseSplit.includes(x)).length;
+        if (diff < 2) {
+
         //combine weight of smaller keyphrase into larger, divided by word count
         keyphrasesFolded[i].weight +=
           keyphraseObject.weight /
           keyphrasesFolded[i].keyphrase.split(" ").length;
-        keyphrasesFolded[i].sentences = keyphrasesFolded[i].sentences.concat(
+        keyphrasesFolded[i].sentences = [...new Set(keyphrasesFolded[i].sentences.concat(
           keyphraseObject.sentences
-        );
+        ))];
 
         // use whatever version has greater weight as keyphrase text
-        if (keyphrasesFolded[i].weight < keyphraseObject.weight)
+        if (keyphrasesFolded[i].weight < keyphraseObject.weight){
           keyphrasesFolded[i].keyphrase = keyphraseObject.keyphrase;
-
+          keyphrasesFolded[i].words = keyphraseObject.words;
+        }
         shouldAddCurrent = false;
       }
     }
@@ -193,7 +195,7 @@ export function extractSEEKTOPIC(docText, options = {}) {
     .filter((k) => k.keyphrase.length > minKeyPhraseLength)
     .sort((a, b) => b.weight - a.weight)
     //limit to top % of keyphrases to give weights to
-    .slice(0, limitKeyPhrases);
+    // .slice(0, limitKeyPhrases);
 
   //add keyphrases to sentences Map
   for (var keyphraseObject of keyphraseObjects) {
@@ -209,7 +211,7 @@ export function extractSEEKTOPIC(docText, options = {}) {
     .map((s) => ({
       ...s,
       text: s.text, //remove to not show text
-      keyphrases: s.keyphrases.map((k) => k.keyphrase),
+      keyphrases: [...new Set(s.keyphrases.map((k) => k.keyphrase) )].slice(0,5),
     }));
 
   // limit keyphrases to top K

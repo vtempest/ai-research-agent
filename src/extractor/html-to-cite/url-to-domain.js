@@ -26,3 +26,14 @@ export function convertURLToDomain(domain) {
   return domainWithoutSuffix;
 }
 
+
+/**
+ * Checks if a string is a valid URL.
+ * @param {string} string 
+ * @returns {boolean} true if the string is a valid URL
+ * @private
+ */
+export function isURLValid(string) {
+  return /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+  .test(string);
+}

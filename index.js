@@ -20,7 +20,7 @@ import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-te
 import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
 
 import { weighTopicDirichletDistribution } from "./src/topic-distribution/topic-distribution.js";
-
+import { calculateSimilarityByCharacter } from "./src/match/compare-letters.js";
 import { autocompleteNextWords } from "./src/autocomplete/autocomplete.js";
 import { tokenizeTopics } from "./src/tokenize/tokenize-topics.js";
 import { splitSentences } from "./src/tokenize/sentences.js";
@@ -30,6 +30,7 @@ import { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequen
 
 // Export all functions as named exports
 export {
+  calculateSimilarityByCharacter,
   extractPDF,
   extractYoutubeText,
   searchWeb,

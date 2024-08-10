@@ -14,12 +14,11 @@ import {extract} from "../../index.js";
  *  Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
  *
  * @async
- * @function searchSTREAM
  * @param {string} query - The search query string.
  * @param {object} options={} - Optional configuration for the search process.
  * @param {number} options.categoryIndex=0 - Index of the search category.
  * @param {number} options.recencyIndex=0 - Index representing the recency of results.
- * @param {number} options.maxRetries=3 - Maximum number of retry attempts for the search.
+ * @param {number} options.maxRetries=5 - Maximum number of retry attempts for the search.
  * @param {number} options.maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
  * @returns {Promise<Array>} A promise that resolves to an array containing the search results, extracted information, and generated answer.
  * @throws {Error} Throws an error if the search or analysis process fails.
@@ -35,7 +34,7 @@ export async function searchSTREAM(query, options = {}) {
   const {
     categoryIndex = 0,
     recencyIndex = 0,
-    maxRetries = 3,
+    maxRetries = 5,
     maxTopResultsToExtract = 6,
   } = options;
 

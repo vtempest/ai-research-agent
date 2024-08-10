@@ -17,12 +17,12 @@
 * [Autocomplete Server Demo](https://wiki-phrases-tokenizer.vtempest.workers.dev)
 
 
-* [Sample Output](https://github.com/vtempest/wiki-phrase-tokenizer/blob/master/test/data/output-keyphrases.json)
+* [Sample Output](https://github.com/vtempest/wiki-phrase-tokenizer/blob/master/test/data/)
 
 * NPM Tests --  `npm run test` to run many tests custom to your data
 
 
-> Being is Becoming: Whatever the future of search can be, that is what it must become.
+> Being is Becoming: Whatever the future of research can be, that is what it must become.
 
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 

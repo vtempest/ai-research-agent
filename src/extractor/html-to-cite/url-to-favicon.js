@@ -4,9 +4,9 @@
  * @param {object} options 
  * @returns {Promise<string|null>} Favicon URL or null if not found
  * @category Extractor
- * @example const favicons = await getFavicon('https://github.com/') 
+ * @example const favicons = await extractFavicon('https://github.com/') 
 */
-export async function getFavicon(url, options = {}) {
+export async function extractFavicon(url, options = {}) {
   const { timeout = 5000, maxRedirects = 3 } = options;
 
   const controller = new AbortController();
@@ -54,7 +54,7 @@ async function fetchWithRedirects(url, options, redirectCount = 0) {
   return response;
 }
 
-function extractFaviconUrls(html, baseUrl) {
+export function extractFaviconUrls(html, baseUrl) {
   const icons = [];
 
   // Extract from HTML
@@ -105,8 +105,3 @@ function resolveUrl(url, base) {
   return combineURLs(base, url);
 }
 
-
-// Example usage
-var favicons = await getFavicon('https://github.com/akanshgulati/scrap-favicon/tree/master')
-
-console.log(favicons);

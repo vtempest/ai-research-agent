@@ -7,7 +7,7 @@ import {
   extractTitle,
 } from "./html-dom-to-cite.js";
 import extractMetadata from "./metadata-to-cite.js";
-import { extractHumanName } from "./human-names-recognize.js";
+import { extractNamedEntity } from "./human-names-recognize.js";
 
 /**
  * Extract Expert Excerpt 
@@ -34,7 +34,7 @@ export function extractCite(document) {
   
 
   if (author)
-    var { author_cite, author_short, author_type } = extractHumanName(author);
+    var { author_cite, author_short, author_type } = extractNamedEntity(author);
 
   // console.log(author_cite, author_short, author_type);
   date = extractDate(document) || date;

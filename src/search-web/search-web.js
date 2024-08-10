@@ -7,9 +7,10 @@
  * @function searchWeb
  * @param {string} query - The search query string.
  * @param {object} options={} - Optional configuration for the search.
- * @param {number} options.categoryIndex=0 - Index of the search category (0-9).
- * @param {number} options.recencyIndex=0 - Index representing the recency of results.
- * @param {string|null} options.selectedDomain=null - Specific domain to search, if any.
+ * @param {number} options.categoryIndex=0 - "general", "videos", "news", "images", 
+ *  "science", "map", "music", "it", "files", "social+media"
+ * @param {number} options.recencyIndex=0 - ["", "day", "week", "month", "year"]
+ * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries=3 - Maximum number of retry attempts if the initial search fails.
  * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[], cached: string}>>} An array of search result objects.
  * @throws {Error} Throws an error if the search fails after all retry attempts.

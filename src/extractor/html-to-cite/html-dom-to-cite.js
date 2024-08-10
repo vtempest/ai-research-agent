@@ -1,4 +1,4 @@
-import { extractHumanName } from "./human-names-recognize.js";
+import { extractNamedEntity } from "./human-names-recognize.js";
 import { parseDate } from "chrono-node";
 
 const AUTHOR_META_TAGS = [
@@ -125,7 +125,7 @@ const validateAuthor = (author) => {
 const extractAndValidateHumanName = (author) => {
   const validatedAuthor = validateAuthor(author);
   if (validatedAuthor) {
-    return extractHumanName(validatedAuthor);
+    return extractNamedEntity(validatedAuthor);
   }
   return null;
 };

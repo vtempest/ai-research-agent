@@ -16,7 +16,7 @@ export function splitSentences(inputText, options = {}) {
     splitOnNewlines = true,
     splitOnHtmlTags = true,
     minSize = 20,
-    maxSize = 600,
+    maxSize = 500,
   } = options;
 
     // List of 222 common abbreviations for various categories
@@ -230,6 +230,8 @@ export function splitSentences(inputText, options = {}) {
       } else if (sentence.length > maxSize) {
         // If the sentence is too long, split it at the last punctuation mark before maxSize
         const lastPunctuation = sentence.lastIndexOf(".", maxSize);
+        if (lastPunctuation === -1) 
+          return sliceIntoChunks(sentence, maxSize);
         if (lastPunctuation > minSize) {
           finalResult.splice(
             index + 1,
@@ -245,7 +247,34 @@ export function splitSentences(inputText, options = {}) {
 
       return sentence;
     })
+    .flat()
     .filter(Boolean); // Remove null entries from combining short sentences
+}
+
+function sliceIntoChunks(str, maxSize) {
+  const chunks = [];
+  let startIndex = 0;
+
+  while (startIndex < str.length) {
+    let endIndex = startIndex + maxSize;
+    
+    if (endIndex < str.length) {
+      // Look for the last space within the last 20 characters
+      let lastSpaceIndex = str.lastIndexOf(' ', endIndex);
+      let searchStartIndex = Math.max(startIndex, endIndex - 20);
+      
+      if (lastSpaceIndex >= searchStartIndex) {
+        endIndex = lastSpaceIndex;
+      }
+    } else {
+      endIndex = str.length;
+    }
+
+    chunks.push(str.slice(startIndex, endIndex).trim());
+    startIndex = endIndex + 1; // Skip the space
+  }
+
+  return chunks;
 }
 
 /**

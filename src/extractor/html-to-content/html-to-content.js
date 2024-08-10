@@ -4,7 +4,7 @@ import { Readability } from "./readability.js";
 import {extractCite} from "../html-to-cite/index.js";
 import {convertHTMLToBasicHTML} from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
-import {extractHumanName} from "../html-to-cite/human-names-recognize.js";
+import {extractNamedEntity} from "../html-to-cite/human-names-recognize.js";
 
 /**
  * Extracts the main content and cite from a document or HTML string
@@ -45,7 +45,7 @@ export default async function extractContent(documentOrHTML, options = {}) {
     return { error: "No content found" };
     //TODO comapre by name recognition
 
-  author = article.author && extractHumanName(article.author)?.author_type  ? article.author :  author;
+  author = article.author && extractNamedEntity(article.author)?.author_type  ? article.author :  author;
   title = article.title || title;
   date = parseDate(article.date_published)?.toISOString().split("T")?.[0] || date;
 

@@ -1,8 +1,5 @@
 import { resolvePDFJS } from "pdfjs-serverless";
 import * as chrono from "chrono-node";
-
-
-
 /**
  * Extracts formatted text from PDF with parsing of linebreaks ,
  * page headers, footnotes, and infering section headings based on
@@ -192,16 +189,17 @@ export async function extractPDF(pdfURL, options = {}) {
 
     if (addCitation) {
       // Get metadata
+      // avoid using date as it is unreliable sand generally file mod date
       var metadata = await doc.getMetadata();
       var { Author: author, CreationDate: date, Title: title } = metadata.info;
-      date =
-        date.slice(2, 6) + "-" + date.slice(6, 8) + "-" + date.slice(8, 10);
-      date = date ? new Date(date)?.toISOString().split("T")[0] : null;
+      // date =
+      //   date.slice(2, 6) + "-" + date.slice(6, 8) + "-" + date.slice(8, 10);
+      // date = date ? new Date(date)?.toISOString().split("T")[0] : null;
 
       //look for date in first page
       date =
-        chrono.parseDate(content.slice(0, 400))?.toISOString().split("T")[0] ||
-        date;
+        chrono.parseDate(content.slice(0, 400))?.toISOString().split("T")[0]
+        //  || date;
 
       title = content.slice(0, 400).match(/<h1>(.*?)<\/h1>/)?.[1] || title;
 

@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { extractSEEKTOPIC } from "../index.js";
-import { test3 } from "./data/data-long-article.js";
+import { extractSEEKTOPIC, extract } from "../index.js";
 
 import fs from "fs";
 //load models or pass them in
@@ -15,17 +14,43 @@ var typosModel = JSON.parse(
 
 describe("top sentences textrank", () => {
   it("get top sentences specific to a query", async () => {
-    let summary_obj = extractSEEKTOPIC(test3, {
-      phrasesModel,
-      typosModel,
-      heavyWeightQuery: "self attention",
-      limitTopSentences: 10,
-    });
+    let urls = [
+      "https://www.youtube.com/watch?v=T_IdLTofTUU",
+      "https://www.technologyreview.com/2024/07/30/1095489/openai-has-released-a-new-chatgpt-bot-that-you-can-talk-to/",
+      "https://www.youtube.com/watch?v=OsW_kdOV6c8",
+      "https://arxiv.org/pdf/1706.03762",
+      "https://vtempest.github.io/ai-research-agent/docs",
+    ];
 
-    fs.writeFileSync(
-      __dirname + "/data/output-keyphrases.json",
-      JSON.stringify(summary_obj, null, 2)
-    );
-    expect(typeof summary_obj).toBe("object");
+    for (var url of urls){
+
+      let extraction = await extract(url);
+
+      if(!extraction || !extraction.html ) continue;
+
+      extraction = Object.assign(
+        extraction,
+        extractSEEKTOPIC(extraction.html, {
+          phrasesModel,
+          typosModel,
+          heavyWeightQuery: "self attention",
+          limitTopSentences: 10,
+          removeHTML: true,
+        })
+      );
+
+      delete extraction.html;
+
+      var filename = url.replace(/[^a-zA-Z0-9]/g, "_").slice(-20);
+      fs.writeFileSync(
+        __dirname + "/data/"+filename+".json",
+        JSON.stringify(extraction, null, 2)
+      );
+
+      console.log(extraction.topSentences);
+
+    }
+
+    expect(filename).toBeDefined();
   }, 20000);
 });

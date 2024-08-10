@@ -7,7 +7,8 @@
   "description": "Search and outline a topic base with AI Research Agent",
   "license": "MIT",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/",
+    "docs": "jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/ ; npm run open",
+    "open": "vivaldi $(pwd)/docs/index.html",
     "test": "vitest",
     "test-ui": "vitest --ui --watch",
     "compile": "bun run ./src/dataset-import/compile-topic-model.js"
@@ -28,7 +29,6 @@
     "@xenova/transformers": "github:xenova/transformers.js#v3",
     "chrono-node": "^2.7.6",
     "linkedom": "^0.18.4",
-    "node-fetch": "^3.3.2",
     "pdfjs-serverless": "^0.5.1"
   }
 }

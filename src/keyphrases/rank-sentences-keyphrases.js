@@ -5,20 +5,28 @@
  * It creates a weighted graph where edges connect sentences to matching
  * keyphrases, then performs random walks to distribute probabilities.
  *
- *
+ * <br> 
  * 1. Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
  *    "An Improved TextRank Multi-feature Fusion Algorithm For
  *    Keyword Extraction of Educational Resources"
  *    https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
- *
+ * <br>
  * 2. Pan, S. et al (2019). "An improved TextRank keywords extraction algorithm"
  *    https://dl.acm.org/doi/10.1145/3321408.3326659
  *    https://doi.org/10.1145/3321408.3326659
  * @param {Array<Object>} sentencesWithKeyphrases Array of objects, each containing {text, keyphrases}
  * @returns {Array<Object>} Updated array with added weights: [{text, keyphrases, weight}]
  * @category Topics
-*/
-export function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases) {
+ */
+export function rankSentencesCentralToKeyphrase(
+  sentencesWithKeyphrases,
+  options = {}
+) {
+  const {
+    ITERATIONS = 10000, // Perform random walks to distribute weights
+    RESET_INTERVAL = 1000, // Reset to a random vertex to avoid getting stuck
+  } = options;
+
   // Define graph data structure
   const graph = {
     vertices: new Map(),
@@ -104,10 +112,6 @@ export function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases) {
     allVertices[Math.floor(Math.random() * allVertices.length)]
   );
   let probabilityDistribution = [];
-
-  // Perform random walks to distribute weights
-  const ITERATIONS = 1000;
-  const RESET_INTERVAL = 100; // Reset to a random vertex to avoid getting stuck
   for (let i = 0; i < ITERATIONS; i++) {
     let totalWeight = 0;
 
