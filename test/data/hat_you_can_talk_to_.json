@@ -1,0 +1,192 @@
+{
+  "url": "https://www.technologyreview.com/2024/07/30/1095489/openai-has-released-a-new-chatgpt-bot-that-you-can-talk-to/",
+  "title": "OpenAI has released a new ChatGPT bot that you can talk to",
+  "author_cite": "",
+  "author_short": "",
+  "author": {
+    "author_cite": "Melissa Heikkiläarchive page",
+    "author_short": "Melissa Heikkiläarchive page",
+    "author_type": 3
+  },
+  "date": "2024-07-30",
+  "source": "MIT Technology Review",
+  "word_count": 600,
+  "topSentences": [
+    {
+      "text": "OpenAI is rolling out an advanced AI chatbot that you can talk to.",
+      "index": 0,
+      "keyphrases": [
+        "openai rolling"
+      ],
+      "weight": 1500
+    },
+    {
+      "text": "Down the line, OpenAI plans to include more advanced features, such as video and screen sharing, which could make the assistant more useful.",
+      "index": 22,
+      "keyphrases": [
+        "openai rolling",
+        "sharing assistant"
+      ],
+      "weight": 1500
+    },
+    {
+      "text": "The voice mode is powered by OpenAI’s new GPT-4o model, which combines voice, text, and vision capabilities.",
+      "index": 6,
+      "keyphrases": [
+        "vein siri far capabilities",
+        "capabilities 100 external red"
+      ],
+      "weight": 1025
+    },
+    {
+      "text": "OpenAI says it has tested the model’s voice capabilities with more than 100 external red-teamers, who were tasked with probing the model for flaws.",
+      "index": 11,
+      "keyphrases": [
+        "vein siri far capabilities",
+        "capabilities 100 external red"
+      ],
+      "weight": 1017
+    },
+    {
+      "text": "The company also said it was preparing its infrastructure to offer real-time responses to millions of users.",
+      "index": 10,
+      "keyphrases": [
+        "real time millions users"
+      ],
+      "weight": 1001
+    },
+    {
+      "text": "The new ChatGPT voice bot can tell what different tones of voice convey, responds to interruptions, and reply to queries in real time.",
+      "index": 4,
+      "keyphrases": [
+        "real time millions users"
+      ],
+      "weight": 1000
+    },
+    {
+      "text": "The new chatbot represents OpenAI’s push into a new generation of AI-powered voice assistants in the vein of Siri and Alexa, but with far more capabilities to enable more natural, fluent conversations.",
+      "index": 2,
+      "keyphrases": [
+        "vein siri far capabilities",
+        "capabilities 100 external red"
+      ],
+      "weight": 957
+    },
+    {
+      "text": "To gather feedback, the company is initially launching the chatbot to a “small group of users” paying for ChatGPT Plus, but it says it will make the bot available to all ChatGPT Plus subscribers this fall. A ChatGPT Plus subscription costs $20 a month.",
+      "index": 7,
+      "keyphrases": [
+        "fall chatgpt plus subscription costs",
+        "statement saying company",
+        "launching chatbot"
+      ],
+      "weight": 763
+    },
+    {
+      "text": "The company says it has put several safety mechanisms in place.",
+      "index": 13,
+      "keyphrases": [
+        "statement saying company"
+      ],
+      "weight": 453
+    },
+    {
+      "text": "Johansson released a statement saying the company had reached out to her for permission to use her voice for the model, which she declined.",
+      "index": 16,
+      "keyphrases": [
+        "statement saying company"
+      ],
+      "weight": 449
+    }
+  ],
+  "keyphrases": [
+    {
+      "sentences": "7,8",
+      "keyphrase": "fall chatgpt plus subscription costs",
+      "words": 5,
+      "weight": 268
+    },
+    {
+      "sentences": "2,6,11",
+      "keyphrase": "vein siri far capabilities",
+      "words": 4,
+      "weight": 248
+    },
+    {
+      "sentences": "16,7,13",
+      "keyphrase": "statement saying company",
+      "words": 3,
+      "weight": 132
+    },
+    {
+      "sentences": "11,2,6",
+      "keyphrase": "capabilities 100 external red",
+      "words": 4,
+      "weight": 118
+    },
+    {
+      "sentences": "15",
+      "keyphrase": "called sky sounded",
+      "words": 3,
+      "weight": 109
+    },
+    {
+      "sentences": "10,4",
+      "keyphrase": "real time millions users",
+      "words": 3,
+      "weight": 103
+    },
+    {
+      "sentences": "15",
+      "keyphrase": "like actress scarlett johansson",
+      "words": 3,
+      "weight": 102
+    },
+    {
+      "sentences": "0,22",
+      "keyphrase": "openai rolling",
+      "words": 2,
+      "weight": 91
+    },
+    {
+      "sentences": "5",
+      "keyphrase": "sound natural",
+      "words": 2,
+      "weight": 68
+    },
+    {
+      "sentences": "23",
+      "keyphrase": "cameras piece of paper",
+      "words": 2,
+      "weight": 60
+    }
+  ],
+  "sentences": [
+    "OpenAI is rolling out an advanced AI chatbot that you can talk to.",
+    "It’s available today—at least for some.",
+    "The new chatbot represents OpenAI’s push into a new generation of AI-powered voice assistants in the vein of Siri and Alexa, but with far more capabilities to enable more natural, fluent conversations.",
+    "It is a step in the march to more fully capable AI agents .",
+    "The new ChatGPT voice bot can tell what different tones of voice convey, responds to interruptions, and reply to queries in real time.",
+    "It has also been trained to sound more natural and use voices to convey a wide range of different emotions.",
+    "The voice mode is powered by OpenAI’s new GPT-4o model, which combines voice, text, and vision capabilities.",
+    "To gather feedback, the company is initially launching the chatbot to a “small group of users” paying for ChatGPT Plus, but it says it will make the bot available to all ChatGPT Plus subscribers this fall. A ChatGPT Plus subscription costs $20 a month.",
+    "OpenAI says it will notify customers who are part of the first rollout wave in the ChatGPT app and provide instructions on how to use the new model.",
+    "The new voice feature, which was announced in May , is being launched a month later than originally planned because the company said it needed more time to improve safety features, such as the model’s ability to detect and refuse unwanted content.",
+    "The company also said it was preparing its infrastructure to offer real-time responses to millions of users.",
+    "OpenAI says it has tested the model’s voice capabilities with more than 100 external red-teamers, who were tasked with probing the model for flaws.",
+    "These testers spoke a total of 45 languages and represented 29 countries, according to OpenAI.",
+    "The company says it has put several safety mechanisms in place.",
+    "In a move that aims to prevent the model from being used to create audio deepfakes, for example, it has created four preset voices in collaboration with voice actors.",
+    "GPT-4o will not impersonate or generate other people’s voices. When OpenAI first introduced GPT-4o, the company faced a backlash over its use of a voice called “Sky,” which sounded a lot like the actress Scarlett Johansson.",
+    "Johansson released a statement saying the company had reached out to her for permission to use her voice for the model, which she declined.",
+    "She said she was shocked to hear a voice “eerily similar” to hers in the model’s demo.",
+    "OpenAI has denied that the voice is Johansson’s but has paused the use of Sky.",
+    "The company is also embroiled in several lawsuits over alleged copyright infringement.",
+    "OpenAI says it has adopted filters that recognize and block requests to generate music or other copyrighted audio.",
+    "OpenAI also says it has applied the same safety mechanisms it uses in its text-based model to GPT-4o to prevent it from breaking laws and generating harmful content.",
+    "Down the line, OpenAI plans to include more advanced features, such as video and screen sharing, which could make the assistant more useful.",
+    "In its May demo, employees pointed their phone cameras at a piece of paper and asked the AI model to help them solve math equations.",
+    "They also shared their computer screens and asked the model to help them solve coding problems.",
+    "OpenAI says these features will not be available now but at an unspecified later date."
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "url": "https://www.youtube.com/watch?v=T_IdLTofTUU",
+  "word_count": 745,
+  "topSentences": [
+    {
+      "text": "generative AI capabilities in general begin to infiltrate uh search options yeah I think that's really important to zoom out and both look at the Google deal as well as the broader context and so on the on the Google deal we've been trying to move to diversify our revenue for a number of years I mean this is a process that's been going on for a while and so our own privacy respecting ads in Firefox have grown to be a significant uh almost double digit percentage of our our Revenue we bought a",
+      "index": 3,
+      "keyphrases": [
+        "google monopoly reports mozilla loser",
+        "reaction reports ruling google monopoly",
+        "years know google alphabet going",
+        "apple loser google search firefox web browser",
+        "google alphabet going appeal decision"
+      ],
+      "weight": 1809
+    },
+    {
+      "text": "we've got a lot to cover uh and that is your reaction to some of these reports not only to this ruling about Google and its being a monopoly but also about some of the reports that Mozilla could be the Biggest Loser well you know we obviously are taking a close look at the the ruling it's going to be a while before there's remedies and we see what the actual impact is so I mean so let's look at the Monopoly question first Milla has long been a champion of competition of openness on the internet",
+      "index": 1,
+      "keyphrases": [
+        "google monopoly reports mozilla loser",
+        "reaction reports ruling google monopoly",
+        "years know google alphabet going",
+        "apple loser google search firefox web browser",
+        "google alphabet going appeal decision"
+      ],
+      "weight": 1741
+    },
+    {
+      "text": "a federal judge this week ruled Google illegally held a monopoly on the search Market the ruling could have a big impact on companies like Samsung apple and Mozilla which have deals to use Google as their default search engine and Fortune writing forget Apple The Biggest Loser in the Google search ruling could be Milla and its Firefox web browser we'll join us now is Mark Sturman president of Mozilla Foundation Mark it's great to have you on um and I am going to start right here even though",
+      "index": 0,
+      "keyphrases": [
+        "google monopoly reports mozilla loser",
+        "years know google alphabet going",
+        "apple loser google search firefox web browser",
+        "google alphabet going appeal decision",
+        "like samsung apple mozilla"
+      ],
+      "weight": 1730
+    },
+    {
+      "text": "especially in Search and even today and always we've had more options than just Google in Firefox and so you know what we're doing is continuing to promotee Choice okay and I realize that this is a situation that's going to evolve and shake out over the course of likely years we already know that Google alphabet is going to appeal this decision as well so how are you navigating uh the situation especially as we are seeing the search landscape in general evolve and evolve quickly as open Ai and",
+      "index": 2,
+      "keyphrases": [
+        "google monopoly reports mozilla loser",
+        "reaction reports ruling google monopoly",
+        "years know google alphabet going",
+        "apple loser google search firefox web browser",
+        "google alphabet going appeal decision"
+      ],
+      "weight": 1718
+    },
+    {
+      "text": "called llama file that lets you run llama on your local device so privacy and local is one piece of it and then open source which has always been what Mozilla has stood for which is at its core something that drives Innovation competition that's going to be key in Ai and we see that open source may actually become the winner much as Linux became the winner things like Firefox became the winner in the Web 2.0 era",
+      "index": 7,
+      "keyphrases": [
+        "years know google alphabet going",
+        "apple loser google search firefox web browser",
+        "google alphabet going appeal decision",
+        "like samsung apple mozilla",
+        "options google firefox know"
+      ],
+      "weight": 1378
+    },
+    {
+      "text": "Milla AI to really get close to developers build out open source Ai and build a business there for ourselves so Mark how does mozilla's um philosophy and Mission translate to an AI era where it's not about links and search so much as it's about understanding user intent the degree and and to which that's stored where it's stored and who has access to the map that uh various companies or organizations are making of your mind well I would say there's there's two ways and they're really grounded in",
+      "index": 5,
+      "keyphrases": [
+        "google monopoly reports mozilla loser",
+        "like samsung apple mozilla",
+        "president mozilla foundation mark",
+        "understanding user intent degree",
+        "philosophy mission"
+      ],
+      "weight": 647
+    },
+    {
+      "text": "our history often we talk about Milla trying to do for AI what we did for the web and one of the things we did for the web was Champion privacy that still does matter in the AI era but it's going to be shaped differently and so in championing privacy uh we're looking at local on device models you see it in an early way in Firefox in that our Aid driven translation only happens on your device nothing ever goes to the cloud it's more private and we're also doing things like we launched something",
+      "index": 6,
+      "keyphrases": [
+        "like samsung apple mozilla",
+        "winner linux winner things like",
+        "going privacy respecting",
+        "llama local device privacy local",
+        "looking at device"
+      ],
+      "weight": 533
+    },
+    {
+      "text": "company named anonym which is a B2B company focused on privacy friendly Aver aing so you see us moving into a bunch of new domains to diversify that Revenue at the core but what we're also doing is moving into AI as you would expect we are because how we interact with the internet including search is changing and so that includes everything from integrating AI in a beta way into Firefox you can choose different AI models just like you can choose different search models and we've set up a company",
+      "index": 4,
+      "keyphrases": [
+        "revenue number years mean",
+        "going privacy respecting",
+        "llama local device privacy local",
+        "revenue core moving in",
+        "double digit revenue"
+      ],
+      "weight": 444
+    }
+  ],
+  "keyphrases": [
+    {
+      "sentences": "1,0,2,3,5",
+      "keyphrase": "google monopoly reports mozilla loser",
+      "words": 5,
+      "weight": 941
+    },
+    {
+      "sentences": "1,2,3",
+      "keyphrase": "reaction reports ruling google monopoly",
+      "words": 5,
+      "weight": 633
+    },
+    {
+      "sentences": "2,0,1,3,7",
+      "keyphrase": "years know google alphabet going",
+      "words": 5,
+      "weight": 593
+    },
+    {
+      "sentences": "0,2,1,3,7",
+      "keyphrase": "apple loser google search firefox web browser",
+      "words": 5,
+      "weight": 564
+    },
+    {
+      "sentences": "2,0,1,3,7",
+      "keyphrase": "google alphabet going appeal decision",
+      "words": 5,
+      "weight": 474
+    },
+    {
+      "sentences": "0,1,5,6,7",
+      "keyphrase": "like samsung apple mozilla",
+      "words": 4,
+      "weight": 457
+    },
+    {
+      "sentences": "2,0,1,3,7",
+      "keyphrase": "options google firefox know",
+      "words": 4,
+      "weight": 438
+    },
+    {
+      "sentences": "3,1,2,4",
+      "keyphrase": "revenue number years mean",
+      "words": 4,
+      "weight": 425
+    },
+    {
+      "sentences": "7,6,0",
+      "keyphrase": "winner linux winner things like",
+      "words": 5,
+      "weight": 403
+    },
+    {
+      "sentences": "3,0,2,4,6,7",
+      "keyphrase": "going privacy respecting",
+      "words": 3,
+      "weight": 335
+    }
+  ],
+  "sentences": [
+    "a federal judge this week ruled Google illegally held a monopoly on the search Market the ruling could have a big impact on companies like Samsung apple and Mozilla which have deals to use Google as their default search engine and Fortune writing forget Apple The Biggest Loser in the Google search ruling could be Milla and its Firefox web browser we'll join us now is Mark Sturman president of Mozilla Foundation Mark it's great to have you on um and I am going to start right here even though",
+    "we've got a lot to cover uh and that is your reaction to some of these reports not only to this ruling about Google and its being a monopoly but also about some of the reports that Mozilla could be the Biggest Loser well you know we obviously are taking a close look at the the ruling it's going to be a while before there's remedies and we see what the actual impact is so I mean so let's look at the Monopoly question first Milla has long been a champion of competition of openness on the internet",
+    "especially in Search and even today and always we've had more options than just Google in Firefox and so you know what we're doing is continuing to promotee Choice okay and I realize that this is a situation that's going to evolve and shake out over the course of likely years we already know that Google alphabet is going to appeal this decision as well so how are you navigating uh the situation especially as we are seeing the search landscape in general evolve and evolve quickly as open Ai and",
+    "generative AI capabilities in general begin to infiltrate uh search options yeah I think that's really important to zoom out and both look at the Google deal as well as the broader context and so on the on the Google deal we've been trying to move to diversify our revenue for a number of years I mean this is a process that's been going on for a while and so our own privacy respecting ads in Firefox have grown to be a significant uh almost double digit percentage of our our Revenue we bought a",
+    "company named anonym which is a B2B company focused on privacy friendly Aver aing so you see us moving into a bunch of new domains to diversify that Revenue at the core but what we're also doing is moving into AI as you would expect we are because how we interact with the internet including search is changing and so that includes everything from integrating AI in a beta way into Firefox you can choose different AI models just like you can choose different search models and we've set up a company",
+    "Milla AI to really get close to developers build out open source Ai and build a business there for ourselves so Mark how does mozilla's um philosophy and Mission translate to an AI era where it's not about links and search so much as it's about understanding user intent the degree and and to which that's stored where it's stored and who has access to the map that uh various companies or organizations are making of your mind well I would say there's there's two ways and they're really grounded in",
+    "our history often we talk about Milla trying to do for AI what we did for the web and one of the things we did for the web was Champion privacy that still does matter in the AI era but it's going to be shaped differently and so in championing privacy uh we're looking at local on device models you see it in an early way in Firefox in that our Aid driven translation only happens on your device nothing ever goes to the cloud it's more private and we're also doing things like we launched something",
+    "called llama file that lets you run llama on your local device so privacy and local is one piece of it and then open source which has always been what Mozilla has stood for which is at its core something that drives Innovation competition that's going to be key in Ai and we see that open source may actually become the winner much as Linux became the winner things like Firefox became the winner in the Web 2.0 era"
+  ]
+}
