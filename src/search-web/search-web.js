@@ -1,3 +1,4 @@
+import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-basic-html";
 /**
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many
@@ -7,24 +8,24 @@
  * @function searchWeb
  * @param {string} query - The search query string.
  * @param {object} options={} - Optional configuration for the search.
- * @param {number} options.categoryIndex=0 - "general", "videos", "news", "images", 
+ * @param {number} options.category=0 - "general", "videos", "news", "images",
  *  "science", "map", "music", "it", "files", "social+media"
- * @param {number} options.recencyIndex=0 - ["", "day", "week", "month", "year"]
+ * @param {number} options.recency=0 - ["", "day", "week", "month", "year"]
  * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries=3 - Maximum number of retry attempts if the initial search fails.
  * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[], cached: string}>>} An array of search result objects.
  * @throws {Error} Throws an error if the search fails after all retry attempts.
  * @category Search
  * @example  const advancedResults = await searchWeb('Node.js', {
- *   categoryIndex: 2,
- *   recencyIndex: 1,
+ *   category: 2,
+ *   recency: 1,
  *   maxRetries: 5
  * });
  */
 export async function searchWeb(query, options = {}) {
   const {
-    categoryIndex = 0,
-    recencyIndex = 0,
+    category = 0,
+    recency = 0,
     selectedDomain = null,
     maxRetries = 3,
   } = options;
@@ -43,96 +44,159 @@ export async function searchWeb(query, options = {}) {
   ];
   const RECENCY_LIST = ["", "day", "week", "month", "year"];
 
-  const SEARX_DOMAINS = ['baresearch.org', 'copp.gg', 'darmarit.org', 
-    'etsi.me', 'fairsuch.net', 'nogoo.me', 'northboot.xyz', 
-    'nyc1.sx.ggtyler.dev', 'ooglester.com', 'opnxng.com', 'paulgo.io', 
-    'priv.au', 's.mble.dk', 's.trung.fun', 'search.blitzw.in', 
-     'search.charliewhiskey.net', 'search.citw.lgbt', 
-    'search.darkness.services', 'search.datura.network', 'search.dotone.nl', 
-    'search.einfachzocken.eu', 'search.gcomm.ch', 'search.hbubli.cc', 
-    'search.im-in.space', 'search.incogniweb.net', 'search.indst.eu', 
-    'search.inetol.net', 'search.leptons.xyz', 'search.mdosch.de', 
-    'search.nadeko.net', 'search.nerdvpn.de', 'search.ngn.tf', 
-    'search.ononoki.org', 'search.privacyredirect.com', 'search.sapti.me', 
-    'search.rhscz.eu', 'search.rowie.at', 'search.projectsegfau.lt', 
-    'search.tommy-tran.com', 'searx.aleteoryx.me', 'searx.ankha.ac', 
-    'searx.be', 'searx.catfluori.de', 'searx.colbster937.dev', 
-    'searx.daetalytica.io', 'searx.dresden.network', 'searx.electroncash.de', 
-    'searx.foss.family', 'searx.hu', 'searx.juancord.xyz', 'searx.lunar.icu', 
-    'searx.mv-software.de', 'searx.mxchange.org', 'searx.namejeff.xyz', 
-    'searx.nobulart.com', 'searx.numeriquement.fr', 'searx.oakleycord.dev', 
-    'searx.ox2.fr', 'searx.perennialte.ch', 'searx.rhscz.eu', 'searx.ro', 
-    'searx.sev.monster', 'searx.thefloatinglab.world', 'searx.tiekoetter.com', 
-    'searx.tuxcloud.net', 'searx.work', 'searx.zhenyapav.com', 
-    'searxng.brihx.fr', 'searxng.ch', 'searxng.hweeren.com', 'search.smnz.de', 
-    'searxng.online', 'searxng.shreven.org', 'searxng.site', 'skyrimhater.com', 
-    'sx.ca.zorby.top', 'sx.catgirl.cloud', 'sx.thatxtreme.dev', 
-    'sx.zorby.top', 'www.gruble.de', 'www.jabber-germany.de', 'xo.wtf'];
+  const SEARX_DOMAINS = [
+    "baresearch.org",
+    "copp.gg",
+    "darmarit.org",
+    "etsi.me",
+    "fairsuch.net",
+    "nogoo.me",
+    "northboot.xyz",
+    "nyc1.sx.ggtyler.dev",
+    "ooglester.com",
+    "opnxng.com",
+    "paulgo.io",
+    "priv.au",
+    "s.mble.dk",
+    "s.trung.fun",
+    "search.blitzw.in",
+    "search.charliewhiskey.net",
+    "search.citw.lgbt",
+    "search.darkness.services",
+    "search.datura.network",
+    "search.dotone.nl",
+    "search.einfachzocken.eu",
+    "search.gcomm.ch",
+    "search.hbubli.cc",
+    "search.im-in.space",
+    "search.incogniweb.net",
+    "search.indst.eu",
+    "search.inetol.net",
+    "search.leptons.xyz",
+    "search.nadeko.net",
+    "search.ngn.tf",
+    "search.ononoki.org",
+    "search.privacyredirect.com",
+    "search.sapti.me",
+    "search.rhscz.eu",
+    "search.rowie.at",
+    "search.projectsegfau.lt",
+    "search.tommy-tran.com",
+    "searx.aleteoryx.me",
+    "searx.ankha.ac",
+    "searx.be",
+    "searx.colbster937.dev",
+    "searx.daetalytica.io",
+    "searx.dresden.network",
+    "searx.foss.family",
+    "searx.hu",
+    "searx.juancord.xyz",
+    "searx.lunar.icu",
+    "searx.mxchange.org",
+    "searx.namejeff.xyz",
+    "searx.nobulart.com",
+    "searx.numeriquement.fr",
+    "searx.oakleycord.dev",
+    "searx.ox2.fr",
+    "searx.perennialte.ch",
+    "searx.rhscz.eu",
+    "searx.ro",
+    "searx.sev.monster",
+    "searx.thefloatinglab.world",
+    "searx.tiekoetter.com",
+    "searx.tuxcloud.net",
+    "searx.work",
+    "searx.zhenyapav.com",
+    "searxng.brihx.fr",
+    "searxng.ch",
+    "searxng.hweeren.com",
+    "searxng.online",
+    "searxng.shreven.org",
+    "searxng.site",
+    "skyrimhater.com",
+    "sx.ca.zorby.top",
+    "sx.catgirl.cloud",
+    "sx.thatxtreme.dev",
+    "sx.zorby.top",
+    "xo.wtf",
+  ];
 
-  try {
-    //select a random domain if none is provided
-    const searchDomain =
-      selectedDomain ||
+  //select a random domain if none is provided
+  const searchDomain =
+    selectedDomain ||
+    "https://" +
       SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
-    const category = CATEGORY_LIST[categoryIndex]; // Using the first category as default
-    const timeRange = RECENCY_LIST[recencyIndex]; // Using the first time range as default
+  const categoryName = CATEGORY_LIST[category]; // Using the first category as default
+  const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
 
-    const url = `https://${searchDomain}/search?q=${encodeURIComponent(query)}&category_${category}=1&language=auto&time_range=${timeRange}&safesearch=0`;
+  const url =
+    searchDomain +
+    `/search?q=${encodeURIComponent(
+      query
+    )}&category_${categoryName}=1&language=en-US&time_range=${timeRangeName}&safesearch=0`;
 
-    const resultJSON = await (
-      await fetch(url, { headers: { "accept-language": "en" } })
-    ).text();
+  const resultJSON = await (
+    await fetch(url, {
+      headers: {
+        "accept-language": "en-US,en;q=0.9",
+      },
+    })
+  ).text();
+  // console.log(resultJSON);
 
-    let results = [];
-    const resultRegex = /<article class="result[^>]*>[\s\S]*?<\/article>/g;
-    const titleUrlRegex = /<h3><a href="([^"]*)"[^>]*>(.*?)<\/a><\/h3>/;
-    const snippetRegex = /<p class="content">\s*(.*?)\s*<\/p>/;
-    const enginesRegex = /<span>(bing|duckduckgo|yahoo|google)<\/span>/g;
-    const linksRegex =
-      /<a href="([^"]*)" class="(cache_link|proxyfied_link)"[^>]*>(cached|proxied)<\/a>/g;
+  let results = [];
+  const resultRegex = /<article class="result[^>]*>[\s\S]*?<\/article>/g;
+  const titleUrlRegex = /<h3><a href="([^"]*)"[^>]*>(.*?)<\/a><\/h3>/;
+  const snippetRegex = /<p class="content">\s*(.*?)\s*<\/p>/;
+  const enginesRegex = /<span>(bing|duckduckgo|yahoo|google)<\/span>/g;
+  const linksRegex =
+    /<a href="([^"]*)" class="(cache_link|proxyfied_link)"[^>]*>(cached|proxied)<\/a>/g;
 
-    let match;
-    while ((match = resultRegex.exec(resultJSON)) !== null) {
-      const resultHtml = match[0];
-      const titleUrlMatch = titleUrlRegex.exec(resultHtml);
-      const snippetMatch = snippetRegex.exec(resultHtml);
+  let match;
+  while ((match = resultRegex.exec(resultJSON)) !== null) {
+    const resultHtml = match[0];
+    const titleUrlMatch = titleUrlRegex.exec(resultHtml);
+    const snippetMatch = snippetRegex.exec(resultHtml);
 
-      if (titleUrlMatch && titleUrlMatch[1] && titleUrlMatch[2]) {
-        const url = titleUrlMatch[1];
-        const title = titleUrlMatch[2].replace(/<\/?[^>]+(>|$)/g, "");
-        const snippet = snippetMatch
-          ? snippetMatch[1].replace(/<\/?[^>]+(>|$)/g, "")
-          : "";
+    if (titleUrlMatch && titleUrlMatch[1] && titleUrlMatch[2]) {
+      const url = titleUrlMatch[1];
+      let title = titleUrlMatch[2].replace(/<\/?[^>]+(>|$)/g, "");
+      let snippet = snippetMatch
+        ? snippetMatch[1].replace(/<\/?[^>]+(>|$)/g, "")
+        : "";
 
-        const engines = [];
-        let engineMatch;
-        while ((engineMatch = enginesRegex.exec(resultHtml)) !== null) {
-          engines.push(engineMatch[1]);
-        }
-
-        let cached = null;
-        let linkMatch;
-        while ((linkMatch = linksRegex.exec(resultHtml)) !== null) {
-          cached = linkMatch[1];
-        }
-
-        results.push({ title, url, snippet, engines, cached });
+      let engines = [];
+      let engineMatch;
+      while ((engineMatch = enginesRegex.exec(resultHtml)) !== null) {
+        engines.push(engineMatch[1]);
       }
-    }
 
-    if (results.length === 0 && maxRetries > 0) {
-      console.log("No results found with ", searchDomain);
-      results = await searchWeb(query, {
-        categoryIndex,
-        recencyIndex,
-        maxRetries: maxRetries - 1,
-      });
-    }
+      let cached = null;
+      let linkMatch;
+      while ((linkMatch = linksRegex.exec(resultHtml)) !== null) {
+        cached = linkMatch[1];
+      }
 
-    return results;
-  } catch (error) {
-    console.error(`Error fetching search results: ${error.message}`);
-    return [];
+      // title = convertHTMLSpecialChars(title);
+      // snippet = convertHTMLSpecialChars(snippet);
+
+      results.push({ title, url, snippet });
+    }
   }
+
+  if (results.length === 0 && maxRetries > 0) {
+    console.log("No results found with ", searchDomain);
+    results = await searchWeb(query, {
+      category,
+      recency,
+      maxRetries: maxRetries - 1,
+    });
+  }
+
+  return results;
+  // } catch (error) {
+  //   console.error(`Error fetching search results: ${error.message}`);
+  //   return [];
+  // }
 }

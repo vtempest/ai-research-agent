@@ -29,11 +29,13 @@ export async function extractPDF(pdfURL, options = {}) {
       removeHyphens = true,
       moveFootnotes = true,
       addCitation = true,
-      timeout = 5
+      timeout = 5,
     } = options;
 
     // download all pdf data and convert to array buffer
-    var buffer = await (await fetch(pdfURL, { signal: AbortSignal.timeout(timeout * 1000) })).arrayBuffer();
+    var buffer = await (
+      await fetch(pdfURL, { signal: AbortSignal.timeout(timeout * 1000) })
+    ).arrayBuffer();
 
     try {
       const { getDocument } = await resolvePDFJS();
@@ -104,10 +106,19 @@ export async function extractPDF(pdfURL, options = {}) {
 
       // use text height to infer headings and footnotes based on
       // standard deviation to the average text heights
+      const MAX_HEADING_LENGTH = 50;
+
       for (const textItem of pageTextItems) {
-        if (textItem.height > articleAvgHeight + 3 * articlesStandardDev) {
+        if (
+          textItem.str.length < MAX_HEADING_LENGTH &&
+          textItem.str.toLowerCase() != textItem.str && //cannot be all lowercase
+          textItem.height > articleAvgHeight + 3 * articlesStandardDev
+        ) {
           mode = "h1";
-        } else if (textItem.height > articleAvgHeight + articlesStandardDev) {
+        } else if (
+          textItem.str.length < MAX_HEADING_LENGTH &&
+          textItem.height > articleAvgHeight + articlesStandardDev
+        ) {
           mode = "h2";
         } else if (
           textItem.height &&
@@ -187,6 +198,21 @@ export async function extractPDF(pdfURL, options = {}) {
       return all + range + (separator ?? " ");
     }, "");
 
+    //make sure h1 tags are not too long and are really large font Ps
+    content = content
+      .replace(/<h1>([^<>]*?)<\/h1>/g, (match, p1) => {
+        if (p1.length > 100) {
+          return `<p>${p1}</p>`;
+        }
+        return match;
+      })
+      .replace(/<h2>([^<>]*?)<\/h2>/g, (match, p1) => {
+        if (p1.length > 100) {
+          return `<p>${p1}</p>`;
+        }
+        return match;
+      });
+
     if (addCitation) {
       // Get metadata
       // avoid using date as it is unreliable sand generally file mod date
@@ -197,9 +223,11 @@ export async function extractPDF(pdfURL, options = {}) {
       // date = date ? new Date(date)?.toISOString().split("T")[0] : null;
 
       //look for date in first page
-      date =
-        chrono.parseDate(content.slice(0, 400))?.toISOString().split("T")[0]
-        //  || date;
+      date = chrono
+        .parseDate(content.slice(0, 400))
+        ?.toISOString()
+        .split("T")[0];
+      //  || date;
 
       title = content.slice(0, 400).match(/<h1>(.*?)<\/h1>/)?.[1] || title;
 
@@ -273,6 +301,9 @@ export async function isUrlPDF(url) {
   try {
     // Fetch the URL with a stream response
     response = await fetch(url);
+
+    //check if content type is pdf from headers
+    if (response.headers.get("content-type")?.includes("pdf")) return true;
 
     const reader = response.body.getReader();
     const chunk = new Uint8Array(5);

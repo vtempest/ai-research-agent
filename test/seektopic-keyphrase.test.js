@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { test, expect } from "vitest";
 import { extractSEEKTOPIC, extract } from "../index.js";
 
 import fs from "fs";
@@ -12,8 +12,7 @@ var typosModel = JSON.parse(
   fs.readFileSync("./data/misspelled-typos-8k.json", "utf8")
 );
 
-describe("top sentences textrank", () => {
-  it("get top sentences specific to a query", async () => {
+test("get top sentences specific to a query", async () => {
     let urls = [
       "https://www.youtube.com/watch?v=T_IdLTofTUU",
       "https://www.technologyreview.com/2024/07/30/1095489/openai-has-released-a-new-chatgpt-bot-that-you-can-talk-to/",
@@ -33,7 +32,7 @@ describe("top sentences textrank", () => {
         extractSEEKTOPIC(extraction.html, {
           phrasesModel,
           typosModel,
-          heavyWeightQuery: "self attention",
+          heavyWeightQuery: "extract word pairings",
           limitTopSentences: 10,
           removeHTML: true,
         })
@@ -53,4 +52,3 @@ describe("top sentences textrank", () => {
 
     expect(filename).toBeDefined();
   }, 20000);
-});

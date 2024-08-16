@@ -20,6 +20,7 @@ import {extract} from "../../index.js";
  * @param {number} options.recencyIndex=0 - Index representing the recency of results.
  * @param {number} options.maxRetries=5 - Maximum number of retry attempts for the search.
  * @param {number} options.maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
+ * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
  * @returns {Promise<Array>} A promise that resolves to an array containing the search results, extracted information, and generated answer.
  * @throws {Error} Throws an error if the search or analysis process fails.
  * @category Search
@@ -34,8 +35,9 @@ export async function searchSTREAM(query, options = {}) {
   const {
     categoryIndex = 0,
     recencyIndex = 0,
-    maxRetries = 5,
-    maxTopResultsToExtract = 6,
+    maxRetries = 8,
+    maxTopResultsToExtract = 3,
+    selectedDomain = null,
   } = options;
 
   var timerStart = Date.now();
@@ -48,6 +50,7 @@ export async function searchSTREAM(query, options = {}) {
     categoryIndex,
     recencyIndex,
     maxRetries,
+    selectedDomain,
   });
 
   if (!results || results.length === 0) {

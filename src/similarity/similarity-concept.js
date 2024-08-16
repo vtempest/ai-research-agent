@@ -1,4 +1,4 @@
-const { pipeline } = await import("@xenova/transformers");
+const { pipeline } =  import("@xenova/transformers");
 
 
 export async function vectorizeTextAsConceptAPI(source_sentence, sentences, model, apiKey) {
@@ -69,6 +69,7 @@ export async function weighRelevanceConceptVector(documents, query, config = {})
   * @category Relevance
 */
 export async function vectorizeTextAsConcept(input, config = {}) {
+
   const {
     batchSize = 512,
     stripNewLines = true,

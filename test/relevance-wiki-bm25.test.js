@@ -58,7 +58,7 @@ test("WikiBM25 - cancer", () => {
   var results = sampleNewsDocs
     .map((doc, index) => {
       var docText = doc.title + " " + doc.content;
-      var score = weighRelevanceTermFrequency(query, docText);
+      var score = weighRelevanceTermFrequency(docText, query);
 
       return { score, title: doc.title };
     })
@@ -78,7 +78,7 @@ test("WikiBM25 - climate change", () => {
   var results = sampleNewsDocs
     .map((doc, index) => {
       var docText = doc.title + " " + doc.content;
-      var score = weighRelevanceTermFrequency(query, docText);
+      var score = weighRelevanceTermFrequency(docText, query );
 
       return { score, title: doc.title };
     })

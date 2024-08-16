@@ -1,6 +1,7 @@
 import extractContent from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
 import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
+import { scrapeURL } from "./scrape-url.js";
 
 /**
  * 🚜📜 Tractor the Text Extractor -
@@ -10,7 +11,7 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
  * Youtube - get full transcript for video if detected a youtube video.  <br>
  * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
  * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
- * @param {document} urlOrDoc - url or dom object with article content
+ * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} options
  * @param {boolean} options.keyphrases=true - extract key phrases
  * @param {boolean} options.images=true - include images
@@ -37,6 +38,7 @@ export async function extract(urlOrDoc, options = {}) {
 
   let isPdf;
 
+  //url  to fetch
   if (typeof urlOrDoc === "string") {
     var url = urlOrDoc;
 
@@ -61,7 +63,7 @@ export async function extract(urlOrDoc, options = {}) {
         </iframe> ${content}`;
     } else {
       try {
-        var html = await (await fetchURL(url)).text();
+        var html = await scrapeURL(url);
       } catch (e) {
         return { error: "Error in fetch" };
       }
@@ -99,19 +101,6 @@ export async function extract(urlOrDoc, options = {}) {
 
   if (!response.html || response.html?.length == 0) return { error: "No text" };
 
-  //check html for bot block messages
-  var commonBlocks = [
-    "Cloudflare Ray ID found ",
-    "Please verify you are a human",
-    "Sorry, we just need to make sure you're not a robot",
-    "Access to this page has been denied",
-    "Please make sure your browser supports JavaScript",
-    "Please complete the security check to access",
-  ];
-
-  if (commonBlocks.filter((msg) => response?.html?.indexOf(msg) > -1).length)
-    return { error: "Bot detected" }; //, html: response.html };
-
   //word count of full text original, no html
   response.word_count = response.html
     ?.replace(/<[^>]*>/g, " ")
@@ -121,40 +110,4 @@ export async function extract(urlOrDoc, options = {}) {
   response = Object.assign({ url }, response);
 
   return response;
-}
-
-/**
- * Fetch with timeout and redirects
- * @param {string} url - url to fetch
- * @param {object} options
- * @param {number} options.timeout=5 -  abort request if not retrived, in seconds
- * @param {number} options.maxRedirects=3 - max redirects to follow
- * @param {number} options.redirectCount=0 - current redirect count
- * @returns {Promise<Response>|Object} - fetch response or error object
- * @category Extractor
- * @example await fetchURL("https://hckrnews.com", {timeout: 5, maxRedirects: 5})
- */
-export async function fetchURL(url, options = {}) {
-  try {
-    let {  timeout = 5, redirectCount = 0, maxRedirects = 3 } = options;
-
-
-    options = { ...options, signal: AbortSignal.timeout(timeout * 1000) };
-
-    const response = await fetch(url, options);
-
-    if (response.redirected) {
-      
-      if (redirectCount > maxRedirects)
-        return { error: "Max redirects exceeded" };
-      redirectCount++;
-      options = { ...options, redirectCount };
-
-      return fetchURL(response.url, options);
-    }
-
-    return response;
-  } catch (e) {
-    return { error: "Error in fetch" };
-  }
 }

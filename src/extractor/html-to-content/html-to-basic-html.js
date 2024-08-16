@@ -17,6 +17,16 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
       ul,ol,li,dd,dl,table,th,tr,td",
   } = options;
 
+
+  html = convertHTMLSpecialChars(html
+    .replace(/&lt;/gi, " ")
+    .replace(/&gt;/gi, " ")
+    ).replace(/&nbsp;/g, " ");
+  
+  
+  //fix for = in urls  
+
+
   allowTags = allowTags.split(",");
   if (links) allowTags.push("a");
   if (images) allowTags.push("img");
@@ -40,14 +50,24 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
         if (!allowedAttributes.includes(key)) delete el[key];
 
       //convert relative urls to absolute urls
-      var urlValue = el.href; //|| el.src;
+      var urlValue = el.href || el.src;
+
+        const matchdomain = url.match(/^(https?:\/\/[^\/]+)/i);
+        const domain =  matchdomain ? matchdomain[1] : null;
+
+    
       if ( urlValue) {
         if (urlValue.startsWith("//")) urlValue = "https:" + urlValue;
 
-        if (urlValue[0] == "#") urlValue = url + urlValue;
-        try {
-          if (urlValue[0] == "/") urlValue = new URL(url).origin + urlValue;
-        } catch (e) {}
+        if (urlValue[0] == "#") urlValue = domain + urlValue;
+          if (urlValue[0] == "/") urlValue = domain + urlValue;
+
+        if (urlValue.startsWith("./"))
+          urlValue =  url.slice(0,url.lastIndexOf("/")) + urlValue;
+        
+
+        if (!urlValue.startsWith("http")) 
+          urlValue = domain + "/" + urlValue;
 
         if (el.href) el.href = urlValue;
         if (el.src) el.src = urlValue;
@@ -68,7 +88,6 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
     .replace(/<p><\/p>/g, " ")
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
 
-  basicHtml = convertHTMLSpecialChars(basicHtml);
   return basicHtml;
 }
 
@@ -90,6 +109,10 @@ export function convertHTMLToTokens(html) {
     "$1$3"
   );
 
+  
+  const reHTMLInsideDataAttr =  /(["'])(?:(?!(?:\1|<)).)*?(?:<(?:(?!["'<>]).)*?>)?(?:(?!(?:\1|<)).)*?\1/gis;
+  
+
   var chunks = html.split("<");
 
   for (var chunk of chunks) {
@@ -98,6 +121,20 @@ export function convertHTMLToTokens(html) {
 
     var [element, text] = chunk.split(">");
 
+    if (element.includes("<")) {
+
+      if (reHTMLInsideDataAttr.test(html) ) {
+        html= html.replaceAll(reHTMLInsideDataAttr, "");
+        return convertHTMLToTokens(html);
+      }
+      // console.log("HTML inside data attr", element);
+      // if (reHTMLInsideDataAttr.test(chunk) ) {
+      //   chunk = chunk.replaceAll(reHTMLInsideDataAttr, " ");
+
+      //   var [element, text] = chunk.split(">");
+      // }
+
+    }
 
     //if closing tag, add it but dont stop and also  in next step 
     // add text after </a> as text node
@@ -107,22 +144,28 @@ export function convertHTMLToTokens(html) {
 
     if (element[0] == "!") continue; //skip comments
 
+
+
     var domElement = {};
     //if has attributes
     var attributesIndex = element.indexOf(" ");
 
     if (attributesIndex == -1) {
       domElement.tag = element;
-    } else {
+    } else { //has attributes
+      
+
       var tag = element.substring(0, attributesIndex);
       domElement.tag = tag;
-
+    // there can be spaces and <> inside of attr strings
+      //TODO cnn news edge case of data=attr <> inside of attr
       //insert attr into domElement
       element
         .substring(attributesIndex)
-        .split(" ")
+        .match(/\w+=("(?:[^"\\]|\\.\s)*")/g)
         .forEach((attr) => {
-          var [key, value] = attr.split("=");
+          var key = attr.split("=")[0];
+          var value = attr.slice(key.length + 2, -1);
 
           if (key && value) domElement[key] = value?.replace(/"/g, "");
         });
@@ -175,10 +218,6 @@ export function convertHTMLSpecialChars(str, unescape = true ) {
     '©': '&copy;',
     '®': '&reg;',
     '™': '&trade;',
-    '"': '&ldquo;',  // Left double curly quote
-    '"': '&rdquo;',  // Right double curly quote
-    '\'': '&lsquo;',  // Left single curly quote
-    '\'': '&rsquo;'   // Right single curly quote
   };
 
   // Add numeric character references for Latin-1 Supplement characters

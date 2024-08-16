@@ -6,16 +6,36 @@
   "word_count": 8065,
   "topSentences": [
     {
-      "text": "Self-attention, sometimes called intra-attention is an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence.",
-      "index": 43,
+      "text": "This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9]. • The encoder contains self-attention layers.",
+      "index": 99,
       "keyphrases": [
         "sequence sequence learning",
         "sequence transduction",
         "presented transformer sequence transduction",
         "sequence modeling transduction",
-        "mapping variable length sequence symbol"
+        "mapping variable length sequence symbol",
+        "attention mechanism second simple",
+        "attention mechanism",
+        "state of the art sequence modeling transduction problems",
+        "information flow decoder preserve auto",
+        "example attention mechanism following long distance"
       ],
-      "weight": 311
+      "weight": 32
+    },
+    {
+      "text": "Learning long-range dependencies is a key challenge in many sequence transduction tasks.",
+      "index": 141,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "transduction problems language modeling machine translation",
+        "state of the art sequence modeling transduction problems",
+        "dependencies key"
+      ],
+      "weight": 30
     },
     {
       "text": "7 Conclusion In this work, we presented the Transformer, the first sequence transduction model based entirely on attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with multi-headed self-attention.",
@@ -25,81 +45,16 @@
         "sequence transduction",
         "presented transformer sequence transduction",
         "sequence modeling transduction",
-        "mapping variable length sequence symbol"
+        "mapping variable length sequence symbol",
+        "attention mechanism second simple",
+        "dot product attention",
+        "transduction problems language modeling machine translation",
+        "attention mechanism",
+        "state of the art sequence modeling transduction problems",
+        "example attention mechanism following long distance",
+        "simple network architecture transformer"
       ],
-      "weight": 296
-    },
-    {
-      "text": "In contrast to RNN sequence-to-sequence models [ 37 ], the Transformer outperforms the BerkeleyParser [29] even when training only on the WSJ training set of 40K sentences.",
-      "index": 227,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 294
-    },
-    {
-      "text": "Most competitive neural sequence transduction models have an encoder-decoder structure [ 5 , 2 , 35 ]. Here, the encoder maps an input sequence of symbol representations ( x , ..., x ) to a sequence of continuous representations z = ( z , ..., z ) .",
-      "index": 48,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 290
-    },
-    {
-      "text": "Convolutional sequence to sequence learning.",
-      "index": 249,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 287
-    },
-    {
-      "text": "Advances in Neural Information Processing Systems 28 , pages 2440–2448. Curran Associates, Inc., 2015. [35] Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural networks. In Advances in Neural Information Processing Systems , pages 3104–3112, 2014. [36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna.",
-      "index": 286,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 285
-    },
-    {
-      "text": "This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9]. • The encoder contains self-attention layers.",
-      "index": 99,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 283
-    },
-    {
-      "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder.",
-      "index": 15,
-      "keyphrases": [
-        "sequence sequence learning",
-        "sequence transduction",
-        "presented transformer sequence transduction",
-        "sequence modeling transduction",
-        "mapping variable length sequence symbol"
-      ],
-      "weight": 279
+      "weight": 29
     },
     {
       "text": "Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.",
@@ -109,21 +64,107 @@
         "sequence transduction",
         "presented transformer sequence transduction",
         "sequence modeling transduction",
-        "mapping variable length sequence symbol"
+        "mapping variable length sequence symbol",
+        "state of the art sequence modeling transduction problems",
+        "information flow decoder preserve auto",
+        "tokens vectors dimension",
+        "information processing nips 2017 long beach usa",
+        "recurrence convolution order model t",
+        "information relative absolute",
+        "equal contribution listing order"
       ],
-      "weight": 273
+      "weight": 26
     },
     {
-      "text": "This inherently sequential nature precludes parallelization within training examples, which becomes critical at longer sequence lengths, as memory constraints limit batching across examples.",
-      "index": 34,
+      "text": "Attention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences [ 2 , 19 ]. In all but a few cases [ 27 ], however, such attention mechanisms are used in conjunction with a recurrent network.",
+      "index": 37,
       "keyphrases": [
         "sequence sequence learning",
         "sequence transduction",
         "presented transformer sequence transduction",
         "sequence modeling transduction",
-        "mapping variable length sequence symbol"
+        "mapping variable length sequence symbol",
+        "transduction problems language modeling machine translation",
+        "state of the art sequence modeling transduction problems",
+        "language modeling"
       ],
-      "weight": 270
+      "weight": 24
+    },
+    {
+      "text": "Similarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension d .",
+      "index": 112,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "transduction problems language modeling machine translation",
+        "state of the art sequence modeling transduction problems",
+        "tokens vectors dimension"
+      ],
+      "weight": 24
+    },
+    {
+      "text": "We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training. 4 Why Self-Attention",
+      "index": 134,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "state of the art sequence modeling transduction problems",
+        "recurrence convolution order model t"
+      ],
+      "weight": 24
+    },
+    {
+      "text": "Empirical evaluation of gated recurrent neural networks on sequence modeling.",
+      "index": 246,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "transduction problems language modeling machine translation",
+        "state of the art sequence modeling transduction problems",
+        "noah smith recurrent neural network"
+      ],
+      "weight": 24
+    },
+    {
+      "text": "( x , ..., x ) to another sequence of equal length ( z , ..., z ) , with x , z ∈ R , such as a hidden layer in a typical sequence transduction encoder or decoder.",
+      "index": 136,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "transduction problems language modeling machine translation",
+        "state of the art sequence modeling transduction problems",
+        "maximum path length",
+        "equal contribution listing order"
+      ],
+      "weight": 23
+    },
+    {
+      "text": "For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [ 38 ]. Sentence pairs were batched together by approximate sequence length.",
+      "index": 154,
+      "keyphrases": [
+        "sequence sequence learning",
+        "sequence transduction",
+        "presented transformer sequence transduction",
+        "sequence modeling transduction",
+        "mapping variable length sequence symbol",
+        "state of the art sequence modeling transduction problems",
+        "tokens vectors dimension",
+        "maximum path length",
+        "pairs batched"
+      ],
+      "weight": 23
     }
   ],
   "keyphrases": [

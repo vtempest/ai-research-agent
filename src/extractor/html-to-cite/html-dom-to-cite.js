@@ -1,6 +1,7 @@
 import { extractNamedEntity } from "./human-names-recognize.js";
 import { parseDate } from "chrono-node";
 
+// https://www.scribbr.com/citation/generator/folders/2rx21jyIjZIKRrcwLk2oXE/lists/4OeJQ4euxzyTk9BiPTRjwn/
 const AUTHOR_META_TAGS = [
   "byl",
   "clmst",

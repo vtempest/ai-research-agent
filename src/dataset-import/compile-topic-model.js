@@ -3,7 +3,7 @@ import wikiWordFrequency from "../../data/wiki-word-freq-325k.json"
 
 
 const OPTION_PRINT_SPACING = 0;
-const OPTION_MAX_SYNONYMS = 200;
+const OPTION_MAX_SYNONYMS = 0;
 const OPTION_FILETYPE_JS = 0;
 const OPTION_ADD_WIKI_TITLE = 1;
 const OPTION_PREFIX_TWO_LETTERS = 1;

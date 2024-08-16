@@ -1,3 +1,5 @@
+import phrasesModel from "../../data/wiki-phrases-model-240k.json";
+
 /**
  * Completes the Query with the most likely next words for phrases
  * If typing 2+ letters of a word, return all possible words matching those few letters
@@ -8,7 +10,7 @@
  */
 export function autocompleteNextWords(query, options = {}) {
   let {
-    phrasesModel, //pass in remote model
+    // phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions
   } = options;

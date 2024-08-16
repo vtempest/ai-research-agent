@@ -23,8 +23,8 @@ export function rankSentencesCentralToKeyphrase(
   options = {}
 ) {
   const {
-    ITERATIONS = 10000, // Perform random walks to distribute weights
-    RESET_INTERVAL = 1000, // Reset to a random vertex to avoid getting stuck
+    ITERATIONS = 1000, // Perform random walks to distribute weights
+    RESET_INTERVAL = 100, // Reset to a random vertex to avoid getting stuck
   } = options;
 
   // Define graph data structure

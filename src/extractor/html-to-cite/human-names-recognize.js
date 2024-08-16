@@ -1,4 +1,5 @@
-import dataHumanNames from "../../../data/human-names-92k.json";
+// import dataHumanNames from "../../../data/human-names-92k.json";
+var dataHumanNames = []
 /**
  * Validates human name from author string to check against common list of first 
  * names, last names, name affixes, and organizations to infer if it should be

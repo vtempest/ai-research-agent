@@ -246,10 +246,10 @@ dictionaryMap = Object.keys(dictionaryMap)
 }, {});
 
 
-  // await fs.promises.writeFile(
-  //   outputPathDict,
-  //   JSON.stringify(dictionaryMap, null, OPTION_PRINT_SPACING)
-  // );
+  await fs.promises.writeFile(
+    outputPathDict,
+    JSON.stringify(dictionaryMap, null, OPTION_PRINT_SPACING)
+  );
 
   var termsIndex = {};
   Object.entries(dictionaryMap).map(([term, def]) => {

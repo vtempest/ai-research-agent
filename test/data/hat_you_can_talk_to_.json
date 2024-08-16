@@ -13,30 +13,30 @@
   "word_count": 600,
   "topSentences": [
     {
-      "text": "OpenAI is rolling out an advanced AI chatbot that you can talk to.",
-      "index": 0,
+      "text": "To gather feedback, the company is initially launching the chatbot to a “small group of users” paying for ChatGPT Plus, but it says it will make the bot available to all ChatGPT Plus subscribers this fall. A ChatGPT Plus subscription costs $20 a month.",
+      "index": 7,
       "keyphrases": [
-        "openai rolling"
+        "fall chatgpt plus subscription costs",
+        "statement saying company",
+        "launching chatbot"
       ],
-      "weight": 1500
+      "weight": 237
     },
     {
-      "text": "Down the line, OpenAI plans to include more advanced features, such as video and screen sharing, which could make the assistant more useful.",
-      "index": 22,
+      "text": "The company says it has put several safety mechanisms in place.",
+      "index": 13,
       "keyphrases": [
-        "openai rolling",
-        "sharing assistant"
+        "statement saying company"
       ],
-      "weight": 1500
+      "weight": 134
     },
     {
-      "text": "The voice mode is powered by OpenAI’s new GPT-4o model, which combines voice, text, and vision capabilities.",
-      "index": 6,
+      "text": "Johansson released a statement saying the company had reached out to her for permission to use her voice for the model, which she declined.",
+      "index": 16,
       "keyphrases": [
-        "vein siri far capabilities",
-        "capabilities 100 external red"
+        "statement saying company"
       ],
-      "weight": 1025
+      "weight": 131
     },
     {
       "text": "OpenAI says it has tested the model’s voice capabilities with more than 100 external red-teamers, who were tasked with probing the model for flaws.",
@@ -45,23 +45,7 @@
         "vein siri far capabilities",
         "capabilities 100 external red"
       ],
-      "weight": 1017
-    },
-    {
-      "text": "The company also said it was preparing its infrastructure to offer real-time responses to millions of users.",
-      "index": 10,
-      "keyphrases": [
-        "real time millions users"
-      ],
-      "weight": 1001
-    },
-    {
-      "text": "The new ChatGPT voice bot can tell what different tones of voice convey, responds to interruptions, and reply to queries in real time.",
-      "index": 4,
-      "keyphrases": [
-        "real time millions users"
-      ],
-      "weight": 1000
+      "weight": 103
     },
     {
       "text": "The new chatbot represents OpenAI’s push into a new generation of AI-powered voice assistants in the vein of Siri and Alexa, but with far more capabilities to enable more natural, fluent conversations.",
@@ -70,33 +54,48 @@
         "vein siri far capabilities",
         "capabilities 100 external red"
       ],
-      "weight": 957
+      "weight": 102
     },
     {
-      "text": "To gather feedback, the company is initially launching the chatbot to a “small group of users” paying for ChatGPT Plus, but it says it will make the bot available to all ChatGPT Plus subscribers this fall. A ChatGPT Plus subscription costs $20 a month.",
-      "index": 7,
+      "text": "OpenAI says it will notify customers who are part of the first rollout wave in the ChatGPT app and provide instructions on how to use the new model.",
+      "index": 8,
       "keyphrases": [
-        "fall chatgpt plus subscription costs",
-        "statement saying company",
-        "launching chatbot"
+        "fall chatgpt plus subscription costs"
       ],
-      "weight": 763
+      "weight": 97
     },
     {
-      "text": "The company says it has put several safety mechanisms in place.",
-      "index": 13,
+      "text": "The voice mode is powered by OpenAI’s new GPT-4o model, which combines voice, text, and vision capabilities.",
+      "index": 6,
       "keyphrases": [
-        "statement saying company"
+        "vein siri far capabilities",
+        "capabilities 100 external red"
       ],
-      "weight": 453
+      "weight": 96
     },
     {
-      "text": "Johansson released a statement saying the company had reached out to her for permission to use her voice for the model, which she declined.",
-      "index": 16,
+      "text": "The new ChatGPT voice bot can tell what different tones of voice convey, responds to interruptions, and reply to queries in real time.",
+      "index": 4,
       "keyphrases": [
-        "statement saying company"
+        "real time millions users"
       ],
-      "weight": 449
+      "weight": 50
+    },
+    {
+      "text": "The company also said it was preparing its infrastructure to offer real-time responses to millions of users.",
+      "index": 10,
+      "keyphrases": [
+        "real time millions users"
+      ],
+      "weight": 50
+    },
+    {
+      "text": "OpenAI is rolling out an advanced AI chatbot that you can talk to.",
+      "index": 0,
+      "keyphrases": [
+        "openai rolling"
+      ],
+      "weight": 0
     }
   ],
   "keyphrases": [

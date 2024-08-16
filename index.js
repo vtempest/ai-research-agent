@@ -1,20 +1,21 @@
-// Search Web via SearXNG metasearch of all major search engines.
 import { searchWeb } from "./src/search-web/search-web.js";
 
-//SWEAR Search Web, Extract & Answer Research Agent
 import { searchSTREAM } from "./src/search-web/answer-engine.js";
 
-import { extract } from "./src/extractor/url-to-content/url-to-content.js";
+import { extract} from "./src/extractor/url-to-content/url-to-content.js";
 
-import { extractSEEKTOPIC } from "./src/keyphrases/SEEKTOPIC-keyphrases.js";
+import { scrapeURL} from "./src/extractor/url-to-content/scrape-url.js";
 
-import {
-  weighRelevanceConceptVector,
-  vectorizeTextAsConcept,
-} from "./src/similarity/similarity-concept.js";
+import { extractSEEKTOPIC } from "./src/keyphrases/seektopic-keyphrases.js";
+
+// import {
+//   weighRelevanceConceptVector,
+//   vectorizeTextAsConcept,
+// } from "./src/similarity/similarity-concept.js";
 
 // core underlying functions
 
+import {convertHTMLSpecialChars} from "./src/extractor/html-to-content/html-to-basic-html.js";
 import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-text.js";
 
 import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
@@ -36,9 +37,10 @@ export {
   searchWeb,
   searchSTREAM,
   extract,
+  scrapeURL,
   extractSEEKTOPIC,
-  weighRelevanceConceptVector,
-  vectorizeTextAsConcept,
+  // weighRelevanceConceptVector,
+  // vectorizeTextAsConcept,
   autocompleteNextWords,
   tokenizeTopics,
   splitSentences,
@@ -46,8 +48,5 @@ export {
   weighRelevanceTermFrequency,
   matchQUASAR,
   weighTopicDirichletDistribution,
-};
-
-//also export them as a single object
-export default {
+  convertHTMLSpecialChars,
 };

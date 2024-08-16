@@ -1,0 +1,48 @@
+{
+  "name": "ai-research-agent-demo-api",
+  "version": "1.1.0",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prod": "vite build; wrangler deploy; wrangler tail",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "docs": " jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/ ; bun run open"
+ 
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "3.57",
+    "@sveltejs/adapter-cloudflare-workers": "^2.4.0",
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-cloudflare": "^4.6.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "publint": "^0.1.9",
+    "svelte": "^4.2.7",
+    "svelte-check": "^3.6.0",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.11"
+  },
+  "type": "module",
+  "dependencies": {
+    "@sveltejs/adapter-static": "^3.0.2",
+    "autoprefixer": "^10.4.19",
+    "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
+    "lucide-svelte": "^0.427.0",
+    "postcss": "^8.4.38",
+    "simple-svelte-autocomplete": "^2.5.2",
+    "svelte-splitpanes": "^8.0.5",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^3.4.3",
+    "vite-plugin-sveld": "^1.1.0"
+  }
+}

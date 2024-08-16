@@ -2,34 +2,37 @@ import {tokenizeTopics} from "../../index.js";
 
 /**
  * Calculate term specificity for a single doc with BM25 formula 
- * by using Wikipedia term frequencies as the baseline IDF.
+ * by using Wikipedia term frequencies as the baseline IDF. <br />
  * ritvikmath (2023). "BM25 : The Most Important Text Metric in 
  *  Data Science". https://www.youtube.com/watch?v=ruBm9WywevM
- * @param {string} query phrase to search tf and idf for each word
  * @param {string} document a single document to calculate the score for
- * @param {number} saturationWeight saturationWeight controls the impact of term frequency saturation.
+ * @param {string} query phrase to search tf and idf for each word
+ * @param {object} options Optional parameters
+ * @param {number} options.saturationWeight saturationWeight controls the impact of term frequency saturation.
     It typically ranges from 1.2 to 2.0, with 1.5 being a common default value.
     As saturationWeight increases: The impact of term frequency increases (i.e., multiple occurrences of a term in a document become more significant).
-
- * @param {number} normalizeLength
+ * @param {number} options.normalizeLength
    normalizeLengthcontrols the document length normalization.
     It ranges from 0 to 1, with 0.75 being a common default value.
     WhennormalizeLength= 1: Full length normalization is applied.
     Longer documents are penalized more heavily.
-
- * @param {number} avgDocWordCount Estimated average word count of all documents
- * @param {number} totalWikiPages Total number of Wikipedia pages used to calculate IDF
+ * @param {number} options.avgDocWordCount Estimated average word count of all documents
+ * @param {number} options.totalWikiPages Total number of Wikipedia pages used to calculate IDF
  * @returns {number} score for term specificity 
  * @category Relevance
  */
 export function weighRelevanceTermFrequency(
-  query,
   document,
-  saturationWeight = 1.5,
-  normalizeLength = 0.75,
-  avgDocWordCount = 2500,
-  totalWikiPages = 6000000
+  query,
+  options = {}
 ) {
+  var {
+    saturationWeight = 1.5,
+    normalizeLength = 0.75,
+    avgDocWordCount = 2500,
+    totalWikiPages = 6000000
+  } = options;
+  
   const words = document.toLowerCase().split(/\W+/);
   const queryTerms = query.toLowerCase().split(/\W+/);
   const docLength = words.length;
