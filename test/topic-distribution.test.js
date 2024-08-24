@@ -362,7 +362,7 @@ test('topic distribution Test', () => {
     An array of sentences.
     Type: Array.<string>
     #
-    stemRootWord(word) → {string}
+    convertWordToRootStem(word) → {string}
     Stems a word using the Porter Stemmer for removing the commoner morphological and inflexional endings from words in English. https://snowballstem.org/algorithms/porter/stemmer.html
     Parameters:
     Name	Type	Description

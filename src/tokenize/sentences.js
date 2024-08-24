@@ -3,8 +3,7 @@
  * and infering acronyms, numbers, URLs, times, names, etc. 
  * 
  * @param {string} inputText - The text to be split into sentences.
- * @param {Object} options - Options for sentence splitting.
- * @param {boolean} options.splitOnNewlines=true - Split on newlines and markdown line breaks.
+ * @param {Object} options 
  * @param {boolean} options.splitOnHtmlTags=true - Split on HTML tags like P, DIV, UL, OL.
  * @param {number} options.minSize=20 - Minimum size for a sentence.
  * @param {number} options.maxSize=600 - Maximum size for a sentence.
@@ -13,13 +12,12 @@
  */
 export function splitSentences(inputText, options = {}) {
   const {
-    splitOnNewlines = true,
     splitOnHtmlTags = true,
     minSize = 20,
     maxSize = 500,
   } = options;
 
-    // List of 222 common abbreviations for various categories
+  // List of 222 common abbreviations for various categories
   const COMMON_ABBR_LIST = (
     "adj,adm,adv,al,ala,alta,apr,arc,ariz,ark,art,assn,asst,attys,aug,ave,ba," +
     "bart,bld,bldg,blvd,brig,bros,bsc,btw,cal,calif,capt,cc,cell,ch,cl,cmdr,co,col,colo,comdr,con," +
@@ -52,13 +50,10 @@ export function splitSentences(inputText, options = {}) {
 
   // Preprocess text
   let processedText = inputText;
-  if (splitOnNewlines) {
     processedText = processedText.replace(
       LINEBREAK_BOUNDARY_REGEX,
       LINEBREAK_MARKER
     );
-  }
-
   if (splitOnHtmlTags) {
     const htmlTagsToSplit = ["p", "div", "ul", "ol"];
     const htmlSplitRegex = new RegExp(
@@ -94,12 +89,11 @@ export function splitSentences(inputText, options = {}) {
     }
 
     if (
-      isSentenceEnd(token) ||
+      [".", "!", "?"].includes(token) ||
       hasEndPunctuation(token, "?!") ||
       token === LINEBREAK_MARKER_TRIMMED
     ) {
       if (
-        (splitOnNewlines || splitOnHtmlTags) &&
         token === LINEBREAK_MARKER_TRIMMED
       ) {
         currentGroup.pop();
@@ -141,7 +135,7 @@ export function splitSentences(inputText, options = {}) {
             }
           }
         } else {
-          if (endsWith(token, "..")) {
+          if (word.endsWith( "..")) {
             continue;
           }
 
@@ -176,14 +170,20 @@ export function splitSentences(inputText, options = {}) {
       }
     }
 
-    const splitResult = splitConcatenatedSentences(token);
-    if (splitResult) {
-      currentGroup.pop();
-      currentGroup.push(splitResult[0]);
-      sentenceGroups.push(currentGroup);
-      currentGroup = [splitResult[1]];
-      wordCounter = 0;
+    const boundaryIndex = token.search(/[.!?]/);
+    if (boundaryIndex > -1 && boundaryIndex < token.length - 1) {
+      const nextChar = token.charAt(boundaryIndex + 1);
+      if (nextChar.match(/[a-zA-Z]/)) {
+        const splitResult =  [token.slice(0, boundaryIndex + 1), token.slice(boundaryIndex + 1)];
+        
+          currentGroup.pop();
+          currentGroup.push(splitResult[0]);
+          sentenceGroups.push(currentGroup);
+          currentGroup = [splitResult[1]];
+          wordCounter = 0;
+      }
     }
+
   }
 
   if (currentGroup.length) {
@@ -230,7 +230,7 @@ export function splitSentences(inputText, options = {}) {
       } else if (sentence.length > maxSize) {
         // If the sentence is too long, split it at the last punctuation mark before maxSize
         const lastPunctuation = sentence.lastIndexOf(".", maxSize);
-        if (lastPunctuation === -1) 
+        if (lastPunctuation === -1)
           return sliceIntoChunks(sentence, maxSize);
         if (lastPunctuation > minSize) {
           finalResult.splice(
@@ -257,12 +257,12 @@ function sliceIntoChunks(str, maxSize) {
 
   while (startIndex < str.length) {
     let endIndex = startIndex + maxSize;
-    
+
     if (endIndex < str.length) {
       // Look for the last space within the last 20 characters
       let lastSpaceIndex = str.lastIndexOf(' ', endIndex);
       let searchStartIndex = Math.max(startIndex, endIndex - 20);
-      
+
       if (lastSpaceIndex >= searchStartIndex) {
         endIndex = lastSpaceIndex;
       }
@@ -281,8 +281,8 @@ function sliceIntoChunks(str, maxSize) {
  * Checks if a word ends with a specific character or characters.
  * @param {string} word - The word to check.
  * @param {string} char - The character(s) to check for at the end of the word.
-   * @private
-* @returns {boolean} True if the word ends with the specified character(s), false otherwise.
+ * @private
+ * @returns {boolean} True if the word ends with the specified character(s), false otherwise.
  */
 function hasEndPunctuation(word, char) {
   return char.length > 1
@@ -290,22 +290,12 @@ function hasEndPunctuation(word, char) {
     : word.slice(-1) === char;
 }
 
-/**
- * Checks if a word ends with a specific string.
- * @param {string} word - The word to check.
- * @param {string} ending - The ending string to check for.
- * @returns {boolean} True if the word ends with the specified string, false otherwise.
-  * @private
- */
-function endsWith(word, ending) {
-  return word.slice(word.length - ending.length) === ending;
-}
 
 /**
  * Checks if a string is capitalized or a number.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is capitalized or a number, false otherwise.
-  * @private
+ * @private
  */
 function isCapitalizedOrNumeric(str) {
   return /^[A-Z][a-z].*/.test(str) || isNumeric(str);
@@ -315,7 +305,7 @@ function isCapitalizedOrNumeric(str) {
  * Checks if a string is likely to begin a new sentence.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is likely to begin a new sentence, false otherwise.
-  * @private
+ * @private
 */
 function isBeginsNewSentence(str) {
   return isCapitalizedOrNumeric(str) || /``|"|'/.test(str.substring(0, 2));
@@ -325,7 +315,7 @@ function isBeginsNewSentence(str) {
  * Checks if a string is in the list of common abbreviations.
  * @param {string} str - The string to check.
  * @returns {boolean} True if the string is a common abbreviation, false otherwise.
-  * @private
+ * @private
 */
 function isInCommonAbbreviationList(str, COMMON_ABBR_LIST) {
   const cleaned = str
@@ -339,7 +329,7 @@ function isInCommonAbbreviationList(str, COMMON_ABBR_LIST) {
  * @param {string} word - The current word.
  * @param {string} nextWord - The next word in the sequence.
  * @returns {boolean} True if it's an abbreviated time followed by 'day', false otherwise.
-  * @private
+ * @private
 */
 function isAbbreviatedTime(word, nextWord) {
   if (word === "a.m." || word === "p.m.") {
@@ -436,31 +426,4 @@ function isValidUrl(str) {
   const urlRegex =
     /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   return urlRegex.test(str);
-}
-
-/**
- * Attempts to split a word that might contain multiple sentences.
- * @param {string} word - The word to check and potentially split.
- * @returns {string[]|false} An array with the split parts if found, false otherwise.
- * @private
- */
-function splitConcatenatedSentences(word) {
-  const boundaryIndex = word.search(/[.!?]/);
-  if (boundaryIndex > -1 && boundaryIndex < word.length - 1) {
-    const nextChar = word.charAt(boundaryIndex + 1);
-    if (nextChar.match(/[a-zA-Z]/)) {
-      return [word.slice(0, boundaryIndex + 1), word.slice(boundaryIndex + 1)];
-    }
-  }
-  return false;
-}
-
-/**
- * Checks if a token is a sentence boundary character.
- * @param {string} token - The token to check.
- * @returns {boolean} True if the token is a sentence boundary character, false otherwise.
- * @private
- */
-function isSentenceEnd(token) {
-  return [".", "!", "?"].includes(token);
 }

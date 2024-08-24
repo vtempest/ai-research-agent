@@ -122,22 +122,24 @@
             </div>
           </div> -->
     
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-medium">Words: <span id="word-count">0</span></span>
-              <div class="relative">
-                <button on:click={copyHtmlToClipboard} class="px-2 py-1 text-sm flex items-center rounded-md bg-gray-200 hover:bg-gray-300">
-                  <Clipboard class="mr-1" />
-                  Copy
-                </button>
-                {#if showCopiedMessage}
-                  <div class="absolute top-full left-0 mt-1 px-2 py-1 bg-gray-500 text-white text-xs rounded-md">
-                    Copied!
-                  </div>
-                {/if}
-              </div>
-            </div>
-          </div>
+       
+ <div class="space-y-4">
+  <div class="flex items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg shadow-sm">
+    <div class="relative">
+      <button
+        on:click={copyHtmlToClipboard}
+        class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-white hover:from-blue-500 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+      >
+        <Clipboard class="mr-2 h-4 w-4" />
+      </button>
+      {#if showCopiedMessage}
+        <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-md shadow-lg">
+          Copied!
+        </div>
+      {/if}
+    </div>
+  </div>
+</div> 
     
           <!-- <div class="space-y-2">
             <button on:click={handleEditMode} class="w-full px-2 py-1 text-sm flex items-center justify-center rounded-md bg-gray-200 hover:bg-gray-300" id="edit-mode-btn">
@@ -149,6 +151,7 @@
           <div class="space-y-2">
             <input
               bind:value={userPrompt}
+              on:keydown={(e) => e.key === 'Enter' && generateAISummary()}
               id="summary-prompt"
               type="text"
               placeholder="Ask AI any question..."
@@ -156,7 +159,6 @@
             >
             <button
               on:click={generateAISummary}
-              on:keydown={(e) => e.key === 'Enter' && generateAISummary()}
               disabled={status === 'calling-ai'}
               class="w-full px-2 py-1 text-sm flex items-center justify-center rounded-md bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
               id="ai-generate-btn"

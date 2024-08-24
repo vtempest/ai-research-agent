@@ -1,10 +1,13 @@
 import {splitSentences} from "../../index.js";
 
 /**
- * Search Wikipedia for a query, return result's title, summary, and image. 
+ * Function to query phrase in Wikipedia Search API and return page titles, images 
+ * and first few sentences of each result.  Wikipedia Search API  has complex 
+ * <a href="https://www.mediawiki.org/wiki/API:Opensearch">documentation</a>
+ *  and is dificult to parse and clean up results.
  *
  * @param {string} query search phrase 
- * @param {object} options Options object 
+ * @param {object} options 
  * @param {boolean} options.plainText=false Return plain text instead of HTML
  * @param {number} options.summarySentenceLimit=3 Limit summary to this many sentences
  * @param {number} options.limitSearchResults=1 Limit number of search results

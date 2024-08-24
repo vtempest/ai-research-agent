@@ -1,23 +1,27 @@
 <script>
   import { Zap, Globe, Clock, Database, Headphones, SmilePlus, BarChart3,BarChart2, Infinity, Gauge, Sparkles, Users, UserPlus, Cog, Shield, Rocket, Brain, Target, Compass, Laptop, MessageCircleQuestion } from 'lucide-svelte';
+  import Footer from "$components/Home/Footer.svelte";
+  import iconSearch from "$lib/icons/icon-search.svg"
 
   const plans = [
     {
       name: 'Free   ',
       description: 'For individuals  exploring the power of LLM Research Agents.',
+      url: '#',
       price: 0,
       features: [
         { text: ' 100 queries / 24 hours', icon: Zap },
         { text: 'Access to cutting-edge LLMs', icon: Brain },
         { text: 'Discover curated content feed', icon: Compass },
         { text: 'Standard response times', icon: Clock },
-    //    { text: 'Waiting queue during peak hours', icon: Users },
+        //    { text: 'Waiting queue during peak hours', icon: Users },
         { text: 'Community support forums', icon: MessageCircleQuestion  }
       ]
     },
     {
       name: 'AI Research Professional',
-      description: 'For professionals who want custom advanced LLM  Agents.',
+      description: 'For professionals who want custom advanced LLM Agents.',
+      url: 'https://buy.stripe.com/8wMdTmdi1asl1xe3cc',
       price: 5,
       features: [
         { text: '1,000 queries / 24 hours', icon: Rocket },
@@ -33,12 +37,13 @@
     {
       name: 'AI Research Team',
       description: 'For organizations & teams who need custom solutions.',
+      url: 'https://calendly.com/qwksearch/30min',
       price: 19,
       features: [
         { text: 'Unlimited queries', icon: Infinity },
-        { text: 'LLM suggestions curated to  team dataset', icon: Target },
-        { text: 'Custom API integrations into your infrastructure', icon: Cog },
+        { text: 'Custom plan for API integration into your infrastructure', icon: Cog },
         { text: 'AI-led team collaboration & content discovery ', icon: Globe   },
+        { text: 'LLM suggestions curated to  team dataset', icon: Target },
         { text: 'Customer metrics & search trend analysis', icon: BarChart2 },
         { text: 'Multi-user account & dataset management', icon: UserPlus  },
       ]
@@ -46,10 +51,28 @@
   ];
 </script>
 
-<div class=" overflow-y-auto h-full  sm:align-center p-10">
-  <h1 class="text-2xl  align-center text-center w-full"> Searches need answers, not ads.</h1>
+<svelte:head>
+  <title>QwkSearch  Pricing Plans</title>
+</svelte:head>
+<div class=" overflow-y-auto   align-center pt-10">
+  
 
-  <div class="mt-12 space-y-3 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-6 md:max-w-5xl md:mx-auto xl:grid-cols-3">
+  <div class="flex justify-center items-center w-full">
+    <div class="flex items-center">
+      <img
+        src={iconSearch}
+        alt="Search Icon"
+        class="w-[102.4px] h-[102.4px] object-contain mr-4"
+      />
+      <div class="flex flex-col">
+        <h1 class="text-3xl font-bold mb-2">QwkSearch</h1>
+        <h2 class="text-2xl">
+          Searches need answers, not ads.
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 m-6 sm:mt-5 sm:space-y-2 sm:grid sm:grid-cols-3 sm:gap-6 md:max-w-5xl md:mx-auto xl:grid-cols-3">
 
     {#each plans as plan}
       <div class="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200  hover:shadow-xl hover:-translate-y-1 ">
@@ -60,11 +83,21 @@
             <span class="text-2xl font-bold text-slate-900 tracking-tighter">${plan.price}</span>
             <span class="text-base font-medium text-slate-500">/mo</span>
           </p>
-          <div
+          {#if plan.url=="#"}
+          <a
+          style="user-select: none;"
+          class="mt-8 cursor-pointer	 block w-full bg-slate-900 rounded-md py-3 px-2 text-sm font-semibold text-white text-center hover:bg-slate-800 transition-colors"
+        >{plan.name} Plan
+      </a>
+          {:else}
+          <a
+            target="_blank"
+            href={plan.url}
             class="mt-8 cursor-pointer	 block w-full bg-slate-900 rounded-md py-3 px-2 text-sm font-semibold text-white text-center hover:bg-slate-800 transition-colors"
-          >
-            {plan.name} Plan
-          </div>
+          >{plan.name} Plan
+        </a>
+          {/if}
+            
         </div>
         <div class="pt-6 pb-8 px-6">
           <h3 class="text-sm font-bold text-slate-900 tracking-wide uppercase">What's included</h3>
@@ -80,4 +113,8 @@
       </div>
     {/each}
   </div>
+
+  
+  <Footer />  
+
 </div>

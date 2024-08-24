@@ -1,14 +1,23 @@
 <script>
-  import { APP_EMAIL } from '$lib/config/config';
+  import { APP_EMAIL } from "$lib/config/config";
+</script>
 
-</script><!-- Privacy Policy and Terms of Service links -->
-<div class="absolute bottom-2 w-full text-center  text-slate-500 text-xs z-20">
- 
+<!-- Privacy Policy and Terms of Service links -->
+<div class="mt-16 mb-1 text-center text-slate-500 text-xs z-20">
+  <a target="_blank" href="/pricing" class="mr-4 hover:underline">Pricing </a>
+
+  <a
+    target="_blank"
+    href="https://www.linkedin.com/company/qwksearch/posts/"
+    class="mr-4 hover:underline"
+    >Blog
+  </a>
+
   <a target="_blank" href="/legal/privacy-policy" class="mr-4 hover:underline"
-    >Privacy Policy</a
+    >Privacy</a
   >
   <a target="_blank" href="/legal/terms" class="mr-4 hover:underline">Terms </a>
-  <a target="_blank"
-    href="mailto:{APP_EMAIL}"
-    class="mr-4  hover:underline" >Contact </a>
+  <a target="_blank" href="mailto:{APP_EMAIL}" class="mr-4 hover:underline"
+    >Contact
+  </a>
 </div>

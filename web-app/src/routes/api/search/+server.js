@@ -1,4 +1,5 @@
 import { searchSTREAM, searchWeb } from "../../../../../";
+import { json } from '@sveltejs/kit';
 
 export async function GET({ url }) {
     const query = url.searchParams.get('q');
@@ -7,12 +8,8 @@ export async function GET({ url }) {
     const maxTopResultsToExtract = parseInt(url.searchParams.get('limitExtract') || '4');
 
     let startTime = Date.now();
-    if (!query) {
-        return new Response(JSON.stringify({ error: 'Query parameter is required' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+    if (!query) 
+        return json({ error: 'Query parameter is required' })
         
     var selectedDomain = 
     "http://ec2-54-67-101-79.us-west-1.compute.amazonaws.com/searxng"
@@ -37,10 +34,7 @@ export async function GET({ url }) {
 
 
         if (!results  ) {
-            return new Response(JSON.stringify(results), {
-                status: 500,
-                headers: { 'Content-Type': 'application/json' }
-            });
+            return json(results, {status: 500});
         }
 
         let elapsedTime = Date.now() - startTime;

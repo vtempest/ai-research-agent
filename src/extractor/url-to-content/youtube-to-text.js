@@ -1,66 +1,139 @@
+import { convertHTMLSpecialChars } from "../html-to-content/html-to-basic-html";
+import { scrapeURL } from "./scrape-url";
+
 /**
  * fetch youtube.com video's webpage HTML for embedded transcript
  * if blocked, use scraper of youtubetranscript.com
  * @param {string} videoUrl
  * @param {object} options
  * @param {boolean} options.boolTimestamps=true - true to return timestamps, default true
+ * @param {boolean} options.addEmbedVideo=true - add embedded <video> HTML before transcript
  * @param {boolean} options.timeout=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @category Extractor
  */
-export async function extractYoutubeText(videoUrl, options={}) {
-  const {
-    boolTimestamps = true,
-    timeout = 5    
-  } = options
+export async function extractYoutubeText(videoUrl, options = {}) {
+  const { boolTimestamps = true, addEmbedVideo = true, timeout = 5 } = options;
 
-  var { content, timestamps, error } = await fetchTranscript(videoUrl, options);
-  if (error)
-    var { content, timestamps } = await fetchViaYoutubeTranscript2(videoUrl, options);
+  const videoId = getURLYoutubeVideo(videoUrl);
 
-  if (!boolTimestamps) return { content };
+  var res = await fetchTranscript(videoId, options);
 
-  content = content
-    .replace(/&amp;#39;/g, "'")
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"');
+  if (!res || res.error)
+    res = await fetchViaYoutubeTranscript2(videoId, options);
+
+  if (!res || !res.content) return { error: 1 };
+  var { content, timestamps } = res;
+
+  // if (!boolTimestamps) return { content };
+
 
   var word_count = content.split(" ").length;
-  return { content, timestamps, word_count, format: "video" };
+
+
+  
+  content = convertHTMLSpecialChars(content);
+
+  var speedsEveryCharPeriod = {};
+  const valueCharPeriod = 100;
+
+  for (var timestamp of timestamps){
+
+    var [char, time] = timestamp;
+
+    var speed = Math.floor(char/time)-10;
+    speedsEveryCharPeriod[Math.floor(char/valueCharPeriod)] = speed;
+
+  }
+
+  var speeds = Object.keys(speedsEveryCharPeriod)
+    .map(timeKey=>speedsEveryCharPeriod[timeKey])
+
+    
+  let compressed = [];
+  let compressedCount = [];
+  let currentNum = speeds[0];
+  let count = 1;
+
+  for (let i = 1; i < speeds.length; i++) {
+      if (speeds[i] === currentNum) {
+          count++;
+      } else {
+        compressed.push(currentNum)
+        compressedCount.push(count)
+        currentNum = speeds[i];
+          count = 1;
+      }
+  }
+  compressed.push(currentNum)
+  compressedCount.push(count)
+
+  var total = 0;
+  compressedCount = compressedCount.map(c=>{
+    total += c;
+    return total;
+  })
+
+  speeds = compressed.join(',') + "   " + compressedCount.join(',');
+
+  
+  if (addEmbedVideo)
+    content =
+      '<iframe width="560" height="315" data-timestamps="'+
+      speeds +
+       '" src="https://www.youtube.com/embed/' +
+      videoId +
+      '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+      content;
+
+  return { content, timestamps:speeds, word_count};
+}
+
+function compressTimestampsArray(speeds) {
+}
+
+
+
+function decompressTimestampsArray(compressedStr) {
+  let decompressed = [];
+  let parts = compressedStr.split(',');
+
+  for (let part of parts) {
+      let [num, count] = part.split('x');
+      num = parseInt(num);
+      count = parseInt(count);
+      decompressed.push(...Array(count).fill(num));
+  }
+
+  return decompressed;
 }
 
 async function fetchTranscript(videoId, options = {}) {
-  const {
-    timeout = 5    
-  } = options;
-  const identifier = getURLYoutubeVideo(videoId);
+  const videoPageBody = await scrapeURL(
+    `https://www.youtube.com/watch?v=${videoId}`
+  )
 
-  const HEADER = {
-    headers: {
-      "Accept-Language": "en",
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)",
-    },
-     signal: AbortSignal.timeout(timeout * 1000) 
-  };
+  //youtube bot limiting
+  if (videoPageBody?.error  ||
+    videoPageBody.includes('class="g-recaptcha"') ||
+    !videoPageBody.includes('"playabilityStatus":') 
+  )
+    return { error: true };
 
-  const videoPageResponse = await fetch(
-    `https://www.youtube.com/watch?v=${identifier}`,
-    HEADER
-  );
-  const videoPageBody = await videoPageResponse.text();
 
-  const captions = JSON.parse(
-    videoPageBody
-      .split('"captions":')?.[1]
-      ?.split(',"videoDetails')[0]
-      .replace("\n", "")
+  var videoObj = videoPageBody.replace("\n", "")
+  .split('"captions":')?.[1]
+  ?.split(',"videoDetails')[0]
+  
+
+  if (!videoObj) return {error:1}
+
+  const captions = JSON.parse(videoObj
+    
   )?.playerCaptionsTracklistRenderer;
 
   if (
-    videoPageBody.includes('class="g-recaptcha"') ||
-    !videoPageBody.includes('"playabilityStatus":') ||
     !captions?.captionTracks
   )
     return { error: true };
@@ -71,11 +144,10 @@ async function fetchTranscript(videoId, options = {}) {
 
   if (!track) return { error: true };
 
-  const transcriptResponse = await fetch(track.baseUrl, HEADER);
+  const transcriptBody = await scrapeURL(track.baseUrl);
 
-  if (!transcriptResponse.ok) return { error: true };
+  if (transcriptBody.error) return { error: true };
 
-  const transcriptBody = await transcriptResponse.text();
   const results = [
     ...transcriptBody.matchAll(
       /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g
@@ -89,16 +161,13 @@ async function fetchTranscript(videoId, options = {}) {
     lang: track.languageCode,
   }));
 
-
-  
   var content = "";
   var timestamps = [];
   transcript.forEach(({ offset, text }) => {
-      // timestamps.push([content.length, Math.floor(offset, 0)]);
+    timestamps.push([content.length, Math.floor(offset, 0)]);
 
     content += text + " ";
   });
-
 
   return { content, timestamps };
 }
@@ -113,23 +182,20 @@ async function fetchTranscript(videoId, options = {}) {
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @private
  */
-export async function fetchViaYoutubeTranscript(videoUrl, options={}) {
-  const {
-    timeout = 5    
-  } = options;
-  const videoId = getURLYoutubeVideo(videoUrl);
+export async function fetchViaYoutubeTranscript(videoId, options = {}) {
+  const { timeout = 5 } = options;
   const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
 
-  const response = await fetch(url,
-    { signal: AbortSignal.timeout(timeout * 1000) }
-  );
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(timeout * 1000),
+  });
   const html = await response.text();
 
   const transcriptRegex = /<text data-start="([\d.]+)".*?>(.*?)<\/text>/g;
-  const matches = [...html.matchAll(transcriptRegex)];
+  const matches = Array.from(html.matchAll(transcriptRegex));
 
   const transcript = matches.map((match) => ({
-    text: (match[2]),
+    text: match[2],
     offset: parseFloat(match[1]),
   }));
 
@@ -138,13 +204,12 @@ export async function fetchViaYoutubeTranscript(videoUrl, options={}) {
   let charIndex = 0;
 
   transcript.forEach((item) => {
-    timestamps.push([charIndex, item.offset]);
+    timestamps.push([charIndex, Math.floor(item.offset)]);
     charIndex += item.text.length + 1; // +1 for the space we added
   });
 
   return { content, timestamps };
 }
-
 
 /**
  * Test if URL is to youtube video and return video id if true
@@ -159,9 +224,6 @@ export function getURLYoutubeVideo(url) {
   return match ? match[1] : false;
 }
 
-
-
-
 /**
  * Get YouTube transcript of most YouTube videos,
  * except if disabled by uploader
@@ -172,36 +234,36 @@ export function getURLYoutubeVideo(url) {
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @private
  */
-export async function fetchViaYoutubeTranscript2(videoUrl, options = {}) {
-  const {
-    timeout = 10
-  } = options;
-  const videoId = getURLYoutubeVideo(videoUrl);
-  const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
+export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
+  try {
+    const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
 
-  const response = await fetch(url, {
-    signal: AbortSignal.timeout(timeout * 1000)
-  });
-  const html = await response.text();
+    const html = await scrapeURL(url, options)
+    if (!html )
+      return {error:1}
 
-  const transcriptRegex = /<span data-start="([\d.]+)"[^>]*>((?:(?!<\/span>).|\n)*?)<\/span>/gs;
-  const matches = [...html.matchAll(transcriptRegex)];
+    const transcriptRegex =
+      /<span data-start="([\d.]+)"[^>]*>((?:(?!<\/span>).|\n)*?)<\/span>/gs;
+    const matches = Array.from(html.matchAll(transcriptRegex));
 
-  console.log(matches);
-  const transcript = matches.map((match) => ({
-    text: (match[2].replace(/<br\s*\/?>/gi, ' ').trim()),
-    offset: parseFloat(match[1]),
-  }));
+    const transcript = matches.map((match) => ({
+      text: match[2].replace(/<br\s*\/?>/gi, " ").trim(),
+      offset: parseFloat(match[1]),
+    }));
 
 
-  const content = transcript.map((item) => item.text).join(" ");
-  let timestamps = [];
-  let charIndex = 0;
+    const content = transcript.map((item) => item.text).join(" ");
+    let timestamps = [];
+    let charIndex = 0;
 
-  transcript.forEach((item) => {
-    timestamps.push([charIndex, item.offset]);
-    charIndex += item.text.length + 1; // +1 for the space we added
-  });
+    transcript.forEach((item) => {
+      timestamps.push([charIndex, Math.floor( item.offset)]);
+      charIndex += item.text.length + 1; // +1 for the space we added
+    });
 
-  return { content, timestamps };
+
+    return { content, timestamps};
+  } catch (e) {
+    console.log(e);
+  }
 }

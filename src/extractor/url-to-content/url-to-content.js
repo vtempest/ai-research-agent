@@ -4,7 +4,7 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
 import { scrapeURL } from "./scrape-url.js";
 
 /**
- * 🚜📜 Tractor the Text Extractor -
+ * <h3>🚜📜 Tractor the Text Extractor </h3>- <br />
  * Extract URL or HTML to main content with Readability or Postlight Parser,
  * which is an improved version with 100+ custom adapters for major websites. <br>
  * Strips to basic HTML for reading mode or saving research notes. <br>
@@ -55,19 +55,18 @@ export async function extract(urlOrDoc, options = {}) {
     } else if (youtubeID) {
       var { content, timestamps } = await extractYoutubeText(url, options);
 
-      response.html = `<iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/${youtubeID}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe> ${content}`;
+      response.html = content;
+      response.timestamps = timestamps;
     } else {
       try {
         var html = await scrapeURL(url);
       } catch (e) {
         return { error: "Error in fetch" };
       }
+      if (html.error){
+        return { error: "Error in fetch" };
 
+      }
       options.url = url;
       response = await extractContent(html, options);
     }
@@ -89,12 +88,9 @@ export async function extract(urlOrDoc, options = {}) {
     if (youtubeID) {
       var { content, timestamps } = await extractYoutubeText(url);
 
-      response.html = `<iframe width="560" height="315" 
-      src="https://www.youtube.com/embed/${youtubeID}"
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-      </iframe> ${content}`;
+      response.html = content;
+      response.timestamps = timestamps;
+
     } //pass doc to extract
     else response = await extractContent(urlOrDoc, options);
   }

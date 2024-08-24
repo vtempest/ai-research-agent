@@ -1,5 +1,5 @@
 import {isStopWord} from "../tokenize/stopwords";
-import {stemRootWord} from "../tokenize/stemmer.js";
+import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
 
 /**
  * Latent Dirichlet (pronounced Dee-ruesh-ley) allocation  is used
@@ -8,11 +8,11 @@ import {stemRootWord} from "../tokenize/stemmer.js";
  * that assumes documents are mixtures of topics, where a topic
  * is a probability distribution over words. LDA uses Bayesian
  * inference to simultaneously learn the topics and topic mixtures
- * that occur around each other in an unsupervised manner.
- * https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation
- * https://www.youtube.com/watch?v=aPRjj8i_6yE
- * https://www.geeksforgeeks.org/latent-dirichlet-allocation/
- * https://www.youtube.com/watch?v=yK7nN3FcgUs
+ * that occur around each other in an unsupervised manner. <br />
+ * https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation <br />
+ * https://www.youtube.com/watch?v=aPRjj8i_6yE <br />
+ * https://www.geeksforgeeks.org/latent-dirichlet-allocation/ <br />
+ * https://www.youtube.com/watch?v=yK7nN3FcgUs <br />
  *
  * @param {string[]} sentences - Array of input sentences.
  * @param {Object} options - Configuration options for LDA.
@@ -56,7 +56,7 @@ export function weighTopicDirichletDistribution(sentences, options = {}) {
       let cleanedWord = word
         .toLowerCase()
         .replace(/[^a-z\'A-Z0-9\u00C0-\u00ff ]+/g, "");
-      let stemmedWord = stemRootWord(cleanedWord);
+      let stemmedWord = convertWordToRootStem(cleanedWord);
 
       if (
         cleanedWord !== "" &&

@@ -7,7 +7,7 @@ import * as chrono from "chrono-node";
  * https://en.wikipedia.org/wiki/History_of_PDF <br>
  * https://github.com/mozilla/pdf.js/releases <br>
  * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
- * @param {string} pdfURL - URL to a PDF file or buffer from fs.readFile
+ * @param {string} pdfURLOrBuffer - URL to a PDF file or buffer from fs.readFile
  * @param {Object} options
  * @param {boolean} options.addHeadingsTags=true - Adds H1 tags to heading titles in document
  * @param {boolean} options.addPageNumbers=true - Adds  #  to end of each page
@@ -19,8 +19,8 @@ import * as chrono from "chrono-node";
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
  * @category Extractor
  */
-export async function extractPDF(pdfURL, options = {}) {
-  try {
+export async function extractPDF(pdfURLOrBuffer, options = {}) {
+  // try {
     var {
       addHeadingsTags = true,
       addPageNumbers = true,
@@ -29,13 +29,17 @@ export async function extractPDF(pdfURL, options = {}) {
       removeHyphens = true,
       moveFootnotes = true,
       addCitation = true,
-      timeout = 5,
+      timeout = 15,
     } = options;
 
-    // download all pdf data and convert to array buffer
-    var buffer = await (
-      await fetch(pdfURL, { signal: AbortSignal.timeout(timeout * 1000) })
-    ).arrayBuffer();
+    // pass in databuffer or download all pdf data 
+    // and convert to array buffer
+    var buffer =
+      typeof pdfURLOrBuffer === "string"
+        ? await (
+            await fetch(pdfURLOrBuffer, { signal: AbortSignal.timeout(timeout * 1000) })
+          ).arrayBuffer()
+        : pdfURLOrBuffer;
 
     try {
       const { getDocument } = await resolvePDFJS();
@@ -217,27 +221,27 @@ export async function extractPDF(pdfURL, options = {}) {
       // Get metadata
       // avoid using date as it is unreliable sand generally file mod date
       var metadata = await doc.getMetadata();
-      var { Author: author, CreationDate: date, Title: title } = metadata.info;
+      var { Author: author, Title: title } = metadata.info;
       // date =
       //   date.slice(2, 6) + "-" + date.slice(6, 8) + "-" + date.slice(8, 10);
       // date = date ? new Date(date)?.toISOString().split("T")[0] : null;
 
       //look for date in first page
-      date = chrono
-        .parseDate(content.slice(0, 400))
-        ?.toISOString()
-        .split("T")[0];
-      //  || date;
+      // date = chrono
+      //   .parseDate(content.slice(0, 400))
+      //   ?.toISOString()
+      //   .split("T")[0];
+      // //  || date;
 
       title = content.slice(0, 400).match(/<h1>(.*?)<\/h1>/)?.[1] || title;
 
-      return { author, title, date, html: content, format: "pdf" };
+      return { author, title, html: content, format: "pdf" };
     }
 
     return { html: content };
-  } catch (e) {
-    return { error: e.message };
-  }
+  // } catch (e) {
+  //   return { error: e.message };
+  // }
 }
 
 const mean = function (array) {
@@ -279,7 +283,6 @@ export function calculateSoftmax(arr) {
   const exps = arr.map((x) => Math.exp(x - maxVal));
 
   // Compute the sum of the exponentials
-  // @ts-ignore
   const sumExps = exps.reduce((acc, val) => acc + val, 0);
 
   // Compute the calculateSoftmax values
@@ -305,6 +308,9 @@ export async function isUrlPDF(url) {
     //check if content type is pdf from headers
     if (response.headers.get("content-type")?.includes("pdf")) return true;
 
+    if (!response.body || !response.body.getReader) 
+        return false;
+        
     const reader = response.body.getReader();
     const chunk = new Uint8Array(5);
     let bytesRead = 0;

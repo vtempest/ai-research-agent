@@ -1,33 +1,16 @@
-import { extract, fetchURL } from "../../../../..";
+import { extract} from "../../../../..";
+import { json } from '@sveltejs/kit';
 
 export async function GET({ url }) {
   let urlToExtract = url.searchParams.get("url");
 
-  if (!urlToExtract) {
-    return new Response(
-      JSON.stringify({ error: "Query parameter is required" }),
-      {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
+  if (!urlToExtract) 
+    return json({error: "Query parameter is required" }, { status: 500 });
 
   let results = await extract(urlToExtract);
 
   if (!results || results.error)
-    return new Response(JSON.stringify(results), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return json(results, { status: 500 })
 
-  return new Response(JSON.stringify(results), {
-    headers: { "Content-Type": "application/json" },
-  });
-  // } catch (error) {
-  //     return new Response(JSON.stringify({ error: 'An error occurred while fetching search results' }), {
-  //         status: 500,
-  //         headers: { 'Content-Type': 'application/json' }
-  //     });
-  // }
+  return json(results);
 }

@@ -7,14 +7,14 @@ import {tokenizeTopics} from "../../index.js";
  *  Data Science". https://www.youtube.com/watch?v=ruBm9WywevM
  * @param {string} document a single document to calculate the score for
  * @param {string} query phrase to search tf and idf for each word
- * @param {object} options Optional parameters
+ * @param {object} options 
  * @param {number} options.saturationWeight saturationWeight controls the impact of term frequency saturation.
     It typically ranges from 1.2 to 2.0, with 1.5 being a common default value.
     As saturationWeight increases: The impact of term frequency increases (i.e., multiple occurrences of a term in a document become more significant).
  * @param {number} options.normalizeLength
    normalizeLengthcontrols the document length normalization.
     It ranges from 0 to 1, with 0.75 being a common default value.
-    WhennormalizeLength= 1: Full length normalization is applied.
+    When normalizeLength=1: Full length normalization is applied.
     Longer documents are penalized more heavily.
  * @param {number} options.avgDocWordCount Estimated average word count of all documents
  * @param {number} options.totalWikiPages Total number of Wikipedia pages used to calculate IDF
@@ -66,7 +66,7 @@ export function weighRelevanceTermFrequency(
  * @returns {number} domain specificity 0-12~
  * @category Relevance
  */
-export  function calculatePhraseSpecificity(phrase, options) {
+export function calculatePhraseSpecificity(phrase, options) {
   var tokensWithFreq = tokenizeTopics(phrase, options);
 
   return (

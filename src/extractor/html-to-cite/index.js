@@ -36,7 +36,7 @@ export function extractCite(document) {
       extractAuthor(document) || {};
 
   // console.log(author_cite, author_short, author_type);
-  date = extractDate(document) || date;
+  // date = extractDate(document) || date;
   date = parseDate(date)?.toISOString().split("T")[0];
 
   title = extractTitle(document) || title;

@@ -1,4 +1,4 @@
-import {stemRootWord} from "./stemmer";
+import {convertWordToRootStem} from "./word-to-root-stem";
 import {isStopWord} from "./stopwords";
 
 /**
@@ -46,7 +46,7 @@ export function tokenizeTopics(phrase, options = {}) {
 
   //check for typos
   
-  // if (checkTypos && typosModel) words = words.map((word) => typosModel[word] || word);
+  if (checkTypos && typosModel) words = words.map((word) => typosModel[word] || word);
 
   var topics = [];
   for (var i = 0; i < words.length; i++) {
@@ -64,7 +64,7 @@ export function tokenizeTopics(phrase, options = {}) {
 
     //check for root words like "gaming" -> "game"
     if (!possiblePhrases && checkRootWords) {
-      var rootWord = stemRootWord(word);
+      var rootWord = convertWordToRootStem(word);
       if (rootWord !== word)
         possiblePhrases = phrasesModel[rootWord.slice(0, 2)]
           ? phrasesModel[rootWord.slice(0, 2)][rootWord]

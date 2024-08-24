@@ -1,4 +1,3 @@
-import phrasesModel from "../../data/wiki-phrases-model-240k.json";
 
 /**
  * Completes the Query with the most likely next words for phrases
@@ -8,16 +7,20 @@ import phrasesModel from "../../data/wiki-phrases-model-240k.json";
  * @example autocompleteNextWords("self att") => ["self attention", "self attract", "self attack"]
  * @category Tokenize
  */
-export function autocompleteNextWords(query, options = {}) {
-  let {
-    // phrasesModel, //pass in remote model
+export async function autocompleteNextWords(query, options = {}) {
+  let { 
+    phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions
   } = options;
 
+  if (!phrasesModel)
+    phrasesModel = await import ( "../../data/wiki-phrases-model-240k.json");
+
   //strip non-alphanumeric characters from query and -'
   query = query.trim().replace(/[^a-zA-Z0-9\s\-\']/g, "");
 
+  
   //split into words
   var words = query.toLowerCase().split(/\W+/);
 

@@ -1,7 +1,29 @@
-const { pipeline } =  import("@xenova/transformers");
 
+/**
+ * Calculate the semantic similarity between one text and a list of 
+ * other sentences by comparing their embeddings.
+ * https://huggingface.co/docs/api-inference/detailed_parameters#sentence-similarity-task
+ * 
+ * @param {string} source_sentence The string that you wish to 
+ * compare the other strings with. This can be a phrase, sentence, 
+ * or longer passage, depending on the model being used.
+ * @param {Array<string>} sentences A list of strings which will be compared 
+ * against the source_sentence.
+ * @param {object} options 
+ * @param {string} options.model="sentence-transformers/all-MiniLM-L6-v2"  
+ * @param {string} options.HF_API_KEY Required https://huggingface.co/settings/tokens
+ * @returns array of 0-1 similarity scores for each sentence
+ * @category Relevance 
+*/
+export async function weighRelevanceConceptVectorAPI(source_sentence, sentences, options={}) {
+  var {
+    model = "sentence-transformers/all-MiniLM-L6-v2",
+    HF_API_KEY = 0
+  } = options;
+  
+  if (!HF_API_KEY)
+    return {error: "No API key"}
 
-export async function vectorizeTextAsConceptAPI(source_sentence, sentences, model, apiKey) {
   const url = `https://api-inference.huggingface.co/models/${model}`;
   const response = await fetch(url, {
     method: "POST",
@@ -29,18 +51,19 @@ export async function vectorizeTextAsConceptAPI(source_sentence, sentences, mode
 /**
  * Rerank documents's chunks based on relevance to query,
  * based on cosine similarity of their concept vectors generated
- * by a MiniLM transformer model.
+ * by a 20MB MiniLM transformer model downloaded locally.
  *
  * @param {Array<string>} documents
  * @param {string} query
- * @param {Object} config
+ * @param {Object} options
+ * 
  * @returns {Promise<Array<{content: string, similarity: number}>>}
  * @category Relevance
  */
-export async function weighRelevanceConceptVector(documents, query, config = {}) {
-  const docEmbeddings = await vectorizeTextAsConcept(documents, config);
+export async function weighRelevanceConceptVector(documents, query, options = {}) {
+  const docEmbeddings = await vectorizeTextAsConcept(documents, options);
 
-  const queryEmbedding = await vectorizeTextAsConcept(query, config);
+  const queryEmbedding = await vectorizeTextAsConcept(query, options);
 
   let sortedDocs = docEmbeddings
     .map((docEmbedding, i) => ({
@@ -49,7 +72,6 @@ export async function weighRelevanceConceptVector(documents, query, config = {})
     }))
     .filter((sim) => sim.similarity > 0.5)
     .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 5)
     .map((sim) => ({
       content: documents[sim.index],
       similarity: sim.similarity,
@@ -64,17 +86,17 @@ export async function weighRelevanceConceptVector(documents, query, config = {})
  * and values are similar if words are similar by that feature 
  * within m-dimensional "concept space" 
  * @param {string|Array<string>} input
- * @param {Object} config
+ * @param {Object} options
  * @returns {Promise<Array<Array<number>>>}
   * @category Relevance
 */
-export async function vectorizeTextAsConcept(input, config = {}) {
+export async function vectorizeTextAsConcept(input, options = {}) {
+  const { pipeline } =  await import("@xenova/transformers");
 
   const {
     batchSize = 512,
-    stripNewLines = true,
     modelName = "Xenova/all-MiniLM-L6-v2",
-  } = config;
+  } = options;
 
   const texts = Array.isArray(input) ? input : [input];
   const processedTexts = stripNewLines
@@ -102,9 +124,8 @@ export async function vectorizeTextAsConcept(input, config = {}) {
  */
 function splitArrayToChunks(array, chunkSize) {
   const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
+  for (let i = 0; i < array.length; i += chunkSize) 
     chunks.push(array.slice(i, i + chunkSize));
-  }
   return chunks;
 }
 
@@ -119,7 +140,7 @@ function splitArrayToChunks(array, chunkSize) {
  * https://en.wikipedia.org/wiki/Cosine_similarity
  * @param {Array<number>} vecA
  * @param {Array<number>} vecB
- * @returns {number}
+ * @returns {number} 0-1 similarity score
  * @category Math
  */
 function calculateCosineSimilarity(vecA, vecB) {

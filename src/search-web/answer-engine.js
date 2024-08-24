@@ -2,27 +2,24 @@ import {searchWeb} from "../../index.js";
 import {extract} from "../../index.js";
 
 /**
- * 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
- * 
- * This function performs a comprehensive search and analysis process: \n
- * 1. Searches the Web for the query via metasearch of major engines or custom data.\n
- * 2. Extracts text of top results using Tractor the Text Extractor.\n
- * 3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.\n
- * 4. Reranks document chunks based on relevance to the query, using embeddings to \n
- * convert text to concept vectors within LLM "concept space", and calculates cosine similarity of query to topic.
- * 5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq\n
+ * <h3>🤖🔎 STREAM: Search with Top Result Extraction & Answer Model</h3>  <br />
+ * 1. Searches the Web for the query via metasearch of major engines or custom data.<br />
+ * 2. Extracts text of top results using Tractor the Text Extractor.<br />
+ * 3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.<br />
+ * 4. Reranks document chunks based on relevance to the query, using embeddings to <br />
+ * convert text to concept vectors within LLM "concept space", and calculates cosine similarity of query to topic. <br />
+ * 5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq 
  *  Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
  *
  * @async
  * @param {string} query - The search query string.
- * @param {object} options={} - Optional configuration for the search process.
+ * @param {object} options
  * @param {number} options.categoryIndex=0 - Index of the search category.
  * @param {number} options.recencyIndex=0 - Index representing the recency of results.
  * @param {number} options.maxRetries=5 - Maximum number of retry attempts for the search.
  * @param {number} options.maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
  * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
  * @returns {Promise<Array>} A promise that resolves to an array containing the search results, extracted information, and generated answer.
- * @throws {Error} Throws an error if the search or analysis process fails.
  * @category Search
  * @example const advancedResults = await searchSTREAM('Latest developments in quantum computing', {
  *   categoryIndex: 2,

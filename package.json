@@ -7,7 +7,7 @@
   "description": "Search and outline a topic base with AI Research Agent",
   "license": "MIT",
   "scripts": {
-    "aws": "scp -r -i C:/Users/admin/.ssh/art.pem -o StrictHostKeyChecking=no . ubuntu@54.177.193.125:~/ai-research-agent/",
+    "dev": "cd web-app; vite dev",
     "prod": "cd web-app; vite build; wrangler deploy; wrangler tail",
     "docs": "jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/ ; npm run open",
     "open": "vivaldi $(pwd)/docs/index.html",
@@ -17,23 +17,25 @@
   },
   "devDependencies": {
     "@jsdoc/salty": "^0.2.8",
-    "@types/bun": "latest",
+    "@types/bun": "^1.1.6",
     "@vitest/ui": "^2.0.5",
-    "adm-zip": "^0.5.14",
-    "axios": "^1.7.2",
+    "adm-zip": "^0.5.15",
+    "axios": "^1.7.4",
     "better-docs": "^2.7.3",
-    "cheerio": "^1.0.0-rc.12",
-    "fast-xml-parser": "^4.4.0",
+    "cheerio": "^1.0.0",
+    "fast-xml-parser": "^4.4.1",
     "jsdoc": "^4.0.3",
-    "vitest": "^1.6.0"
+    "vitest": "^2.0.5",
+    "wrangler": "^3.72.0"
   },
   "dependencies": {
-    "@langchain/core": "^0.2.23",
+    "@langchain/core": "^0.2.27",
     "@langchain/groq": "^0.0.16",
     "@postlight/parser": "^2.2.3",
+    "@xenova/transformers": "^2.17.2",
     "chrono-node": "^2.7.6",
     "linkedom": "^0.18.4",
-    "pdfjs-serverless": "^0.5.1",
-    "wrangler": "^3.71.0"
+    "node-fetch": "^3.3.2",
+    "pdfjs-serverless": "^0.5.1"
   }
 }

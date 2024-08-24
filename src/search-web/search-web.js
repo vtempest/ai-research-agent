@@ -7,7 +7,7 @@ import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-ba
  * @async
  * @function searchWeb
  * @param {string} query - The search query string.
- * @param {object} options={} - Optional configuration for the search.
+ * @param {object} options
  * @param {number} options.category=0 - "general", "videos", "news", "images",
  *  "science", "map", "music", "it", "files", "social+media"
  * @param {number} options.recency=0 - ["", "day", "week", "month", "year"]
@@ -57,7 +57,6 @@ export async function searchWeb(query, options = {}) {
     "opnxng.com",
     "paulgo.io",
     "priv.au",
-    "s.mble.dk",
     "s.trung.fun",
     "search.blitzw.in",
     "search.charliewhiskey.net",
@@ -94,7 +93,6 @@ export async function searchWeb(query, options = {}) {
     "searx.lunar.icu",
     "searx.mxchange.org",
     "searx.namejeff.xyz",
-    "searx.nobulart.com",
     "searx.numeriquement.fr",
     "searx.oakleycord.dev",
     "searx.ox2.fr",
@@ -178,9 +176,9 @@ export async function searchWeb(query, options = {}) {
         cached = linkMatch[1];
       }
 
-      // title = convertHTMLSpecialChars(title);
-      // snippet = convertHTMLSpecialChars(snippet);
-
+      title = convertHTMLSpecialChars(title);
+      snippet = convertHTMLSpecialChars(snippet);
+      if (!url.includes(".de/"))
       results.push({ title, url, snippet });
     }
   }
@@ -193,6 +191,9 @@ export async function searchWeb(query, options = {}) {
       maxRetries: maxRetries - 1,
     });
   }
+
+  //filter out url that end with .de
+  results = results.filter((result) => !result.url.includes(".de/"));
 
   return results;
   // } catch (error) {

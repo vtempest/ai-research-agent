@@ -1,20 +1,29 @@
 /**
- * Strip HTML to 26 basic markup HTML tags, lists, tables, images.
+ * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
  * Convert anchors and relative urls to absolute urls.
  *
- * @param {string} html
- * @param {object} options {images: 0, links: 1, sections: 1, formatting: 1 }
+ * @param {string} html Any page's HTML to process
+ * @param {object} options 
+ * @param {boolean} options.images=true - Whether to include images
+ * @param {boolean} options.links=true - Whether to include links
+ * @param {boolean} options.videos=true - Whether to include videos or not
+ * @param {boolean} options.formatting=true - Whether to include formatting
+ * @param {string} options.url="" - The base URL for converting relative URLs to absolute
+ * @param {string} options.allowTags={string} - Comma-separated list of allowed HTML tags "sup,br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup,span"
+ * @param {string} options.allowedAttributes={string}  List of allowed HTML attributes "text,tag,href, src,type,width, height,id,data" -
  * @returns {string} sanitized html
  * @category Extractor
  */
-export  function convertHTMLToBasicHTML(html, options = {}) {
+export function convertHTMLToBasicHTML(html, options = {}) {
   var {
     images = 1,
     links = 1,
+    videos = true,
     formatting = 1,
     url = "",
-    allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
-      ul,ol,li,dd,dl,table,th,tr,td",
+    allowTags = "sup,br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
+      ul,ol,li,dd,dl,table,th,tr,td,sub,sup,span",
+    allowedAttributes = "text,tag,href,src,type,width,height,id,data".split(","),
   } = options;
 
 
@@ -30,11 +39,12 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
   allowTags = allowTags.split(",");
   if (links) allowTags.push("a");
   if (images) allowTags.push("img");
+  if (videos) allowTags = allowTags
+    .concat("video,source,embed,object".split(","))
+
 
   if (!formatting) allowTags = ["text"];
   allowTags.push("text");
-
-  var allowedAttributes = ["text", "tag", "href", "src"];
 
   // Convert html string to array like [{tag:"p",attr:""},{text:""}]
   var basicHtml = convertHTMLToTokens(html)
@@ -57,17 +67,20 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
 
     
       if ( urlValue) {
+        urlValue = decodeURI(urlValue);
+
         if (urlValue.startsWith("//")) urlValue = "https:" + urlValue;
 
-        if (urlValue[0] == "#") urlValue = domain + urlValue;
+        //anchor links should be on same page or open external
+        // if (urlValue[0] == "#") urlValue = url + urlValue;
           if (urlValue[0] == "/") urlValue = domain + urlValue;
 
         if (urlValue.startsWith("./"))
           urlValue =  url.slice(0,url.lastIndexOf("/")) + urlValue;
         
 
-        if (!urlValue.startsWith("http")) 
-          urlValue = domain + "/" + urlValue;
+        if (!urlValue.startsWith("http") && urlValue[0] != "#")  
+          urlValue = url.slice(0, url.lastIndexOf('/')+1) + "/" + urlValue;
 
         if (el.href) el.href = urlValue;
         if (el.src) el.src = urlValue;
@@ -98,6 +111,7 @@ export  function convertHTMLToBasicHTML(html, options = {}) {
  * @param {string} html
  * @returns {array}
  * @category Extractor
+ * @private
  */
 export function convertHTMLToTokens(html) {
   if (!html) return;
@@ -190,12 +204,12 @@ export function convertHTMLToTokens(html) {
 
 
 /**
- * Converts HTML special characters like &<>"'`&rsquo; to entities or vice versa.
+ * Converts HTML special characters like &<>"'`&rsquo; to & escaped codes or vice versa.
  * It handles named entities, decimal numeric character references, and hexadecimal numeric character references.
  *
  * @param {string} str - The string to process.
- * @param {boolean} unescape=true - If true, converts entities to characters. 
- *                                     If false, converts characters to entities.
+ * @param {boolean} unescape=true - If true, converts & codes to characters. 
+ *                                     If false, converts characters to codes.
  * @return {string} The processed string.
  * @category Extractor
  * @example
@@ -203,6 +217,7 @@ export function convertHTMLToTokens(html) {
  * // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
  */
 export function convertHTMLSpecialChars(str, unescape = true ) {
+  
   const entityMap  = {
     '&': '&amp;',
     '<': '&lt;',

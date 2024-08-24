@@ -8,10 +8,11 @@ import { scrapeURL} from "./src/extractor/url-to-content/scrape-url.js";
 
 import { extractSEEKTOPIC } from "./src/keyphrases/seektopic-keyphrases.js";
 
-// import {
-//   weighRelevanceConceptVector,
-//   vectorizeTextAsConcept,
-// } from "./src/similarity/similarity-concept.js";
+import {
+  weighRelevanceConceptVector,
+  vectorizeTextAsConcept,
+weighRelevanceConceptVectorAPI
+} from "./src/similarity/similarity-concept.js";
 
 // core underlying functions
 
@@ -39,8 +40,9 @@ export {
   extract,
   scrapeURL,
   extractSEEKTOPIC,
-  // weighRelevanceConceptVector,
-  // vectorizeTextAsConcept,
+  weighRelevanceConceptVector,
+  weighRelevanceConceptVectorAPI,
+  vectorizeTextAsConcept,
   autocompleteNextWords,
   tokenizeTopics,
   splitSentences,

@@ -2,7 +2,6 @@
   import { Splitpanes, Pane } from 'svelte-splitpanes';
   import SearchInput from "./SearchInput.svelte";
   import { onMount, onDestroy } from "svelte";
-  // import './gh-fork-ribbon.css';
   import './home-style.css';
   import ReadView from "./ReadView.svelte";
   import ActionsPanel from "./ActionsPanel.svelte";
@@ -13,9 +12,9 @@
 
   import { extractSEEKTOPIC } from "../../../..";
 
-  // State variables
+  // State variable
   let phrasesModel = null;
-  let searchResultList = [];
+  let searchResultList = [];  
   let currentArticle = null;
   let activeSearchController = null;
   let selectedResultIndex = -1;
@@ -39,7 +38,11 @@
   });
 
   // Reactive declarations
-  $: searchResultList = [];
+  $: {
+    if (searchResultList.length > 0) {
+      loadFirstResult();
+    }
+  }
   $: currentArticle = null;
   $: if (selectedResultIndex !== -1) {
     scrollActiveResultIntoView();
@@ -135,7 +138,6 @@
    */
   async function fetchAndDisplayArticle(articleUrl, index) {
     try {
-      // currentArticle = { title: 'Loading...', url: articleUrl, html: ' ' };
       const response = await fetch(`${API_ENDPOINTS.EXTRACT}?url=${encodeURIComponent(articleUrl)}`);
       var newArticle = await response.json();
       
@@ -147,6 +149,9 @@
 
       updateArticleView();
       selectedResultIndex = index;
+
+      // Run summarize AI function
+      summarizeArticle();
     } catch (error) {
       console.error('Error fetching article:', error);
       currentArticle = null;
@@ -158,9 +163,6 @@
    */
   function updateArticleView() {
     document.querySelector('.read-view').scrollTo(0, 0);
-    // Uncomment the following lines if you want to use SEEKTOPIC extraction
-    // const extractedKeys = extractSEEKTOPIC(currentArticle.html, { phrasesModel });
-    // console.log(extractedKeys);
   }
 
   /**
@@ -184,24 +186,23 @@
     }
   }
 
-/** 
- * Detect if pressing shortcut in text input box
- * @param {HTMLElement} i element to test
- * @returns {boolean} true if inside text input
- */
- function isInsideTextInput(i) {
-  return (
-    i instanceof HTMLImageElement ||
-    i instanceof HTMLInputElement ||
-    i instanceof HTMLTextAreaElement ||
-    i.textbox ||
-    (i.textContent && i.textContent == "") ||
-    (i.ownerDocument &&
-      i.ownerDocument.designMode &&
-      i.ownerDocument.designMode.match(/on/i))
-  );
-}
-
+  /** 
+   * Detect if pressing shortcut in text input box
+   * @param {HTMLElement} i element to test
+   * @returns {boolean} true if inside text input
+   */
+  function isInsideTextInput(i) {
+    return (
+      i instanceof HTMLImageElement ||
+      i instanceof HTMLInputElement ||
+      i instanceof HTMLTextAreaElement ||
+      i.textbox ||
+      (i.textContent && i.textContent == "") ||
+      (i.ownerDocument &&
+        i.ownerDocument.designMode &&
+        i.ownerDocument.designMode.match(/on/i))
+    );
+  }
 
   /**
    * Scroll the article view
@@ -230,42 +231,60 @@
     setTimeout(() => {
       const activeElement = document.querySelector('.results-list li.active');
       if (activeElement) {
-        activeElement.scrollIntoView({ behavior: 'smooth',   block: 'center',    // aligns the element to the center vertically
-  inline: 'center'    // aligns the element to the center horizontally
-  });
+        activeElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
       }
     }, 0);
+  }
+
+  /**
+   * Load the first result when the results list is loaded
+   */
+  function loadFirstResult() {
+    if (searchResultList.length > 0) {
+      fetchAndDisplayArticle(searchResultList[0].url, 0);
+    }
+  }
+
+  /**
+   * Run the summarize AI function on the current article
+   */
+  function summarizeArticle() {
+    if (currentArticle) {
+      // Assuming the summarize function is available in the ActionsPanel component
+      const actionsPanelComponent = document.querySelector('svelte\\:component[this=ActionsPanel]');
+      if (actionsPanelComponent && actionsPanelComponent.__svelte_component__) {
+        actionsPanelComponent.__svelte_component__.summarize();
+      }
+    }
   }
 </script>
 
 <svelte:head>
   <title>{APP_NAME}</title>
-  <base target="_blank">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </svelte:head>
 
-<main class="flex h-screen w-full  ">
+<main class="flex h-screen w-full">
   <Splitpanes>
     <!-- Sidebar (20% width)  -->
-    <Pane size={20}  snapSize={10} >
-      <div class="h-full flex flex-col shadow-md    p-1">
+    <Pane size={20} snapSize={10}>
+      <div class="h-full flex flex-col shadow-md p-1">
         <!-- Search bar at the top of the sidebar -->
         <div class="border-b border-gray-200">
           <SearchInput handleSubmit={handleSearchSubmit} {phrasesModel}/>
         </div>
         
         <!-- Search results  -->
-        <div class="results-list flex-grow overflow-y-auto p-0">
+        <div class="results-list flex-grow overflow-y-auto overflow-x-hidden p-0">
           {#if searchResultList.length > 0}
             <ul class="space-y-1">
               {#each searchResultList as result, index}
                 <li class="rounded-lg p-2 transition-colors duration-300 cursor-pointer
-                           {index === selectedResultIndex ? '  bg-[#EAEBEE] shadow-xl -translate-y-1 bg-[#DFD8C2]   active' : 'bg-[#f8f8f8] hover:bg-[#DFD8C2]   outline outline-1 outline-slate-300 hover:shadow-xl hover:-translate-y-1  '}" 
+                           {index === selectedResultIndex ? 'bg-[#EAEBEE] shadow-xl -translate-y-1 bg-[#DFD8C2] active' : 'bg-[#f8f8f8] hover:bg-[#DFD8C2] outline outline-1 outline-slate-300 hover:shadow-xl hover:-translate-y-1'}" 
                     on:click={() => fetchAndDisplayArticle(result.url, index)}>
                   <div class="text-md font-medium mb-0 text-slate-600">{convertHTMLSpecialChars(result.title)}</div>
                   <span class="text-sm inline truncate text-blue-900">
@@ -281,19 +300,12 @@
     </Pane>
 
     <!-- ReadView (center panel) -->
-    <Pane size={45}  snapSize={10}>
+    <Pane size={45} snapSize={10}>
       <ReadView selectedArticle={currentArticle} />
-
     </Pane>
 
-    <!-- <Pane size={45}  snapSize={10}>
-      <PricingPlan />
-
-    </Pane> -->
-
     <!-- ActionsPanel (right panel) -->
-    <Pane  size={35}  snapSize={10} >
-
+    <Pane size={35} snapSize={10}>
       <ActionsPanel selectedArticle={currentArticle} />
     </Pane>
   </Splitpanes>
@@ -304,9 +316,7 @@
     height: 100vh;
   }
 
-  
   :global(body) {
     font-family: 'Merriweather', 'Open Sans', 'Lato', sans-serif;
   }
-
 </style>

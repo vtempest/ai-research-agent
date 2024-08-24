@@ -4,14 +4,35 @@ import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js"
 import extractNounEdgeGrams from "./ngrams.js";
 
 /**
- * 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities,
- * Keywords, and Topic Outline Phrases Important to Context
+ * <h3> 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities,
+ * Keywords, and Topic Outline Phrases Important to Context </h3>
+ * 
  * Weights sentences using TextRank noun keyphrase frequency
  * to find which sentences centralize and tie together keyphrase
  * concepts referred to most by other sentences. Based on the
  * TextRank & PageRank algorithms, it randomly surfs links to nodes
  * to find probability of being at that node, thus ranking influence.
- * @param {string} docText - input text to analyze
+ * This can be used to find unique, domain-specific keyphrases using noun Ngrams.  
+ * The user can click on keyphrases or LLM can suggest questions based on them. 
+ * The user can see highlighted just the most important sentences that centralize 
+ * and tie in the core topics. It is possible to vectorize and compare the dot product 
+ * similarity of query to keyphrases which are then mapped to parts of the 
+ * document like section labels.  <br />
+ * 
+1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc. <br />
+2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found. <br />
+3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art" <br />
+4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases  <br />
+5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF.  Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs. <br />
+6. Pass to the next layer only a cut  of top keyphrases sorted by frequency ^ word count <br />
+7. Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link  <br />
+8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence. There's also random jumps to prevent stuck in a loop around same sentences. <br />
+9. Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph centrality  <br />
+10. Returns Top Sentences (and  keyphrases for each sentence) and Top Keyphrases (and which sentences for each keyphrase).  <br />
+11. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank.  <br />
+
+
+@param {string} docText - input text to analyze
  * @param {Object} options
  * @param {Object} options.phrasesModel - phrases model
  * @param {number} options.maxWords=5 - maximum words in a keyphrase

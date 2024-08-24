@@ -6,6 +6,8 @@
  * @param {string} query
  * @returns {boolean} true if doc has all words and "in phrases"
  * @category Relevance
+ * @example var isFound = matchQUASAR(`Ask not what your country can do for you, ask what you can do for your country.
+There is nothing to fear but fear itself.`, ` "Ask not" "but fear itself" nothing`) 
 */
 export function matchQUASAR(document, query) {
   return new RegExp(
