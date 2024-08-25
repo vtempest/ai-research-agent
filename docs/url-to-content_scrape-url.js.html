@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs url-to-content/scrape-url.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>url-to-content/scrape-url.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// try on the frontend  
+// &lt;iframe id="dom-iframe" style="width:0;height:0;border:0; border:none;">&lt;/iframe>
+// document.getElementById('dom-iframe').src = '/get?url=' + url;
+// document.getElementById('dom-iframe').contentWindow.document.body.innerHTML;
+
+/**
+ * Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.&lt;br />
+ * Features: timeout, redirects, default UA, referer as google, and bot detection checking. &lt;br />
+ * Note: The First Amendment &lt;a href="https://blog.apify.com/is-web-scraping-legal/">protects the right to scrape&lt;/a>.
+ * @async
+ * @param {string} url - any domain's URL
+ * @param {object} options
+ * @param {number} options.timeout=5 -  abort request if not retrived, in seconds
+ * @param {number} options.maxRedirects=3 - max redirects to follow
+ * @param {number} options.checkBotDetection=true - check for bot detection messages
+ * @param {number} options.redirectCount=0 - current redirect count
+ * @param {number} options.changeReferer=true - set referer as google
+ * @param {number} options.userAgentIndex=0 - index of [google bot, default chrome]
+ * @returns {Promise&lt;Object|string>} -  HTML, JSON, arraybuffer, or error object
+ * @category Extractor
+ * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
+ */
+export async function scrapeURL(url, options = {}) {
+  try {
+    let {
+      timeout = 5,
+      redirectCount = 0,
+      checkBotDetection = true,
+      maxRedirects = 3,
+      changeReferer = true,
+      userAgentIndex = 0,
+    } = options;
+
+
+
+    var userAgentStrings =
+      ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)"]
+
+
+    var headers = {
+      ...options,
+      "Accept-Language": "en",
+      "User-Agent": userAgentStrings[userAgentIndex],
+      signal: AbortSignal.timeout(timeout * 1000),
+    };
+
+    if (changeReferer)
+      headers["Referer"] = "https://www.google.com/";
+
+
+    let response = await fetch(url, headers);
+
+    if (response.redirected) {
+      if (redirectCount > maxRedirects)
+        return { error: "Max redirects exceeded" };
+      redirectCount++;
+      options = { ...options, redirectCount };
+
+      return scrapeURL(response.url, options);
+    }
+
+    //allow iframe embeds
+
+    if (changeReferer) {
+      delete response.headers['x-frame-options'];
+      delete response.headers['content-security-policy'];
+    }
+
+    //return based on content type
+    const contentType = response.headers.get("Content-Type");
+
+    if (contentType.includes("application/json")) {
+      return await response.json();
+    } else if (contentType.includes("text")) {
+      var html = await response.text();
+      if (checkBotDetection &amp;&amp; isHTMLBotDetection(html))
+        return { error: "Bot detected" }; //, html: response.html };
+
+
+      //spoof the base-url for relative paths on the target page
+      // html = (html || "").replace(/&lt;head[^>]*>/i, "&lt;head>&lt;base href='" + url + "/'>")
+
+      return html;
+    } else {
+      // For other types, return as arrayBuffer
+      return await response.arrayBuffer();
+    }
+  } catch (e) {
+    return { error: "Error in fetch" };
+  }
+}
+
+/**
+ * Check html for bot block messages
+ * @param {string} html
+ * @returns {Boolean} true if bot detection message found
+ * @category Extractor
+ */
+function isHTMLBotDetection(html) {
+  var commonBlocks = [
+    "The security system for this website has been triggered",
+    "You do not have permission to view this page.",
+    "Our systems have detected unusual traffic from your computer network.",
+    "Your request has been blocked due to a network policy.",
+    "Cloudflare Ray ID found ",
+    "Please verify you are a human",
+    "Our systems have detected unusual traffic activity from your network. Please complete this reCAPTCHA",
+    "Sorry, we just need to make sure you're not a robot",
+    "Access to this page has been denied",
+    "&lt;p>Please enable JS and disable any ad blocker&lt;/p>&lt;/p>",
+    "Please make sure your browser supports JavaScript",
+    "Please complete the security check to access",
+    "https://errors.edgesuite.net",
+    "Please enable JS and disable any ad blocker",
+    "The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "We’re currently checking your connection. This shouldn’t take long.",
+    "Generated by cloudfront (CloudFront) Request ID",
+    "You don't have permission to access",
+
+  ];
+
+  return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

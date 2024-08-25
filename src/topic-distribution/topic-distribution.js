@@ -1,4 +1,4 @@
-import {isStopWord} from "../tokenize/stopwords";
+import {isWordCommonIgnored} from "../tokenize/stopwords";
 import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
 
 /**
@@ -62,8 +62,8 @@ export function weighTopicDirichletDistribution(sentences, options = {}) {
         cleanedWord !== "" &&
         stemmedWord &&
         cleanedWord.length > 1 &&
-        !isStopWord(cleanedWord.replace("'", "")) &&
-        !isStopWord(stemmedWord)
+        !isWordCommonIgnored(cleanedWord.replace("'", "")) &&
+        !isWordCommonIgnored(stemmedWord)
       ) {
         if (termFrequency[stemmedWord]) {
           termFrequency[stemmedWord]++;

@@ -1,5 +1,5 @@
 import {convertWordToRootStem} from "./word-to-root-stem";
-import {isStopWord} from "./stopwords";
+import {isWordCommonIgnored} from "./stopwords";
 
 /**
  * @typedef {Array} Token
@@ -13,6 +13,12 @@ import {isStopWord} from "./stopwords";
  * Query Resolution to Phrase & Topic Tokenization -
  * returns a list of phrases that are found in WikiWorldModel 
  * that match the input phrase, or just the single word if found
+ * Tokening by word can often have a meaning widely different than if it is part of a phrase, 
+ * so it is better to extract phrases by first-word next-words pairings. Search results will be
+ *  more accurate if we infer likely phrases and search for those words occuring together and
+ *  not just split into words and find frequency. Examples are "white house" or "state of the art"
+ *  which should be searched as a phrase but would return different context if split into words.
+ *  As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
  * @param {string} phrase
  * @param {Object} options
  * @param {Object} options.phrasesModel - remote model
@@ -53,7 +59,7 @@ export function tokenizeTopics(phrase, options = {}) {
     var word = words[i];
 
     //ignore 300+ common stop words
-    if (ignoreStopWords && isStopWord(word))
+    if (ignoreStopWords && isWordCommonIgnored(word))
       continue;
 
     //Find next word phrase completion list

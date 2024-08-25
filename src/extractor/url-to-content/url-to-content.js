@@ -4,7 +4,7 @@ import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
 import { scrapeURL } from "./scrape-url.js";
 
 /**
- * <h3>🚜📜 Tractor the Text Extractor </h3>- <br />
+ * <h3>🚜📜 Tractor the Text Extractor </h3><br />
  * Extract URL or HTML to main content with Readability or Postlight Parser,
  * which is an improved version with 100+ custom adapters for major websites. <br>
  * Strips to basic HTML for reading mode or saving research notes. <br>

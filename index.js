@@ -23,7 +23,7 @@ import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
 
 import { weighTopicDirichletDistribution } from "./src/topic-distribution/topic-distribution.js";
 import { calculateSimilarityByCharacter } from "./src/match/compare-letters.js";
-import { autocompleteNextWords } from "./src/autocomplete/autocomplete.js";
+import { suggestNextWordCompletions } from "./src/autocomplete/autocomplete.js";
 import { tokenizeTopics } from "./src/tokenize/tokenize-topics.js";
 import { splitSentences } from "./src/tokenize/sentences.js";
 import { searchWikipedia } from "./src/wiki-api/search-wikipedia.js";
@@ -43,7 +43,7 @@ export {
   weighRelevanceConceptVector,
   weighRelevanceConceptVectorAPI,
   vectorizeTextAsConcept,
-  autocompleteNextWords,
+  suggestNextWordCompletions,
   tokenizeTopics,
   splitSentences,
   searchWikipedia,

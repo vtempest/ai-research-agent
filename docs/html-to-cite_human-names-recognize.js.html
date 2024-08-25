@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs html-to-cite/human-names-recognize.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>html-to-cite/human-names-recognize.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// import dataHumanNames from "../../../data/human-names-92k.json";
+var dataHumanNames = []
+/**
+ * Validates human name from author string to check against common list of first 
+ * names, last names, name affixes, and organizations to infer if it should be
+ *  reversed starting by author last name in cite, since organizations are not reversed.
+
+ * Checks against common salutations, middle parts, and titles to properly
+ * format for citation in Last, First Middle format.
+ * Author type is ["single", "two-author", "more-than-two", "organization"]
+ * where organization is a non-human name that is not reversed.
+ * @param {string} author
+ * @returns {object} {author_cite, author_short, author_type}
+ * @category Extractor
+ */
+export function extractNamedEntity(author) {
+  
+  var authorType = 4;
+
+  if (!author || !author.split) return { author_cite: "", author_short: "", author_type: 4 };
+
+  // recognize human names in author
+  var names = author.split(" ").map((name) => {
+    var enumTypes = ["", "first", "last",  "org"];
+
+    //standardize name as Title Case
+    var nameTitle = name[0]?.toUpperCase() + name.slice(1).toLowerCase();
+
+    //check if name is a common organization
+    if (TERMS_ORG.includes(name?.toLowerCase().replace(/[^a-z]/g, "")))
+       return { name, type: "org" };
+
+    return dataHumanNames[nameTitle] != null
+      ? { name, type: enumTypes[dataHumanNames[nameTitle]] }
+      : { name, type: "none" };
+  });
+  
+  var foundNameParts = names.filter(
+    (name) => name.type != "none" &amp;&amp; name.type != "org"
+  ).length;
+
+  var foundOrgParts = names.filter((name) => name.type == "org").length;
+
+  var isTwoWord = author.split(" ").length == 2
+  //determine author type - one or two or a two-word name
+  if (isTwoWord
+    ||foundNameParts &lt;= 2) authorType = 0;
+
+  if (foundNameParts > 2 &amp;&amp; foundNameParts &lt;= 4) authorType = 1;
+  if (foundNameParts > 4) authorType = 2;
+
+  //org or not found -- should not be reversed
+  if (foundOrgParts > 0 || (foundNameParts == 0 &amp;&amp; !isTwoWord)) authorType = 3;
+
+  //cut off non-name intro parts like By: //TODO
+  if (foundNameParts > 0 &amp;&amp; names.length > 4) {
+    var partFound;
+    names = names
+      .map((name) => {
+        if (name.type != null) partFound = 1;
+        if (partFound) return name;
+        else return false;
+      })
+      .filter(Boolean);
+  }
+
+  author = names.map((name) => name.name).join(" ")        .replace(/(undefined|by\:|by )/gi, "")
+  .replace(/(undefined|by:|by )/gi, "")
+  ;
+
+  //split author into parts and reverse Last, First if not Organization
+  if (authorType == 3) {
+    author_short = author;
+  } else {
+    var authorObj = extractNamedEntityParts(author);
+    if (authorObj) {
+      author =
+        authorObj.lastname +
+        ", " +
+        authorObj.firstname +
+        " " +
+        authorObj.middle;
+      author = author
+        .replace(/(undefined|by\:|by )/gi, "")
+        .trim()
+        .replace(/,$/g, "");
+      var author_short = authorObj.lastname;
+    }
+  }
+
+  if (!author_short) author_short = author;
+
+  //multiple authors
+  if (authorType == 2 || authorType == 1) author_short += " et al.";
+
+  return { author_cite: author, author_short, author_type: authorType };
+}
+
+/**
+ * Parses a full name into its component parts:
+ * Title, Firstname, Prefix, Middle, Lastname, Honorific, Alias
+ * https://en.wikipedia.org/wiki/List_of_family_name_affixes
+ * @param {string} input - The full name to parse.
+ * @returns {Object}
+ * @category Extractor
+ */
+const extractNamedEntityParts = (input) => {
+  // Initialize the result object
+  const result = {
+    prefix: "", //van der von de
+    firstname: "",
+    middle: "",
+    lastname: "",
+    honorific: "", //Jr Phd II
+  };
+
+  // Input validation
+  if (!input || typeof input !== "string") {
+    return result;
+  }
+
+  // Trim input and determine case fixing mode
+  input = input.trim();
+  const shouldFixCase =
+    input === input.toUpperCase() || input === input.toLowerCase();
+
+  // Define lists for parsing
+  const lists = {
+    honorific: [
+      "esq",
+      "esquire",
+      "jr",
+      "sr",
+      "ii",
+      "iii",
+      "iv",
+      "phd",
+      "md",
+      "ms",
+      "mrs",
+      "mr",
+      "miss",
+      "dr",
+    ],
+    prefix: ["de", "van", "von", "der", "den", "vel", "le", "la", "da"],
+    title: ["mr", "mrs", "ms", "miss", "dr", "rev", "prof"],
+  };
+
+  // Extract alias
+  const aliasRegex =
+    /\s(['']([^'']+)['']|[""]([^""]+)[""]|\[([^\]]+)\]|\(([^\)]+)\)),?\s/g;
+  const aliasMatch = input.match(aliasRegex);
+  if (aliasMatch) {
+    input = input.replace(aliasRegex, " ");
+  }
+
+  // Split the name into parts
+  let parts = input.split(/\s+/);
+
+  // Extract honorific
+  const honorificIndex = parts.findIndex((part) =>
+    lists.honorific.includes(part.toLowerCase().replace(/\.$/, ""))
+  );
+  if (honorificIndex !== -1) {
+    result.honorific = parts.splice(honorificIndex).join(", ");
+  }
+
+  // Extract title
+  const titleIndex = parts.findIndex((part) =>
+    lists.title.includes(part.toLowerCase().replace(/\.$/, ""))
+  );
+  if (titleIndex !== -1) {
+    result.prefix = parts.splice(titleIndex, 1)[0];
+  }
+
+  // Join prefixes to following name parts
+  for (let i = parts.length - 2; i >= 0; i--) {
+    if (lists.prefix.includes(parts[i].toLowerCase())) {
+      parts[i] += " " + parts[i + 1];
+      parts.splice(i + 1, 1);
+    }
+  }
+
+  // Extract lastname name (if comma present)
+  const commaIndex = parts.findIndex((part) => part.endsWith(","));
+  if (commaIndex !== -1) {
+    result.lastname = parts
+      .splice(0, commaIndex + 1)
+      .join(" ")
+      .replace(/,$/, "");
+  } else {
+    result.lastname = parts.pop();
+  }
+
+  // Assign remaining parts to firstname and middle names
+  if (parts.length > 0) {
+    result.firstname = parts.shift();
+    if (parts.length > 0) {
+      result.middle = parts.join(" ");
+    }
+  }
+
+  // Fix case if needed
+  if (shouldFixCase) {
+    Object.keys(result).forEach((key) => {
+      if (result[key]) {
+        result[key] = result[key]
+          .split(" ")
+          .map(
+            (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          )
+          .join(" ");
+      }
+    });
+  }
+
+  return result;
+};
+
+const TERMS_ORG =
+  "abc,ag,ap,academy,advisors,agency,airbnb,amazon,america,american,apple,associated,association,atlantic,attorneys,authority,axel,bank,baptiste,bbc,bertelsmann,blackrock,bloomberg,bmw,boston,broadcasting,bureau,business,buzzfeed,cambridge,capital,cbs,center,chase,chicago,china,church,citigroup,clinic,club,cnn,coca-cola,college,commission,communications,condé,consulting,corp,corps,costco,daily,department,der,deutsche,division,dow,economist,enterprises,eu,european,fabrication,facebook,fargo,ferrari,financial,ford,forbes,fox,france,fund,gannett,general,global,globe,gm,gmbh,goldman,google,group,guardian,harvard,hearst,herald,hill,holdings,home,honda,hospital,huffington,ibm,inc,industries,institute,intel,international,investments,jazeera,japan,jones,jpmorgan,lancet,laboratories,law,legal,linkedin,llc,los,ltd,manufacturing,macy's,mcdonald's,media,medical,mercedes-benz,meta,microsoft,ministry,mit,morgan,mosque,msnbc,nast,national,nato,nbc,netflix,news,newsweek,new,nike,nordstrom,npr,ny,organization,oxford,país,partners,pbs,pentagon,plc,politico,porsche,post,press,productions,r&amp;d,regiment,retail,reuters,research,rt,sachs,school,science,scientific,securities,services,silicon,society,solutions,south,spacex,spiegel,springer,stanford,stanley,starbucks,straits,studios,sydney,synagogue,systems,target,team,tech,techcrunch,temple,tesla,the,thomson,times,toronto,toyota,trust,twitter,uber,union,united,university,usa,valley,vanguard,vice,volkswagen,volvo,vox,wall,walmart,welle,wells,who,white,wired,worldwide,works,world,wsj,york,yorker";
+
+const TERMS_QUALIFICATIONS =
+  "is,senior,associate,professor,fellow,assistant,lecturer,ceo,staff,strategist,specialist,worked,directed,correspondent,president,author,director,prof,asst,editor,analyst,degree,administrator,served,member,institute,economist,reporter,head,heads,newspaper,deputy,advocate,colonel,officer,founder,founded,visiting,journalist,former,retired,expert,executive,manager,doctoral,candidate,chief,contributor,student,blogger,chair,chairman,major,general,ambassador,phd,secretary,physicist,engineer,research,office,school,department,writer,teacher,advisor,award,center,commentator,rand,brookings,heritage,cato,un,aei,forbes,nyt,cbo";
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

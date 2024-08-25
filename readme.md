@@ -41,7 +41,7 @@
 * PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
 * Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 3k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
 
-#### 🔤📊 SEEKTOPIC: Summarization, Extraction of Entities, Keywords, and Topic Outline Phrases Important to Context 
+#### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
 
 This can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
@@ -103,7 +103,7 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
 
-#### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
+#### Match-QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
 
 Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
 bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere.

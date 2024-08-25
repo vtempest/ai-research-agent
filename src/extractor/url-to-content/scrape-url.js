@@ -1,23 +1,24 @@
-
+// try on the frontend  
 // <iframe id="dom-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
 // document.getElementById('dom-iframe').src = '/get?url=' + url;
 // document.getElementById('dom-iframe').contentWindow.document.body.innerHTML;
 
 /**
- * Scrape with timeout, redirects, default UA, referer as google, and bot detection checking. <br />
- * Scraping is legal globally: https://blog.apify.com/is-web-scraping-legal/
+ * Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
+ * Features: timeout, redirects, default UA, referer as google, and bot detection checking. <br />
+ * Note: The First Amendment <a href="https://blog.apify.com/is-web-scraping-legal/">protects the right to scrape</a>.
  * @async
- * @param {string} url - any domain's URL to scrape 
+ * @param {string} url - any domain's URL
  * @param {object} options
  * @param {number} options.timeout=5 -  abort request if not retrived, in seconds
  * @param {number} options.maxRedirects=3 - max redirects to follow
  * @param {number} options.checkBotDetection=true - check for bot detection messages
  * @param {number} options.redirectCount=0 - current redirect count
  * @param {number} options.changeReferer=true - set referer as google
- * @param {number} options.userAgentIndex=0 - [google bot, default chrome]
+ * @param {number} options.userAgentIndex=0 - index of [google bot, default chrome]
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extractor
- * @example await scrapeURL("https://hckrnews.com", {timeout: 5, maxRedirects: 5})
+ * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
  */
 export async function scrapeURL(url, options = {}) {
   try {
@@ -60,13 +61,13 @@ export async function scrapeURL(url, options = {}) {
     }
 
     //allow iframe embeds
-    
-    if (changeReferer){
+
+    if (changeReferer) {
       delete response.headers['x-frame-options'];
       delete response.headers['content-security-policy'];
-      }
+    }
 
-      //return based on content type
+    //return based on content type
     const contentType = response.headers.get("Content-Type");
 
     if (contentType.includes("application/json")) {
@@ -78,7 +79,7 @@ export async function scrapeURL(url, options = {}) {
 
 
       //spoof the base-url for relative paths on the target page
-      // html = (html || "").replace(/<head[^>]*>/i, "<head><base href='" + corsURL.protocol + "//" + corsURL.host + "/'>")
+      // html = (html || "").replace(/<head[^>]*>/i, "<head><base href='" + url + "/'>")
 
       return html;
     } else {
@@ -93,7 +94,7 @@ export async function scrapeURL(url, options = {}) {
 /**
  * Check html for bot block messages
  * @param {string} html
- * @returns {Boolean} - if bot detection message found
+ * @returns {Boolean} true if bot detection message found
  * @category Extractor
  */
 function isHTMLBotDetection(html) {
@@ -119,5 +120,5 @@ function isHTMLBotDetection(html) {
 
   ];
 
-  return commonBlocks.filter((msg) => html?.indexOf(msg) > -1).length > 0;
+  return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
 }

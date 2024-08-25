@@ -8,8 +8,8 @@ import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-ba
  * @function searchWeb
  * @param {string} query - The search query string.
  * @param {object} options
- * @param {number} options.category=0 - "general", "videos", "news", "images",
- *  "science", "map", "music", "it", "files", "social+media"
+ * @param {number} options.category=0 - ["general", "news", "videos", "images",
+ *  "science", "map", "music", "it", "files", "social+media"]
  * @param {number} options.recency=0 - ["", "day", "week", "month", "year"]
  * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries=3 - Maximum number of retry attempts if the initial search fails.
@@ -32,8 +32,8 @@ export async function searchWeb(query, options = {}) {
 
   const CATEGORY_LIST = [
     "general",
-    "videos",
     "news",
+    "videos",
     "images",
     "science",
     "map",
@@ -64,12 +64,10 @@ export async function searchWeb(query, options = {}) {
     "search.darkness.services",
     "search.datura.network",
     "search.dotone.nl",
-    "search.einfachzocken.eu",
     "search.gcomm.ch",
     "search.hbubli.cc",
     "search.im-in.space",
     "search.incogniweb.net",
-    "search.indst.eu",
     "search.inetol.net",
     "search.leptons.xyz",
     "search.nadeko.net",
@@ -77,7 +75,6 @@ export async function searchWeb(query, options = {}) {
     "search.ononoki.org",
     "search.privacyredirect.com",
     "search.sapti.me",
-    "search.rhscz.eu",
     "search.rowie.at",
     "search.projectsegfau.lt",
     "search.tommy-tran.com",
@@ -93,11 +90,7 @@ export async function searchWeb(query, options = {}) {
     "searx.lunar.icu",
     "searx.mxchange.org",
     "searx.namejeff.xyz",
-    "searx.numeriquement.fr",
     "searx.oakleycord.dev",
-    "searx.ox2.fr",
-    "searx.perennialte.ch",
-    "searx.rhscz.eu",
     "searx.ro",
     "searx.sev.monster",
     "searx.thefloatinglab.world",
@@ -105,8 +98,6 @@ export async function searchWeb(query, options = {}) {
     "searx.tuxcloud.net",
     "searx.work",
     "searx.zhenyapav.com",
-    "searxng.brihx.fr",
-    "searxng.ch",
     "searxng.hweeren.com",
     "searxng.online",
     "searxng.shreven.org",

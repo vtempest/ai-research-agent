@@ -1,12 +1,4 @@
-/**
- *  Common Misspelled Typos Dataset Importer
- *  Script to download, decompress, parse and process into JSON
- * Total unique typos collected: 7969  
- * Crowd-sourced often-updated Wikipedia list of common misspellings 
- * https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
- * 
- * Github repo with 4.5K misspellings: 'feramhq/typokit' 
-*/
+
 
 const fs = require('fs');
 const path = require('path');
@@ -115,7 +107,18 @@ async function scrapeMisspellings() {
     return allMisspellings;
 }
 
-async function main() {
+/**
+ * Common Misspelled Typos Dataset Importer
+ *  Script to download, decompress, parse and process into JSON
+ * Total unique typos collected: 7969  
+ * Crowd-sourced often-updated Wikipedia list of common misspellings 
+ * https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
+ * 
+ * Github repo with 4.5K misspellings: 'feramhq/typokit' 
+ * @returns {object} 
+ * @category Dataset
+*/
+async function importMisspelledTypos() {
     try {
         console.log('Processing Github YAML Typos...');
 
@@ -163,4 +166,4 @@ async function main() {
     }
 }
 
-main();
+importMisspelledTypos();

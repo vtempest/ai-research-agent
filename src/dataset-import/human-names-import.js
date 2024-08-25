@@ -1,14 +1,12 @@
 import fs from "fs";
 
 /**
- * Get common first and last human names from popular baby name
- * statistics. About 2600 names in 5 categories:
- * "last", "male", "female", "neutral", "multipos"
- * multi-positional name like James Kelly Jordan Lee Kim Francis
- *
- * @returns {object} - object with name as key and type as value
+ * Import 92k  first and last human names sorted by popularity 
+ * from Github righteousgambit/quiet-riot 
+ * @returns {object} 
+ * @category Dataset
  */
-async function getHumanNames() {
+async function importHumanNames() {
   var enumTypes = ["last", "male", "female", "neutral", "multipos"];
 
   //statistic mid-ground of gender-neutral and multi-positional names
@@ -86,7 +84,7 @@ async function getHumanNames() {
   return commonNamesSort;
 }
 
-var res = await getHumanNames();
+var res = await importHumanNames();
 fs.writeFileSync(
   "./human-names-data.js",
   "export default " + JSON.stringify(res)

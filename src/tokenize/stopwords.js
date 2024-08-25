@@ -1,12 +1,11 @@
 /**
- * Checks word is in 320 commonly ignored "stop words" 
- * in queries, using method with O(1) complexity Trie lookup 
- * https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt
+ * Checks word is in <a href="https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt">
+ * 320 commonly ignored "stop words"</a> in queries, using method with O(1) complexity Trie lookup 
  * @param {string} word
  * @returns {Boolean}
  * @category Tokenize
 */
-export function isStopWord(word) {
+export function isWordCommonIgnored(word) {
   return {
     a: 1,
     about: 1,

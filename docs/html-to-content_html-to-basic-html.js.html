@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs html-to-content/html-to-basic-html.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>html-to-content/html-to-basic-html.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
+ * Convert anchors and relative urls to absolute urls.
+ *
+ * @param {string} html Any page's HTML to process
+ * @param {object} options 
+ * @param {boolean} options.images=true - Whether to include images
+ * @param {boolean} options.links=true - Whether to include links
+ * @param {boolean} options.videos=true - Whether to include videos or not
+ * @param {boolean} options.formatting=true - Whether to include formatting
+ * @param {string} options.url="" - The base URL for converting relative URLs to absolute
+ * @param {string} options.allowTags={string} - Comma-separated list of allowed HTML tags "sup,br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup,span"
+ * @param {string} options.allowedAttributes={string}  List of allowed HTML attributes "text,tag,href, src,type,width, height,id,data" -
+ * @returns {string} sanitized html
+ * @category Extractor
+ */
+export function convertHTMLToBasicHTML(html, options = {}) {
+  var {
+    images = 1,
+    links = 1,
+    videos = true,
+    formatting = 1,
+    url = "",
+    allowTags = "sup,br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
+      ul,ol,li,dd,dl,table,th,tr,td,sub,sup,span",
+    allowedAttributes = "text,tag,href,src,type,width,height,id,data".split(","),
+  } = options;
+
+
+  html = convertHTMLSpecialChars(html
+    .replace(/&amp;lt;/gi, " ")
+    .replace(/&amp;gt;/gi, " ")
+    ).replace(/&amp;nbsp;/g, " ");
+  
+  
+  //fix for = in urls  
+
+
+  allowTags = allowTags.split(",");
+  if (links) allowTags.push("a");
+  if (images) allowTags.push("img");
+  if (videos) allowTags = allowTags
+    .concat("video,source,embed,object".split(","))
+
+
+  if (!formatting) allowTags = ["text"];
+  allowTags.push("text");
+
+  // Convert html string to array like [{tag:"p",attr:""},{text:""}]
+  var basicHtml = convertHTMLToTokens(html)
+    .filter(
+      (token) =>
+        token.text ||
+        (token.tag[0] == "/"
+          ? allowTags.includes(token.tag?.substring(1))
+          : allowTags.includes(token.tag))
+    )
+    .map((el) => {
+      for (var key of Object.keys(el))
+        if (!allowedAttributes.includes(key)) delete el[key];
+
+      //convert relative urls to absolute urls
+      var urlValue = el.href || el.src;
+
+        const matchdomain = url.match(/^(https?:\/\/[^\/]+)/i);
+        const domain =  matchdomain ? matchdomain[1] : null;
+
+    
+      if ( urlValue) {
+        urlValue = decodeURI(urlValue);
+
+        if (urlValue.startsWith("//")) urlValue = "https:" + urlValue;
+
+        //anchor links should be on same page or open external
+        // if (urlValue[0] == "#") urlValue = url + urlValue;
+          if (urlValue[0] == "/") urlValue = domain + urlValue;
+
+        if (urlValue.startsWith("./"))
+          urlValue =  url.slice(0,url.lastIndexOf("/")) + urlValue;
+        
+
+        if (!urlValue.startsWith("http") &amp;&amp; urlValue[0] != "#")  
+          urlValue = url.slice(0, url.lastIndexOf('/')+1) + "/" + urlValue;
+
+        if (el.href) el.href = urlValue;
+        if (el.src) el.src = urlValue;
+      }
+
+      return el;
+    })
+    .reduce((acc, el) => {
+      if (el.text) acc += el.text;
+      else if (el.tag)
+        acc += `&lt;${el.tag}${Object.keys(el)
+          .filter((key) => key != "tag")
+          .map((key) => " " + key + '="' + el[key] + '"')
+          .join(" ")}>`;
+      return acc;
+    }, "")
+    .replace(/ \s+/g, " ")
+    .replace(/&lt;p>&lt;\/p>/g, " ")
+    .replace(/[\r\n\t]+/g, " "); //remove linebreaks
+
+  return basicHtml;
+}
+
+/**
+ * Convert html string to array of JSON Objects tokens to translate,
+ * convert, or filter all elements. Example [{"tag": "img","src": ""}, ...]
+ * Flat array is faster than DOMParser which uses nested trees.
+ * @param {string} html
+ * @returns {array}
+ * @category Extractor
+ * @private
+ */
+export function convertHTMLToTokens(html) {
+  if (!html) return;
+  var dom = [];
+
+  //remove script style to prevent it from counting as text
+  html = html.replace(
+    /(&lt;(noscript|script|style)\b[^>]*>).*?(&lt;\/\2>)/gis,
+    "$1$3"
+  );
+
+  
+  const reHTMLInsideDataAttr =  /(["'])(?:(?!(?:\1|&lt;)).)*?(?:&lt;(?:(?!["'&lt;>]).)*?>)?(?:(?!(?:\1|&lt;)).)*?\1/gis;
+  
+
+  var chunks = html.split("&lt;");
+
+  for (var chunk of chunks) {
+    if (!chunk.includes(">")) continue;
+
+
+    var [element, text] = chunk.split(">");
+
+    if (element.includes("&lt;")) {
+
+      if (reHTMLInsideDataAttr.test(html) ) {
+        html= html.replaceAll(reHTMLInsideDataAttr, "");
+        return convertHTMLToTokens(html);
+      }
+      // console.log("HTML inside data attr", element);
+      // if (reHTMLInsideDataAttr.test(chunk) ) {
+      //   chunk = chunk.replaceAll(reHTMLInsideDataAttr, " ");
+
+      //   var [element, text] = chunk.split(">");
+      // }
+
+    }
+
+    //if closing tag, add it but dont stop and also  in next step 
+    // add text after &lt;/a> as text node
+    if (element[0] == "/") 
+      dom.push({ tag: element });
+
+
+    if (element[0] == "!") continue; //skip comments
+
+
+
+    var domElement = {};
+    //if has attributes
+    var attributesIndex = element.indexOf(" ");
+
+    if (attributesIndex == -1) {
+      domElement.tag = element;
+    } else { //has attributes
+      
+
+      var tag = element.substring(0, attributesIndex);
+      domElement.tag = tag;
+    // there can be spaces and &lt;> inside of attr strings
+      //TODO cnn news edge case of data=attr &lt;> inside of attr
+      //insert attr into domElement
+      element
+        .substring(attributesIndex)
+        .match(/\w+=("(?:[^"\\]|\\.\s)*")/g)
+        .forEach((attr) => {
+          var key = attr.split("=")[0];
+          var value = attr.slice(key.length + 2, -1);
+
+          if (key &amp;&amp; value) domElement[key] = value?.replace(/"/g, "");
+        });
+    }
+
+    // style and script, add their content to "content" and dont treat as text
+    if (["style", "script", "noscript"].includes(domElement.tag)) {
+      domElement.content = text;
+      continue;
+    }
+
+    dom.push(domElement);
+
+    //if text node push as {text:""}
+    if (text &amp;&amp; text.trim().length) dom.push({ tag: "text", text: text });
+  }
+
+
+  return dom;
+}
+
+
+
+/**
+ * Converts HTML special characters like &amp;&lt;>"'`&amp;rsquo; to &amp; escaped codes or vice versa.
+ * It handles named entities, decimal numeric character references, and hexadecimal numeric character references.
+ *
+ * @param {string} str - The string to process.
+ * @param {boolean} unescape=true - If true, converts &amp; codes to characters. 
+ *                                     If false, converts characters to codes.
+ * @return {string} The processed string.
+ * @category Extractor
+ * @example
+ * convertHTMLSpecialChars('&amp;lt;p&amp;gt;This &amp;amp; that &amp;copy; 2023 &amp;quot;Quotes&amp;quot; &amp;#39;Apostrophes&amp;#39; &amp;euro;100 &amp;#x263A;&amp;lt;/p&amp;gt;', true)
+ * // Returns: "&lt;p>This &amp; that © 2023 "Quotes" 'Apostrophes' €100 ☺&lt;/p>"
+ */
+export function convertHTMLSpecialChars(str, unescape = true ) {
+  
+  const entityMap  = {
+    '&amp;': '&amp;amp;',
+    '&lt;': '&amp;lt;',
+    '>': '&amp;gt;',
+    '"': '&amp;quot;',
+    ' ': '&amp;nbsp;',
+    "'": '&amp;#39;',
+    '`': '&amp;#96;',
+    '¢': '&amp;cent;',
+    '£': '&amp;pound;',
+    '¥': '&amp;yen;',
+    '€': '&amp;euro;',
+    '©': '&amp;copy;',
+    '®': '&amp;reg;',
+    '™': '&amp;trade;',
+  };
+
+  // Add numeric character references for Latin-1 Supplement characters
+  for (let i = 160; i &lt;= 255; i++) {
+    entityMap[String.fromCharCode(i)] = `&amp;#${i};`;
+  }
+
+  if (unescape) {
+    // Create a reverse mapping for unescaping
+    const reverseEntityMap = 
+      Object.fromEntries(Object.entries(entityMap).map(([k, v]) => [v, k]));
+    
+    // Add alternative representations
+    reverseEntityMap['&amp;apos;'] = "'";
+    reverseEntityMap['&amp;laquo;'] = '«';
+    reverseEntityMap['&amp;raquo;'] = '»';
+    
+    // Regex to match all types of HTML entities
+    const entityRegex = new RegExp(
+      Object.keys(reverseEntityMap).join('|') + '|&amp;#[0-9]+;|&amp;#x[0-9a-fA-F]+;',
+      'g'
+    );
+
+
+
+    str = str.replace(entityRegex, entity => {
+      if (entity.startsWith('&amp;#x')) {
+        // Convert hexadecimal numeric character reference
+        return String.fromCharCode(parseInt(entity.slice(3, -1), 16));
+      } else if (entity.startsWith('&amp;#')) {
+        // Convert decimal numeric character reference
+        return String.fromCharCode(parseInt(entity.slice(2, -1), 10));
+      }
+      // Convert named entity
+      return reverseEntityMap[entity] || entity;
+    });
+
+    str = str.replace(/[\u0300-\u036f]/g, "") //special chars
+
+    return str;
+  } else {
+    // Regex to match all characters that need to be escaped
+    const charRegex = new RegExp(`[${Object.keys(entityMap).join('')}]`, 'g');
+    return str.replace(charRegex, char => entityMap[char]);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

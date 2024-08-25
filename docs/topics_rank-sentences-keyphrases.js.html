@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs topics/rank-sentences-keyphrases.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3><a href="global.html">Global</a></h3></div><div class="category"><h2>Dataset</h2><h3>Global</h3><ul><li><a href="global.html#compileTopicModel">compileTopicModel</a></li><li><a href="global.html#compressB64Zip">compressB64Zip</a></li><li><a href="global.html#importCommonQueries">importCommonQueries</a></li><li><a href="global.html#importDictionary">importDictionary</a></li><li><a href="global.html#importHumanNames">importHumanNames</a></li><li><a href="global.html#importMisspelledTypos">importMisspelledTypos</a></li><li><a href="global.html#importTermFrequency">importTermFrequency</a></li><li><a href="global.html#importWikiPageTitles">importWikiPageTitles</a></li><li><a href="global.html#weightWikiWordSpecificity">weightWikiWordSpecificity</a></li></ul></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div><div class="category"><h2>Relevance</h2><h3>Global</h3><ul><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceConceptVectorAPI">weighRelevanceConceptVectorAPI</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div><div class="category"><h2>Search</h2><h3>Global</h3><ul><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li></ul></div><div class="category"><h2>Tokenize</h2><h3>Global</h3><ul><li><a href="global.html#convertWordToRootStem">convertWordToRootStem</a></li><li><a href="global.html#isWordCommonIgnored">isWordCommonIgnored</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#splitTextSemanticChars">splitTextSemanticChars</a></li><li><a href="global.html#suggestNextWordCompletions">suggestNextWordCompletions</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li></ul></div><div class="category"><h2>Topics</h2><h3>Global</h3><ul><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#weighTopicDirichletDistribution">weighTopicDirichletDistribution</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>topics/rank-sentences-keyphrases.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Rank sentences based on their centrality to key phrases.
+ * This function implements the TextRank algorithm to weight each sentence
+ * based on the number of key phrases it shares with other sentences.
+ * It creates a weighted graph where edges connect sentences to matching
+ * keyphrases, then performs random walks to distribute probabilities.
+ *
+ * &lt;br> 
+ * 1. Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
+ *    "An Improved TextRank Multi-feature Fusion Algorithm For
+ *    Keyword Extraction of Educational Resources"
+ *    https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
+ * &lt;br>
+ * 2. Pan, S. et al (2019). "An improved TextRank keywords extraction algorithm"
+ *    https://dl.acm.org/doi/10.1145/3321408.3326659
+ *    https://doi.org/10.1145/3321408.3326659
+ * @param {Array&lt;Object>} sentencesWithKeyphrases Array of objects, each containing {text, keyphrases}
+ * @returns {Array&lt;Object>} Updated array with added weights: [{text, keyphrases, weight}]
+ * @category Topics
+ */
+export function rankSentencesCentralToKeyphrase(
+  sentencesWithKeyphrases,
+  options = {}
+) {
+  const {
+    ITERATIONS = 1000, // Perform random walks to distribute weights
+    RESET_INTERVAL = 100, // Reset to a random vertex to avoid getting stuck
+  } = options;
+
+  // Define graph data structure
+  const graph = {
+    vertices: new Map(),
+    size: 0,
+
+    // Add a new vertex to the graph
+    addVertex: function (value) {
+      this.size += 1;
+      const newVertex = { value, adjacent: new Map() };
+      this.vertices.set(value, newVertex);
+      return newVertex;
+    },
+
+    // Retrieve a vertex from the graph
+    getVertex: function (value) {
+      return this.vertices.get(value);
+    },
+
+    // Add a weighted edge between two vertices
+    addEdge: function (vertexA, vertexB, weight) {
+      if (!this.vertices.has(vertexA)) {
+        this.addVertex(vertexA);
+      }
+      if (!this.vertices.has(vertexB)) {
+        this.addVertex(vertexB);
+      }
+      this.vertices.get(vertexA).adjacent.set(vertexB, weight);
+      this.vertices.get(vertexB).adjacent.set(vertexA, weight);
+    },
+
+    // Get all vertex values in the graph
+    getAllVertices: function () {
+      return Array.from(this.vertices.keys());
+    },
+  };
+
+  // Initialize weights for all sentences
+  sentencesWithKeyphrases = sentencesWithKeyphrases.map((sentence) => ({
+    ...sentence,
+    weight: 0,
+  }));
+
+  // Build the graph by connecting sentences based on shared keyphrases
+  for (let i = 0; i &lt; sentencesWithKeyphrases.length; i++) {
+    for (let j = i + 1; j &lt; sentencesWithKeyphrases.length; j++) {
+      const keyphrases1 = sentencesWithKeyphrases[i].keyphrases;
+      const keyphrases2 = sentencesWithKeyphrases[j].keyphrases;
+      let edgeWeight = 0;
+      let longerList = keyphrases1;
+      let shorterList = keyphrases2;
+
+      // Ensure we're comparing the shorter list to the longer one
+      if (keyphrases2.length >= keyphrases1.length) {
+        longerList = keyphrases2;
+        shorterList = keyphrases1;
+      }
+      shorterList = shorterList.map((k) => k.keyphrase);
+
+      // Calculate edge weight based on shared keyphrases
+      for (let k = 0; k &lt; longerList.length; k++) {
+        if (shorterList.includes(longerList[k].keyphrase)) {
+          edgeWeight += longerList[k].weight / 100;
+        }
+      }
+
+      // Add edge to graph if there's a connection
+      if (edgeWeight > 0) {
+        graph.addEdge(
+          sentencesWithKeyphrases[i].text,
+          sentencesWithKeyphrases[j].text,
+          edgeWeight
+        );
+      }
+    }
+  }
+
+  const allVertices = graph.getAllVertices();
+
+  if (allVertices.length === 0) return;
+
+  // Start random walk from a random vertex
+  let currentVertex = graph.getVertex(
+    allVertices[Math.floor(Math.random() * allVertices.length)]
+  );
+  let probabilityDistribution = [];
+  for (let i = 0; i &lt; ITERATIONS; i++) {
+    let totalWeight = 0;
+
+    // Calculate total weight of adjacent edges
+    currentVertex.adjacent.forEach((weight) => {
+      totalWeight += weight;
+    });
+
+    // Build probability distribution for next step
+    currentVertex.adjacent.forEach((weight, adjacentVertex) => {
+      for (let x = 0; x &lt; weight; x++) {
+        probabilityDistribution.push(adjacentVertex);
+      }
+    });
+
+    // Choose next vertex based on probability distribution
+    let nextSentence =
+      probabilityDistribution[
+        Math.floor(Math.random() * probabilityDistribution.length)
+      ];
+
+    // Update weight of the chosen sentence
+    for (let s = 0; s &lt; sentencesWithKeyphrases.length; s++) {
+      if (sentencesWithKeyphrases[s].text === nextSentence) {
+        sentencesWithKeyphrases[s].weight += 1;
+        break;
+      }
+    }
+
+    // Periodically reset to a random vertex to avoid getting stuck in small clusters
+    if (i % RESET_INTERVAL === 0) {
+      nextSentence =
+        allVertices[Math.floor(Math.random() * allVertices.length)];
+    }
+
+    currentVertex = graph.getVertex(nextSentence);
+    probabilityDistribution = [];
+  }
+
+  return sentencesWithKeyphrases;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

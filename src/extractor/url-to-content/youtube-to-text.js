@@ -20,9 +20,11 @@ export async function extractYoutubeText(videoUrl, options = {}) {
 
   var res = await fetchTranscript(videoId, options);
 
+  // console.log(res)
   if (!res || res.error)
     res = await fetchViaYoutubeTranscript2(videoId, options);
 
+  // console.log(res)
   if (!res || !res.content) return { error: 1 };
   var { content, timestamps } = res;
 
@@ -90,8 +92,6 @@ export async function extractYoutubeText(videoUrl, options = {}) {
   return { content, timestamps:speeds, word_count};
 }
 
-function compressTimestampsArray(speeds) {
-}
 
 
 
@@ -129,13 +129,9 @@ async function fetchTranscript(videoId, options = {}) {
 
   if (!videoObj) return {error:1}
 
-  const captions = JSON.parse(videoObj
-    
-  )?.playerCaptionsTracklistRenderer;
+  const captions = JSON.parse(videoObj)?.playerCaptionsTracklistRenderer;
 
-  if (
-    !captions?.captionTracks
-  )
+  if (!captions?.captionTracks)
     return { error: true };
 
   const track = captions.captionTracks.find(

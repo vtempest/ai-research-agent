@@ -61,7 +61,9 @@ export function weighRelevanceTermFrequency(
 //TODO integrate
 
 /**
- * Calculate overall domain-speicificity after Query Resolution to Phrases
+ * Calculate overall domain-speicificity after Query Resolution to Phrases. 
+ * Words are tokenized into phrases and their specificity is calculated based on 
+ * how many Wiki pages they appear in.
  * @param {string} phrase
  * @returns {number} domain specificity 0-12~
  * @category Relevance

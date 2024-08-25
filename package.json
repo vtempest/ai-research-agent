@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "cd web-app; vite dev",
     "prod": "cd web-app; vite build; wrangler deploy; wrangler tail",
-    "docs": "jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/ ; npm run open",
+    "docs": "jsdoc -c jsdoc.json src/*  -t node_modules/better-docs/ ; npm run open",
     "open": "vivaldi $(pwd)/docs/index.html",
     "test": "vitest",
     "test-ui": "vitest --ui --watch",

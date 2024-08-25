@@ -1,8 +1,3 @@
-/**
- * Script to download, decompress, parse and process 
- * WIki Page Titles by Views dataset, random day sample,
- * compiled by Wikimedia Foundation
-*/
 
 const fs = require('fs');
 const readline = require('readline');
@@ -98,7 +93,14 @@ async function parseWikiPageviews(inputFile) {
     return pageviews;
 }
 
-async function main() {
+/**
+ * Script to download, decompress, parse and process Wiki Page Titles by 
+ * Views dataset, random day sample, compiled by Wikimedia Foundation.
+ * 
+ * @returns {object} 
+ * @category Dataset
+*/
+async function importWikiPageTitles() {
     try {
         console.log('Creating data directory...');
         fs.mkdirSync(path.dirname(gzipFilePath), { recursive: true });
@@ -129,4 +131,4 @@ async function main() {
     }
 }
 
-main();
+importWikiPageTitles();

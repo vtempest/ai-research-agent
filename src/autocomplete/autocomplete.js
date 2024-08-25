@@ -1,14 +1,33 @@
-
 /**
- * Completes the Query with the most likely next words for phrases
- * If typing 2+ letters of a word, return all possible words matching those few letters
- * @param {string} query
- * @returns {Array}
- * @example autocompleteNextWords("self att") => ["self attention", "self attract", "self attack"]
+ * Completes the query with the most likely next words for phrases.
+ * If typing 2+ letters of a word, returns all possible words matching those few letters.
+ * 
+ * @param {string} query - The input query which can be pertial words or phrases.
+ * @param {Object} options 
+ * @param {Object} options.phrasesModel - A custom phrases model to use for autocomplete suggestions.
+ * @param {number} options.limitMaxResults=10 - The maximum number of autocomplete suggestions to return.
+ * @param {number} options.numberOfLastWordsToCheck=5 - The number of last words in the query to check for phrase completions.
+ * @returns {Promise<Array<Object>>} An array of autocomplete suggestions, each containing either a 'phrase' or 'word' property.
+ * @async
+ * @example
+ * // Basic usage
+ * const suggestions = await suggestNextWordCompletions("self att");
+ * // Possible output: [{ phrase: "self attention" }, { phrase: "self attract" }, { phrase: "self attack" }]
+ * 
+ * @example
+ * // Using options
+ * const customModel = await import("./custom-phrases-model.json");
+ * const suggestions = await suggestNextWordCompletions("artificial int", {
+ *   phrasesModel: customModel,
+ *   limitMaxResults: 5,
+ *   numberOfLastWordsToCheck: 3
+ * });
+ * // Possible output: [{ phrase: "artificial intelligence" }, { phrase: "artificial interpretation" }]
+ * 
  * @category Tokenize
  */
-export async function autocompleteNextWords(query, options = {}) {
-  let { 
+export async function suggestNextWordCompletions(query, options = {}) {
+  var { 
     phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions

@@ -1,4 +1,4 @@
-import {isStopWord} from "../tokenize/stopwords";
+import {isWordCommonIgnored} from "../tokenize/stopwords";
 
 /**
  * Searches terms from index for ngram of given size
@@ -33,7 +33,7 @@ export default function extractNounEdgeGrams(
     && nextWords.every(
       (word) =>
         word[0]?.length >= minWordLength && 
-      (isNoun(word) || isStopWord(word[0]))  )
+      (isNoun(word) || isWordCommonIgnored(word[0]))  )
   ) {
     var nextWordsString = nextWords.map(v => v[0]).join(" ");
     if (!nGrams[nGramSize][nextWordsString])

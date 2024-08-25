@@ -1,11 +1,4 @@
-/**
- * Script to download, decompress, parse and process 
- * Quora question pairs dataset, great for training
- *  a semantic similarity model or Query-Response model
- * 
- https://huggingface.co/datasets/BeIR/quora/resolve/main/corpus.jsonl.gz?download=true
- https://huggingface.co/datasets/BeIR/quora/resolve/main/queries.jsonl.gz?download=true
-*/
+
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
@@ -76,8 +69,17 @@ async function deleteDirectory(dir) {
     await fs.promises.rmdir(dir);
 }
 
-// Main function to orchestrate the process
-async function main() {
+/**
+ * Script to download, decompress, parse and process 
+ * Quora question pairs dataset, great for training
+ *  a semantic similarity model or Query-Response model
+ * https://huggingface.co/datasets/BeIR/quora/resolve/main/corpus.jsonl.gz?download=true
+ https://huggingface.co/datasets/BeIR/quora/resolve/main/queries.jsonl.gz?download=true
+ 
+ * @returns {object} 
+ * @category Dataset
+ */
+async function importCommonQueries() {
     try {
         console.log('Starting download...');
         await downloadFile(url, zipFilePath);
@@ -112,4 +114,4 @@ async function main() {
     }
 }
 
-main();
+importCommonQueries();

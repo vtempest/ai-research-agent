@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs dataset-import/compress-json-jz64.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3><a href="global.html">Global</a></h3></div><div class="category"><h2>Dataset</h2><h3>Global</h3><ul><li><a href="global.html#compileTopicModel">compileTopicModel</a></li><li><a href="global.html#compressB64Zip">compressB64Zip</a></li><li><a href="global.html#importCommonQueries">importCommonQueries</a></li><li><a href="global.html#importDictionary">importDictionary</a></li><li><a href="global.html#importHumanNames">importHumanNames</a></li><li><a href="global.html#importMisspelledTypos">importMisspelledTypos</a></li><li><a href="global.html#importTermFrequency">importTermFrequency</a></li><li><a href="global.html#importWikiPageTitles">importWikiPageTitles</a></li><li><a href="global.html#weightWikiWordSpecificity">weightWikiWordSpecificity</a></li></ul></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div><div class="category"><h2>Relevance</h2><h3>Global</h3><ul><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceConceptVectorAPI">weighRelevanceConceptVectorAPI</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div><div class="category"><h2>Search</h2><h3>Global</h3><ul><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li></ul></div><div class="category"><h2>Tokenize</h2><h3>Global</h3><ul><li><a href="global.html#convertWordToRootStem">convertWordToRootStem</a></li><li><a href="global.html#isWordCommonIgnored">isWordCommonIgnored</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#splitTextSemanticChars">splitTextSemanticChars</a></li><li><a href="global.html#suggestNextWordCompletions">suggestNextWordCompletions</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li></ul></div><div class="category"><h2>Topics</h2><h3>Global</h3><ul><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#weighTopicDirichletDistribution">weighTopicDirichletDistribution</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>dataset-import/compress-json-jz64.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import JSZip from "jszip";
+
+/**
+ * Compress/decompress any data such as JSON with JSZip at ~40% compression then 
+ * convert zip binary to a B64Zip text string which can be stored in db or file.
+ * @param {string} dataOrZip data to compress, or B64Zip to decompress
+ * @param {Object} options
+ * @param {Object} options.compressionLevel=9 0-9 compression level, 9 has smallest size but takes longer
+ * @param {Object} options.decompress=false  false to Compress, true to Decompress
+ * @returns {Promise&lt;string>} base64-encoded string of the zipped data
+ * @category Dataset
+ */
+async function compressB64Zip(dataOrZip, options = {}) {
+  try {
+    var { compressionLevel = 9, decompress = false } = options;
+
+    const zip = new JSZip();
+
+    if (decompress) {
+      try {
+        //Decompress the base64 zip and extract data or Text
+        await zip.loadAsync(Buffer.from(base64Zip, "base64"));
+        return await zip.file(Object.keys(zip.files)?.[0]).async("string");
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Add the JSON string to the zip file with highest compression
+    zip.file("data", dataOrZip, {
+      compression: "DEFLATE",
+      compressionOptions: {
+        level: compressionLevel,
+      },
+    });
+
+    // Generate the zip file as a Uint8Array
+    const zipUint8Array = await zip.generateAsync({
+      type: "uint8array",
+      compression: "DEFLATE",
+      compressionOptions: {
+        level: compressionLevel,
+      },
+    });
+
+    // Convert the Uint8Array to a base64 string
+    const base64 = Buffer.from(zipUint8Array).toString("base64");
+
+    return base64;
+  } catch (error) {
+    console.error("Error converting file to compressed zip to base64:", error);
+    throw error;
+  }
+}
+
+/**
+ * Compress topic model to b64z string.
+ * @param {string} base64Zip
+ * @returns {Promise&lt;string>} original JSON or Text
+ * @category Dataset
+ * @private
+ */
+async function compressTopicModel() {
+  const fs = await import("fs/promises");
+  const filePath = "./src/lib/autocomplete/wiki-phrases-model-240k.json";
+  const outputPath = "compressed-model-json-z64.js";
+
+  try {
+    console.log("Processing file:", filePath);
+
+    // Read the JSON file
+    const textData = await fs.readFile(filePath, "utf8");
+
+    const base64Zip = await compressB64Zip(textData);
+    console.log("Base64 encoded compressed zip containing JSON:");
+    console.log(base64Zip.substring(0, 100) + "..."); // Show first 100 characters
+    console.log("Length of base64 string:", base64Zip.length);
+
+    const content = `export default "${base64String}";\n`;
+    await fs.writeFile(outputPath, content, "utf8");
+
+    console.log(`Base64 string written to ${outputPath}`);
+
+    // Verify by decoding back to JSON
+    const decodedJson = await compressB64Zip(base64Zip, {decompress: true});
+    console.log("Decoded JSON (first 100 characters):");
+    console.log(JSON.stringify(decodedJson).substring(0, 100) + "...");
+
+    // Compare file sizes
+    const originalSize = (await fs.stat(filePath)).size;
+    const compressedSize = Math.ceil((base64Zip.length * 3) / 4); // Approximate size of decoded base64
+    const outputSize = (await fs.stat(outputPath)).size;
+    console.log("Original file size:", originalSize, "bytes");
+    console.log("Compressed size:", compressedSize, "bytes");
+    console.log("Output file size:", outputSize, "bytes");
+    console.log(
+      "Compression ratio:",
+      ((1 - compressedSize / originalSize) * 100).toFixed(2) + "%"
+    );
+  } catch (error) {
+    console.error("Failed to convert or decode:", error);
+  }
+}
+
+compressTopicModel();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

@@ -1,8 +1,4 @@
-/**
- * Script to download, decompress, parse and process 
- * Wikipedia term frequency dataset, compiled by SmartDataAnalytics 
- * in 2020 and containing term frequencies on Wikipedia articles.
-*/
+
 const fs = require('fs');
 const readline = require('readline');
 const https = require('https');
@@ -123,7 +119,14 @@ function filterTerms(wikiTermFrequency) {
     return wikiTermFrequency;
 }
 
-async function main() {
+/**
+ * Script to download, decompress, parse and process 
+ * Wikipedia term frequency dataset, compiled by SmartDataAnalytics 
+ * in 2020 and containing term frequencies on Wikipedia articles.
+ * @returns {object} 
+ * @category Dataset
+*/
+async function importTermFrequency() {
     try {
         console.log('Creating data directory...');
         fs.mkdirSync(path.dirname(gzipFilePath), { recursive: true });
@@ -177,4 +180,4 @@ async function main() {
     }
 }
 
-main();
+importTermFrequency();

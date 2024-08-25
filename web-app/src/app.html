@@ -2,14 +2,32 @@
 <html lang="en">
   <head>
     <title>QwkSearch</title>
-    <!-- Mobile-Web App Header -->
+    <!-- Mobile-Web Add-to-Home Header -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Specific Header -->
     %sveltekit.head%
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-E5TZ32BZDF");
+    </script>
   </head>
 
   <body>

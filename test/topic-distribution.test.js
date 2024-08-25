@@ -62,7 +62,7 @@ test('topic distribution Test', () => {
 
   
   
-    autocompleteNextWords(query) → {Array}
+    suggestNextWordCompletions(query) → {Array}
     Completes the Query with the most likely next words for phrases If typing 2+ letters of a word, return all possible words matching those few letters
     Parameters:
     Name	Type	Description
@@ -231,7 +231,7 @@ test('topic distribution Test', () => {
     Type: string | Object
     #
     extractSEEKTOPIC(inputString, options) → {Array.<Object>}
-    🔤📊 SEEKTOPIC: Summarization, Extraction of Entities, Keywords, and Topic Outline Phrases Important to Context Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts referred to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence.
+    🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts referred to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence.
     Parameters:
     Name	Type	Description
     inputString	string	input text to analyze

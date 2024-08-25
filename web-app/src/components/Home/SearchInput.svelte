@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { fade } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
-  import {autocompleteNextWords} from "../../../../src/autocomplete/autocomplete.js";
+  import {suggestNextWordCompletions} from "../../../../src/autocomplete/autocomplete.js";
   import iconSearch from "$lib/icons/icon-search.svg"
 
   export let phrasesModel = null;
@@ -24,7 +24,7 @@
       console.error("Wait. Phrase model not loaded");
       return;
     }
-    suggestions = await autocompleteNextWords(searchText, {
+    suggestions = await suggestNextWordCompletions(searchText, {
       phrasesModel,
       limit: 10,
     });

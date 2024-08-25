@@ -1,11 +1,5 @@
-/**
- *  Open English WordNet 2023 (better maintained WordNet)
- *  Script to download, decompress, parse and process into JSON
- *  151937 terms, phrases: 67444, words: 84493, 45 concept categories
- *  119801 definiton sets ( multiple defs per term & some terms share defs)
- *  like "motion" "person", and 5 Part-of-Speech categories:
- * ["n", "v", "r", "a", "s"]: noun, verb, adverb, adj, satellite adj*
- */
+
+
 const fs = require("fs");
 const zlib = require("zlib");
 const axios = require("axios");
@@ -263,7 +257,17 @@ dictionaryMap = Object.keys(dictionaryMap)
   
 }
 
-async function main() {
+/**
+ *  Open English WordNet 2023 (better maintained WordNet)
+ *  Script to download, decompress, parse and process into JSON
+ *  151937 terms, phrases: 67444, words: 84493, 45 concept categories
+ *  119801 definiton sets ( multiple defs per term & some terms share defs)
+ *  like "motion" "person", and 5 Part-of-Speech categories:
+ * ["n", "v", "r", "a", "s"]: noun, verb, adverb, adj, satellite adj*
+ * @returns {object} 
+ * @category Dataset
+ */
+async function importDictionary() {
   try {
     console.log("Starting download...");
     await downloadFile(url, gzipOutputPath);
@@ -288,7 +292,7 @@ async function main() {
   }
 }
 
-main();
+importDictionary();
 
 /*
  * ["n", "v", "r", "a", "s"]: noun, verb, adverb, adj, satellite adj*

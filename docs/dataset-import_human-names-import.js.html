@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src= "https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF "></script> <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-E5TZ32BZDF'); </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research Agent - Docs dataset-import/human-names-import.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">AI Research Agent</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/vtempest/ai-research-agent"
+                        >
+                            Source Code
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://qwksearch.com"
+                        >
+                            Live Demo
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://discord.gg/SJdBqBz3tV"
+                        >
+                            Chat
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3><a href="global.html">Global</a></h3></div><div class="category"><h2>Dataset</h2><h3>Global</h3><ul><li><a href="global.html#compileTopicModel">compileTopicModel</a></li><li><a href="global.html#compressB64Zip">compressB64Zip</a></li><li><a href="global.html#importCommonQueries">importCommonQueries</a></li><li><a href="global.html#importDictionary">importDictionary</a></li><li><a href="global.html#importHumanNames">importHumanNames</a></li><li><a href="global.html#importMisspelledTypos">importMisspelledTypos</a></li><li><a href="global.html#importTermFrequency">importTermFrequency</a></li><li><a href="global.html#importWikiPageTitles">importWikiPageTitles</a></li><li><a href="global.html#weightWikiWordSpecificity">weightWikiWordSpecificity</a></li></ul></div><div class="category"><h2>Extractor</h2><h3>Global</h3><ul><li><a href="global.html#convertHTMLSpecialChars">convertHTMLSpecialChars</a></li><li><a href="global.html#convertHTMLToBasicHTML">convertHTMLToBasicHTML</a></li><li><a href="global.html#convertURLToDomain">convertURLToDomain</a></li><li><a href="global.html#embedYoutubePlayer">embedYoutubePlayer</a></li><li><a href="global.html#extract">extract</a></li><li><a href="global.html#extractCite">extractCite</a></li><li><a href="global.html#extractFavicon">extractFavicon</a></li><li><a href="global.html#extractNamedEntity">extractNamedEntity</a></li><li><a href="global.html#extractNamedEntityParts">extractNamedEntityParts</a></li><li><a href="global.html#extractPDF">extractPDF</a></li><li><a href="global.html#extractYoutubeText">extractYoutubeText</a></li><li><a href="global.html#isHTMLBotDetection">isHTMLBotDetection</a></li><li><a href="global.html#isUrlPDF">isUrlPDF</a></li><li><a href="global.html#scrapeURL">scrapeURL</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#calculateCosineSimilarity">calculateCosineSimilarity</a></li><li><a href="global.html#calculateSimilarityByCharacter">calculateSimilarityByCharacter</a></li><li><a href="global.html#calculateSoftmax">calculateSoftmax</a></li><li><a href="global.html#calculateStandardDeviation">calculateStandardDeviation</a></li></ul></div><div class="category"><h2>Relevance</h2><h3>Global</h3><ul><li><a href="global.html#calculatePhraseSpecificity">calculatePhraseSpecificity</a></li><li><a href="global.html#matchQUASAR">matchQUASAR</a></li><li><a href="global.html#vectorizeTextAsConcept">vectorizeTextAsConcept</a></li><li><a href="global.html#weighRelevanceConceptVector">weighRelevanceConceptVector</a></li><li><a href="global.html#weighRelevanceConceptVectorAPI">weighRelevanceConceptVectorAPI</a></li><li><a href="global.html#weighRelevanceTermFrequency">weighRelevanceTermFrequency</a></li></ul></div><div class="category"><h2>Search</h2><h3>Global</h3><ul><li><a href="global.html#searchSTREAM">searchSTREAM</a></li><li><a href="global.html#searchWeb">searchWeb</a></li><li><a href="global.html#searchWikipedia">searchWikipedia</a></li></ul></div><div class="category"><h2>Tokenize</h2><h3>Global</h3><ul><li><a href="global.html#convertWordToRootStem">convertWordToRootStem</a></li><li><a href="global.html#isWordCommonIgnored">isWordCommonIgnored</a></li><li><a href="global.html#splitSentences">splitSentences</a></li><li><a href="global.html#splitTextSemanticChars">splitTextSemanticChars</a></li><li><a href="global.html#suggestNextWordCompletions">suggestNextWordCompletions</a></li><li><a href="global.html#tokenizeTopics">tokenizeTopics</a></li></ul></div><div class="category"><h2>Topics</h2><h3>Global</h3><ul><li><a href="global.html#extractSEEKTOPIC">extractSEEKTOPIC</a></li><li><a href="global.html#rankSentencesCentralToKeyphrase">rankSentencesCentralToKeyphrase</a></li><li><a href="global.html#weighTopicDirichletDistribution">weighTopicDirichletDistribution</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>dataset-import/human-names-import.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import fs from "fs";
+
+/**
+ * Import 92k  first and last human names sorted by popularity 
+ * from Github righteousgambit/quiet-riot 
+ * @returns {object} 
+ * @category Dataset
+ */
+async function importHumanNames() {
+  var enumTypes = ["last", "male", "female", "neutral", "multipos"];
+
+  //statistic mid-ground of gender-neutral and multi-positional names
+  var tolerance = 250;
+
+  var githubRoot =
+    "https://raw.githubusercontent.com/righteousgambit/quiet-riot/main/wordlists/";
+  var commonNamesUrls = [
+    githubRoot + "familynames-usa-top1000.txt",
+    githubRoot + "malenames-usa-top1000.txt",
+    githubRoot + "femalenames-usa-top1000.txt",
+  ];
+
+  var commonNames = {};
+  for (var urlIndex in commonNamesUrls) {
+    var url = commonNamesUrls[urlIndex];
+    var response = await (await fetch(url)).text();
+
+    response
+      .split(/[\r\n]/)
+      .map((name) => name[0].toUpperCase() + name.slice(1).toLowerCase())
+      .forEach((name, popularity) => {
+        if (!commonNames[name]) commonNames[name] = [];
+        commonNames[name].push([Number(urlIndex), popularity]);
+      });
+  }
+
+  var commonNamesSort = {};
+
+  Object.entries(commonNames)
+    .map(([name, popularity]) => ({ name, popularity }))
+    .map(({ name, popularity }) => {
+      var type;
+      //if only on one list, about 2500
+      if (popularity.length == 1) {
+        type = popularity[0][0];
+        return { name, type };
+      }
+
+      var mpop = popularity.filter(([type]) => type == 1);
+      mpop = mpop.length ? mpop[0][1] : null;
+
+      var fpop = popularity.filter(([type]) => type == 2);
+
+      fpop = fpop.length ? fpop[0][1] : null;
+
+      var lpop = popularity.filter(([type]) => type == 0);
+      lpop = lpop.length ? lpop[0][1] : null;
+
+      var topFirstnamePop = Math.min(mpop, fpop);
+      if (topFirstnamePop &amp;&amp; lpop) var firstLastWeight = topFirstnamePop - lpop;
+
+      if (mpop &amp;&amp; fpop) var genderWeight = fpop - mpop;
+
+      if (firstLastWeight > -tolerance &amp;&amp; firstLastWeight &lt; tolerance)
+        type = 4; //multipos
+      else if (firstLastWeight > 0)
+        type = 0; //last
+      else if (genderWeight > -tolerance &amp;&amp; genderWeight &lt; tolerance)
+        type = 3; //gender neutral
+      else if (genderWeight > 0)
+        type = 1; //male
+      else type = 2; //female
+
+      return { name, type };
+    })
+    .filter(Boolean)
+    // .filter(({type})=>type>2)
+    // .sort((a, b)=>a.name-b.name) // sort alphabetically or preserve popularity
+    .forEach(({ name, type }) => {
+      if (!commonNamesSort[name]) commonNamesSort[name] = [];
+      commonNamesSort[name] = type;
+    });
+
+  return commonNamesSort;
+}
+
+var res = await importHumanNames();
+fs.writeFileSync(
+  "./human-names-data.js",
+  "export default " + JSON.stringify(res)
+);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
+</body>
+</html>

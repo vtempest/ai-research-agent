@@ -26,13 +26,19 @@
       "hideGenerator": false,
       "navLinks": [
         {
-          "label": "Github",
+          "label": "Source Code",
           "href": "https://github.com/vtempest/ai-research-agent"
         },
         {
-          "label": "Demo",
-          "href": "https://wiki-phrases-tokenizer.vtempest.workers.dev"
+          "label": "Live Demo",
+          "href": "https://qwksearch.com"
+        },
+
+        {
+          "label": "Chat",
+          "href": "https://discord.gg/SJdBqBz3tV"
         }
+
       ]
     }
   }
