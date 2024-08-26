@@ -124,7 +124,7 @@ function filterTerms(wikiTermFrequency) {
  * Wikipedia term frequency dataset, compiled by SmartDataAnalytics 
  * in 2020 and containing term frequencies on Wikipedia articles.
  * @returns {object} 
- * @category Dataset
+ * @category Topic Model
 */
 async function importTermFrequency() {
     try {

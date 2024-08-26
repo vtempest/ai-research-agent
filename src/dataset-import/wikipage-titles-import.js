@@ -98,7 +98,7 @@ async function parseWikiPageviews(inputFile) {
  * Views dataset, random day sample, compiled by Wikimedia Foundation.
  * 
  * @returns {object} 
- * @category Dataset
+ * @category Topic Model
 */
 async function importWikiPageTitles() {
     try {

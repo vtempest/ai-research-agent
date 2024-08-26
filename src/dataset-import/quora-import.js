@@ -77,7 +77,7 @@ async function deleteDirectory(dir) {
  https://huggingface.co/datasets/BeIR/quora/resolve/main/queries.jsonl.gz?download=true
  
  * @returns {object} 
- * @category Dataset
+ * @category Topic Model
  */
 async function importCommonQueries() {
     try {

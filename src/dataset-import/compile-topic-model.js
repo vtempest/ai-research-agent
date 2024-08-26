@@ -24,7 +24,7 @@ import wikiWordFrequency from "../../data/wiki-word-freq-325k.json";
  * @param {boolean} options.sortInFirstTwoLettersTrie - sort the first words by first two letters Trie, needd for autocomplete after 2 letters typed
  * @param {number} options.minTermCharCount - min length of term to include
  * @returns {Promise<void>} 
- * @category Dataset
+ * @category Topic Model
  */
 export async function compileTopicModel(options = {}) {
   const {
@@ -234,10 +234,14 @@ export async function compileTopicModel(options = {}) {
  * but filtering out numbers and foreign language. <br />
  * <b>Total Terms (frequency>=32)</b>: 324896 <br />
  * <b>Filesize (JSON, frequency>=32)</b>: 4MB  <br />
- * <b>Total Articles (Wiki-en-2020)</b>: 5,989,879 <br />
+ * <b>Total Articles (Wiki-en-2020)</b>: 5,989,879 <br /> <br />
+ * 
+ *  Galkin, M., Malykh, V. (2020). Wikipedia TF-IDF Dataset Release (v1.0). 
+ * Zenodo. https://doi.org/10.5281/zenodo.3631674 https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset
+
  * @param {string} query phrase to search wiki-idf for each word
  * @returns {number} score for term specificity 0-12~
- * @category Dataset
+ * @category Topic Model
  */
 export function weightWikiWordSpecificity(query) {
   const totalWikiPages = 6000000;

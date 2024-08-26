@@ -3,7 +3,8 @@ import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-ba
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many
  * times to retry other domains if first time fails.
- *
+ * SearXNG is a free internet metasearch engine which aggregates results from more than 70 search services. Users are neither tracked nor profiled. 
+
  * @async
  * @function searchWeb
  * @param {string} query - The search query string.

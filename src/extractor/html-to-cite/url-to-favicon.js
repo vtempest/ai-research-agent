@@ -1,5 +1,5 @@
 /**
- * Gets favicon for any URL by parsing the HTML and looking for <link rel="icon"> tags.
+ * Gets favicon for any URL by parsing the HTML and looking for &lt;link rel="icon"&gt; tags or domain.com/favicon.ico check.
  * @param {string} url
  * @param {object} options 
  * @returns {Promise<string|null>} Favicon URL or null if not found

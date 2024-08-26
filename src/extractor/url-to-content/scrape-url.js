@@ -6,7 +6,8 @@
 /**
  * Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
  * Features: timeout, redirects, default UA, referer as google, and bot detection checking. <br />
- * Note: The First Amendment <a href="https://blog.apify.com/is-web-scraping-legal/">protects the right to scrape</a>.
+ * Scraping internet pages is a <a href="https://blog.apify.com/is-web-scraping-legal/">free speech
+ *  right globally</a>.
  * @async
  * @param {string} url - any domain's URL
  * @param {object} options

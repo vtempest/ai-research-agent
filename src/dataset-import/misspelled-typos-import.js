@@ -116,7 +116,7 @@ async function scrapeMisspellings() {
  * 
  * Github repo with 4.5K misspellings: 'feramhq/typokit' 
  * @returns {object} 
- * @category Dataset
+ * @category Topic Model
 */
 async function importMisspelledTypos() {
     try {

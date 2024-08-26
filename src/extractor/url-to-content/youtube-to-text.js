@@ -7,14 +7,13 @@ import { scrapeURL } from "./scrape-url";
  * @param {string} videoUrl
  * @param {object} options
  * @param {boolean} options.boolTimestamps=true - true to return timestamps, default true
- * @param {boolean} options.addEmbedVideo=true - add embedded <video> HTML before transcript
  * @param {boolean} options.timeout=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @category Extractor
  */
 export async function extractYoutubeText(videoUrl, options = {}) {
-  const { boolTimestamps = true, addEmbedVideo = true, timeout = 5 } = options;
+  const { boolTimestamps = true, timeout = 5 } = options;
 
   const videoId = getURLYoutubeVideo(videoUrl);
 
@@ -79,8 +78,8 @@ export async function extractYoutubeText(videoUrl, options = {}) {
 
   speeds = compressed.join(',') + "   " + compressedCount.join(',');
 
-  
-  if (addEmbedVideo)
+
+  //TODO replace
     content =
       '<iframe width="560" height="315" data-timestamps="'+
       speeds +

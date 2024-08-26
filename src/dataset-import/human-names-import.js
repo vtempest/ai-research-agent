@@ -1,91 +1,55 @@
-import fs from "fs";
+const axios = require("axios");
+const fs = require("fs").promises;
 
 /**
- * Import 92k  first and last human names sorted by popularity 
- * from Github righteousgambit/quiet-riot 
- * @returns {object} 
- * @category Dataset
+ * Import 92k  first and last human names sorted by popularity from American Registry for
+ * Internet Numbers (ARIN), a nonprofit which administers IP addresses, Github @arineng/arincli
+ * @returns {object}
+ * @category Topic Model
  */
 async function importHumanNames() {
-  var enumTypes = ["last", "male", "female", "neutral", "multipos"];
+  // Define the base URL
+  const baseUrl =
+    "https://raw.githubusercontent.com/arineng/arincli/master/lib/";
 
-  //statistic mid-ground of gender-neutral and multi-positional names
-  var tolerance = 250;
+  const urls = {
+    lastNames: ["last-names.txt"],
+    maleFirstNames: ["male-first-names.txt"],
+    femaleFirstNames: ["female-first-names.txt"],
+  };
 
-  var githubRoot =
-    "https://raw.githubusercontent.com/righteousgambit/quiet-riot/main/wordlists/";
-  var commonNamesUrls = [
-    githubRoot + "familynames-usa-top1000.txt",
-    githubRoot + "malenames-usa-top1000.txt",
-    githubRoot + "femalenames-usa-top1000.txt",
-  ];
+  try {
+    const nameData = {};
 
-  var commonNames = {};
-  for (var urlIndex in commonNamesUrls) {
-    var url = commonNamesUrls[urlIndex];
-    var response = await (await fetch(url)).text();
+    for (const [key, urlList] of Object.entries(urls)) {
+      for (const url of urlList) {
+        const response = await axios.get(baseUrl + url);
+        const names = response.data
+          .split("\n")
+          .map((line) => line.trim().toLowerCase())
+          .filter((line) => line);
 
-    response
-      .split(/[\r\n]/)
-      .map((name) => name[0].toUpperCase() + name.slice(1).toLowerCase())
-      .forEach((name, popularity) => {
-        if (!commonNames[name]) commonNames[name] = [];
-        commonNames[name].push([Number(urlIndex), popularity]);
-      });
-  }
-
-  var commonNamesSort = {};
-
-  Object.entries(commonNames)
-    .map(([name, popularity]) => ({ name, popularity }))
-    .map(({ name, popularity }) => {
-      var type;
-      //if only on one list, about 2500
-      if (popularity.length == 1) {
-        type = popularity[0][0];
-        return { name, type };
+        const value = key === "lastNames" ? 2 : 1;
+        names.forEach((name) => {
+          nameData[name] = value;
+        });
       }
+    }
 
-      var mpop = popularity.filter(([type]) => type == 1);
-      mpop = mpop.length ? mpop[0][1] : null;
+    // Convert the object to a JSON string
+    const jsonData = JSON.stringify(nameData, null, 0);
 
-      var fpop = popularity.filter(([type]) => type == 2);
+    // Save the JSON data to a file
+    await fs.writeFile("./data/human-names-92k.json", jsonData);
 
-      fpop = fpop.length ? fpop[0][1] : null;
-
-      var lpop = popularity.filter(([type]) => type == 0);
-      lpop = lpop.length ? lpop[0][1] : null;
-
-      var topFirstnamePop = Math.min(mpop, fpop);
-      if (topFirstnamePop && lpop) var firstLastWeight = topFirstnamePop - lpop;
-
-      if (mpop && fpop) var genderWeight = fpop - mpop;
-
-      if (firstLastWeight > -tolerance && firstLastWeight < tolerance)
-        type = 4; //multipos
-      else if (firstLastWeight > 0)
-        type = 0; //last
-      else if (genderWeight > -tolerance && genderWeight < tolerance)
-        type = 3; //gender neutral
-      else if (genderWeight > 0)
-        type = 1; //male
-      else type = 2; //female
-
-      return { name, type };
-    })
-    .filter(Boolean)
-    // .filter(({type})=>type>2)
-    // .sort((a, b)=>a.name-b.name) // sort alphabetically or preserve popularity
-    .forEach(({ name, type }) => {
-      if (!commonNamesSort[name]) commonNamesSort[name] = [];
-      commonNamesSort[name] = type;
-    });
-
-  return commonNamesSort;
+    console.log(
+      Object.keys(nameData).length +
+        " names have been downloaded, formatted, and saved to 'names.json'"
+    );
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+  }
 }
 
-var res = await importHumanNames();
-fs.writeFileSync(
-  "./human-names-data.js",
-  "export default " + JSON.stringify(res)
-);
+// Run the function
+importHumanNames();

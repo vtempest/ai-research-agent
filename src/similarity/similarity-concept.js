@@ -52,7 +52,7 @@ export async function weighRelevanceConceptVectorAPI(source_sentence, sentences,
  * Rerank documents's chunks based on relevance to query,
  * based on cosine similarity of their concept vectors generated
  * by a 20MB MiniLM transformer model downloaded locally.
- *
+ * "A Complete Overview of Word Embeddings" https://www.youtube.com/watch?v=5MaWmXwxFNQ&t=323s
  * @param {Array<string>} documents
  * @param {string} query
  * @param {Object} options
@@ -88,7 +88,7 @@ export async function weighRelevanceConceptVector(documents, query, options = {}
  * @param {string|Array<string>} input
  * @param {Object} options
  * @returns {Promise<Array<Array<number>>>}
-  * @category Relevance
+ * @category Relevance
 */
 export async function vectorizeTextAsConcept(input, options = {}) {
   const { pipeline } =  await import("@xenova/transformers");
@@ -130,23 +130,21 @@ function splitArrayToChunks(array, chunkSize) {
 }
 
 /**
- * Cosine similarity is a measure of similarity between two vectors
- * in an inner product space. It determines the degree to 
- * which two vectors are pointing in the same direction by 
- * calculating the cosine of the angle between them. 
- * Cosine similarity is commonly used in text analysis 
- * to measure the similarity between documents based on 
- * the frequency of words or phrases they contain.
+ * Cosine similarity is a way to measure how similar two vectors are. To simplify, it reflects 
+ * whether the vectors have the same direction (similar) or are poles apart. Cosine similarity 
+ * is often used with text representations to compare how similar two documents or sentences 
+ * are to each other. The output of cosine similarity ranges from -1 to 1, where -1 means the 
+ * two vectors are completely dissimilar, and 1 indicates maximum similarity.
  * https://en.wikipedia.org/wiki/Cosine_similarity
- * @param {Array<number>} vecA
- * @param {Array<number>} vecB
+ * @param {Array<number>} vectorA
+ * @param {Array<number>} vectorB
  * @returns {number} 0-1 similarity score
- * @category Math
+ * @category Relevance
  */
-function calculateCosineSimilarity(vecA, vecB) {
+function calculateCosineSimilarity(vectorA, vectorB) {
   return (
-    vecA.reduce((sum, a, i) => sum + a * vecB[i], 0) /
-    (Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0)) *
-      Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0)))
+    vectorA.reduce((sum, a, i) => sum + a * vectorB[i], 0) /
+    (Math.sqrt(vectorA.reduce((sum, a) => sum + a * a, 0)) *
+      Math.sqrt(vectorB.reduce((sum, b) => sum + b * b, 0)))
   );
 }

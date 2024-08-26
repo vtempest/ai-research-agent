@@ -244,6 +244,13 @@ export async function extractPDF(pdfURLOrBuffer, options = {}) {
   // }
 }
 
+
+/**
+ * @param {array} array
+ * @returns {int} average of array
+ * @category Math
+ * @private
+ */
 const mean = function (array) {
   return array.length == 0 ? 0 : array.reduce((a, b) => a + b) / array.length;
 };
@@ -254,6 +261,7 @@ const mean = function (array) {
  * @param {array} array
  * @returns {int} number of standard deviation from average
  * @category Math
+ * @private
  */
 const calculateStandardDeviation = function (array) {
   var mean2 = mean(array);
@@ -271,9 +279,9 @@ const calculateStandardDeviation = function (array) {
  * distribution over the possible classes.
  * https://en.wikipedia.org/wiki/Softmax_function
  *
- * @param {Array} arr  array of numbers .
- * @returns {Array}  Softmax array.
- * @category Math
+ * @param {Array} arr  array of numbers 
+ * @returns {Array}  Softmax array corresponding to input array
+ * @category Relevance
  */
 export function calculateSoftmax(arr) {
   // Compute the maximum value in the array
