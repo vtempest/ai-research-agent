@@ -10,7 +10,7 @@
 
 [![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
-### [JS API Docs ](https://vtempest.github.io/ai-research-agent/docs/index.html)
+### [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
 
 ###  Demos
 
@@ -103,15 +103,11 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
 
-#### Match-QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
-
-Search document_text for all words of search_term ignoring casing except treat "words in quotes" as if a single word like in Google search. Uses negative lookaheads (?=
-bar(?=bar) to find the 1st "bar" and ignore second. Single line function that can be used anywhere.
-
 
 ### Further Research
 
 
+ * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
 
  * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
  * [NLP Papers Latest Updates](https://index.quantumstat.com)
@@ -134,3 +130,4 @@ https://www.mediawiki.org/wiki/API:Opensearch
  * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based Content Extraction. Proceedings of the 28th International Conference on Computational Linguistics. https://aclanthology.org/2020.coling-main.144.pdf
 
  * Goodwin, Danny (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
+

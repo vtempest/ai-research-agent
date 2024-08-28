@@ -5,8 +5,8 @@
  * @param {string} query - The input query which can be pertial words or phrases.
  * @param {Object} options 
  * @param {Object} options.phrasesModel - A custom phrases model to use for autocomplete suggestions.
- * @param {number} options.limitMaxResults=10 - The maximum number of autocomplete suggestions to return.
- * @param {number} options.numberOfLastWordsToCheck=5 - The number of last words in the query to check for phrase completions.
+ * @param {number} options.limitMaxResults default=10 - The maximum number of autocomplete suggestions to return.
+ * @param {number} options.numberOfLastWordsToCheck default=5 - The number of last words in the query to check for phrase completions.
  * @returns {Promise<Array<Object>>} An array of autocomplete suggestions, each containing either a 'phrase' or 'word' property.
  * @async
  * @example

@@ -1,6 +1,6 @@
 {
   "name": "ai-research-agent",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "module": "index.js",
   "type": "module",
   "author": "vtempest",
@@ -16,7 +16,9 @@
     "compile": "bun run ./src/dataset-import/compile-topic-model.js"
   },
   "devDependencies": {
+    "@gobstones/typedoc-theme-gobstones": "^0.2.1",
     "@jsdoc/salty": "^0.2.8",
+    "@mxssfd/typedoc-theme": "^1.1.6",
     "@types/bun": "^1.1.6",
     "@vitest/ui": "^2.0.5",
     "adm-zip": "^0.5.15",
@@ -25,8 +27,12 @@
     "cheerio": "^1.0.0",
     "fast-xml-parser": "^4.4.1",
     "jsdoc": "^4.0.3",
+    "typedoc": "^0.26.6",
+    "typedoc-material-theme": "^1.1.0",
     "vitest": "^2.0.5",
-    "wrangler": "^3.72.0"
+    "wrangler": "^3.72.0",
+    "@jsprismarine/typedoc-material-theme": "^1.0.4",
+
   },
   "dependencies": {
     "@langchain/core": "^0.2.27",

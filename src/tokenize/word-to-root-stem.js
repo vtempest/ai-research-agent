@@ -1,17 +1,80 @@
 /**
- * Stems a word using the <a 
+ * Stems a word using the <a
  * href="https://snowballstem.org/algorithms/porter/stemmer.html">Porter
  *  Stemmer</a> for removing  inflectional endings like "ing", "ist", "ize".
- * 
- * @license BSD Martin Porter https://tartarus.org/martin/PorterStemmer/   
+ * https://en.wikipedia.org/wiki/Martin_Porter
+ *
+ * @author BSD Martin Porter https://tartarus.org/martin/PorterStemmer/
  * @param {string} word - The word to be stemmed
- * @returns {string} The stemmed word
+ * @returns {string} - The stemmed word
  * @category Tokenize
  * @example var rootWord = convertWordToRootStem("running"); // returns "run"
  */
 export function convertWordToRootStem(word) {
   // Return short words (less than 3 characters) without stemming
   if (word.length < 3) return word;
+
+  const SUFFIX_MAPS = {
+    step2: {
+      ational: "ate",
+      tional: "tion",
+      enci: "ence",
+      anci: "ance",
+      izer: "ize",
+      bli: "ble",
+      alli: "al",
+      entli: "ent",
+      eli: "e",
+      ousli: "ous",
+      ization: "ize",
+      ation: "ate",
+      ator: "ate",
+      alism: "al",
+      iveness: "ive",
+      fulness: "ful",
+      ousness: "ous",
+      aliti: "al",
+      iviti: "ive",
+      biliti: "ble",
+      logi: "log",
+    },
+    step3: {
+      icate: "ic",
+      ative: "",
+      alize: "al",
+      iciti: "ic",
+      ical: "ic",
+      ful: "",
+      ness: "",
+    },
+  };
+
+  const REGEX = {
+    consonant: /[^aeiou]/,
+    vowel: /[aeiouy]/,
+    consonants: /([^aeiou][^aeiouy]*)/,
+    vowels: /([aeiouy][aeiou]*)/,
+    gt0: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)/,
+    eq1: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)([aeiouy][aeiou]*)?$/,
+    gt1: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*[^aeiou][^aeiouy]*){2,}/,
+    vowelInStem: /^([^aeiou][^aeiouy]*)?[aeiouy]/,
+    consonantLike: /^([^aeiou][^aeiouy]*)[aeiouy][^aeiouwxy]$/,
+    sfxLl: /ll$/,
+    sfxE: /^(.+?)e$/,
+    sfxY: /^(.+?)y$/,
+    sfxIon: /^(.+?(s|t))(ion)$/,
+    sfxEdOrIng: /^(.+?)(ed|ing)$/,
+    sfxAtOrBlOrIz: /(at|bl|iz)$/,
+    sfxEED: /^(.+?)eed$/,
+    sfxS: /^.+?[^s]s$/,
+    sfxSsesOrIes: /^.+?(ss|i)es$/,
+    sfxMultiConsonantLike: /([^aeiouylsz])\1$/,
+    step2:
+      /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/,
+    step3: /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/,
+    step4:
+      /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,
+  };
 
   let stem = word.toLowerCase();
 
@@ -83,65 +146,3 @@ export function convertWordToRootStem(word) {
 
   return stem;
 }
-
-const SUFFIX_MAPS = {
-  step2: {
-    ational: "ate",
-    tional: "tion",
-    enci: "ence",
-    anci: "ance",
-    izer: "ize",
-    bli: "ble",
-    alli: "al",
-    entli: "ent",
-    eli: "e",
-    ousli: "ous",
-    ization: "ize",
-    ation: "ate",
-    ator: "ate",
-    alism: "al",
-    iveness: "ive",
-    fulness: "ful",
-    ousness: "ous",
-    aliti: "al",
-    iviti: "ive",
-    biliti: "ble",
-    logi: "log",
-  },
-  step3: {
-    icate: "ic",
-    ative: "",
-    alize: "al",
-    iciti: "ic",
-    ical: "ic",
-    ful: "",
-    ness: "",
-  },
-};
-
-const REGEX = {
-  consonant: /[^aeiou]/,
-  vowel: /[aeiouy]/,
-  consonants: /([^aeiou][^aeiouy]*)/,
-  vowels: /([aeiouy][aeiou]*)/,
-  gt0: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)/,
-  eq1: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*)([^aeiou][^aeiouy]*)([aeiouy][aeiou]*)?$/,
-  gt1: /^([^aeiou][^aeiouy]*)?([aeiouy][aeiou]*[^aeiou][^aeiouy]*){2,}/,
-  vowelInStem: /^([^aeiou][^aeiouy]*)?[aeiouy]/,
-  consonantLike: /^([^aeiou][^aeiouy]*)[aeiouy][^aeiouwxy]$/,
-  sfxLl: /ll$/,
-  sfxE: /^(.+?)e$/,
-  sfxY: /^(.+?)y$/,
-  sfxIon: /^(.+?(s|t))(ion)$/,
-  sfxEdOrIng: /^(.+?)(ed|ing)$/,
-  sfxAtOrBlOrIz: /(at|bl|iz)$/,
-  sfxEED: /^(.+?)eed$/,
-  sfxS: /^.+?[^s]s$/,
-  sfxSsesOrIes: /^.+?(ss|i)es$/,
-  sfxMultiConsonantLike: /([^aeiouylsz])\1$/,
-  step2:
-    /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/,
-  step3: /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/,
-  step4:
-    /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/,
-};

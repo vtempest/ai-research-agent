@@ -1,16 +1,16 @@
 import JSZip from "jszip";
 
 /**
- * Compress/decompress any data such as JSON with JSZip at ~40% compression then 
- * convert zip binary to a B64Zip text string which can be stored in db or file.
- * @param {string} dataOrZip data to compress, or B64Zip to decompress
+ * Compress/decompress any data (such as JSON or text) with JSZip then 
+ * convert zip binary to a Base64Zip text string which is easier to store in db or files.
+ * @param {string} dataOrZip data to compress, or Base64Zip to decompress
  * @param {Object} options
- * @param {Object} options.compressionLevel=9 0-9 compression level, 9 has smallest size but takes longer
- * @param {Object} options.decompress=false  false to Compress, true to Decompress
+ * @param {number} options.compressionLevel=9 0-9, 9 has smallest size  at ~40%  but takes longer
+ * @param {boolean} options.decompress=false  false to compress, true to decompress
  * @returns {Promise<string>} base64-encoded string of the zipped data
  * @category Topic Model
  */
-async function compressB64Zip(dataOrZip, options = {}) {
+async function compressBase64ZipText(dataOrZip, options = {}) {
   try {
     var { compressionLevel = 9, decompress = false } = options;
 
@@ -71,7 +71,7 @@ async function compressTopicModel() {
     // Read the JSON file
     const textData = await fs.readFile(filePath, "utf8");
 
-    const base64Zip = await compressB64Zip(textData);
+    const base64Zip = await compressBase64ZipText(textData);
     console.log("Base64 encoded compressed zip containing JSON:");
     console.log(base64Zip.substring(0, 100) + "..."); // Show first 100 characters
     console.log("Length of base64 string:", base64Zip.length);
@@ -82,7 +82,7 @@ async function compressTopicModel() {
     console.log(`Base64 string written to ${outputPath}`);
 
     // Verify by decoding back to JSON
-    const decodedJson = await compressB64Zip(base64Zip, {decompress: true});
+    const decodedJson = await compressBase64ZipText(base64Zip, {decompress: true});
     console.log("Decoded JSON (first 100 characters):");
     console.log(JSON.stringify(decodedJson).substring(0, 100) + "...");
 

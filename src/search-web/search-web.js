@@ -9,11 +9,11 @@ import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-ba
  * @function searchWeb
  * @param {string} query - The search query string.
  * @param {object} options
- * @param {number} options.category=0 - ["general", "news", "videos", "images",
+ * @param {number} options.category default=0 - ["general", "news", "videos", "images",
  *  "science", "map", "music", "it", "files", "social+media"]
- * @param {number} options.recency=0 - ["", "day", "week", "month", "year"]
- * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
- * @param {number} options.maxRetries=3 - Maximum number of retry attempts if the initial search fails.
+ * @param {number} options.recency default=0 - ["", "day", "week", "month", "year"]
+ * @param {string|null} options.selectedDomain default=null - Use your custom domain SearXNG
+ * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[], cached: string}>>} An array of search result objects.
  * @throws {Error} Throws an error if the search fails after all retry attempts.
  * @category Search

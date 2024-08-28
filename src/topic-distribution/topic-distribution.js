@@ -16,13 +16,13 @@ import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
  *
  * @param {string[]} sentences - Array of input sentences.
  * @param {Object} options - Configuration options for LDA.
- * @param {number} options.topicCount=10 - Number of topics to extract.
- * @param {number} options.numberOfTermsPerTopic=10 - Number of terms to show for each topic.
- * @param {number} options.alpha=0.1 - Dirichlet prior on document-topic distributions.
- * @param {number} options.beta=0.01 - Dirichlet prior on topic-word distributions.
- * @param {number} options.numberOfIterations=1000 - Number of iterations for the LDA algorithm.
- * @param {number} options.valueBurnIn=100 - Number of burn-in iterations.
- * @param {number} options.valueSampleLag=10 - Lag between samples.
+ * @param {number} options.topicCount default=10 - Number of topics to extract.
+ * @param {number} options.numberOfTermsPerTopic default=10 - Number of terms to show for each topic.
+ * @param {number} options.alpha default=0.1 - Dirichlet prior on document-topic distributions.
+ * @param {number} options.beta default=0.01 - Dirichlet prior on topic-word distributions.
+ * @param {number} options.numberOfIterations default=1000 - Number of iterations for the LDA algorithm.
+ * @param {number} options.valueBurnIn default=100 - Number of burn-in iterations.
+ * @param {number} options.valueSampleLag default=10 - Lag between samples.
  * @returns {Array} - Array of topics, each containing term-probability pairs.
  * @category Topics
  */

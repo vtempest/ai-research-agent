@@ -10,7 +10,7 @@
  * @param {Array<string>} sentences A list of strings which will be compared 
  * against the source_sentence.
  * @param {object} options 
- * @param {string} options.model="sentence-transformers/all-MiniLM-L6-v2"  
+ * @param {string} options.model default="sentence-transformers/all-MiniLM-L6-v2"  
  * @param {string} options.HF_API_KEY Required https://huggingface.co/settings/tokens
  * @returns array of 0-1 similarity scores for each sentence
  * @category Relevance 
@@ -70,11 +70,11 @@ export async function weighRelevanceConceptVector(documents, query, options = {}
       index: i,
       similarity: calculateCosineSimilarity(queryEmbedding[0], docEmbedding),
     }))
-    .filter((sim) => sim.similarity > 0.5)
+    .filter(s => s.similarity > 0.5) //remove irrelevant docs
     .sort((a, b) => b.similarity - a.similarity)
-    .map((sim) => ({
-      content: documents[sim.index],
-      similarity: sim.similarity,
+    .map(({index, similarity}) => ({
+      content: documents[index],
+      similarity,
     }));
 
   return sortedDocs;

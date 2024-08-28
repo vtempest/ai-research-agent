@@ -13,14 +13,14 @@ import { scrapeURL } from "./scrape-url.js";
  * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
  * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} options
- * @param {boolean} options.keyphrases=true - extract key phrases
- * @param {boolean} options.images=true - include images
- * @param {boolean} options.links=true - include links
- * @param {boolean} options.formatting=true - preserve formatting
- * @param {boolean} options.absoluteURLs=true - convert URLs to absolute
- * @param {boolean} options.usePostlightParser=true - PostlightParser is an
+ * @param {boolean} options.keyphrases default=true - extract key phrases
+ * @param {boolean} options.images default=true - include images
+ * @param {boolean} options.links default=true - include links
+ * @param {boolean} options.formatting default=true - preserve formatting
+ * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
+ * @param {boolean} options.usePostlightParser default=true - PostlightParser is an
  * improved version of Readability with 100+ custom adapters for major websites.
- * @param {boolean} options.timeout=5 - http request timeout
+ * @param {boolean} options.timeout default=5 - http request timeout
  * @returns {Object} - {author, date, title, source, content, image}
  * @category Extractor
  */

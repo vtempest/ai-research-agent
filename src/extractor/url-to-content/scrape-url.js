@@ -11,12 +11,12 @@
  * @async
  * @param {string} url - any domain's URL
  * @param {object} options
- * @param {number} options.timeout=5 -  abort request if not retrived, in seconds
- * @param {number} options.maxRedirects=3 - max redirects to follow
- * @param {number} options.checkBotDetection=true - check for bot detection messages
- * @param {number} options.redirectCount=0 - current redirect count
- * @param {number} options.changeReferer=true - set referer as google
- * @param {number} options.userAgentIndex=0 - index of [google bot, default chrome]
+ * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
+ * @param {number} options.maxRedirects default=3 - max redirects to follow
+ * @param {number} options.checkBotDetection default=true - check for bot detection messages
+ * @param {number} options.changeReferer default=true - set referer as google
+ * @param {number} options.userAgentIndex default=0 - index of [google bot, default chrome]
+ * @param {number} options.useCORSProxy default=false - use corsproxy.io to fetch url (in frontend JS)
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extractor
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
@@ -25,13 +25,15 @@ export async function scrapeURL(url, options = {}) {
   try {
     let {
       timeout = 5,
-      redirectCount = 0,
       checkBotDetection = true,
       maxRedirects = 3,
       changeReferer = true,
       userAgentIndex = 0,
+      useCORSProxy = 0,
     } = options;
 
+    if(useCORSProxy)
+      url = 'https://corsproxy.io/?' + encodeURIComponent(url);
 
 
     var userAgentStrings =
@@ -53,10 +55,10 @@ export async function scrapeURL(url, options = {}) {
     let response = await fetch(url, headers);
 
     if (response.redirected) {
-      if (redirectCount > maxRedirects)
+      if (maxRedirects <= 0)
         return { error: "Max redirects exceeded" };
-      redirectCount++;
-      options = { ...options, redirectCount };
+      maxRedirects--;
+      options = { ...options, maxRedirects };
 
       return scrapeURL(response.url, options);
     }
@@ -71,12 +73,15 @@ export async function scrapeURL(url, options = {}) {
     //return based on content type
     const contentType = response.headers.get("Content-Type");
 
+    console.log(response.headers)
     if (contentType.includes("application/json")) {
       return await response.json();
     } else if (contentType.includes("text")) {
       var html = await response.text();
       if (checkBotDetection && isHTMLBotDetection(html))
         return { error: "Bot detected" }; //, html: response.html };
+
+      console.log(html)
 
 
       //spoof the base-url for relative paths on the target page

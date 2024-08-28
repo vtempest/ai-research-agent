@@ -1,7 +1,7 @@
 /**
  * Split document text with semantic characters, html, lines.
  * 
- * @license Apache-2.0 Jina AI https://gist.github.com/hanxiao/3f60354cf6dc5ac698bc9154163b4e6a
+ * @author Apache-2.0 Jina AI https://gist.github.com/hanxiao/3f60354cf6dc5ac698bc9154163b4e6a
  * @param {string} text 
  * @returns {Array.<String>} array of text chunks
  * @category Tokenize

@@ -4,13 +4,13 @@
  *
  * @param {string} html Any page's HTML to process
  * @param {object} options 
- * @param {boolean} options.images=true - Whether to include images
- * @param {boolean} options.links=true - Whether to include links
- * @param {boolean} options.videos=true - Whether to include videos or not
- * @param {boolean} options.formatting=true - Whether to include formatting
- * @param {string} options.url="" - The base URL for converting relative URLs to absolute
- * @param {string} options.allowTags={string} - Comma-separated list of allowed HTML tags "sup,br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup,span"
- * @param {string} options.allowedAttributes={string}  List of allowed HTML attributes "text,tag,href, src,type,width, height,id,data" -
+ * @param {boolean} options.images default=true - Whether to include images
+ * @param {boolean} options.links default=true - Whether to include links
+ * @param {boolean} options.videos default=true - Whether to include videos or not
+ * @param {boolean} options.formatting default=true - Whether to include formatting
+ * @param {string} options.url default="" - The base URL for converting relative URLs to absolute
+ * @param {string} options.allowTags default={string} - Comma-separated list of allowed HTML tags "sup,br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup,span"
+ * @param {string} options.allowedAttributes default={string}  List of allowed HTML attributes "text,tag,href, src,type,width, height,id,data" -
  * @returns {string} sanitized html
  * @category Extractor
  */
@@ -208,7 +208,7 @@ export function convertHTMLToTokens(html) {
  * It handles named entities, decimal numeric character references, and hexadecimal numeric character references.
  *
  * @param {string} str - The string to process.
- * @param {boolean} unescape=true - If true, converts & codes to characters. 
+ * @param {boolean} unescape  default=true - If true, converts & codes to characters. 
  *                                     If false, converts characters to codes.
  * @return {string} The processed string.
  * @category Extractor

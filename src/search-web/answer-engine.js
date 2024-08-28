@@ -13,12 +13,23 @@ import {extract} from "../../index.js";
  *
  * @async
  * @param {string} query - The search query string.
- * @param {object} options
- * @param {number} options.categoryIndex=0 - Index of the search category.
- * @param {number} options.recencyIndex=0 - Index representing the recency of results.
- * @param {number} options.maxRetries=5 - Maximum number of retry attempts for the search.
- * @param {number} options.maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
- * @param {string|null} options.selectedDomain=null - Use your custom domain SearXNG
+ * @param {object} options - default {
+    categoryIndex = 0,
+    recencyIndex = 0,
+    maxRetries = 8,
+    maxTopResultsToExtract = 3,
+  } - 
+    categoryIndex=0 - Index of the search category.
+    recencyIndex=0 - Index representing the recency of results.
+    maxRetries=5 - Maximum number of retry attempts for the search.
+    maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
+ * 
+ * 
+ * @param {number} options.categoryIndex default=0 - Index of the search category.
+ * @param {number} options.recencyIndex default=0 - Index representing the recency of results.
+ * @param {number} options.maxRetries default=5 - Maximum number of retry attempts for the search.
+ * @param {number} options.maxTopResultsToExtract default=6 - Maximum number of top results to extract and analyze.
+ * @param {string|null} options.selectedDomain default=null - Use your custom domain SearXNG
  * @returns {Promise<Array>} A promise that resolves to an array containing the search results, extracted information, and generated answer.
  * @category Search
  * @example const advancedResults = await searchSTREAM('Latest developments in quantum computing', {

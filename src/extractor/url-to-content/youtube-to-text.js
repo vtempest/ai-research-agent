@@ -6,14 +6,14 @@ import { scrapeURL } from "./scrape-url";
  * if blocked, use scraper of youtubetranscript.com
  * @param {string} videoUrl
  * @param {object} options
- * @param {boolean} options.boolTimestamps=true - true to return timestamps, default true
- * @param {boolean} options.timeout=5 - http request timeout
+ * @param {boolean} options.addTimestamps default=true - true to return timestamps, default true
+ * @param {boolean} options.timeout default=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @category Extractor
  */
 export async function extractYoutubeText(videoUrl, options = {}) {
-  const { boolTimestamps = true, timeout = 5 } = options;
+  const { addTimestamps = true, timeout = 5 } = options;
 
   const videoId = getURLYoutubeVideo(videoUrl);
 
@@ -27,7 +27,7 @@ export async function extractYoutubeText(videoUrl, options = {}) {
   if (!res || !res.content) return { error: 1 };
   var { content, timestamps } = res;
 
-  // if (!boolTimestamps) return { content };
+  // if (!addTimestamps) return { content };
 
 
   var word_count = content.split(" ").length;

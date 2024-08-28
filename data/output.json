@@ -1,0 +1,4188 @@
+[
+  {
+    "domain": "tmz.com",
+    "title": [
+      ".post-title-breadcrumb",
+      "h1",
+      ".headline"
+    ],
+    "date": [
+      ".article__published-at",
+      ".article-posted-date"
+    ],
+    "content": [
+      ".article__blocks",
+      ".article-content",
+      ".all-post-body"
+    ],
+    "remove": [
+      ".lightbox-link"
+    ]
+  },
+  {
+    "domain": "yomiuri.co.jp",
+    "title": [
+      "h1.title-article.c-article-title"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.p-main-contents"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "nydailynews.com",
+    "title": [
+      "h1.headline",
+      "h1#ra-headline"
+    ],
+    "author": [
+      ".article_byline span",
+      [
+        "meta[name=\"parsely-author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      "time",
+      [
+        "meta[name=\"sailthru.date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "article",
+      "article#ra-body"
+    ],
+    "remove": [
+      "dl#ra-tags",
+      ".ra-related",
+      "a.ra-editor",
+      "dl#ra-share-bottom"
+    ]
+  },
+  {
+    "domain": "aol.com",
+    "title": [
+      "h1.p-article__title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      ".p-article__byline__date"
+    ],
+    "content": [
+      ".article-content"
+    ]
+  },
+  {
+    "domain": "fandom.wikia.com",
+    "title": [
+      "h1.entry-title"
+    ],
+    "author": [
+      ".author vcard",
+      ".fn"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".grid-content",
+      ".entry-content"
+    ]
+  },
+  {
+    "domain": "scan.netsecurity.ne.jp",
+    "title": [
+      "header.arti-header h1.head"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.arti-content.arti-content--thumbnail"
+    ],
+    "remove": [
+      "aside.arti-giga"
+    ]
+  },
+  {
+    "domain": "people.com",
+    "title": [
+      ".article-header h1",
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"sailthru.author\"]",
+        "value"
+      ],
+      "a.author.url.fn"
+    ],
+    "date": [
+      ".mntl-attribution__item-date",
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div[class^=\"loc article-content\"]",
+      "div.article-body__inner"
+    ]
+  },
+  {
+    "domain": "gizmodo.jp",
+    "title": [
+      "h1.p-post-title"
+    ],
+    "author": [
+      "li.p-post-AssistAuthor"
+    ],
+    "date": [
+      [
+        "li.p-post-AssistTime time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "article.p-post"
+    ],
+    "remove": [
+      "h1.p-post-title",
+      "ul.p-post-Assist"
+    ]
+  },
+  {
+    "domain": "rawstory.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      ".blog-title"
+    ],
+    "author": [
+      "div.main-post-head .social-author__name",
+      ".blog-author a:first-of-type"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      ".blog-author a:last-of-type"
+    ],
+    "content": [
+      ".post-body",
+      ".blog-content"
+    ]
+  },
+  {
+    "domain": "uproxx.com",
+    "title": [
+      "div.entry-header h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"qc:author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".entry-content"
+    ]
+  },
+  {
+    "domain": "ndtv.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      "h1.entry-title"
+    ],
+    "author": [
+      "span[itemprop=\"author\"] span[itemprop=\"name\"]"
+    ],
+    "date": [
+      [
+        "span[itemprop=\"dateModified\"]",
+        "content"
+      ]
+    ],
+    "content": [
+      "div[itemprop=\"articleBody\"]"
+    ],
+    "remove": [
+      ".highlghts_Wdgt",
+      ".ins_instory_dv_caption",
+      "input",
+      "._world-wrapper .mt20"
+    ]
+  },
+  {
+    "domain": "lifehacker.jp",
+    "title": [
+      "h1[class^=\"article_pArticle_Title\"]",
+      "h1.lh-summary-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      "p.lh-entryDetailInner--credit"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "div.lh-entryDetail-header time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div[class^=\"article_pArticle_Body__\"]",
+      "div.lh-entryDetail-body"
+    ],
+    "remove": [
+      "p.lh-entryDetailInner--credit"
+    ]
+  },
+  {
+    "domain": "nymag.com",
+    "title": [
+      "h1.lede-feature-title",
+      "h1.headline-primary",
+      "h1"
+    ],
+    "author": [
+      ".by-authors",
+      ".lede-feature-author"
+    ],
+    "date": [
+      [
+        "time.article-timestamp[datetime]",
+        "datetime"
+      ],
+      "time.article-timestamp"
+    ],
+    "content": [
+      "div.article-content",
+      "section.body",
+      "article.article"
+    ],
+    "remove": [
+      ".ad",
+      ".single-related-story"
+    ]
+  },
+  {
+    "domain": "atmarkit.co.jp",
+    "title": [
+      "#cmsTitle h1"
+    ],
+    "author": [
+      "#byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#cmsBody"
+    ],
+    "remove": [
+      "#snsSharebox"
+    ]
+  },
+  {
+    "domain": "techtarget.itmedia.co.jp",
+    "title": [
+      "#cmsTitle h1"
+    ],
+    "author": [
+      "#byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#cmsBody"
+    ],
+    "remove": [
+      "#snsSharebox"
+    ]
+  },
+  {
+    "domain": "nlab.itmedia.co.jp",
+    "title": [
+      "#cmsTitle h1"
+    ],
+    "author": [
+      "#byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#cmsBody"
+    ],
+    "remove": [
+      "#snsSharebox"
+    ]
+  },
+  {
+    "domain": "itmedia.co.jp",
+    "title": [
+      "#cmsTitle h1"
+    ],
+    "author": [
+      "#byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#cmsBody"
+    ],
+    "remove": [
+      "#snsSharebox"
+    ]
+  },
+  {
+    "domain": "arstechnica.com",
+    "title": [
+      "title"
+    ],
+    "author": [
+      "*[rel=\"author\"] *[itemprop=\"name\"]"
+    ],
+    "date": [
+      [
+        ".byline time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div[itemprop=\"articleBody\"]"
+    ],
+    "remove": [
+      "figcaption .enlarge-link",
+      "figcaption .sep",
+      "figure.video",
+      ".gallery",
+      "aside",
+      ".sidebar"
+    ]
+  },
+  {
+    "domain": "whitehouse.gov",
+    "title": [
+      "h1",
+      ".pane-node-title"
+    ],
+    "author": [
+      ".blog-author-link",
+      ".node-person-name-link"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div#content-start",
+      ".pane-node-field-forall-body"
+    ],
+    "remove": [
+      ".pane-node-title",
+      ".pane-custom.pane-1"
+    ]
+  },
+  {
+    "domain": "obamawhitehouse.archives.gov",
+    "title": [
+      "h1",
+      ".pane-node-title"
+    ],
+    "author": [
+      ".blog-author-link",
+      ".node-person-name-link"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div#content-start",
+      ".pane-node-field-forall-body"
+    ],
+    "remove": [
+      ".pane-node-title",
+      ".pane-custom.pane-1"
+    ]
+  },
+  {
+    "domain": "mentalfloss.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      "h1.title",
+      ".title-group",
+      ".inner"
+    ],
+    "author": [
+      "a[data-vars-label*=\"authors\"]",
+      ".field-name-field-enhanced-authors"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      ".date-display-single"
+    ],
+    "content": [
+      "article main",
+      "div.field.field-name-body"
+    ],
+    "remove": [
+      "small"
+    ]
+  },
+  {
+    "domain": "hellogiggles.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      ".title"
+    ],
+    "author": [
+      ".byline-wrapper span.author_name",
+      ".author-link"
+    ],
+    "date": [
+      [
+        "meta[property=\"article:published_time\"]",
+        "content"
+      ],
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".main-content",
+      ".entry-content"
+    ]
+  },
+  {
+    "domain": "slate.com",
+    "title": [
+      ".hed",
+      "h1"
+    ],
+    "author": [
+      "a[rel=author]"
+    ],
+    "date": [
+      ".pub-date"
+    ],
+    "content": [
+      ".body"
+    ],
+    "remove": [
+      ".about-the-author",
+      ".pullquote",
+      ".newsletter-signup-component",
+      ".top-comment"
+    ]
+  },
+  {
+    "domain": "fastcompany.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".post__article"
+    ]
+  },
+  {
+    "domain": "theatlantic.com",
+    "title": [
+      "h1",
+      ".c-article-header__hed"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      ".c-byline__author"
+    ],
+    "date": [
+      [
+        "time[itemprop=\"datePublished\"]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "article",
+      ".article-body"
+    ],
+    "remove": [
+      ".partner-box",
+      ".callout",
+      ".c-article-writer__image",
+      ".c-article-writer__content",
+      ".c-letters-cta__text",
+      ".c-footer__logo",
+      ".c-recirculation-link",
+      ".twitter-tweet"
+    ]
+  },
+  {
+    "domain": "clinicaltrials.gov",
+    "title": [
+      "h1.tr-solo_record"
+    ],
+    "author": [
+      "div#sponsor.tr-info-text"
+    ],
+    "date": [
+      "div:has(> span.term[data-term=\"Last Update Posted\"])"
+    ],
+    "content": [
+      "div#tab-body"
+    ],
+    "remove": [
+      ".usa-alert> img"
+    ]
+  },
+  {
+    "domain": "washingtonpost.com",
+    "title": [
+      "h1",
+      "#topper-headline-wrapper"
+    ],
+    "author": [
+      ".pb-author-name"
+    ],
+    "date": [
+      [
+        ".author-timestamp[itemprop=\"datePublished\"]",
+        "content"
+      ]
+    ],
+    "content": [
+      ".article-body"
+    ],
+    "remove": [
+      ".interstitial-link",
+      ".newsletter-inline-unit"
+    ]
+  },
+  {
+    "domain": "infoq.com",
+    "title": [
+      "h1.heading"
+    ],
+    "author": [
+      "div.widget.article__authors"
+    ],
+    "date": [
+      ".article__readTime.date"
+    ],
+    "content": [
+      "div.article__data"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "phpspot.org",
+    "title": [
+      "h3.hl"
+    ],
+    "date": [
+      "h4.hl"
+    ],
+    "content": [
+      "div.entrybody"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "today.com",
+    "title": [
+      "h1.article-hero-headline__htag",
+      "h1.entry-headline"
+    ],
+    "author": [
+      "span.byline-name",
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      "time[datetime]",
+      [
+        "meta[name=\"DC.date.issued\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.article-body__content",
+      ".entry-container"
+    ],
+    "remove": [
+      ".label-comment"
+    ]
+  },
+  {
+    "domain": "pastebin.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      ".username",
+      ".paste_box_line2 .t_us + a"
+    ],
+    "date": [
+      ".date",
+      ".paste_box_line2 .t_da + span"
+    ],
+    "content": [
+      ".source",
+      "#selectable .text"
+    ]
+  },
+  {
+    "domain": "medium.com",
+    "title": [
+      "h1",
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "article"
+    ],
+    "remove": [
+      "span a",
+      "svg"
+    ]
+  },
+  {
+    "domain": "popsugar.com",
+    "title": [
+      "h2.post-title",
+      "title-text"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#content"
+    ],
+    "remove": [
+      ".share-copy-title",
+      ".post-tags",
+      ".reactions"
+    ]
+  },
+  {
+    "domain": "fortinet.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      ".b15-blog-meta__author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.responsivegrid.aem-GridColumn.aem-GridColumn--default--12"
+    ]
+  },
+  {
+    "domain": "otrs.com",
+    "title": [
+      "#main article h1"
+    ],
+    "author": [
+      "div.dateplusauthor a"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#main article"
+    ],
+    "remove": [
+      "div.dateplusauthor",
+      "div.gr-12.push-6.footershare",
+      "#atftbx",
+      "div.category-modul"
+    ]
+  },
+  {
+    "domain": "dmagazine.com",
+    "title": [
+      "h1.story__title"
+    ],
+    "author": [
+      ".story__info .story__info__item:first-child"
+    ],
+    "date": [
+      ".story__info"
+    ],
+    "content": [
+      ".story__content"
+    ]
+  },
+  {
+    "domain": "money.cnn.com",
+    "title": [
+      ".article-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      ".byline a"
+    ],
+    "date": [
+      [
+        "meta[name=\"date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#storytext"
+    ],
+    "remove": [
+      ".inStoryHeading"
+    ]
+  },
+  {
+    "domain": "cbc.ca",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      ".authorText",
+      ".bylineDetails"
+    ],
+    "date": [
+      [
+        ".timeStamp[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".story"
+    ]
+  },
+  {
+    "domain": "macrumors.com",
+    "title": [
+      "h1",
+      "h1.title"
+    ],
+    "author": [
+      "article a[rel=\"author\"]",
+      ".author-url"
+    ],
+    "date": [
+      [
+        "time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "article",
+      ".article"
+    ]
+  },
+  {
+    "domain": "cnbc.com",
+    "title": [
+      "h1.title",
+      "h1.ArticleHeader-headline"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div#article_body.content",
+      "div.story",
+      "div.ArticleBody-articleBody"
+    ]
+  },
+  {
+    "domain": "investmentexecutive.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      "div[itemprop=\"author\"]"
+    ],
+    "date": [
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "section.article-body"
+    ],
+    "remove": [
+      ".hidden"
+    ]
+  },
+  {
+    "domain": "moongift.jp",
+    "title": [
+      "h1.title a"
+    ],
+    "date": [
+      "ul.meta li:not(.social):first-of-type"
+    ],
+    "content": [
+      "#main"
+    ],
+    "remove": [
+      "ul.mg_service.cf"
+    ]
+  },
+  {
+    "domain": "nbcnews.com",
+    "title": [
+      "div.article-hero-headline h1",
+      "div.article-hed h1"
+    ],
+    "author": [
+      "div.article-inline-byline span.byline-name",
+      "span.byline_author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published\"]",
+        "value"
+      ],
+      [
+        ".flag_article-wrapper time.timestamp_article[datetime]",
+        "datetime"
+      ],
+      ".flag_article-wrapper time"
+    ],
+    "content": [
+      "div.article-body__content",
+      "div.article-body"
+    ]
+  },
+  {
+    "domain": "news.nationalgeographic.com",
+    "title": [
+      "h1",
+      "h1.main-title"
+    ],
+    "author": [
+      ".byline-component__contributors b span"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".parsys.content",
+        ".__image-lead__"
+      ],
+      ".content"
+    ],
+    "remove": [
+      ".pull-quote.pull-quote--large"
+    ]
+  },
+  {
+    "domain": "getnews.jp",
+    "title": [
+      "article h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      "span.prof"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "ul.cattag-top time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.post-bodycopy"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "jezebel.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "lifehacker.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "kotaku.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "gizmodo.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "jalopnik.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "kinja.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "avclub.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "clickhole.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "splinternews.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "theonion.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "theroot.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "thetakeout.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "theinventory.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "deadspin.com",
+    "title": [
+      "header h1",
+      "h1.headline"
+    ],
+    "author": [
+      "a[data-ga*=\"Author\"]",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.updated[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".js_post-content",
+      ".post-content",
+      ".entry-content"
+    ],
+    "remove": [
+      ".magnifier",
+      ".lightbox"
+    ]
+  },
+  {
+    "domain": "reddit.com",
+    "title": [
+      "div[data-test-id=\"post-content\"] h1",
+      "div[data-test-id=\"post-content\"] h2"
+    ],
+    "author": [
+      "div[data-test-id=\"post-content\"] a[href*=\"user/\"]"
+    ],
+    "date": [
+      "div[data-test-id=\"post-content\"] span[data-click-id=\"timestamp\"]",
+      "div[data-test-id=\"post-content\"] a[data-click-id=\"timestamp\"]"
+    ],
+    "content": [
+      [
+        "div[data-test-id=\"post-content\"] p"
+      ],
+      [
+        "div[data-test-id=\"post-content\"] a[target=\"_blank\"]:not([data-click-id=\"timestamp\"])",
+        "div[data-test-id=\"post-content\"] div[data-click-id=\"media\"]"
+      ],
+      [
+        "div[data-test-id=\"post-content\"] div[data-click-id=\"media\"]"
+      ],
+      [
+        "div[data-test-id=\"post-content\"] a"
+      ],
+      "div[data-test-id=\"post-content\"]"
+    ],
+    "remove": [
+      ".icon",
+      "span[id^=\"PostAwardBadges\"]",
+      "div a[data-test-id=\"comments-page-link-num-comments\"]"
+    ]
+  },
+  {
+    "domain": "chicagotribune.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "div.article_byline span:first-of-type"
+    ],
+    "date": [
+      "time"
+    ],
+    "content": [
+      "article"
+    ]
+  },
+  {
+    "domain": "bloomberg.com",
+    "title": [
+      ".lede-headline",
+      "h1.article-title",
+      "h1[class^=\"headline\"]",
+      "h1.lede-text-only__hed"
+    ],
+    "author": [
+      [
+        "meta[name=\"parsely-author\"]",
+        "value"
+      ],
+      ".byline-details__link",
+      ".bydek",
+      ".author",
+      "p[class*=\"author\"]"
+    ],
+    "date": [
+      [
+        "time.published-at",
+        "datetime"
+      ],
+      [
+        "time[datetime]",
+        "datetime"
+      ],
+      [
+        "meta[name=\"date\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"parsely-pub-date\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"parsely-pub-date\"]",
+        "content"
+      ]
+    ],
+    "content": [
+      ".article-body__content",
+      ".body-content",
+      [
+        "section.copy-block"
+      ],
+      ".body-copy"
+    ],
+    "remove": [
+      ".inline-newsletter",
+      ".page-ad"
+    ]
+  },
+  {
+    "domain": "wikipedia.org",
+    "title": [
+      "h2.title"
+    ],
+    "date": [
+      "#footer-info-lastmod"
+    ],
+    "content": [
+      "#mw-content-text"
+    ],
+    "remove": [
+      ".mw-editsection",
+      "figure tr, figure td, figure tbody",
+      "#toc",
+      ".navbox"
+    ]
+  },
+  {
+    "domain": "takagi-hiromitsu.jp",
+    "title": [
+      "h3"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[http-equiv=\"Last-Modified\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.body"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "deadline.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      "section.author h2"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.a-article-grid__main.pmc-a-grid article.pmc-a-grid-item"
+    ],
+    "remove": [
+      "figcaption"
+    ]
+  },
+  {
+    "domain": "polygon.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".c-entry-hero .e-image",
+        ".c-entry-intro",
+        ".c-entry-content"
+      ],
+      [
+        ".e-image--hero",
+        ".c-entry-content"
+      ],
+      ".l-wrapper .l-feature",
+      "div.c-entry-content"
+    ],
+    "remove": [
+      ".aside",
+      "img.c-dynamic-image"
+    ]
+  },
+  {
+    "domain": "theverge.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".c-entry-hero .e-image",
+        ".c-entry-intro",
+        ".c-entry-content"
+      ],
+      [
+        ".e-image--hero",
+        ".c-entry-content"
+      ],
+      ".l-wrapper .l-feature",
+      "div.c-entry-content"
+    ],
+    "remove": [
+      ".aside",
+      "img.c-dynamic-image"
+    ]
+  },
+  {
+    "domain": "politico.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "div[itemprop=\"author\"] meta[itemprop=\"name\"]",
+        "value"
+      ],
+      ".story-meta__authors .vcard",
+      ".story-main-content .byline .vcard"
+    ],
+    "date": [
+      [
+        "time[itemprop=\"datePublished\"]",
+        "datetime"
+      ],
+      [
+        ".story-meta__details time[datetime]",
+        "datetime"
+      ],
+      [
+        ".story-main-content .timestamp time[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      [
+        ".story-text"
+      ],
+      ".story-main-content",
+      ".story-core"
+    ],
+    "remove": [
+      "figcaption",
+      ".story-meta",
+      ".ad"
+    ]
+  },
+  {
+    "domain": "thepoliticalinsider.com",
+    "title": [
+      [
+        "meta[name=\"sailthru.title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"sailthru.author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"sailthru.date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div#article-body"
+    ]
+  },
+  {
+    "domain": "gruene.de",
+    "title": [
+      "header h1"
+    ],
+    "content": [
+      [
+        "section header",
+        "section h2",
+        "section p",
+        "section ol"
+      ]
+    ],
+    "remove": [
+      "figcaption",
+      "p[class]"
+    ]
+  },
+  {
+    "domain": "broadwayworld.com",
+    "title": [
+      "h1[itemprop=headline]",
+      "h1.article-title"
+    ],
+    "author": [
+      "span[itemprop=author]"
+    ],
+    "date": [
+      [
+        "meta[itemprop=datePublished]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div[itemprop=articlebody]"
+    ]
+  },
+  {
+    "domain": "ma.ttias.be",
+    "title": [
+      [
+        "meta[name=\"twitter:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".content"
+      ]
+    ]
+  },
+  {
+    "domain": "pitchfork.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      "title"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      ".authors-detail__display-name"
+    ],
+    "date": [
+      "div[class^=\"InfoSliceWrapper-\"]",
+      [
+        ".pub-date",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.body__inner-container",
+      ".review-detail__text"
+    ]
+  },
+  {
+    "domain": "newrepublic.com",
+    "title": [
+      "h1.article-headline"
+    ],
+    "author": [
+      "span.AuthorList"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        "div.article-body"
+      ]
+    ],
+    "remove": [
+      "aside"
+    ]
+  },
+  {
+    "domain": "usmagazine.com",
+    "title": [
+      "header h1"
+    ],
+    "author": [
+      "a.author",
+      "a.article-byline.tracked-offpage"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.article-content"
+    ],
+    "remove": [
+      ".module-related"
+    ]
+  },
+  {
+    "domain": "huffingtonpost.com",
+    "title": [
+      "h1.headline__title"
+    ],
+    "author": [
+      "span.author-card__details__name"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:modified_time\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.entry__body"
+    ],
+    "remove": [
+      ".pull-quote",
+      ".tag-cloud",
+      ".embed-asset",
+      ".below-entry",
+      ".entry-corrections",
+      "#suggested-story"
+    ]
+  },
+  {
+    "domain": "lemonde.fr",
+    "title": [
+      "h1.article__title"
+    ],
+    "author": [
+      ".author__name"
+    ],
+    "date": [
+      [
+        "meta[name=\"og:article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".article__content"
+    ],
+    "remove": [
+      "figcaption"
+    ]
+  },
+  {
+    "domain": "newyorker.com",
+    "title": [
+      "h1[class^=\"content-header\"]",
+      "h1[class^=\"ArticleHeader__hed\"]",
+      "h1[class*=\"ContentHeaderHed\"]",
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "article header div[class^=\"BylinesWrapper\"]",
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      "div[class^=\"ArticleContributors\"] a[rel=\"author\"]",
+      "article header div[class*=\"Byline__multipleContributors\"]"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "time.content-header__publish-date",
+      [
+        "meta[name=\"pubdate\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".article__body",
+      "article.article.main-content",
+      "main[class^=\"Layout__content\"]"
+    ],
+    "remove": [
+      "footer[class^=\"ArticleFooter__footer\"]",
+      "aside"
+    ]
+  },
+  {
+    "domain": "prospectmagazine.co.uk",
+    "title": [
+      ".blog-header__title",
+      ".page-title"
+    ],
+    "author": [
+      ".blog-header__author-link",
+      ".aside_author .title"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      ".post-info"
+    ],
+    "content": [
+      ".blog__container",
+      "article .post_content"
+    ]
+  },
+  {
+    "domain": "americanow.com",
+    "title": [
+      ".title",
+      [
+        "meta[name=\"title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      ".byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"publish_date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".article-content",
+        ".image",
+        ".body"
+      ],
+      ".body"
+    ],
+    "remove": [
+      ".article-video-wrapper",
+      ".show-for-small-only"
+    ]
+  },
+  {
+    "domain": "bookwalker.jp",
+    "title": [
+      "h1.p-main__title",
+      "h1.main-heading"
+    ],
+    "author": [
+      "div.p-author__list",
+      "div.authors"
+    ],
+    "date": [
+      "dl.p-information__data dd:nth-of-type(7)",
+      ".work-info .work-detail:first-of-type .work-detail-contents:last-of-type"
+    ],
+    "content": [
+      "div.p-main__information",
+      [
+        "div.main-info",
+        "div.main-cover-inner"
+      ]
+    ],
+    "remove": [
+      "span.label.label--trial",
+      "dt.info-head.info-head--coin",
+      "dd.info-contents.info-contents--coin",
+      "div.info-notice.fn-toggleClass"
+    ]
+  },
+  {
+    "domain": "blogspot.com",
+    "title": [
+      ".post h2.title"
+    ],
+    "author": [
+      ".post-author-name"
+    ],
+    "date": [
+      "span.publishdate"
+    ],
+    "content": [
+      ".post-content noscript"
+    ]
+  },
+  {
+    "domain": "thoughtcatalog.com",
+    "title": [
+      "h1.title",
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "cite a",
+      "div.col-xs-12.article_header div.writer-container.writer-container-inline.writer-no-avatar h4.writer-name",
+      "h1.writer-name"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".entry.post"
+    ],
+    "remove": [
+      ".tc_mark",
+      "figcaption"
+    ]
+  },
+  {
+    "domain": "reuters.com",
+    "title": [
+      "h1[class*=\"ArticleHeader-headline-\"]",
+      "h1.article-headline"
+    ],
+    "author": [
+      [
+        "meta[name=\"og:article:author\"]",
+        "value"
+      ],
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"og:article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.ArticleBodyWrapper",
+      "#article-text"
+    ],
+    "remove": [
+      "div[class^=\"ArticleBody-byline-container-\"]",
+      "#article-byline .author"
+    ]
+  },
+  {
+    "domain": "spektrum.de",
+    "title": [
+      ".content__title"
+    ],
+    "author": [
+      ".content__author__info__name"
+    ],
+    "date": [
+      ".content__meta__date"
+    ],
+    "content": [
+      "article.content"
+    ],
+    "remove": [
+      ".breadcrumbs",
+      ".hide-for-print",
+      "aside",
+      "header h2",
+      ".image__article__top",
+      ".content__author",
+      ".copyright",
+      ".callout-box"
+    ]
+  },
+  {
+    "domain": "linkedin.com",
+    "title": [
+      ".article-title",
+      "h1"
+    ],
+    "author": [
+      ".main-author-card h3",
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      ".entity-name a[rel=author]"
+    ],
+    "date": [
+      ".base-main-card__metadata",
+      [
+        "time[itemprop=\"datePublished\"]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".article-content__body",
+      [
+        "header figure",
+        ".prose"
+      ],
+      ".prose"
+    ],
+    "remove": [
+      ".entity-image"
+    ]
+  },
+  {
+    "domain": "blisterreview.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      "h1.entry-title"
+    ],
+    "author": [
+      "span.author-name"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time.entry-date",
+        "datetime"
+      ],
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "content"
+      ]
+    ],
+    "content": [
+      [
+        ".elementor-section-wrap",
+        ".elementor-text-editor > p, .elementor-text-editor > ul > li, .attachment-large, .wp-caption-text"
+      ]
+    ],
+    "remove": [
+      ".comments-area"
+    ]
+  },
+  {
+    "domain": "refinery29.com",
+    "title": [
+      "h1.title"
+    ],
+    "author": [
+      ".contributor"
+    ],
+    "date": [
+      [
+        "meta[name=\"sailthru.date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".full-width-opener",
+        ".article-content"
+      ],
+      ".article-content",
+      ".body"
+    ],
+    "remove": [
+      ".story-share"
+    ]
+  },
+  {
+    "domain": "nationalgeographic.com",
+    "title": [
+      "h1",
+      "h1.main-title"
+    ],
+    "author": [
+      ".byline-component__contributors b span"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "section.Article__Content",
+      [
+        ".parsys.content",
+        ".__image-lead__"
+      ],
+      ".content"
+    ],
+    "remove": [
+      ".pull-quote.pull-quote--small"
+    ]
+  },
+  {
+    "domain": "biorxiv.org",
+    "title": [
+      "h1#page-title"
+    ],
+    "author": [
+      "div.highwire-citation-biorxiv-article-top > div.highwire-cite-authors"
+    ],
+    "content": [
+      "div#abstract-1"
+    ]
+  },
+  {
+    "domain": "weekly.ascii.jp",
+    "title": [
+      "article h1",
+      "h1[itemprop=\"headline\"]"
+    ],
+    "author": [
+      "p.author"
+    ],
+    "date": [
+      "p.date",
+      [
+        "meta[name=\"odate\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div#contents_detail",
+      "div.article"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "genius.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      "h2 a"
+    ],
+    "date": [
+      [
+        "meta[itemprop=page_data]",
+        "value",
+        null
+      ]
+    ],
+    "content": [
+      ".lyrics"
+    ]
+  },
+  {
+    "domain": "asahi.com",
+    "title": [
+      "main h1",
+      ".ArticleTitle h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"pubdate\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "main"
+    ],
+    "remove": [
+      "div.AdMod",
+      "div.LoginSelectArea",
+      "time",
+      "div.notPrint"
+    ]
+  },
+  {
+    "domain": "rollingstone.com",
+    "title": [
+      "h1.l-article-header__row--title",
+      "h1.content-title"
+    ],
+    "author": [
+      "a.c-byline__link",
+      "a.content-author.tracked-offpage"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "time.content-published-date"
+    ],
+    "content": [
+      ".l-article-content",
+      [
+        ".lead-container",
+        ".article-content"
+      ],
+      ".article-content"
+    ],
+    "remove": [
+      ".c-related-links-wrapper",
+      ".module-related"
+    ]
+  },
+  {
+    "domain": "youtube.com",
+    "title": [
+      [
+        "meta[name=\"title\"]",
+        "value"
+      ],
+      ".watch-title",
+      "h1.watch-title-container"
+    ],
+    "author": [
+      [
+        "link[itemprop=\"name\"]",
+        "content"
+      ],
+      ".yt-user-info"
+    ],
+    "date": [
+      [
+        "meta[itemProp=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#player-container-outer",
+      "ytd-expandable-video-description-body-renderer #description",
+      [
+        "#player-api",
+        "#description"
+      ]
+    ]
+  },
+  {
+    "domain": "postlight.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"parsely-author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "main.post"
+    ],
+    "remove": [
+      "section.pl-post-link",
+      "aside",
+      "section.insights_featured_case_studies"
+    ]
+  },
+  {
+    "domain": "thefederalistpapers.org",
+    "title": [
+      "h1.entry-title"
+    ],
+    "author": [
+      ".author-meta-title",
+      "main span.entry-author-name"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".content"
+    ],
+    "remove": [
+      "header",
+      ".article-sharing",
+      ".after-article",
+      ".type-commenting",
+      ".more-posts",
+      [
+        "p[style]"
+      ]
+    ]
+  },
+  {
+    "domain": "japan.cnet.com",
+    "title": [
+      ".leaf-headline-ttl"
+    ],
+    "author": [
+      ".writer"
+    ],
+    "date": [
+      ".date"
+    ],
+    "content": [
+      "div.article_body"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "recode.net",
+    "title": [
+      "h1.c-page-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        "figure.e-image--hero",
+        ".c-entry-content"
+      ],
+      ".c-entry-content"
+    ]
+  },
+  {
+    "domain": "sbnation.com",
+    "title": [
+      "h1.c-page-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.c-entry-content"
+    ]
+  },
+  {
+    "domain": "bustle.com",
+    "title": [
+      "h1",
+      "h1.post-page__title"
+    ],
+    "author": [
+      "a[href*=\"profile\"]",
+      "div.content-meta__author"
+    ],
+    "date": [
+      [
+        "time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "article",
+      ".post-page__body"
+    ]
+  },
+  {
+    "domain": "apartmenttherapy.com",
+    "title": [
+      "h1.headline"
+    ],
+    "author": [
+      ".PostByline__name"
+    ],
+    "date": [
+      [
+        ".PostByline__timestamp[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.post__content"
+    ]
+  },
+  {
+    "domain": "npr.org",
+    "title": [
+      "h1",
+      ".storytitle"
+    ],
+    "author": [
+      "p.byline__name.byline__name--block"
+    ],
+    "date": [
+      [
+        ".dateblock time[datetime]",
+        "datetime"
+      ],
+      [
+        "meta[name=\"date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".storytext"
+    ],
+    "remove": [
+      "div.enlarge_measure"
+    ]
+  },
+  {
+    "domain": "msn.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      "span.authorname-txt"
+    ],
+    "date": [
+      "span.time"
+    ],
+    "content": [
+      "div.richtext"
+    ],
+    "remove": [
+      "span.caption"
+    ]
+  },
+  {
+    "domain": "ossnews.jp",
+    "title": [
+      "#alpha-block h1.hxnewstitle"
+    ],
+    "date": [
+      "p.fs12"
+    ],
+    "content": [
+      "#alpha-block .section:has(h1.hxnewstitle)"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "phoronix.com",
+    "title": [
+      "article h1",
+      "article header"
+    ],
+    "author": [
+      ".author a:first-child"
+    ],
+    "date": [
+      ".author"
+    ],
+    "content": [
+      ".content"
+    ]
+  },
+  {
+    "domain": "sciencefly.com",
+    "title": [
+      ".entry-title",
+      ".cb-entry-title",
+      ".cb-single-title"
+    ],
+    "author": [
+      "div.cb-author",
+      "div.cb-author-title"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.theiaPostSlider_slides"
+    ]
+  },
+  {
+    "domain": "littlethings.com",
+    "title": [
+      "h1[class*=\"PostHeader\"]",
+      "h1.post-title"
+    ],
+    "author": [
+      "div[class^=\"PostHeader__ScAuthorNameSection\"]",
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "section[class*=\"PostMainArticle\"]",
+      ".mainContentIntro",
+      ".content-wrapper"
+    ]
+  },
+  {
+    "domain": "ladbible.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      "[class*=Byline]"
+    ],
+    "date": [
+      "time"
+    ],
+    "content": [
+      "[class*=ArticleContainer]"
+    ],
+    "remove": [
+      "time",
+      "source",
+      "a[href^=\"https://www.ladbible.com/\"]",
+      "picture",
+      "[class*=StyledCardBlock]"
+    ]
+  },
+  {
+    "domain": "timesofindia.indiatimes.com",
+    "title": [
+      "h1"
+    ],
+    "date": [
+      ".byline"
+    ],
+    "content": [
+      "div.contentwrapper:has(section)"
+    ],
+    "remove": [
+      "section",
+      "h1",
+      ".byline",
+      ".img_cptn",
+      ".icon_share_wrap",
+      "ul[itemtype=\"https://schema.org/BreadcrumbList\"]"
+    ]
+  },
+  {
+    "domain": "buzzap.jp",
+    "title": [
+      "h1.entry-title"
+    ],
+    "date": [
+      [
+        "time.entry-date",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.ctiframe"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "chicagoist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "laist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "sfist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "shanghaiist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "dcist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "gothamist.com",
+    "title": [
+      "h1",
+      ".entry-header h1"
+    ],
+    "author": [
+      ".article-metadata:nth-child(3) .byline-author",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      "abbr",
+      "abbr.published"
+    ],
+    "content": [
+      ".article-body",
+      ".entry-body"
+    ],
+    "remove": [
+      ".image-none br",
+      ".image-left br",
+      ".image-right br",
+      ".galleryEase"
+    ]
+  },
+  {
+    "domain": "opposingviews.com",
+    "title": [
+      "h1.m-detail-header--title",
+      "h1.title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      "div.date span span a"
+    ],
+    "date": [
+      [
+        "meta[name=\"published\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"publish_date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".m-detail--body",
+      ".article-content"
+    ],
+    "remove": [
+      ".show-for-small-only"
+    ]
+  },
+  {
+    "domain": "cbssports.com",
+    "title": [
+      ".Article-headline",
+      ".article-headline"
+    ],
+    "author": [
+      ".ArticleAuthor-nameText",
+      ".author-name"
+    ],
+    "date": [
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".article"
+    ]
+  },
+  {
+    "domain": "twitter.com",
+    "author": [
+      ".tweet.permalink-tweet .username"
+    ],
+    "date": [
+      [
+        ".permalink-tweet ._timestamp[data-time-ms]",
+        "data-time-ms"
+      ]
+    ],
+    "content": [
+      ".permalink[role=main]"
+    ],
+    "remove": [
+      ".stream-item-footer",
+      "button",
+      ".tweet-details-fixer"
+    ]
+  },
+  {
+    "domain": "jnsa.org",
+    "title": [
+      "#wgtitle h2"
+    ],
+    "content": [
+      "#main_area"
+    ],
+    "remove": [
+      "#pankuzu",
+      "#side"
+    ]
+  },
+  {
+    "domain": "buzzfeednews.com",
+    "title": [
+      "h1.embed-headline-title"
+    ],
+    "author": [
+      "a[data-action=\"user/username\"]",
+      "byline__author",
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "time[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      [
+        "div[class^=\"featureimage_featureImageWrapper\"]",
+        ".js-subbuzz-wrapper"
+      ],
+      [
+        ".js-subbuzz-wrapper"
+      ]
+    ],
+    "remove": [
+      ".instapaper_ignore",
+      ".suplist_list_hide .buzz_superlist_item .buzz_superlist_number_inline",
+      ".share-box",
+      ".print",
+      ".js-inline-share-bar",
+      ".js-ad-placement"
+    ]
+  },
+  {
+    "domain": "buzzfeed.com",
+    "title": [
+      "h1.embed-headline-title"
+    ],
+    "author": [
+      "a[data-action=\"user/username\"]",
+      "byline__author",
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "time[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      [
+        "div[class^=\"featureimage_featureImageWrapper\"]",
+        ".js-subbuzz-wrapper"
+      ],
+      [
+        ".js-subbuzz-wrapper"
+      ]
+    ],
+    "remove": [
+      ".instapaper_ignore",
+      ".suplist_list_hide .buzz_superlist_item .buzz_superlist_number_inline",
+      ".share-box",
+      ".print",
+      ".js-inline-share-bar",
+      ".js-ad-placement"
+    ]
+  },
+  {
+    "domain": "247sports.com",
+    "title": [
+      "title",
+      "article header h1"
+    ],
+    "author": [
+      ".article-cnt__author",
+      ".author"
+    ],
+    "date": [
+      [
+        "time[data-published]",
+        "data-published"
+      ]
+    ],
+    "content": [
+      ".article-body",
+      "section.body.article"
+    ]
+  },
+  {
+    "domain": "al.com",
+    "title": [
+      [
+        "meta[name=\"title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "meta[name=\"article_author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article_date_original\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".entry-content"
+    ]
+  },
+  {
+    "domain": "fool.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      ".author-inline .author-name"
+    ],
+    "date": [
+      [
+        "meta[name=\"date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".tailwind-article-body",
+      ".article-content"
+    ],
+    "remove": [
+      "#pitch"
+    ]
+  },
+  {
+    "domain": "news.mynavi.jp",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "a.articleHeader_name",
+      "main div.article-author a.article-author__name"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.article-body",
+      "main article div"
+    ]
+  },
+  {
+    "domain": "miamiherald.com",
+    "title": [
+      "h1.title"
+    ],
+    "date": [
+      "p.published-date"
+    ],
+    "content": [
+      "div.dateline-storybody"
+    ]
+  },
+  {
+    "domain": "japan.zdnet.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"cXenseParse:author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.article_body"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "msnbc.com",
+    "title": [
+      "h1",
+      "h1.is-title-pane"
+    ],
+    "author": [
+      ".byline-name",
+      ".author"
+    ],
+    "date": [
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"DC.date.issued\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".article-body__content",
+      ".pane-node-body"
+    ]
+  },
+  {
+    "domain": "mashable.com",
+    "title": [
+      "header h1",
+      "h1.title"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      "span.author_name a"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#article",
+      "section.article-content.blueprint"
+    ]
+  },
+  {
+    "domain": "abendblatt.de",
+    "title": [
+      "h2.article__header__headline"
+    ],
+    "author": [
+      "span.author-info__name-text"
+    ],
+    "date": [
+      [
+        "time.teaser-stream-time",
+        "datetime"
+      ],
+      [
+        "time.article__header__date",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.article__body"
+    ]
+  },
+  {
+    "domain": "github.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [],
+    "date": [
+      [
+        "relative-time[datetime]",
+        "datetime"
+      ],
+      [
+        "span[itemprop=\"dateModified\"] relative-time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      [
+        "#readme article"
+      ]
+    ]
+  },
+  {
+    "domain": "sect.iij.ad.jp",
+    "title": [
+      "div.title-box-inner h1",
+      "h3"
+    ],
+    "author": [
+      "p.post-author a",
+      "dl.entrydate dd"
+    ],
+    "date": [
+      "time"
+    ],
+    "content": [
+      ".entry-inner",
+      "#article"
+    ],
+    "remove": [
+      "dl.entrydate"
+    ]
+  },
+  {
+    "domain": "qdaily.com",
+    "title": [
+      "h2",
+      "h2.title"
+    ],
+    "author": [
+      ".name"
+    ],
+    "date": [
+      [
+        ".date.smart-date",
+        "data-origindate"
+      ]
+    ],
+    "content": [
+      ".detail"
+    ],
+    "remove": [
+      ".lazyload",
+      ".lazylad",
+      ".lazylood"
+    ]
+  },
+  {
+    "domain": "westernjournalism.com",
+    "title": [
+      "title",
+      "h1.entry-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"DC.date.issued\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.article-sharing.top + div"
+    ],
+    "remove": [
+      ".ad-notice-small"
+    ]
+  },
+  {
+    "domain": "ici.radio-canada.ca",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"dc.creator\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"dc.date.created\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "section.document-content-style",
+      [
+        ".main-multimedia-item",
+        ".news-story-content"
+      ]
+    ]
+  },
+  {
+    "domain": "theguardian.com",
+    "title": [
+      "h1",
+      ".content__headline"
+    ],
+    "author": [
+      "address[data-link-name=\"byline\"]",
+      "p.byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#maincontent",
+      ".content__article-body"
+    ],
+    "remove": [
+      ".hide-on-mobile",
+      ".inline-icon"
+    ]
+  },
+  {
+    "domain": "fortune.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      ".MblGHNMJ"
+    ],
+    "content": [
+      [
+        "picture",
+        "article.row"
+      ],
+      "article.row"
+    ]
+  },
+  {
+    "domain": "engadget.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "a.th-meta[data-ylk*=\"subsec:author\"]"
+    ],
+    "date": [],
+    "content": [
+      [
+        "#page_body figure:not(div.article-text figure)",
+        "div.article-text"
+      ]
+    ]
+  },
+  {
+    "domain": "eonline.com",
+    "title": [
+      "h1.article-detail__title",
+      "h1.article__title"
+    ],
+    "author": [
+      ".article-detail__meta__author",
+      ".entry-meta__author a"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".article-detail__main-content section"
+      ],
+      [
+        ".post-content section, .post-content div.post-content__image"
+      ]
+    ]
+  },
+  {
+    "domain": "rbbtoday.com",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      ".writer.writer-name"
+    ],
+    "date": [
+      [
+        "header time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".arti-content"
+    ],
+    "remove": [
+      ".arti-giga"
+    ]
+  },
+  {
+    "domain": "publickey1.jp",
+    "title": [
+      "h1"
+    ],
+    "author": [
+      ".bloggerinchief p:first-of-type",
+      "#subcol p:has(img)"
+    ],
+    "date": [
+      "div.pubdate"
+    ],
+    "content": [
+      "#maincol"
+    ],
+    "remove": [
+      "#breadcrumbs",
+      "div.sbm",
+      "div.ad_footer"
+    ]
+  },
+  {
+    "domain": "abcnews.go.com",
+    "title": [
+      "div[class*=\"Article_main__body\"] h1",
+      ".article-header h1"
+    ],
+    "author": [
+      ".ShareByline span:nth-child(2)",
+      ".authors"
+    ],
+    "date": [
+      ".ShareByline",
+      ".timestamp"
+    ],
+    "content": [
+      "article",
+      ".article-copy"
+    ]
+  },
+  {
+    "domain": "cnn.com",
+    "title": [
+      "h1.pg-headline",
+      "h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".media__video--thumbnail",
+        ".zn-body-text"
+      ],
+      ".zn-body-text",
+      "div[itemprop=\"articleBody\"]"
+    ]
+  },
+  {
+    "domain": "androidcentral.com",
+    "title": [
+      "h1",
+      "h1.main-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"parsely-author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "#article-body"
+    ],
+    "remove": [
+      ".intro",
+      "blockquote"
+    ]
+  },
+  {
+    "domain": "epaper.zeit.de",
+    "title": [
+      "p.title"
+    ],
+    "author": [
+      ".article__author"
+    ],
+    "content": [
+      ".article"
+    ],
+    "remove": [
+      "image-credits",
+      "box[type=citation]"
+    ]
+  },
+  {
+    "domain": "nytimes.com",
+    "title": [
+      "h1[data-testid=\"headline\"]",
+      "h1.g-headline",
+      "h1[itemprop=\"headline\"]",
+      "h1.headline",
+      "h1 .balancedHeadline"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ],
+      ".g-byline",
+      ".byline",
+      [
+        "meta[name=\"byl\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"article:published\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.g-blocks",
+      "section[name=\"articleBody\"]",
+      "article#story"
+    ],
+    "remove": [
+      ".ad",
+      "header#story-header",
+      ".story-body-1 .lede.video",
+      ".visually-hidden",
+      "#newsletter-promo",
+      ".promo",
+      ".comments-button",
+      ".hidden",
+      ".comments",
+      ".supplemental",
+      ".nocontent",
+      ".story-footer-links"
+    ]
+  },
+  {
+    "domain": "yahoo.com",
+    "title": [
+      "header.canvas-header"
+    ],
+    "author": [
+      "span.provider-name"
+    ],
+    "date": [
+      [
+        "time.date[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      ".content-canvas"
+    ],
+    "remove": [
+      ".figure-caption"
+    ]
+  },
+  {
+    "domain": "latimes.com",
+    "title": [
+      "h1.headline",
+      ".trb_ar_hl"
+    ],
+    "author": [
+      "a[data-click=\"standardBylineAuthorName\"]",
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".page-article-body",
+      ".trb_ar_main"
+    ],
+    "remove": [
+      ".trb_ar_by",
+      ".trb_ar_cr"
+    ]
+  },
+  {
+    "domain": "sanwa.co.jp",
+    "title": [
+      "#newsContent h1"
+    ],
+    "date": [
+      "dl.date"
+    ],
+    "content": [
+      "#newsContent"
+    ],
+    "remove": [
+      "#smartphone",
+      "div.sns_box",
+      "div.contentFoot"
+    ]
+  },
+  {
+    "domain": "qz.com",
+    "title": [
+      "article header h1"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time[datetime]",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "#article-content"
+    ]
+  },
+  {
+    "domain": "inquisitr.com",
+    "title": [
+      "h1.entry-title.story--header--title"
+    ],
+    "author": [
+      "div.story--header--author"
+    ],
+    "date": [
+      [
+        "meta[name=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "article.story",
+      ".entry-content."
+    ],
+    "remove": [
+      ".post-category",
+      ".story--header--socials",
+      ".story--header--content"
+    ]
+  },
+  {
+    "domain": "oreilly.co.jp",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ],
+      "h3"
+    ],
+    "author": [
+      "span[itemprop=\"author\"]",
+      "li[itemprop=\"author\"]"
+    ],
+    "date": [
+      [
+        "dd[itemprop=\"datePublished\"]",
+        "content"
+      ],
+      [
+        "meta[itemprop=\"datePublished\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "section.detail",
+      "#content"
+    ],
+    "remove": [
+      ".social-tools"
+    ]
+  },
+  {
+    "domain": "wired.jp",
+    "title": [
+      "h1[data-testid=\"ContentHeaderHed\"]",
+      "h1.post-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      "p[itemprop=\"author\"]"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "time",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div[data-attribute-verso-pattern=\"article-body\"]",
+      "article.article-detail"
+    ],
+    "remove": [
+      ".post-category",
+      "time",
+      "h1.post-title",
+      ".social-area-syncer"
+    ]
+  },
+  {
+    "domain": "wired.com",
+    "title": [
+      "h1[data-testId=\"ContentHeaderHed\"]"
+    ],
+    "author": [
+      [
+        "meta[name=\"article:author\"]",
+        "value"
+      ],
+      "a[rel=\"author\"]"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "article.article.main-content",
+      "article.content"
+    ],
+    "remove": [
+      ".visually-hidden",
+      "figcaption img.photo",
+      ".alert-message"
+    ]
+  },
+  {
+    "domain": "jvndb.jvn.jp",
+    "title": [
+      "title"
+    ],
+    "date": [
+      "div.modifytxt:nth-child(2)"
+    ],
+    "content": [
+      "#news-list"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "vox.com",
+    "title": [
+      "h1.c-page-title"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        "figure.e-image--hero",
+        ".c-entry-content"
+      ],
+      ".c-entry-content"
+    ]
+  },
+  {
+    "domain": "si.com",
+    "title": [
+      "h1",
+      "h1.headline"
+    ],
+    "author": [
+      [
+        "meta[name=\"author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"published\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".m-detail--body",
+      [
+        "p",
+        ".marquee_large_2x",
+        ".component.image"
+      ]
+    ],
+    "remove": [
+      [
+        ".inline-thumb",
+        ".primary-message",
+        ".description",
+        ".instructions"
+      ]
+    ]
+  },
+  {
+    "domain": "nypost.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      ".byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        "#featured-image-wrapper",
+        ".entry-content"
+      ],
+      ".entry-content"
+    ],
+    "remove": [
+      ".modal-trigger"
+    ]
+  },
+  {
+    "domain": "pagesix.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      ".byline"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        "#featured-image-wrapper",
+        ".entry-content"
+      ],
+      ".entry-content"
+    ],
+    "remove": [
+      ".modal-trigger"
+    ]
+  },
+  {
+    "domain": "forward.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      ".post-author a",
+      ".author-name",
+      [
+        "meta[name=\"sailthru.author\"]",
+        "value"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ],
+      [
+        "meta[name=\"date\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      ".content-container article",
+      [
+        ".post-item-media-wrap",
+        ".post-item p"
+      ]
+    ],
+    "remove": [
+      ".post-author",
+      ".donate-box",
+      ".message",
+      ".subtitle"
+    ]
+  },
+  {
+    "domain": "thepennyhoarder.com",
+    "title": [
+      [
+        "meta[name=\"dcterms.title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      [
+        "link[rel=\"author\"]",
+        "title"
+      ]
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      [
+        ".post-img",
+        ".post-text"
+      ],
+      ".post-text",
+      ".single-post-content-inner"
+    ]
+  },
+  {
+    "domain": "techlog.iij.ad.jp",
+    "title": [
+      "h1.entry-title"
+    ],
+    "author": [
+      "a[rel=\"author\"]"
+    ],
+    "date": [
+      [
+        "time.entry-date",
+        "datetime"
+      ]
+    ],
+    "content": [
+      "div.entry-content"
+    ],
+    "remove": [
+      ".wp_social_bookmarking_light"
+    ]
+  },
+  {
+    "domain": "elecom.co.jp",
+    "title": [
+      "title"
+    ],
+    "date": [
+      "p.section-last"
+    ],
+    "content": [
+      "td.TableMain2"
+    ],
+    "remove": []
+  },
+  {
+    "domain": "cnet.com",
+    "title": [
+      [
+        "meta[name=\"og:title\"]",
+        "value"
+      ]
+    ],
+    "author": [
+      "span.author",
+      "a.author"
+    ],
+    "date": [
+      "time"
+    ],
+    "content": [
+      [
+        "img.__image-lead__",
+        ".article-main-body"
+      ],
+      ".article-main-body"
+    ]
+  },
+  {
+    "domain": "ipa.go.jp",
+    "title": [
+      "h1"
+    ],
+    "date": [
+      "p.ipar_text_right"
+    ],
+    "content": [
+      "#ipar_main"
+    ],
+    "remove": [
+      "p.ipar_text_right"
+    ]
+  },
+  {
+    "domain": "observer.com",
+    "title": [
+      "h1.entry-title"
+    ],
+    "author": [
+      ".author",
+      ".vcard"
+    ],
+    "date": [
+      [
+        "meta[name=\"article:published_time\"]",
+        "value"
+      ]
+    ],
+    "content": [
+      "div.entry-content"
+    ]
+  }
+]

@@ -254,12 +254,12 @@ test('topic distribution Test', () => {
     Example
     extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
     #
-    extractYoutubeText(videoUrl, boolTimestamps) → {Object}
+    extractYoutubeText(videoUrl, addTimestamps) → {Object}
     fetch youtube.com video's webpage HTML for embedded transcript if blocked, use scraper of youtubetranscript.com
     Parameters:
     Name	Type	Description
     videoUrl	string	
-    boolTimestamps	boolean	true to return timestamps, default true
+    addTimestamps	boolean	true to return timestamps, default true
      extractor/url-to-content/youtube-to-text.js, line 10
     
     Returns:

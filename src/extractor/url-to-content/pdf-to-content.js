@@ -9,13 +9,13 @@ import * as chrono from "chrono-node";
  * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
  * @param {string} pdfURLOrBuffer - URL to a PDF file or buffer from fs.readFile
  * @param {Object} options
- * @param {boolean} options.addHeadingsTags=true - Adds H1 tags to heading titles in document
- * @param {boolean} options.addPageNumbers=true - Adds  #  to end of each page
- * @param {boolean} options.addSentenceLineBreaks=true - Inserts line breaks at the end of sentence ranges
- * @param {boolean} options.removePageHeaders=true - Removes repeated headers found on each page
- * @param {boolean} options.removeHyphens=true - Removes hyphens at end of lines
- * @param {boolean} options.moveFootnotes=true - Moves footnotes to end of document
- * @param {boolean} options.timeout=5 - http request timeout
+ * @param {boolean} options.addHeadingsTags default=true - Adds H1 tags to heading titles in document
+ * @param {boolean} options.addPageNumbers default=true - Adds  #  to end of each page
+ * @param {boolean} options.addSentenceLineBreaks default=true - Inserts line breaks at the end of sentence ranges
+ * @param {boolean} options.removePageHeaders default=true - Removes repeated headers found on each page
+ * @param {boolean} options.removeHyphens default=true - Removes hyphens at end of lines
+ * @param {boolean} options.moveFootnotes default=true - Moves footnotes to end of document
+ * @param {boolean} options.timeout default=5 - http request timeout
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
  * @category Extractor
  */
@@ -268,36 +268,7 @@ const calculateStandardDeviation = function (array) {
   return Math.sqrt(mean(array.map((x) => (x - mean2) ** 2)));
 };
 
-/**
- *
- * Softmax is a generalization of the logistic sigmoid function used in
- * logistic regression. It is commonly used in machine learning models
- * for multi-class classification problems where there are more than two
- * possible output classes. The softmax function takes a vector of arbitrary
- * real-valued scores and squashes it to a vector of values between 0 and 1
- * that sum to 1. This allows the output to be interpreted as a probability
- * distribution over the possible classes.
- * https://en.wikipedia.org/wiki/Softmax_function
- *
- * @param {Array} arr  array of numbers 
- * @returns {Array}  Softmax array corresponding to input array
- * @category Relevance
- */
-export function calculateSoftmax(arr) {
-  // Compute the maximum value in the array
-  const maxVal = Math.max(...arr);
 
-  // Compute the exponentials of the array values
-  const exps = arr.map((x) => Math.exp(x - maxVal));
-
-  // Compute the sum of the exponentials
-  const sumExps = exps.reduce((acc, val) => acc + val, 0);
-
-  // Compute the calculateSoftmax values
-  const calculateSoftmaxArr = exps.map((x) => x / sumExps);
-
-  return calculateSoftmaxArr;
-}
 
 /**
  * Detects if a given URL points to a PDF file by checking
