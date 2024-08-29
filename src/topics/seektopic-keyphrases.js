@@ -37,7 +37,9 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  * 11. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of 
  * query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything
  *  from step #8 TextRank.  <br />
- * @param {string} docText - input text to analyze
+ *  <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="200px"  />
+
+@param {string} docText - input text to analyze
  * @param {Object} options
  * @param {Object} options.phrasesModel - phrases model
  * @param {number} options.maxWords default=5 - maximum words in a keyphrase

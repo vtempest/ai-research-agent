@@ -1,5 +1,5 @@
 <p align="center">
-<img width="200px" src="https://i.imgur.com/4GOOM9s.jpeg"> 
+<img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg"> 
 </p>
 
 <p align="center">
@@ -7,6 +7,8 @@
     <img src="https://img.shields.io/discord/1130153053056684123.svg?label=Discord&logo=Discord&colorB=7289da&style=flat" alt="Join Discord"/>
 </a>
 </p>
+
+[![PR Welcome Badge](https://badgen.net/https/pr-welcome-badge.vercel.app/api/badge/${repo})](${issuesUrl})
 
 [![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
@@ -23,7 +25,7 @@
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
 
 <p align="center">
-<img width="200px"  src="https://i.imgur.com/l5AFrS0.png" > 
+<img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
 </p>
 
  1. Search Web for query via metasearch of major engines or your custom data
@@ -35,7 +37,7 @@
 #### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="200px"  src="https://i.imgur.com/cRewT07.png" > 
+<img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
 </p>
 
 
@@ -50,8 +52,9 @@
 
 
 <p align="center">
-<video src='https://i.imgur.com/IMc2xhT.mp4' width=360 /> </video>
+    <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="550px" controls     />
 </p>
+
 
 
  [SEEKTOPIC Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
@@ -74,6 +77,10 @@ SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngra
 
 #### 🌍📖 WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/ffaU3s7.jpeg" > 
+</p>
+
  Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.  If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
@@ -82,6 +89,10 @@ SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngra
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.   There is ["unanimous consensus"](https://johnresig.com/blog/javascript-trie-performance-analysis/) that Prefix Trie [O(1) lookups](https://github.com/daviddwlee84/LeetCode/blob/master/Notes/DataStructure/Trie_PrefixTree.md) (instead of thaving to loop through the index for each lookup)  makes it the best data type for this task.
 
 #### 📈📝 WRITEFAT: Weight Relevance by Inference of Topics, Entities, and Frequency Averages for Terms 
+
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
+</p>
 
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.

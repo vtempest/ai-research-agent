@@ -26,6 +26,8 @@ import { scrapeURL } from "./scrape-url.js";
  * Youtube - get full transcript for video if detected a youtube video.  <br>
  * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
  * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
+ * 
+ * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />
  * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} options
  * @param {boolean} options.keyphrases default=true - extract key phrases

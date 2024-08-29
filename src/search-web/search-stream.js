@@ -11,6 +11,8 @@ import {extract} from "../../index.js";
  * 5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq 
  *  Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
  *
+ *  <img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
+ *
  * @async
  * @param {string} query - The search query string.
  * @param {object} options - default {
@@ -24,7 +26,7 @@ import {extract} from "../../index.js";
     maxRetries=5 - Maximum number of retry attempts for the search.
     maxTopResultsToExtract=6 - Maximum number of top results to extract and analyze.
  * 
- * 
+
  * @param {number} options.categoryIndex default=0 - Index of the search category.
  * @param {number} options.recencyIndex default=0 - Index representing the recency of results.
  * @param {number} options.maxRetries default=5 - Maximum number of retry attempts for the search.
