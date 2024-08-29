@@ -73,7 +73,6 @@ export async function scrapeURL(url, options = {}) {
     //return based on content type
     const contentType = response.headers.get("Content-Type");
 
-    console.log(response.headers)
     if (contentType.includes("application/json")) {
       return await response.json();
     } else if (contentType.includes("text")) {
@@ -81,7 +80,6 @@ export async function scrapeURL(url, options = {}) {
       if (checkBotDetection && isHTMLBotDetection(html))
         return { error: "Bot detected" }; //, html: response.html };
 
-      console.log(html)
 
 
       //spoof the base-url for relative paths on the target page

@@ -3,7 +3,11 @@
  * the similarity between two strings, taking into account the common characters and
  * their positions. It is often used in record linkage and data cleansing to improve
  * the accuracy of string matching, particularly for names and addresses, by giving
- * more weight to the common prefix of the strings and penalizing longer string differences.
+ * more weight to the common prefix of the strings and penalizing longer string differences. 
+ * It is more optimal for varied text than 
+ * [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which is better for similar text.
+ * 
+ * @author [Matthew Jaro, William Winkler (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
  * @param {string} s1 First string
  * @param {string} s2 Second string
  * @returns {number} Jaro-Winkler similarity score 

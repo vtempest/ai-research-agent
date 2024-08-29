@@ -1,5 +1,6 @@
 /**
- * Gets favicon for any URL by parsing the HTML and looking for &lt;link rel="icon"&gt; tags or domain.com/favicon.ico check.
+ * Gets favicon for any URL by parsing the HTML and looking for &lt;link rel="icon"&gt; 
+ * tags and validates domain.com/favicon.ico by checking if for valid response.
  * @param {string} url
  * @param {object} options 
  * @returns {Promise<string|null>} Favicon URL or null if not found
@@ -54,7 +55,7 @@ async function fetchWithRedirects(url, options, redirectCount = 0) {
   return response;
 }
 
-export function extractFaviconUrls(html, baseUrl) {
+ function extractFaviconUrls(html, baseUrl) {
   const icons = [];
 
   // Extract from HTML

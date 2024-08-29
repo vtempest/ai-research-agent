@@ -111,14 +111,14 @@ async function scrapeMisspellings() {
  * Common Misspelled Typos Dataset Importer
  *  Script to download, decompress, parse and process into JSON
  * Total unique typos collected: 7969  
- * Crowd-sourced often-updated Wikipedia list of common misspellings 
- * https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
  * 
- * Github repo with 4.5K misspellings: 'feramhq/typokit' 
+ * 
+ * @author Crowd-sourced often-updated Wikipedia list of common misspellings 
+ * https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
  * @returns {object} 
  * @category Topic Model
 */
-async function importMisspelledTypos() {
+export async function importMisspelledTypos() {
     try {
         console.log('Processing Github YAML Typos...');
 

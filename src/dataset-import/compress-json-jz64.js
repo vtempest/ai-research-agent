@@ -5,12 +5,12 @@ import JSZip from "jszip";
  * convert zip binary to a Base64Zip text string which is easier to store in db or files.
  * @param {string} dataOrZip data to compress, or Base64Zip to decompress
  * @param {Object} options
- * @param {number} options.compressionLevel=9 0-9, 9 has smallest size  at ~40%  but takes longer
- * @param {boolean} options.decompress=false  false to compress, true to decompress
+ * @param {number} options.compressionLevel default=9 0-9, 9 has smallest size  at ~40%  but takes longer
+ * @param {boolean} options.decompress default=false  false to compress, true to decompress
  * @returns {Promise<string>} base64-encoded string of the zipped data
  * @category Topic Model
  */
-async function compressBase64ZipText(dataOrZip, options = {}) {
+export async function compressBase64ZipText(dataOrZip, options = {}) {
   try {
     var { compressionLevel = 9, decompress = false } = options;
 

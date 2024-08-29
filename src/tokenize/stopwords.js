@@ -4,6 +4,7 @@
  * @param {string} word
  * @returns {Boolean}
  * @category Tokenize
+ * @author SpaCy <https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt>
 */
 export function isWordCommonIgnored(word) {
   return {

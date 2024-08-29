@@ -1,17 +1,20 @@
 /**
  * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
- * Convert anchors and relative urls to absolute urls.
- *
+ * Convert anchors and relative urls to absolute urls. Basic HTML supports the same
+ * elements as Markdown, which is used in writing plain text. Markdown is converted
+ * to HTML anyways to display it, and it is better to edit basic HTML in a rich text editor.
  * @param {string} html Any page's HTML to process
  * @param {object} options 
  * @param {boolean} options.images default=true - Whether to include images
  * @param {boolean} options.links default=true - Whether to include links
  * @param {boolean} options.videos default=true - Whether to include videos or not
  * @param {boolean} options.formatting default=true - Whether to include formatting
- * @param {string} options.url default="" - The base URL for converting relative URLs to absolute
- * @param {string} options.allowTags default={string} - Comma-separated list of allowed HTML tags "sup,br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup,span"
- * @param {string} options.allowedAttributes default={string}  List of allowed HTML attributes "text,tag,href, src,type,width, height,id,data" -
- * @returns {string} sanitized html
+ * @param {string} options.url  base URL for converting relative URLs to absolute
+ * @param {string} options.allowTags default="br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote, 
+ * code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup" - Comma-separated list of allowed HTML tags 
+ * @param {string} options.allowedAttributes default="text,tag,href, src,type,width, height,id,data" 
+ *   List of allowed HTML attributes 
+ * @returns {string} basic text formatting html
  * @category Extractor
  */
 export function convertHTMLToBasicHTML(html, options = {}) {
@@ -21,19 +24,10 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     videos = true,
     formatting = 1,
     url = "",
-    allowTags = "sup,br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
-      ul,ol,li,dd,dl,table,th,tr,td,sub,sup,span",
+    allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
+      ul,ol,li,dd,dl,table,th,tr,td,sub,sup",
     allowedAttributes = "text,tag,href,src,type,width,height,id,data".split(","),
   } = options;
-
-
-  html = convertHTMLSpecialChars(html
-    .replace(/&lt;/gi, " ")
-    .replace(/&gt;/gi, " ")
-    ).replace(/&nbsp;/g, " ");
-  
-  
-  //fix for = in urls  
 
 
   allowTags = allowTags.split(",");
@@ -100,6 +94,21 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .replace(/ \s+/g, " ")
     .replace(/<p><\/p>/g, " ")
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
+
+
+
+  html = convertHTMLSpecialChars(html
+    .replace(/&lt;/gi, " ")
+    .replace(/&gt;/gi, " ")
+    ).replace(/&nbsp;/g, " ");
+  
+
+
+    // CNN news edge case of data=attr <> inside of attr
+  const reHTMLInsideDataAttr =  /(["'])(?:(?!(?:\1|<)).)*?(?:<(?:(?!["'<>]).)*?>)?(?:(?!(?:\1|<)).)*?\1/gis;
+  if (reHTMLInsideDataAttr.test(html) ) 
+    html= html.replaceAll(reHTMLInsideDataAttr, "");
+
 
   return basicHtml;
 }
@@ -177,7 +186,7 @@ export function convertHTMLToTokens(html) {
       element
         .substring(attributesIndex)
         .match(/\w+=("(?:[^"\\]|\\.\s)*")/g)
-        .forEach((attr) => {
+        ?.forEach((attr) => {
           var key = attr.split("=")[0];
           var value = attr.slice(key.length + 2, -1);
 

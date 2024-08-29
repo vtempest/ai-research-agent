@@ -3,7 +3,7 @@
  * @param {document} doc dom object of document
  * @returns {object} {author, date, title, source}
  */
-export default function extractCiteFromMetadata(doc) {
+export function extractCiteFromMetadata(doc) {
   const commonCiteMetaTags = {
     source: ["application-name", "og:site_name", "twitter:site", "dc.title"],
     title: ["title", "og:title", "twitter:title", "parsely-title"],

@@ -94,13 +94,12 @@ async function parseWikiPageviews(inputFile) {
 }
 
 /**
- * Script to download, decompress, parse and process Wiki Page Titles by 
- * Views dataset, random day sample, compiled by Wikimedia Foundation.
- * 
- * @returns {object} 
+ * Script to download, decompress, parse and process Wiki Page Titles by Views 
+ *  @author Wikimedia Foundation <https://dumps.wikimedia.org/other/pageviews>
+ * @returns {void} 
  * @category Topic Model
 */
-async function importWikiPageTitles() {
+export async function importWikiPageTitles() {
     try {
         console.log('Creating data directory...');
         fs.mkdirSync(path.dirname(gzipFilePath), { recursive: true });

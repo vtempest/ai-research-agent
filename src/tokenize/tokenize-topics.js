@@ -2,11 +2,12 @@ import {convertWordToRootStem} from "./word-to-root-stem";
 import {isWordCommonIgnored} from "./stopwords";
 
 /**
- * @typedef {Array} Token
+ * @typedef {Object} Token
  * @property {number} termCategory - The category of the term
  * @property {number} uniqueness - The uniqueness score of the term
  * @property {string} term - The actual term or phrase
  */
+
 
 
 /**

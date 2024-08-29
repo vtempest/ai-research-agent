@@ -12,6 +12,8 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  * to find which sentences centralize and tie together keyphrase
  * concepts referred to most by other sentences. Based on the  & PageRank algorithms,
  * it randomly surfs nodes to find probability of being at that node, thus ranking influence.  <br />
+ * 
+ * @description
  * 1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc. <br />
  * 2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks 
  * for spelling typos and uses Porter Stemmer to check root words if original word is not found. <br />

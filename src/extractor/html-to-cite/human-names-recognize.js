@@ -1,5 +1,12 @@
-// import dataHumanNames from "../../../data/human-names-92k.json";
-var dataHumanNames = []
+import dataHumanNames from "../../../data/human-names-92k.json";
+// var dataHumanNames = []
+
+/**
+ * @typedef {Object} AuthorObject
+ * @property {string} author_cite - Author name in Last, First Middle format
+ * @property {string} author_short - Author name in Last format
+ * @property {number} author_type - Author type ["single", "two-author", "more-than-two", "organization"]
+*/
 /**
  * Validates human name from author string to check against common list of first 
  * names, last names, name affixes, and organizations to infer if it should be
@@ -10,7 +17,8 @@ var dataHumanNames = []
  * Author type is ["single", "two-author", "more-than-two", "organization"]
  * where organization is a non-human name that is not reversed.
  * @param {string} author
- * @returns {object} {author_cite, author_short, author_type}
+ * @returns {Object} {author_cite, author_short, author_type}
+ * 
  * @category Extractor
  */
 export function extractNamedEntity(author) {
@@ -218,7 +226,26 @@ const extractNamedEntityParts = (input) => {
 };
 
 const TERMS_ORG =
-  "abc,ag,ap,academy,advisors,agency,airbnb,amazon,america,american,apple,associated,association,atlantic,attorneys,authority,axel,bank,baptiste,bbc,bertelsmann,blackrock,bloomberg,bmw,boston,broadcasting,bureau,business,buzzfeed,cambridge,capital,cbs,center,chase,chicago,china,church,citigroup,clinic,club,cnn,coca-cola,college,commission,communications,condé,consulting,corp,corps,costco,daily,department,der,deutsche,division,dow,economist,enterprises,eu,european,fabrication,facebook,fargo,ferrari,financial,ford,forbes,fox,france,fund,gannett,general,global,globe,gm,gmbh,goldman,google,group,guardian,harvard,hearst,herald,hill,holdings,home,honda,hospital,huffington,ibm,inc,industries,institute,intel,international,investments,jazeera,japan,jones,jpmorgan,lancet,laboratories,law,legal,linkedin,llc,los,ltd,manufacturing,macy's,mcdonald's,media,medical,mercedes-benz,meta,microsoft,ministry,mit,morgan,mosque,msnbc,nast,national,nato,nbc,netflix,news,newsweek,new,nike,nordstrom,npr,ny,organization,oxford,país,partners,pbs,pentagon,plc,politico,porsche,post,press,productions,r&d,regiment,retail,reuters,research,rt,sachs,school,science,scientific,securities,services,silicon,society,solutions,south,spacex,spiegel,springer,stanford,stanley,starbucks,straits,studios,sydney,synagogue,systems,target,team,tech,techcrunch,temple,tesla,the,thomson,times,toronto,toyota,trust,twitter,uber,union,united,university,usa,valley,vanguard,vice,volkswagen,volvo,vox,wall,walmart,welle,wells,who,white,wired,worldwide,works,world,wsj,york,yorker";
+  "abc,ag,ap,academy,advisors,agency,airbnb,amazon,america,american,apple,associated,association,atlantic,"+
+  "attorneys,authority,axel,bank,baptiste,bbc,bertelsmann,blackrock,bloomberg,bmw,boston,broadcasting,bureau,"+
+  "business,buzzfeed,cambridge,capital,cbs,center,chase,chicago,china,church,citigroup,clinic,club,cnn,coca-cola,"+
+  "college,commission,communications,condé,consulting,corp,corps,costco,daily,department,der,deutsche,division,dow,"+
+  "economist,enterprises,eu,european,fabrication,facebook,fargo,ferrari,financial,ford,forbes,fox,france,fund,"+
+  "gannett,general,global,globe,gm,gmbh,goldman,google,group,guardian,harvard,hearst,herald,hill,holdings,home,"+
+  "honda,hospital,huffington,ibm,inc,industries,institute,intel,international,investments,jazeera,japan,jones,"+
+  "jpmorgan,lancet,laboratories,law,legal,linkedin,llc,los,ltd,manufacturing,macy's,mcdonald's,media,medical,"+
+  "mercedes-benz,meta,microsoft,ministry,mit,morgan,mosque,msnbc,nast,national,nato,nbc,netflix,news,newsweek,"+
+  "new,nike,nordstrom,npr,ny,organization,oxford,país,partners,pbs,pentagon,plc,politico,porsche,post,press,"+
+  "productions,r&d,regiment,retail,reuters,research,rt,sachs,school,science,scientific,securities,services,silicon,"+
+  "society,solutions,south,spacex,spiegel,springer,stanford,stanley,starbucks,straits,studios,sydney,synagogue,"+
+  "systems,target,team,tech,techcrunch,temple,tesla,the,thomson,times,toronto,toyota,trust,twitter,uber,union,"+
+  "united,university,usa,valley,vanguard,vice,volkswagen,volvo,vox,wall,walmart,welle,wells,who,white,wired,"+
+  "worldwide,works,world,wsj,york,yorker";
 
 const TERMS_QUALIFICATIONS =
-  "is,senior,associate,professor,fellow,assistant,lecturer,ceo,staff,strategist,specialist,worked,directed,correspondent,president,author,director,prof,asst,editor,analyst,degree,administrator,served,member,institute,economist,reporter,head,heads,newspaper,deputy,advocate,colonel,officer,founder,founded,visiting,journalist,former,retired,expert,executive,manager,doctoral,candidate,chief,contributor,student,blogger,chair,chairman,major,general,ambassador,phd,secretary,physicist,engineer,research,office,school,department,writer,teacher,advisor,award,center,commentator,rand,brookings,heritage,cato,un,aei,forbes,nyt,cbo";
+  "is,senior,associate,professor,fellow,assistant,lecturer,ceo,staff,strategist,specialist,worked,directed,"+
+  "correspondent,president,author,director,prof,asst,editor,analyst,degree,administrator,served,member,"+
+  "institute,economist,reporter,head,heads,newspaper,deputy,advocate,colonel,officer,founder,founded,visiting,"+
+  "journalist,former,retired,expert,executive,manager,doctoral,candidate,chief,contributor,student,blogger,"+
+  "chair,chairman,major,general,ambassador,phd,secretary,physicist,engineer,research,office,school,department,"+
+  "writer,teacher,advisor,award,center,commentator,rand,brookings,heritage,cato,un,aei,forbes,nyt,cbo";

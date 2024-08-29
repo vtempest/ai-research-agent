@@ -177,7 +177,11 @@ export async function compileTopicModel(options = {}) {
       // add uniqueness to the phrase
       next.u = weightWikiWordSpecificity(phrase);
       // next.w,  , next.caps
-      var nextArray = [next.n, next.cat, next.u, next.s].map((x) => x || 0);
+      var nextArray = [next.n, next.cat, next.u, next.s].map(x => x || 0);
+      
+      if (!next.s)
+        nextArray.pop()
+
       return nextArray;
     });
   }

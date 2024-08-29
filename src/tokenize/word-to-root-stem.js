@@ -2,9 +2,8 @@
  * Stems a word using the <a
  * href="https://snowballstem.org/algorithms/porter/stemmer.html">Porter
  *  Stemmer</a> for removing  inflectional endings like "ing", "ist", "ize".
- * https://en.wikipedia.org/wiki/Martin_Porter
  *
- * @author BSD Martin Porter https://tartarus.org/martin/PorterStemmer/
+ * @author Martin Porter (1980) https://tartarus.org/martin/PorterStemmer/
  * @param {string} word - The word to be stemmed
  * @returns {string} - The stemmed word
  * @category Tokenize

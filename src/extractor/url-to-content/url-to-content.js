@@ -1,12 +1,27 @@
-import extractContent from "../html-to-content/html-to-content.js";
+import { extractContent } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
 import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
 import { scrapeURL } from "./scrape-url.js";
 
 /**
+ * @typedef {Object} Article
+ * @property {string} url - The URL of the article
+ * @property {string} html - The HTML content of the article
+ * @property {string} author - The author of the article
+ * @property {string} author_cite - Author name in Last, First Middle format
+ * @property {string} author_short - Author name in Last format
+ * @property {number} author_type - Author type ["single", "two-author", "more-than-two", "organization"]
+ * @property {string} date - The publication date of the article
+ * @property {string} title - The title of the article
+ * @property {string} source - The source or origin of the article
+ * @property {number} word_count - The word count of the full text (without HTML tags)
+ * @property {string[]} [timestamps] - Optional. Timestamps for video content (YouTube)
+ */
+
+/**
  * <h3>🚜📜 Tractor the Text Extractor </h3><br />
- * Extract URL or HTML to main content with Readability or Postlight Parser,
- * which is an improved version with 100+ custom adapters for major websites. <br>
+ * Extract URL or HTML to main content, based on Readability with improved version
+ *  using 100+ custom adapters for major websites. <br>
  * Strips to basic HTML for reading mode or saving research notes. <br>
  * Youtube - get full transcript for video if detected a youtube video.  <br>
  * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
@@ -18,10 +33,8 @@ import { scrapeURL } from "./scrape-url.js";
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
- * @param {boolean} options.usePostlightParser default=true - PostlightParser is an
- * improved version of Readability with 100+ custom adapters for major websites.
- * @param {boolean} options.timeout default=5 - http request timeout
- * @returns {Object} - {author, date, title, source, content, image}
+ * @param {number} options.timeout default=5 - http request timeout
+ * @returns {Article} - object containing url, html, author, date, title, source
  * @category Extractor
  */
 export async function extract(urlOrDoc, options = {}) {
@@ -31,7 +44,6 @@ export async function extract(urlOrDoc, options = {}) {
     links = true,
     formatting = true,
     absoluteURLs = true,
-    usePostlightParser = false,
     timeout = 5,
   } = options;
   var response = {};

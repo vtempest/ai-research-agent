@@ -10,9 +10,9 @@ import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
  * inference to simultaneously learn the topics and topic mixtures
  * that occur around each other in an unsupervised manner. <br />
  * https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation <br />
- * https://www.youtube.com/watch?v=aPRjj8i_6yE <br />
+ * "Latent Dirichlet Allocation (LDA) with Gibbs Sampling Explained" https://www.youtube.com/watch?v=aPRjj8i_6yE <br />
  * https://www.geeksforgeeks.org/latent-dirichlet-allocation/ <br />
- * https://www.youtube.com/watch?v=yK7nN3FcgUs <br />
+ * "Topic Models" https://www.youtube.com/watch?v=yK7nN3FcgUs <br />
  *
  * @param {string[]} sentences - Array of input sentences.
  * @param {Object} options - Configuration options for LDA.

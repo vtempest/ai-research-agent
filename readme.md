@@ -10,22 +10,21 @@
 
 [![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
-### [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
+## [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
 
-###  Demos
+##  [Live Demo (qwksearch.com)](https://qwksearch.com/)
 
-* [Autocomplete Server Demo](https://qwksearch.com/)
-
-
-* [Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
 
 * NPM Tests --  `npm run test` to run many tests custom to your data
-
 
 > Being is Becoming: Whatever the future of research can be, that is what it must become.
 
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
+
+<p align="center">
+<img width="200px"  src="https://i.imgur.com/l5AFrS0.png" > 
+</p>
 
  1. Search Web for query via metasearch of major engines or your custom data
  2. Extract text of top results with Tractor the Text Extractor.
@@ -35,15 +34,30 @@
 
 #### 🚜📜 Tractor the Text Extractor
 
-* Extract URL or HTML to main content with Readability or Postlight Parser, which is an improved version with 100+ custom adapters for major websites
+<p align="center">
+<img width="200px"  src="https://i.imgur.com/cRewT07.png" > 
+</p>
+
+
+* Extract URL or HTML to main content, based on Readability with improved version
+ *  using 100+ custom adapters for major websites. 
 * Strips to basic HTML for reading mode or saving research notes
 *  Youtube - get full transcript for video if detected a youtube video
 * PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
-* Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 3k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
+* Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 90k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
 
 #### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
 
-This can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
+
+<p align="center">
+<video src='https://i.imgur.com/IMc2xhT.mp4' width=360 /> </video>
+</p>
+
+
+ [SEEKTOPIC Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
+
+
+SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
 1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc.
 2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found.
@@ -67,7 +81,7 @@ This can be used to find unique, domain-specific keyphrases using noun Ngrams.  
 * 84K  words and 67K phrases in dictionary lexicon  OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories
 * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.   There is ["unanimous consensus"](https://johnresig.com/blog/javascript-trie-performance-analysis/) that Prefix Trie [O(1) lookups](https://github.com/daviddwlee84/LeetCode/blob/master/Notes/DataStructure/Trie_PrefixTree.md) (instead of thaving to loop through the index for each lookup)  makes it the best data type for this task.
 
-#### 📈📉 WRITFAT: Weight Relevance by Inference of Topics and Frequency Averages for Terms 
+#### 📈📝 WRITEFAT: Weight Relevance by Inference of Topics, Entities, and Frequency Averages for Terms 
 
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.
@@ -80,7 +94,7 @@ Example: Given a query "Superbowl wins by year" we do not want to simply return 
 
 $$\text{score}(D,Q) = \sum_{i=1}^{N} \text{Wiki-IDF}(q_i) \times \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
 
-####  WikiIDF Term Specificity Statistics Metadata
+**WikiIDF Term Specificity Statistics Metadata**
 
 - Phrase Starter Words and Single Words:  104556
 
@@ -92,13 +106,9 @@ $$\text{score}(D,Q) = \sum_{i=1}^{N} \text{Wiki-IDF}(q_i) \times \frac{f(q_i, D)
 
 All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.
 
-- *Total Terms (frequency>=32)*: 324896
-- *Filesize (JSON, frequency>=32)*: 4MB 
-- *Total Articles (Wiki-en-2020)*: 5,989,879
 
 
-
-#### Autocomplete &  Query To Topic Phrase Tokenization 
+#### 🧩🔍 Autocomplete &  Query To Topic Phrase Tokenization 
 
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
