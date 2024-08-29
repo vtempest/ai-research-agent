@@ -6,8 +6,8 @@
     <img src="https://img.shields.io/discord/1130153053056684123.svg?label=Discord&logo=Discord&colorB=7289da&style=flat" alt="Join Discord"/>
 </a>
 </p>
-<p><a href="$%7BissuesUrl%7D"><img src="https://badgen.net/https/pr-welcome-badge.vercel.app/api/badge/$%7Brepo%7D" alt="PR Welcome Badge"></a></p>
 <p><a href="https://npmjs.org/package/ai-research-agent"><img src="https://nodei.co/npm/ai-research-agent.png?compact=true" alt="NPM"></a></p>
+<p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></p>
 <a id="md:javascript-api-docs-airesearchwiki" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><a href="https://airesearch.wiki/">Javascript API Docs (airesearch.wiki) </a><a href="#md:javascript-api-docs-airesearchwiki" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:live-demo-qwksearchcom" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a><a href="#md:live-demo-qwksearchcom" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
 <li>NPM Tests --  <code>npm run test</code> to run many tests custom to your data</li>
 </ul>
@@ -27,6 +27,7 @@
 <a id="md:🚜📜-tractor-the-text-extractor" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🚜📜 Tractor the Text Extractor<a href="#md:🚜📜-tractor-the-text-extractor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
 </p>
+<p><a href="https://airesearch.wiki/functions/src_extractor_url_to_content_url_to_content.extract.html">extract Docs</a></p>
 <ul>
 <li>Extract URL or HTML to main content, based on Readability with improved version</li>
 <li>using 100+ custom adapters for major websites.</li>
@@ -38,6 +39,7 @@
 <a id="md:🔤📊-seektopic-summarization-by-extracting-entities-keyword-tokens-and-outline-phrases-important-to-context" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context<a href="#md:🔤📊-seektopic-summarization-by-extracting-entities-keyword-tokens-and-outline-phrases-important-to-context" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
     <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="550px" controls     />
 </p>
+<p><a href="https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html">extractSEEKTOPIC Docs</a></p>
 <p><a href="https://github.com/vtempest/ai-research-agent/blob/master/test/data/">SEEKTOPIC Sample Output</a></p>
 <p>SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.</p>
 <ol>
@@ -63,7 +65,7 @@
 <li>JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.   There is <a href="https://johnresig.com/blog/javascript-trie-performance-analysis/">&quot;unanimous consensus&quot;</a> that Prefix Trie <a href="https://github.com/daviddwlee84/LeetCode/blob/master/Notes/DataStructure/Trie_PrefixTree.md">O(1) lookups</a> (instead of thaving to loop through the index for each lookup)  makes it the best data type for this task.</li>
 </ul>
 <a id="md:📈📝-writefat-weight-relevance-by-inference-of-topics-entities-and-frequency-averages-for-terms" class="tsd-anchor"></a><h4 class="tsd-anchor-link">📈📝 WRITEFAT: Weight Relevance by Inference of Topics, Entities, and Frequency Averages for Terms<a href="#md:📈📝-writefat-weight-relevance-by-inference-of-topics-entities-and-frequency-averages-for-terms" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
-<img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
+<img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
 </p>
 <p>Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.</p>
 <p>Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.</p>
@@ -86,7 +88,10 @@
 </li>
 </ul>
 <p>All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.</p>
-<a id="md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🧩🔍 Autocomplete &amp;  Query To Topic Phrase Tokenization<a href="#md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are &quot;white house&quot; or &quot;state of the art&quot; which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ &quot;'Cause you know sometimes words have two meanings.&quot;</p>
+<a id="md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🧩🔍 Autocomplete &amp;  Query To Topic Phrase Tokenization<a href="#md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
+<img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
+</p>
+<p>Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are &quot;white house&quot; or &quot;state of the art&quot; which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ &quot;'Cause you know sometimes words have two meanings.&quot;</p>
 <a id="md:further-research" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Further Research<a href="#md:further-research" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
 <li>
 <p><a href="https://npmgraph.js.org/?q=ai-research-agent#hide=">AI Research Agent's NPM Dependecies</a></p>

@@ -2,6 +2,7 @@
  * Completes the query with the most likely next words for phrases.
  * If typing 2+ letters of a word, returns all possible words matching those few letters.
  * 
+ * <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
  * @param {string} query - The input query which can be pertial words or phrases.
  * @param {Object} options 
  * @param {Object} options.phrasesModel - A custom phrases model to use for autocomplete suggestions.

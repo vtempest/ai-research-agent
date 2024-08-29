@@ -2,8 +2,11 @@
  * QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
  * 
  * Search document for all words of query ignoring casing
- * but "words in quotes" as necessarily together like in Google.
- * Single line function that can be used anywhere.
+ * but "words in quotes" as necessarily together like users expect
+ * in web search engines.  Single line function that can be used 
+ * anywhere, such as UI inputs to filter a data list.
+ * 
+ * <img width="350px"  src="https://i.imgur.com/IuwW97p.png" > 
  * @param {string} document
  * @param {string} query
  * @returns {boolean} true if doc has all words and "words in phrases"

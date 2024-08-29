@@ -5,13 +5,13 @@
 <p align="center">
 <a href="https://discord.gg/SJdBqBz3tV">
     <img src="https://img.shields.io/discord/1130153053056684123.svg?label=Discord&logo=Discord&colorB=7289da&style=flat" alt="Join Discord"/>
+
 </a>
 </p>
 
-[![PR Welcome Badge](https://badgen.net/https/pr-welcome-badge.vercel.app/api/badge/${repo})](${issuesUrl})
-
 [![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ## [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
 
 ##  [Live Demo (qwksearch.com)](https://qwksearch.com/)
@@ -40,6 +40,7 @@
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
 </p>
 
+[extract Docs](https://airesearch.wiki/functions/src_extractor_url_to_content_url_to_content.extract.html)
 
 * Extract URL or HTML to main content, based on Readability with improved version
  *  using 100+ custom adapters for major websites. 
@@ -56,6 +57,7 @@
 </p>
 
 
+[extractSEEKTOPIC Docs](https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html)
 
  [SEEKTOPIC Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
 
@@ -91,7 +93,7 @@ SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngra
 #### 📈📝 WRITEFAT: Weight Relevance by Inference of Topics, Entities, and Frequency Averages for Terms 
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
+<img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
 </p>
 
 
@@ -120,6 +122,10 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 
 
 #### 🧩🔍 Autocomplete &  Query To Topic Phrase Tokenization 
+
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
+</p>
 
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 

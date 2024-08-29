@@ -7,6 +7,7 @@
  * It is more optimal for varied text than 
  * [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which is better for similar text.
  * 
+ * <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" > 
  * @author [Matthew Jaro, William Winkler (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
  * @param {string} s1 First string
  * @param {string} s2 Second string

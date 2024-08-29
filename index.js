@@ -1,6 +1,6 @@
 import { searchWeb } from "./src/search-web/search-web.js";
 
-import { searchSTREAM } from "./src/search-web/search-stream.js/index.js";
+import { searchSTREAM } from "./src/search-web/search-stream.js";
 
 import { extract } from "./src/extractor/url-to-content/url-to-content.js";
 

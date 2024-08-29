@@ -13,7 +13,8 @@ import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
  * "Latent Dirichlet Allocation (LDA) with Gibbs Sampling Explained" https://www.youtube.com/watch?v=aPRjj8i_6yE <br />
  * https://www.geeksforgeeks.org/latent-dirichlet-allocation/ <br />
  * "Topic Models" https://www.youtube.com/watch?v=yK7nN3FcgUs <br />
- *
+ * 
+ * <p align="center"><img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > </p>
  * @param {string[]} sentences - Array of input sentences.
  * @param {Object} options - Configuration options for LDA.
  * @param {number} options.topicCount default=10 - Number of topics to extract.

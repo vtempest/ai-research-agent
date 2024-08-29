@@ -1,23 +1,22 @@
-
 {
-    "entryPoints": [ "src/**", "index.js" ],
-    "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-ga"], 
-    "gaID": "G-E5TZ32BZDF",
-    
-    "navigation": {
-        "includeCategories": false,
-        "includeGroups": false,
-        "includeFolders": true
-    },
-    "sourceLinkExternal": true,
-    "hideGenerator": true,
-    "searchInDocuments": true,
-    "navigationLinks": {
+  "entryPoints": ["src/**", "index.js"],
+  "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-ga"],
+  "gaID": "G-E5TZ32BZDF",
+
+  "navigation": {
+    "includeCategories": false,
+    "includeGroups": true,
+    "includeFolders": false
+  },
+  "sourceLinkExternal": true,
+  "hideGenerator": true,
+  "searchInDocuments": true,
+  "navigationLinks": {
     "Source Code": "https://github.com/vtempest/ai-research-agent",
     "Live Demo": "https://qwksearch.com",
     "Discord Chat": "https://discord.gg/SJdBqBz3tV"
-    },
-    "jsDocCompatibility": true,
-       "blockTags": ["@param", "@returns"]
-    ,    "excludePrivate": true
+  },
+  "jsDocCompatibility": true,
+  "blockTags": ["@param", "@returns"],
+  "excludePrivate": true
 }

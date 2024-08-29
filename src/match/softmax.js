@@ -8,6 +8,7 @@
  * Softmax is used in multi-class classification problems where there are more than two
  * possible output classes.
  * 
+ * <img width="350px"  src="https://i.imgur.com/O0OjAG5.png" > 
  * @param {number[]} arr - The input array of numbers.
  * @returns {number[]} An array of Softmax probabilities corresponding to the input array.
  * 
