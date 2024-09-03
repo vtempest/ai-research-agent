@@ -240,14 +240,15 @@ dictionaryMap = Object.keys(dictionaryMap)
 }, {});
 
 
-  await fs.promises.writeFile(
-    outputPathDict,
-    JSON.stringify(dictionaryMap, null, OPTION_PRINT_SPACING)
-  );
+  // await fs.promises.writeFile(
+  //   outputPathDict,
+  //   JSON.stringify(dictionaryMap, null, OPTION_PRINT_SPACING)
+  // );
 
   var termsIndex = {};
   Object.entries(dictionaryMap).map(([term, def]) => {
-    termsIndex[term] = def.cat;
+    termsIndex[term] = ["", "n", "v", "a", "r", "s"].indexOf(def.pos);
+    if (termsIndex[term]==5) termsIndex[term] = 3 // sattelite adjectives are treated as adjetives
   });
 
   await fs.promises.writeFile(

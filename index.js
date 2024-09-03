@@ -9,14 +9,14 @@ import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
 import {
-  weighRelevanceConceptVector,
   vectorizeTextAsConcept,
-  weighRelevanceConceptVectorAPI,
+weighRelevanceConceptVector,
+weighRelevanceConceptVectorAPI,
 } from "./src/similarity/similarity-concept.js";
 
 // core underlying functions
 
-import { convertHTMLSpecialChars } from "./src/extractor/html-to-content/html-to-basic-html.js";
+import { convertHTMLSpecialChars } from "./src/extractor/html-to-content/html-special-chars.js";
 import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-text.js";
 
 import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
@@ -40,9 +40,10 @@ export {
   extract,
   scrapeURL,
   extractSEEKTOPIC,
-  weighRelevanceConceptVector,
-  weighRelevanceConceptVectorAPI,
   vectorizeTextAsConcept,
+weighRelevanceConceptVector,
+weighRelevanceConceptVectorAPI,
+
   suggestNextWordCompletions,
   tokenizeTopics,
   splitSentences,

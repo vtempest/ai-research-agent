@@ -5,8 +5,8 @@
 
   "navigation": {
     "includeCategories": false,
-    "includeGroups": true,
-    "includeFolders": false
+    "includeGroups": false,
+    "includeFolders": true
   },
   "sourceLinkExternal": true,
   "hideGenerator": true,
@@ -17,6 +17,6 @@
     "Discord Chat": "https://discord.gg/SJdBqBz3tV"
   },
   "jsDocCompatibility": true,
-  "blockTags": ["@param", "@returns"],
+  "blockTags": ["@param", "@returns", "@license"],
   "excludePrivate": true
 }

@@ -12,7 +12,7 @@ import {isWordCommonIgnored} from "./stopwords";
 
 /**
  * Query Resolution to Phrase & Topic Tokenization -
- * returns a list of phrases that are found in WikiWorldModel 
+ * returns a list of phrases that are found in Wiki Titles/ dictionary phrases World Model 
  * that match the input phrase, or just the single word if found
  * Tokening by word can often have a meaning widely different than if it is part of a phrase, 
  * so it is better to extract phrases by first-word next-words pairings. Search results will be
@@ -20,6 +20,9 @@ import {isWordCommonIgnored} from "./stopwords";
  *  not just split into words and find frequency. Examples are "white house" or "state of the art"
  *  which should be searched as a phrase but would return different context if split into words.
  *  As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
+ * 
+ * <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
+ * 
  * @param {string} phrase
  * @param {Object} options
  * @param {Object} options.phrasesModel - remote model

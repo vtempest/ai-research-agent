@@ -34,7 +34,6 @@
  * @category Relevance
  * @author
  *  [Ludwig Boltzmann (1868)](https://en.wikipedia.org/wiki/Softmax_function#History), 
- * 
  *  [John S. Bridle (1990)](https://link.springer.com/chapter/10.1007/978-3-642-76153-9_28)
  */
 export function calculateProbabilitySoftmax(arr) {

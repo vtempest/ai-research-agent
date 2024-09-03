@@ -30,7 +30,6 @@ import { scrapeURL } from "./scrape-url.js";
  * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />
  * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} options
- * @param {boolean} options.keyphrases default=true - extract key phrases
  * @param {boolean} options.images default=true - include images
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
@@ -41,7 +40,7 @@ import { scrapeURL } from "./scrape-url.js";
  */
 export async function extract(urlOrDoc, options = {}) {
   var {
-    keyphrases = true,
+    // keyphrases = true,
     images = true,
     links = true,
     formatting = true,
@@ -75,14 +74,13 @@ export async function extract(urlOrDoc, options = {}) {
       try {
         var html = await scrapeURL(url);
       } catch (e) {
-        return { error: "Error in fetch" };
+        return { error: "Error in fetch", msg: e.message };
       }
       if (html.error){
-        return { error: "Error in fetch" };
-
+        return { error: "Error in fetch", msg: html.error };
       }
       options.url = url;
-      response = await extractContent(html, options);
+      response = extractContent(html, options);
     }
   } else if (typeof urlOrDoc == "object") {
     //if passing in dom object document
@@ -106,7 +104,7 @@ export async function extract(urlOrDoc, options = {}) {
       response.timestamps = timestamps;
 
     } //pass doc to extract
-    else response = await extractContent(urlOrDoc, options);
+    else response = extractContent(urlOrDoc, options);
   }
 
   if (!response.html || response.html?.length == 0) return { error: "No text" };

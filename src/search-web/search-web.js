@@ -1,4 +1,4 @@
-import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-to-basic-html";
+import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-special-chars.js";
 /**
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many

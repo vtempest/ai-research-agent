@@ -19,6 +19,15 @@
     showSuggestions = false;
   }
 
+
+
+  onMount(async () => {
+    
+    setTimeout(() => document.getElementById('searchInput').focus(), 100);
+ 
+  });
+
+
   async function querySuggestions() {
     if (!phrasesModel) {
       console.error("Wait. Phrase model not loaded");
@@ -211,6 +220,7 @@
       on:focus={openFullPageSearch}
       placeholder="Search..."
       class="search-input"
+      autofocus
     />
     <button class="search-button" on:click={handleIconClick}> 
       <img src={iconSearch} alt="Search" class="w-7 h-7 mb-0 transition-opacity duration-200" />

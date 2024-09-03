@@ -1,10 +1,40 @@
 /**
- * Split document text with semantic characters, html, lines.
+ * Splits document text into semantic chunks based on various textual and structural elements.
  * 
- * @author Jina AI (2024) https://gist.github.com/hanxiao/3f60354cf6dc5ac698bc9154163b4e6a
- * @param {string} text 
- * @returns {Array.<String>} array of text chunks
+ * This function performs a comprehensive tokenization of the input text, considering a wide range
+ * of semantic elements and structural patterns commonly found in documents. It uses regular
+ * expressions to identify and separate the following elements:
+ * 
+ * 1. Headings (Setext-style, Markdown, and HTML-style)
+ * 2. Citations (e.g., [1])
+ * 3. List items (bulleted, numbered, lettered, or task lists, including nested up to three levels)
+ * 4. Block quotes (including nested quotes and citations, up to three levels)
+ * 5. Code blocks (fenced, indented, or HTML pre/code tags)
+ * 6. Tables (Markdown, grid tables, and HTML tables)
+ * 7. Horizontal rules (Markdown and HTML hr tag)
+ * 8. Standalone lines or phrases (including single-line blocks and HTML elements)
+ * 9. Sentences or phrases ending with punctuation (including ellipsis and Unicode punctuation)
+ * 10. Quoted text, parenthetical phrases, or bracketed content
+ * 11. Paragraphs
+ * 12. HTML-like tags and their content (including self-closing tags and attributes)
+ * 13. LaTeX-style math expressions (inline and block)
+ * 14. Any remaining content (fallback)
+ * 
+ * The function applies various length constraints to each type of element to ensure reasonable
+ * chunk sizes. It also handles nested structures and special cases like code blocks and math
+ * expressions.
+ * 
+ * @author [Jina AI (2024)](https://gist.github.com/hanxiao/3f60354cf6dc5ac698bc9154163b4e6a)
+ * @param {string} text - The input text to be split into semantic chunks.
+ * @param {Object} [options={}] - Optional configuration options (currently unused).
+ * @returns {Array.<string>} An array of text chunks, each representing a semantic unit of the document.
  * @category Tokenize
+ * 
+ * @example
+ * const text = "# Heading\n\nThis is a paragraph.\n\n- List item 1\n- List item 2\n\n";
+ * const chunks = splitTextSemanticChars(text);
+ * console.log(chunks);
+ * // Output: ['# Heading', 'This is a paragraph.', '- List item 1', '- List item 2']
  */
 export function splitTextSemanticChars(text, options = {}) {
 

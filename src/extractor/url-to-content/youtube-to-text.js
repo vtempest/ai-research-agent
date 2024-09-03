@@ -1,9 +1,9 @@
-import { convertHTMLSpecialChars } from "../html-to-content/html-to-basic-html";
+import { convertHTMLSpecialChars } from "../html-to-content/html-special-chars.js";
 import { scrapeURL } from "./scrape-url";
 
 /**
- * fetch youtube.com video's webpage HTML for embedded transcript
- * if blocked, use scraper of youtubetranscript.com
+ * Fetch youtube.com video's webpage HTML for embedded transcript
+ * if blocked, use scraper of alternative sites
  * @param {string} videoUrl
  * @param {object} options
  * @param {boolean} options.addTimestamps default=true - true to return timestamps, default true
@@ -17,11 +17,16 @@ export async function extractYoutubeText(videoUrl, options = {}) {
 
   const videoId = getURLYoutubeVideo(videoUrl);
 
-  var res = await fetchTranscript(videoId, options);
+  // var res = await fetchTranscript(videoId, options);
 
-  // console.log(res)
+  // if (!res || res.error)
+  //   var res = await fetchViaYoutubeTranscript2(videoId, options);
+
+
   if (!res || res.error)
-    res = await fetchViaYoutubeTranscript2(videoId, options);
+    var res = await fetchTranscriptTactiq(videoId, options);
+
+  
 
   // console.log(res)
   if (!res || !res.content) return { error: 1 };
@@ -108,10 +113,14 @@ function decompressTimestampsArray(compressedStr) {
   return decompressed;
 }
 
+//youtube is blocked on cloudflare workers
+
 async function fetchTranscript(videoId, options = {}) {
   const videoPageBody = await scrapeURL(
     `https://www.youtube.com/watch?v=${videoId}`
   )
+
+  console.log(videoPageBody)
 
   //youtube bot limiting
   if (videoPageBody?.error  ||
@@ -234,6 +243,9 @@ export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
     const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
 
     const html = await scrapeURL(url, options)
+
+    console.log(html)
+    console.log(html.includes('physics'))
     if (!html )
       return {error:1}
 
@@ -245,6 +257,8 @@ export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
       text: match[2].replace(/<br\s*\/?>/gi, " ").trim(),
       offset: parseFloat(match[1]),
     }));
+
+    console.log(transcript);
 
 
     const content = transcript.map((item) => item.text).join(" ");
@@ -262,3 +276,77 @@ export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
     console.log(e);
   }
 }
+
+/**
+ * Fetches via tactiq api
+ * @param {string} videoId 
+ * @returns 
+ */
+async function fetchTranscriptTactiq(videoId, options = {}) {
+  const url = "https://tactiq-apps-prod.tactiq.io/transcript";
+  const headers = {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "no-cache",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+    "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Linux"',
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site"
+  };
+  const payload = {
+    videoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+    langCode: "en"
+  };
+
+  try {
+    const data = await scrapeURL(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(payload)
+    });
+
+    if (!data.captions || data.captions.length === 0) {
+      return { error: true };
+    }
+
+    let content = "";
+    let timestamps = [];
+    let currentLength = 0;
+
+    data.captions.forEach(({ start, dur, text }) => {
+      timestamps.push([currentLength, Math.floor(parseFloat(start))]);
+      content += text + " ";
+      currentLength = content.length;
+    });
+
+    return { content, timestamps };
+  } catch (error) {
+    console.error("Error fetching transcript:", error);
+    return { error: true };
+  }
+}
+
+
+
+// fetch("https://api.kome.ai/api/tools/youtube-transcripts", {
+//   "headers": {
+//     "accept": "application/json, text/plain, */*",
+//     "accept-language": "en-US,en;q=0.9",
+//     "content-type": "application/json",
+//     "priority": "u=1, i",
+//     "sec-ch-ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"Linux\"",
+//     "sec-fetch-dest": "empty",
+//     "sec-fetch-mode": "cors",
+//     "sec-fetch-site": "same-site",
+//     "Referer": "https://kome.ai/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": "{\"video_id\":\"https://www.youtube.com/watch?v=mT01-iD2U9Q\",\"format\":true}",
+//   "method": "POST"
+// });

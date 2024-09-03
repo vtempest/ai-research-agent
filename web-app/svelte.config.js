@@ -17,7 +17,7 @@ const config = {
 		}),
     alias: {
       $components: "src/components",
-      $lib: path.resolve("D:/GitHub/ai-research-agent/src")
+      $lib: path.resolve("src")
 
     }
   }

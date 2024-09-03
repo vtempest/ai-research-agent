@@ -12,7 +12,7 @@
       "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/", "index.js", "test/data/extract-article.test.js",  ],
+  "include": ["./src/", "index.js", "test/data/extract-article.test.js", "test/readability.test.js",  ],
 
   "exclude": [
     "node_modules",

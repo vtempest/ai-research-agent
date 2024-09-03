@@ -22,12 +22,12 @@
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
  */
 export async function scrapeURL(url, options = {}) {
-  try {
+  // try {
     let {
-      timeout = 5,
+      timeout = 15,
       checkBotDetection = true,
       maxRedirects = 3,
-      changeReferer = true,
+      changeReferer = 0,
       userAgentIndex = 0,
       useCORSProxy = 0,
     } = options;
@@ -44,7 +44,7 @@ export async function scrapeURL(url, options = {}) {
     var headers = {
       ...options,
       "Accept-Language": "en",
-      "User-Agent": userAgentStrings[userAgentIndex],
+      // "User-Agent": userAgentStrings[userAgentIndex],
       signal: AbortSignal.timeout(timeout * 1000),
     };
 
@@ -90,9 +90,9 @@ export async function scrapeURL(url, options = {}) {
       // For other types, return as arrayBuffer
       return await response.arrayBuffer();
     }
-  } catch (e) {
-    return { error: "Error in fetch" };
-  }
+  // } catch (e) {
+  //   return { error: "Error in fetch", msg: e.message };
+  // }
 }
 
 /**

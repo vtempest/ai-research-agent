@@ -7,7 +7,6 @@
 </a>
 </p>
 <p><a href="https://npmjs.org/package/ai-research-agent"><img src="https://nodei.co/npm/ai-research-agent.png?compact=true" alt="NPM"></a></p>
-<p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></p>
 <a id="md:javascript-api-docs-airesearchwiki" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><a href="https://airesearch.wiki/">Javascript API Docs (airesearch.wiki) </a><a href="#md:javascript-api-docs-airesearchwiki" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:live-demo-qwksearchcom" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a><a href="#md:live-demo-qwksearchcom" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
 <li>NPM Tests --  <code>npm run test</code> to run many tests custom to your data</li>
 </ul>
@@ -17,6 +16,7 @@
 <a id="md:🤖🔎-stream-search-with-top-result-extraction--answer-model" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🤖🔎 STREAM: Search with Top Result Extraction &amp; Answer Model<a href="#md:🤖🔎-stream-search-with-top-result-extraction--answer-model" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
 <img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
 </p>
+<p><a href="https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html">searchSTREAM  Docs</a></p>
 <ol>
 <li>Search Web for query via metasearch of major engines or your custom data</li>
 <li>Extract text of top results with Tractor the Text Extractor.</li>
@@ -58,6 +58,7 @@
 <a id="md:🌍📖-world-wikipedia-outline-relational-lexicon--dictionary" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🌍📖 WORLD: Wikipedia Outline Relational Lexicon &amp; Dictionary<a href="#md:🌍📖-world-wikipedia-outline-relational-lexicon--dictionary" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
 <img width="350px"  src="https://i.imgur.com/ffaU3s7.jpeg" > 
 </p>
+<p><a href="https://airesearch.wiki/functions/src_dataset_import_compile_topic_model.compileTopicModel.html">compileTopicModel Docs</a></p>
 <p>Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.  If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.</p>
 <ul>
 <li>240K total words &amp; phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - Wikipedia most popular pages titles. Also includes domain specificity score and what letters should be capital.</li>
@@ -67,6 +68,7 @@
 <a id="md:📈📝-writefat-weight-relevance-by-inference-of-topics-entities-and-frequency-averages-for-terms" class="tsd-anchor"></a><h4 class="tsd-anchor-link">📈📝 WRITEFAT: Weight Relevance by Inference of Topics, Entities, and Frequency Averages for Terms<a href="#md:📈📝-writefat-weight-relevance-by-inference-of-topics-entities-and-frequency-averages-for-terms" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
 <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
 </p>
+<p><a href="https://airesearch.wiki/functions/src_match_weigh_relevance_frequency.weighRelevanceTermFrequency.html">weighRelevanceTermFrequency Docs</a></p>
 <p>Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.</p>
 <p>Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.</p>
 <p>Example: Given a query &quot;Superbowl wins by year&quot; we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domains-specific. This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score.</p>
@@ -91,49 +93,21 @@
 <a id="md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" class="tsd-anchor"></a><h4 class="tsd-anchor-link">🧩🔍 Autocomplete &amp;  Query To Topic Phrase Tokenization<a href="#md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p align="center">
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
 </p>
+[suggestNextWordCompletions Docs](https://airesearch.wiki/functions/src_autocomplete_autocomplete.suggestNextWordCompletions.html)
 <p>Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are &quot;white house&quot; or &quot;state of the art&quot; which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ &quot;'Cause you know sometimes words have two meanings.&quot;</p>
-<a id="md:further-research" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Further Research<a href="#md:further-research" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
-<li>
-<p><a href="https://npmgraph.js.org/?q=ai-research-agent#hide=">AI Research Agent's NPM Dependecies</a></p>
-</li>
-<li>
-<p><a href="https://github.com/assafelovic/gpt-researcher">GPT Researcher</a></p>
-</li>
-<li>
-<p><a href="https://index.quantumstat.com">NLP Papers Latest Updates</a></p>
-</li>
-<li>
-<p><a href="https://www.anthropic.com/research/measuring-model-persuasiveness">Anthropic Persuation Overview</a></p>
-</li>
-<li>
-<p><a href="https://github.com/sebastianruder/NLP-progress/">NLP Research Progress</a></p>
-</li>
-<li>
-<p><a href="https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file">NLP Datasets</a></p>
-</li>
-<li>
-<p>Mikhail Galkin, &amp; Valentin Malykh. (2020). Wikipedia TF-IDF Dataset Release (v1.0). Zenodo. <a href="https://doi.org/10.5281/zenodo.3631674">https://doi.org/10.5281/zenodo.3631674</a> <a href="https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset">https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset</a></p>
-</li>
-<li>
-<p>Wikimedia (2024). &quot;API:Opensearch&quot;.
-<a href="https://www.mediawiki.org/wiki/API:Opensearch">https://www.mediawiki.org/wiki/API:Opensearch</a></p>
-</li>
-<li>
-<p>Trelis Research (2024). &quot;Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers.&quot; July 5, 2024. <a href="https://www.youtube.com/watch?v=9QJXvNiJIG8">https://www.youtube.com/watch?v=9QJXvNiJIG8</a></p>
-</li>
-<li>
-<p>Vasnetsov, Andrey (2024). &quot;BM42: New Baseline for Hybrid Search&quot;. Qdrant Blog. <a href="https://qdrant.tech/articles/bm42/">https://qdrant.tech/articles/bm42/</a></p>
-</li>
-<li>
-<p>Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021 &quot;An Improved TextRank Multi-feature Fusion Algorithm For Keyword Extraction of Educational Resources&quot; <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf">https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf</a></p>
-</li>
-<li>
-<p>Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based Content Extraction. Proceedings of the 28th International Conference on Computational Linguistics. <a href="https://aclanthology.org/2020.coling-main.144.pdf">https://aclanthology.org/2020.coling-main.144.pdf</a></p>
-</li>
-<li>
-<p>Goodwin, Danny (2024). &quot;HUGE Google Search document leak reveals inner workings of ranking algorithm&quot;, May 28, 2024. Search Engine Land. <a href="https://searchengineland.com/google-search-document-leak-ranking-442617">https://searchengineland.com/google-search-document-leak-ranking-442617</a></p>
-</li>
+<a id="md:further-research" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Further Research<a href="#md:further-research" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><a href="https://www.youtube.com/watch?v=VPq4Ktf2zJ4">UMAP Algorithm Overview</a></p>
+<ul>
+<li><a href="https://npmgraph.js.org/?q=ai-research-agent#hide=">AI Research Agent's NPM Dependecies</a></li>
+<li><a href="https://github.com/assafelovic/gpt-researcher">GPT Researcher</a></li>
+<li><a href="https://index.quantumstat.com">NLP Papers Latest Updates</a></li>
+<li><a href="https://www.anthropic.com/research/measuring-model-persuasiveness">Anthropic Persuation Overview</a></li>
+<li><a href="https://github.com/sebastianruder/NLP-progress/">NLP Research Progress</a></li>
+<li><a href="https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file">NLP Datasets</a></li>
+<li>Trelis Research (2024). &quot;Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers.&quot; July 5, 2024. <a href="https://www.youtube.com/watch?v=9QJXvNiJIG8">https://www.youtube.com/watch?v=9QJXvNiJIG8</a></li>
+<li>Vasnetsov, A. (2024). &quot;BM42: New Baseline for Hybrid Search&quot;. Qdrant Blog. <a href="https://qdrant.tech/articles/bm42/">https://qdrant.tech/articles/bm42/</a></li>
+<li>Goodwin, D. (2024). &quot;HUGE Google Search document leak reveals inner workings of ranking algorithm&quot;, May 28, 2024. Search Engine Land. <a href="https://searchengineland.com/google-search-document-leak-ranking-442617">https://searchengineland.com/google-search-document-leak-ranking-442617</a></li>
 </ul>
+<p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></p>
 </div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:javascript-api-docs-airesearchwiki"><span>Javascript API <wbr/>Docs (airesearch.wiki) </span></a><a href="#md:live-demo-qwksearchcom"><span>Live <wbr/>Demo (qwksearch.com)</span></a><ul><li><ul><li><a href="#md:🤖🔎-stream-search-with-top-result-extraction--answer-model"><span>🤖🔎 STREAM: <wbr/>Search with <wbr/>Top <wbr/>Result <wbr/>Extraction &amp; <wbr/>Answer <wbr/>Model</span></a></li><li><a href="#md:🚜📜-tractor-the-text-extractor"><span>🚜📜 <wbr/>Tractor the <wbr/>Text <wbr/>Extractor</span></a></li><li><a href="#md:🔤📊-seektopic-summarization-by-extracting-entities-keyword-tokens-and-outline-phrases-important-to-context"><span>🔤📊 SEEKTOPIC: <wbr/>Summarization by <wbr/>Extracting <wbr/>Entities, <wbr/>Keyword <wbr/>Tokens, and <wbr/>Outline <wbr/>Phrases <wbr/>Important to <wbr/>Context</span></a></li><li><a href="#md:🌍📖-world-wikipedia-outline-relational-lexicon--dictionary"><span>🌍📖 WORLD: <wbr/>Wikipedia <wbr/>Outline <wbr/>Relational <wbr/>Lexicon &amp; <wbr/>Dictionary</span></a></li><li><a href="#md:📈📝-writefat-weight-relevance-by-inference-of-topics-entities-and-frequency-averages-for-terms"><span>📈📝 WRITEFAT: <wbr/>Weight <wbr/>Relevance by <wbr/>Inference of <wbr/>Topics, <wbr/>Entities, and <wbr/>Frequency <wbr/>Averages for <wbr/>Terms</span></a></li><li><a href="#md:🧩🔍-autocomplete---query-to-topic-phrase-tokenization"><span>🧩🔍 <wbr/>Autocomplete &amp;  <wbr/>Query <wbr/>To <wbr/>Topic <wbr/>Phrase <wbr/>Tokenization</span></a></li></ul></li><li><a href="#md:further-research"><span>Further <wbr/>Research</span></a></li></ul></div></details></div><div class="site-menu"><nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/vtempest/ai-research-agent" class="tsd-nav-link">Source Code</a><a href="https://qwksearch.com" class="tsd-nav-link">Live Demo</a><a href="https://discord.gg/SJdBqBz3tV" class="tsd-nav-link">Discord Chat</a></nav><nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>ai-research-agent</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer></footer><div class="overlay"></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-E5TZ32BZDF"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

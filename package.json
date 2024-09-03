@@ -5,7 +5,7 @@
   "type": "module",
   "author": "vtempest",
   "description": "Search and outline a topic base with AI Research Agent",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "scripts": {
     "dev": "cd web-app; vite dev",
     "prod": "cd web-app; vite build; wrangler deploy; wrangler tail",
@@ -32,7 +32,7 @@
     "typedoc-material-theme": "^1.1.0",
     "typedoc-plugin-ga": "^1.0.4",
     "vitest": "^2.0.5",
-    "wrangler": "^3.72.0"
+    "wrangler": "^3.73.0"
   },
   "dependencies": {
     "@langchain/core": "^0.2.27",
@@ -42,6 +42,8 @@
     "hnswlib-node": "^3.0.0",
     "linkedom": "^0.18.4",
     "node-fetch": "^3.3.2",
-    "pdfjs-serverless": "^0.5.1"
+    "pdfjs-serverless": "^0.5.1",
+    "axios": "^0.21.1",
+    "xpath": "^0.0.34"
   }
 }

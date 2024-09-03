@@ -11,7 +11,6 @@
 
 [![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ## [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
 
 ##  [Live Demo (qwksearch.com)](https://qwksearch.com/)
@@ -27,6 +26,8 @@
 <p align="center">
 <img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
 </p>
+
+[searchSTREAM  Docs](https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html)
 
  1. Search Web for query via metasearch of major engines or your custom data
  2. Extract text of top results with Tractor the Text Extractor.
@@ -83,6 +84,8 @@ SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngra
 <img width="350px"  src="https://i.imgur.com/ffaU3s7.jpeg" > 
 </p>
 
+[compileTopicModel Docs](https://airesearch.wiki/functions/src_dataset_import_compile_topic_model.compileTopicModel.html)
+
  Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.  If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
 
@@ -95,6 +98,8 @@ SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngra
 <p align="center">
 <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
 </p>
+
+[weighRelevanceTermFrequency Docs](https://airesearch.wiki/functions/src_match_weigh_relevance_frequency.weighRelevanceTermFrequency.html)
 
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.
@@ -126,35 +131,23 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 <p align="center">
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
 </p>
+[suggestNextWordCompletions Docs](https://airesearch.wiki/functions/src_autocomplete_autocomplete.suggestNextWordCompletions.html)
 
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
 
 
 ### Further Research
+[UMAP Algorithm Overview](https://www.youtube.com/watch?v=VPq4Ktf2zJ4)
 
-
- * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
-
- * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
- * [NLP Papers Latest Updates](https://index.quantumstat.com)
- *  [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)
- * [NLP Research Progress](https://github.com/sebastianruder/NLP-progress/)
-
- * [NLP Datasets](https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file) 
-
-* Mikhail Galkin, & Valentin Malykh. (2020). Wikipedia TF-IDF Dataset Release (v1.0). Zenodo. https://doi.org/10.5281/zenodo.3631674 https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset
-
-* Wikimedia (2024). "API:Opensearch".
-https://www.mediawiki.org/wiki/API:Opensearch
-
+* [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
+* [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
+* [NLP Papers Latest Updates](https://index.quantumstat.com)
+*  [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)
+* [NLP Research Progress](https://github.com/sebastianruder/NLP-progress/)
+* [NLP Datasets](https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file) 
 * Trelis Research (2024). "Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers." July 5, 2024. https://www.youtube.com/watch?v=9QJXvNiJIG8
+*  Vasnetsov, A. (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
+* Goodwin, D. (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
 
-*   Vasnetsov, Andrey (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
-
- * Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021 "An Improved TextRank Multi-feature Fusion Algorithm For Keyword Extraction of Educational Resources" https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
-
- * Kazemi et al (2020). Biased TextRank: Unsupervised Graph-Based Content Extraction. Proceedings of the 28th International Conference on Computational Linguistics. https://aclanthology.org/2020.coling-main.144.pdf
-
- * Goodwin, Danny (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
-
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)

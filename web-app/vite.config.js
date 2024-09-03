@@ -1,13 +1,16 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+// import topLevelAwait from "vite-plugin-top-level-await";
 import path from "path";
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		// topLevelAwait(),
+		sveltekit()],
 	resolve: {
 		alias: {
 		 
-			$lib: path.resolve("D:/GitHub/ai-research-agent/src"),
+			$lib: path.resolve("./src"),
 			$assets: path.resolve("./src/assets"),
 		  $components: path.resolve("./src/components"),
 

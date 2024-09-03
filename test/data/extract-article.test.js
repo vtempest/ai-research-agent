@@ -1,4 +1,4 @@
-import { extractMainArticle } from '../../src/extractor/html-to-content/extract-content.js';
+import { extractMainContent } from '../../src/extractor/html-to-content/extract-content.js';
 
 
 async function fetchAndExtractContent(url) {
@@ -7,7 +7,7 @@ async function fetchAndExtractContent(url) {
     const htmlString = await response.text();
     console.log("HTML fetched, length:", htmlString.length);
 
-    var articleContent = extractMainArticle(htmlString, { url });
+    var articleContent = extractMainContent(htmlString, { url });
 
     //remove html tags, including in attributes
     const RE_HTML_TAGS = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g;
