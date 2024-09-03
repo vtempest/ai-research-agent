@@ -223,6 +223,15 @@ function handleOtherElements(element, potentialTags, options) {
 
     return null;
 }
+function defineCellType(isHeader) {
+    // Determine cell element type and mint new element.
+    // define tag
+    const cellElement = document.createElement("cell");
+    if (isHeader) {
+      cellElement.setAttribute("role", "head");
+    }
+    return cellElement;
+  }
 
 function handleTable(tableElem, potentialTags, options) {
     var newTable = document.createElement('table');
@@ -317,6 +326,22 @@ function handleTable(tableElem, potentialTags, options) {
     }
     return null;
 }
+
+function defineNewelem(processedElem, origElem) {
+    // Create a new sub-element if necessary.
+    if (processedElem !== null) {
+        const childElem = document.createElement(processedElem.tagName);
+        childElem.textContent = processedElem.textContent;
+        
+        // Handle tail text by appending it as a text node
+        if (processedElem.nextSibling && processedElem.nextSibling.nodeType === 3) {
+            childElem.appendChild(document.createTextNode(processedElem.nextSibling.textContent));
+        }
+
+        origElem.appendChild(childElem);
+    }
+}
+
 
 function handleImage(element) {
     var processedElement = document.createElement(element.tagName);
@@ -664,6 +689,70 @@ function extractComments(tree, options) {
         .trim();
 
     return [commentsBody, tempComments, tempComments.length, tree];
+}
+
+
+
+function addSubElement(newChildElem, subelem, processedSubchild) {
+    const subChildElem = SubElement(newChildElem, processedSubchild.tag);
+    subChildElem.text = processedSubchild.text;
+    subChildElem.tail = processedSubchild.tail;
+    for (const [attr, value] of Object.entries(subelem.attrib)) {
+        subChildElem.setAttribute(attr, value);
+    }
+}
+
+function processNestedElements(child, newChildElem, options) {
+    newChildElem.text = child.text;
+    for (const subelem of child.getElementsByTagName("*")) {
+        let processedSubchild;
+        if (subelem.tagName === "list") {
+            processedSubchild = handleLists(subelem, options);
+            if (processedSubchild !== null) {
+                newChildElem.appendChild(processedSubchild);
+            }
+        } else {
+            processedSubchild = handleTextnode(subelem, options, { commentsFix: false });
+            if (processedSubchild !== null) {
+                addSubElement(newChildElem, subelem, processedSubchild);
+            }
+        }
+        subelem.tagName = "done";
+    }
+}
+
+function updateElemRendition(elem, newElem) {
+    if (elem.getAttribute("rend") !== null) {
+        newElem.setAttribute("rend", elem.getAttribute("rend"));
+    }
+}
+
+function isTextElement(elem) {
+    return elem !== null && textCharsTest(elem.textContent.trim());
+}
+
+function isCodeBlockElement(element) {
+    if (element.getAttribute("lang") || element.tagName === "code") {
+        return true;
+    }
+    const parent = element.parentNode;
+    if (parent !== null && parent.getAttribute("class").includes("highlight")) {
+        return true;
+    }
+    const code = element.querySelector("code");
+    if (code !== null && element.children.length === 1) {
+        return true;
+    }
+    return false;
+}
+
+function handleCodeBlocks(element) {
+    const processedElement = element.cloneNode(true);
+    for (const child of processedElement.getElementsByTagName("*")) {
+        child.tagName = "done";
+    }
+    processedElement.tagName = "code";
+    return processedElement;
 }
 
 module.exports = {

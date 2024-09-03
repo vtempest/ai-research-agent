@@ -1,5 +1,4 @@
 var { JSDOM } = require('jsdom');
-var { sanitize, sanitizeTree, textCharsTest } = require('./utils');
 
 var TEI_VALID_TAGS = new Set(['ab', 'body', 'cell', 'code', 'del', 'div', 'graphic', 'head', 'hi',
                                 'item', 'lb', 'list', 'p', 'quote', 'ref', 'row', 'table']);
@@ -673,15 +672,20 @@ function textfilter(element) {
     const testtext = element.text === null ? element.tail : element.text;
     
     // to check: line len → continue if len(line) <= 5
-    return !text_chars_test(testtext) || testtext.split('\n').some(line => RE_FILTER.test(line));
-}
-function text_chars_test(string) {
-    // Determine if a string is only composed of spaces and/or control characters
-    // return string is not None and len(string) != 0 and not string.isspace()
-    return Boolean(string) && !/^\s*$/.test(string);
+    return !textCharsTest(testtext) || testtext.split('\n').some(line => RE_FILTER.test(line));
 }
 
-module.exports = {
+function textCharsTest(string) {
+    // Determine if a string is only composed of spaces and/or control characters
+    return Boolean(string) && !/^\s*$/.test(string);
+}
+function normalizeUnicode(string, unicodeform = 'NFC') {
+    // Normalize the given string to the specified unicode format.
+    return string.normalize(unicodeform);
+}
+
+module.exports = {normalizeUnicode,
+    textCharsTest,
     trim,textfilter,
     deleteElement,
     mergeWithParent,

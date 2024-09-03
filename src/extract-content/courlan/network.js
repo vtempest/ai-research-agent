@@ -34,7 +34,7 @@ var axiosInstance = axios.create({
     timeout: 10000,
     validateStatus: function (status) {
         return ACCEPTABLE_CODES.has(status);
-    }c
+    }
 });
 
 /**

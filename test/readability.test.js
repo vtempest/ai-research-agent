@@ -1,5 +1,5 @@
 import { test, expect, it } from "vitest";
-// var { extract } = require("../src/extract-content/core.js");
+var { extract } = require("../src/extract-content/core.js");
 var { extractContentHTML } = require("../src/extractor/html-to-content/readability2.js");
 
 test("readability - should extract content from HTML", async () => {
@@ -18,11 +18,11 @@ test("readability - should extract content from HTML", async () => {
 
 test("trafilatura - should extract content from HTML", async () => {
  
-  // var url = "https://en.wikipedia.org/wiki/David_Hilbert";
-  // var html = await (await fetch(url)).text();
+  var url = "https://en.wikipedia.org/wiki/David_Hilbert";
+  var html = await (await fetch(url)).text();
 
-  // var [content, tempText] = extract(html, { url });
-  // console.log(content.inneerHTML);
+  var content = extract(html, { url });
+  console.log(content);
 
-  // expect(content.innerHTML).toBeDefined();
+  expect(content).toBeDefined();
 });
