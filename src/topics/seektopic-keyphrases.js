@@ -40,7 +40,7 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  *  <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="200px"  />
 
 @param {string} docText - input text to analyze
- * @param {Object} options
+ * @param {Object} [options]
  * @param {Object} options.phrasesModel - phrases model
  * @param {number} options.maxWords default=5 - maximum words in a keyphrase
  * @param {number} options.minWords default=1 - minimum words in a keyphrase

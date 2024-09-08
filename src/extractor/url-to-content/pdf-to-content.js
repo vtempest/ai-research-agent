@@ -8,8 +8,8 @@ import * as chrono from "chrono-node";
  * https://github.com/mozilla/pdf.js/releases <br>
  * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
  * @param {string} pdfURLOrBuffer - URL to a PDF file or buffer from fs.readFile
- * @param {Object} options
- * @param {boolean} options.addHeadingsTags default=true - Adds H1 tags to heading titles in document
+ * @param {Object} [options]
+  * @param {boolean} options.addHeadingsTags default=true - Adds H1 tags to heading titles in document
  * @param {boolean} options.addPageNumbers default=true - Adds  #  to end of each page
  * @param {boolean} options.addSentenceLineBreaks default=true - Inserts line breaks at the end of sentence ranges
  * @param {boolean} options.removePageHeaders default=true - Removes repeated headers found on each page
@@ -19,7 +19,7 @@ import * as chrono from "chrono-node";
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
  * @category Extractor
  */
-export async function extractPDF(pdfURLOrBuffer, options = {}) {
+export async function convertPDFToHTML(pdfURLOrBuffer, options = {}) {
   // try {
     var {
       addHeadingsTags = true,
@@ -248,10 +248,9 @@ export async function extractPDF(pdfURLOrBuffer, options = {}) {
 /**
  * @param {array} array
  * @returns {int} average of array
- * @category Math
  * @private
  */
-const mean = function (array) {
+function mean  (array) {
   return array.length == 0 ? 0 : array.reduce((a, b) => a + b) / array.length;
 };
 
@@ -260,7 +259,6 @@ const mean = function (array) {
  * https://en.wikipedia.org/wiki/Standard_error
  * @param {array} array
  * @returns {int} number of standard deviation from average
- * @category Math
  * @private
  */
 const calculateStandardDeviation = function (array) {

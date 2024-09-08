@@ -1,4 +1,4 @@
-import { pipeline } from "@xenova/transformers";
+import { pipeline } from "@huggingface/transformers";
 
 /**
  * Calculate the semantic similarity between one text and a list of
@@ -10,8 +10,8 @@ import { pipeline } from "@xenova/transformers";
  * or longer passage, depending on the model being used.
  * @param {Array<string>} sentences A list of strings which will be compared
  * against the source_sentence.
- * @param {object} options
- * @param {string} options.model default="sentence-transformers/all-MiniLM-L6-v2"
+ * @param {Object} [options]
+  * @param {string} options.model default="sentence-transformers/all-MiniLM-L6-v2"
  * @param {string} options.HF_API_KEY Required https://huggingface.co/settings/tokens
  * @returns array of 0-1 similarity scores for each sentence
  * @category Relevance
@@ -55,11 +55,12 @@ export async function weighRelevanceConceptVectorAPI(
  * Rerank documents's chunks based on relevance to query,
  * based on cosine similarity of their concept vectors generated
  * by a 20MB MiniLM transformer model downloaded locally.
- * "A Complete Overview of Word Embeddings" https://www.youtube.com/watch?v=5MaWmXwxFNQ&t=323s
+ * ["A Complete Overview of Word Embeddings"](https://www.youtube.com/watch?v=5MaWmXwxFNQ&t=323s)
+ * 
  * @param {Array<string>} documents
  * @param {string} query
- * @param {Object} options
- *
+ * @param {Object} [options]
+  *
  * @returns {Promise<Array<{content: string, similarity: number}>>}
  * @category Relevance
  */
@@ -87,55 +88,6 @@ export async function weighRelevanceConceptVector(
   return sortedDocs;
 }
 
-/**
- * Text embeddings convert words or phrases into numerical vectors in a high-dimensional
- * space, where each dimension represents a semantic feature extracted by a model like
- * MiniLM-L6-v2. In this concept space, words with similar meanings have vectors that
- * are close together, allowing for quantitative comparisons of semantic similarity.
- * These vector representations enable powerful applications in natural language processing,
- * including semantic search, text classification, and clustering, by leveraging the
- * geometric properties of the embedding space to capture and analyze the relationships
- * between words and concepts.
- *
- * <img src="https://i.imgur.com/wtJqEqX.png" width="350" />
- *
- * [Text Embeddings, Classification, and Semantic Search (Youtube)](https://www.youtube.com/watch?v=sNa_uiqSlJo&t=129s)
- * @param {string|Array<string>} input
- * @param {Object} options
- * @param {number} options.batchSize default=512 - chunk size for each batch
- * @param {string} options.modelName default="Xenova/all-MiniLM-L6-v2" - The name of the model to use
- * @returns {Promise<Array<Array<number>>>}
- * @category Relevance
- */
-export async function vectorizeTextAsConcept(input, options = {}) {
-  const { batchSize = 512, modelName = "Xenova/all-MiniLM-L6-v2" } = options;
-  const texts = Array.isArray(input) ? input : [input];
-  const batches = splitArrayToChunks(texts, batchSize);
-
-  const pipe = await pipeline("feature-extraction", modelName);
-
-  const batchRequests = batches.map(async (batch) => {
-    const output = await pipe(batch, { pooling: "mean", normalize: true });
-    return output.tolist();
-  });
-
-  const batchResponses = await Promise.all(batchRequests);
-  return batchResponses.flat();
-}
-
-/**
- * Split an array into chunks
- * @param {Array} array
- * @param {number} chunkSize
- * @returns {Array<Array>}
- * @private
- */
-function splitArrayToChunks(array, chunkSize) {
-  const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize)
-    chunks.push(array.slice(i, i + chunkSize));
-  return chunks;
-}
 
 /**
  * Cosine similarity is a way to measure how similar two vectors are. To simplify, it reflects

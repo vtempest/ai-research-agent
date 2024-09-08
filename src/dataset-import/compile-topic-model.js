@@ -16,7 +16,7 @@ import wikiWordFrequency from "../../data/wiki-word-freq-325k.json";
  * 84K  words and 67K phrases in dictionary lexicon  OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories<br />
  * JSON Prefix Trie  - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text. <br /> 
  * There is <a href="https://johnresig.com/blog/javascript-trie-performance-analysis/">"unanimous consensus"</a> that Prefix Trie <a href="https://github.com/daviddwlee84/LeetCode/blob/master/Notes/DataStructure/Trie_PrefixTree.md">O(1) lookups</a> (instead of having to loop through the index for each lookup) makes it the best data type for this task.
- * @param {object} options 
+ * @param {Object} [options] 
  * @param {number} options.addJSONLineBreaks - include line breaks in JSON output for debugging
  * @param {number} options.maxSynonymsPerTerm - max synonyms per term
  * @param {boolean} options.outputJSExport - filetype js instead of json with "export"

@@ -7,7 +7,7 @@ import {splitSentences} from "../../index.js";
  *  and is dificult to parse and clean up results.
  *
  * @param {string} query search phrase 
- * @param {object} options 
+ * @param {Object} [options] 
  * @param {boolean} options.plainText default=false Return plain text instead of HTML
  * @param {number} options.summarySentenceLimit default=3 Limit summary to this many sentences
  * @param {number} options.limitSearchResults default=1 Limit number of search results

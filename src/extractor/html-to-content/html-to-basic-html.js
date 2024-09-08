@@ -8,17 +8,16 @@ import { convertHTMLSpecialChars } from "./html-special-chars.js";
  *
  * [Mozilla DOM Reference](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) <br />
  * [Source Code of Browser HTML DOM](https://chromium.googlesource.com/chromium/src/+/HEAD/third_party/blink/renderer/core/dom/) <br />
- * [How Blink Works](https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit#heading=h.v5plba74lfde) <br />
  * [RegExp JS V8 Code](https://github.com/v8/v8/blob/94cde7c7f3fffc62f621e43f65be3d517b8a9f3d/src/regexp/regexp-compiler.cc#L3827)
  * @param {string} html Any page's HTML to process
- * @param {object} options
- * @param {boolean} options.images default=true - Whether to include images
+ * @param {Object} [options]
+  * @param {boolean} options.images default=true - Whether to include images
  * @param {boolean} options.links default=true - Whether to include links
  * @param {boolean} options.videos default=true - Whether to include videos or not
  * @param {boolean} options.formatting default=true - Whether to include formatting
  * @param {string} options.url  base URL for converting relative URLs to absolute
  * @param {string} options.allowTags default="br,p,u,b,i ,em,strong,h1,h2,h3,h4, h5,h6,blockquote,
- * code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup" - Comma-separated list of allowed HTML tags
+ * code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup" - Comma-separated list of allowed HTML tags.
  * @param {string} options.allowedAttributes default="text,tag,href, src,type,width, height,id,data"
  *   List of allowed HTML attributes
  * @returns {string} basic text formatting html
@@ -172,9 +171,9 @@ export function convertHTMLToTokens(html) {
     /(<(noscript|script|style)\b[^>]*>).*?(<\/\2>)/gis,
     "$1$3"
   )
-  // .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-  // .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
-  // .replace(/<!--[\s\S]*?-->/g, '');
+  .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+  .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+  .replace(/<!--[\s\S]*?-->/g, '');
 
 
   const reHTMLInsideDataAttr =

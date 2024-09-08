@@ -15,7 +15,7 @@ import {convertWordToRootStem} from "../tokenize/word-to-root-stem.js";
  * "Topic Models" https://www.youtube.com/watch?v=yK7nN3FcgUs <br />
  * 
  * @param {string[]} sentences - Array of input sentences.
- * @param {Object} options - Configuration options for LDA.
+ * @param {Object} [options] - Configuration options for LDA.
  * @param {number} options.topicCount default=10 - Number of topics to extract.
  * @param {number} options.numberOfTermsPerTopic default=10 - Number of terms to show for each topic.
  * @param {number} options.alpha default=0.1 - Dirichlet prior on document-topic distributions.

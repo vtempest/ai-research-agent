@@ -1,7 +1,3 @@
-// try on the frontend  
-// <iframe id="dom-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
-// document.getElementById('dom-iframe').src = '/get?url=' + url;
-// document.getElementById('dom-iframe').contentWindow.document.body.innerHTML;
 
 /**
  * Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
@@ -10,13 +6,14 @@
  *  right globally</a>.
  * @async
  * @param {string} url - any domain's URL
- * @param {object} options
- * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
+ * @param {Object} [options]
+  * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
  * @param {number} options.maxRedirects default=3 - max redirects to follow
  * @param {number} options.checkBotDetection default=true - check for bot detection messages
  * @param {number} options.changeReferer default=true - set referer as google
  * @param {number} options.userAgentIndex default=0 - index of [google bot, default chrome]
- * @param {number} options.useCORSProxy default=false - use corsproxy.io to fetch url (in frontend JS)
+ * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
+ * @param {string} options.urlProxy default=false - use proxy url
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extractor
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
@@ -29,11 +26,16 @@ export async function scrapeURL(url, options = {}) {
       maxRedirects = 3,
       changeReferer = 0,
       userAgentIndex = 0,
-      useCORSProxy = 0,
+      useCORSProxy = false,
+      urlProxy = false,
+      useProxyAsBackup = true,
     } = options;
 
     if(useCORSProxy)
-      url = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      useProxy = 'https://corsproxy.io/?';
+    
+    if(urlProxy)
+      url = urlProxy + encodeURIComponent(url);
 
 
     var userAgentStrings =
@@ -126,3 +128,9 @@ function isHTMLBotDetection(html) {
 
   return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
 }
+
+
+// try on the frontend  
+// <iframe id="dom-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
+// document.getElementById('dom-iframe').src = '/get?url=' + url;
+// document.getElementById('dom-iframe').contentWindow.document.body.innerHTML;

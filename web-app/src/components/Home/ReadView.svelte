@@ -29,7 +29,7 @@
       </p>
          <p class="text-lg text-gray-500 text-center  justify-center">
           <a  class="text-lg text-gray-500 text-center justify-center " target="_blank" href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko" >
-        <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png" alt="Chrome Web Store" class="h-12" />
+        <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png" alt="Chrome Web Store" class="h-12 mx-auto" />
       </a>
     </p>
 

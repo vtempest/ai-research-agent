@@ -3,8 +3,8 @@
  * and infering acronyms, numbers, URLs, times, names, etc.
  *
  * @param {string} inputText - The text to be split into sentences.
- * @param {Object} options
- * @param {boolean} options.splitOnHtmlTags default=true - Split on HTML tags like P, DIV, UL, OL.
+ * @param {Object} [options]
+  * @param {boolean} options.splitOnHtmlTags default=true - Split on HTML tags like P, DIV, UL, OL.
  * @param {number} options.minSize default=20 - Minimum size for a sentence.
  * @param {number} options.maxSize default=600 - Maximum size for a sentence.
  * @returns {Array<string>} An array of sentences.

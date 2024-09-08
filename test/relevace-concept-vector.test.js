@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import  {weighRelevanceConceptVector,  vectorizeTextAsConcept,
+import  {weighRelevanceConceptVector,  convertTextToEmbeddingVector,
   vectorizeTextAsConceptAPI} from "..";
 
 describe("rerank similar conceptually with HF-llm", () => {
@@ -41,12 +41,12 @@ it("API - rerank similar conceptually", async () => {
   let query3 = "What does the fox say?";
 
 
-    let similarities = await vectorizeTextAsConceptAPI(query3, sampleSentences, model, apiKey);
+    let similarities = await convertTextToEmbeddingVector(query3, sampleSentences, model, apiKey);
 
     console.log(JSON.stringify(similarities, null, 2));
 
     
-    let similarities2 = await vectorizeTextAsConcept(sampleSentences, model, apiKey);
+    let similarities2 = await convertTextToEmbeddingVector(sampleSentences, model, apiKey);
 
     console.log(JSON.stringify(similarities2, null, 2));
 

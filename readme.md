@@ -1,22 +1,37 @@
 <p align="center">
-<img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg"> 
+    <img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg">
 </p>
-
 <p align="center">
-<a href="https://discord.gg/SJdBqBz3tV">
-    <img src="https://img.shields.io/discord/1130153053056684123.svg?label=Discord&logo=Discord&colorB=7289da&style=flat" alt="Join Discord"/>
-
-</a>
+    <a href="https://discord.gg/SJdBqBz3tV">
+        <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
+            alt="Join Discord" />
+    </a>
+    <img alt="GitHub Discussions"
+        src="https://img.shields.io/github/discussions/vtempest/ai-research-agent">
+    <a href="https://github.com/eduardoleao052/js-torch/pulse" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/m/vtempest/ai-research-agent" />
+    </a>
+</p>
+<p align="center">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/ai-research-agent">
+    <a href="http://makeapullrequest.com">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
+            alt="PRs Welcome">
+    </a>
+</p>
+<p align="center">
+    <a href="https://npmjs.org/package/ai-research-agent">
+        <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
+            alt="NPM badge for ai-research-agent">
+    </a>
 </p>
 
-[![NPM](https://nodei.co/npm/ai-research-agent.png?compact=true)](https://npmjs.org/package/ai-research-agent)
+
 
 ## [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
 
 ##  [Live Demo (qwksearch.com)](https://qwksearch.com/)
 
-
-* NPM Tests --  `npm run test` to run many tests custom to your data
 
 > Being is Becoming: Whatever the future of research can be, that is what it must become.
 
@@ -131,6 +146,7 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 <p align="center">
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
 </p>
+
 [suggestNextWordCompletions Docs](https://airesearch.wiki/functions/src_autocomplete_autocomplete.suggestNextWordCompletions.html)
 
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
@@ -138,16 +154,19 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 
 
 ### Further Research
-[UMAP Algorithm Overview](https://www.youtube.com/watch?v=VPq4Ktf2zJ4)
-
+* [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
 * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
 * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
 * [NLP Papers Latest Updates](https://index.quantumstat.com)
 *  [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)
 * [NLP Research Progress](https://github.com/sebastianruder/NLP-progress/)
 * [NLP Datasets](https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file) 
-* Trelis Research (2024). "Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers." July 5, 2024. https://www.youtube.com/watch?v=9QJXvNiJIG8
-*  Vasnetsov, A. (2024). "BM42: New Baseline for Hybrid Search". Qdrant Blog. https://qdrant.tech/articles/bm42/ 
-* Goodwin, D. (2024). "HUGE Google Search document leak reveals inner workings of ranking algorithm", May 28, 2024. Search Engine Land. https://searchengineland.com/google-search-document-leak-ranking-442617
+* [Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers](https://www.youtube.com/watch?v=9QJXvNiJIG8)
+* [BM42: New Baseline for Hybrid Search](https://qdrant.tech/articles/bm42/)
+* [Google Search  Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
+* [Understanding UMAP](https://pair-code.github.io/understanding-umap/)
+* [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
+
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+

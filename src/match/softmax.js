@@ -1,6 +1,4 @@
 /**
- * Calculates the Softmax of an array of numbers.
- * 
  * The <a href="https://en.wikipedia.org/wiki/Softmax_function">Softmax 
  * function</a> takes an array of arbitrary numbers and squashes it
  * to a vector of values between 0 and 1 that sum to 1, which allows the output
@@ -46,8 +44,8 @@ export function calculateProbabilitySoftmax(arr) {
     // Compute the sum of the exponentials
     const sumExps = exps.reduce((acc, val) => acc + val, 0);
   
-    // Compute the calculateSoftmax values
+    // Softmax is each exponential divided by the sum of exponentials
     const calculateSoftmaxArr = exps.map((x) => x / sumExps);
   
     return calculateSoftmaxArr;
-  }
+}

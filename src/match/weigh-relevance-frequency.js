@@ -10,7 +10,7 @@ import {tokenizeTopics} from "../../index.js";
  * 
  * @param {string} document a single document to calculate the score for
  * @param {string} query phrase to search tf and idf for each word
- * @param {object} options 
+ * @param {Object} [options] 
  * @param {number} options.saturationWeight saturationWeight controls the impact of term frequency saturation.
     It typically ranges from 1.2 to 2.0, with 1.5 being a common default value.
     As saturationWeight increases: The impact of term frequency increases (i.e., multiple occurrences of a term in a document become more significant).

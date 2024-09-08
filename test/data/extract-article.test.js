@@ -1,4 +1,4 @@
-import { extractMainContent } from '../../src/extractor/html-to-content/extract-content.js';
+import { extractMainContent } from '../../src/extractor/html-to-content/extractor1-content.js/index.js';
 
 
 async function fetchAndExtractContent(url) {

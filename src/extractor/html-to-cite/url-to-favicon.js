@@ -2,7 +2,7 @@
  * Gets favicon for any URL by parsing the HTML and looking for &lt;link rel="icon"&gt; 
  * tags and validates domain.com/favicon.ico by checking if for valid response.
  * @param {string} url
- * @param {object} options 
+ * @param {Object} [options] 
  * @returns {Promise<string|null>} Favicon URL or null if not found
  * @category Extractor
  * @example const favicons = await extractFavicon('https://github.com/') 

@@ -38,6 +38,18 @@ jobs:
         with:
           # Upload entire repository
           path: './docs/'
-      - name: Deploy to GitHub Pages
+      - name: Deploy Docs to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  test:
+    name: Run Unit Test 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # checkout the repo
+      - name: Download dependencies  # execute tests in tests/
+        run: |
+          npm install
+      - name: Execute tests  # execute tests in tests/
+        run: |
+          npm run test

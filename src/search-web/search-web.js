@@ -8,8 +8,8 @@ import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-speci
  * @async
  * @function searchWeb
  * @param {string} query - The search query string.
- * @param {object} options
- * @param {number} options.category default=0 - ["general", "news", "videos", "images",
+ * @param {Object} [options]
+  * @param {number} options.category default=0 - ["general", "news", "videos", "images",
  *  "science", "map", "music", "it", "files", "social+media"]
  * @param {number} options.recency default=0 - ["", "day", "week", "month", "year"]
  * @param {string|null} options.selectedDomain default=null - Use your custom domain SearXNG

@@ -1,6 +1,6 @@
 /**
  * Converts HTML special characters like &<>"'`&rsquo; to & escaped codes or vice versa.
- * It handles named entities, decimal numeric character references, and hexadecimal numeric character references.
+ * It handles named entities and hexadecimal numeric character references.
  *
  * @param {string} str - The string to process.
  * @param {boolean} unescape  default=true - If true, converts & codes to characters.
@@ -8,8 +8,9 @@
  * @return {string} The processed string.
  * @category Extractor
  * @example
- * convertHTMLSpecialChars('&lt;p&gt;This &amp; that &copy; 2023 &quot;Quotes&quot; &#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
- * // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
+ * var normalHTML = convertHTMLSpecialChars('&lt;p&gt;This &amp; that &copy; 2023 '+
+ * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
+ * console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
  */
 export function convertHTMLSpecialChars(str, unescape = true) {
   const entityMap = {

@@ -1,6 +1,6 @@
-import { extractContent } from "../html-to-content/html-to-content.js";
+import { extractContentAndCite } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
-import { extractPDF, isUrlPDF } from "./pdf-to-content.js";
+import { convertPDFToHTML, isUrlPDF } from "./pdf-to-content.js";
 import { scrapeURL } from "./scrape-url.js";
 
 /**
@@ -15,7 +15,6 @@ import { scrapeURL } from "./scrape-url.js";
  * @property {string} title - The title of the article
  * @property {string} source - The source or origin of the article
  * @property {number} word_count - The word count of the full text (without HTML tags)
- * @property {string[]} [timestamps] - Optional. Timestamps for video content (YouTube)
  */
 
 /**
@@ -29,8 +28,8 @@ import { scrapeURL } from "./scrape-url.js";
  * 
  * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />
  * @param {document|string} urlOrDoc - url or dom object with article content
- * @param {Object} options
- * @param {boolean} options.images default=true - include images
+ * @param {Object} [options]
+  * @param {boolean} options.images default=true - include images
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
@@ -40,7 +39,6 @@ import { scrapeURL } from "./scrape-url.js";
  */
 export async function extract(urlOrDoc, options = {}) {
   var {
-    // keyphrases = true,
     images = true,
     links = true,
     formatting = true,
@@ -62,7 +60,7 @@ export async function extract(urlOrDoc, options = {}) {
 
     if (isPdf) {
       // pdf checker
-      response = await extractPDF(url, options);
+      response = await convertPDFToHTML(url, options);
 
       // check youtube
     } else if (youtubeID) {
@@ -80,7 +78,7 @@ export async function extract(urlOrDoc, options = {}) {
         return { error: "Error in fetch", msg: html.error };
       }
       options.url = url;
-      response = extractContent(html, options);
+      response = extractContentAndCite(html, options);
     }
   } else if (typeof urlOrDoc == "object") {
     //if passing in dom object document
@@ -96,7 +94,7 @@ export async function extract(urlOrDoc, options = {}) {
 
     if (isPdf)
       // pdf checker
-      response = await extractPDF(url, {});
+      response = await convertPDFToHTML(url, {});
     if (youtubeID) {
       var { content, timestamps } = await extractYoutubeText(url);
 
@@ -104,7 +102,7 @@ export async function extract(urlOrDoc, options = {}) {
       response.timestamps = timestamps;
 
     } //pass doc to extract
-    else response = extractContent(urlOrDoc, options);
+    else response = extractContentAndCite(urlOrDoc, options);
   }
 
   if (!response.html || response.html?.length == 0) return { error: "No text" };

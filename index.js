@@ -9,18 +9,13 @@ import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
 import {
-  vectorizeTextAsConcept,
-weighRelevanceConceptVector,
-weighRelevanceConceptVectorAPI,
+  weighRelevanceConceptVector,
+  weighRelevanceConceptVectorAPI,
 } from "./src/similarity/similarity-concept.js";
-
-// core underlying functions
 
 import { convertHTMLSpecialChars } from "./src/extractor/html-to-content/html-special-chars.js";
 import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-text.js";
-
-import { extractPDF } from "./src/extractor/url-to-content/pdf-to-content.js";
-
+import { convertPDFToHTML } from "./src/extractor/url-to-content/pdf-to-content.js";
 import { weighTopicDirichletDistribution } from "./src/topic-distribution/topic-distribution.js";
 import { calculateSimilarityByCharacter } from "./src/match/compare-letters.js";
 import { suggestNextWordCompletions } from "./src/autocomplete/autocomplete.js";
@@ -29,21 +24,38 @@ import { splitSentences } from "./src/tokenize/sentences.js";
 import { searchWikipedia } from "./src/search-web/search-wikipedia.js";
 import { matchQUASAR } from "./src/match/match-quasar.js";
 import { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequency.js";
+import {
+  convertEmbeddingsToHNSW,
+  searchWithQuery,
+  getAllEmbeddings,
+  convertTextToEmbeddingVector,
+  getEmbeddingPipeline,
+  convertEmbeddingsToUMAP,
+} from "./src/graph/embeddings-to-graph.js";
 
+
+import {
+convertEmbeddingsIndexToBase64
+} from "./src/graph/save-hnsw.js";
 // Export all functions as named exports
 export {
+  convertEmbeddingsToUMAP,
+  convertEmbeddingsIndexToBase64,
+  convertEmbeddingsToHNSW,
+  searchWithQuery,
+  getAllEmbeddings,
+  getEmbeddingPipeline,
   calculateSimilarityByCharacter,
-  extractPDF,
+  convertPDFToHTML,
   extractYoutubeText,
   searchWeb,
   searchSTREAM,
   extract,
   scrapeURL,
   extractSEEKTOPIC,
-  vectorizeTextAsConcept,
-weighRelevanceConceptVector,
-weighRelevanceConceptVectorAPI,
-
+  convertTextToEmbeddingVector,
+  weighRelevanceConceptVector,
+  weighRelevanceConceptVectorAPI,
   suggestNextWordCompletions,
   tokenizeTopics,
   splitSentences,
@@ -53,5 +65,3 @@ weighRelevanceConceptVectorAPI,
   weighTopicDirichletDistribution,
   convertHTMLSpecialChars,
 };
-
-

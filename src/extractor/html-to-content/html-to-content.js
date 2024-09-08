@@ -4,56 +4,48 @@ import { convertHTMLToBasicHTML } from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
 import { extractNamedEntity } from "../html-to-cite/human-names-recognize.js";
 
-import { extractMainContent } from "./extract-content.js";
-import { Readability } from "./readability.js";
-import { extractContentHTML }  from "./readability2.js";
+import { extractContentHTML } from "./extract-content/extractor1-content.js";
+import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
 
 /**
- * Extracts the main content and cite from a document or HTML string
- * @param {string|object} documentOrHTML
- * @param {object} options
- * @returns {object} {title, author_cite, author_short, author, date, source, html}
+ * Extracts the main content and citation information from a document or HTML string
+ * @param {string|object} documentOrHTML - The document or HTML string to extract content from
+ * @param {Object} options - Optional configuration options
+ * @param {boolean} options.images default=true - Whether to include images in the extracted content
+ * @param {boolean} options.links default=true - Whether to include links in the extracted content
+ * @param {boolean} options.formatting default=true - Whether to preserve formatting in the extracted content
+ * @param {string} options.url The URL of the original document, if available, for absolutify-ing URLs
+ * @param {boolean} options.useExtractor2 default=false - false uses Mozilla Readability, true uses Postlight Mercury
+ * @returns {ExtractedContent} An object containing extracted information
+ * @throws {Error} If there's an error parsing the HTML
  * @category Extractor
  */
-export function extractContent(documentOrHTML, options = {}) {
+export function extractContentAndCite(documentOrHTML, options = {}) {
   const {
     images = true,
     links = true,
     formatting = true,
-    absoluteURLs = 1,
     url = "",
+    useExtractor2 = 1,
   } = options;
 
-  if (typeof documentOrHTML === "string") var html = documentOrHTML;
-  else var html = documentOrHTML.documentElement?.innerHTML;
+  var html =
+    typeof documentOrHTML === "string"
+      ? documentOrHTML
+      : documentOrHTML.documentElement?.innerHTML;
+
   if (!html) return { error: "No HTML found" };
 
-  var article;
-  // try {
-    var document = parseHTML(html)?.document;
-    article = new Readability(document).parse();
-    var { content, author, title, date_published } = article;
+  var document = parseHTML(html)?.document;
 
+  var content = 
+  useExtractor2
+    ? extractContentHTML2(html, options)
+    : 
+    extractContentHTML(html, options);
 
-    var content = extractContentHTML(html, options).innerHTML;
-
-
-  // } catch (e) {
-  //   return { error: "Error in Parsing" };
-  // }
-
-  var date = date_published; //parseDate(date_published)?.toISOString().split("T")?.[0];
-
-    var { author, author_cite, author_short, date, title, source } =
-      extractCite(html);
-
-    author =
-      article.author && extractNamedEntity(article.author)?.author_type
-        ? article.author
-        : author;
-    title = article.title || title;
-    date =
-      parseDate(article.date_published)?.toISOString().split("T")?.[0] || date;
+  var { author, author_cite, author_short, date, title, source } =
+    extractCite(html);
 
   var html = convertHTMLToBasicHTML(content, options);
 
@@ -67,3 +59,14 @@ export function extractContent(documentOrHTML, options = {}) {
     html,
   };
 }
+/**
+ * @typedef {Object} ExtractedContent
+ * @property {string} title - The title of the content
+ * @property {string} author_cite - The full citation for the author
+ * @property {string} author_short - A shortened version of the author's name
+ * @property {string} author - The author's name
+ * @property {string} date - The publication date
+ * @property {string} source - The source of the content
+ * @property {string} html - The extracted main content in HTML format
+ * @private
+ */

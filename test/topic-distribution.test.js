@@ -212,7 +212,7 @@ test('topic distribution Test', () => {
     Returns:
     Type: Object
     #
-    extractPDF(pdfURL, options) → {string|Object}
+    convertPDFToHTML(pdfURL, options) → {string|Object}
     Extracts formatted text from PDF with parsing of headings, page headers, footnotes, and adding linebreaks based on standard deviation of range from average text height
     Parameters:
     Name	Type	Default	Description

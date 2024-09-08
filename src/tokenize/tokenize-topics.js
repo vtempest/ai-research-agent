@@ -24,8 +24,8 @@ import {isWordCommonIgnored} from "./stopwords";
  * <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
  * 
  * @param {string} phrase
- * @param {Object} options
- * @param {Object} options.phrasesModel - remote model
+ * @param {Object} [options]
+  * @param {Object} options.phrasesModel - remote model
  * @param {Object} options.typosModel - remote model
  * @param {number} options.checkTypos - check for typos
  * @param {number} options.ignoreStopWords - ignore 300+ overused words

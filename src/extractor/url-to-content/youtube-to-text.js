@@ -5,8 +5,8 @@ import { scrapeURL } from "./scrape-url";
  * Fetch youtube.com video's webpage HTML for embedded transcript
  * if blocked, use scraper of alternative sites
  * @param {string} videoUrl
- * @param {object} options
- * @param {boolean} options.addTimestamps default=true - true to return timestamps, default true
+ * @param {Object} [options]
+  * @param {boolean} options.addTimestamps default=true - true to return timestamps, default true
  * @param {boolean} options.timeout default=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
@@ -331,22 +331,3 @@ async function fetchTranscriptTactiq(videoId, options = {}) {
 }
 
 
-
-// fetch("https://api.kome.ai/api/tools/youtube-transcripts", {
-//   "headers": {
-//     "accept": "application/json, text/plain, */*",
-//     "accept-language": "en-US,en;q=0.9",
-//     "content-type": "application/json",
-//     "priority": "u=1, i",
-//     "sec-ch-ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
-//     "sec-ch-ua-mobile": "?0",
-//     "sec-ch-ua-platform": "\"Linux\"",
-//     "sec-fetch-dest": "empty",
-//     "sec-fetch-mode": "cors",
-//     "sec-fetch-site": "same-site",
-//     "Referer": "https://kome.ai/",
-//     "Referrer-Policy": "strict-origin-when-cross-origin"
-//   },
-//   "body": "{\"video_id\":\"https://www.youtube.com/watch?v=mT01-iD2U9Q\",\"format\":true}",
-//   "method": "POST"
-// });
