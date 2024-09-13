@@ -136,7 +136,7 @@ function filterTerms(wikiTermFrequency) {
  * Zenodo. https://doi.org/10.5281/zenodo.3631674 https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset
 
  * @returns {object} 
- * @category Topic Model
+
 */
 
 export async function importTermFrequency() {

@@ -1,5 +1,5 @@
-import fs from "fs";
-import wikiWordFrequency from "../../data/wiki-word-freq-325k.json";
+import wikiWordFrequency from "../../data/wiki-word-freq-325k.json" //with { type: "json" };
+;
 
 /**
  * Compile a topic phrases model from a dictionary and Wikipedia page titles. <br />
@@ -24,7 +24,7 @@ import wikiWordFrequency from "../../data/wiki-word-freq-325k.json";
  * @param {boolean} options.sortInFirstTwoLettersTrie - sort the first words by first two letters Trie, needd for autocomplete after 2 letters typed
  * @param {number} options.minTermCharCount - min length of term to include
  * @returns {Promise<void>} 
- * @category Topic Model
+
  */
 export async function compileTopicModel(options = {}) {
   const {
@@ -41,7 +41,7 @@ export async function compileTopicModel(options = {}) {
 
   const pos_categories = ["n", "v", "r", "a", "s"]; //a and s is for adjectives
 
-  var dict = JSON.parse(fs.readFileSync("./data/dictionary-152k.json", "utf8"));
+  var dict = JSON.parse(fs.readFileSync("./data/dictionary-index-152k.json", "utf8"));
 
   var wikiTopPages = JSON.parse(
     fs.readFileSync("./data/wiki-pages-200k.json", "utf8")
@@ -75,8 +75,8 @@ export async function compileTopicModel(options = {}) {
     if (wpt_words.join().length < minTermCharCount) continue;
 
     var wikiObj = addWikiPageTitles
-      ? { w: pageTitle, cat: 50 }
-      : { w: 1, cat: 50 };
+      ? { w: pageTitle, cat: 5 }
+      : { w: 1, cat: 5 };
     wikiObj.n = wpt_phraseSize > 1 ? wpt_nextWords : "";
 
     if (!wordsPhrasesTree[wpt_firstWord]) wordsPhrasesTree[wpt_firstWord] = [];
@@ -245,7 +245,7 @@ export async function compileTopicModel(options = {}) {
 
  * @param {string} query phrase to search wiki-idf for each word
  * @returns {number} score for term specificity 0-12~
- * @category Topic Model
+
  */
 export function weightWikiWordSpecificity(query) {
   const totalWikiPages = 6000000;
@@ -274,4 +274,4 @@ export function weightWikiWordSpecificity(query) {
   return phraseScore;
 }
 
-await compileTopicModel();
+// await compileTopicModel();

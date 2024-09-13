@@ -1,20 +1,18 @@
 /**
- * Jaro-Winkler Similarity: An extension of the Jaro Similarity algorithm, which measures
- * the similarity between two strings, taking into account the common characters and
- * their positions. It is often used in record linkage and data cleansing to improve
+ * Measures similarity between two strings, taking into account the common characters and
+ * their positions. Jaro-Winkler is often used in record linkage and data cleansing to improve
  * the accuracy of string matching, particularly for names and addresses, by giving
  * more weight to the common prefix of the strings and penalizing longer string differences. 
  * It is more optimal for varied text than 
  * [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which is better for similar text.
  * 
  * <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" > 
- * @author [Matthew Jaro, William Winkler (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
+ * @author [Jaro, M., Winkler, W. (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
  * @param {string} s1 First string
  * @param {string} s2 Second string
  * @returns {number} Jaro-Winkler similarity score 
- * @category Relevance
  */
-export function calculateSimilarityByCharacter(s1, s2) {
+export function weighSimilarityByCharacter(s1, s2) {
   if (s1 === s2) return 1;
 
   if (s1.length > s2.length) [s1, s2] = [s2, s1];

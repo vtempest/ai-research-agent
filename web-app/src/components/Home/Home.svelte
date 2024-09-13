@@ -7,11 +7,14 @@
   import ActionsPanel from "./ActionsPanel.svelte";
   import PricingPlan from "./PricingPlan.svelte";
   import { APP_NAME } from "$lib/config/config";
-  import Graph from "./Graph.svelte";
+  // import Graph from "./Graph.svelte";
 
-  import { convertHTMLSpecialChars } from "../../../..";
+  import { convertHTMLSpecialChars,
+     extractSEEKTOPIC } from "$airesearchagent";
 
-  import { extractSEEKTOPIC } from "../../../..";
+  // Props from URL ?q=...
+  export let data = {};
+  let { query, category, time } = data;
 
   // State variable
   let phrasesModel = null;
@@ -19,6 +22,9 @@
   let currentArticle = null;
   let activeSearchController = null;
   let selectedResultIndex = -1;
+  let searchText = "";
+  let optionAutoSummarize = true;
+  let actionsPanelComponent = null;
 
   // Constants
   const SCROLL_DISTANCE = 100;
@@ -31,6 +37,12 @@
   onMount(async () => {
     await initializephrasesModel();
     setupKeyboardListener();
+
+    if (query) {
+      searchText = query;
+
+      handleSearchSubmit(query);
+    }
   });
 
   onDestroy(() => {
@@ -133,6 +145,8 @@
     }
   }
 
+  let iframe = null;
+
   /**
    * Fetch and display an article
    * @param {string} articleUrl - The URL of the article to fetch
@@ -145,17 +159,56 @@
       );
       var newArticle = await response.json();
 
+ 
+
       if (newArticle.error || !newArticle.html) {
-        throw new Error(newArticle.error || "Empty article content");
+        // Implement fallback method using an invisible iframe
+              const iframeId = 'article-iframe';
+               iframe = document.getElementById(iframeId);
+              const readView = document.querySelector('.read-view');
+              
+              if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = iframeId;
+                iframe.style.cssText = 'width:100%;height:100%;border:0;';
+                readView.innerHTML = '';
+                readView.appendChild(iframe);
+              }
+              iframe.src = articleUrl;
+
+              // Wait for the iframe to load
+              iframe.onload = () => {
+                try {
+                  var iframeContent = iframe.contentWindow.document.body.innerHTML;
+                  iframeContent = convertHTMLSpecialChars(iframeContent);
+                  newArticle = { source: "html", html: iframeContent };
+                  currentArticle = newArticle;
+                  updateArticleView();
+                  summarizeArticle();
+                  return;
+                } catch (iframeError) {
+                  console.error("Error accessing iframe content:", iframeError);
+                  currentArticle = null;
+                }
+              };
+
+      } else {
+
+        // hide the iframe
+        currentArticle = newArticle;
+
+        updateArticleView();
+        selectedResultIndex = index;
+        if (iframe) {
+          iframe.remove();
+          iframe = null;
+        }
+
+        // Run summarize AI function
+        setTimeout(() => {
+          summarizeArticle();
+        }, 200);
       }
-
-      currentArticle = newArticle;
-
-      updateArticleView();
-      selectedResultIndex = index;
-
-      // Run summarize AI function
-      summarizeArticle();
     } catch (error) {
       console.error("Error fetching article:", error);
       currentArticle = null;
@@ -257,15 +310,11 @@
    * Run the summarize AI function on the current article
    */
   function summarizeArticle() {
-    if (currentArticle) {
-      // Assuming the summarize function is available in the ActionsPanel component
-      const actionsPanelComponent = document.querySelector(
-        "svelte\\:component[this=ActionsPanel]"
-      );
-      if (actionsPanelComponent && actionsPanelComponent.__svelte_component__) {
-        actionsPanelComponent.__svelte_component__.summarize();
-      }
-    }
+    if (!currentArticle) return;
+
+    // document.querySelector("#ai-generate-btn").click()
+    actionsPanelComponent.generateAISummary()
+
   }
 </script>
 
@@ -294,7 +343,7 @@
       <div class="h-full flex flex-col shadow-md p-1">
         <!-- Search bar at the top of the sidebar -->
         <div class="border-b border-gray-200">
-          <SearchInput handleSubmit={handleSearchSubmit} {phrasesModel} />
+          <SearchInput handleSubmit={handleSearchSubmit} {phrasesModel} {searchText} />
         </div>
 
         <!-- Search results  -->
@@ -312,8 +361,17 @@
                     ' outline-slate-300 hover:shadow-xl hover:-translate-y-1'}"
                   on:click={() => fetchAndDisplayArticle(result.url, index)}
                 >
-                  <div class="text-md font-medium mb-0 text-slate-600">
-                    {convertHTMLSpecialChars(result.title)}
+                  <div class="flex justify-between items-top mb-1">
+                    <div class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2">
+                      {convertHTMLSpecialChars(result.title)}
+                    </div>
+                    <a href={result.url} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-700 flex-shrink-0" title="Open in new tab">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
                   </div>
                   <span class="text-sm inline truncate text-blue-900">
                     {result.url
@@ -338,13 +396,17 @@
 
     <!-- ReadView (center panel) -->
     <Pane size={45} snapSize={10}>
-      <!-- <ReadView selectedArticle={currentArticle} /> -->
-      <Graph />
+      <ReadView selectedArticle={currentArticle} />
     </Pane>
+
+    <!-- GRAPH 
+    <Pane size={45} snapSize={10}>
+      <Graph />
+    </Pane> -->
 
     <!-- ActionsPanel (right panel) -->
     <Pane size={35} snapSize={10}>
-      <ActionsPanel selectedArticle={currentArticle} />
+      <ActionsPanel  bind:this={actionsPanelComponent} selectedArticle={currentArticle} />
     </Pane>
   </Splitpanes>
 </main>

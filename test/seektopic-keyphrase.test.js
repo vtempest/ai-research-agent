@@ -10,7 +10,7 @@ var phrasesModel = JSON.parse(
 // //check for typos
 var typosModel = JSON.parse(
   fs.readFileSync("./data/misspelled-typos-8k.json", "utf8")
-);
+); 
 
 test("get top sentences specific to a query", async () => {
     let urls = [

@@ -1,27 +1,9 @@
 import { describe, it, expect } from "vitest";
 
-import  {weighRelevanceConceptVector,  convertTextToEmbeddingVector,
-  vectorizeTextAsConceptAPI} from "..";
+import  {convertTextToEmbedding} from "../index.js";
 
 describe("rerank similar conceptually with HF-llm", () => {
-  it("LOCAL - rerank similar conceptually", async () => {
-    // Example usage
-    const documents = [
-      "The quick brown fox jumps over the lazy dog",
-      "Lorem ipsum dolor sit amet",
-      "foxes are red",
-      "foxes are not blue",
-      "foxes eat hamsters",
-      "JavaScript is a programming language",
-    ];
-    const query2 = "What does the fox say?";
 
-    const sortedDocs = await weighRelevanceConceptVector(documents, query2);
-
-    console.log("Most relevant documents:", sortedDocs);
-
-    expect(typeof sortedDocs).toBe("object");
-  }, 100000)
 
 it("API - rerank similar conceptually", async () => {
   
@@ -41,12 +23,12 @@ it("API - rerank similar conceptually", async () => {
   let query3 = "What does the fox say?";
 
 
-    let similarities = await convertTextToEmbeddingVector(query3, sampleSentences, model, apiKey);
+    let similarities = await convertTextToEmbedding(query3, sampleSentences, model, apiKey);
 
     console.log(JSON.stringify(similarities, null, 2));
 
     
-    let similarities2 = await convertTextToEmbeddingVector(sampleSentences, model, apiKey);
+    let similarities2 = await convertTextToEmbedding(sampleSentences, model, apiKey);
 
     console.log(JSON.stringify(similarities2, null, 2));
 

@@ -1,5 +1,5 @@
 
-import {isWordCommonIgnored} from "../tokenize/stopwords";
+import {isWordCommonIgnored} from "../tokenize/stopwords.js";
 
 /**
  * Extracts noun-based edge grams from a given set of terms. This function is crucial
@@ -19,7 +19,6 @@ import {isWordCommonIgnored} from "../tokenize/stopwords";
  * @param {number} minWordLength - The minimum length a word should have to be considered in the n-gram.
  * @param {number} sentenceNumber - The current sentence number being processed. Used to track which sentences contain the n-gram.
  * @returns {Object<number, Object<string, number[]>>} The updated nGrams object with newly extracted n-grams.
- * @category Topics
  * @example
  * let terms = [["The", 1], ["quick", 2], ["brown", 2], ["fox", 3], ["jumps", 4]];
  * let nGrams = {};

@@ -8,7 +8,7 @@
  * https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains
  * @param {string} domain 
  * @returns {string} rootDomain 
- * @category Extractor
+ 
  */
 export function convertURLToDomain(domain) {
   var tldRegExp = new RegExp(

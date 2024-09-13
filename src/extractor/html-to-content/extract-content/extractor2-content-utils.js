@@ -308,7 +308,7 @@ function paragraphize(node, document, br = false) {
       sibling = nextSibling;
     }
 
-    node.parentNode.replaceChild(p, node);
+    node.parentNode?.replaceChild(p, node);
     node.remove();
     return document;
   }
@@ -349,7 +349,7 @@ function convertNodeTo(node, document, tag = "p") {
   newElement.innerHTML = html;
   Object.keys(attrs).forEach((key) => newElement.setAttribute(key, attrs[key]));
 
-  node.parentNode.replaceChild(newElement, node);
+  node.parentNode?.replaceChild(newElement, node);
   return document;
 }
 

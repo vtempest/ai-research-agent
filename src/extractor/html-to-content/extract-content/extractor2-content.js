@@ -13,7 +13,7 @@ import {
   linkDensity,
   removeUnlessContent,
   nodeIsSufficient,
-} from "./extractor2-content-utils";
+} from "./extractor2-content-utils.js";
 
 /**
  *  ### HTML-to-Main-Content Extractor #2
@@ -65,9 +65,15 @@ export function extractContentHTML2(html, opts) {
     ...opts,
   };
 
+  
+
   const { document } = parseHTML(html);
 
-  var title = document.querySelector("title").textContent.trim();
+  if (!document) return;
+
+  
+
+  var title = document.querySelector("title")?.textContent.trim();
 
   // Cascade through our extraction-specific opts in an ordered fashion,
   // turning them off as we try to extract content.

@@ -1,22 +1,35 @@
 <p align="center">
     <img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg">
+
+
+
 </p>
 <p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
         <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
             alt="Join Discord" />
     </a>
+    <a href="https://github.com/vtempest/ai-research-agent/discussions">
     <img alt="GitHub Discussions"
         src="https://img.shields.io/github/discussions/vtempest/ai-research-agent">
+    </a>
     <a href="https://github.com/eduardoleao052/js-torch/pulse" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/m/vtempest/ai-research-agent" />
     </a>
 </p>
 <p align="center">
+    <a href="https://npmjs.org/package/ai-research-agent">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dy/ai-research-agent">
+    </a>
+    <a href="https://github.com/vtempest/ai-research-agent/actions/workflows/static.yml">
+    <img src="https://github.com/vtempest/ai-research-agent/actions/workflows/static.yml/badge.svg" alt="Build Status">
+    </a>
     <a href="http://makeapullrequest.com">
         <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
             alt="PRs Welcome">
+    </a>
+    <a href="https://codespaces.new/vtempest/ai-research-agent">
+    <img src="https://github.com/codespaces/badge.svg" width="150" height="20">
     </a>
 </p>
 <p align="center">
@@ -24,16 +37,26 @@
         <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
             alt="NPM badge for ai-research-agent">
     </a>
+    
+</p>
+
+<p align="center">
+    Being is Becoming<br />
+    Whatever the future of research can be,<br /> 
+    That is what it must become.<br />
+    If AI is Humanity's Last Invention, <br />
+    Then Vector Space is the Final Frontier.<br />
 </p>
 
 
 
-## [Javascript API Docs (airesearch.wiki) ](https://airesearch.wiki/)
-
-##  [Live Demo (qwksearch.com)](https://qwksearch.com/)
 
 
-> Being is Becoming: Whatever the future of research can be, that is what it must become.
+### [Javascript Docs (airesearch.wiki) ](https://airesearch.wiki/)
+
+### [Live Demo (qwksearch.com)](https://qwksearch.com/)
+
+
 
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
@@ -80,18 +103,42 @@
 
 SEEKTOPIC can be used to find unique, domain-specific keyphrases using noun Ngrams.  The user can click on keyphrases or LLM can suggest questions based on them. The user can see highlighted just the most important sentences that centralize and tie in the core topics. It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels. This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.
 
-1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc.
-2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found.
-3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art"
-4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases 
-5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF.  Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" which can help build category label classifiers.  We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.
-6. Pass to the next layer only a cut  of top keyphrases sorted by frequency ^ word count
-7. Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link 
-8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence. There's also random jumps to prevent stuck in a loop around same sentences.
-9. Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph centrality 
-10. Returns Top Sentences (and  keyphrases for each sentence) and Top Keyphrases (and which sentences for each keyphrase). 
-11. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank. 
-
+SEEKTOPIC extracts unique, domain-specific key phrases from a document using noun 
+ n-grams and ranks sentences based on their centrality to the most frequently 
+ referenced key phrase concepts,  enabling efficient extraction of 
+ domain-specific content and provides a flexible framework for summarization.
+ 
+ 1. Sentence Segmentation: Split the text into sentences, accounting for 
+    common abbreviations, numbers, URLs, and other exceptions.
+ 2. Tokenization and Phrase Extraction: Employ a Wiki Phrases tokenizer to 
+    identify wiki topics, phrases, and nouns. This includes spell-checking 
+    and root word verification using Porter Stemmer.
+ 3. Noun N-gram Extraction: Generate noun edge-grams, allowing for stop words 
+    in the middle (e.g., "state of the art").
+ 4. Key Phrase Consolidation: Merge smaller n-grams that are subsets of 
+    larger ones by comparing weights.
+ 5. Domain Specificity Calculation: Determine named entities and phrase 
+    domain specificity using WikiIDF. This rewards unique key phrases 
+    specific to the document's field (e.g., "endocrinology" in medical texts 
+    or "thou shall" in religious texts).
+ 6. Key Phrase Filtering: Select top key phrases based on a combination of 
+    frequency and word count.
+ 7. Graph Construction: Create a double-ring weighted graph with key phrases 
+    in the central ring and sentences in the outer ring. Assign weights to 
+    links based on concept usage probability.
+ 8. Sentence Weighting: Apply TextRank algorithm to weight sentences, 
+    identifying those that centralize and connect key phrase concepts most 
+    referenced by other sentences. This process, based on TextRank and 
+    PageRank, includes random surfing and jumping to avoid loops.
+ 9. Top Results Selection: Select top sentences and key phrases based on 
+    overall weight and graph centrality, using either a fixed number or 
+    percentage for larger documents.
+ 10. Output Generation: Return top sentences (with associated key phrases) 
+     and top key phrases (with associated sentences).
+ 11. Dynamic Reranking: If a user interacts with a key phrase or if there's a 
+     search query leading to the document, compare query similarity to key 
+     phrases, heavily weight the most similar key phrase, and reapply 
+     TextRank from step 8.
 
 #### 🌍📖 WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
@@ -154,6 +201,7 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 
 
 ### Further Research
+* [Debate on Graph: a Flexible and Reliable Reasoning Framework for Large Language Models](https://arxiv.org/html/2409.03155v1)
 * [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
 * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
 * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)

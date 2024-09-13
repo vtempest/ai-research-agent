@@ -1,304 +1,64 @@
 {
   "url": "https://vtempest.github.io/ai-research-agent/docs",
-  "title": "AI Research Agent - Docs Home",
-  "word_count": 2151,
+  "title": "404",
+  "word_count": 104,
   "topSentences": [
     {
-      "text": "Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or Anthropic API Key and suggest follow-ups 🚜📜 Tractor the Text Extractor Extract URL or HTML to main content with Readability or Postlight Parser, which is an improved version with 100+ custom adapters for major websites Strips to basic HTML for reading mode or saving research notes Youtube - get full transcript for video if detected a youtube video PDF - Extracts formatted text from PDF with",
-      "index": 3,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "research base wikipedia",
-        "tests custom data future research",
-        "reading mode saving research youtube",
-        "wiki tokenizer extract wiki nouns",
-        "saving research youtube transcript video",
-        "basic html reading mode saving",
-        "groq llama openai anthropic key",
-        "extractor extract url html main",
-        "lay foundation llm research",
-        "research nlp papers latest",
-        "version 100 custom",
-        "version wordnet multiple"
-      ],
-      "weight": 75
-    },
-    {
-      "text": "Tokening by word can often have a meaning widely different than if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings.",
-      "index": 43,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "frequency word count",
-        "wiki tokenizer extract wiki nouns",
-        "sorting words lookup word tokenize",
-        "word like google search",
-        "extractor extract url html main",
-        "know words meanings quasar",
-        "context split words led zeppelin",
-        "common words like year",
-        "words english wikipedia",
-        "tokening word meaning"
-      ],
-      "weight": 71
-    },
-    {
-      "text": "84K words and 67K phrases in dictionary lexicon OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories JSON Prefix Trie - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.",
-      "index": 27,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "frequency word count",
-        "concept vector numbers llm concept",
-        "numbers llm concept space cosine similarity",
-        "sorting words lookup word tokenize",
-        "concept categories json prefix trie",
-        "word like google search",
-        "know words meanings quasar",
-        "context split words led zeppelin",
-        "common words like year",
-        "lexicon dictionary",
-        "tokening word meaning",
-        "version 100 custom",
-        "version wordnet multiple"
-      ],
-      "weight": 62
-    },
-    {
-      "text": "It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found. Extract Noun Edgegrams.",
-      "index": 11,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "frequency word count",
-        "wiki tokenizer extract wiki nouns",
-        "sorting words lookup word tokenize",
-        "word like google search",
-        "extractor extract url html main",
-        "spelling typos uses porter stemmer",
-        "tokening word meaning"
-      ],
-      "weight": 61
-    },
-    {
-      "text": "parsing of linebreaks, page headers, footnotes, and adding infer headings based on standard deviation from average text height Cite - Extract author, date, source, and title from HTML using meta tags and common class names.",
+      "text": "GitHub Status — @githubstatus",
       "index": 4,
       "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "wiki tokenizer extract wiki nouns",
-        "basic html reading mode saving",
-        "extractor extract url html main",
-        "standard deviation average",
-        "starting author accounting affixes"
+        "read documentation information github"
       ],
-      "weight": 60
+      "weight": 501
     },
     {
-      "text": "Examples are \"white house\" or \"state of the art\" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ \"'Cause you know sometimes words have two meanings.\" QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp Search document_text for all words of search_term ignoring casing except treat \"words in quotes\" as if a single word like in Google search.",
-      "index": 45,
+      "text": "Read the full documentation for more information about using GitHub Pages .",
+      "index": 3,
       "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "frequency word count",
-        "sorting words lookup word tokenize",
-        "word like google search",
-        "know words meanings quasar",
-        "context split words led zeppelin",
-        "common words like year",
-        "words english wikipedia",
-        "tokening word meaning",
-        "middle like state of the art",
-        "white house state of the art"
+        "read documentation information github"
       ],
-      "weight": 60
+      "weight": 499
     },
     {
-      "text": "🤖🔎 STREAM: Search with Top Result Extraction & Answer Model Search Web for query via metasearch of major engines or your custom data Extract text of top results with Tractor the Text Extractor.",
+      "text": "File not found The site configured at this address does not contain the requested file.",
+      "index": 0,
+      "keyphrases": [],
+      "weight": 0
+    },
+    {
+      "text": "If this is your site, make sure that the filename case matches the URL as well as any file permissions.",
       "index": 1,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "tests custom data future research",
-        "wiki tokenizer extract wiki nouns",
-        "extractor extract url html main",
-        "medical data endocrinology religion thou",
-        "version 100 custom",
-        "result extraction"
-      ],
-      "weight": 59
+      "keyphrases": [],
+      "weight": 0
     },
     {
-      "text": "Pass to the next layer only a cut of top keyphrases sorted by frequency ^ word count Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences.",
-      "index": 15,
+      "text": "For root URLs (like http://example.com/ ) you must provide an index.html file.",
+      "index": 2,
       "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "frequency word count",
-        "concept vector numbers llm concept",
-        "numbers llm concept space cosine similarity",
-        "sorting words lookup word tokenize",
-        "concept categories json prefix trie",
-        "word like google search",
-        "frequencies baseline inverse frequency",
-        "relevance inference frequency",
-        "probability node ranking",
-        "spelling typos uses porter stemmer",
-        "tokening word meaning"
+        "root urls like http example"
       ],
-      "weight": 59
-    },
-    {
-      "text": "Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns.",
-      "index": 10,
-      "keyphrases": [
-        "extract word words pairings",
-        "root word original word found extract",
-        "concept vector numbers llm concept",
-        "numbers llm concept space cosine similarity",
-        "wiki tokenizer extract wiki nouns",
-        "extractor extract url html main"
-      ],
-      "weight": 58
-    },
-    {
-      "text": "$$\\text{score}(D,Q) = \\sum_{i=1}^{N} \\text{Wiki-IDF}(q_i) \\times \\frac{f(q_i, D) \\cdot (k_1 + 1)}{f(q_i, D) + k_1 \\cdot \\left(1 - b + b \\cdot \\frac{|D|}{\\text{avgdl}}\\right)}$$ WikiIDF Term Specificity Statistics Metadata Phrase Starter Words and Single Words: 104556 Total Terms: 204169 Dict single words: 84493 Dict phrases: 67444 All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin",
-      "index": 40,
-      "keyphrases": [
-        "extract word words pairings",
-        "wikipedia idf baseline idf average",
-        "wiki tokenizer extract wiki nouns",
-        "sorting words lookup word tokenize",
-        "know words meanings quasar",
-        "context split words led zeppelin",
-        "common words like year",
-        "idf average docs idf uniqueness",
-        "frequencies baseline inverse frequency",
-        "idf uniqueness average public specific",
-        "common terms idf",
-        "words english wikipedia",
-        "idf scores doc chunks",
-        "specificity statistics metadata"
-      ],
-      "weight": 57
+      "weight": 0
     }
   ],
   "keyphrases": [
     {
-      "sentences": "43,11,27,1,3,4,10,15,31,35,40,44,45",
-      "keyphrase": "extract word words pairings",
+      "sentences": "2",
+      "keyphrase": "root urls like http example",
+      "words": 5,
+      "weight": 353
+    },
+    {
+      "sentences": "3,4",
+      "keyphrase": "read documentation information github",
       "words": 4,
-      "weight": 4599
-    },
-    {
-      "sentences": "11,27,43,1,3,4,10,15,45",
-      "keyphrase": "root word original word found extract",
-      "words": 5,
-      "weight": 3481
-    },
-    {
-      "sentences": "15,27,11,28,42,43,45",
-      "keyphrase": "frequency word count",
-      "words": 3,
-      "weight": 733
-    },
-    {
-      "sentences": "2,10,15,19,24,22,27,37,50",
-      "keyphrase": "concept vector numbers llm concept",
-      "words": 5,
-      "weight": 688
-    },
-    {
-      "sentences": "2,10,15,19,24,22,27,36,37,50",
-      "keyphrase": "numbers llm concept space cosine similarity",
-      "words": 5,
-      "weight": 651
-    },
-    {
-      "sentences": "19,0,3,24,23,25,28,31,34,51,52,50",
-      "keyphrase": "research base wikipedia",
-      "words": 3,
-      "weight": 646
-    },
-    {
-      "sentences": "0,1,3,13,19,24,23,50",
-      "keyphrase": "tests custom data future research",
-      "words": 5,
-      "weight": 604
-    },
-    {
-      "sentences": "3,0,19,24,23,50",
-      "keyphrase": "reading mode saving research youtube",
-      "words": 5,
-      "weight": 598
-    },
-    {
-      "sentences": "34,51,19,25,28,31,52,36,37,40,42,50",
-      "keyphrase": "wikipedia idf baseline idf average",
-      "words": 5,
-      "weight": 532
-    },
-    {
-      "sentences": "10,1,3,4,11,21,40,43",
-      "keyphrase": "wiki tokenizer extract wiki nouns",
-      "words": 5,
-      "weight": 523
+      "weight": 225
     }
   ],
   "sentences": [
-    "Home JS API Docs Demos Autocomplete Server Demo Sample Output NPM Tests -- npm run test to run many tests custom to your data Being is Becoming: Whatever the future of research can be, that is what it must become.",
-    "🤖🔎 STREAM: Search with Top Result Extraction & Answer Model Search Web for query via metasearch of major engines or your custom data Extract text of top results with Tractor the Text Extractor.",
-    "SEEKTOPIC: Extract Keyphrase Topics and Top Sentences that centralize those topics Rerank documents's chunks based on relevance to query, using embeddings by convert text to concept vector of numbers within LLM \"concept space\", and cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.",
-    "Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or Anthropic API Key and suggest follow-ups 🚜📜 Tractor the Text Extractor Extract URL or HTML to main content with Readability or Postlight Parser, which is an improved version with 100+ custom adapters for major websites Strips to basic HTML for reading mode or saving research notes Youtube - get full transcript for video if detected a youtube video PDF - Extracts formatted text from PDF with",
-    "parsing of linebreaks, page headers, footnotes, and adding infer headings based on standard deviation from average text height Cite - Extract author, date, source, and title from HTML using meta tags and common class names.",
-    "Validates human name from author string to check against common list of 3k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed. 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context This can be used to find unique, domain-specific keyphrases using noun Ngrams.",
-    "The user can click on keyphrases or LLM can suggest questions based on them.",
-    "The user can see highlighted just the most important sentences that centralize and tie in the core topics.",
-    "It is possible to vectorize and compare the dot product similarity of query to keyphrases which are then mapped to parts of the document like section labels.",
-    "This is more in line with how humans think of article organization into section headings and lead sentences which tie in concepts from others.",
-    "Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns.",
-    "It checks for spelling typos and uses Porter Stemmer to check root words if original word is not found. Extract Noun Edgegrams.",
-    "Stop words are allowed in the middle like \"state of the art\" Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF.",
-    "Domains-specific examples in medical data would be \"endocrinology\" or in religion it is \"thou shall\" which can help build category label classifiers.",
-    "We can find repeated phrases that are unique to that document's field, as opposed to common phrases in all docs.",
-    "Pass to the next layer only a cut of top keyphrases sorted by frequency ^ word count Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses that concept on the outer ring and give each link weights to determine probability of going to that link Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie together keyphrase concepts refered to most by other sentences.",
-    "Based on the TextRank & PageRank algorithms, it randomly surfs links to nodes to find probability of being at that node, thus ranking influence.",
-    "There's also random jumps to prevent stuck in a loop around same sentences.",
-    "Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph centrality Returns Top Sentences (and keyphrases for each sentence) and Top Keyphrases (and which sentences for each keyphrase).",
-    "If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything from step #8 TextRank. 🌍📖 WORLD: Wikipedia Outline Relational Lexicon & Dictionary Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents.",
-    "Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.",
-    "If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page.",
-    "These can serve as topic labels, keywords, and suggestions for LLM followup questions.",
-    "Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations.",
-    "These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.",
-    "240K total words & phrases, first 117K first-word or single words to check every token against. 100K Wikipedia Page Titles and links - Wikipedia most popular pages titles.",
-    "Also includes domain specificity score and what letters should be capital.",
-    "84K words and 67K phrases in dictionary lexicon OpenEnglishWordNet, a better updated version of Wordnet - multiple definitions per term, 120k definitions, 45 concept categories JSON Prefix Trie - arranged by sorting words and phrases for lookup by first word to tokenize by word, then find if it starts a phrase based on entries, for Phrase Extraction from a text.",
-    "There is \"unanimous consensus\" that Prefix Trie O(1) lookups (instead of thaving to loop through the index for each lookup) makes it the best data type for this task. 📈📉 WRITFAT: Weight Relevance by Inference of Topics and Frequency Averages for Terms Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents.",
-    "WikiBM25 solves the need to pass in all docs to compute against all documents in a database.",
-    "The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all.",
-    "These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.",
-    "Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific.",
-    "They can score a single doc at a time to find the weight each word in query gets.",
-    "Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.",
-    "Example: Given a query \"Superbowl wins by year\" we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domains-specific.",
-    "This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score. LLM RAG Chunk to Query Similarity - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query.",
-    "Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also performs worse than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks.",
-    "We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph.",
-    "WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand.",
-    "$$\\text{score}(D,Q) = \\sum_{i=1}^{N} \\text{Wiki-IDF}(q_i) \\times \\frac{f(q_i, D) \\cdot (k_1 + 1)}{f(q_i, D) + k_1 \\cdot \\left(1 - b + b \\cdot \\frac{|D|}{\\text{avgdl}}\\right)}$$ WikiIDF Term Specificity Statistics Metadata Phrase Starter Words and Single Words: 104556 Total Terms: 204169 Dict single words: 84493 Dict phrases: 67444 All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin",
-    "alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.",
-    "Total Terms (frequency> =32) : 324896 Filesize (JSON, frequency> =32) : 4MB Total Articles (Wiki-en-2020) : 5,989,879 Autocomplete & Query To Topic Phrase Tokenization Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown.",
-    "Tokening by word can often have a meaning widely different than if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings.",
-    "Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency.",
-    "Examples are \"white house\" or \"state of the art\" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ \"'Cause you know sometimes words have two meanings.\" QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp Search document_text for all words of search_term ignoring casing except treat \"words in quotes\" as if a single word like in Google search.",
-    "Uses negative lookaheads (?= bar(?=bar) to find the 1st \"bar\" and ignore second.",
-    "Single line function that can be used anywhere: var document_text = ` Ask not what your country can do for you, ask what you can do for your country.",
-    "There is nothing to fear but fear itself.",
-    "`; var search_query = ` \"Ask not\" \"but fear itself\" nothing`; var isFound = new RegExp(\"(?=.*\" + search_query .match(/\"([^\"]+)\"|[\\w]+/gi) .join(\")(?=.*\") .replace(/\\\"/g, \"\") + \").+\",\"ig\" ).",
-    "test(document_text.replace(/\\n/g, \" \")); Wikipedia Search API Function to query phrase in Wikipedia Search API and return page titles, images and first few sentences of each result. Wikipedia Search API has complex documentation and is dificult to parse and clean up results. Further Research NLP Papers Latest Updates Storm - LLM-powered Knowledge Curation System - Install Locally Anthropic Persuation Overview NLP Research Progress \"NLP Datasets\" https://github.",
-    "com/niderhoff/nlp-datasets?tab=readme-ov-file Mikhail Galkin, & Valentin Malykh. (2020). Wikipedia TF-IDF Dataset Release (v1.0).",
-    "Zenodo. https://doi.org/10.5281/zenodo.3631674 https://github.com/SmartDataAnalytics/Wikipedia_TF_IDF_Dataset Wikimedia (2024)."
+    "File not found The site configured at this address does not contain the requested file.",
+    "If this is your site, make sure that the filename case matches the URL as well as any file permissions.",
+    "For root URLs (like http://example.com/ ) you must provide an index.html file.",
+    "Read the full documentation for more information about using GitHub Pages .",
+    "GitHub Status — @githubstatus"
   ]
 }

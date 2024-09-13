@@ -1,4 +1,0 @@
-User-agent: baidu
-crawl-delay: 1
-User-agent: *
-Disallow:

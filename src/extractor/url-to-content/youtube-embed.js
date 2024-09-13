@@ -44,7 +44,7 @@
  * href="https://developers.google.com/youtube/iframe_api_reference">YouTube IFrame Player API</a>
  *  in a div element with the specified ID.
  * @returns {YouTubePlayer} An object  containing the YouTube API functionality.
- * @category Extractor
+ 
  * @example 
  * // <div id="player"></div>
   const YT = embedYoutubePlayer();

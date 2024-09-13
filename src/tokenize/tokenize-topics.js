@@ -1,28 +1,22 @@
-import {convertWordToRootStem} from "./word-to-root-stem";
-import {isWordCommonIgnored} from "./stopwords";
-
+import {stemWordToRoot} from "./word-to-root-stem.js";
+import {isWordCommonIgnored} from "./stopwords.js";
 /**
  * @typedef {Object} Token
  * @property {number} termCategory - The category of the term
  * @property {number} uniqueness - The uniqueness score of the term
  * @property {string} term - The actual term or phrase
  */
-
-
-
 /**
- * Query Resolution to Phrase & Topic Tokenization -
- * returns a list of phrases that are found in Wiki Titles/ dictionary phrases World Model 
- * that match the input phrase, or just the single word if found
- * Tokening by word can often have a meaning widely different than if it is part of a phrase, 
- * so it is better to extract phrases by first-word next-words pairings. Search results will be
+ * ### Convert Text Query to Topic Phrase Tokens
+ * 
+ * Returns a list of phrases that are found in Wiki Titles/ dictionary phrases World Model 
+ * that match the input phrase, or just the single word if found. Search results will be
  *  more accurate if we infer likely phrases and search for those words occuring together and
  *  not just split into words and find frequency. Examples are "white house" or "state of the art"
  *  which should be searched as a phrase but would return different context if split into words.
  *  As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
  * 
  * <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
- * 
  * @param {string} phrase
  * @param {Object} [options]
   * @param {Object} options.phrasesModel - remote model
@@ -31,9 +25,9 @@ import {isWordCommonIgnored} from "./stopwords";
  * @param {number} options.ignoreStopWords - ignore 300+ overused words
  * @param {number} options.checkRootWords - check for word's root stem
  * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"],...]
- * @category Tokenize
- */
-export function tokenizeTopics(phrase, options = {}) {
+ * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+*/
+export function convertTextToTokens(phrase, options = {}) {
   let {
     phrasesModel, //pass in remote model
     typosModel,
@@ -74,7 +68,7 @@ export function tokenizeTopics(phrase, options = {}) {
 
     //check for root words like "gaming" -> "game"
     if (!possiblePhrases && checkRootWords) {
-      var rootWord = convertWordToRootStem(word);
+      var rootWord = stemWordToRoot(word);
       if (rootWord !== word)
         possiblePhrases = phrasesModel[rootWord.slice(0, 2)]
           ? phrasesModel[rootWord.slice(0, 2)][rootWord]
@@ -131,7 +125,8 @@ export function tokenizeTopics(phrase, options = {}) {
 
       //if no phrases then add the single word
       if (!isPhraseFound) {
-        singleWordObj = singleWordObj; //|| { full: word }; // could be not in dict but starter of phrases
+        singleWordObj = singleWordObj; 
+        //// could be not in dict but starter of phrases
         topics.push(singleWordObj);
       }
     }

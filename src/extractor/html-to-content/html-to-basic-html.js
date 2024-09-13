@@ -1,4 +1,4 @@
-import { convertHTMLSpecialChars } from "./html-special-chars.js";
+import { convertHTMLSpecialChars, convertURLToAbsoluteURL} from "./html-utils.js";
 
 /**
  * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
@@ -21,7 +21,7 @@ import { convertHTMLSpecialChars } from "./html-special-chars.js";
  * @param {string} options.allowedAttributes default="text,tag,href, src,type,width, height,id,data"
  *   List of allowed HTML attributes
  * @returns {string} basic text formatting html
- * @category Extractor
+ * @author [Gulakov, A. (2024)](https://airesearch.wiki)
  */
 export function convertHTMLToBasicHTML(html, options = {}) {
 
@@ -32,8 +32,8 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     formatting = 1,
     url = "",
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
-      ul,ol,li,dd,dl,table,th,tr,td,sub,sup",
-    allowedAttributes = "href,src,type,width,height,id,data",
+      ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup",
+    allowedAttributes = "href,src,type,width,height,id,data,target",
   } = options;
 
   allowTags = allowTags.split(",");
@@ -44,6 +44,8 @@ export function convertHTMLToBasicHTML(html, options = {}) {
 
   if (!formatting) allowTags = ["text"];
   allowTags.push("text");
+
+
 
 
   allowedAttributes = allowedAttributes.split(",").concat("text,tagName".split(","));
@@ -64,23 +66,15 @@ export function convertHTMLToBasicHTML(html, options = {}) {
       //convert relative urls to absolute urls
       var urlValue = el.href || el.src;
 
-      const matchdomain = url.match(/^(https?:\/\/[^\/]+)/i);
-      const domain = matchdomain ? matchdomain[1] : null;
+      // const matchdomain = url.match(/^(https?:\/\/[^\/]+)/i);
+      // const domain = matchdomain ? matchdomain[1] : null;
 
       if (urlValue) {
-        urlValue = decodeURI(urlValue);
+        //non-anchor links should be opened in new window
+        if (!urlValue.startsWith("#"))
+          el.target="_blank";
 
-        if (urlValue.startsWith("//")) urlValue = "https:" + urlValue;
-
-        //anchor links should be on same page or open external
-        // if (urlValue[0] == "#") urlValue = url + urlValue;
-        if (urlValue[0] == "/") urlValue = domain + urlValue;
-
-        if (urlValue.startsWith("./"))
-          urlValue = url.slice(0, url.lastIndexOf("/")) + urlValue;
-
-        if (!urlValue.startsWith("http") && urlValue[0] != "#")
-          urlValue = url.slice(0, url.lastIndexOf("/") + 1) + "/" + urlValue;
+        urlValue = convertURLToAbsoluteURL(url, urlValue)
 
         if (el.href) el.href = urlValue;
         if (el.src) el.src = urlValue;
@@ -101,7 +95,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
 
   html = convertHTMLSpecialChars(
-    html.replace(/&lt;/gi, " ").replace(/&gt;/gi, " ")
+    html
   ).replace(/&nbsp;/g, " ");
 
   // CNN news edge case of data=attr <> inside of attr
@@ -114,52 +108,12 @@ export function convertHTMLToBasicHTML(html, options = {}) {
 }
 
 /**
- * Convert relative URL to absolute URL using base URL.
- * @param {string} base base url of the domain
- * @param {string} relative partial urls like ../images/image.jpg #hash
- * @returns {string} absolute URL
- * @private
- */
-export function convertURLAbsoluteURL(base, relative) {
-  // Remove hash from base URL
-  base = base.replace(/#.*$/, "");
-
-  // If the relative URL is a full URL, return it
-  if (/^[a-z][a-z0-9+.-]*:/i.test(relative)) {
-    return relative;
-  }
-
-  // If relative URL starts with '//', add scheme from base
-  if (relative.substring(0, 2) === "//") {
-    return base.split("://")[0] + ":" + relative;
-  }
-
-  // If relative URL starts with '/', replace everything after the host in base
-  if (relative.charAt(0) === "/") {
-    return base.replace(/\/([^\/]+)$/, "").replace(/\/+$/, "") + relative;
-  }
-
-  // Remove file part from base
-  base = base.replace(/\/[^\/]+$/, "");
-
-  // Handle relative URLs
-  while (relative.substring(0, 3) === "../") {
-    relative = relative.substring(3);
-    base = base.replace(/\/[^\/]+$/, "");
-  }
-  relative = relative.replace(/^\.\//, "");
-
-  // Combine base and relative
-  return base.replace(/\/+$/, "") + "/" + relative;
-}
-
-/**
  * Convert html string to array of JSON Objects tokens to translate,
  * convert, or filter all elements.
  * Flat array is faster than DOMParser which uses nested trees.
  * @param {string} html
  * @returns {array}  Example [{"tag": "img","src": ""}, ...]
- * @category Extractor
+ 
  * @private
  */
 export function convertHTMLToTokens(html) {

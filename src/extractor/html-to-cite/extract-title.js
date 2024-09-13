@@ -54,7 +54,7 @@ export function extractTitle(document) {
     
     // Handle breadcrumbed titles
     if (splitTitle.length >= 6) {
-      const longestPart = splitTitle.reduce((acc, part) => part.length > acc.length ? part : acc, '');
+      const longestPart = splitTitle.reduce((acc, part) => part?.length > acc?.length ? part : acc, '');
       if (longestPart.length > 10) {
         title = longestPart;
       }

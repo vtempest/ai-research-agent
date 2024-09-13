@@ -1,4 +1,5 @@
-import dataHumanNames from "../../../data/human-names-92k.json";
+import dataHumanNames from "../../../data/human-names-92k.json" // with { type: "json" };
+;
 // var dataHumanNames = []
 
 /**
@@ -19,7 +20,7 @@ import dataHumanNames from "../../../data/human-names-92k.json";
  * @param {string} author
  * @returns {Object} {author_cite, author_short, author_type}
  * 
- * @category Extractor
+ 
  */
 export function extractNamedEntity(author) {
   
@@ -110,7 +111,7 @@ export function extractNamedEntity(author) {
  * https://en.wikipedia.org/wiki/List_of_family_name_affixes
  * @param {string} input - The full name to parse.
  * @returns {Object}
- * @category Extractor
+ 
  */
 const extractNamedEntityParts = (input) => {
   // Initialize the result object

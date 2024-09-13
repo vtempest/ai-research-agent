@@ -29,10 +29,9 @@
  * // Output: [0.0840, 0.1681, 0.4550, 0.0509, 0.2420]
  * // Interpretation: The model predicts the third word as most likely (45.50%),
  * // followed by the fifth word (24.20%), and so on
- * @category Relevance
  * @author
- *  [Ludwig Boltzmann (1868)](https://en.wikipedia.org/wiki/Softmax_function#History), 
- *  [John S. Bridle (1990)](https://link.springer.com/chapter/10.1007/978-3-642-76153-9_28)
+ *  [Boltzmann, L. (1868)](https://en.wikipedia.org/wiki/Softmax_function#History), 
+ *  [Bridle, J.S.  (1990)](https://link.springer.com/chapter/10.1007/978-3-642-76153-9_28)
  */
 export function calculateProbabilitySoftmax(arr) {
     // Compute the maximum value in the array

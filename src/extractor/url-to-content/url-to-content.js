@@ -1,5 +1,5 @@
 import { extractContentAndCite } from "../html-to-content/html-to-content.js";
-import { getURLYoutubeVideo, extractYoutubeText } from "./youtube-to-text.js";
+import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
 import { convertPDFToHTML, isUrlPDF } from "./pdf-to-content.js";
 import { scrapeURL } from "./scrape-url.js";
 
@@ -35,7 +35,7 @@ import { scrapeURL } from "./scrape-url.js";
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
  * @param {number} options.timeout default=5 - http request timeout
  * @returns {Article} - object containing url, html, author, date, title, source
- * @category Extractor
+ * @author [Gulakov, A. (2024)](https://airesearch.wiki)
  */
 export async function extract(urlOrDoc, options = {}) {
   var {
@@ -64,7 +64,7 @@ export async function extract(urlOrDoc, options = {}) {
 
       // check youtube
     } else if (youtubeID) {
-      var { content, timestamps } = await extractYoutubeText(url, options);
+      var { content, timestamps } = await convertYoutubeToText(url, options);
 
       response.html = content;
       response.timestamps = timestamps;
@@ -96,7 +96,7 @@ export async function extract(urlOrDoc, options = {}) {
       // pdf checker
       response = await convertPDFToHTML(url, {});
     if (youtubeID) {
-      var { content, timestamps } = await extractYoutubeText(url);
+      var { content, timestamps } = await convertYoutubeToText(url);
 
       response.html = content;
       response.timestamps = timestamps;

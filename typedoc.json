@@ -1,13 +1,14 @@
 {
-  "entryPoints": ["src/**", "index.js"],
+  "entryPoints": ["./index.js"],
   "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-ga"],
   "gaID": "G-E5TZ32BZDF",
-
+  "entryPointStrategy": "expand",
   "navigation": {
     "includeCategories": false,
     "includeGroups": false,
     "includeFolders": true
   },
+  "commentStyle":"all",
   "sourceLinkExternal": true,
   "hideGenerator": true,
   "searchInDocuments": true,
@@ -16,7 +17,5 @@
     "Live Demo": "https://qwksearch.com",
     "Discord Chat": "https://discord.gg/SJdBqBz3tV"
   },
-  "jsDocCompatibility": true,
-  "blockTags": ["@param", "@returns", "@license"],
   "excludePrivate": true
 }

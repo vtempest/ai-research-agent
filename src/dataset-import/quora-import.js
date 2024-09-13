@@ -79,7 +79,7 @@ async function deleteDirectory(dir) {
  *  a semantic similarity model or Query-Response model
  * @author Quora <https://huggingface.co/datasets/BeIR/quora>
  * @returns {object} 
- * @category Topic Model
+
  */
 
  export async function importCommonQueries() {

@@ -2,11 +2,11 @@
   import { onMount } from "svelte";
   import { fade } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
-  import {suggestNextWordCompletions} from "../../../../src/autocomplete/autocomplete.js";
+  import {suggestNextWordCompletions} from "$airesearchagent";
   import iconSearch from "$lib/icons/icon-search.svg"
 
   export let phrasesModel = null;
-  let searchText = "";
+  export let searchText = "";
   let suggestions = [];
   let showSuggestions = false;
   let selectedIndex = -1;

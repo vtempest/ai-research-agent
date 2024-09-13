@@ -16,7 +16,6 @@
  *    https://doi.org/10.1145/3321408.3326659
  * @param {Array<Object>} sentencesWithKeyphrases Array of objects, each containing {text, keyphrases}
  * @returns {Array<Object>} Updated array with added weights: [{text, keyphrases, weight}]
- * @category Topics
  */
 export function rankSentencesCentralToKeyphrase(
   sentencesWithKeyphrases,

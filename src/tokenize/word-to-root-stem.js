@@ -3,13 +3,12 @@
  * href="https://snowballstem.org/algorithms/porter/stemmer.html">Porter
  *  Stemmer</a> for removing  inflectional endings like "ing", "ist", "ize".
  *
- * @author Martin Porter (1980) https://tartarus.org/martin/PorterStemmer/
+ * @author [Porter, M. (1980)](https://tartarus.org/martin/PorterStemmer/)
  * @param {string} word - The word to be stemmed
  * @returns {string} - The stemmed word
- * @category Tokenize
- * @example var rootWord = convertWordToRootStem("running"); // returns "run"
+ * @example var rootWord = stemWordToRoot("running"); // returns "run"
  */
-export function convertWordToRootStem(word) {
+export function stemWordToRoot(word) {
   // Return short words (less than 3 characters) without stemming
   if (word.length < 3) return word;
 

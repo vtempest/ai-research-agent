@@ -1,28 +1,26 @@
 import { searchSTREAM, searchWeb } from "../../../../../";
 import { json } from '@sveltejs/kit';
+import { searxngDomain } from "$lib/config/config.js";
 
 export async function GET({ url }) {
     const query = url.searchParams.get('q');
-    const categoryIndex = parseInt(url.searchParams.get('cat') || '0');
-    const recencyIndex = parseInt(url.searchParams.get('recency') || '0');
+    const category = parseInt(url.searchParams.get('cat') || '0');
+    const recency = parseInt(url.searchParams.get('time') || '0');
     const maxTopResultsToExtract = parseInt(url.searchParams.get('limitExtract') || '4');
 
     let startTime = Date.now();
     if (!query) 
         return json({ error: 'Query parameter is required' })
         
-    var selectedDomain = 
-    "http://ec2-54-67-101-79.us-west-1.compute.amazonaws.com/searxng"
-
-    // try {
 
     
   let results = await searchWeb(query, {
-    categoryIndex,
-    recencyIndex,
+    category,
+    recency,
     maxRetries: 6,
-    selectedDomain, 
+    customSearxngDomain: searxngDomain,
   });
+  
 
         // const results = await searchSTREAM(query, {
         //     categoryIndex,

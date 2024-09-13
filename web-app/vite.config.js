@@ -1,20 +1,16 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-// import topLevelAwait from "vite-plugin-top-level-await";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-	plugins: [
-		// topLevelAwait(),
-		sveltekit()],
-	resolve: {
-		alias: {
-		 
-			$lib: path.resolve("./src"),
-			$assets: path.resolve("./src/assets"),
-		  $components: path.resolve("./src/components"),
-
-		},
-	  },
-	
+  assetsInclude: ["**/*.msi"],
+  plugins: [sveltekit()],
+  resolve: {
+    alias: {
+      $lib: path.resolve("./src"),
+      $assets: path.resolve("./src/assets"),
+      $components: path.resolve("./src/components"),
+      $airesearchagent: path.resolve("../index.js"),
+    },
+  },
 });

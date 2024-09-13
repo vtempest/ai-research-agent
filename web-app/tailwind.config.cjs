@@ -4,6 +4,8 @@ const config = {
 	theme: {
 		extend: {}
 	},
+	
+	"publicPath": '/',
 
 	plugins: []
 };

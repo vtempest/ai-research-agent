@@ -1,4 +1,4 @@
-import { test, expect, test } from 'vitest';
+import { test, expect } from 'vitest';
 import { weighTopicDirichletDistribution, splitSentences } from "../index.js"
 
 test('topic distribution Test', () => {
@@ -46,7 +46,7 @@ test('topic distribution Test', () => {
     const numTopics = 3
     const numTerms = 2;
 
-    var test = `
+    var test2 = `
     
         
      
@@ -96,7 +96,7 @@ test('topic distribution Test', () => {
     domain specificity 0-12~
     Type: number
     #
-    calculateSimilarityByCharacter(s1, s2) → {number}
+    weighSimilarityByCharacter(s1, s2) → {number}
     Compute Jaro-Winkler similarity between two strings https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance
     Parameters:
     Name	Type	Description
@@ -254,7 +254,7 @@ test('topic distribution Test', () => {
     Example
     extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
     #
-    extractYoutubeText(videoUrl, addTimestamps) → {Object}
+    convertYoutubeToText(videoUrl, addTimestamps) → {Object}
     fetch youtube.com video's webpage HTML for embedded transcript if blocked, use scraper of youtubetranscript.com
     Parameters:
     Name	Type	Description
@@ -362,7 +362,7 @@ test('topic distribution Test', () => {
     An array of sentences.
     Type: Array.<string>
     #
-    convertWordToRootStem(word) → {string}
+    stemWordToRoot(word) → {string}
     Stems a word using the Porter Stemmer for removing the commoner morphological and inflexional endings from words in English. https://snowballstem.org/algorithms/porter/stemmer.html
     Parameters:
     Name	Type	Description
@@ -373,7 +373,7 @@ test('topic distribution Test', () => {
     The stemmed word
     Type: string
     #
-    tokenizeTopics(phrase, options) → {Array.<Token>}
+    convertTextToTokens(phrase, options) → {Array.<Token>}
     Query Resolution to Phrase & Topic Tokenization - returns a list of phrases that are found in WikiWorldModel that match the input phrase, or just the single word if found
     Parameters:
     Name	Type	Description
@@ -414,7 +414,7 @@ test('topic distribution Test', () => {
       // console.log(`\nTesting document set ${index + 1}:`);
       // console.log("Documents:", documents);
 
-      var documents = splitSentences(test)
+      var documents = splitSentences(test2)
 
       const results = weighTopicDirichletDistribution(documents, {numTopics, numTerms});
 

@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-    },
-      "target": "ESNext",
-      "module": "ESNext",
-      "resolveJsonModule": true,
-      "allowJs": true,
-      "checkJs": false,
-      "isolatedModules": false,
-      "skipLibCheck": true,
+    "paths": {},
+    "target": "ESNext",
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "isolatedModules": false,
+    "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/", "index.js", "test/data/extract-article.test.js", "test/readability.test.js", "test/extractor-test", "test/embedding.test.js",  ],
-
+  "include": [
+    "./src/",
+    "index.js", "test/ip-to-lang.test.js"  ],
   "exclude": [
     "node_modules",
     "dist"

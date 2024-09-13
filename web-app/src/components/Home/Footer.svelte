@@ -1,17 +1,12 @@
 <script>
-  import { APP_EMAIL } from "$lib/config/config";
+  import { APP_EMAIL, LINK_BLOG } from "$lib/config/config";
 </script>
 
-<!-- Privacy Policy and Terms of Service links -->
 <div class="mt-16 mb-1 text-center text-slate-500 text-xs z-20">
   <a target="_blank" href="/pricing" class="mr-4 hover:underline">Pricing </a>
+  <a target="_blank" href={LINK_BLOG} class="mr-4 hover:underline">Blog</a>
 
-  <a
-    target="_blank"
-    href="https://www.linkedin.com/company/qwksearch/posts/"
-    class="mr-4 hover:underline"
-    >Blog
-  </a>
+  <!-- Privacy Policy and Terms of Service links -->
 
   <a target="_blank" href="/legal/privacy-policy" class="mr-4 hover:underline"
     >Privacy</a

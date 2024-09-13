@@ -1,6 +1,6 @@
 {
   "name": "ai-research-agent",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "module": "index.js",
   "type": "module",
   "author": "vtempest",
@@ -10,6 +10,7 @@
     "dev": "cd web-app; vite dev",
     "prod": "cd web-app; vite build; wrangler deploy; wrangler tail",
     "docs": "typedoc; open docs/index.html",
+    "docs-win": "typedoc;  cmd.exe /c start \"\" docs/index.html",
     "test": "vitest",
     "test-ui": "vitest --ui --watch",
     "compile": "bun run ./src/dataset-import/compile-topic-model.js"
@@ -22,21 +23,24 @@
     "adm-zip": "^0.5.16",
     "axios": "^1.7.7",
     "fast-xml-parser": "^4.5.0",
+    "jszip": "^3.10.1",
     "typedoc": "^0.26.6",
     "typedoc-material-theme": "^1.1.0",
     "typedoc-plugin-ga": "^1.0.4",
     "vitest": "^2.0.5"
   },
   "dependencies": {
-    "@huggingface/transformers": "3.0.0-alpha.14",
+    "@huggingface/transformers": "^3.0.0-alpha.14",
+    "@langchain/anthropic": "^0.2.17",
     "@langchain/core": "^0.2.31",
     "@langchain/groq": "^0.0.17",
+    "@langchain/openai": "^0.2.10",
     "chrono-node": "^2.7.6",
-    "hnswlib-node": "^3.0.0",
-    "is-any-array": "^2.0.1",
+    "fake-indexeddb": "^6.0.0",
+    "gpu.js": "^2.16.0",
+    "hnswlib-wasm": "^0.8.2",
     "linkedom": "^0.18.4",
     "pdfjs-serverless": "^0.5.1",
-    "umap-js": "^1.4.0",
-    "wasm-bhtsne": "^1.1.0"
+    "umap-js": "^1.4.0"
   }
 }

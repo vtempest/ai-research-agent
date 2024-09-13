@@ -15,10 +15,12 @@ import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
  * @param {boolean} options.links default=true - Whether to include links in the extracted content
  * @param {boolean} options.formatting default=true - Whether to preserve formatting in the extracted content
  * @param {string} options.url The URL of the original document, if available, for absolutify-ing URLs
- * @param {boolean} options.useExtractor2 default=false - false uses Mozilla Readability, true uses Postlight Mercury
+ * @param {boolean} options.useExtractor2 default=false -
+ *    false uses Mozilla Readability, true uses Postlight Mercury. 
+ *    then use the alternate if the first returns less than 200 characters
  * @returns {ExtractedContent} An object containing extracted information
  * @throws {Error} If there's an error parsing the HTML
- * @category Extractor
+ 
  */
 export function extractContentAndCite(documentOrHTML, options = {}) {
   const {
@@ -26,7 +28,7 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     links = true,
     formatting = true,
     url = "",
-    useExtractor2 = 1,
+    useExtractor2 = 0,
   } = options;
 
   var html =
@@ -36,7 +38,9 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
 
   if (!html) return { error: "No HTML found" };
 
-  var document = parseHTML(html)?.document;
+
+  var html = html
+    .replace(/&lt;/gi, " ").replace(/&gt;/gi, " ")
 
   var content = 
   useExtractor2
@@ -44,10 +48,22 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     : 
     extractContentHTML(html, options);
 
+    // if Postlight Mercury returns less than 200 characters, try Mozilla Readability
+    if (content.length < 200) {
+      var content2 = extractContentHTML(html, options);
+      if (content2.length > content.length) 
+        content = content2;
+    }
+
+
   var { author, author_cite, author_short, date, title, source } =
     extractCite(html);
 
+
+
   var html = convertHTMLToBasicHTML(content, options);
+
+
 
   return {
     title,

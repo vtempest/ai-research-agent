@@ -110,7 +110,7 @@ export function extractContentHTML(html, options = {}) {
       while (elem.firstChild) {
         newElem.appendChild(elem.firstChild);
       }
-      elem.parentNode.replaceChild(newElem, elem);
+      elem.parentNode?.replaceChild(newElem, elem);
     }
   }
 

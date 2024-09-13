@@ -1,6 +1,6 @@
-import { searchWeb } from "./src/search-web/search-web.js";
+import { searchWeb } from "./src/search/search-web.js";
 
-import { searchSTREAM } from "./src/search-web/search-stream.js";
+import { searchSTREAM } from "./src/search/search-stream.js";
 
 import { extract } from "./src/extractor/url-to-content/url-to-content.js";
 
@@ -8,60 +8,108 @@ import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 
 import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
-import {
-  weighRelevanceConceptVector,
-  weighRelevanceConceptVectorAPI,
-} from "./src/similarity/similarity-concept.js";
+import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
 
-import { convertHTMLSpecialChars } from "./src/extractor/html-to-content/html-special-chars.js";
-import { extractYoutubeText } from "./src/extractor/url-to-content/youtube-to-text.js";
+import { convertHTMLSpecialChars,
+  convertMarkdownToHtml,
+  convertURLToAbsoluteURL
+ } from "./src/extractor/html-to-content/html-utils.js";
+
+import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
+
 import { convertPDFToHTML } from "./src/extractor/url-to-content/pdf-to-content.js";
-import { weighTopicDirichletDistribution } from "./src/topic-distribution/topic-distribution.js";
-import { calculateSimilarityByCharacter } from "./src/match/compare-letters.js";
-import { suggestNextWordCompletions } from "./src/autocomplete/autocomplete.js";
-import { tokenizeTopics } from "./src/tokenize/tokenize-topics.js";
+
+import { weighTopicDirichletDistribution } from "./src/topics/topic-distribution.js";
+
+import { weighSimilarityByCharacter } from "./src/match/compare-letters.js";
+
+import { suggestNextWordCompletions } from "./src/tokenize/suggest-complete-word.js";
+
+import { convertTextToTokens } from "./src/tokenize/tokenize-topics.js";
+
 import { splitSentences } from "./src/tokenize/sentences.js";
-import { searchWikipedia } from "./src/search-web/search-wikipedia.js";
+
+import { splitTextSemanticChars } from "./src/tokenize/text-to-chunks.js"
+
+import { searchWikipedia } from "./src/search/search-wikipedia.js";
+
 import { matchQUASAR } from "./src/match/match-quasar.js";
+
 import { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequency.js";
+
+import { convertEmbeddingsToUMAP } from "./src/similarity/embeddings-to-graph.js";
+
 import {
   convertEmbeddingsToHNSW,
-  searchWithQuery,
+  searchVectorIndex,
   getAllEmbeddings,
-  convertTextToEmbeddingVector,
-  getEmbeddingPipeline,
-  convertEmbeddingsToUMAP,
-} from "./src/graph/embeddings-to-graph.js";
+  convertTextToEmbedding,
+  getEmbeddingModel,
+  exportEmbeddingsIndex,
+  importVectorIndexFromString,
+} from "./src/similarity/similarity-vector.js";
+
+// import { torch } from "./src/train/neural-net.js";
 
 
-import {
-convertEmbeddingsIndexToBase64
-} from "./src/graph/save-hnsw.js";
+// const   convertEmbeddingsToHNSW=0,
+//     searchVectorIndex=0,
+//     getAllEmbeddings=0,
+//     convertTextToEmbedding=0,
+//     getEmbeddingModel=0,
+//     exportEmbeddingsIndex=0,
+//     importVectorIndexFromString=0;
+
+
+import {extractContentHTML} from "./src/extractor/html-to-content/extract-content/extractor1-content.js"
+import {extractContentHTML2} from "./src/extractor/html-to-content/extract-content/extractor2-content.js"
+import {convertHTMLToBasicHTML} from "./src/extractor/html-to-content/html-to-basic-html.js"
+import {extractCite} from "./src/extractor/html-to-cite/extract-cite.js"
+// import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
+import {stemWordToRoot} from "./src/tokenize/word-to-root-stem.js"
+import {extractFavicon} from "./src/extractor/html-to-cite/url-to-favicon.js"
+import {embedYoutubePlayer} from "./src/extractor/url-to-content/youtube-embed.js"
+
+import {generateLanguageModelReply} from "./src/generate/generate-reply-api.js"
+
+
 // Export all functions as named exports
 export {
-  convertEmbeddingsToUMAP,
-  convertEmbeddingsIndexToBase64,
-  convertEmbeddingsToHNSW,
-  searchWithQuery,
-  getAllEmbeddings,
-  getEmbeddingPipeline,
-  calculateSimilarityByCharacter,
-  convertPDFToHTML,
-  extractYoutubeText,
-  searchWeb,
-  searchSTREAM,
-  extract,
-  scrapeURL,
-  extractSEEKTOPIC,
-  convertTextToEmbeddingVector,
-  weighRelevanceConceptVector,
-  weighRelevanceConceptVectorAPI,
-  suggestNextWordCompletions,
-  tokenizeTopics,
-  splitSentences,
-  searchWikipedia,
-  weighRelevanceTermFrequency,
-  matchQUASAR,
-  weighTopicDirichletDistribution,
+  generateLanguageModelReply,
+  convertMarkdownToHtml,
+  importVectorIndexFromString,
   convertHTMLSpecialChars,
+  convertPDFToHTML,
+  extract,
+  extractFavicon,
+  embedYoutubePlayer,
+  stemWordToRoot,
+  // compileTopicModel,
+  extractCite,
+  extractContentHTML,
+  extractContentHTML2,
+  convertHTMLToBasicHTML,
+  exportEmbeddingsIndex,
+  convertEmbeddingsToHNSW,
+  convertEmbeddingsToUMAP,
+  convertTextToEmbedding,
+  convertTextToTokens,
+  convertYoutubeToText,
+  extractSEEKTOPIC,
+  getAllEmbeddings,
+  getEmbeddingModel,
+  matchQUASAR,
+  scrapeURL,
+  searchSTREAM,
+  searchWeb,
+  searchWikipedia,
+  searchVectorIndex,
+  splitSentences,
+  splitTextSemanticChars,
+  // torch,
+  suggestNextWordCompletions,
+  weighSimilarityByCharacter,
+  weighRelevanceConceptVectorAPI,
+  weighRelevanceTermFrequency,
+  weighTopicDirichletDistribution
 };

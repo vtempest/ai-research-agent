@@ -116,7 +116,7 @@ async function scrapeMisspellings() {
  * @author Crowd-sourced often-updated Wikipedia list of common misspellings 
  * https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
  * @returns {object} 
- * @category Topic Model
+
 */
 export async function importMisspelledTypos() {
     try {

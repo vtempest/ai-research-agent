@@ -8,7 +8,7 @@ import JSZip from "jszip";
   * @param {number} options.compressionLevel default=9 0-9, 9 has smallest size  at ~40%  but takes longer
  * @param {boolean} options.decompress default=false  false to compress, true to decompress
  * @returns {Promise<string>} base64-encoded string of the zipped data
- * @category Topic Model
+
  */
 export async function compressBase64ZipText(dataOrZip, options = {}) {
   try {
@@ -57,7 +57,7 @@ export async function compressBase64ZipText(dataOrZip, options = {}) {
  * Compress topic model to b64z string.
  * @param {string} base64Zip
  * @returns {Promise<string>} original JSON or Text
- * @category Topic Model
+
  * @private
  */
 async function compressTopicModel() {
@@ -102,4 +102,4 @@ async function compressTopicModel() {
   }
 }
 
-compressTopicModel();
+// compressTopicModel();

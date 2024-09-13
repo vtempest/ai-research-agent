@@ -1,6 +1,5 @@
-import { convertHTMLSpecialChars } from "../html-to-content/html-special-chars.js";
-import { scrapeURL } from "./scrape-url";
-
+import { convertHTMLSpecialChars } from "../../../index";
+import { scrapeURL } from "./scrape-url.js"
 /**
  * Fetch youtube.com video's webpage HTML for embedded transcript
  * if blocked, use scraper of alternative sites
@@ -10,17 +9,17 @@ import { scrapeURL } from "./scrape-url";
  * @param {boolean} options.timeout default=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
- * @category Extractor
+   * @author [Gulakov, A. (2024)](https://airesearch.wiki)
  */
-export async function extractYoutubeText(videoUrl, options = {}) {
+export async function convertYoutubeToText(videoUrl, options = {}) {
   const { addTimestamps = true, timeout = 5 } = options;
 
   const videoId = getURLYoutubeVideo(videoUrl);
 
-  // var res = await fetchTranscript(videoId, options);
+  // var res = await fetchTranscriptOfficialYoutube(videoId, options);
 
   // if (!res || res.error)
-  //   var res = await fetchViaYoutubeTranscript2(videoId, options);
+    var res = await fetchViaYoutubeToTranscriptCom(videoId, options);
 
 
   if (!res || res.error)
@@ -113,112 +112,11 @@ function decompressTimestampsArray(compressedStr) {
   return decompressed;
 }
 
-//youtube is blocked on cloudflare workers
-
-async function fetchTranscript(videoId, options = {}) {
-  const videoPageBody = await scrapeURL(
-    `https://www.youtube.com/watch?v=${videoId}`
-  )
-
-  console.log(videoPageBody)
-
-  //youtube bot limiting
-  if (videoPageBody?.error  ||
-    videoPageBody.includes('class="g-recaptcha"') ||
-    !videoPageBody.includes('"playabilityStatus":') 
-  )
-    return { error: true };
-
-
-  var videoObj = videoPageBody.replace("\n", "")
-  .split('"captions":')?.[1]
-  ?.split(',"videoDetails')[0]
-  
-
-  if (!videoObj) return {error:1}
-
-  const captions = JSON.parse(videoObj)?.playerCaptionsTracklistRenderer;
-
-  if (!captions?.captionTracks)
-    return { error: true };
-
-  const track = captions.captionTracks.find(
-    (track) => track.languageCode === "en"
-  );
-
-  if (!track) return { error: true };
-
-  const transcriptBody = await scrapeURL(track.baseUrl);
-
-  if (transcriptBody.error) return { error: true };
-
-  const results = [
-    ...transcriptBody.matchAll(
-      /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g
-    ),
-  ];
-
-  var transcript = results.map(([, start, duration, text]) => ({
-    text,
-    duration: parseFloat(duration),
-    offset: parseFloat(start),
-    lang: track.languageCode,
-  }));
-
-  var content = "";
-  var timestamps = [];
-  transcript.forEach(({ offset, text }) => {
-    timestamps.push([content.length, Math.floor(offset, 0)]);
-
-    content += text + " ";
-  });
-
-  return { content, timestamps };
-}
-
-/**
- * Get YouTube transcript of most YouTube videos,
- * except if disabled by uploader
- * fetch-based scraper of youtubetranscript.com
- *
- * @param {string} videoUrl
- * @return {Object} {content, timestamps} where content is the full text of
- * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
- * @private
- */
-export async function fetchViaYoutubeTranscript(videoId, options = {}) {
-  const { timeout = 5 } = options;
-  const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
-
-  const response = await fetch(url, {
-    signal: AbortSignal.timeout(timeout * 1000),
-  });
-  const html = await response.text();
-
-  const transcriptRegex = /<text data-start="([\d.]+)".*?>(.*?)<\/text>/g;
-  const matches = Array.from(html.matchAll(transcriptRegex));
-
-  const transcript = matches.map((match) => ({
-    text: match[2],
-    offset: parseFloat(match[1]),
-  }));
-
-  const content = transcript.map((item) => item.text).join(" ");
-  let timestamps = [];
-  let charIndex = 0;
-
-  transcript.forEach((item) => {
-    timestamps.push([charIndex, Math.floor(item.offset)]);
-    charIndex += item.text.length + 1; // +1 for the space we added
-  });
-
-  return { content, timestamps };
-}
 
 /**
  * Test if URL is to youtube video and return video id if true
  * @param {string} url - youtube video URL
- * @return {string|boolean} video ID or false
+ * @returns {string|boolean} video ID or false
  * @private
  */
 export function getURLYoutubeVideo(url) {
@@ -234,18 +132,16 @@ export function getURLYoutubeVideo(url) {
  * fetch-based scraper of youtubetotranscript.com
  *
  * @param {string} videoUrl
- * @return {Object} {content, timestamps} where content is the full text of
+ * @returns {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  * @private
  */
-export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
+export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
   try {
     const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
 
-    const html = await scrapeURL(url, options)
+    const html = await (await fetch(url, options)).text()
 
-    console.log(html)
-    console.log(html.includes('physics'))
     if (!html )
       return {error:1}
 
@@ -274,6 +170,8 @@ export async function fetchViaYoutubeTranscript2(videoId, options = {}) {
     return { content, timestamps};
   } catch (e) {
     console.log(e);
+    
+    return {error:1}
   }
 }
 
@@ -331,3 +229,107 @@ async function fetchTranscriptTactiq(videoId, options = {}) {
 }
 
 
+            /** ========== NOT WORKING ========== */
+
+
+            
+/**
+ * Get YouTube transcript of most YouTube videos,
+ * except if disabled by uploader
+ * fetch-based scraper of youtubetranscript.com
+ *
+ * @param {string} videoUrl
+ * @returns {Object} {content, timestamps} where content is the full text of
+ * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
+ * @private
+ */
+export async function fetchViaYoutubeTranscript(videoId, options = {}) {
+  const { timeout = 5 } = options;
+  const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
+
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(timeout * 1000),
+  });
+  const html = await response.text();
+
+  const transcriptRegex = /<text data-start="([\d.]+)".*?>(.*?)<\/text>/g;
+  const matches = Array.from(html.matchAll(transcriptRegex));
+
+  const transcript = matches.map((match) => ({
+    text: match[2],
+    offset: parseFloat(match[1]),
+  }));
+
+  const content = transcript.map((item) => item.text).join(" ");
+  let timestamps = [];
+  let charIndex = 0;
+
+  transcript.forEach((item) => {
+    timestamps.push([charIndex, Math.floor(item.offset)]);
+    charIndex += item.text.length + 1; // +1 for the space we added
+  });
+
+  return { content, timestamps };
+}
+
+async function fetchTranscriptOfficialYoutube(videoId, options = {}) {
+  const videoPageBody = await scrapeURL(
+    `https://www.youtube.com/watch?v=${videoId}`
+  )
+
+
+  //youtube bot limiting
+  if (videoPageBody?.error  ||
+    videoPageBody.includes('class="g-recaptcha"') ||
+    !videoPageBody.includes('"playabilityStatus":') 
+  )
+    return { error: true };
+
+    console.log(2222)
+
+
+  var videoObj = videoPageBody.replace("\n", "")
+  .split('"captions":')?.[1]
+  ?.split(',"videoDetails')[0]
+  
+
+  if (!videoObj) return {error:1}
+
+  const captions = JSON.parse(videoObj)?.playerCaptionsTracklistRenderer;
+
+  if (!captions?.captionTracks)
+    return { error: true };
+
+  const track = captions.captionTracks.find(
+    (track) => track.languageCode === "en"
+  );
+
+  if (!track) return { error: true };
+
+  const transcriptBody = await scrapeURL(track.baseUrl);
+
+  if (transcriptBody.error) return { error: true };
+
+  const results = [
+    ...transcriptBody.matchAll(
+      /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g
+    ),
+  ];
+
+  var transcript = results.map(([, start, duration, text]) => ({
+    text,
+    duration: parseFloat(duration),
+    offset: parseFloat(start),
+    lang: track.languageCode,
+  }));
+
+  var content = "";
+  var timestamps = [];
+  transcript.forEach(({ offset, text }) => {
+    timestamps.push([content.length, Math.floor(offset, 0)]);
+
+    content += text + " ";
+  });
+
+  return { content, timestamps };
+}

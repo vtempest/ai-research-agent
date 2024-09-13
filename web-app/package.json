@@ -5,7 +5,7 @@
     "dev": "vite dev --host --port 5173",
     "build": "vite build",
     "preview": "vite preview",
-    "prod": "vite build; wrangler deploy; wrangler tail",
+    "prod": "vite build; wrangler deploy --minify; wrangler tail",
     "package": "svelte-kit sync && svelte-package && publint",
     "prepublishOnly": "npm run package",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.2.4",
-    "@sveltejs/adapter-cloudflare": "^4.7.2",
-    "@sveltejs/adapter-cloudflare-workers": "^2.5.4",
+    "@sveltejs/adapter-static": "^3.0.4",
+    "@sveltejs/adapter-cloudflare-workers": "^2.4.0",
     "@sveltejs/kit": "^2.5.24",
     "@sveltejs/package": "^2.3.4",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
@@ -31,9 +31,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@langchain/groq": "^0.0.16",
-    "@postlight/parser": "^2.2.3",
-    "@sveltejs/adapter-static": "^3.0.4",
     "autoprefixer": "^10.4.20",
     "lucide-svelte": "^0.428.0",
     "postcss": "^8.4.41",
@@ -41,7 +38,6 @@
     "tailwind": "^4.0.0",
     "tailwindcss": "^3.4.10",
     "three": "^0.168.0",
-    "vite-plugin-top-level-await": "^1.4.4",
-    "wrangler": "^3.74.0"
+    "wrangler": "3.57"
   }
 }

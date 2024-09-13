@@ -1,4 +1,4 @@
-import {tokenizeTopics} from "../../index.js";
+import {convertTextToTokens} from "../../index.js";
 
 /**
  * Calculate term specificity for a single doc with BM25 formula 
@@ -22,7 +22,6 @@ import {tokenizeTopics} from "../../index.js";
  * @param {number} options.avgDocWordCount Estimated average word count of all documents
  * @param {number} options.totalWikiPages Total number of Wikipedia pages used to calculate IDF
  * @returns {number} score for term specificity 
- * @category Relevance
  */
 export function weighRelevanceTermFrequency(
   document,
@@ -33,7 +32,8 @@ export function weighRelevanceTermFrequency(
     saturationWeight = 1.5,
     normalizeLength = 0.75,
     avgDocWordCount = 2500,
-    totalWikiPages = 6000000
+    totalWikiPages = 6000000,
+    phrasesModel = null
   } = options;
   
   const words = document.toLowerCase().split(/\W+/);
@@ -44,7 +44,7 @@ export function weighRelevanceTermFrequency(
     const tf = words.filter((word) => word === term).length;
 
     //calculate IDF from Wikipedia term frequency
-    const wikiPagesWithTerm = calculatePhraseSpecificity(term)
+    const wikiPagesWithTerm = calculatePhraseSpecificity(term, options)
 
     const wordScore =
       Math.log(
@@ -69,10 +69,9 @@ export function weighRelevanceTermFrequency(
  * how many Wiki pages they appear in.
  * @param {string} phrase
  * @returns {number} domain specificity 0-12~
- * @category Relevance
  */
 export function calculatePhraseSpecificity(phrase, options) {
-  var tokensWithFreq = tokenizeTopics(phrase, options);
+  var tokensWithFreq = convertTextToTokens(phrase, options);
 
   return (
     tokensWithFreq.reduce((acc, r) => acc + (r[1] || 4), 0) /

@@ -1,7 +1,7 @@
 import {
   convertEmbeddingsToUMAP,
-  convertTextToEmbeddingVector,
-  getEmbeddingPipeline,
+  convertTextToEmbedding,
+  getEmbeddingModel,
 } from "../index.js";
 
 import { test, expect } from "vitest";
@@ -34,16 +34,16 @@ test("hnsw demo", async () => {
   // Query word
   const queryWord = "knowledge about work medicine";
 
-  var pipeline = await getEmbeddingPipeline();
+  var pipeline = await getEmbeddingModel();
   var embeddingsDict = {};
 
-  var vectorQuery = await convertTextToEmbeddingVector(queryWord, { pipeline });
+  var vectorQuery = await convertTextToEmbedding(queryWord, { pipeline });
 
   embeddingsDict[queryWord] = vectorQuery;
 
   console.log("Generating embeddings for sample sentences...");
   for (const sentence of sampleSentences) {
-    var vector = await convertTextToEmbeddingVector(sentence, { pipeline });
+    var vector = await convertTextToEmbedding(sentence, { pipeline });
     embeddingsDict[sentence] = vector;
   }
   const plotDataArray = await convertEmbeddingsToUMAP(

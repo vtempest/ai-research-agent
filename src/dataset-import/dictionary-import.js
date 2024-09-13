@@ -268,7 +268,7 @@ dictionaryMap = Object.keys(dictionaryMap)
  *  concept categories: 45 <br />
  *  119801 definiton sets ( multiple defs per term & some terms share defs)<br />
  *  like "motion" "person", and 5 Part-of-Speech categories:
- * ["n", "v", "r", "a", "s"]: noun, verb, adverb, adj, satellite adj*. <br />
+ *  "n", "v", "r", "a", "s": noun, verb, adverb, adj, satellite adj*. <br />
  * 
  * @author
  * McCrae, J.P.,  Rademaker, A.,  Bond, F.,  Rudnicka, E., and  Fellbaum, C. (2019).
@@ -276,7 +276,7 @@ dictionaryMap = Object.keys(dictionaryMap)
  * 10th Global WordNet Conference – GWC 2019, Wrocław. https://aclanthology.org/2019.gwc-1.31/ 
 
  * @returns {object} 
- * @category Topic Model
+
  */
 export async function importDictionary() {
   try {

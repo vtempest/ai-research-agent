@@ -8,8 +8,8 @@
  * @param {number} options.minSize default=20 - Minimum size for a sentence.
  * @param {number} options.maxSize default=600 - Maximum size for a sentence.
  * @returns {Array<string>} An array of sentences.
- * @category Tokenize
- */
+  * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+*/
 export function splitSentences(inputText, options = {}) {
   const { splitOnHtmlTags = true, minSize = 20, maxSize = 500 } = options;
 
@@ -115,7 +115,7 @@ export function splitSentences(inputText, options = {}) {
             }
           }
         } else {
-          if (word.endsWith("..")) {
+          if (token.endsWith("..")) {
             continue;
           }
 
@@ -405,10 +405,10 @@ function isNumeric(str, startPos) {
  */
 function isPhoneNumber(str) {
   return new RegExp(
-    "^(?:(?:+?1s*(?:[.-]s*)?)?(?:(s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8]" +
-      "[02-9])s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))s*(?:[.-]s*)?)?([2-9]1" +
-      "[02-9]|[2-9][02-9]1|[2-9][02-9]{2})s*(?:[.-]s*)?([0-9]{4})(?:s*(?:#|x.?|ext.?" +
-      "|extension)s*(d+))?$"
+    "^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8]" +
+    "[02-9])\\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1" +
+    "[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?" +
+    "|extension)\\s*(\\d+))?$"
   ).test(str);
 }
 

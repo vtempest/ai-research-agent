@@ -2,12 +2,12 @@ const axios = require("axios");
 const fs = require("fs").promises;
 
 /**
- * Import 92k  first and last human names sorted by popularity 
+ * Import 92k  first and last human names sorted by popularity.
  * 
- * @author American Registry for Internet Numbers (ARIN), a nonprofit 
- * which administers IP addresses, Github @arineng/arincli
+ * @author [American Registry for Internet Numbers
+ * (2011)](https://github.com/arineng/arincli/tree/master/lib)
  * @returns {object}
- * @category Topic Model
+
  */
 export async function importHumanNames() {
   // Define the base URL

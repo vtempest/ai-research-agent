@@ -1,45 +1,52 @@
 
 import { splitSentences } from "../../index.js";
-import { tokenizeTopics } from "../../index.js";
+import { convertTextToTokens } from "../../index.js";
 import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js";
 import { extractNounEdgeGrams } from "./ngrams.js";
 
 /**
- * <h3> 🔤📊 SEEKTOPIC: Summarization by Extracting Entities,
- * Keyword Tokens, and Outline Phrases Important to Context </h3>
- * This can be used to find unique, domain-specific keyphrases using noun Ngrams. 
- * Weights sentences using TextRank noun keyphrase frequency
- * to find which sentences centralize and tie together keyphrase
- * concepts referred to most by other sentences. Based on the  & PageRank algorithms,
- * it randomly surfs nodes to find probability of being at that node, thus ranking influence.  <br />
+ * ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
+ * Extracts unique, domain-specific key phrases from a document using noun 
+ * n-grams and ranks sentences based on their centrality to the most frequently 
+ * referenced key phrase concepts,  enabling efficient extraction of 
+ * domain-specific content. This can be a first step to use key sentences or topics
+ * to vectorize or fit more docs into context limit and visualize them in vector space.
+ * 1. Sentence Segmentation: Split the text into sentences, accounting for 
+ *    common abbreviations, numbers, URLs, and other exceptions.
+ * 2. Tokenization and Phrase Extraction: Employ a Wiki Phrases tokenizer to 
+ *    identify wiki topics, phrases, and nouns. This includes spell-checking 
+ *    and root word verification using Porter Stemmer.
+ * 3. Noun N-gram Extraction: Generate noun edge-grams, allowing for stop words 
+ *    in the middle (e.g., "state of the art").
+ * 4. Key Phrase Consolidation: Merge smaller n-grams that are subsets of 
+ *    larger ones by comparing weights.
+ * 5. Domain Specificity Calculation: Determine named entities and phrase 
+ *    domain specificity using WikiIDF. This rewards unique key phrases 
+ *    specific to the document's field (e.g., "endocrinology" in medical texts 
+ *    or "thou shall" in religious texts).
+ * 6. Key Phrase Filtering: Select top key phrases based on a combination of 
+ *    frequency and word count.
+ * 7. Graph Construction: Create a double-ring weighted graph with key phrases 
+ *    in the central ring and sentences in the outer ring. Assign weights to 
+ *    links based on concept usage probability.
+ * 8. Sentence Weighting: Apply TextRank algorithm to weight sentences, 
+ *    identifying those that centralize and connect key phrase concepts most 
+ *    referenced by other sentences. This process, based on TextRank and 
+ *    PageRank, includes random surfing and jumping to avoid loops.
+ * 9. Top Results Selection: Select top sentences and key phrases based on 
+ *    overall weight and graph centrality, using either a fixed number or 
+ *    percentage for larger documents.
+ * 10. Output Generation: Return top sentences (with associated key phrases) 
+ *     and top key phrases (with associated sentences).
+ * 11. Dynamic Reranking: If a user interacts with a key phrase or if there's a 
+ *     search query leading to the document, compare query similarity to key 
+ *     phrases, heavily weight the most similar key phrase, and reapply 
+ *     TextRank from step 8.
+ *
  * 
- * @description
- * 1. Split into sentences with exceptions for 222 common abbrev., numbers, URLs, etc. <br />
- * 2. Use this Wiki Phrases tokenizer to extract wiki topics, phrases, and nouns. It checks 
- * for spelling typos and uses Porter Stemmer to check root words if original word is not found. <br />
- * 3. Extract Noun Edgegrams. Stop words are allowed in the middle like "state of the art" <br />
- * 4. Fold smaller Ngrams that are subsets of larger ones by comparing weight into keyphrases  <br />
- * 5. Calculate named entities and phrase domain specificity to reward unique keyphrases, using WikiIDF. 
- *  Domains-specific examples in medical data would be "endocrinology" or in religion it is "thou shall" 
- * which can help build category label classifiers.  We can find repeated phrases that are unique to that
- *  document's field, as opposed to common phrases in all docs. <br />
- * 6. Pass to the next layer only a cut  of top keyphrases sorted by frequency ^ word count <br />
- * 7. Create a double-ring weighted graph mapping keyphrases as the central ring and each sentence that uses
- *  that concept on the outer ring and give each link weights to determine probability of going to that link  <br />
- * 8.  Weights sentences using TextRank noun keyphrase frequency to find which sentences centralize and tie
- *  together keyphrase concepts refered to most by other sentences. Based on the TextRank & PageRank algorithms,
- *  it randomly surfs links to nodes to find probability of being at that node, thus ranking influence. There's 
- * also random jumps to prevent stuck in a loop around same sentences. <br />
- * 9. Cut off top Number or percent (for larger docs) of top sentences and keyphrases by overall weight and graph
- *  centrality  <br />
- * 10. Returns Top Sentences (and  keyphrases for each sentence) and Top Keyphrases (and which sentences for each
- *  keyphrase).  <br />
- * 11. If the user clicks a keyphrase, or if there was a search query leading to doc, we can compare similarity of 
- * query to which keyphrase is most similar -- then we give that keyphrase a lot more weight and rerank everything
- *  from step #8 TextRank.  <br />
- *  <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="200px"  />
-
-@param {string} docText - input text to analyze
+ * <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" 
+ *  width="550px" controls />
+ * @param {string} docText - input text to analyze
  * @param {Object} [options]
  * @param {Object} options.phrasesModel - phrases model
  * @param {number} options.maxWords default=5 - maximum words in a keyphrase
@@ -51,9 +58,9 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  * @param {number} options.minKeyPhraseLength default=6 - minimum length of a keyphrase
  * @param {string} options.heavyWeightQuery  - query to give heavy weight to
  * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
- * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10,
- * @category Topics
- */
+ * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10})
+ * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+*/
 export function extractSEEKTOPIC(docText, options = {}) {
   var {
     phrasesModel,
@@ -95,7 +102,7 @@ export function extractSEEKTOPIC(docText, options = {}) {
   for (var index in sentencesArray) {
     var text = sentencesArray[index];
 
-    var tokens = tokenizeTopics(text, {
+    var tokens = convertTextToTokens(text, {
       phrasesModel,
       // typosModel,
     });
@@ -197,7 +204,7 @@ export function extractSEEKTOPIC(docText, options = {}) {
   //weight wiki entities
   keyphraseObjects = keyphraseObjects
     .map((keyphraseObject) => {
-      var phraseTokenized = tokenizeTopics(keyphraseObject.keyphrase, {
+      var phraseTokenized = convertTextToTokens(keyphraseObject.keyphrase, {
         phrasesModel,
         // typosModel,
       });

@@ -3,22 +3,21 @@ import * as chrono from "chrono-node";
 /**
  * Extracts formatted text from PDF with parsing of linebreaks ,
  * page headers, footnotes, and infering section headings based on
- * standard deviation of range from average text height <br>
- * https://en.wikipedia.org/wiki/History_of_PDF <br>
- * https://github.com/mozilla/pdf.js/releases <br>
- * https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch04.html
+ * standard deviation of range from average text height.
+ * 
  * @param {string} pdfURLOrBuffer - URL to a PDF file or buffer from fs.readFile
  * @param {Object} [options]
   * @param {boolean} options.addHeadingsTags default=true - Adds H1 tags to heading titles in document
  * @param {boolean} options.addPageNumbers default=true - Adds  #  to end of each page
  * @param {boolean} options.addSentenceLineBreaks default=true - Inserts line breaks at the end of sentence ranges
  * @param {boolean} options.removePageHeaders default=true - Removes repeated headers found on each page
- * @param {boolean} options.removeHyphens default=true - Removes hyphens at end of lines
- * @param {boolean} options.moveFootnotes default=true - Moves footnotes to end of document
- * @param {boolean} options.timeout default=5 - http request timeout
+ * @param {boolean} options.moveFootnotes default=false - Moves footnotes to end of document
+ * @param {boolean} options.timeout default=10 - http request timeout
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
- * @category Extractor
- */
+ * @author [Gulakov, A. (2024)](https://airesearch.wiki),
+ * [Mozilla (2012-)](https://github.com/mozilla/pdf.js/releases),
+ * [Adobe (1993)](https://en.wikipedia.org/wiki/History_of_PDF)
+*/
 export async function convertPDFToHTML(pdfURLOrBuffer, options = {}) {
   // try {
     var {
@@ -26,10 +25,9 @@ export async function convertPDFToHTML(pdfURLOrBuffer, options = {}) {
       addPageNumbers = true,
       addSentenceLineBreaks = false,
       removePageHeaders = true,
-      removeHyphens = true,
-      moveFootnotes = true,
+      moveFootnotes = false,
       addCitation = true,
-      timeout = 15,
+      timeout = 10,
     } = options;
 
     // pass in databuffer or download all pdf data 
@@ -188,7 +186,7 @@ export async function convertPDFToHTML(pdfURLOrBuffer, options = {}) {
     var content = htmlChunks.reduce((all, range) => {
       if (!range || !range.endsWith) return all;
       //hyphenated words at end of line or column
-      if (removeHyphens && range.endsWith("-")) return all + range.slice(0, -1);
+      if (range.endsWith("-")) return all + range.slice(0, -1);
 
       // Merge unwanted mid-sentence line breaks
       var separator =
@@ -274,7 +272,8 @@ const calculateStandardDeviation = function (array) {
  * Useful for hidden pdf url that does not end with pdf
  * @param {string} url - The URL to check.
  * @returns {Promise<boolean>} True if the URL points to a PDF, false otherwise.
- * @category Extractor
+* @author [Gulakov, A. (2024)](https://airesearch.wiki)
+
  */
 export async function isUrlPDF(url) {
   let response;
