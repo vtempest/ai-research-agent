@@ -1,0 +1,21 @@
+services:
+  scrapoxy:
+    image: fabienvauchelles/scrapoxy
+    ports:
+      - 8888:8888
+      - 8890:8890
+    environment:
+      - NODE_ENV=production
+      - AUTH_LOCAL_USERNAME=admin
+      - AUTH_LOCAL_PASSWORD=password
+      - BACKEND_JWT_SECRET=secret1
+      - FRONTEND_JWT_SECRET=secret2
+      - STORAGE_FILE_FILENAME=/etc/scrapoxy/config.json
+
+  crawler:
+    build: .
+    ports:
+      - 3000:3000
+
+    
+       
