@@ -19,7 +19,7 @@ import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-
 
 import { convertPDFToHTML } from "./src/extractor/url-to-content/pdf-to-content.js";
 
-import { weighTopicDirichletDistribution } from "./src/topics/topic-distribution.js";
+import { extractTopicTermGroupsLDA } from "./src/topics/topic-distribution.js";
 
 import { weighSimilarityByCharacter } from "./src/match/compare-letters.js";
 
@@ -111,5 +111,5 @@ export {
   weighSimilarityByCharacter,
   weighRelevanceConceptVectorAPI,
   weighRelevanceTermFrequency,
-  weighTopicDirichletDistribution
+  extractTopicTermGroupsLDA
 };

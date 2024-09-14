@@ -1,9 +1,8 @@
 <p align="center">
     <img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg">
-
-
-
 </p>
+<h3 align="center"><a href="https://airesearch.wiki/">Javascript Docs (airesearch.wiki)</a></h3>
+<h3 align="center"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
 <p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
         <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
@@ -42,19 +41,12 @@
 
 <p align="center">
     Being is Becoming<br />
-    Whatever the future of research can be,<br /> 
-    That is what it must become.<br />
+    Whatever Research Can Be,<br /> 
+    That is What It Must Become.<br />
     If AI is Humanity's Last Invention, <br />
     Then Vector Space is the Final Frontier.<br />
 </p>
 
-
-
-
-
-### [Javascript Docs (airesearch.wiki) ](https://airesearch.wiki/)
-
-### [Live Demo (qwksearch.com)](https://qwksearch.com/)
 
 
 
@@ -81,7 +73,7 @@
 
 [extract Docs](https://airesearch.wiki/functions/src_extractor_url_to_content_url_to_content.extract.html)
 
-* Extract URL or HTML to main content, based on Readability with improved version
+* Extract URL or HTML to main content, improved version combining Mozilla Readability and Postlight Mercury
  *  using 100+ custom adapters for major websites. 
 * Strips to basic HTML for reading mode or saving research notes
 *  Youtube - get full transcript for video if detected a youtube video
@@ -201,7 +193,7 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 
 
 ### Further Research
-* [Debate on Graph: a Flexible and Reliable Reasoning Framework for Large Language Models](https://arxiv.org/html/2409.03155v1)
+* [Debate on Graph (arxiv)](https://arxiv.org/html/2409.03155v1)
 * [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
 * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
 * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
@@ -217,4 +209,3 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-

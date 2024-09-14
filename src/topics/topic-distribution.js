@@ -27,7 +27,7 @@ import {stemWordToRoot} from "../tokenize/word-to-root-stem.js";
  * @returns {Array} - Array of topics, each containing term-probability pairs.
  * @author [Blei, D; Ng, A. (2003)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
  */
-export function weighTopicDirichletDistribution(sentences, options = {}) {
+export function extractTopicTermGroupsLDA(sentences, options = {}) {
   const {
     topicCount = 8,
     numberOfTermsPerTopic = 4,

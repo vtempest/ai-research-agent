@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { weighTopicDirichletDistribution, splitSentences } from "../index.js"
+import { extractTopicTermGroupsLDA, splitSentences } from "../index.js"
 
 test('topic distribution Test', () => {
   // Function to generate a random collection of documents
@@ -416,7 +416,7 @@ test('topic distribution Test', () => {
 
       var documents = splitSentences(test2)
 
-      const results = weighTopicDirichletDistribution(documents, {numTopics, numTerms});
+      const results = extractTopicTermGroupsLDA(documents, {numTopics, numTerms});
 
       console.log("LDA Results:");
       results.forEach((topic, topicIndex) => {

@@ -107,9 +107,7 @@ export async function getEmbeddingModel(options = {}) {
 
 /**
  * Generates vectors for a set of documents and creates an HNSW index using
- * hnswlib-node WASM JS for efficient similarity search.
- *
- * "If AI is Humanity's Last Invention, then Vector Space is the Final Frontier."
+ * hnswlib in C++ compiled to WASM JS for efficient similarity search.
  *
  * [ANN Benchmarks](https://ann-benchmarks.com)
  *
@@ -121,7 +119,8 @@ export async function getEmbeddingModel(options = {}) {
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
  * @param {number} [options.maxElements=100] - The maximum number of data points.
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
- * @author [Malkov, Y. et al (2016)](https://arxiv.org/abs/1603.09320)
+ * @author [Malkov, Y. et al (2016)](https://arxiv.org/abs/1603.09320),
+ * [Tatsuma, Y. et al (2022)](https://github.com/yoshoku/hnswlib-node)
  */
 export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
     const {

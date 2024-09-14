@@ -9,9 +9,10 @@
  *  right globally</a>.
  * 
  * #### Docker container, bypass bot check
- * 1. Docker container with NodeJS server API takes url and renders with puppeteer DOM to get all HTML.
+ * 1. Docker container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by
+ *  secondary in-age API requests after the initial page request, including user login and cookie storage.
  * 2. Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used
- * to bypass Cloudflare anti bot / anti ddos on any application (like curl)
+ * to bypass Cloudflare anti bot using cookie id javascript method.
  * 3. Send your request to the server with the port 3000 and add your URL to the "url"
  *  query string like this: `http://localhost:3000/?url=https://example.org`
  *
