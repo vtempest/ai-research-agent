@@ -4,9 +4,11 @@
  * @param {string} url
  * @param {Object} [options] 
  * @returns {Promise<string|null>} Favicon URL or null if not found
-  * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Extract
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  * @example const favicons = await extractFavicon('https://github.com/') 
 */
+
 export async function extractFavicon(url, options = {}) {
   const { timeout = 5000, maxRedirects = 3 } = options;
 

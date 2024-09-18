@@ -4,7 +4,8 @@ import { scrapeURL } from "../../index.js";
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many
  * times to retry other domains if first time fails.
- * SearXNG is a free internet metasearch engine which aggregates results from more than 70 search services.
+ * SearXNG is a free internet metasearch engine which aggregates results from
+ *  more than [70 search services](https://docs.searxng.org/user/configured_engines.html).
  * @param {string} query - The search query string.
  * @param {Object} [options]
  * @param {number} options.category default=0 - ["general", "news", "videos", "images",
@@ -13,15 +14,15 @@ import { scrapeURL } from "../../index.js";
  * @param {string|boolean} options.customSearxngDomain default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @param {number} options.page default=1 - The page number to retrieve.
- * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[], cached: string}>>} An array of search result objects.
+ * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[]}>>} An array of search result objects.
  * @throws {Error} Throws an error if the search fails after all retry attempts.
  * @example  const advancedResults = await searchWeb('Node.js', {
  *   category: 2,
  *   recency: 1,
  *   maxRetries: 5
  * });
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
- * 
+ * @category Search
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  * [Heiser, M., Tauber, A., Flament, A., et al. (2014-)](https://github.com/searxng/searxng/graphs/contributors)
 */
 export async function searchWeb(query, options = {}) {

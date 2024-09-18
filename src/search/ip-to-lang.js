@@ -14,7 +14,7 @@
  * @returns {string} returns.language - The full name of the language.
  * @returns {string} returns.greeting - A greeting in the detected language.
  * @returns {string} returns.login - The word "login" translated to the detected language.
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export async function getLanguageFromIPRemoteAPI(ip) {
 

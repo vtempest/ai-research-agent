@@ -22,9 +22,13 @@ import {convertTextToTokens} from "../../index.js";
  * @param {number} options.avgDocWordCount Estimated average word count of all documents
  * @param {number} options.totalWikiPages Total number of Wikipedia pages used to calculate IDF
  * @returns {number} score for term specificity 
+ * @category Match
  */
+
+
 export function weighRelevanceTermFrequency(
   document,
+
   query,
   options = {}
 ) {

@@ -54,7 +54,8 @@ import { parseHTML } from 'linkedom';
  * @param {number} options.retryLength default=250 - Length to retry content extraction if initial attempt fails
  * @returns {Element} Extracted HTML element of main content such as article body
  * @author Based on [Mozilla Readability (2015), Arc90 (2010)](https://github.com/mozilla/readability)
- */
+ * @category Extract
+*/
 export function extractContentHTML(html, options = {}) {
   const {
     minContentLength = 140,

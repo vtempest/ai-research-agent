@@ -4,8 +4,13 @@ import {
   getEmbeddingModel,
   exportEmbeddingsIndex,
   convertTextToEmbedding,
+  torch
 
  } from "$airesearchagent";
+ import { json } from '@sveltejs/kit';
+
+ 
+  
 
 export async function GET({ url }) {
 
@@ -40,6 +45,11 @@ export async function GET({ url }) {
   
     // const result2 = await searchVectorIndex(index2, query, {pipeline});
     // console.log(result2);
-  
+
+    return json({
+      message: "Model trained successfully",
+      result: result
+    })
     
 }
+

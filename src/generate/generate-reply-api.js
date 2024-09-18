@@ -31,6 +31,7 @@ import { convertMarkdownToHtml } from "../../index.js"
  * @param {string} apiKey - The API key for authentication with Groq or OpenAI.
  * @param {string} model - The specific AI model to be used (e.g., GPT-4, Mixtral 8x7B).
  * @returns {Promise<{content: string, error: string}>} The generated AI response as HTML.
+ * @category Generate
  */
 export async function generateLanguageModelReply(query, apiKey, model) {
   var aiResponse = { content: "", error: "" };

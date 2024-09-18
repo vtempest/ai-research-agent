@@ -25,7 +25,8 @@ import {isWordCommonIgnored} from "./stopwords.js";
  * @param {number} options.ignoreStopWords - ignore 300+ overused words
  * @param {number} options.checkRootWords - check for word's root stem
  * @returns {Array<Token>} ex. [[50, 0, "Albert Einstein"],...]
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @category Topics
 */
 export function convertTextToTokens(phrase, options = {}) {
   let {

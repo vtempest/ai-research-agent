@@ -10,10 +10,12 @@ import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
 import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
 
-import { convertHTMLSpecialChars,
+import {
+  convertHTMLSpecialChars,
   convertMarkdownToHtml,
-  convertURLToAbsoluteURL
- } from "./src/extractor/html-to-content/html-utils.js";
+  copyHtmlToClipboard,
+  convertURLToAbsoluteURL,
+} from "./src/extractor/html-to-content/html-utils.js";
 
 import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
 
@@ -29,7 +31,7 @@ import { convertTextToTokens } from "./src/tokenize/tokenize-topics.js";
 
 import { splitSentences } from "./src/tokenize/sentences.js";
 
-import { splitTextSemanticChars } from "./src/tokenize/text-to-chunks.js"
+import { splitTextSemanticChars } from "./src/tokenize/text-to-chunks.js";
 
 import { searchWikipedia } from "./src/search/search-wikipedia.js";
 
@@ -49,8 +51,7 @@ import {
   importVectorIndexFromString,
 } from "./src/similarity/similarity-vector.js";
 
-// import { torch } from "./src/train/neural-net.js";
-
+import { torch } from "./src/train/neural-net.js";
 
 // const   convertEmbeddingsToHNSW=0,
 //     searchVectorIndex=0,
@@ -60,18 +61,16 @@ import {
 //     exportEmbeddingsIndex=0,
 //     importVectorIndexFromString=0;
 
-
-import {extractContentHTML} from "./src/extractor/html-to-content/extract-content/extractor1-content.js"
-import {extractContentHTML2} from "./src/extractor/html-to-content/extract-content/extractor2-content.js"
-import {convertHTMLToBasicHTML} from "./src/extractor/html-to-content/html-to-basic-html.js"
-import {extractCite} from "./src/extractor/html-to-cite/extract-cite.js"
+import { extractContentHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
+import { extractContentHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
+import { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";
+import { extractCite } from "./src/extractor/html-to-cite/extract-cite.js";
 // import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
-import {stemWordToRoot} from "./src/tokenize/word-to-root-stem.js"
-import {extractFavicon} from "./src/extractor/html-to-cite/url-to-favicon.js"
-import {embedYoutubePlayer} from "./src/extractor/url-to-content/youtube-embed.js"
+import { stemWordToRoot } from "./src/tokenize/word-to-root-stem.js";
+import { extractFavicon } from "./src/extractor/html-to-cite/url-to-favicon.js";
+import { embedYoutubePlayer } from "./src/extractor/url-to-content/youtube-embed.js";
 
-import {generateLanguageModelReply} from "./src/generate/generate-reply-api.js"
-
+import { generateLanguageModelReply } from "./src/generate/generate-reply-api.js";
 
 // Export all functions as named exports
 export {
@@ -84,6 +83,7 @@ export {
   extractFavicon,
   embedYoutubePlayer,
   stemWordToRoot,
+  copyHtmlToClipboard,
   // compileTopicModel,
   extractCite,
   extractContentHTML,
@@ -106,10 +106,10 @@ export {
   searchVectorIndex,
   splitSentences,
   splitTextSemanticChars,
-  // torch,
+  torch,
   suggestNextWordCompletions,
   weighSimilarityByCharacter,
   weighRelevanceConceptVectorAPI,
   weighRelevanceTermFrequency,
-  extractTopicTermGroupsLDA
+  extractTopicTermGroupsLDA,
 };

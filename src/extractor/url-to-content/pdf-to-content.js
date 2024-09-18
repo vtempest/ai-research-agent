@@ -14,7 +14,8 @@ import * as chrono from "chrono-node";
  * @param {boolean} options.moveFootnotes default=false - Moves footnotes to end of document
  * @param {boolean} options.timeout default=10 - http request timeout
  * @returns {string|Object} HTML formatted text or {error} if error in parsing
- * @author [Gulakov, A. (2024)](https://airesearch.wiki),
+ * @category Extract
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org),
  * [Mozilla (2012-)](https://github.com/mozilla/pdf.js/releases),
  * [Adobe (1993)](https://en.wikipedia.org/wiki/History_of_PDF)
 */
@@ -272,10 +273,11 @@ const calculateStandardDeviation = function (array) {
  * Useful for hidden pdf url that does not end with pdf
  * @param {string} url - The URL to check.
  * @returns {Promise<boolean>} True if the URL points to a PDF, false otherwise.
-* @author [Gulakov, A. (2024)](https://airesearch.wiki)
-
+* @author [Gulakov, A. (2024)](https://airesearch.js.org)
+* @category Extract
  */
 export async function isUrlPDF(url) {
+
   let response;
   try {
     // Fetch the URL with a stream response

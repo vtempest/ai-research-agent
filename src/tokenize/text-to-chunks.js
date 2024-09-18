@@ -28,7 +28,7 @@
  * @param {string} text - The input text to be split into semantic chunks.
  * @param {Object} [options={}] - Optional configuration options (currently unused).
  * @returns {Array.<string>} An array of text chunks, each representing a semantic unit of the document.
- * 
+ * @category Topics
  * @example
  * const text = "# Heading\n\nThis is a paragraph.\n\n- List item 1\n- List item 2\n\n";
  * const chunks = splitTextSemanticChars(text);

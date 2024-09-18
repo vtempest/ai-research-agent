@@ -1,4 +1,4 @@
-// import  { pipeline }  from  //"../../node_modules/@huggingface/transformers/dist/transformers.mjs";
+// import  { pipeline }  from  "../../node_modules/@huggingface/transformers/dist/transformers.mjs";
 
 
 
@@ -66,7 +66,8 @@ import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
  *  - The pipeline to use for embedding.
  * @param {number} options.precision default=3 - The number of decimal places to round to.
  * @returns {Promise<{embeddingsDict: Object.<string, number[]>, embedding: number[]}>}
- */
+  * @category Similarity
+  */
 export async function convertTextToEmbedding(text, options = {}) {
   var { precision = 3, pipeline } = options;
 
@@ -87,7 +88,8 @@ export async function convertTextToEmbedding(text, options = {}) {
  * @param {string} options.modelName default="Xenova/all-MiniLM-L6-v2" - 
  * The name of the model to use
  * @returns {Promise<import("@huggingface/transformers").AutoTokenizer>} The pipeline.
- */
+  * @category Similarity
+  */
 export async function getEmbeddingModel(options = {}) {
   // const {pipeline} = await import("../../../transformers.js/dist/transformers")
   const {pipeline} = await import("@huggingface/transformers")
@@ -111,9 +113,9 @@ export async function getEmbeddingModel(options = {}) {
  *
  * [ANN Benchmarks](https://ann-benchmarks.com)
  *
+ * https://github.com/brtholomy/hnsw
  * [Pinecone - HNSW](https://www.pinecone.io/learn/series/faiss/hnsw/)
  *
- * [Wikipedia - HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world)
  * @param {string[]} documentVectors - An array of document texts to be vectorized.
  * @param {Object} [options={}] - Optional parameters for vector generation and indexing.
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
@@ -121,6 +123,7 @@ export async function getEmbeddingModel(options = {}) {
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
  * @author [Malkov, Y. et al (2016)](https://arxiv.org/abs/1603.09320),
  * [Tatsuma, Y. et al (2022)](https://github.com/yoshoku/hnswlib-node)
+  * @category Similarity
  */
 export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
     const {
@@ -140,6 +143,21 @@ export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
     return { index, labels };
   }
 
+  /**
+   * Searches the vector index for the nearest neighbors of a given query.
+   * 
+   * @param {HierarchicalNSW} index - The HNSW index to search.
+   * @param {string} query - The query string to search for.
+   * @param {Object} [options={}] - Optional parameters for the search.
+   * @param {number} [options.numNeighbors=5] - The number of nearest neighbors to return.
+   * @returns {Promise<Array<{id: number, distance: number}>>} A promise that resolves to an array of nearest neighbors, each with an id and distance.
+   * @throws {Error} If there's an error during the search process.
+   * @example
+   * const index = await convertEmbeddingsToHNSW(documentVectors);
+   * const results = await searchVectorIndex(index, 'example query');
+   * console.log(results); // [{id: 3, distance: 0.1}, {id: 7, distance: 0.2}, ...]
+  * @category Similarity
+   */
   export async function searchVectorIndex(index, query, options = {}) {
     const { numNeighbors = 5 } = options;
     // Convert query to embedding vector
@@ -147,13 +165,14 @@ export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
     // Searching k-nearest neighbor data points
     const result = index.searchKnn(queryVector, numNeighbors, null);
     return result;
-}
+  }
 
 /**
  * Retrieves all embeddings from the HNSW index.
  * @param {HierarchicalNSW} index - The HNSW index containing the embeddings.
  * @param {number} [precision=3] - The number of decimal places to round to.
  * @returns {number[][]} An array of embedding vectors.
+  * @category Similarity
  */
 export function getAllEmbeddings(index, precision = 3) {
   const numElements = index.getCurrentCount();
@@ -194,6 +213,7 @@ export function calculateCosineSimilarity(vectorA, vectorB) {
  * @param {string} query
  * @param {Object} [options]
  * @returns {Promise<Array<{content: string, similarity: number}>>}
+  * @category Similarity
  */
 export async function weighRelevanceConceptVector(
   documents,
@@ -223,10 +243,11 @@ export async function weighRelevanceConceptVector(
 
 /**
  * Converts an HNSW index to a base64 encoded string.
- * 
+ * https://github.com/NJU-RINC/hnsw-visulize/blob/master/path.gif?raw=true
  * @param {object} index - The HNSW index object.
  * @returns {Promise<string>} A promise that resolves to a base64 encoded string representation of the index.
  * @throws {Error} If there's an error during the index serialization process.
+ * @category Similarity
  */
 export async function exportEmbeddingsIndex(index) {
 
@@ -296,8 +317,8 @@ export async function exportEmbeddingsIndex(index) {
  * @param {number} dim - The dimensionality of the vectors in the index.
  * @param {string} space - The space type of the index (e.g., 'l2', 'ip', 'cosine').
  * @returns {Promise<object>} A promise that resolves to the imported HNSW index object.
- * @throws {Error} If there's an error during the index deserialization process.
- */
+ * @category Similarity
+*/
 export async function importVectorIndexFromString(indexString, dim = 384, space = "cosine") {
  
   const lib = await loadHnswlib();

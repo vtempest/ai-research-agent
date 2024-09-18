@@ -4,14 +4,22 @@
   "gaID": "G-E5TZ32BZDF",
   "entryPointStrategy": "expand",
   "navigation": {
-    "includeCategories": false,
+    "includeCategories": true,
     "includeGroups": false,
-    "includeFolders": true
+    "includeFolders": false
   },
   "commentStyle":"all",
-  "sourceLinkExternal": true,
   "hideGenerator": true,
+  "cname": "airesearch.js.org",
+  "hostedBaseUrl": "https://airesearch.js.org",
   "searchInDocuments": true,
+  "searchInComments": true,
+  "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
+  "sidebarLinks": {
+    "Source Code": "https://github.com/vtempest/ai-research-agent",
+    "Live Demo": "https://qwksearch.com",
+    "Discord Chat": "https://discord.gg/SJdBqBz3tV"
+  },
   "navigationLinks": {
     "Source Code": "https://github.com/vtempest/ai-research-agent",
     "Live Demo": "https://qwksearch.com",

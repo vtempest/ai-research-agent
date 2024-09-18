@@ -20,7 +20,8 @@ import { extractNamedEntity } from "./human-names-recognize.js";
  *
  * @param {document} document  dom object or html string with article content
  * @returns {object} {author, date, title, source}
-  * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Extract
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export function extractCite(document) {
   //if passing in html string, convert to dom object

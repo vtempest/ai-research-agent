@@ -6,7 +6,7 @@
  * @param {boolean} unescape  default=true - If true, converts & codes to characters.
  *                                     If false, converts characters to codes.
  * @return {string} The processed string.
- 
+ * @category HTML Utilities
  * @example
  * var normalHTML = convertHTMLSpecialChars('&lt;p&gt;This &amp; that &copy; 2023 '+
  * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
@@ -80,6 +80,13 @@ export function convertHTMLSpecialChars(str, unescape = true) {
  * @param {string} base base url of the domain
  * @param {string} relative partial urls like ../images/image.jpg #hash
  * @returns {string} absolute URL
+ * @example
+ * var absoluteURL = convertURLToAbsoluteURL('https://example.com', 'images/image.jpg')
+ * console.log(absoluteURL) // Returns: "https://example.com/images/image.jpg"
+ * var absoluteURL = convertURLToAbsoluteURL('https://example.com', '//images/image.jpg')
+ * console.log(absoluteURL) // Returns: "https:images/image.jpg"
+ * @category HTML Utilities
+* @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export function convertURLToAbsoluteURL(base, relative) {
 
@@ -143,8 +150,11 @@ export function convertURLToAbsoluteURL(base, relative) {
  * - Unordered lists
  * - Ordered lists
  * - Paragraphs
+ * - Images
+ * - Links
  * @param {string} markdown - The Markdown-formatted text to be converted.
  * @returns {string} The resulting HTML string.
+ * @category HTML Utilities
  * @example
  * const markdown = "# Header\n\nThis is **bold** and *italic* text.\n\n* List item 1\n* List item 2";
  * const html = convertMarkdownToHtml(markdown);
@@ -183,7 +193,63 @@ export function convertMarkdownToHtml(markdown) {
           return `<p>${para.trim()}</p>`;
       }
       return para;
-  }).join('\n');
+  }).join('\n')
+
+  //convert images 
+  .replace(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" />')
+
+  //convert links
+  .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
+
 
   return html;
+}
+
+
+
+/**
+ * Copy HTML to clipboard. When pasting into rich text field, pastes rich 
+ * text. When pasting into plain text field, pastes: plain text, html, or markdown.
+ * 
+ * @param {string} html - The HTML content to be copied.
+ * @param {object} options - The options object.
+ * @param {boolean} options.pastePlainWithHTML - 
+ * If true, the plain text will be the same as the HTML.
+ * If false, the plain text will be the same as the HTML,
+ * without the HTML tags.
+ * @param {boolean} options.pastePlainWithMarkdown -  
+ * If true, the plain text will be markdown.
+ * If false, the plain text will be the same as the HTML,
+ * without the HTML tags.
+ * @returns {Promise<void>} - A promise that resolves when 
+ * the HTML is copied to the clipboard.
+ * @category HTML Utilities
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * 
+ */
+export async function copyHtmlToClipboard(html, options = {}) {
+  var {
+    pastePlainWithHTML = true,
+    pastePlainWithMarkdown = false
+  } = options;
+
+  if (typeof window == "undefined" || !navigator?.clipboard) return;
+
+  const htmlBlob = new Blob([html], { type: "text/html" });
+
+  var plainText = pastePlainWithHTML ? 
+    html.replace(/<[^>]*>?/g, "") :
+    pastePlainWithMarkdown ? 
+    convertMarkdownToHtml(html) :
+    html;
+  
+  const textBlob =  new Blob([plainText], { type: "text/plain" }) 
+
+  const clipboardItem = new window.ClipboardItem({
+    "text/html": htmlBlob,
+    "text/plain": textBlob,
+  });
+  
+  return await navigator.clipboard.write([clipboardItem]);
+
 }

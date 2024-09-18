@@ -18,7 +18,6 @@
   "devDependencies": {
     "@jsprismarine/typedoc-material-theme": "^1.0.4",
     "@mxssfd/typedoc-theme": "^1.1.6",
-    "@types/bun": "^1.1.8",
     "@vitest/ui": "^2.0.5",
     "adm-zip": "^0.5.16",
     "axios": "^1.7.7",
@@ -30,6 +29,7 @@
     "vitest": "^2.0.5"
   },
   "dependencies": {
+    "@eduardoleao052/gpu": "^2.19.0",
     "@huggingface/transformers": "^3.0.0-alpha.14",
     "@langchain/anthropic": "^0.2.17",
     "@langchain/core": "^0.2.31",
@@ -41,6 +41,7 @@
     "hnswlib-wasm": "^0.8.2",
     "linkedom": "^0.18.4",
     "pdfjs-serverless": "^0.5.1",
-    "umap-js": "^1.4.0"
+    "umap-js": "^1.4.0",
+    "usearch": "^2.15.1"
   }
 }

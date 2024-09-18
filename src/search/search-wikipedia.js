@@ -18,7 +18,9 @@ import {splitSentences} from "../../index.js";
  * @example await searchWikipedia("JavaScript", { plainText: true })
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
- */
+ * @category Search
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+*/
 export async function searchWikipedia(query, options = {}) {
   // Set default options
   var {

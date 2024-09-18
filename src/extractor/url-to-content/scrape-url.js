@@ -27,8 +27,9 @@
  * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
  * @param {string} options.urlProxy default=false - use proxy url
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
-* @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Extract
+ * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export async function scrapeURL(url, options = {}) {
   // try {

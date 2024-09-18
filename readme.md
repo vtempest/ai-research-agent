@@ -1,7 +1,7 @@
 <p align="center">
     <img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg">
 </p>
-<h3 align="center"><a href="https://airesearch.wiki/">Javascript Docs (airesearch.wiki)</a></h3>
+<h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a></h3>
 <h3 align="center"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
 <p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
@@ -36,10 +36,7 @@
         <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
             alt="NPM badge for ai-research-agent">
     </a>
-    
-</p>
-
-<p align="center">
+    <br />
     Being is Becoming<br />
     Whatever Research Can Be,<br /> 
     That is What It Must Become.<br />
@@ -48,16 +45,13 @@
 </p>
 
 
-
-
-
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
 
 <p align="center">
 <img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
 </p>
 
-[searchSTREAM  Docs](https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html)
+[searchSTREAM  Docs](https://airesearch.js.org/functions/searchSTREAM.html)
 
  1. Search Web for query via metasearch of major engines or your custom data
  2. Extract text of top results with Tractor the Text Extractor.
@@ -71,7 +65,7 @@
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
 </p>
 
-[extract Docs](https://airesearch.wiki/functions/src_extractor_url_to_content_url_to_content.extract.html)
+[extract Docs](https://airesearch.js.org/functions/extract.html)
 
 * Extract URL or HTML to main content, improved version combining Mozilla Readability and Postlight Mercury
  *  using 100+ custom adapters for major websites. 
@@ -88,7 +82,7 @@
 </p>
 
 
-[extractSEEKTOPIC Docs](https://airesearch.wiki/functions/src_search_web_search_stream.searchSTREAM.html)
+[extractSEEKTOPIC Docs](https://airesearch.js.org/functions/searchSTREAM.html)
 
  [SEEKTOPIC Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
 
@@ -138,7 +132,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 <img width="350px"  src="https://i.imgur.com/ffaU3s7.jpeg" > 
 </p>
 
-[compileTopicModel Docs](https://airesearch.wiki/functions/src_dataset_import_compile_topic_model.compileTopicModel.html)
+[compileTopicModel Docs](https://airesearch.js.org/functions/compileTopicModel.html)
 
  Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.  If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
@@ -153,7 +147,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
 </p>
 
-[weighRelevanceTermFrequency Docs](https://airesearch.wiki/functions/src_match_weigh_relevance_frequency.weighRelevanceTermFrequency.html)
+[weighRelevanceTermFrequency Docs](https://airesearch.js.org/functions/weighRelevanceTermFrequency.html)
 
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.
@@ -186,7 +180,7 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
 </p>
 
-[suggestNextWordCompletions Docs](https://airesearch.wiki/functions/src_autocomplete_autocomplete.suggestNextWordCompletions.html)
+[suggestNextWordCompletions Docs](https://airesearch.js.org/functions/suggestNextWordCompletions.html)
 
 Search-on-keystroke and load this JSON index for word and phrase completion, sorted by how common the terms are with IDF, for search autocomplete dropdown. Tokening by word can often have a meaning widely different than  if it is part of a phrase, so it is better to extract phrases by first-word next-words pairings. Search results will be more accurate if we infer likely phrases and search for those words occuring together and not just split into words and find frequency. Examples are "white house" or "state of the art" which should be searched as a phrase but would return different context if split into words. As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
 
@@ -205,7 +199,8 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 * [BM42: New Baseline for Hybrid Search](https://qdrant.tech/articles/bm42/)
 * [Google Search  Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
 * [Understanding UMAP](https://pair-code.github.io/understanding-umap/)
-* [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
+* [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853) 
+* [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
 
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)

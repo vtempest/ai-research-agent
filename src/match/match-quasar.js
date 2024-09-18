@@ -13,7 +13,8 @@
  * @example var isFound = matchQUASAR(`Ask not what your country can do for you, 
  * ask what you can do for your country.  is nothing to fear but fear itself.`, 
  * ` "Ask not" "but fear itself" nothing`) // returns true
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @category Match
  */
 export function matchQUASAR(document, query) {
   //  Uses negative lookaheads

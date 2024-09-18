@@ -9,7 +9,8 @@ import { scrapeURL } from "./scrape-url.js"
  * @param {boolean} options.timeout default=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
-   * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Extract
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export async function convertYoutubeToText(videoUrl, options = {}) {
   const { addTimestamps = true, timeout = 5 } = options;

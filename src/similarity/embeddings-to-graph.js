@@ -46,7 +46,8 @@ import { UMAP } from "umap-js/lib/umap-js.js";
  * @returns {Promise<PlotDataPoint[]>} An array of plot data points.
  * @author [McInnes et al. (2018)](https://arxiv.org/abs/1802.03426) <br />
  * [Coenen et al. (2019)](https://pair-code.github.io/understanding-umap/)
- */
+ * @category Similarity
+*/
 export async function convertEmbeddingsToUMAP(embeddingsDict, options = {}) {
   const {
     numberDimensions = 2,

@@ -8,8 +8,9 @@
  * @param {number} options.minSize default=20 - Minimum size for a sentence.
  * @param {number} options.maxSize default=600 - Maximum size for a sentence.
  * @returns {Array<string>} An array of sentences.
-  * @author [Gulakov, A. (2024)](https://airesearch.wiki)
-*/
+  * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @category Topics
+ */
 export function splitSentences(inputText, options = {}) {
   const { splitOnHtmlTags = true, minSize = 20, maxSize = 500 } = options;
 

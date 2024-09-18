@@ -7,7 +7,8 @@
  * @param {string} word - The word to be stemmed
  * @returns {string} - The stemmed word
  * @example var rootWord = stemWordToRoot("running"); // returns "run"
- */
+ * @category Topics
+*/
 export function stemWordToRoot(word) {
   // Return short words (less than 3 characters) without stemming
   if (word.length < 3) return word;

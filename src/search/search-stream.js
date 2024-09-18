@@ -2,7 +2,7 @@ import {searchWeb} from "../../index.js";
 import {extract} from "../../index.js";
 
 /**
- * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model  <br />
+ * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
  * 1. Searches the Web for the query via metasearch of major engines or custom data.<br />
  * 2. Extracts text of top results using Tractor the Text Extractor.<br />
  * 3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.<br />
@@ -27,8 +27,8 @@ import {extract} from "../../index.js";
  *   maxRetries: 5,
  *   maxTopResultsToExtract: 10
  * });
- 
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Search
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
 */
 export async function searchSTREAM(query, options = {}) {
   const {

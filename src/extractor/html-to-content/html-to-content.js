@@ -20,7 +20,7 @@ import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
  *    then use the alternate if the first returns less than 200 characters
  * @returns {ExtractedContent} An object containing extracted information
  * @throws {Error} If there's an error parsing the HTML
- 
+  * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export function extractContentAndCite(documentOrHTML, options = {}) {
   const {

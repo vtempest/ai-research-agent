@@ -1,64 +1,5 @@
-import { GPU } from "@eduardoleao052/gpu"
-
-/**
- * JS-PyTorch is a neural net matrix mult library with GPU.js using PyTorch API syntax.
- * @class torch
- * @see {@link https://eduardoleao052.github.io/js-pytorch/site/index.html|JS-PyTorch}
- * Tensor Creation and Manipulation:
- * @function tensor(data, requires_grad = false, device = 'cpu') Creates a new Tensor filled with the given data
- * @function zeros(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with zeros
- * @function ones(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with ones
- * @function tril(*shape, requires_grad = false, device = 'cpu') Creates a new 2D lower triangular Tensor
- * @function randn(*shape, requires_grad = false, device = 'cpu', xavier = false) Creates a new Tensor filled with random values from a normal distribution
- * @function rand(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with random values from a uniform distribution
- * @function randint(low, high, *shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with random integers
- * Tensor Methods:
- * @method tensor.backward() Performs backpropagation from this tensor backwards
- * @method tensor.zero_grad() Clears the gradients stored in this tensor
- * @method tensor.zero_grad_graph() Clears the gradients stored in this tensor and all tensors that led to it
- * @method tensor.tolist() Returns the tensor's data as a JavaScript Array
- * @property tensor.data Returns the tensor's data as a JavaScript Array
- * @property tensor.length Returns the tensor's length (size of first dimension)
- * @property tensor.ndims Returns the number of dimensions in the Tensor
- * @property tensor.grad Returns the gradients currently stored in the Tensor
- * Tensor Operations:
- * @function add(a, b) Performs element-wise addition of two tensors
- * @function sub(a, b) Performs element-wise subtraction of two tensors
- * @function neg(a) Returns the element-wise opposite of the given Tensor
- * @function mul(a, b) Performs element-wise multiplication of two tensors
- * @function div(a, b) Performs element-wise division of two tensors
- * @function matmul(a, b) Performs matrix multiplication between two tensors
- * @function sum(a, dim, keepdims = false) Gets the sum of the Tensor over a specified dimension
- * @function mean(a, dim, keepdims = false) Gets the mean of the Tensor over a specified dimension
- * @function variance(a, dim, keepdims = false) Gets the variance of the Tensor over a specified dimension
- * @function transpose(a, dim1, dim2) Transposes the tensor along two consecutive dimensions
- * @function at(a, index1, index2) Returns elements from the tensor based on given indices
- * @function masked_fill(a, condition, value) Fills elements in the tensor based on a condition
- * @function pow(a, n) Returns tensor raised to element-wise power
- * @function sqrt(a) Returns element-wise square root of the tensor
- * @function exp(a) Returns element-wise exponentiation of the tensor
- * @function log(a) Returns element-wise natural log of the tensor
- * 
- * Neural Network Layers:
- * @class nn.Linear(in_size, out_size, device, bias, xavier) Applies a linear transformation to the input tensor
- * @class nn.MultiHeadSelfAttention(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a self-attention layer on the input tensor
- * @class nn.FullyConnected(in_size, out_size, dropout_prob, device, bias) Applies a fully-connected layer on the input tensor
- * @class nn.Block(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a transformer Block layer on the input tensor
- * @class nn.Embedding(in_size, embed_size) Creates an embedding table for vocabulary
- * @class nn.PositionalEmbedding(input_size, embed_size) Creates a positional embedding table
- * @class nn.ReLU() Applies Rectified Linear Unit activation function
- * @class nn.Softmax() Applies Softmax activation function
- * @class nn.Dropout(drop_prob) Applies dropout to input tensor
- * @class nn.LayerNorm(n_embed) Applies Layer Normalization to input tensor
- * @class nn.CrossEntropyLoss() Computes Cross Entropy Loss between target and input tensor
- * 
- * Optimization:
- * @class optim.Adam(params, lr, reg, betas, eps) Adam optimizer for updating model parameters
- * 
- * Utility Functions:
- * @function save(model, file) Saves the model reruning data blob (for you to save)
- * @function load(model, loadedData) Loads the model from saved data
- */
+import { GPU } from "gpu.js"
+// import { GPU } from "@eduardoleao052/gpu"
 
 function getShape(data, shape = []) {
   if (data instanceof Array && data.length === 0) {
@@ -1701,6 +1642,13 @@ class MultiHeadSelfAttention extends Module {
   H;
   /**
    * Full transformer Layer implementation.
+   * 
+   * 
+ * [The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/)
+ * 
+ * [Transformers Explained Visually (Part 
+ * 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
+ * 
    *
    * @param {number} in_size - size of the last dimention of the input array.
    * @param {number} out_size - size of the last dimention of the output array.
@@ -1726,6 +1674,8 @@ class MultiHeadSelfAttention extends Module {
   }
   /**
    * Performs Multi Head Self-Attention on "x" tensor.
+   * 
+ * [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
    * @param {Tensor} x - input Tensor.
    * @returns {Tensor} new Tensor.
    */
@@ -1798,7 +1748,7 @@ class Block extends Module {
    * @param {number} in_size - size of the last dimention of the input array.
    * @param {number} out_size - size of the last dimention of the output array.
    * @param {number} n_heads - number of parallel heads to be computed (must equally divide in_size).
-   * @param {number} n_timesteps - length of text sequence to be processed bt Transformer.
+   * @param {number} n_timesteps - length of text sequence to be processed by Transformer.
    * @param {number} dropout_prob - probability of zeroing each activation in dropout Layer.
    * @param {string} device - Device to perform Tensor operations. Either "gpu" or "cpu".
    */
@@ -2096,6 +2046,71 @@ const nn = {
   CrossEntropyLoss
 };
 const optim = { Adam };
+
+/**
+ * JS-PyTorch is a neural net matrix multiplication library 
+ * with GPU.js acceleration (translates matmul into WebGPU shader code)
+ * and using PyTorch API syntax.
+ * @class torch
+ * Tensor Creation and Manipulation:
+ * @function tensor(data, requires_grad = false, device = 'cpu') Creates a new Tensor filled with the given data
+ * @function zeros(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with zeros
+ * @function ones(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with ones
+ * @function tril(*shape, requires_grad = false, device = 'cpu') Creates a new 2D lower triangular Tensor
+ * @function randn(*shape, requires_grad = false, device = 'cpu', xavier = false) Creates a new Tensor filled with random values from a normal distribution
+ * @function rand(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with random values from a uniform distribution
+ * @function randint(low, high, *shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with random integers
+ * Tensor Methods:
+ * @method tensor.backward() Performs backpropagation from this tensor backwards
+ * @method tensor.zero_grad() Clears the gradients stored in this tensor
+ * @method tensor.zero_grad_graph() Clears the gradients stored in this tensor and all tensors that led to it
+ * @method tensor.tolist() Returns the tensor's data as a JavaScript Array
+ * @property tensor.data Returns the tensor's data as a JavaScript Array
+ * @property tensor.length Returns the tensor's length (size of first dimension)
+ * @property tensor.ndims Returns the number of dimensions in the Tensor
+ * @property tensor.grad Returns the gradients currently stored in the Tensor
+ * Tensor Operations:
+ * @function add(a, b) Performs element-wise addition of two tensors
+ * @function sub(a, b) Performs element-wise subtraction of two tensors
+ * @function neg(a) Returns the element-wise opposite of the given Tensor
+ * @function mul(a, b) Performs element-wise multiplication of two tensors
+ * @function div(a, b) Performs element-wise division of two tensors
+ * @function matmul(a, b) Performs matrix multiplication between two tensors
+ * @function sum(a, dim, keepdims = false) Gets the sum of the Tensor over a specified dimension
+ * @function mean(a, dim, keepdims = false) Gets the mean of the Tensor over a specified dimension
+ * @function variance(a, dim, keepdims = false) Gets the variance of the Tensor over a specified dimension
+ * @function transpose(a, dim1, dim2) Transposes the tensor along two consecutive dimensions
+ * @function at(a, index1, index2) Returns elements from the tensor based on given indices
+ * @function masked_fill(a, condition, value) Fills elements in the tensor based on a condition
+ * @function pow(a, n) Returns tensor raised to element-wise power
+ * @function sqrt(a) Returns element-wise square root of the tensor
+ * @function exp(a) Returns element-wise exponentiation of the tensor
+ * @function log(a) Returns element-wise natural log of the tensor
+ * 
+ * Neural Network Layers:
+ * @class nn.Linear(in_size, out_size, device, bias, xavier) Applies a linear transformation to the input tensor
+ * @class nn.MultiHeadSelfAttention(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a self-attention layer on the input tensor
+ * @class nn.FullyConnected(in_size, out_size, dropout_prob, device, bias) Applies a fully-connected layer on the input tensor
+ * @class nn.Block(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a transformer Block layer on the input tensor
+ * @class nn.Embedding(in_size, embed_size) Creates an embedding table for vocabulary
+ * @class nn.PositionalEmbedding(input_size, embed_size) Creates a positional embedding table
+ * @class nn.ReLU() Applies Rectified Linear Unit activation function
+ * @class nn.Softmax() Applies Softmax activation function
+ * @class nn.Dropout(drop_prob) Applies dropout to input tensor
+ * @class nn.LayerNorm(n_embed) Applies Layer Normalization to input tensor
+ * @class nn.CrossEntropyLoss() Computes Cross Entropy Loss between target and input tensor
+ * 
+ * Optimization:
+ * @class optim.Adam(params, lr, reg, betas, eps) Adam optimizer for updating model parameters
+ * 
+ * Utility Functions:
+ * @function save(model, file) Saves the model reruning data blob (for you to save)
+ * @function load(model, loadedData) Loads the model from saved data
+ * @author [PyTorch Contributors](https://github.com/pytorch/pytorch/graphs/contributors),
+ *  [Leao, E. et al (2022)](https://eduardoleao052.github.io/js-pytorch/site/index.html),
+ * See also: [Brain.js](https://github.com/BrainJS/brain.js)
+ * @category Neural Net 
+ */
 const torch = {
   // Add methods from tensor.js (these methods are accessed with "torch."):
   Tensor,

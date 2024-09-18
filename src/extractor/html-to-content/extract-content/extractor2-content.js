@@ -56,6 +56,7 @@ import {
  * var html = await (await fetch(url)).text();
  * var content = extractContentHTML(html);
  * console.log(content); // HTML content of main article body
+ * @category Extract
  */
 export function extractContentHTML2(html, opts) {
   opts = {

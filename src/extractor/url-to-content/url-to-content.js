@@ -35,7 +35,8 @@ import { scrapeURL } from "./scrape-url.js";
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
  * @param {number} options.timeout default=5 - http request timeout
  * @returns {Article} - object containing url, html, author, date, title, source
- * @author [Gulakov, A. (2024)](https://airesearch.wiki)
+ * @category Extract
+ * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  */
 export async function extract(urlOrDoc, options = {}) {
   var {
