@@ -13,7 +13,7 @@
   },
   "include": [
     "./src/",
-    "index.js", "test/ip-to-lang.test.js"  ],
+    "index.js"  ],
   "exclude": [
     "node_modules",
     "dist"
