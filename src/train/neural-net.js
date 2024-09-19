@@ -2048,11 +2048,13 @@ const nn = {
 const optim = { Adam };
 
 /**
- * JS-PyTorch is a neural net matrix multiplication library 
- * with GPU.js acceleration (translates matmul into WebGPU shader code)
- * and using PyTorch API syntax.
+ * Torch is a neural net matrix multiplication library 
+ * 1. Uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) for tensors and neural nets.
+ * 2. Uses [GPU.js](https://github.com/gpujs/gpu.js) acceleration to translate matmul into WebGL shader code.
+ * 3. Neural Net API: MultiHeadSelfAttention, FullyConnected, Block, 
+ * Embedding, PositionalEmbedding, ReLU, Softmax, Dropout, LayerNorm, CrossEntropyLoss
+ * 
  * @class torch
- * Tensor Creation and Manipulation:
  * @function tensor(data, requires_grad = false, device = 'cpu') Creates a new Tensor filled with the given data
  * @function zeros(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with zeros
  * @function ones(*shape, requires_grad = false, device = 'cpu') Creates a new Tensor filled with ones
@@ -2087,19 +2089,21 @@ const optim = { Adam };
  * @function exp(a) Returns element-wise exponentiation of the tensor
  * @function log(a) Returns element-wise natural log of the tensor
  * 
+ *
+ * @class torch.nn
  * Neural Network Layers:
- * @class nn.Linear(in_size, out_size, device, bias, xavier) Applies a linear transformation to the input tensor
- * @class nn.MultiHeadSelfAttention(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a self-attention layer on the input tensor
- * @class nn.FullyConnected(in_size, out_size, dropout_prob, device, bias) Applies a fully-connected layer on the input tensor
- * @class nn.Block(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a transformer Block layer on the input tensor
- * @class nn.Embedding(in_size, embed_size) Creates an embedding table for vocabulary
- * @class nn.PositionalEmbedding(input_size, embed_size) Creates a positional embedding table
- * @class nn.ReLU() Applies Rectified Linear Unit activation function
- * @class nn.Softmax() Applies Softmax activation function
- * @class nn.Dropout(drop_prob) Applies dropout to input tensor
- * @class nn.LayerNorm(n_embed) Applies Layer Normalization to input tensor
- * @class nn.CrossEntropyLoss() Computes Cross Entropy Loss between target and input tensor
- * 
+ * @method nn.Linear(in_size, out_size, device, bias, xavier) Applies a linear transformation to the input tensor
+ * @method nn.MultiHeadSelfAttention(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a self-attention layer on the input tensor
+ * @function nn.FullyConnected(in_size, out_size, dropout_prob, device, bias) Applies a fully-connected layer on the input tensor
+ * @function nn.Block(in_size, out_size, n_heads, n_timesteps, dropout_prob, device) Applies a transformer Block layer on the input tensor
+ * @function nn.Embedding(in_size, embed_size) Creates an embedding table for vocabulary
+ * @function nn.PositionalEmbedding(input_size, embed_size) Creates a positional embedding table
+ * @function nn.ReLU() Applies Rectified Linear Unit activation function
+ * @function nn.Softmax() Applies Softmax activation function
+ * @function nn.Dropout(drop_prob) Applies dropout to input tensor
+ * @function nn.LayerNorm(n_embed) Applies Layer Normalization to input tensor
+ * @function nn.CrossEntropyLoss() Computes Cross Entropy Loss between target and input tensor
+
  * Optimization:
  * @class optim.Adam(params, lr, reg, betas, eps) Adam optimizer for updating model parameters
  * 

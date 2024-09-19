@@ -1,5 +1,5 @@
 import { 
-  convertEmbeddingsToHNSW, 
+  addEmbeddingVectorsToIndex, 
   searchVectorIndex, getAllEmbeddings,
   getEmbeddingModel,
   exportEmbeddingsIndex,

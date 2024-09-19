@@ -83,6 +83,8 @@ export async function convertTextToEmbedding(text, options = {}) {
 
 /**
  * Initialize HuggingFace Transformers pipeline for embedding text.
+ * 
+ * <img src="https://i.imgur.com/3R5Tsrf.png" width="350px">
  * @param {Object} [options]
  * @param {string} options.pipelineName default "feature-extraction",
  * @param {string} options.modelName default="Xenova/all-MiniLM-L6-v2" - 
@@ -108,24 +110,35 @@ export async function getEmbeddingModel(options = {}) {
 }
 
 /**
- * Generates vectors for a set of documents and creates an HNSW index using
- * hnswlib in C++ compiled to WASM JS for efficient similarity search.
+ * ### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Heirarchy
+ * <img src="https://i.imgur.com/nvJ7fzO.png" width="350px">
+ *  
+ * 1. Compile hnswlib-node or NGT algorithm C++ to WASM JS for efficient similarity search.
+ * 2. Vector index is split by K-means into regional clusters, each being a
+ * specific size to fit in RAM. This is better than popular vector engines that
+ *  require costly 100gb-RAM servers because they load all the vectors at once. 
+ * 3. Vectors for centroids of each cluster are stored in a list in SQL, each
+ * cluster's binary quantized data is exported as base64 string to SQL, S3, etc.
+ * 4. Search: Embed Query, Compare to each cluster centroid to pick top clusters,
+ * download  base64 strings for those clusters, load each into WASM, find top neighbors 
+ * per cluster, merge results sorted by distance.  
+ * 
  *
+ * [NGT Algorithm](https://github.com/yahoojapan/NGT/wiki)
+ * [NGT Cluster](https://github.com/yahoojapan/NGT/blob/main/lib/NGT/Clustering.h#L82)
+ * 
+ * [Vald Vector Engine Docs](https://vald.vdaas.org/docs/overview/about-vald/)
  * [ANN Benchmarks](https://ann-benchmarks.com)
- *
- * https://github.com/brtholomy/hnsw
- * [Pinecone - HNSW](https://www.pinecone.io/learn/series/faiss/hnsw/)
- *
+ * 
  * @param {string[]} documentVectors - An array of document texts to be vectorized.
  * @param {Object} [options={}] - Optional parameters for vector generation and indexing.
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
  * @param {number} [options.maxElements=100] - The maximum number of data points.
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
- * @author [Malkov, Y. et al (2016)](https://arxiv.org/abs/1603.09320),
- * [Tatsuma, Y. et al (2022)](https://github.com/yoshoku/hnswlib-node)
+ * @author [Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
   * @category Similarity
  */
-export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
+export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) {
     const {
       numDimensions = 384, // the length of data point vector that will be indexed.
       maxElements = 100, // the maximum number of data points.
@@ -146,6 +159,7 @@ export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
   /**
    * Searches the vector index for the nearest neighbors of a given query.
    * 
+ * <img src="https://i.imgur.com/ZAAfogK.png" width="350px">
    * @param {HierarchicalNSW} index - The HNSW index to search.
    * @param {string} query - The query string to search for.
    * @param {Object} [options={}] - Optional parameters for the search.
@@ -153,7 +167,7 @@ export async function convertEmbeddingsToHNSW(documentVectors, options = {}) {
    * @returns {Promise<Array<{id: number, distance: number}>>} A promise that resolves to an array of nearest neighbors, each with an id and distance.
    * @throws {Error} If there's an error during the search process.
    * @example
-   * const index = await convertEmbeddingsToHNSW(documentVectors);
+   * const index = await addEmbeddingVectorsToIndex(documentVectors);
    * const results = await searchVectorIndex(index, 'example query');
    * console.log(results); // [{id: 3, distance: 0.1}, {id: 7, distance: 0.2}, ...]
   * @category Similarity

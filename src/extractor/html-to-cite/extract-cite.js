@@ -17,6 +17,7 @@ import { extractNamedEntity } from "./human-names-recognize.js";
  * since organizations are not reversed.
  *
  * [Article-extraction-benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
+ * <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg">
  *
  * @param {document} document  dom object or html string with article content
  * @returns {object} {author, date, title, source}

@@ -20,7 +20,6 @@ import { convertMarkdownToHtml } from "../../index.js"
  * 
  * [The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/)
  * 
- * [Sutskever's Top 30 Papers](https://arc.net/folder/D0472A20-9C20-4D3F-B145-D2865C0A9FEE)
  * 
  * [Transformers Explained Visually (Part 
  * 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
@@ -32,6 +31,8 @@ import { convertMarkdownToHtml } from "../../index.js"
  * @param {string} model - The specific AI model to be used (e.g., GPT-4, Mixtral 8x7B).
  * @returns {Promise<{content: string, error: string}>} The generated AI response as HTML.
  * @category Generate
+ * @author [AI Research Contributors (Sutskever's Top 30)](https://arc.net/folder/D0472A20-9C20-4D3F-B145-D2865C0A9FEE)
+ * 
  */
 export async function generateLanguageModelReply(query, apiKey, model) {
   var aiResponse = { content: "", error: "" };

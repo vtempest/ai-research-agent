@@ -24,6 +24,8 @@
  * chunk sizes. It also handles nested structures and special cases like code blocks and math
  * expressions.
  * 
+ * [Sentence RAG Benchmarks](https://superlinked.com/vectorhub/articles/evaluation-rag-retrieval-chunking-methods)
+ * 
  * @author [Jina AI (2024)](https://gist.github.com/hanxiao/3f60354cf6dc5ac698bc9154163b4e6a)
  * @param {string} text - The input text to be split into semantic chunks.
  * @param {Object} [options={}] - Optional configuration options (currently unused).

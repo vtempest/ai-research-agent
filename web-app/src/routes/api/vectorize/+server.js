@@ -1,5 +1,5 @@
 import { 
-  convertEmbeddingsToHNSW, 
+  addEmbeddingVectorsToIndex, 
   searchVectorIndex, getAllEmbeddings,
   getEmbeddingModel,
   exportEmbeddingsIndex,
@@ -32,7 +32,7 @@ export async function GET({ url }) {
     for (let doc of documents) 
       documentVectors.push(await convertTextToEmbedding(doc, { pipeline }));
   
-    const {index} = await convertEmbeddingsToHNSW(documentVectors, {pipeline});
+    const {index} = await addEmbeddingVectorsToIndex(documentVectors, {pipeline});
   
     const result = await searchVectorIndex(index, query, {pipeline});
     console.log(result);

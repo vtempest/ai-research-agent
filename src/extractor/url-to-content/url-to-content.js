@@ -15,15 +15,17 @@ import { scrapeURL } from "./scrape-url.js";
  * @property {string} title - The title of the article
  * @property {string} source - The source or origin of the article
  * @property {number} word_count - The word count of the full text (without HTML tags)
+ * @category Extact
  */
 
 /**
- * <h3>🚜📜 Tractor the Text Extractor </h3><br />
- * Extract URL or HTML to main content, based on Readability with improved version
+ * ### 🚜📜 Tractor the Text Extractor 
+ * 
+ * 1. Extract URL or HTML to main content, based on Readability with improved version
  *  using 100+ custom adapters for major websites. <br>
- * Strips to basic HTML for reading mode or saving research notes. <br>
- * Youtube - get full transcript for video if detected a youtube video.  <br>
- * PDF - Extracts formatted text from PDF with parsing of headings, page headers,
+ * 2. Strips to basic HTML for reading mode or saving research notes. <br>
+ * 3. Youtube - get full transcript for video if detected a youtube video.  <br>
+ * 4. PDF - Extracts formatted text from PDF with parsing of headings, page headers,
  * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
  * 
  * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />

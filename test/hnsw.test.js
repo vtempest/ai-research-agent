@@ -1,6 +1,6 @@
 import { test, expect } from "vitest";
 import {
-  convertEmbeddingsToHNSW, 
+  addEmbeddingVectorsToIndex, 
   searchVectorIndex, getAllEmbeddings,
   getEmbeddingModel,
   exportEmbeddingsIndex,
@@ -28,7 +28,7 @@ test("hnsw", async () => {
   for (let doc of documents) 
     documentVectors.push(await convertTextToEmbedding(doc, { pipeline }));
 
-  const {index} = await convertEmbeddingsToHNSW(documentVectors, {pipeline});
+  const {index} = await addEmbeddingVectorsToIndex(documentVectors, {pipeline});
 
   const result = await searchVectorIndex(index, query, {pipeline});
   console.log(result);

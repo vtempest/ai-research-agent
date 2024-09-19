@@ -1,5 +1,8 @@
-import { convertHTMLSpecialChars, convertURLToAbsoluteURL} from "./html-utils.js";
-
+import {
+  convertHTMLSpecialChars,
+  convertURLToAbsoluteURL,
+  convertMathLaTexToImage
+} from "./html-utils.js";
 /**
  * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
  * Convert anchors and relative urls to absolute urls. Basic HTML supports the same
@@ -11,7 +14,7 @@ import { convertHTMLSpecialChars, convertURLToAbsoluteURL} from "./html-utils.js
  * [RegExp JS V8 Code](https://github.com/v8/v8/blob/94cde7c7f3fffc62f621e43f65be3d517b8a9f3d/src/regexp/regexp-compiler.cc#L3827)
  * @param {string} html Any page's HTML to process
  * @param {Object} [options]
-  * @param {boolean} options.images default=true - Whether to include images
+ * @param {boolean} options.images default=true - Whether to include images
  * @param {boolean} options.links default=true - Whether to include links
  * @param {boolean} options.videos default=true - Whether to include videos or not
  * @param {boolean} options.formatting default=true - Whether to include formatting
@@ -23,17 +26,17 @@ import { convertHTMLSpecialChars, convertURLToAbsoluteURL} from "./html-utils.js
  * @returns {string} basic text formatting html
  * @author [Gulakov, A. (2024)](https://airesearch.js.org)
  * @category HTML Utilities
-*/
+ */
 export function convertHTMLToBasicHTML(html, options = {}) {
-
   var {
     images = 1,
     links = 1,
     videos = true,
     formatting = 1,
     url = "",
+    includeMath = 1,
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
-      ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup",
+      ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
     allowedAttributes = "href,src,type,width,height,id,data,target",
   } = options;
 
@@ -46,10 +49,9 @@ export function convertHTMLToBasicHTML(html, options = {}) {
   if (!formatting) allowTags = ["text"];
   allowTags.push("text");
 
-
-
-
-  allowedAttributes = allowedAttributes.split(",").concat("text,tagName".split(","));
+  allowedAttributes = allowedAttributes
+    .split(",")
+    .concat("text,tagName".split(","));
 
   // Convert html string to array like [{tag:"p",attr:""},{text:""}]
   var basicHtml = convertHTMLToTokens(html)
@@ -72,10 +74,9 @@ export function convertHTMLToBasicHTML(html, options = {}) {
 
       if (urlValue) {
         //non-anchor links should be opened in new window
-        if (!urlValue.startsWith("#"))
-          el.target="_blank";
+        if (!urlValue.startsWith("#")) el.target = "_blank";
 
-        urlValue = convertURLToAbsoluteURL(url, urlValue)
+        urlValue = convertURLToAbsoluteURL(url, urlValue);
 
         if (el.href) el.href = urlValue;
         if (el.src) el.src = urlValue;
@@ -84,29 +85,34 @@ export function convertHTMLToBasicHTML(html, options = {}) {
       return el;
     })
     .reduce((acc, el) => {
-      acc +=  el.text ? `${el.text}` :
-      `<${el.tagName}${Object.keys(el).length>1 ? " ": ""}${Object.keys(el)
-       .filter((key) => key != "tagName" && key != "text")
-       .map((key) => `${key}="${el[key]}"`)
-       .join(" ")}>`;
+      acc += el.text
+        ? `${el.text}`
+        : ` <${el.tagName}${Object.keys(el).length > 1 ? " " : ""}${Object.keys(
+            el
+          )
+            .filter((key) => key != "tagName" && key != "text")
+            .map((key) => `${key}="${el[key]}"`)
+            .join(" ")}> `;
       return acc;
     }, "")
     .replace(/ \s+/g, " ")
     .replace(/<p><\/p>/g, " ")
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
 
-  html = convertHTMLSpecialChars(
-    html
-  ).replace(/&nbsp;/g, " ");
+  basicHtml = convertHTMLSpecialChars(basicHtml).replace(/&nbsp;/g, " ");
 
-  // CNN news edge case of data=attr <> inside of attr
-  const reHTMLInsideDataAttr =
-    /(["'])(?:(?!(?:\1|<)).)*?(?:<(?:(?!["'<>]).)*?>)?(?:(?!(?:\1|<)).)*?\1/gis;
-  if (reHTMLInsideDataAttr.test(html))
-    html = html.replaceAll(reHTMLInsideDataAttr, "");
+  // // CNN news edge case of data=attr <> inside of attr
+  // const reHTMLInsideDataAttr =
+  //   /(["'])(?:(?!(?:\1|<)).)*?(?:<(?:(?!["'<>]).)*?>)?(?:(?!(?:\1|<)).)*?\1/gis;
+  // if (reHTMLInsideDataAttr.test(html))
+  //   html = html.replaceAll(reHTMLInsideDataAttr, "");
+
+  if(includeMath)
+    basicHtml = convertMathLaTexToImage(basicHtml);
 
   return basicHtml;
 }
+
 
 /**
  * Convert html string to array of JSON Objects tokens to translate,
@@ -122,14 +128,11 @@ export function convertHTMLToTokens(html) {
   var dom = [];
 
   //remove script style to prevent it from counting as text
-  html = html.replace(
-    /(<(noscript|script|style)\b[^>]*>).*?(<\/\2>)/gis,
-    "$1$3"
-  )
-  .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-  .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
-  .replace(/<!--[\s\S]*?-->/g, '');
-
+  html = html
+    .replace(/(<(noscript|script|style)\b[^>]*>).*?(<\/\2>)/gis, "$1$3")
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "")
+    .replace(/<!--[\s\S]*?-->/g, "");
 
   const reHTMLInsideDataAttr =
     /(["'])(?:(?!(?:\1|<)).)*?(?:<(?:(?!["'<>]).)*?>)?(?:(?!(?:\1|<)).)*?\1/gis;
@@ -194,17 +197,17 @@ export function convertHTMLToTokens(html) {
   // dom = addDOMFunctions(dom);
 
   return dom;
-};
+}
 
 export function addDOMFunctions(domObject) {
-    //assign to all objects for easy chain calling
-    domObject = domObject || Object.prototype;
+  //assign to all objects for easy chain calling
+  domObject = domObject || Object.prototype;
 
-    domObject =  Object.assign(domObject, {
+  domObject = Object.assign(domObject, {
     querySelectorAll: function (querySelector) {
-
-      if (querySelector.includes(",")) //multiple selectors
-       var selectors = querySelector.split(",").map((sel) => sel.trim());
+      if (querySelector.includes(","))
+        //multiple selectors
+        var selectors = querySelector.split(",").map((sel) => sel.trim());
 
       var type = selector[0];
       selector = selector.substring(1);
@@ -244,21 +247,19 @@ export function addDOMFunctions(domObject) {
     },
     getInnerHTML: function () {
       return this.reduce((acc, el) => {
-          
-         acc +=  el.text ? `${el.text}` :
-         `<${el.tagName} ${Object.keys(el)
-          .filter((key) => key != "tagName" && key != "text")
-          .map((key) => `${key}="${el[key]}"`)
-          .join(" ")}>`;
+        acc += el.text
+          ? `${el.text}`
+          : `<${el.tagName} ${Object.keys(el)
+              .filter((key) => key != "tagName" && key != "text")
+              .map((key) => `${key}="${el[key]}"`)
+              .join(" ")}>`;
         return acc;
       }, "");
     },
   });
 
-
   domObject.innerHTML = domObject.getInnerHTML();
   domObject.textContent = domObject.getTextContent();
-
 
   return domObject;
 }

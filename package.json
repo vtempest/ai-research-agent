@@ -39,6 +39,7 @@
     "fake-indexeddb": "^6.0.0",
     "gpu.js": "^2.16.0",
     "hnswlib-wasm": "^0.8.2",
+    "katex": "^0.16.11",
     "linkedom": "^0.18.4",
     "pdfjs-serverless": "^0.5.1",
     "umap-js": "^1.4.0",

@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="250px" src="https://i.imgur.com/4GOOM9s.jpeg">
+    <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg">
 </p>
 <h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a></h3>
 <h3 align="center"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
@@ -59,21 +59,6 @@
  4. Rerank documents's chunks based on relevance to query,  using embeddings by convert text to concept vector of numbers within LLM  "concept space", and cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.
  5. Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or Anthropic API Key and suggest follow-ups
 
-#### 🚜📜 Tractor the Text Extractor
-
-<p align="center">
-<img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
-</p>
-
-[extract Docs](https://airesearch.js.org/functions/extract.html)
-
-* Extract URL or HTML to main content, improved version combining Mozilla Readability and Postlight Mercury
- *  using 100+ custom adapters for major websites. 
-* Strips to basic HTML for reading mode or saving research notes
-*  Youtube - get full transcript for video if detected a youtube video
-* PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
-* Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 90k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
-
 #### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
 
 
@@ -82,7 +67,7 @@
 </p>
 
 
-[extractSEEKTOPIC Docs](https://airesearch.js.org/functions/searchSTREAM.html)
+[extractSEEKTOPIC Docs](https://airesearch.js.org/functions/extractSEEKTOPIC.html)
 
  [SEEKTOPIC Sample Output](https://github.com/vtempest/ai-research-agent/blob/master/test/data/)
 
@@ -125,6 +110,20 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
      search query leading to the document, compare query similarity to key 
      phrases, heavily weight the most similar key phrase, and reapply 
      TextRank from step 8.
+
+#### 🚜📜 Tractor the Text Extractor
+
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
+</p>
+
+[extract Docs](https://airesearch.js.org/functions/extract.html)
+
+1. Extract URL or HTML to main content, improved version combining Mozilla Readability and Postlight Mercury  using 100+ custom adapters for major websites. 
+2. Strips to basic HTML for reading mode or saving research notes
+3. Youtube - get full transcript for video if detected a youtube video
+4. PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
+5. Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 90k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
 
 #### 🌍📖 WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 
@@ -177,7 +176,7 @@ All words in English Wikipedia are sorted by number of pages they are in for 325
 #### 🧩🔍 Autocomplete &  Query To Topic Phrase Tokenization 
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
+    <img width="350px" src="https://i.imgur.com/tMjFGe4.jpeg">
 </p>
 
 [suggestNextWordCompletions Docs](https://airesearch.js.org/functions/suggestNextWordCompletions.html)

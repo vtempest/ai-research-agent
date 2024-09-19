@@ -1,3 +1,33 @@
+import katex from "katex";
+
+/**
+ * Convert LaTex &lt;math&gt; equations found inside HTML
+ * into easy-to-read SVG and HTML with [KaTex.js](https://katex.org).
+ * @param {string} html html with  math Latex
+ * @return {string} html with SVG of equations
+ * @category HTML Utilities
+ */
+export function convertMathLaTexToImage(html) {
+  const replacedHtml = html.replace(/<math>(.*?)<\/math>/g, (match, p1) => {
+    const curlyBracesContent = p1.match(/{([^}]*)}(?!.*})/);
+    if (!curlyBracesContent || !curlyBracesContent[0]) return match;
+
+    var equationFormula =  curlyBracesContent[0].replace(/\\/g, "\\") 
+
+    var htmlEquation = katex.renderToString(equationFormula, {
+      throwOnError: false,
+      output: "html",
+      displayMode: false,
+      strict: false
+    });
+
+    console.log(htmlEquation);
+    return htmlEquation
+  });
+
+  return replacedHtml;
+}
+
 /**
  * Converts HTML special characters like &<>"'`&rsquo; to & escaped codes or vice versa.
  * It handles named entities and hexadecimal numeric character references.

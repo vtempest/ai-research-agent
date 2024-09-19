@@ -1,7 +1,7 @@
 import usearch from 'usearch';
 import { getEmbeddingModel,
     convertTextToEmbedding,
-    convertEmbeddingsToHNSW,
+    addEmbeddingVectorsToIndex,
  } from './similarity-vector.js';
 
 async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
@@ -23,9 +23,8 @@ async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
   // Add vectors to the index
   const labels = [];
   for (let i = 0; i < documentVectors.length; i++) {
-    const label = BigInt(i);
-    index.add(label, new Float32Array(documentVectors[i]));
-    labels.push(label);
+    index.add(BigInt(i), new Float32Array(documentVectors[i]));
+    // labels.push(label);
   }
 
   return { index, labels };
@@ -39,27 +38,25 @@ async function searchVectorIndex(index, query, options = {}) {
 
   queryVector = new Float32Array(queryVector)
 
-  // console.log(queryVector);
 
-  // Perform k-nearest neighbor search
+    const results = index.search(queryVector, 2);
 
-  // try {
-
-    const results = index.search(queryVector, 10);
-
-
+    console.log(results);
 
     // Format results to match the expected output
-    return results.map((result, i) => ({
-      id: Number(result.key),
-
-      distance: results.distances[i],
-    }));
+    const formattedResults = [];
+    for (let i = 0; i < results.keys.length; i++) {
+      formattedResults.push({
+        id: Number(results.keys[i]),
+        distance: results.distances[i],
+      });
+    }
+    return formattedResults;
 }
 
 async function exportEmbeddingsIndex(index, dimensions, maxElements) {
   // Placeholder function for exporting index
-  return Buffer.from(index.data()).toString('base64');
+  // return Buffer.from(index.data()).toString('base64');
 }
 
 async function main() {
@@ -87,12 +84,17 @@ async function main() {
     maxElements: 100,
   });
 
+  console.log(322)
+
+  // index.save('index.usearch'); // Save the index to a file
+
   console.log(`Index created with ${index.size()} elements`);
 
-  const result = await searchVectorIndex(index, query, { pipeline, numNeighbors: 5 });
+  const result = await searchVectorIndex(index, 
+    query, { pipeline, numNeighbors: 5 });
   console.log(result);
 
-  const base64 = await exportEmbeddingsIndex(index, 384, 100000);
+  // const base64 = await exportEmbeddingsIndex(index, 384, 100000);
   // console.log(base64);
 }
 

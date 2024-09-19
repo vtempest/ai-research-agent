@@ -15,6 +15,7 @@ import {
   convertMarkdownToHtml,
   copyHtmlToClipboard,
   convertURLToAbsoluteURL,
+  convertMathLaTexToImage
 } from "./src/extractor/html-to-content/html-utils.js";
 
 import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
@@ -42,7 +43,7 @@ import { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequen
 import { convertEmbeddingsToUMAP } from "./src/similarity/embeddings-to-graph.js";
 
 import {
-  convertEmbeddingsToHNSW,
+  addEmbeddingVectorsToIndex,
   searchVectorIndex,
   getAllEmbeddings,
   convertTextToEmbedding,
@@ -53,7 +54,7 @@ import {
 
 import { torch } from "./src/train/neural-net.js";
 
-// const   convertEmbeddingsToHNSW=0,
+// const   addEmbeddingVectorsToIndex=0,
 //     searchVectorIndex=0,
 //     getAllEmbeddings=0,
 //     convertTextToEmbedding=0,
@@ -85,12 +86,13 @@ export {
   stemWordToRoot,
   copyHtmlToClipboard,
   // compileTopicModel,
+  convertMathLaTexToImage,
   extractCite,
   extractContentHTML,
   extractContentHTML2,
   convertHTMLToBasicHTML,
   exportEmbeddingsIndex,
-  convertEmbeddingsToHNSW,
+  addEmbeddingVectorsToIndex,
   convertEmbeddingsToUMAP,
   convertTextToEmbedding,
   convertTextToTokens,
@@ -113,3 +115,8 @@ export {
   weighRelevanceTermFrequency,
   extractTopicTermGroupsLDA,
 };
+
+/**
+ * @typedef {import("./src/extractor/url-to-content/url-to-content").Article} Article
+ * @category Extract 
+*/
