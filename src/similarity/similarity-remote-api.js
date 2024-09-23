@@ -3,6 +3,7 @@
  * other sentences by comparing their embeddings.
  * https://huggingface.co/docs/api-inference/detailed_parameters#sentence-similarity-task
  *
+ * <img src="https://i.imgur.com/ex2UWnu.png" width="350px">
  * @param {string} source_sentence The string that you wish to
  * compare the other strings with. This can be a phrase, sentence,
  * or longer passage, depending on the model being used.

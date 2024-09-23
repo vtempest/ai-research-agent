@@ -1,9 +1,11 @@
 
 
 /**
- * Retrieves language information for a given IP address using a remote API. Rate limit 45 req/min
+ * Retrieves language information for a given IP address using 
+ * a remote API. Rate limit 45 req/min
  *
- * You can also use Accept-Language header or navigator.language in front-end for user-set language
+ * You can also use Accept-Language header or navigator.language 
+ * in front-end for user-set language
  * https://stackoverflow.com/questions/673905/how-can-i-determine-a-users-locale-within-the-browser/31135571#31135571
  * @async
  * @param {string} ip - The IP address to look up.

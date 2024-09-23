@@ -13,7 +13,8 @@
   },
   "include": [
     "./src/",
-    "index.js"  ],
+    "index.js"
+  ],
   "exclude": [
     "node_modules",
     "dist"

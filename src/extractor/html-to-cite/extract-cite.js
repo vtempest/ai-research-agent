@@ -9,6 +9,7 @@ import { extractNamedEntity } from "./human-names-recognize.js";
 
 /**
  * <h3> 📚💎 Extract Expert Excerpt </h3>
+ * <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg">
  *
  * Extract author, date, source, and title from HTML using meta tags
  * and common class names. Validates human name from author string to check
@@ -17,7 +18,6 @@ import { extractNamedEntity } from "./human-names-recognize.js";
  * since organizations are not reversed.
  *
  * [Article-extraction-benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
- * <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg">
  *
  * @param {document} document  dom object or html string with article content
  * @returns {object} {author, date, title, source}

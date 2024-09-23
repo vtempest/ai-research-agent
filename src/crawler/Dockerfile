@@ -1,7 +1,7 @@
 # Docker for Crawler 
-# with Node, Chromium, Puppeteer, Alpine
+# with Bun.js, Chromium, Puppeteer, Alpine
 
-FROM node:alpine
+FROM oven/bun:alpine
 RUN apk add --no-cache \
       chromium \
       nss \
@@ -14,7 +14,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN bun install
 COPY . .
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD [ "bun", "crawler.js" ]

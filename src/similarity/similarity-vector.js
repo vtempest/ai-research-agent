@@ -64,12 +64,12 @@ import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
  * @param {Object} [options]
  * @param {import("@huggingface/transformers").AutoTokenizer} options.pipeline
  *  - The pipeline to use for embedding.
- * @param {number} options.precision default=3 - The number of decimal places to round to.
+ * @param {number} options.precision default=4 - The number of decimal places to round to.
  * @returns {Promise<{embeddingsDict: Object.<string, number[]>, embedding: number[]}>}
   * @category Similarity
   */
 export async function convertTextToEmbedding(text, options = {}) {
-  var { precision = 3, pipeline } = options;
+  var { precision = 4, pipeline } = options;
 
   if (!pipeline) pipeline = await getEmbeddingModel();
 
@@ -130,6 +130,8 @@ export async function getEmbeddingModel(options = {}) {
  * [Vald Vector Engine Docs](https://vald.vdaas.org/docs/overview/about-vald/)
  * [ANN Benchmarks](https://ann-benchmarks.com)
  * 
+ * ![Benchmark](https://ann-benchmarks.com/glove-100-angular_10_angular.png)
+ * 
  * @param {string[]} documentVectors - An array of document texts to be vectorized.
  * @param {Object} [options={}] - Optional parameters for vector generation and indexing.
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
@@ -159,7 +161,8 @@ export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) 
   /**
    * Searches the vector index for the nearest neighbors of a given query.
    * 
- * <img src="https://i.imgur.com/ZAAfogK.png" width="350px">
+   * <img src="https://github.com/NJU-RINC/hnsw-visulize/blob/master/path.gif?raw=true" width="350px">
+   * <img src="https://i.imgur.com/ZAAfogK.png" width="350px">
    * @param {HierarchicalNSW} index - The HNSW index to search.
    * @param {string} query - The query string to search for.
    * @param {Object} [options={}] - Optional parameters for the search.
@@ -184,11 +187,11 @@ export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) 
 /**
  * Retrieves all embeddings from the HNSW index.
  * @param {HierarchicalNSW} index - The HNSW index containing the embeddings.
- * @param {number} [precision=3] - The number of decimal places to round to.
+ * @param {number} precision default=8 - The number of decimal places to round to.
  * @returns {number[][]} An array of embedding vectors.
   * @category Similarity
  */
-export function getAllEmbeddings(index, precision = 3) {
+export function getAllEmbeddings(index, precision = 8) {
   const numElements = index.getCurrentCount();
   const vectors = [];
   for (let i = 0; i < numElements; i++) {
@@ -257,7 +260,6 @@ export async function weighRelevanceConceptVector(
 
 /**
  * Converts an HNSW index to a base64 encoded string.
- * https://github.com/NJU-RINC/hnsw-visulize/blob/master/path.gif?raw=true
  * @param {object} index - The HNSW index object.
  * @returns {Promise<string>} A promise that resolves to a base64 encoded string representation of the index.
  * @throws {Error} If there's an error during the index serialization process.

@@ -31,7 +31,7 @@
  * // followed by the fifth word (24.20%), and so on
  * @author
  *  [Boltzmann, L. (1868)](https://en.wikipedia.org/wiki/Softmax_function#History), 
- *  [Bridle, J.S.  (1990)](https://link.springer.com/chapter/10.1007/978-3-642-76153-9_28)
+ *  [Bridle, J.  (1990)](https://link.springer.com/chapter/10.1007/978-3-642-76153-9_28)
  */
 export function calculateProbabilitySoftmax(arr) {
     // Compute the maximum value in the array

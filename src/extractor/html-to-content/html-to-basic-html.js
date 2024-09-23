@@ -87,12 +87,12 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .reduce((acc, el) => {
       acc += el.text
         ? `${el.text}`
-        : ` <${el.tagName}${Object.keys(el).length > 1 ? " " : ""}${Object.keys(
+        : `<${el.tagName}${Object.keys(el).length > 1 ? " " : ""}${Object.keys(
             el
           )
             .filter((key) => key != "tagName" && key != "text")
             .map((key) => `${key}="${el[key]}"`)
-            .join(" ")}> `;
+            .join(" ")}>`;
       return acc;
     }, "")
     .replace(/ \s+/g, " ")

@@ -9,18 +9,18 @@
  *
  * <img src="https://i.imgur.com/XXXTprT.png" width="500px" />
 */ 
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin()); // Use stealth plugin to make puppeteer harder to detect
 
 // Import Koa and its middleware
-const Koa = require("koa");
-const bodyParser = require("koa-bodyparser");
+import Koa from "koa";
+import bodyParser from "koa-bodyparser";
 const app = new Koa(); // Create a new Koa application
 app.use(bodyParser()); // Use body parser middleware
 
 // Import jsesc for escaping JavaScript strings
-const jsesc = require("jsesc");
+import jsesc from "jsesc";
 
 // Define headers to be removed from requests and responses
 const requestHeadersToRemove = [
@@ -142,7 +142,7 @@ app.use(async (ctx) => {
       let response;
       let tryCount = 0;
       response = await page.goto(url, {
-        timeout: 10000,
+        timeout: 5000,
         waitUntil: "domcontentloaded",
       });
       ctx.status = response.status();
@@ -155,7 +155,7 @@ app.use(async (ctx) => {
         tryCount <= 10
       ) {
         newResponse = await page.waitForNavigation({
-          timeout: 10000,
+          timeout: 5000,
           waitUntil: "domcontentloaded",
         });
         if (newResponse) response = newResponse;
@@ -199,9 +199,20 @@ app.use(async (ctx) => {
         `[DEBUG] response headers: \n${JSON.stringify(responseHeaders)}`
       );
     }
-
     // Set the response body
+
+    
+    //spoof the base-url for relative paths on the target page
+    //split url to domain
+    responseData = (responseBody || "")
+      .replace(/<head[^>]*>/i, "<head><base href='" + 
+        url.split('/').slice(0,3).join('/') + "/'>")
+
+
+
+
     ctx.body = responseData;
+    
   } else {
     // If no URL is provided, return an error message
     ctx.body = "Please specify the URL in the 'url' query string.";

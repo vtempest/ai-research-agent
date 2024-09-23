@@ -1,5 +1,41 @@
+/**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+            HERE BE DRAGONS! THOU ART FOREWARNED.
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                                                  .~))>>
+                                                 .~)>>
+                                               .~))))>>>
+                                             .~))>>             ___
+                                           .~))>>)))>>      .-~))>>
+                                         .~)))))>>       .-~))>>)>
+                                       .~)))>>))))>>  .-~)>>)>
+                   )                 .~))>>))))>>  .-~)))))>>)>
+                ( )@@*)             //)>))))))  .-~))))>>)>
+              ).@(@@               //))>>))) .-~))>>)))))>>)>
+            (( @.@).              //))))) .-~)>>)))))>>)>
+          ))  )@@*.@@ )          //)>))) //))))))>>))))>>)>
+       ((  ((@@@.@@             |/))))) //)))))>>)))>>)>
+      )) @@*. )@@ )   (\_(\-\b  |))>)) //)))>>)))))))>>)>
+    (( @@@(.@(@ .    _/`-`  ~|b |>))) //)>>)))))))>>)>
+     )* @@@ )@*     (@)  (@) /\b|))) //))))))>>))))>>
+   (( @. )@( @ .   _/  /    /  \b)) //))>>)))))>>>_._
+    )@@ (@@*)@@.  (6///6)- / ^  \b)//))))))>>)))>>   ~~-.
+ ( @jgs@@. @@@.*@_ VvvvvV//  ^  \b/)>>))))>>      _.     `bb
+  ((@@ @@@*.(@@ . - | o |' \ (  ^   \b)))>>        .'       b`,
+   ((@@).*@@ )@ )   \^^^/  ((   ^  ~)_        \  /           b `,
+     (@@. (@@ ).     `-'   (((   ^    `\ \ \ \ \|             b  `.
+       (*.@*              / ((((        \| | |  \       .       b `.
+                         / / (((((  \    \ /  _.-~\     Y,      b  ;
+                        / / / (((((( \    \.-~   _.`" _.-~`,    b  ;
+                       /   /   `(((((()    )    (((((~      `,  b  ;
+                     _/  _/      `"""/   /'                  ; b   ;
+                 _.-~_.-~           /  /'                _.'~bb _.'
+               ((((~~              / /'              _.'~bb.--~
+                                  ((((          __.-~bb.-~
+                                              .'  b .~~
+                                              :bb ,' 
+                                              ~~~*/
+
 import { GPU } from "gpu.js"
-// import { GPU } from "@eduardoleao052/gpu"
 
 function getShape(data, shape = []) {
   if (data instanceof Array && data.length === 0) {
@@ -2049,10 +2085,13 @@ const optim = { Adam };
 
 /**
  * Torch is a neural net matrix multiplication library 
- * 1. Uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) for tensors and neural nets.
+ * 1. Uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) 
+ * for tensors and neural nets. GPU.JS does matmul [faster than PyTorch](https://github.com/raphaelrk/matrix-mul-test). 
  * 2. Uses [GPU.js](https://github.com/gpujs/gpu.js) acceleration to translate matmul into WebGL shader code.
  * 3. Neural Net API: MultiHeadSelfAttention, FullyConnected, Block, 
- * Embedding, PositionalEmbedding, ReLU, Softmax, Dropout, LayerNorm, CrossEntropyLoss
+ * Embedding, PositionalEmbedding, ReLU, Softmax, Dropout, LayerNorm, CrossEntropyLoss.
+ * 4. Other Neural Nets: For LSTMs and CNNs, use [Brain.js](https://github.com/BrainJS/brain.js)
+ * 
  * 
  * @class torch
  * @function tensor(data, requires_grad = false, device = 'cpu') Creates a new Tensor filled with the given data

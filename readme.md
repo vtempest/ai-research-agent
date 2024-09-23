@@ -1,8 +1,18 @@
 <p align="center">
     <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg">
 </p>
-<h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a></h3>
-<h3 align="center"><a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
+<p align="center">
+    Being is Becoming<br />
+    Whatever Research Can Be,<br /> 
+    That is What It Must Become.<br />
+    If AI is Humanity's Last Invention, <br />
+    Then Vector Space is the Final Frontier.<br />
+    <br />
+    <a href="https://npmjs.org/package/ai-research-agent">
+        <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
+            alt="NPM badge for ai-research-agent">
+    </a>
+</p>
 <p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
         <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
@@ -31,18 +41,7 @@
     <img src="https://github.com/codespaces/badge.svg" width="150" height="20">
     </a>
 </p>
-<p align="center">
-    <a href="https://npmjs.org/package/ai-research-agent">
-        <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
-            alt="NPM badge for ai-research-agent">
-    </a>
-    <br />
-    Being is Becoming<br />
-    Whatever Research Can Be,<br /> 
-    That is What It Must Become.<br />
-    If AI is Humanity's Last Invention, <br />
-    Then Vector Space is the Final Frontier.<br />
-</p>
+<h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a> <a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
 
 
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
@@ -56,7 +55,7 @@
  1. Search Web for query via metasearch of major engines or your custom data
  2. Extract text of top results with Tractor the Text Extractor.
  3. SEEKTOPIC: Extract Keyphrase Topics and Top Sentences that centralize those topics
- 4. Rerank documents's chunks based on relevance to query,  using embeddings by convert text to concept vector of numbers within LLM  "concept space", and cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.
+ 4. Rerank documents's chunks based on relevance to query,  using embeddings by convert text to concept vector, get cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.
  5. Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or Anthropic API Key and suggest follow-ups
 
 #### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
@@ -189,6 +188,7 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 * [Debate on Graph (arxiv)](https://arxiv.org/html/2409.03155v1)
 * [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
 * [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
+* [Tensorflow.js Demos](https://www.tensorflow.org/js/demos)
 * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
 * [NLP Papers Latest Updates](https://index.quantumstat.com)
 *  [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)

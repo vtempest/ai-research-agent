@@ -1,22 +1,27 @@
 
 /**
- * ### Tardigrade Crawler 
+ * ### Tardigrade the Web Crawler 
+ * <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> <br />
+ * 
  * #### Use Fetch API, check for bot detection
  * 
- * Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
- * Features: timeout, redirects, default UA, referer as google, and bot detection checking. <br />
+ * 1. Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
  * Scraping internet pages is a <a href="https://blog.apify.com/is-web-scraping-legal/">free speech
  *  right globally</a>.
+ * 2. Features: timeout, redirects, default UA, referer as google, and bot 
+ * detection checking. <br />
+ * 3. If fetch method does not get needed HTML, use Docker proxy as backup.
  * 
  * #### Docker container, bypass bot check
- * 1. Docker container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by
- *  secondary in-age API requests after the initial page request, including user login and cookie storage.
+ * 
+ * 1. [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/src/crawler)
+ *  container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by
+ *  secondary in-page API requests after the initial page request, including user login and cookie storage.
  * 2. Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used
  * to bypass Cloudflare anti bot using cookie id javascript method.
  * 3. Send your request to the server with the port 3000 and add your URL to the "url"
  *  query string like this: `http://localhost:3000/?url=https://example.org`
  *
- * <img src="https://i.imgur.com/XXXTprT.png" width="500px" />
  * @param {string} url - any domain's URL
  * @param {Object} [options]
   * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
@@ -98,9 +103,6 @@ export async function scrapeURL(url, options = {}) {
         return { error: "Bot detected" }; //, html: response.html };
 
 
-
-      //spoof the base-url for relative paths on the target page
-      // html = (html || "").replace(/<head[^>]*>/i, "<head><base href='" + url + "/'>")
 
       return html;
     } else {

@@ -3,14 +3,23 @@
  * their positions. Jaro-Winkler is often used in record linkage and data cleansing to improve
  * the accuracy of string matching, particularly for names and addresses, by giving
  * more weight to the common prefix of the strings and penalizing longer string differences. 
- * It is more optimal for varied text than 
- * [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which is better for similar text.
+ * It is [more optimal](https://medium.com/@appaloosastore/string-similarity-algorithms-compared-3f7b4d12f0ff) 
+ * for words than [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance):
+ * 1. Edit operations: Levenshtein considers insertions, deletions, and substitutions, 
+ * while Jaro focuses on transpositions.
+ * 2. Sensitivity to string length: Levenshtein is more sensitive to overall 
+ * string length, while Jaro normalizes for length in its formula.
+ * 3. Prefix matching: The Jaro-Winkler variant explicitly rewards matching 
+ * prefixes, which Levenshtein does not.
+ * 4. Scale of results: Levenshtein produces an edit distance (usually converted to a similarity score), 
+ * while Jaro directly produces a similarity score.
  * 
+ * [A Comprehensive List of Similarity Search Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-search-algorithms/)
  * <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" > 
  * @author [Jaro, M., Winkler, W. (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
  * @param {string} s1 First string
  * @param {string} s2 Second string
- * @returns {number} Jaro-Winkler similarity score 
+ * @returns {number} 0-1 string similarity score 
  * @category Match
  */
 export function weighSimilarityByCharacter(s1, s2) {

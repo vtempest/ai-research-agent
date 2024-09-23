@@ -54,14 +54,6 @@ import {
 
 import { torch } from "./src/train/neural-net.js";
 
-// const   addEmbeddingVectorsToIndex=0,
-//     searchVectorIndex=0,
-//     getAllEmbeddings=0,
-//     convertTextToEmbedding=0,
-//     getEmbeddingModel=0,
-//     exportEmbeddingsIndex=0,
-//     importVectorIndexFromString=0;
-
 import { extractContentHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
 import { extractContentHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
 import { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";

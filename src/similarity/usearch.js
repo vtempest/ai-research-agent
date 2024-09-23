@@ -4,6 +4,7 @@ import { getEmbeddingModel,
     addEmbeddingVectorsToIndex,
  } from './similarity-vector.js';
 
+ /// https://i.imgur.com/rQKDTRB.png
 async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
   const {
     numDimensions = 384,

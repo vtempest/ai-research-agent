@@ -3,8 +3,7 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-  assetsInclude: ["**/*.msi"],
-  plugins: [sveltekit()],
+  plugins: [ sveltekit()],
   resolve: {
     alias: {
       $lib: path.resolve("./src"),

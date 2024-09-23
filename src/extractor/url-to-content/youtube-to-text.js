@@ -155,7 +155,6 @@ export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
       offset: parseFloat(match[1]),
     }));
 
-    console.log(transcript);
 
 
     const content = transcript.map((item) => item.text).join(" ");
@@ -170,7 +169,6 @@ export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
 
     return { content, timestamps};
   } catch (e) {
-    console.log(e);
     
     return {error:1}
   }
@@ -286,7 +284,6 @@ async function fetchTranscriptOfficialYoutube(videoId, options = {}) {
   )
     return { error: true };
 
-    console.log(2222)
 
 
   var videoObj = videoPageBody.replace("\n", "")
