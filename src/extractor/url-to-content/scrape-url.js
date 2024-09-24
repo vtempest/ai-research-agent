@@ -30,7 +30,7 @@
  * @param {number} options.changeReferer default=true - set referer as google
  * @param {number} options.userAgentIndex default=0 - index of [google bot, default chrome]
  * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
- * @param {string} options.urlProxy default=false - use proxy url
+ * @param {string} options.proxy default=false - use proxy url
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extract
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
@@ -45,14 +45,15 @@ export async function scrapeURL(url, options = {}) {
       changeReferer = 0,
       userAgentIndex = 0,
       useCORSProxy = false,
-      urlProxy = false,
+      proxy = null,
       useProxyAsBackup = true,
     } = options;
 
     
-    if(urlProxy)
-      url = urlProxy + encodeURIComponent(url);
+    if(proxy)
+      url = proxy +   url;
 
+    console.log(url);
 
     var userAgentStrings =
       ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
@@ -64,16 +65,6 @@ export async function scrapeURL(url, options = {}) {
       signal: AbortSignal.timeout(timeout * 1000),
       "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
       "accept-language": "en-US,en;q=0.9",
-      "cache-control": "max-age=0",
-      "priority": "u=0, i",
-      "sec-ch-ua": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"Windows\"",
-      "sec-fetch-dest": "document",
-      "sec-fetch-mode": "navigate",
-      "sec-fetch-site": "same-origin",
-      "sec-fetch-user": "?1",
-      "upgrade-insecure-requests": "1"
     };
 
     if (changeReferer)
@@ -118,7 +109,6 @@ export async function scrapeURL(url, options = {}) {
  * Check html for bot block messages
  * @param {string} html
  * @returns {Boolean} true if bot detection message found
- 
  */
 function isHTMLBotDetection(html) {
   var commonBlocks = [

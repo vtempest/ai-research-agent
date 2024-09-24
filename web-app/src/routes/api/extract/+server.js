@@ -10,7 +10,7 @@ export async function GET({ url }) {
   if (!urlToExtract) 
     return json({error: "URL parameter is required" }, { status: 500 });
 
-  if (optionReturnFullHtml) {
+  if (optionReturnFullHtml == "true") {
     let html = await scrapeURL(urlToExtract);
     console.log(html);
     var domain = urlToExtract.split("://")[1].split("/")[0];

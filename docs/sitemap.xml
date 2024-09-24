@@ -2,166 +2,166 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://airesearch.js.org/modules.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/index.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractCite.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractFavicon.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractContentHTML.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractContentHTML2.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertHTMLToBasicHTML.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertMathLaTexToImage.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertHTMLSpecialChars.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertMarkdownToHtml.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/copyHtmlToClipboard.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertPDFToHTML.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/scrapeURL.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extract.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/interfaces/Article.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/embedYoutubePlayer.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertYoutubeToText.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/generateLanguageModelReply.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/weighSimilarityByCharacter.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/matchQUASAR.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/weighRelevanceTermFrequency.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/searchSTREAM.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/searchWeb.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/searchWikipedia.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertEmbeddingsToUMAP.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/weighRelevanceConceptVectorAPI.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertTextToEmbedding.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/getEmbeddingModel.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/addEmbeddingVectorsToIndex.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/searchVectorIndex.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/getAllEmbeddings.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/exportEmbeddingsIndex.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/importVectorIndexFromString.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/splitSentences.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/suggestNextWordCompletions.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/splitTextSemanticChars.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/convertTextToTokens.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/stemWordToRoot.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractSEEKTOPIC.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/functions/extractTopicTermGroupsLDA.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 	<url>
 		<loc>https://airesearch.js.org/classes/torch.html</loc>
-		<lastmod>2024-09-21T21:41:04.299Z</lastmod>
+		<lastmod>2024-09-24T20:00:23.768Z</lastmod>
 	</url>
 </urlset>

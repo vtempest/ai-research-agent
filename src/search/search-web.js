@@ -14,8 +14,8 @@ import { scrapeURL } from "../../index.js";
  * @param {string|boolean} options.customSearxngDomain default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @param {number} options.page default=1 - The page number to retrieve.
+ * @param {string} options.proxy default=false - Use corsproxy.io to access in frontend JS
  * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[]}>>} An array of search result objects.
- * @throws {Error} Throws an error if the search fails after all retry attempts.
  * @example  const advancedResults = await searchWeb('Node.js', {
  *   category: 2,
  *   recency: 1,
@@ -29,10 +29,11 @@ export async function searchWeb(query, options = {}) {
   const {
     category = 0,
     recency = 0,
-    customSearxngDomain = 0,
+    customSearxngDomain = null,
     maxRetries = 3,
     page = 1,
     language = "en-US",
+    proxy = null
   } = options;
 
   const CATEGORY_LIST = [
@@ -116,24 +117,28 @@ export async function searchWeb(query, options = {}) {
   ];
 
   //select a random domain if none is provided 
-
-  const searchDomain =
-  customSearxngDomain ||
-    "https://" +
+  const searchDomain = customSearxngDomain || "https://" +
       SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
   const categoryName = CATEGORY_LIST[category]; // Using the first category as default
   const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
 
-  const url = `${searchDomain}/search?q=${encodeURIComponent(query)}` +
+  var url = `${searchDomain}/search?q=${encodeURIComponent(query)}` +
     `&category_${categoryName}=1&language=${language}&time_range=${timeRangeName}` +
     `&safesearch=0&pageno=${page}`;
 
-  const resultHTML = await scrapeURL(url, {
+  //on cloudflare to avoid "Too many redirects" change SSL mode to Full
+  if (proxy) 
+    url = proxy + url;
+
+  const resultHTML = await (await fetch(url, {
     headers: {
       "accept-language": language+",en;q=0.9",
-    },
-  })
+    }
+  })).text();
+
+  console.log(resultHTML);
+
   let results = [];
   const resultRegex = /<article class="result[^>]*>[\s\S]*?<\/article>/g;
   const titleUrlRegex = /<h3><a href="([^"]*)"[^>]*>(.*?)<\/a><\/h3>/;
@@ -163,9 +168,9 @@ export async function searchWeb(query, options = {}) {
 
       let cached = null;
       let linkMatch;
-      while ((linkMatch = linksRegex.exec(resultHtml)) !== null) {
-        cached = linkMatch[1];
-      }
+      // while ((linkMatch = linksRegex.exec(resultHtml)) !== null) {
+      //   cached = linkMatch[1];
+      // }
 
       title = convertHTMLSpecialChars(title);
       snippet = convertHTMLSpecialChars(snippet);
@@ -174,12 +179,12 @@ export async function searchWeb(query, options = {}) {
   }
 
   if (results.length === 0 && maxRetries > 0) {
-    console.log("No results found with ", searchDomain);
-    results = await searchWeb(query, {
-      category,
-      recency,
-      maxRetries: maxRetries - 1,
-    });
+    console.log(url);
+    results = await searchWeb(query, 
+      {...options,
+         maxRetries: maxRetries - 1,
+         useProxy: true
+        });
   }
 
   //filter out url that end with .de

@@ -44,6 +44,14 @@
 <h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a> <a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
 
 
+### 🧠💻 Reimagine the Internet as 3D Mind Map
+
+Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, evolve crowdsourced chain-of-thought reasoning, unlock faster ways to read long articles, monitor developments by topic modeling a knowledge base graph, and provide a public service of answers to research.
+
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct demoratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. For example, imagine uploading several academic PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them online in news and research to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, which shows that users need this new way of self-organizating information.
+
+
+
 #### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
 
 <p align="center">

@@ -173,12 +173,20 @@ export function convertHTMLToTokens(html) {
       //insert attr into domElement
       element
         .substring(attributesIndex)
-        .match(/\w+=("(?:[^"\\]|\\.\s)*")/g)
+        .match(/ \w+=("(?:[^"\\]|\\.\s)*")/g)
         ?.forEach((attr) => {
+          attr = attr.trim();
+          
+
           var key = attr.split("=")[0];
           var value = attr.slice(key.length + 2, -1);
+          if (key == "srcset"){
+            key = "src";
+            value = value.split(',')[0].trim().split(' ')[0];
+          }
 
-          if (key && value) domElement[key] = value?.replace(/"/g, "");
+          if (key && value) 
+            domElement[key] = value?.replace(/"/g, "");
         });
     }
 

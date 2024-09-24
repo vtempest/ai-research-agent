@@ -25,7 +25,7 @@ export const enumLLMs = [
 
 export const NEXT_PUBLIC_WS_URL = "/api/websocket";
 export const NEXT_PUBLIC_API_URL = "/api";
-export const PROXY = PUBLIC_PROXY;
+export const proxy = PUBLIC_PROXY;
 export const APP_NAME = "QwkSearch";
 export const APP_EMAIL = "support@qwksearch.com";
 export const searxngDomain = "http://ec2-184-169-153-151.us-west-1.compute.amazonaws.com/searxng"

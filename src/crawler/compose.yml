@@ -17,6 +17,32 @@ services:
       - 3000:3000
     # environment:
     #   - DEBUG=true
+    
+    networks:
+      - caddy
+    labels:
+      caddy: proxy.qwksearch.com
+      caddy.reverse_proxy: "{{upstreams 3000}}"
 
     
        
+  # Caddy - proxy server router for containers
+  caddy:  
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/caddy/data:/data
+    restart: unless-stopped
+    environment:
+      - CADDY_INGRESS_NETWORKS=caddy
+    networks:
+      - caddy
+
+
+networks:
+  caddy:
+    external: true
