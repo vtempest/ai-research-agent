@@ -48,7 +48,7 @@
 
 Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, evolve crowdsourced chain-of-thought reasoning, unlock faster ways to read long articles, monitor developments by topic modeling a knowledge base graph, and provide a public service of answers to research.
 
-Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct demoratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. For example, imagine uploading several academic PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them online in news and research to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, which shows that users need this new way of self-organizating information.
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Users can upload research PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need this new way of self-organizating information.
 
 
 
@@ -138,7 +138,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 <img width="350px"  src="https://i.imgur.com/ffaU3s7.jpeg" > 
 </p>
 
-[compileTopicModel Docs](https://airesearch.js.org/functions/compileTopicModel.html)
+[compileTopicModel Docs](https://github.com/vtempest/ai-research-agent/blob/master/src/datasets/compile-topic-model.js)
 
  Search and outline a research base using Wikipedia's 100k popular pages as the core topic phrases graph for LLM Research Agents. Most of the documents online (and by extension thinking in the collective conciousness) can revolve around core topic phrases linked as a graph.  If all the available docs are nodes, the links in the graph can be extracted Wiki page entities and mappings of dictionary phrases to their wiki page. These can serve as topic labels, keywords, and suggestions for LLM followup questions. Documents can be linked in a graph with: 1. wiki page entity recognition 2. frequent keyphrases 3. html links 4. research paper references 5. keyphrases to query in global web search 6. site-specific recommendations. These can lay the foundation for LLM Research Agents to fully grok, summarize, and outline a research base.   
 
@@ -208,6 +208,6 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 * [Understanding UMAP](https://pair-code.github.io/understanding-umap/)
 * [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853) 
 * [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
-
+* [Graph Algorithms Playground](https://playground.memgraph.com)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)

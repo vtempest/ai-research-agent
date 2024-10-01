@@ -15,7 +15,7 @@ import { scrapeURL } from "./scrape-url.js";
  * @property {string} title - The title of the article
  * @property {string} source - The source or origin of the article
  * @property {number} word_count - The word count of the full text (without HTML tags)
- * @category Extact
+ * @category Extract
  */
 
 /**

@@ -1,7 +1,7 @@
 import { ChatGroq } from "@langchain/groq";
 import { HumanMessage } from "@langchain/core/messages";
 
-import { convertMarkdownToHtml } from "../../index.js"
+import { convertMarkdownToHTML } from "../../index.js"
 
 /**
  * Generates a reply using an AI models: Groq, Claude, or OpenAI's GPT.
@@ -46,7 +46,7 @@ export async function generateLanguageModelReply(query, apiKey, model) {
 
     const messages = [new HumanMessage(query)];
     const response = await chat.invoke(messages);
-    aiResponse.content = convertMarkdownToHtml(response.content);
+    aiResponse.content = convertMarkdownToHTML(response.content);
 
   } catch (error) {
     aiResponse.error =

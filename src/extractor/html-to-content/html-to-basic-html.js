@@ -34,7 +34,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     videos = true,
     formatting = 1,
     url = "",
-    includeMath = 1,
+    mathLatex = 1,
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
       ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
     allowedAttributes = "href,src,type,width,height,id,data,target",
@@ -107,7 +107,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
   // if (reHTMLInsideDataAttr.test(html))
   //   html = html.replaceAll(reHTMLInsideDataAttr, "");
 
-  if(includeMath)
+  if(mathLatex)
     basicHtml = convertMathLaTexToImage(basicHtml);
 
   return basicHtml;

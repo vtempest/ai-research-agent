@@ -24,5 +24,10 @@ export async function GET({ url }) {
   if (!results || results.error)
     return json(results)
 
-  return json(results);
+  return json(results,{
+    headers: {  
+    'Content-Type': 'application/json',
+    'Cache-Control': 'public, max-age=360000'
+    }
+  });
 }

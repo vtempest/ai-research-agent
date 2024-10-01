@@ -2086,11 +2086,16 @@ const optim = { Adam };
 /**
  * Torch is a neural net matrix multiplication library 
  * 1. Uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) 
- * for tensors and neural nets. GPU.JS does matmul [faster than PyTorch](https://github.com/raphaelrk/matrix-mul-test). 
- * 2. Uses [GPU.js](https://github.com/gpujs/gpu.js) acceleration to translate matmul into WebGL shader code.
+ * for tensors and neural nets. 
+ * 2. Uses [GPU.js](https://github.com/gpujs/gpu.js) acceleration
+ * to translate matmul into WebGL shader code. GPU.js does matmul [faster 
+ * than PyTorch](https://github.com/raphaelrk/matrix-mul-test). 
  * 3. Neural Net API: MultiHeadSelfAttention, FullyConnected, Block, 
- * Embedding, PositionalEmbedding, ReLU, Softmax, Dropout, LayerNorm, CrossEntropyLoss.
- * 4. Other Neural Nets: For LSTMs and CNNs, use [Brain.js](https://github.com/BrainJS/brain.js)
+ * Embedding, PositionalEmbedding, ReLU, Softmax, Dropout, 
+ * LayerNorm, CrossEntropyLoss.
+ * 4. Other Neural Nets: For LSTMs and CNNs, use
+ * [Tensorflow.js](https://github.com/tensorflow/tfjs?tab=readme-ov-file) 
+ * or [Brain.js](https://github.com/BrainJS/brain.js)
  * 
  * 
  * @class torch

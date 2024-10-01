@@ -1,11 +1,12 @@
 import { convertHTMLSpecialChars } from "../../../index";
 import { scrapeURL } from "./scrape-url.js"
 /**
- * Fetch youtube.com video's webpage HTML for embedded transcript
- * if blocked, use scraper of alternative sites
+ * Fetch youtube.com video's webpage HTML for embedded transcript.
+ * If blocked, use scraper of alternative sites providing transcripts.
  * @param {string} videoUrl
  * @param {Object} [options]
-  * @param {boolean} options.addTimestamps default=true - true to return timestamps, default true
+  * @param {boolean} options.addTimestamps default=true - 
+  * true to return timestamps, default true
  * @param {boolean} options.timeout default=5 - http request timeout
  * @return {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
@@ -128,14 +129,10 @@ export function getURLYoutubeVideo(url) {
 }
 
 /**
- * Get YouTube transcript of most YouTube videos,
- * except if disabled by uploader
- * fetch-based scraper of youtubetotranscript.com
- *
+ * Fetch-based scraper of youtubetotranscript.com
  * @param {string} videoUrl
  * @returns {Object} {content, timestamps} where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
- * @private
  */
 export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
   try {

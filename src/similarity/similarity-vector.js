@@ -127,17 +127,18 @@ export async function getEmbeddingModel(options = {}) {
  * [NGT Algorithm](https://github.com/yahoojapan/NGT/wiki)
  * [NGT Cluster](https://github.com/yahoojapan/NGT/blob/main/lib/NGT/Clustering.h#L82)
  * 
- * [Vald Vector Engine Docs](https://vald.vdaas.org/docs/overview/about-vald/)
- * [ANN Benchmarks](https://ann-benchmarks.com)
+ [Lancedb](https://lancedb.com)
+ [Usearch](https://unum-cloud.github.io/usearch/javascript/index.html)
+  * [ANN Benchmarks](https://ann-benchmarks.com)
  * 
  * ![Benchmark](https://ann-benchmarks.com/glove-100-angular_10_angular.png)
- * 
+ *   [Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
+
  * @param {string[]} documentVectors - An array of document texts to be vectorized.
  * @param {Object} [options={}] - Optional parameters for vector generation and indexing.
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
  * @param {number} [options.maxElements=100] - The maximum number of data points.
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
- * @author [Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
   * @category Similarity
  */
 export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) {

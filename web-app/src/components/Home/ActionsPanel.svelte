@@ -61,7 +61,7 @@
     isExpanded = !isExpanded;
   }
 
-  function copyHtmlToClipboard() {
+  function copyHTMLToClipboard() {
     if (!selectedArticle) return;
 
     if (typeof window == "undefined") return;
@@ -118,7 +118,7 @@
 
           <div class="relative flex items-center space-x-1">
             <button
-              on:click={copyHtmlToClipboard}
+              on:click={copyHTMLToClipboard}
               class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-white hover:from-blue-500 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               <Clipboard class="mr-2 h-4 w-4" />

@@ -1,11 +1,5 @@
 import { UMAP } from "umap-js/lib/umap-js.js";
 
-/**
- * @typedef {Object} PlotDataPoint
- * @property {number} x - The x-coordinate in the UMAP plot.
- * @property {number} y - The y-coordinate in the UMAP plot.
- * @property {string} label - The label associated with this data point.
- */
 
 /**
  * ### UMAP: Convert Embeddings to 2D or 3D Graph
@@ -79,3 +73,11 @@ export async function convertEmbeddingsToUMAP(embeddingsDict, options = {}) {
 
   return plotDataArray;
 }
+
+
+/**
+ * @typedef {Object} PlotDataPoint
+ * @property {number} x - The x-coordinate in the UMAP plot.
+ * @property {number} y - The y-coordinate in the UMAP plot.
+ * @property {string} label - The label associated with this data point.
+ */

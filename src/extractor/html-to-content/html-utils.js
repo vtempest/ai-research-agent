@@ -182,95 +182,136 @@ export function convertURLToAbsoluteURL(base, relative) {
  * - Paragraphs
  * - Images
  * - Links
- * @param {string} markdown - The Markdown-formatted text to be converted.
+ * @param {string} content - The Markdown or HTML content to be converted.
+ * @param {boolean} toHtml - default=true - If true, converts Markdown to HTML.
+ *                          If false, converts HTML to Markdown.
  * @returns {string} The resulting HTML string.
  * @category HTML Utilities
  * @example
  * const markdown = "# Header\n\nThis is **bold** and *italic* text.\n\n* List item 1\n* List item 2";
- * const html = convertMarkdownToHtml(markdown);
+ * const html = convertMarkdownToHTML(markdown);
  * console.log(html);
  * // Output:
  * // <h1>Header</h1>
  * // <p>This is <strong>bold</strong> and <em>italic</em> text.</p>
  * // <ul><li>List item 1</li><li>List item 2</li></ul>
  */
-export function convertMarkdownToHtml(markdown) {
+export function convertMarkdownToHTML(content, toHtml = true) {
+  if (!toHtml) 
+    return convertHTMLToMarkdown(content);
 
-  var html = markdown
-  // Convert headers
-  .replace(/^(#{1,6})\s(.+)$/gm, (match, hashes, content) => {
+  var html = content
+    // Convert headers
+    .replace(/^(#{1,6})\s(.+)$/gm, (match, hashes, content) => {
       const level = hashes.length;
       return `<h${level}>${content.trim()}</h${level}>`;
-  })
+    })
 
-  // Convert bold text
-  .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Convert bold text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 
-  // Convert italic text
-  .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Convert italic text
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
 
-  // Convert unordered lists
-  .replace(/^\s*\*\s(.+)$/gm, '<li>$1</li>')
-  .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+    // Convert unordered lists
+    .replace(/^\s*\*\s(.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
 
-  // Convert ordered lists
-  .replace(/^\s*\d+\.\s(.+)$/gm, '<li>$1</li>')
-  .replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>')
+    // Convert ordered lists
+    .replace(/^\s*\d+\.\s(.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>')
 
-  // Convert paragraphs
-  .split('\n\n').map(para => {
+    // Convert paragraphs
+    .split('\n\n').map(para => {
       if (!para.startsWith('<')) {
-          return `<p>${para.trim()}</p>`;
+        return `<p>${para.trim()}</p>`;
       }
       return para;
-  }).join('\n')
+    }).join('\n')
 
-  //convert images 
-  .replace(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" />')
+    // Convert images 
+    .replace(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" />')
 
-  //convert links
-  .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
-
+    // Convert links
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
 
   return html;
+}
+
+function convertHTMLToMarkdown(html) {
+  var markdown = html
+    // Convert headers
+    .replace(/<h([1-6])>(.*?)<\/h[1-6]>/g, (match, level, content) => {
+      return '#'.repeat(parseInt(level)) + ' ' + content.trim() + '\n\n';
+    })
+
+    // Convert bold text
+    .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+
+    // Convert italic text
+    .replace(/<em>(.*?)<\/em>/g, '*$1*')
+
+    // Convert unordered lists
+    .replace(/<ul>(.*?)<\/ul>/gs, (match, content) => {
+      return content.replace(/<li>(.*?)<\/li>/g, '* $1\n') + '\n';
+    })
+
+    // Convert ordered lists
+    .replace(/<ol>(.*?)<\/ol>/gs, (match, content) => {
+      let index = 1;
+      return content.replace(/<li>(.*?)<\/li>/g, () => `${index++}. $1\n`) + '\n';
+    })
+
+    // Convert paragraphs
+    .replace(/<p>(.*?)<\/p>/g, '$1\n\n')
+
+    // Convert images
+    .replace(/<img src="(.*?)" alt="(.*?)".*?\/>/g, '![$2]($1)')
+
+    // Convert links
+    .replace(/<a href="(.*?)">(.*?)<\/a>/g, '[$2]($1)')
+
+    // Remove any remaining HTML tags
+    .replace(/<[^>]*>/g, '')
+
+    // Trim extra whitespace
+    .trim();
+
+  return markdown;
 }
 
 
 
 /**
- * Copy HTML to clipboard. When pasting into rich text field, pastes rich 
- * text. When pasting into plain text field, pastes: plain text, html, or markdown.
+ * Copy HTML to clipboard. When pasting into rich text field, 
+ * pastes rich text. When pasting into plain text field, pastes: 
+ * plain text, html, or markdown.
  * 
  * @param {string} html - The HTML content to be copied.
  * @param {object} options - The options object.
- * @param {boolean} options.pastePlainWithHTML - 
- * If true, the plain text will be the same as the HTML.
- * If false, the plain text will be the same as the HTML,
- * without the HTML tags.
- * @param {boolean} options.pastePlainWithMarkdown -  
- * If true, the plain text will be markdown.
- * If false, the plain text will be the same as the HTML,
- * without the HTML tags.
+ * @param {boolean} options.pastePlainFormat -
+ * default=0
+ * 0 - plain text
+ * 1 - markdown
+ * 2 - html
  * @returns {Promise<void>} - A promise that resolves when 
  * the HTML is copied to the clipboard.
  * @category HTML Utilities
  * @author [Gulakov, A. (2024)](https://airesearch.js.org)
- * 
  */
-export async function copyHtmlToClipboard(html, options = {}) {
+export async function copyHTMLToClipboard(html, options = {}) {
   var {
-    pastePlainWithHTML = true,
-    pastePlainWithMarkdown = false
+    pastePlainFormat = 0
   } = options;
 
   if (typeof window == "undefined" || !navigator?.clipboard) return;
 
   const htmlBlob = new Blob([html], { type: "text/html" });
 
-  var plainText = pastePlainWithHTML ? 
-    html.replace(/<[^>]*>?/g, "") :
-    pastePlainWithMarkdown ? 
-    convertMarkdownToHtml(html) :
+  var plainText = pastePlainFormat == 0 ? 
+    html.replace(/<[^>]*>?/g, "") : 
+    pastePlainFormat == 1 ? 
+    convertMarkdownToHTML(html, false) :
     html;
   
   const textBlob =  new Blob([plainText], { type: "text/plain" }) 

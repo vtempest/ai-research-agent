@@ -12,8 +12,8 @@ import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remo
 
 import {
   convertHTMLSpecialChars,
-  convertMarkdownToHtml,
-  copyHtmlToClipboard,
+  convertMarkdownToHTML,
+  copyHTMLToClipboard,
   convertURLToAbsoluteURL,
   convertMathLaTexToImage
 } from "./src/extractor/html-to-content/html-utils.js";
@@ -68,7 +68,7 @@ import { generateLanguageModelReply } from "./src/generate/generate-reply-api.js
 // Export all functions as named exports
 export {
   generateLanguageModelReply,
-  convertMarkdownToHtml,
+  convertMarkdownToHTML,
   importVectorIndexFromString,
   convertHTMLSpecialChars,
   convertPDFToHTML,
@@ -76,7 +76,7 @@ export {
   extractFavicon,
   embedYoutubePlayer,
   stemWordToRoot,
-  copyHtmlToClipboard,
+  copyHTMLToClipboard,
   // compileTopicModel,
   convertMathLaTexToImage,
   extractCite,

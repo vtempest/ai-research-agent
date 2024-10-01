@@ -17,7 +17,6 @@ import * as chrono from "chrono-node";
  * @category Extract
  * @author [Gulakov, A. (2024)](https://airesearch.js.org),
  * [Mozilla (2012-)](https://github.com/mozilla/pdf.js/releases),
- * [Adobe (1993)](https://en.wikipedia.org/wiki/History_of_PDF)
 */
 export async function convertPDFToHTML(pdfURLOrBuffer, options = {}) {
   // try {

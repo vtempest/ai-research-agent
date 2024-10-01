@@ -1,13 +1,13 @@
 
 /**
  * ### Tardigrade the Web Crawler 
- * <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> <br />
+ * <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
  * 
  * #### Use Fetch API, check for bot detection
  * 
  * 1. Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
- * Scraping internet pages is a <a href="https://blog.apify.com/is-web-scraping-legal/">free speech
- *  right globally</a>.
+ * Scraping internet pages is a [free speech right 
+ * globally](https://blog.apify.com/is-web-scraping-legal/).
  * 2. Features: timeout, redirects, default UA, referer as google, and bot 
  * detection checking. <br />
  * 3. If fetch method does not get needed HTML, use Docker proxy as backup.
@@ -24,13 +24,14 @@
  *
  * @param {string} url - any domain's URL
  * @param {Object} [options]
-  * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
+ * @param {number} options.timeout default=5 -  abort request if not retrived, in seconds
  * @param {number} options.maxRedirects default=3 - max redirects to follow
  * @param {number} options.checkBotDetection default=true - check for bot detection messages
  * @param {number} options.changeReferer default=true - set referer as google
  * @param {number} options.userAgentIndex default=0 - index of [google bot, default chrome]
  * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
  * @param {string} options.proxy default=false - use proxy url
+ * @param {boolean} options.checkRobotsAllowed default=false - check robots.txt rules
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extract
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
@@ -47,7 +48,15 @@ export async function scrapeURL(url, options = {}) {
       useCORSProxy = false,
       proxy = null,
       useProxyAsBackup = true,
+      checkRobotsAllowed = false,
     } = options;
+
+    if(checkRobotsAllowed) {
+      const rules = await fetchScrapingRules(url);
+      if(!isAllowedToScrape(rules, url)) {
+        return { error: "Robots.txt forbids to scrape there" };
+      }
+    }
 
     
     if(proxy)
@@ -141,7 +150,67 @@ function isHTMLBotDetection(html) {
 }
 
 
-// try on the frontend  
-// <iframe id="dom-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
-// document.getElementById('dom-iframe').src = '/get?url=' + url;
-// document.getElementById('dom-iframe').contentWindow.document.body.innerHTML;
+
+/**
+ * Fetches and parses the robots.txt file for a given URL.
+ * @param {string} url - The base URL to fetch the robots.txt from.
+ * @returns {Promise<Object>} A JSON object representing the parsed robots.txt.
+ */
+export async function fetchScrapingRules(url) {
+  const hostname = url.split('//')[1].split('/')[0];
+  const robotsUrl = `https://${hostname}/robots.txt`;
+  const content = await scrapeURL(robotsUrl);
+  const rules = {
+    directives: {},
+    crawlDelay: {},
+    sitemaps: [],
+    preferredHost: null
+  };
+  let currentUserAgents = [];
+
+  const lines = content.split('\n');
+  for (const line of lines) {
+    const [directive, value] = line.split(':').map(s => s.trim());
+    switch (directive.toLowerCase()) {
+      case 'user-agent':
+        currentUserAgents = [value.toLowerCase()];
+        break;
+      case 'disallow':
+      case 'allow':
+        for (const ua of currentUserAgents) {
+          rules.directives[ua] = rules.directives[ua] || [];
+          rules.directives[ua].push({ path: value, allow: directive.toLowerCase() === 'allow' });
+        }
+        break;
+      case 'crawl-delay':
+        for (const ua of currentUserAgents) {
+          rules.crawlDelay[ua] = parseFloat(value);
+        }
+        break;
+      case 'sitemap':
+        rules.sitemaps.push(value);
+        break;
+      case 'host':
+        rules.preferredHost = value.toLowerCase();
+        break;
+    }
+  }
+  return rules;
+}
+
+/**
+ * Checks if a given path is allowed for a specific user agent.
+ * @param {Object} rules - The parsed rules from robots.txt.
+ * @param {string} path - The path to check.
+ * @param {string} [userAgent='*'] - The user agent to check for.
+ * @returns {boolean} True if the path is allowed, false otherwise.
+ */
+function isAllowedToScrape(rules, path, userAgent = '*') {
+  const relevantRules = rules.directives[userAgent.toLowerCase()]
+   || rules.directives['*'] || [];
+  for (const rule of relevantRules) 
+    if (path.startsWith(rule.path)) 
+      return rule.allow;
+    
+  return true; // If no rules match, it's allowed by default
+}

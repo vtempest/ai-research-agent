@@ -3,7 +3,6 @@ import { extractCite } from "../html-to-cite/extract-cite.js";
 import { convertHTMLToBasicHTML } from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
 import { extractNamedEntity } from "../html-to-cite/human-names-recognize.js";
-
 import { extractContentHTML } from "./extract-content/extractor1-content.js";
 import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
 
