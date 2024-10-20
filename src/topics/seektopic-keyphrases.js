@@ -57,9 +57,17 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  * @param {number} options.limitTopKeyphrases default=10 - maximum number of top keyphrases to return
  * @param {number} options.minKeyPhraseLength default=6 - minimum length of a keyphrase
  * @param {string} options.heavyWeightQuery  - query to give heavy weight to
- * @returns {Array<Object>} - [{text, keyphrases, weight}] array of sentences
- * @example  extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10})
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @returns {{
+ *  topSentences: Array<Object>,  
+ *  keyphrases: Array<Object>,
+ *  sentences: Array<string>
+ * }} 
+ * @example
+ *   const result = extractSEEKTOPIC(testDoc, { phrasesModel, heavyWeightQuery: "self attention", limitTopSentences: 10});
+ *   console.log(result.topSentences); // Array of top sentences with their keyphrases and weights
+ *   console.log(result.keyphrases); // Array of top keyphrases with their weights and associated sentence indices
+ *   console.log(result.sentences); // Array of all sentences in the input text
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  * @category Topics
 */
 export function extractSEEKTOPIC(docText, options = {}) {

@@ -12,7 +12,6 @@ export async function GET({ url }) {
 
   if (optionReturnFullHtml == "true") {
     let html = await scrapeURL(urlToExtract);
-    console.log(html);
     var domain = urlToExtract.split("://")[1].split("/")[0];
     // html = (html || "").replace(/<head[^>]*>/i, "<head><base href='" + domain + "/'>")
 

@@ -1,0 +1,36 @@
+name: Auto-Green
+
+on:
+  workflow_dispatch:
+    inputs:
+      log:
+        description: "Commit Log"
+        required: true
+        default: "a commit a day keeps your girlfriend away"
+  schedule:
+    - cron: "0 0 * * 0-5"
+
+jobs:
+  autogreen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Pull
+        run: |
+          git config --local user.name "${{ github.actor }}"
+          git config --local user.email "${{ github.actor }}@gmail.com"
+          git remote set-url origin https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase
+
+      - name: Commit (default)
+        if: github.event.inputs.log == 0
+        run: git commit --allow-empty -m "a commit a day keeps your girlfriend away"
+
+      - name: Commit (input)
+        if: github.event.inputs.log != 0
+        run: git commit --allow-empty -m "${{ github.event.inputs.log }}"
+
+      - name: Push
+        run: git push

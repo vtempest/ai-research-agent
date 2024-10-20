@@ -28,7 +28,7 @@ import { weighSimilarityByCharacter } from "./src/match/compare-letters.js";
 
 import { suggestNextWordCompletions } from "./src/tokenize/suggest-complete-word.js";
 
-import { convertTextToTokens } from "./src/tokenize/tokenize-topics.js";
+import { convertTextToTokens } from "./src/tokenize/text-to-topic-tokens.js";
 
 import { splitSentences } from "./src/tokenize/sentences.js";
 
@@ -77,7 +77,6 @@ export {
   embedYoutubePlayer,
   stemWordToRoot,
   copyHTMLToClipboard,
-  // compileTopicModel,
   convertMathLaTexToImage,
   extractCite,
   extractContentHTML,
@@ -108,7 +107,3 @@ export {
   extractTopicTermGroupsLDA,
 };
 
-/**
- * @typedef {import("./src/extractor/url-to-content/url-to-content").Article} Article
- * @category Extract 
-*/

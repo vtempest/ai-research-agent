@@ -1,11 +1,9 @@
 import {convertTextToTokens} from "../../index.js";
 
 /**
- * Calculate term specificity for a single doc with BM25 formula 
+ * Calculate term specificity for a single doc with [BM25 
+ * formula](https://www.youtube.com/watch?v=ruBm9WywevM) 
  * by using Wikipedia term frequencies as the baseline IDF. <br />
- * ritvikmath (2023). "BM25 : The Most Important Text Metric in 
- *  Data Science". https://www.youtube.com/watch?v=ruBm9WywevM
- * 
  * <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
  * 
  * @param {string} document a single document to calculate the score for

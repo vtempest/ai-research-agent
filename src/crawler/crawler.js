@@ -1,14 +1,11 @@
 /**
- * @class Crawler
  * 1. Server API takes url and renders with puppeteer DOM to get all HTML.
  * 2. Bypass Cloudflare bot check
  *  A webpage proxy that request through Chromium (puppeteer) - can be used
  * to bypass Cloudflare anti bot / anti ddos on any application (like curl)
  * Send your request to the server with the port 3000 and add your URL to the "url"
  *  query string like this: `http://localhost:3000/?url=https://example.org`
- *
- * <img src="https://i.imgur.com/XXXTprT.png" width="500px" />
-*/ 
+ */
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin()); // Use stealth plugin to make puppeteer harder to detect
@@ -66,9 +63,7 @@ app.use(async (ctx) => {
   if (ctx.query.url) {
     // Extract and decode the URL from the query string
     const url = decodeURIComponent(ctx.url.replace("/?url=", ""));
-    if (process.env.DEBUG) {
-      console.log(`[DEBUG] URL: ${url}`);
-    }
+    
 
     // Initialize variables for response data
     let responseBody;
@@ -81,6 +76,7 @@ app.use(async (ctx) => {
     // Set up request interception
     await page.removeAllListeners("request");
     await page.setRequestInterception(true);
+
     let requestHeaders = ctx.headers;
     requestHeadersToRemove.forEach((header) => {
       delete requestHeaders[header];
@@ -88,12 +84,13 @@ app.use(async (ctx) => {
 
     // Handle each intercepted request
     page.on("request", (request) => {
+
+      //no downloading images/css in the virtual renderer saves time
+      if (["image", "stylesheet", "font"].includes(request.resourceType()))
+        request.abort();
+
       requestHeaders = Object.assign({}, request.headers(), requestHeaders);
-      if (process.env.DEBUG) {
-        console.log(
-          `[DEBUG] requested headers: \n${JSON.stringify(requestHeaders)}`
-        );
-      }
+    
       if (ctx.method == "POST") {
         request.continue({
           headers: requestHeaders,
@@ -193,26 +190,15 @@ app.use(async (ctx) => {
       );
     }
 
-    // Debug logging
-    if (process.env.DEBUG) {
-      console.log(
-        `[DEBUG] response headers: \n${JSON.stringify(responseHeaders)}`
-      );
-    }
-    // Set the response body
 
-    
     //spoof the base-url for relative paths on the target page
     //split url to domain
-    responseData = (responseBody || "")
-      .replace(/<head[^>]*>/i, "<head><base href='" + 
-        url.split('/').slice(0,3).join('/') + "/'>")
-
-
-
+    responseData = (responseBody || "").replace(
+      /<head[^>]*>/i,
+      "<head><base href='" + url.split("/").slice(0, 3).join("/") + "/'>"
+    );
 
     ctx.body = responseData;
-    
   } else {
     // If no URL is provided, return an error message
     ctx.body = "Please specify the URL in the 'url' query string.";

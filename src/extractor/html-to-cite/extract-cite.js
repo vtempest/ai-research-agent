@@ -17,12 +17,12 @@ import { extractNamedEntity } from "./human-names-recognize.js";
  * if it should be reversed starting by author last name (accounting for affixes/titles),
  * since organizations are not reversed.
  *
- * [Article-extraction-benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
+ * [Article Extraction Benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
  *
  * @param {document} document  dom object or html string with article content
- * @returns {object} {author, date, title, source}
+ * @returns {{author: string, author_cite: string, author_short: string, date: string, title: string, source: string}} An object containing extracted citation information.
  * @category Extract
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export function extractCite(document) {
   //if passing in html string, convert to dom object

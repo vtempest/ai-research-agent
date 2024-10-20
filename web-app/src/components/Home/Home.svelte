@@ -9,8 +9,11 @@
   import { APP_NAME } from "$lib/config/config";
   // import Graph from "./Graph.svelte";
 
-  import { convertHTMLSpecialChars,
-     extractSEEKTOPIC } from "$airesearchagent";
+  import {
+    convertHTMLSpecialChars,
+    convertMarkdownToHTML,
+    extractSEEKTOPIC,
+  } from "$airesearchagent";
 
   // Props from URL ?q=...
   export let data = {};
@@ -159,10 +162,37 @@
       );
       var newArticle = await response.json();
 
- 
-
       if (newArticle.error || !newArticle.html) {
-        // Implement fallback method using an invisible iframe
+
+        //if bot blocked, then as backup load using Jina
+        var articleExtract = await (
+          await fetch("https://r.jina.ai/" + articleUrl)
+        ).text();
+
+        if(articleExtract.includes("===============\n")){
+          articleExtract = articleExtract.split("===============\n")[1];
+        }
+
+
+        var match = articleExtract.match(/Markdown Content:([\s\S]*)/);
+
+        if (match) 
+          articleExtract = match[1].trim();
+
+
+        articleExtract = convertMarkdownToHTML(articleExtract);
+
+        newArticle = {  html: articleExtract };
+
+        currentArticle = newArticle;
+        updateArticleView();
+        // Run summarize AI function
+        setTimeout(() => {
+          summarizeArticle();
+        }, 200);
+        selectedResultIndex = index;
+
+        /* Implement fallback method using an invisible iframe
               const iframeId = 'article-iframe';
                iframe = document.getElementById(iframeId);
               const readView = document.querySelector('.read-view');
@@ -184,25 +214,18 @@
                   newArticle = { source: "html", html: iframeContent };
                   currentArticle = newArticle;
                   updateArticleView();
-                  summarizeArticle();
                   return;
                 } catch (iframeError) {
                   console.error("Error accessing iframe content:", iframeError);
                   currentArticle = null;
                 }
               };
-
+              */
       } else {
-
         // hide the iframe
         currentArticle = newArticle;
 
         updateArticleView();
-        selectedResultIndex = index;
-        if (iframe) {
-          iframe.remove();
-          iframe = null;
-        }
 
         // Run summarize AI function
         setTimeout(() => {
@@ -313,8 +336,7 @@
     if (!currentArticle) return;
 
     // document.querySelector("#ai-generate-btn").click()
-    actionsPanelComponent.generateAISummary()
-
+    actionsPanelComponent.generateAISummary();
   }
 </script>
 
@@ -343,7 +365,11 @@
       <div class="h-full flex flex-col shadow-md p-1">
         <!-- Search bar at the top of the sidebar -->
         <div class="border-b border-gray-200">
-          <SearchInput handleSubmit={handleSearchSubmit} {phrasesModel} {searchText} />
+          <SearchInput
+            handleSubmit={handleSearchSubmit}
+            {phrasesModel}
+            {searchText}
+          />
         </div>
 
         <!-- Search results  -->
@@ -357,17 +383,38 @@
                   class="rounded-lg p-2 transition-colors duration-300 cursor-pointer
                   {index === selectedResultIndex
                     ? 'bg-[#DFD8C2] shadow-xl -translate-y-1  active'
-                    : 'bg-[#f8f8f8] hover:bg-[#DFD8C2] outline outline-1 '+
-                    ' outline-slate-300 hover:shadow-xl hover:-translate-y-1'}"
+                    : 'bg-[#f8f8f8] hover:bg-[#DFD8C2] outline outline-1 ' +
+                      ' outline-slate-300 hover:shadow-xl hover:-translate-y-1'}"
                   on:click={() => fetchAndDisplayArticle(result.url, index)}
                 >
                   <div class="flex justify-between items-top mb-1">
-                    <div class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2">
+                    <div
+                      class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2"
+                    >
                       {convertHTMLSpecialChars(result.title)}
                     </div>
-                    <a href={result.url} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-700 flex-shrink-0" title="Open in new tab">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <a
+                      href={result.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-gray-500 hover:text-gray-700 flex-shrink-0"
+                      title="Open in new tab"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-external-link"
+                      >
+                        <path
+                          d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                        ></path>
                         <polyline points="15 3 21 3 21 9"></polyline>
                         <line x1="10" y1="14" x2="21" y2="3"></line>
                       </svg>
@@ -382,7 +429,8 @@
                       ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
                       .split("/")
                       .slice(1)
-                      .join("/").replace(/^/, '/')}</span
+                      .join("/")
+                      .replace(/^/, "/")}</span
                   >
                 </li>
               {/each}
@@ -406,7 +454,10 @@
 
     <!-- ActionsPanel (right panel) -->
     <Pane size={35} snapSize={10}>
-      <ActionsPanel  bind:this={actionsPanelComponent} selectedArticle={currentArticle} />
+      <ActionsPanel
+        bind:this={actionsPanelComponent}
+        selectedArticle={currentArticle}
+      />
     </Pane>
   </Splitpanes>
 </main>

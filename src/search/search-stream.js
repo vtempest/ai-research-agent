@@ -28,7 +28,7 @@ import {extract} from "../../index.js";
  *   maxTopResultsToExtract: 10
  * });
  * @category Search
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
 */
 export async function searchSTREAM(query, options = {}) {
   const {

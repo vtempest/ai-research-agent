@@ -28,7 +28,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.1",
-    "wrangler": "3.57"
+    "wrangler": "^3.81.0"
   },
   "type": "module",
   "dependencies": {

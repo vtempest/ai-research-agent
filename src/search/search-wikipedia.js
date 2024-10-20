@@ -19,7 +19,7 @@ import {splitSentences} from "../../index.js";
  * @returns {object} {results: [ {title, summary, image}, ...]}
  * @returns {object} Returns {error} if no results found. {error: "No results"}
  * @category Search
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
 */
 export async function searchWikipedia(query, options = {}) {
   // Set default options

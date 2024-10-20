@@ -5,7 +5,7 @@
  * @param {Object} [options] 
  * @returns {Promise<string|null>} Favicon URL or null if not found
  * @category Extract
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  * @example const favicons = await extractFavicon('https://github.com/') 
 */
 

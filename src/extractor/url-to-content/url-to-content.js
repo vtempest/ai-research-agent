@@ -25,8 +25,8 @@ import { scrapeURL } from "./scrape-url.js";
  *  using 100+ custom adapters for major websites. <br>
  * 2. Strips to basic HTML for reading mode or saving research notes. <br>
  * 3. Youtube - get full transcript for video if detected a youtube video.  <br>
- * 4. PDF - Extracts formatted text from PDF with parsing of headings, page headers,
- * footnotes, and adding linebreaks based on standard deviation of range text height. <br>
+ * 4. PDF - Extracts formatted text from PDF with page headers,
+ * footnotes, linebreaks, and adding headings based on standard deviation of range text height. <br>
  * 
  * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />
  * @param {document|string} urlOrDoc - url or dom object with article content
@@ -35,10 +35,30 @@ import { scrapeURL } from "./scrape-url.js";
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
- * @param {number} options.timeout default=5 - http request timeout
- * @returns {Article} - object containing url, html, author, date, title, source
+ * @param {number} [options.timeout=5] - http request timeout
+ * @returns {{  
+ *  title: string,
+ *  author_cite: string,
+ *  author_short: string,
+ *  author: string,
+ *  date: string,
+ *  source: string,
+ *  html: string,
+ *  word_count: number
+ * }} 
+ 
+  *  url - The URL of the article
+  *  html - The HTML content of the article
+  *  author - The author of the article
+  *  author_cite - Author name in Last, First Middle format
+  *  author_short - Author name in Last format
+  *  author_type - Author type ["single", "two-author", "more-than-two", "organization"]
+  *  date - The publication date of the article
+  *  title - The title of the article
+  *  source - The source or origin of the article
+  *  word_count - The word count of the full text (without HTML tags)
  * @category Extract
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function extract(urlOrDoc, options = {}) {
   var {
@@ -47,6 +67,7 @@ export async function extract(urlOrDoc, options = {}) {
     formatting = true,
     absoluteURLs = true,
     timeout = 5,
+    proxy = null,
   } = options;
   var response = {};
 
@@ -73,7 +94,9 @@ export async function extract(urlOrDoc, options = {}) {
       response.timestamps = timestamps;
     } else {
       try {
-        var html = await scrapeURL(url);
+        var html = await scrapeURL(url, {
+          proxy
+        });
       } catch (e) {
         return { error: "Error in fetch", msg: e.message };
       }

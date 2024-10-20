@@ -17,9 +17,15 @@ import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
  * @param {boolean} options.useExtractor2 default=false -
  *    false uses Mozilla Readability, true uses Postlight Mercury. 
  *    then use the alternate if the first returns less than 200 characters
- * @returns {ExtractedContent} An object containing extracted information
- * @throws {Error} If there's an error parsing the HTML
-  * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @returns {Object} The extracted content and citation information
+ * @property {string} title - The title of the document
+ * @property {string} author_cite - The full citation for the author
+ * @property {string} author_short - A shortened version of the author's name
+ * @property {string} author - The author's name
+ * @property {string} date - The publication date
+ * @property {string} source - The source of the document
+ * @property {string} html - The extracted HTML content
+* @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export function extractContentAndCite(documentOrHTML, options = {}) {
   const {

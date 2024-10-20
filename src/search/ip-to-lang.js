@@ -4,10 +4,9 @@
  * Retrieves language information for a given IP address using 
  * a remote API. Rate limit 45 req/min
  *
- * You can also use Accept-Language header or navigator.language 
+ * You should first use Accept-Language header or navigator.language 
  * in front-end for user-set language
  * https://stackoverflow.com/questions/673905/how-can-i-determine-a-users-locale-within-the-browser/31135571#31135571
- * @async
  * @param {string} ip - The IP address to look up.
  * @returns {Promise<Object|undefined>} A promise that resolves to an object containing country and language information, or undefined if not found.
  * @returns {string} returns.country - The name of the country.
@@ -15,8 +14,7 @@
  * @returns {string} returns.lang - The two-letter language code.
  * @returns {string} returns.language - The full name of the language.
  * @returns {string} returns.greeting - A greeting in the detected language.
- * @returns {string} returns.login - The word "login" translated to the detected language.
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function getLanguageFromIPRemoteAPI(ip) {
 

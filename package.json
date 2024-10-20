@@ -3,7 +3,7 @@
   "version": "0.9.8",
   "module": "index.js",
   "type": "module",
-  "author": "vtempest",
+  "author": "ai-research-agent",
   "license": "AGPL-3.0",
   "description": "Search and outline a topic base with AI Research Agent",
   "scripts": {

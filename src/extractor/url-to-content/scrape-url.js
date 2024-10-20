@@ -3,23 +3,19 @@
  * ### Tardigrade the Web Crawler 
  * <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
  * 
- * #### Use Fetch API, check for bot detection
- * 
- * 1. Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
+ * 1. **Use Fetch API, check for bot detection.** Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
  * Scraping internet pages is a [free speech right 
  * globally](https://blog.apify.com/is-web-scraping-legal/).
  * 2. Features: timeout, redirects, default UA, referer as google, and bot 
  * detection checking. <br />
  * 3. If fetch method does not get needed HTML, use Docker proxy as backup.
  * 
- * #### Docker container, bypass bot check
- * 
- * 1. [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/src/crawler)
+ * 4. [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/src/crawler)
  *  container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by
  *  secondary in-page API requests after the initial page request, including user login and cookie storage.
- * 2. Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used
+ * 5. Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used
  * to bypass Cloudflare anti bot using cookie id javascript method.
- * 3. Send your request to the server with the port 3000 and add your URL to the "url"
+ * 6. Send your request to the server with the port 3000 and add your URL to the "url"
  *  query string like this: `http://localhost:3000/?url=https://example.org`
  *
  * @param {string} url - any domain's URL
@@ -35,7 +31,7 @@
  * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extract
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function scrapeURL(url, options = {}) {
   // try {
@@ -53,6 +49,7 @@ export async function scrapeURL(url, options = {}) {
 
     if(checkRobotsAllowed) {
       const rules = await fetchScrapingRules(url);
+      //TODO cache rules per domain
       if(!isAllowedToScrape(rules, url)) {
         return { error: "Robots.txt forbids to scrape there" };
       }
@@ -130,7 +127,7 @@ function isHTMLBotDetection(html) {
     "Our systems have detected unusual traffic activity from your network. Please complete this reCAPTCHA",
     "Sorry, we just need to make sure you're not a robot",
     "Access to this page has been denied",
-    "<p>Please enable JS and disable any ad blocker</p></p>",
+    "<p>Please enable JS and disable any ad blocker",
     "Please make sure your browser supports JavaScript",
     "Please complete the security check to access",
     "https://errors.edgesuite.net",
@@ -143,7 +140,12 @@ function isHTMLBotDetection(html) {
     "Enable JavaScript and cookies to continue",
     "Something went wrong. Wait a moment and try again.",
     "You’re using a web browser that isn’t supported",
-    "You can’t perform that action at this time."
+    "You can’t perform that action at this time.",
+    "403 Forbidden",
+    "504 Gateway Timeout",
+    "Agree & Join LinkedIn",
+    "500 Internal Server Error",
+    "By clicking Continue to join or sign in, you agree to LinkedIn",
   ];
 
   return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
@@ -159,7 +161,7 @@ function isHTMLBotDetection(html) {
 export async function fetchScrapingRules(url) {
   const hostname = url.split('//')[1].split('/')[0];
   const robotsUrl = `https://${hostname}/robots.txt`;
-  const content = await scrapeURL(robotsUrl);
+  const content = await (await fetch(robotsUrl)).text();
   const rules = {
     directives: {},
     crawlDelay: {},

@@ -8,10 +8,12 @@ import { scrapeURL } from "./scrape-url.js"
   * @param {boolean} options.addTimestamps default=true - 
   * true to return timestamps, default true
  * @param {boolean} options.timeout default=5 - http request timeout
- * @return {Object} {content, timestamps} where content is the full text of
- * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
+ * @return {{content: string, timestamps: string, word_count: number}} 
+ * where content is the full text of the transcript,  
+ * timestamps is a string of comma-separated [characterIndex, timeSeconds] pairs,
+ * and word_count is the number of words in the transcript.
  * @category Extract
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function convertYoutubeToText(videoUrl, options = {}) {
   const { addTimestamps = true, timeout = 5 } = options;

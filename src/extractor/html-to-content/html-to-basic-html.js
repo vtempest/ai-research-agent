@@ -24,7 +24,7 @@ import {
  * @param {string} options.allowedAttributes default="text,tag,href, src,type,width, height,id,data"
  *   List of allowed HTML attributes
  * @returns {string} basic text formatting html
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  * @category HTML Utilities
  */
 export function convertHTMLToBasicHTML(html, options = {}) {

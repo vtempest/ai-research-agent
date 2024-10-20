@@ -25,7 +25,7 @@
  * });
  * // Possible output: [{ phrase: "artificial intelligence" }, { phrase: "artificial interpretation" }]
  * 
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  * @category Topics
 */
 export async function suggestNextWordCompletions(query, options = {}) {

@@ -1,7 +1,4 @@
 import dataHumanNames from "../../../data/human-names-92k.json" // with { type: "json" };
-;
-// var dataHumanNames = []
-
 /**
  * @typedef {Object} AuthorObject
  * @property {string} author_cite - Author name in Last, First Middle format
@@ -19,8 +16,6 @@ import dataHumanNames from "../../../data/human-names-92k.json" // with { type: 
  * where organization is a non-human name that is not reversed.
  * @param {string} author
  * @returns {Object} {author_cite, author_short, author_type}
- * 
- 
  */
 export function extractNamedEntity(author) {
   
@@ -61,8 +56,8 @@ export function extractNamedEntity(author) {
   //org or not found -- should not be reversed
   if (foundOrgParts > 0 || (foundNameParts == 0 && !isTwoWord)) authorType = 3;
 
-  //cut off non-name intro parts like By: //TODO
-  if (foundNameParts > 0 && names.length > 4) {
+  //cut off non-name intro parts like By: //TODO  && names.length > 4
+  if (foundNameParts > 0) {
     var partFound;
     names = names
       .map((name) => {

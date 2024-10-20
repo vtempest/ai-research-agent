@@ -2,11 +2,6 @@
     <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg">
 </p>
 <p align="center">
-    Being is Becoming<br />
-    Whatever Research Can Be,<br /> 
-    That is What It Must Become.<br />
-    If AI is Humanity's Last Invention, <br />
-    Then Vector Space is the Final Frontier.<br />
     <br />
     <a href="https://npmjs.org/package/ai-research-agent">
         <img src="https://nodei.co/npm/ai-research-agent.png?compact=true"
@@ -22,7 +17,7 @@
     <img alt="GitHub Discussions"
         src="https://img.shields.io/github/discussions/vtempest/ai-research-agent">
     </a>
-    <a href="https://github.com/eduardoleao052/js-torch/pulse" alt="Activity">
+    <a href="https://github.com/vtempest/ai-research-agent/pulse" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/m/vtempest/ai-research-agent" />
     </a>
 </p>
@@ -46,9 +41,17 @@
 
 ### 🧠💻 Reimagine the Internet as 3D Mind Map
 
+<p align="center">
+    Being is Becoming<br />
+    Whatever Research Can Be,<br /> 
+    That is What It Must Become.<br />
+    If AI is Humanity's Last Invention, <br />
+    Then Vector Space is the Final Frontier.<br />
+</p>
+
 Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, evolve crowdsourced chain-of-thought reasoning, unlock faster ways to read long articles, monitor developments by topic modeling a knowledge base graph, and provide a public service of answers to research.
 
-Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Users can upload research PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need this new way of self-organizating information.
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Users can upload research PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need this new way of self-organizing information.
 
 
 
@@ -131,6 +134,26 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 3. Youtube - get full transcript for video if detected a youtube video
 4. PDF - Extracts formatted text from PDF with parsing of linebreaks, page headers, footnotes, and adding infer headings based on  standard deviation from average text height
 5. Cite - Extract author, date, source, and title from HTML using meta tags and common class names. Validates human name from author string to check against common list of 90k first names, last names, and organizations to infer if last name should be reversed starting by author last name (accounting for affixes/titles), since organizations are not reversed.
+
+
+### Tardigrade the Web Crawler 
+
+<img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
+
+1. *Use Fetch API, check for bot detection.* Scrape  any domain's URL to get its HTML, JSON, or arraybuffer. 
+Scraping internet pages is a [free speech right 
+globally](https://blog.apify.com/is-web-scraping-legal/).
+2. Features: timeout, redirects, default UA, referer as google, and bot 
+detection checking. 
+3. If fetch method does not get needed HTML, use Docker container wih proxy as backup.
+4. [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/src/crawler)
+ container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by
+ secondary in-page API requests after the initial page request, including user login and cookie storage.
+5. Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used
+to bypass Cloudflare anti bot using cookie id javascript method.
+6. Send your request to the server with the port 3000 and add your URL to the "url"
+ query string like this: `http://localhost:3000/?url=https://example.org`. Pass in this proxy url in the fetch request.
+
 
 #### 🌍📖 WORLD: Wikipedia Outline Relational Lexicon & Dictionary 
 

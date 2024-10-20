@@ -116,7 +116,7 @@ export function convertHTMLSpecialChars(str, unescape = true) {
  * var absoluteURL = convertURLToAbsoluteURL('https://example.com', '//images/image.jpg')
  * console.log(absoluteURL) // Returns: "https:images/image.jpg"
  * @category HTML Utilities
-* @author [Gulakov, A. (2024)](https://airesearch.js.org)
+* @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export function convertURLToAbsoluteURL(base, relative) {
 
@@ -166,7 +166,10 @@ export function convertURLToAbsoluteURL(base, relative) {
 
     return base.replace(/\/+$/, "") + relative;
   } else {
-    return base   + "/" + relative;
+
+    return base.split('/')
+      .slice(0, -1).join('/')   
+      + "/" + relative;
   }
 }
 
@@ -297,7 +300,7 @@ function convertHTMLToMarkdown(html) {
  * @returns {Promise<void>} - A promise that resolves when 
  * the HTML is copied to the clipboard.
  * @category HTML Utilities
- * @author [Gulakov, A. (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function copyHTMLToClipboard(html, options = {}) {
   var {

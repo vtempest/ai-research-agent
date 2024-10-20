@@ -2084,8 +2084,23 @@ const nn = {
 const optim = { Adam };
 
 /**
- * Torch is a neural net matrix multiplication library 
- * 1. Uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) 
+ * ### TORCH: Tensor Operations with the Reasoning Capacity of Humans 
+ * <img src="https://i.imgur.com/vKBjkfd.png" width="360px" />
+ * 
+ * Torch is a powerful library for tensor computations and deep learning, offering 
+ * a comprehensive set of tools for creating and manipulating multidimensional arrays.
+ *  It provides a wide range of mathematical operations, and it includes a neural network module (torch.nn) that facilitates
+ *  the construction of complex neural architectures through a modular approach, with
+ *  various layer types and activation functions readily available. Torch also 
+ * implements automatic differentiation, enabling efficient gradient computation for 
+ * training neural networks, and offers optimization algorithms like Adam for parameter
+ *  updates. Additionally, it includes utilities for saving and loading models, making 
+ * it a versatile and complete framework for developing and deploying machine learning 
+ * solutions.
+ * 
+ *  
+ * 1. Torch is a neural net matrix multiplication library that 
+ * uses [PyTorch API syntax](https://pytorch.org/docs/stable/index.html) 
  * for tensors and neural nets. 
  * 2. Uses [GPU.js](https://github.com/gpujs/gpu.js) acceleration
  * to translate matmul into WebGL shader code. GPU.js does matmul [faster 
@@ -2096,6 +2111,53 @@ const optim = { Adam };
  * 4. Other Neural Nets: For LSTMs and CNNs, use
  * [Tensorflow.js](https://github.com/tensorflow/tfjs?tab=readme-ov-file) 
  * or [Brain.js](https://github.com/BrainJS/brain.js)
+ * 
+ * <pre>
+1. Tensor Creation:
+   - `tensor()`: Creates a new Tensor filled with given data
+   - `zeros()`: Creates a new Tensor filled with zeros
+   - `ones()`: Creates a new Tensor filled with ones
+   - `randn()`: Creates a new Tensor filled with random values from a normal distribution
+   - `rand()`: Creates a new Tensor filled with random values from a uniform distribution
+
+2. Tensor Properties and Methods:
+   - `backward()`: Performs backpropagation from this tensor backwards
+   - `zero_grad()`: Clears the gradients stored in this tensor
+   - `tolist()`: Returns the tensor's data as a JavaScript Array
+   - Properties: `data`, `length`, `ndims`, `grad`
+
+3. Basic Arithmetic Operations:
+   - `add()`, `sub()`, `mul()`, `div()`: Element-wise arithmetic operations
+   - `matmul()`: Matrix multiplication between two tensors
+   - `pow()`: Element-wise power operation
+
+4. Statistical Operations:
+   - `sum()`: Gets the sum of the Tensor over a specified dimension
+   - `mean()`: Gets the mean of the Tensor over a specified dimension
+   - `variance()`: Gets the variance of the Tensor over a specified dimension
+
+5. Tensor Manipulation:
+   - `transpose()`: Transposes the tensor along two consecutive dimensions
+   - `at()`: Returns elements from the tensor based on given indices
+   - `masked_fill()`: Fills elements in the tensor based on a condition
+
+6. Mathematical Functions:
+   - `sqrt()`: Element-wise square root
+   - `exp()`: Element-wise exponentiation
+   - `log()`: Element-wise natural logarithm
+
+7. Neural Network Layers (torch.nn):
+   - `Linear()`: Applies a linear transformation
+   - `MultiHeadSelfAttention()`: Applies a self-attention layer
+   - `Embedding()`: Creates an embedding table for vocabulary
+   - Activation functions: `ReLU()`, `Softmax()`
+
+8. Optimization and Loss:
+   - `optim.Adam()`: Adam optimizer for updating model parameters
+   - `nn.CrossEntropyLoss()`: Computes Cross Entropy Loss
+
+ </pre>
+
  * 
  * 
  * @class torch

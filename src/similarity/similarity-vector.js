@@ -126,7 +126,7 @@ export async function getEmbeddingModel(options = {}) {
  *
  * [NGT Algorithm](https://github.com/yahoojapan/NGT/wiki)
  * [NGT Cluster](https://github.com/yahoojapan/NGT/blob/main/lib/NGT/Clustering.h#L82)
- * 
+ * https://qdrant.tech/articles/memory-consumption/ 
  [Lancedb](https://lancedb.com)
  [Usearch](https://unum-cloud.github.io/usearch/javascript/index.html)
   * [ANN Benchmarks](https://ann-benchmarks.com)

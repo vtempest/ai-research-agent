@@ -12,7 +12,7 @@ test("extract url", async () => {
         "https://www.technologyreview.com/2024/07/30/1095489/openai-has-released-a-new-chatgpt-bot-that-you-can-talk-to/",
         "https://www.youtube.com/watch?v=OsW_kdOV6c8",
         "https://arxiv.org/pdf/1706.03762",
-        "https://vtempest.github.io/ai-research-agent/docs",
+        "https://ai-research-agent.github.io/ai-research-agent/docs",
       ];
   
 

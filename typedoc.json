@@ -10,6 +10,12 @@
   },
   "commentStyle":"all",
   "hideGenerator": true,
+  "jsDocCompatibility": {
+    "exampleTag": true,
+    "defaultTag": true,
+    "inheritDocTag": true,
+    "ignoreUnescapedBraces": true
+  },
   "sort": ["source-order"],
   "cname": "airesearch.js.org",
   "hostedBaseUrl": "https://airesearch.js.org",

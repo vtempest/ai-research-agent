@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QwkSearch Pitch Deck</title>
+
+    <!-- Pitch deck guide
+     https://pitchbob.io/pitch-deck-outline/problem-slide
+     https://cdn.prod.website-files.com/643bf7f0354c78fe22751573/661d390225cf5ad390fb3773_PitchBob.io%20Deck.pdf
+     https://cdn.prod.website-files.com/643bf7f0354c78fe22751573/661d38fffa03bcaee5514746_PitchBob.io%20Business%20Plan.pdf
+     -->
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+    
+    <!-- Import Open Sans font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styling for the presentation */
+        body, .reveal {
+            font-size: 2.2rem;
+            @media (max-width: 768px) {
+                font-size: 1.6rem;
+            }
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1 {
+            color: #0056b3;
+        }
+
+        h2 {
+            color: #009688;
+        }
+
+        .highlight {
+            color: #ff5722;
+            font-weight: bold;
+        }
+        .slide-content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 40px;
+            display: inline-block;
+            max-width: 80%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateX(5deg) translateZ(50px);
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+        .slide-content:hover {
+            transform: perspective(1000px) rotateX(0deg) translateZ(75px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 20px 20px rgba(0, 0, 0, 0.4);
+        }
+        .reveal .slides section {
+            transition: transform 0.8s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+        }
+        /* Additional style overrides can be added here */
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section data-background-image="https://i.imgur.com/DXGuWyz.png">
+                <div class="slide-content" style="position: relative;">
+                    <div style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); z-index: 2; padding-top: 100px;">
+                        <img src="https://qwksearch.com/icons/android-chrome-512x512.png" style="width: 250px; height: 250px;" />
+                    </div>
+                    <div style="margin-top: 200px;">
+                        <h4>QwkSearch Reimagines the Internet as 3D Mind Map</h4>
+                        <p>We combine all-in-one full-text results, AI-powered insights, and knowledge graph management to make search engines as outdated as command-line interfaces.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section data-background-image="https://i.imgur.com/DXGuWyz.png">
+                <div class="slide-content">
+                    <h2>Problem</h2>
+                    <ul>
+                        <li>Google's complacency with market share and info-overload</li>
+                        <li>Google monopolized default search so that they do not need to 
+                            innovate beyond 1998 UI</li>   
+                            <li>Google wont offer research agents that extract relevant parts </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 3 -->
+            <section data-background-image="https://i.imgur.com/DXGuWyz.png">
+                <div class="slide-content">
+                    <h2>Solution</h2>
+                    <ul>
+                        <li>Unified search results with integrated full-text extraction</li>
+                        <li>AI-powered question-answering capabilities</li>
+                        <li>Personal knowledge graph for organizing saved information</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 4 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Market Opportunity</h2>
+                    <ul>
+                        <li>The Devil is in the Defaults: Courts breaking up Google monopolizing defaults</li>
+                        <li>Perplexity and LLMs show how easy to disrupt with AI research agents</li>
+                        <li>Increasing interest in personal knowledge management</li>
+                    </ul>
+                    <p><span class="highlight">Market Size: Potential for $1 billion annual revenue (based on Anthropic's projections)</span></p>
+                </div>
+            </section>
+
+            <!-- Slide 5 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Product</h2>
+                    <ul>
+                        <li>Unified Results: Combining search listings with full-text extraction</li>
+                        <li>AI-Powered Insights: Leveraging LLM for contextual understanding</li>
+                        <li>Mind Uploading to Knowledge Graph: Personal "Second Brain" archive</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 6 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Traction</h2>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="flex: 1;">
+                            <h3>Current Services:</h3>
+                            <ul>
+                                <li>QwkSearch engine with integrated features</li>
+                                <li>Personal knowledge graph management</li>
+                            </ul>
+                        </div>
+                        <div style="flex: 1;">
+                            <h3>Future Services:</h3>
+                            <ul>
+                                <li>Mobile apps for on-the-go searching</li>
+                                <li>API access for third-party integrations</li>
+                                <li>Enterprise solutions for business intelligence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Competition</h2>
+                    <p>We offer more than traditional search engines and knowledge management tools:</p>
+                    <ul>
+                        <li>Google: Search results only</li>
+                        <li>Perplexity: AI-powered search</li>
+                        <li>Notion: Knowledge management</li>
+                    </ul>
+                    <p><span class="highlight">QwkSearch: All-in-one solution with unified results, AI insights, and personal knowledge graph</span></p>
+                </div>
+            </section>
+
+            <!-- Slide 9 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Financials</h2>
+                    <p>Projected Growth:</p>
+                    <ul>
+                        <li>$10 million in annual revenue within 5 years</li>
+                        <li>Free user base used to train data, provide Graph Search API</li>
+                        <li>Anthropic projects 1 billion annually from third-party API</li>
+                    </ul>
+                    <p><span class="highlight">Focus on growing free user base and building trust to win corporate team clients</span></p>
+                </div>
+            </section>
+
+            <!-- Slide 10 -->
+            <section data-background-image="https://i.imgur.com/9OOtfPe.png">
+                <div class="slide-content">
+                    <h2>Investment</h2>
+                    <p>Seeking Seed Round funding to:</p>
+                    <ul>
+                        <li>Scale B2C marketing (35%)</li>
+                        <li>Initiate B2B enterprise sales (35%)</li>
+                        <li>Accelerate product development (30%)</li>
+                    </ul>
+                    <p>Our strategic allocation ensures balanced growth across key areas.</p>
+                </div>
+            </section>
+              
+            <!-- Slide 11 -->
+            <section data-background-image="https://i.imgur.com/HmnUAee.png">
+                <div class="slide-content">
+                    <h2>Q&A</h2>
+                    <ul>
+                        <li>How do you plan to monetize the product?</li>
+                        <li>How do you plan to differentiate from Perplexity and Google?</li>
+                        <li>What is your strategy for user acquisition and retention?</li>
+                        <li>What are the key milestones for a five-year exit strategy?</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'concave',   // slide, fade, zoom, none
+            width: '100%',
+            height: '100%',
+            slideNumber: true,
+            controls: true,
+            progress: true,
+            hideAddressBar: true, 
+            jumpToSlide: true,
+            history: true,
+            view: 'scroll',
+            scrollProgress: 'auto',
+            backgroundTransition: 'slide',
+            overview: true, 
+            plugins: [RevealMarkdown],
+
+                });
+    </script>
+
+</body>
+</html>
