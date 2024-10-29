@@ -1,4 +1,4 @@
-import { extractNamedEntity } from "./human-names-recognize.js";
+import { extractHumanName } from "./human-names-recognize.js";
 import { parseDate } from "chrono-node";
 
 // https://www.scribbr.com/citation/generator/folders/2rx21jyIjZIKRrcwLk2oXE/lists/4OeJQ4euxzyTk9BiPTRjwn/
@@ -100,14 +100,6 @@ export function extractAuthor(document) {
     }
   }
 
-  // 5. As a last resort, look for "By" pattern in any paragraph
-  const paragraphs = document.getElementsByTagName("p");
-  for (const p of paragraphs) {
-    if (BYLINE_REGEX.test(p.textContent)) {
-      const author = extractAndValidateHumanName(p.textContent);
-      if (author) return author;
-    }
-  }
 
   return null;
 }
@@ -125,7 +117,7 @@ const validateAuthor = (author) => {
 const extractAndValidateHumanName = (author) => {
   const validatedAuthor = validateAuthor(author);
   if (validatedAuthor) {
-    return extractNamedEntity(validatedAuthor);
+    return extractHumanName(validatedAuthor);
   }
   return null;
 };

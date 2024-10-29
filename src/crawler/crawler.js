@@ -1,4 +1,8 @@
 /**
+ * 
+ * https://www.webshare.io/academy-article/puppeteer-login
+ * 
+ * 
  * 1. Server API takes url and renders with puppeteer DOM to get all HTML.
  * 2. Bypass Cloudflare bot check
  *  A webpage proxy that request through Chromium (puppeteer) - can be used
@@ -9,6 +13,10 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin()); // Use stealth plugin to make puppeteer harder to detect
+ 
+// Add adblocker plugin to block all ads and trackers (saves bandwidth)
+// const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+// puppeteer.use(AdblockerPlugin({  }));
 
 // Import Koa and its middleware
 import Koa from "koa";
@@ -46,14 +54,10 @@ let options = {
   args: ["--no-sandbox", "--disable-setuid-sandbox"], // Security-related arguments
 };
 
-// Configure Puppeteer based on environment variables
-if (process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD)
   options.executablePath = "/usr/bin/chromium-browser";
-if (process.env.PUPPETEER_HEADFUL) options.headless = false;
-if (process.env.PUPPETEER_USERDATADIR)
-  options.userDataDir = process.env.PUPPETEER_USERDATADIR;
-if (process.env.PUPPETEER_PROXY)
-  options.args.push(`--proxy-server=${process.env.PUPPETEER_PROXY}`);
+if (process.env.PROXY_URL)
+  options.args.push(`--proxy-server=`+process.env.PROXY_URL);
+
 
 // Launch the browser
 const browser = await puppeteer.launch(options);
@@ -70,8 +74,25 @@ app.use(async (ctx) => {
     let responseData;
     let responseHeaders;
 
-    // Create a new page
+
+
+  // Create a new page
     const page = await browser.newPage();
+
+  
+    //login to proxy      
+    if (process.env.PROXY_USER)
+      await page.authenticate({
+          username: process.env.PROXY_USER,
+          password: process.env.PROXY_PASS,
+      });
+
+    // await page.goto('https://fingerprint.scrapoxy.io');
+
+    // const content = await page.content();
+    // console.log(content);
+
+
 
     // Set up request interception
     await page.removeAllListeners("request");
@@ -84,22 +105,21 @@ app.use(async (ctx) => {
 
     // Handle each intercepted request
     page.on("request", (request) => {
-
       //no downloading images/css in the virtual renderer saves time
-      if (["image", "stylesheet", "font"].includes(request.resourceType()))
-        request.abort();
+      // if (["image", "stylesheet", "font"].includes(request.resourceType()))
+      //   return request.abort();
 
-      requestHeaders = Object.assign({}, request.headers(), requestHeaders);
-    
-      if (ctx.method == "POST") {
-        request.continue({
-          headers: requestHeaders,
-          method: "POST",
-          postData: ctx.request.rawBody,
-        });
-      } else {
-        request.continue({ headers: requestHeaders });
-      }
+        requestHeaders = Object.assign({}, request.headers(), requestHeaders);
+      
+        if (ctx.method == "POST") {
+          request.continue({
+            headers: requestHeaders,
+            method: "POST",
+            postData: ctx.request.rawBody,
+          });
+        } else {
+          request.continue({ headers: requestHeaders });
+        }
     });
 
     // Set up CDP session for more control over the browser

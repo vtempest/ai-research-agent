@@ -1,14 +1,34 @@
+/**
+ * #TODO
+ * seek topic
+ * login
+ * follow ups
+ * browser sidebar results
+ * QwkSearch
+ * QwkDocs
+ * QwkTabs
+ * QwkGraph
+ * QwkAds
+ * if select autocompelte in red.com go direct
+ * share button. email to friends. login to social media and like follow
+ * for each topic, next word prediction
+ * auto search for topics in sidebar
+ * 
+ * prioritize sidebar - ai tips about this page
+ */
+
 import { searchWeb } from "./src/search/search-web.js";
 
 import { searchSTREAM } from "./src/search/search-stream.js";
 
-import { extract } from "./src/extractor/url-to-content/url-to-content.js";
+import { extractContent } from "./src/extractor/url-to-content/url-to-content.js";
 
 import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 
 import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
 import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
+import {convertLanguageReplyToJSON} from "./src/generate/languagereply-to-json.js"
 
 import {
   convertHTMLSpecialChars,
@@ -52,10 +72,10 @@ import {
   importVectorIndexFromString,
 } from "./src/similarity/similarity-vector.js";
 
-import { torch } from "./src/train/neural-net.js";
+// import { torch } from "./src/train/neural-net.js";
 
-import { extractContentHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
-import { extractContentHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
+import { extractMainContentFromHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
+import { extractMainContentFromHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
 import { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";
 import { extractCite } from "./src/extractor/html-to-cite/extract-cite.js";
 // import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
@@ -72,15 +92,16 @@ export {
   importVectorIndexFromString,
   convertHTMLSpecialChars,
   convertPDFToHTML,
-  extract,
+  extractContent,
   extractFavicon,
   embedYoutubePlayer,
   stemWordToRoot,
   copyHTMLToClipboard,
   convertMathLaTexToImage,
   extractCite,
-  extractContentHTML,
-  extractContentHTML2,
+  convertLanguageReplyToJSON,
+  extractMainContentFromHTML,
+  extractMainContentFromHTML2,
   convertHTMLToBasicHTML,
   exportEmbeddingsIndex,
   addEmbeddingVectorsToIndex,
@@ -99,7 +120,7 @@ export {
   searchVectorIndex,
   splitSentences,
   splitTextSemanticChars,
-  torch,
+  // torch,
   suggestNextWordCompletions,
   weighSimilarityByCharacter,
   weighRelevanceConceptVectorAPI,

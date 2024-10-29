@@ -61,14 +61,17 @@
   }
 
   function handleKeydown(event) {
-    if (!showSuggestions) return;
 
     switch (event.key) {
       case "ArrowDown":
+        if (!showSuggestions) return;
+
         event.preventDefault();
         selectedIndex = selectedIndex === -1 ? 0 : (selectedIndex + 1) % suggestions.length;
         break;
       case "ArrowUp":
+        if (!showSuggestions) return;
+
         event.preventDefault();
         if (selectedIndex === -1) return;
         selectedIndex = selectedIndex === 0 ? suggestions.length - 1 : selectedIndex - 1;
@@ -78,6 +81,7 @@
           selectSuggestion(suggestions[selectedIndex]);
         } else {
           handleSubmit(searchText);
+          isSearchOpen = false;
         }
         break;
       case "Escape":
@@ -102,6 +106,7 @@
   }
 
   export let handleSubmit = (text) => {
+    
     // Close the full-page input when submitting a search
     isSearchOpen = false;
   };

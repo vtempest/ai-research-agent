@@ -7,6 +7,7 @@ export async function GET({ url }) {
   const query = url.searchParams.get("q");
   const category = parseInt(url.searchParams.get("cat") || "0");
   const recency = parseInt(url.searchParams.get("time") || "0");
+  const optionUsePublicSearxng = (url.searchParams.get("public") || "false") === "true";
   const maxTopResultsToExtract = parseInt(
     url.searchParams.get("limitExtract") || "4"
   );
@@ -14,13 +15,15 @@ export async function GET({ url }) {
   let startTime = Date.now();
   if (!query) return json({ error: "Query parameter is required" });
 
-    // customSearxngDomain: searxngDomain,
+    // privateSearxng: searxngDomain,
 
   let results = await searchWeb(query, {
     category,
     recency,
     maxRetries: 6,
-    customSearxngDomain: false,
+    // use custom or false to use the public instances
+    privateSearxng: 
+      optionUsePublicSearxng ? null : searxngDomain,
     proxy,
     page
   });

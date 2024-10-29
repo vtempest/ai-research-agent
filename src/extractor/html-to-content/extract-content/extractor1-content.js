@@ -46,7 +46,7 @@ import { parseHTML } from 'linkedom';
  * @example
  * var url = "https://www.nytimes.com/2024/08/28/business/telegram-ceo-pavel-durov-charged.html"
  * const html = await (await fetch(url)).text();
- * var articleContent = extractContentHTML(html);
+ * var articleContent = extractMainContentFromHTML(html);
  * @param {Object} [options]
  * @param {number} options.minContentLength default=140 - Minimum length of content to be considered valid
  * @param {number} options.minScore default=20 - Minimum score for content to be considered valid
@@ -56,7 +56,7 @@ import { parseHTML } from 'linkedom';
  * @author Based on [Mozilla Readability (2015), Arc90 (2010)](https://github.com/mozilla/readability)
  * @category Extract
 */
-export function extractContentHTML(html, options = {}) {
+export function extractMainContentFromHTML(html, options = {}) {
   const {
     minContentLength = 140,
     minScore = 20,

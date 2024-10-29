@@ -18,7 +18,7 @@ import { JSDOM } from 'jsdom';
  * Based on Mozilla (2015), Arc90 (2010) [github](https://github.com/mozilla/readability)
  * @see {@link https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results|Article extraction benchmark}
  */
-export function extractContentHTML(html, options = {}) {
+export function extractMainContentFromHTML(html, options = {}) {
     // Initialize configuration options
     const minContentLength = options.minContentLength || 140;
     const minScore = options.minScore || 20;

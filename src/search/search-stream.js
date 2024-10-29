@@ -1,5 +1,5 @@
 import {searchWeb} from "../../index.js";
-import {extract} from "../../index.js";
+import {extractContent} from "../../index.js";
 
 /**
  * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
@@ -61,10 +61,10 @@ export async function searchSTREAM(query, options = {}) {
     
     let {url, cached} = results[i];
 
-    let extraction = await extract(url);
+    let extraction = await extractContent(url);
 
     if (optionUseCacheBackup && extraction.error)
-      extraction = await extract(cached);
+      extraction = await extractContent(cached);
 
     if (extraction.error) console.error("error", extraction);
   else{

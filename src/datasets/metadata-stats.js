@@ -1,4 +1,6 @@
 import fs from "fs";
+import {compileTopicModel} from "./compile-topic-model.js";
+
 var dictindex = fs.readFileSync("./data/dictionary-152k.json", "utf8");
 // var dictDefs = JSON.parse(fs.readFileSync("./data/dictionary-defs.json", "utf8"));
 

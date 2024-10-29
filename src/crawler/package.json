@@ -16,9 +16,9 @@
     "koa-static": "^5.0.0",
     "puppeteer": "^21.7.0",
     "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-adblocker": "^2.13.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-koa": "^0.0.1"
   }
-
 }

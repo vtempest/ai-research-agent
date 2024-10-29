@@ -284,16 +284,12 @@ const CANDIDATES_BLACKLIST = new RegExp(candidatesBlacklist, "i");
 const candidatesWhitelist = UNLIKELY_CANDIDATES_WHITELIST.join("|");
 const CANDIDATES_WHITELIST = new RegExp(candidatesWhitelist, "i");
 
-/**
- * @private
- */
+
 function normalizeSpaces(text) {
   return text.replace(/\s{2,}(?![^<>]*<\/(pre|code|textarea)>)/g, " ").trim();
 }
 
-/**
- * @private
- */
+
 function paragraphize(node, document, br = false) {
   if (br) {
     let sibling = node.nextSibling;
@@ -316,9 +312,7 @@ function paragraphize(node, document, br = false) {
   return document;
 }
 
-/**
- * @private
- */
+
 function getAttrs(node) {
   return node.attributes
     ? Array.from(node.attributes).reduce((acc, attr) => {
@@ -328,9 +322,7 @@ function getAttrs(node) {
     : {};
 }
 
-/**
- * @private
- */
+
 function convertNodeTo(node, document, tag = "p") {
   if (!node) {
     return document;
@@ -353,9 +345,7 @@ function convertNodeTo(node, document, tag = "p") {
   return document;
 }
 
-/**
- * @private
- */
+
 function brsToPs(document) {
   let collapsing = false;
   document.querySelectorAll("br").forEach((element) => {
@@ -373,9 +363,7 @@ function brsToPs(document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function convertDivs(document) {
   document.querySelectorAll("div").forEach((div) => {
     const convertible = div.querySelectorAll(DIV_TO_P_BLOCK_TAGS).length === 0;
@@ -388,9 +376,7 @@ function convertDivs(document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function convertSpans(document) {
   document.querySelectorAll("span").forEach((span) => {
     const convertible = !span.closest("p, div, li, figcaption");
@@ -402,9 +388,7 @@ function convertSpans(document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function convertToParagraphs(document) {
   document = brsToPs(document);
   document = convertDivs(document);
@@ -413,9 +397,7 @@ function convertToParagraphs(document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function cleanForHeight(img, document) {
   const height = parseInt(img.getAttribute("height"), 10);
   const width = parseInt(img.getAttribute("width"), 10) || 20;
@@ -429,9 +411,7 @@ function cleanForHeight(img, document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function removeSpacers(img, document) {
   if (SPACER_RE.test(img.getAttribute("src"))) {
     img.remove();
@@ -440,9 +420,7 @@ function removeSpacers(img, document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function cleanImages(article, document) {
   article.querySelectorAll("img").forEach((img) => {
     cleanForHeight(img, document);
@@ -452,9 +430,7 @@ function cleanImages(article, document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function stripJunkTags(article, document, tags = []) {
   if (tags.length === 0) {
     tags = STRIP_OUTPUT_TAGS;
@@ -469,9 +445,7 @@ function stripJunkTags(article, document, tags = []) {
   return document;
 }
 
-/**
- * @private
- */
+
 function cleanHOnes(article, document) {
   const hOnes = article.querySelectorAll("h1");
 
@@ -486,9 +460,7 @@ function cleanHOnes(article, document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function cleanAttributes(article, document) {
   return removeAllButWhitelist(
     article.parentNode ? article.parentNode : article,
@@ -519,9 +491,7 @@ function removeAllButWhitelist(article) {
   return article;
 }
 
-/**
- * @private
- */
+
 function removeEmpty(article) {
   article.querySelectorAll("p").forEach((p) => {
     if (
@@ -534,9 +504,7 @@ function removeEmpty(article) {
   return article;
 }
 
-/**
- * @private
- */
+
 function removeUnlessContent(node, weight) {
   if (node.classList.contains("entry-content-asset")) {
     return;
@@ -593,9 +561,7 @@ function removeUnlessContent(node, weight) {
   }
 }
 
-/**
- * @private
- */
+
 function rewriteTopLevel(article, document) {
   document.documentElement.outerHTML = `<div>${document.documentElement.innerHTML}</div>`;
   document.body.outerHTML = `<div>${document.body.innerHTML}</div>`;
@@ -603,16 +569,12 @@ function rewriteTopLevel(article, document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function textLength(text) {
   return text.trim().replace(/\s+/g, " ").length;
 }
 
-/**
- * @private
- */
+
 function linkDensity(node) {
   const totalTextLength = textLength(node.textContent);
 
@@ -631,9 +593,7 @@ function linkDensity(node) {
   return 0;
 }
 
-/**
- * @private
- */
+
 function stripTags(text, document) {
   const span = document.createElement("span");
   span.innerHTML = text;
@@ -641,9 +601,7 @@ function stripTags(text, document) {
   return cleanText === "" ? text : cleanText;
 }
 
-/**
- * @private
- */
+
 function stripUnlikelyCandidates(document) {
   document.querySelectorAll("*:not(a)").forEach((node) => {
     const classes = node.getAttribute("class");
@@ -662,9 +620,7 @@ function stripUnlikelyCandidates(document) {
   return document;
 }
 
-/**
- * @private
- */
+
 function withinComment(node) {
   let parent = node.parentNode;
   while (parent) {
@@ -680,31 +636,23 @@ function withinComment(node) {
   return false;
 }
 
-/**
- * @private
- */
+
 function nodeIsSufficient(node) {
   return node.textContent.trim().length >= 100;
 }
 
-/**
- * @private
- */
+
 function isWordpress(document) {
   return document.querySelectorAll(IS_WP_SELECTOR).length > 0;
 }
 
-/**
- * @private
- */
+
 function setAttr(node, attr, val) {
   node.setAttribute(attr, val);
   return node;
 }
 
-/**
- * @private
- */
+
 function setAttrs(node, attrs) {
   while (node.attributes.length > 0) {
     node.removeAttribute(node.attributes[0].name);

@@ -30,8 +30,10 @@ import { UMAP } from "umap-js/lib/umap-js.js";
  * 
  * [Understanding UMAP](https://pair-code.github.io/understanding-umap/) <br>
  * [UMAP Algorithm Overview](https://www.youtube.com/watch?v=VPq4Ktf2zJ4) <br>
- * <img src="https://i.imgur.com/JEO6fE1.png" width="350px">
+ * 
  * <img src="https://i.imgur.com/Wzat3qY.png" width="1000px">
+ * <img src="https://github.com/QwkSearch/datamapplot/blob/main/examples/plot_simple_arxiv.png?raw=true" width="1000px">
+ * <img src="https://github.com/QwkSearch/datamapplot/raw/main/examples/ArXiv_example.gif" width="1000px">
  * 
  * @param {Object.<string, number[]>} embeddingsDict - The dictionary of embeddings.
  * @param {Object} [options]

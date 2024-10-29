@@ -3,6 +3,8 @@
   import Footer from "$components/Home/Footer.svelte";
   import iconSearch from "$lib/icons/icon-search.svg"
 
+  import iconQwkLogo from "$lib/icons/qwk-logo.svg";
+
   const plans = [
     {
       name: 'Free   ',
@@ -60,14 +62,17 @@
   <div class="flex justify-center items-center w-full">
     <div class="flex items-center">
       <img
-        src={iconSearch}
-        alt="Search Icon"
-        class="w-[102.4px] h-[102.4px] object-contain mr-4"
+      src={iconQwkLogo}
+      alt="Qwk Logo"
+      width="200px"
+      class=" object-contain mr-6"
+  
       />
       <div class="flex flex-col">
         <h1 class="text-3xl font-bold mb-2">QwkSearch</h1>
         <h2 class="text-2xl">
-          Searches need answers, not ads.
+          Reimagine the Internet as Self-Organizing Mind Map
+
         </h2>
       </div>
     </div>

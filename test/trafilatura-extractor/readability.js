@@ -19,7 +19,7 @@
  * @example
  * var url = "https://en.wikipedia.org/wiki/David_Hilbert";
  * var html = await (await fetch(url)).text();
- * var content = extractContentHTML(html);
+ * var content = extractMainContentFromHTML(html);
  */
 export function Readability(doc, options) {
   // In some older versions, people passed a URI as the first argument. Cope:

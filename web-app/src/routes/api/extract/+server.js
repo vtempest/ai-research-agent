@@ -1,4 +1,4 @@
-import { extract, scrapeURL} from "$airesearchagent";
+import { extractContent, scrapeURL} from "$airesearchagent";
 import { json } from '@sveltejs/kit';
 
 export async function GET({ url }) {
@@ -18,7 +18,7 @@ export async function GET({ url }) {
     return json(html);
   }
 
-  let results = await extract(urlToExtract);
+  let results = await extractContent(urlToExtract);
 
   if (!results || results.error)
     return json(results)

@@ -29,6 +29,13 @@ paths:
           schema:
             type: integer
             default: 0
+        - name: public
+          in: query
+          description: Use public SearXNG instances (optional)
+          required: false
+          schema:
+            type: boolean
+            default: false
         - name: limitExtract
           in: query
           description: Max number of top results to extract (optional)
@@ -91,7 +98,7 @@ paths:
                     type: string
   /api/extract:
     get:
-      summary: Extract content from a URL
+      summary: Extract main content and cite from any URL
       description: Extracts content (either full HTML or summary) from a given URL using `extract` or `scrapeURL`.
       parameters:
         - name: url

@@ -48,7 +48,7 @@ import { extractNounEdgeGrams } from "./ngrams.js";
  *  width="550px" controls />
  * @param {string} docText - input text to analyze
  * @param {Object} [options]
- * @param {Object} options.phrasesModel - phrases model
+ * @param {any} options.phrasesModel - phrases model
  * @param {number} options.maxWords default=5 - maximum words in a keyphrase
  * @param {number} options.minWords default=1 - minimum words in a keyphrase
  * @param {number} options.minWordLength default=3 - minimum length of a word
@@ -73,8 +73,8 @@ import { extractNounEdgeGrams } from "./ngrams.js";
 export function extractSEEKTOPIC(docText, options = {}) {
   var {
     phrasesModel,
-    maxWords = 5,
-    minWords = 2,
+    maxWords = 3,
+    minWords = 1,
     minWordLength = 3,
     topKeyphrasesPercent = 0.5,
     limitTopSentences = 5,

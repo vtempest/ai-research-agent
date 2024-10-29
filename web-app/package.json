@@ -5,15 +5,8 @@
     "dev": "vite dev --host --port 5173",
     "build": "vite build",
     "preview": "vite preview",
-    "prod": "vite build; wrangler deploy; wrangler tail",
-    "package": "svelte-kit sync && svelte-package && publint",
-    "prepublishOnly": "npm run package",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-    "docs": " jsdoc -c jsdoc.json src/keyphrases/* src/topic-distribution/*  src/autocomplete/*  src/match/* src/autocomplete/*  src/extractor/**/* src/tokenize/*  src/wiki-api/* src/extractor/url-to-content/*  src/similarity/* src/search-web/* -t node_modules/better-docs/ ; bun run open"
-  },
-  "peerDependencies": {
-    "svelte": "^4.0.0"
+    "prod": "bunx --max-old-space-size=8192 vite build; wrangler deploy; wrangler tail",
+    "package": "svelte-kit sync && svelte-package && publint"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.2.4",
@@ -28,7 +21,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.1",
-    "wrangler": "^3.81.0"
+    "wrangler": "3.57"
   },
   "type": "module",
   "dependencies": {

@@ -20,15 +20,36 @@ import { scrapeURL } from "./scrape-url.js";
 
 /**
  * ### 🚜📜 Tractor the Text Extractor 
+ * <img width="350px"  src="https://i.imgur.com/cRewT07.png" >
  * 
- * 1. Extract URL or HTML to main content, based on Readability with improved version
- *  using 100+ custom adapters for major websites. <br>
- * 2. Strips to basic HTML for reading mode or saving research notes. <br>
- * 3. Youtube - get full transcript for video if detected a youtube video.  <br>
- * 4. PDF - Extracts formatted text from PDF with page headers,
- * footnotes, linebreaks, and adding headings based on standard deviation of range text height. <br>
- * 
- * <img width="350px"  src="https://i.imgur.com/cRewT07.png" > <br />
+ * 1. Main Content Detection: Extract the main content from a URL by combining 
+ * Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 
+ * custom adapters for major sites for article, author, date HTML classes.
+ * 2. Basic HTML Standardization: Transform complex HTML into a simplified 
+ * reading-mode format of basic HTML, making it ideal for research note archival
+ *  and focused reading, with headings, images and links.
+ * 3. YouTube Transcript Processing: When a YouTube video URL is detected, 
+ * retrieve the complete video transcript including both manual captions and 
+ * auto-generated subtitles, maintaining proper timestamp synchronization and 
+ * speaker identification where available.
+ * 4. PDF Text Extraction and Structure: Process PDF documents by extracting
+ *  formatted text while intelligently handling line breaks, page headers, 
+ *  footnotes. The system analyzes text height statistics to automatically
+ *  infer heading levels, creating a properly structured document hierarchy
+ *  based on standard deviation from mean text size.
+ * 5. Citation Information Extraction: Identify and extract citation metadata
+ *  including author names, publication dates, sources, and titles using HTML
+ *  meta tags and common class name patterns. The system validates author names
+ *  against a comprehensive database of 90,000 first and last names, 
+ * distinguishing between personal and organizational authors to properly 
+ * format citations.
+ * 6. Author Name Formatting: Process author names by checking against 
+ * known name databases, handling affixes and titles correctly, and determining
+ *  whether to reverse the name order based on whether it's a personal or 
+ * organizational author, ensuring proper citation formatting.
+ * 7. Content Validation: Verify the extracted content's accuracy by comparing
+ *  results from multiple extraction methods, ensuring all essential elements 
+ * are preserved and properly formatted for the intended use case.
  * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} [options]
   * @param {boolean} options.images default=true - include images
@@ -60,7 +81,7 @@ import { scrapeURL } from "./scrape-url.js";
  * @category Extract
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
-export async function extract(urlOrDoc, options = {}) {
+export async function extractContent(urlOrDoc, options = {}) {
   var {
     images = true,
     links = true,

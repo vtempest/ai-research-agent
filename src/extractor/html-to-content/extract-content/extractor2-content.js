@@ -54,11 +54,11 @@ import {
  * @author Based on [Postlight Mercury Parser (2017-)](https://github.com/postlight/parser/tree/main/src)
  * @example var url =  "https://en.wikipedia.org/wiki/David_Hilbert"
  * var html = await (await fetch(url)).text();
- * var content = extractContentHTML(html);
+ * var content = extractMainContentFromHTML(html);
  * console.log(content); // HTML content of main article body
  * @category Extract
  */
-export function extractContentHTML2(html, opts) {
+export function extractMainContentFromHTML2(html, opts) {
   opts = {
     stripUnlikelyCandidates: true,
     weightNodes: true,

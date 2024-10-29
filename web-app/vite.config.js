@@ -9,7 +9,7 @@ export default defineConfig({
       $lib: path.resolve("./src"),
       $assets: path.resolve("./src/assets"),
       $components: path.resolve("./src/components"),
-      $airesearchagent: path.resolve("../index.js"),
+      $airesearchagent: path.resolve("../index.js")
     },
   },
 });

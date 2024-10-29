@@ -8,7 +8,7 @@
   "description": "Search and outline a topic base with AI Research Agent",
   "scripts": {
     "dev": "cd web-app; vite dev",
-    "prod": "cd web-app; vite build; wrangler deploy; wrangler tail",
+    "prod": "cd web-app; bunx --max-old-space-size=8192 vite build; wrangler deploy; wrangler tail",
     "docs": "typedoc; open docs/index.html",
     "docs-win": "typedoc;  cmd.exe /c start \"\" docs/index.html",
     "test": "vitest",

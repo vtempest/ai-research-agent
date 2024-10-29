@@ -1,23 +1,24 @@
 import dataHumanNames from "../../../data/human-names-92k.json" // with { type: "json" };
 /**
- * @typedef {Object} AuthorObject
- * @property {string} author_cite - Author name in Last, First Middle format
- * @property {string} author_short - Author name in Last format
- * @property {number} author_type - Author type ["single", "two-author", "more-than-two", "organization"]
-*/
 /**
- * Validates human name from author string to check against common list of first 
- * names, last names, name affixes, and organizations to infer if it should be
- *  reversed starting by author last name in cite, since organizations are not reversed.
-
- * Checks against common salutations, middle parts, and titles to properly
- * format for citation in Last, First Middle format.
- * Author type is ["single", "two-author", "more-than-two", "organization"]
- * where organization is a non-human name that is not reversed.
- * @param {string} author
- * @returns {Object} {author_cite, author_short, author_type}
+ * Validates and formats an author name string by comparing it against common lists of
+ * first names, last names, name affixes, and organizations.
+ * 
+ * This function determines whether the name should be reversed (starting with the last name)
+ * for citation purposes, as organizations are not reversed. It also checks against common
+ * salutations, middle parts, and titles to properly format the citation in "Last, First Middle" format.
+ * 
+ * @param {string} author - The author name string to be processed.
+ * @returns {Object} An object containing the following properties:
+ *   - author_cite {string}: The formatted author name for citation (e.g., "Last, First Middle").
+ *   - author_short {string}: A shortened version of the author name.
+ *   - author_type {string}: The type of author, which can be one of:
+ *     - "single": A single author or a two-word name.
+ *     - "two-author": Two authors.
+ *     - "more-than-two": More than two authors.
+ *     - "organization": A non-human name (organization) that should not be reversed.
  */
-export function extractNamedEntity(author) {
+export function extractHumanName(author) {
   
   var authorType = 4;
 
@@ -34,13 +35,14 @@ export function extractNamedEntity(author) {
     if (TERMS_ORG.includes(name?.toLowerCase().replace(/[^a-z]/g, "")))
        return { name, type: "org" };
 
+    //recognize human names from list of common first and last names
     return dataHumanNames[nameTitle] != null
       ? { name, type: enumTypes[dataHumanNames[nameTitle]] }
-      : { name, type: "none" };
+      : { name, type: false };
   });
   
   var foundNameParts = names.filter(
-    (name) => name.type != "none" && name.type != "org"
+    (name) => name.type != false && name.type != "org"
   ).length;
 
   var foundOrgParts = names.filter((name) => name.type == "org").length;
@@ -57,26 +59,26 @@ export function extractNamedEntity(author) {
   if (foundOrgParts > 0 || (foundNameParts == 0 && !isTwoWord)) authorType = 3;
 
   //cut off non-name intro parts like By: //TODO  && names.length > 4
-  if (foundNameParts > 0) {
-    var partFound;
-    names = names
-      .map((name) => {
-        if (name.type != null) partFound = 1;
-        if (partFound) return name;
-        else return false;
-      })
-      .filter(Boolean);
-  }
+  // if (foundNameParts > 0 && names.length >=4) {
+  //   var candidateName = names.filter((name) => name.type);
+  //   if (candidateName.length >=2)
+  //   names = candidateName
+  // }
 
-  author = names.map((name) => name.name).join(" ")        .replace(/(undefined|by\:|by )/gi, "")
+  author = names.map((name) => name.name).join(" ")        
+  .replace(/(undefined|by\:|by )/gi, "")
   .replace(/(undefined|by:|by )/gi, "")
   ;
 
+  const maxOrgNameLength = 30;
+
   //split author into parts and reverse Last, First if not Organization
   if (authorType == 3) {
+    if (author.length > maxOrgNameLength)
+      author = author.substring(0,author.slice(0, maxOrgNameLength).lastIndexOf(" ")) ;
     author_short = author;
   } else {
-    var authorObj = extractNamedEntityParts(author);
+    var authorObj = extractHumanNameParts(author);
     if (authorObj) {
       author =
         authorObj.lastname +
@@ -108,7 +110,7 @@ export function extractNamedEntity(author) {
  * @returns {Object}
  
  */
-const extractNamedEntityParts = (input) => {
+const extractHumanNameParts = (input) => {
   // Initialize the result object
   const result = {
     prefix: "", //van der von de

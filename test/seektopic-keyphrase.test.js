@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { extractSEEKTOPIC, extract } from "../index.js";
+import { extractSEEKTOPIC, extractContent } from "../index.js";
 
 import fs from "fs";
 //load models or pass them in
@@ -15,15 +15,15 @@ var typosModel = JSON.parse(
 test("get top sentences specific to a query", async () => {
     let urls = [
       "https://www.youtube.com/watch?v=T_IdLTofTUU",
-      "https://www.technologyreview.com/2024/07/30/1095489/openai-has-released-a-new-chatgpt-bot-that-you-can-talk-to/",
       "https://www.youtube.com/watch?v=OsW_kdOV6c8",
       "https://arxiv.org/pdf/1706.03762",
-      "https://ai-research-agent.github.io/ai-research-agent/docs",
+      "https://airesearch.js.org",
+
     ];
 
     for (var url of urls){
 
-      let extraction = await extract(url);
+      let extraction = await extractContent(url);
 
       if(!extraction || !extraction.html ) continue;
 
@@ -34,7 +34,6 @@ test("get top sentences specific to a query", async () => {
           typosModel,
           heavyWeightQuery: "extract word pairings",
           limitTopSentences: 10,
-          removeHTML: true,
         })
       );
 

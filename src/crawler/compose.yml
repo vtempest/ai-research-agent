@@ -12,12 +12,13 @@ services:
   #     - FRONTEND_JWT_SECRET=secret2
 
   crawler:
+    container_name: crawler
     build: .
     ports:
       - 3000:3000
-    # environment:
-    #   - DEBUG=true
-    
+    environment:
+      - DEBUG=true
+      - PROXY_URL=51.254.121.123:8088
     networks:
       - caddy
     labels:
@@ -26,23 +27,77 @@ services:
 
     
        
-  # Caddy - proxy server router for containers
-  caddy:  
-    image: lucaslorentz/caddy-docker-proxy:ci-alpine
-    container_name: caddy
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /var/lib/caddy/data:/data
+  # # Caddy - proxy server router for containers
+  # caddy:  
+  #   image: lucaslorentz/caddy-docker-proxy:ci-alpine
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/lib/caddy/data:/data
+  #   restart: unless-stopped
+  #   environment:
+  #     - CADDY_INGRESS_NETWORKS=caddy
+  #   networks:
+  #     - caddy
+
+
+  redis:
+    container_name: redis
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save 30 1 --loglevel warning
     restart: unless-stopped
-    environment:
-      - CADDY_INGRESS_NETWORKS=caddy
     networks:
-      - caddy
+      - searxng
+    volumes:
+      - valkey-data2:/data
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
 
+  searxng:
+    container_name: searxng
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    networks:
+      - searxng
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
+      - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
 
+networks:
+  searxng:
+
+volumes:
+  caddy-data:
+  caddy-config:
+  valkey-data2:
+  
 networks:
   caddy:
     external: true

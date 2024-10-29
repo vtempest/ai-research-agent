@@ -16,7 +16,7 @@
  * @returns {string} returns.greeting - A greeting in the detected language.
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
-export async function getLanguageFromIPRemoteAPI(ip) {
+export async function getLanguageFromIP(ip) {
 
   var url = `http://ip-api.com/line/${ip}?fields=countryCode`;
   var countryCode = (await (await fetch(url)).text())?.toLowerCase().trim();

@@ -1,5 +1,8 @@
 <script>
     import { APP_EMAIL, APP_NAME } from '$lib/config/config';
+    let APP_EMAIL_HTML = APP_EMAIL.replace('@','<span style="display:none;">&#8203;</span>&#64;')
+
+    
 </script>
 
 <svelte:head>
@@ -65,7 +68,7 @@
 
     <p><strong>Your {APP_NAME} Account:</strong> To access our Services, we may ask you to create an Account. You agree to provide correct, current, and complete Account information. You may not share your Account login information with anyone else. You are responsible for all activity occurring under your Account.</p>
 
-    <p>You may close your Account at any time by contacting us at {APP_EMAIL}.</p>
+    <p>You may close your Account at any time by contacting us at {@html APP_EMAIL_HTML}.</p>
 
     <h2>4. Use of our Services</h2>
     <p>You may access and use our Services only in compliance with our Terms, our Acceptable Use Policy, and any guidelines or supplemental terms we may post on the Services (the "Permitted Use").</p>
@@ -94,10 +97,11 @@
     <p>We may suspend or terminate your access to the Services at any time if we believe that you have breached these Terms, or if we must do so to comply with law.</p>
 
     <h2>10. Contact Us</h2>
-    <p>If you have any questions about these Terms of Service, please contact us at:   <a href="mailto:{APP_EMAIL}">{APP_EMAIL}</a>
+    <p>If you have any questions about these Terms of Service, please contact us at: {@html APP_EMAIL_HTML}
     </p>
 
   </main>
+  
 <style>
    
   main {

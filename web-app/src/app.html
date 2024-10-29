@@ -15,6 +15,22 @@
     <!-- Specific Header -->
     %sveltekit.head%
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="//fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    
     <!-- Google Analytics -->
     <script
       async
@@ -28,9 +44,17 @@
       gtag("js", new Date());
       gtag("config", "G-E5TZ32BZDF");
     </script>
+
+    <!-- 100% privacy-first analytics -->
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+  
+
   </head>
 
   <body>
     <div>%sveltekit.body%</div>
+
+
   </body>
 </html>

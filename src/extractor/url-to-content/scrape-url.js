@@ -59,7 +59,7 @@ export async function scrapeURL(url, options = {}) {
     if(proxy)
       url = proxy +   url;
 
-    console.log(url);
+    // console.log(url);
 
     var userAgentStrings =
       ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
@@ -144,6 +144,7 @@ function isHTMLBotDetection(html) {
     "403 Forbidden",
     "504 Gateway Timeout",
     "Agree & Join LinkedIn",
+    "Verifying you are human. This may take a few seconds",
     "500 Internal Server Error",
     "By clicking Continue to join or sign in, you agree to LinkedIn",
   ];

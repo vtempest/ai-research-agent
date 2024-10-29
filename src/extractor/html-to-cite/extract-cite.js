@@ -5,7 +5,7 @@ import { extractDate } from "./extract-date.js";
 import { extractSource } from "./extract-source.js";
 import { extractTitle } from "./extract-title.js";
 import { extractCiteFromMetadata } from "./metadata-to-cite.js";
-import { extractNamedEntity } from "./human-names-recognize.js";
+import { extractHumanName } from "./human-names-recognize.js";
 
 /**
  * <h3> 📚💎 Extract Expert Excerpt </h3>
@@ -33,7 +33,7 @@ export function extractCite(document) {
   if (author?.length < 3 || author?.length > 50) author = null;
 
   if (author)
-    var { author_cite, author_short, author_type } = extractNamedEntity(author);
+    var { author_cite, author_short, author_type } = extractHumanName(author);
   else
     var { author_cite, author_short, author_type } =
       extractAuthor(document) || {};
@@ -44,5 +44,9 @@ export function extractCite(document) {
   title = extractTitle(document) || title;
   source = extractSource(document) || source;
 
-  return { author, author_cite, author_short, date, title, source };
+  var cite = `${author_cite} ${date ? `(${new Date(date).getFullYear()}, ${new Date(
+    date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})}).` : 
+    ''} <strong>${title || ''}</strong>. <i>${source || ''}</i>. ${document.location.href}`;
+
+  return { author, author_cite, author_short, date, title, source , cite};
 }

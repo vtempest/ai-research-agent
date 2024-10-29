@@ -70,5 +70,5 @@ export function extractNounEdgeGrams(
 export function isNoun(token) {
   // POS tags 3-28 and 50 are considered nouns
   // This may need to be adjusted based on the specific POS tagging system used
-  return (token[1] >= 3 && token[1] <= 28) || token[1] == 50;
+  return token[1] == 10 || token[1] == 5;
 }

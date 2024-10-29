@@ -1,5 +1,5 @@
 import wikiWordFrequency from "../../data/wiki-word-freq-325k.json" //with { type: "json" };
-;
+import fs from "fs";
 
 /**
  * Compile a topic phrases model from a dictionary and Wikipedia page titles. <br />
@@ -19,7 +19,6 @@ import wikiWordFrequency from "../../data/wiki-word-freq-325k.json" //with { typ
  * @param {Object} [options] 
  * @param {number} options.addJSONLineBreaks - include line breaks in JSON output for debugging
  * @param {number} options.maxSynonymsPerTerm - max synonyms per term
- * @param {boolean} options.outputJSExport - filetype js instead of json with "export"
  * @param {boolean} options.addWikiPageTitles - true to add wiki page titles, false for dictionary only
  * @param {boolean} options.sortInFirstTwoLettersTrie - sort the first words by first two letters Trie, needd for autocomplete after 2 letters typed
  * @param {number} options.minTermCharCount - min length of term to include
@@ -30,7 +29,6 @@ export async function compileTopicModel(options = {}) {
   const {
     minTermCharCount = 3,
     maxSynonymsPerTerm = 0,
-    outputJSExport = false,
     addWikiPageTitles = true,
     sortInFirstTwoLettersTrie = true,
     addJSONLineBreaks = 0,
@@ -38,8 +36,6 @@ export async function compileTopicModel(options = {}) {
 
   //array key: var [nextWords, wikiTitle, category,
   // uniqueness, capsIndexes] = dict[key.slice(0,2)][key];
-
-  const pos_categories = ["n", "v", "r", "a", "s"]; //a and s is for adjectives
 
   var dict = JSON.parse(fs.readFileSync("./data/dictionary-index-152k.json", "utf8"));
 
@@ -109,27 +105,23 @@ export async function compileTopicModel(options = {}) {
     var words = key.split(" ");
     var firstWord = words[0];
     var phraseSize = words.length;
+    // if (caps) {
+    //   //compare caps to key and see which letters have capitaication, return their idnexes
+    //   var capsIndexes = [];
+    //   for (var i = 0; i < key.length; i++) {
+    //     if (caps[i] === key[i].toUpperCase()) {
+    //       capsIndexes.push(i);
+    //     }
+    //   }
+    //   caps = capsIndexes; //.join(",");
+    // }
 
-    var { syns, cat, pos, caps } = dict[key];
+    // syns = syns?.split(",").slice(0, maxSynonymsPerTerm).join(","); //max
 
-    pos = pos_categories.indexOf(pos);
-    if (caps) {
-      //compare caps to key and see which letters have capitaication, return their idnexes
-      var capsIndexes = [];
-      for (var i = 0; i < key.length; i++) {
-        if (caps[i] === key[i].toUpperCase()) {
-          capsIndexes.push(i);
-        }
-      }
-      caps = capsIndexes; //.join(",");
-    }
-
-    syns = syns?.split(",").slice(0, maxSynonymsPerTerm).join(","); //max
-
-    var phraseObj = { cat, pos };
+    var phraseObj = {  cat: dict[key] };
     if (phraseSize > 1) phraseObj.n = words.slice(1)?.join(" ");
-    if (syns?.length) phraseObj.s = syns;
-    if (caps) phraseObj.caps = caps;
+    // if (syns?.length) phraseObj.s = syns;
+    // if (caps) phraseObj.caps = caps;
 
     if (!wordsPhrasesTree[firstWord] || !wordsPhrasesTree[firstWord].push)
       wordsPhrasesTree[firstWord] = [];
@@ -210,16 +202,6 @@ export async function compileTopicModel(options = {}) {
       return acc;
     }, {});
 
-  if (outputJSExport)
-    fs.writeFileSync(
-      "./data/wiki-phrases-model-240k.js",
-      "export default " +
-        (addJSONLineBreaks
-          ? JSON.stringify(firstTwoLettersTree, null, 2)
-          : JSON.stringify(firstTwoLettersTree)),
-      "utf8"
-    );
-  else
     fs.writeFileSync(
       "./data/wiki-phrases-model-240k.json",
       addJSONLineBreaks
@@ -274,4 +256,4 @@ export function weightWikiWordSpecificity(query) {
   return phraseScore;
 }
 
-// await compileTopicModel();
+await compileTopicModel();

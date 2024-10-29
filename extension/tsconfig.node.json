@@ -1,0 +1,10 @@
+// vite tsconfig
+{
+    "compilerOptions": {
+        "composite": true,
+        "skipLibCheck": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler"
+    },
+    "include": ["vite.config.ts", "src/manifest.config.ts", "package.json"]
+}

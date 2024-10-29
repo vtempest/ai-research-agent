@@ -6,12 +6,14 @@ import { scrapeURL } from "../../index.js";
  * times to retry other domains if first time fails.
  * SearXNG is a free internet metasearch engine which aggregates results from
  *  more than [180+ search sources](https://docs.searxng.org/user/configured_engines.html).
+ * 
+ * [Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
  * @param {string} query - The search query string.
  * @param {Object} [options]
  * @param {number} options.category default=0 - ["general", "news", "videos", "images",
  *  "science", "map", "music", "it", "files", "social+media"]
  * @param {number} options.recency default=0 - ["", "day", "week", "month", "year"]
- * @param {string|boolean} options.customSearxngDomain default=null - Use your custom domain SearXNG
+ * @param {string|boolean} options.privateSearxng default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @param {number} options.page default=1 - The page number to retrieve.
  * @param {string} options.proxy default=false - Use corsproxy.io to access in frontend JS
@@ -29,7 +31,7 @@ export async function searchWeb(query, options = {}) {
   const {
     category = 0,
     recency = 0,
-    customSearxngDomain = null,
+    privateSearxng = null,
     maxRetries = 3,
     page = 1,
     language = "en-US",
@@ -117,29 +119,57 @@ export async function searchWeb(query, options = {}) {
   ];
 
   //select a random domain if none is provided 
-  const searchDomain = customSearxngDomain || "https://" +
+  const searchDomain = privateSearxng || "https://" +
       SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
   const categoryName = CATEGORY_LIST[category]; // Using the first category as default
   const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
 
   var url = `${searchDomain}/search?q=${encodeURIComponent(query)}` +
-    `&category_${categoryName}=1&language=${language}&time_range=${timeRangeName}` +
-    `&safesearch=0&pageno=${page}`;
+    `&category_${categoryName}=1&language=${language}&time_range=` +
+    `${timeRangeName}&safesearch=0&pageno=${page}`;
+
+  // if(privateSearxng)
+  //   url+="&format=json"
 
   //on cloudflare to avoid "Too many redirects" change SSL mode to Full
-  if (proxy) 
+
+  if (proxy && !privateSearxng) 
     url = proxy + url;
 
+  
+  console.log(url)
   const resultHTML = await (await fetch(url, {
     headers: {
       "accept-language": language+",en;q=0.9",
     }
   })).text();
 
-  console.log(resultHTML);
+  if (privateSearxng&&0){
 
-  let results = [];
+    console.log(resultHTML);
+    if (!resultHTML.startsWith("{")) 
+      return {error:1}
+
+    var {results, suggestions, infoboxes} = JSON.parse(resultHTML);
+    
+    results.forEach((result) => {
+      result.url = result.url.replace(/&amp;/g, "&");
+    });
+
+    results = results.map(({title, url, content, score}) => {
+      return {title, url, snippet: content, score};
+    });
+
+
+    console.log(resultHTML);
+    return {results, suggestions};
+
+
+  }
+
+
+   results = [];
   const resultRegex = /<article class="result[^>]*>[\s\S]*?<\/article>/g;
   const titleUrlRegex = /<h3><a href="([^"]*)"[^>]*>(.*?)<\/a><\/h3>/;
   const snippetRegex = /<p class="content">\s*(.*?)\s*<\/p>/;
@@ -174,12 +204,12 @@ export async function searchWeb(query, options = {}) {
 
       title = convertHTMLSpecialChars(title);
       snippet = convertHTMLSpecialChars(snippet);
-      if (!url.includes(".de/")) results.push({ title, url, snippet });
+      // if (!url.includes(".de/")) 
+        results.push({ title, url, snippet });
     }
   }
 
   if (results.length === 0 && maxRetries > 0) {
-    console.log(url);
     results = await searchWeb(query, 
       {...options,
          maxRetries: maxRetries - 1,
@@ -188,7 +218,7 @@ export async function searchWeb(query, options = {}) {
   }
 
   //filter out url that end with .de
-  results = results.filter((result) => !result.url.includes(".de/"));
+  // results = results.filter((result) => !result.url.includes(".de/"));
 
   return results;
   // } catch (error) {
@@ -233,9 +263,6 @@ var sources = [
   ["wikidata", "wd", "Wikimedia's collaborative knowledge base."],
   ["wikipedia", "wp", "Free online encyclopedia."],
   ["wolframalpha", "wa", "Computational knowledge engine."],
-  ["yacy", "ya", "Decentralized, peer-to-peer search engine."],
-  ["yep", "yep", "Likely a specialized or alternative search engine."],
-  ["bpb (DE)", "bpb", "German Federal Agency for Civic Education search."],
   ["tagesschau (DE)", "ts", "Search for German news from Tagesschau."],
   ["wikimini (FR)", "wkmn", "French-language wiki encyclopedia for children."],
   ["bing images", "bii", "Image search by Microsoft's Bing."],
@@ -362,12 +389,8 @@ var sources = [
   ["fdroid", "fd", "App store for Free and Open Source Software on Android."],
   ["google play apps", "gpa", "Official app store for Android devices."],
   ["9gag", "9g", "Social media platform for sharing humor content."],
-  ["lemmy comments", "lecom", "Comment search for Lemmy, a link aggregator."],
-  ["lemmy communities", "leco", "Community search for Lemmy."],
   ["lemmy posts", "lepo", "Post search for Lemmy."],
-  ["lemmy users", "leus", "User search for Lemmy."],
   ["mastodon hashtags", "mah", "Hashtag search for the Mastodon social network."],
-  ["mastodon users", "mau", "User search for Mastodon."],
   ["reddit", "re", "Social news and discussion website."],
   ["tootfinder", "toot", "Search engine for Mastodon and other federated networks."]
 ]

@@ -191,7 +191,7 @@ test('topic distribution Test', () => {
     {author, date, title, source}
     Type: object
     #
-    extractNamedEntity(author) → {object}
+    extractHumanName(author) → {object}
     Validates human name from author string to check against common list of first names, last names, name affixes, and organizations to infer if it should be reversed starting by author last name in cite, since organizations are not reversed. Checks against common salutations, middle parts, and titles to properly format for citation in Last, First Middle format. Author type is ["single", "two-author", "more-than-two", "organization"] where organization is a non-human name that is not reversed.
     Parameters:
     Name	Type	Description
@@ -202,7 +202,7 @@ test('topic distribution Test', () => {
     {author_cite, author_short, author_type}
     Type: object
     #
-    extractNamedEntityParts(input) → {Object}
+    extractHumanNameParts(input) → {Object}
     Parses a full name into its component parts: Title, Firstname, Prefix, Middle, Lastname, Honorific, Alias https://en.wikipedia.org/wiki/List_of_family_name_affixes
     Parameters:
     Name	Type	Description

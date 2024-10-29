@@ -28,6 +28,10 @@
   let searchText = "";
   let optionAutoSummarize = true;
   let actionsPanelComponent = null;
+  let currentPage = 1;
+  let isLoading = false;
+  let hasMoreResults = true;
+  let topicsObject = null;
 
   // Constants
   const SCROLL_DISTANCE = 100;
@@ -40,16 +44,17 @@
   onMount(async () => {
     await initializephrasesModel();
     setupKeyboardListener();
+    setupScrollListener();
 
     if (query) {
       searchText = query;
-
       handleSearchSubmit(query);
     }
   });
 
   onDestroy(() => {
     cleanupKeyboardListener();
+    cleanupScrollListener();
     abortActiveSearch();
   });
 
@@ -85,36 +90,91 @@
    */
   function cleanupKeyboardListener() {
     if (typeof window === "undefined") return;
-
     window.removeEventListener("keydown", handleKeyboardNavigation);
   }
 
   /**
-   * Abort any active search request
+   * Set up the scroll event listener
    */
-  function abortActiveSearch() {
-    if (activeSearchController) {
-      activeSearchController.abort();
-      activeSearchController = null;
+  function setupScrollListener() {
+    if (typeof window === "undefined") return;
+    const resultsListElement = document.querySelector(".results-list");
+    resultsListElement.addEventListener("scroll", handleScroll);
+  }
+
+  /**
+   * Remove the scroll event listener
+   */
+  function cleanupScrollListener() {
+    if (typeof window === "undefined") return;
+    const resultsListElement = document.querySelector(".results-list");
+    resultsListElement.removeEventListener("scroll", handleScroll);
+  }
+
+  /**
+   * Handle scroll event to load more results
+   */
+  function handleScroll(event) {
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollHeight - scrollTop <= clientHeight + 1 && !isLoading && hasMoreResults) {
+      loadMoreResults();
     }
   }
+
+  /**
+   * Load more search results
+   */
+  async function loadMoreResults() {
+    if (isLoading || !hasMoreResults) return;
+    
+    isLoading = true;
+    currentPage++;
+    
+    try {
+      const newResults = await fetchSearchResults(searchText, currentPage);
+      if (newResults.length > 0) {
+        searchResultList = [...searchResultList, ...newResults];
+      } else {
+        hasMoreResults = false;
+      }
+    } catch (error) {
+      console.error("Error loading more results:", error);
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  /**
+   * Fetch search results
+   * @param {string} query - The search query
+   * @param {number} page - The page number to fetch
+   * @returns {Promise<Array>} - The search results
+   */
+  async function fetchSearchResults(query, page) {
+    const searchUrl = `${API_ENDPOINTS.SEARCH}?q=${query}&page=${page}&public=true`;
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+    return data?.results || [];
+  }
+
 
   /**
    * Handle the search submission
    * @param {string} searchQuery - The search query entered by the user
    */
   async function handleSearchSubmit(searchQuery) {
-    abortActiveSearch();
-    activeSearchController = new AbortController();
+    //Abort any active search request
+    if (activeSearchController) {
+      activeSearchController.abort();
+      activeSearchController = null;
+    }
+        activeSearchController = new AbortController();
 
     try {
-      const searchUrl = `${API_ENDPOINTS.SEARCH}?q=${searchQuery}`;
-      const response = await fetch(searchUrl, {
-        signal: activeSearchController.signal,
-      });
-      const data = await response.json();
-
-      searchResultList = data?.results || [];
+      currentPage = 1;
+      hasMoreResults = true;
+      isLoading = true;
+      searchResultList = await fetchSearchResults(searchQuery, currentPage);
       resetSearchView();
 
       document.body.focus();
@@ -124,6 +184,7 @@
     } finally {
       activeSearchController = null;
       document.body.focus();
+      isLoading = false;
     }
   }
 
@@ -169,16 +230,16 @@
           await fetch("https://r.jina.ai/" + articleUrl)
         ).text();
 
-        if(articleExtract.includes("===============\n")){
-          articleExtract = articleExtract.split("===============\n")[1];
-        }
+
+        if(articleExtract.includes("===============\n"))
+          articleExtract = articleExtract
+            .split("===============\n")
+            .slice(1).join(" ")
+        
 
 
         var match = articleExtract.match(/Markdown Content:([\s\S]*)/);
-
-        if (match) 
-          articleExtract = match[1].trim();
-
+        articleExtract = match ? match[1] : articleExtract;
 
         articleExtract = convertMarkdownToHTML(articleExtract);
 
@@ -187,9 +248,9 @@
         currentArticle = newArticle;
         updateArticleView();
         // Run summarize AI function
-        setTimeout(() => {
-          summarizeArticle();
-        }, 200);
+          setTimeout(() => {
+            summarizeArticle();
+          }, 200);
         selectedResultIndex = index;
 
         /* Implement fallback method using an invisible iframe
@@ -228,9 +289,23 @@
         updateArticleView();
 
         // Run summarize AI function
-        setTimeout(() => {
-          summarizeArticle();
-        }, 200);
+          setTimeout(() => {
+            summarizeArticle();
+          }, 400);
+
+
+        var topics = extractSEEKTOPIC(newArticle.html,
+          {
+            phrasesModel
+          }
+        );
+        
+        console.log(topics)
+
+        topicsObject = topics;
+
+
+
       }
     } catch (error) {
       console.error("Error fetching article:", error);
@@ -342,20 +417,7 @@
 
 <svelte:head>
   <title>{APP_NAME}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="//fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lato:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+   
 </svelte:head>
 
 <main class="flex h-screen w-full">
@@ -389,7 +451,7 @@
                 >
                   <div class="flex justify-between items-top mb-1">
                     <div
-                      class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2"
+                      class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2 max-w-full"
                     >
                       {convertHTMLSpecialChars(result.title)}
                     </div>
@@ -397,7 +459,7 @@
                       href={result.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-gray-500 hover:text-gray-700 flex-shrink-0"
+                      class="text-gray-500 hover:text-gray-700 flex-shrink-0 absolute top-1 right-1"
                       title="Open in new tab"
                     >
                       <svg
@@ -434,6 +496,11 @@
                   >
                 </li>
               {/each}
+              {#if isLoading}
+                <li class="text-center py-4">
+                  <div class="loader"></div>
+                </li>
+              {/if}
             </ul>
           {:else}
             <p class="text-gray-500 text-center mt-4">No results to display</p>
@@ -444,7 +511,7 @@
 
     <!-- ReadView (center panel) -->
     <Pane size={45} snapSize={10}>
-      <ReadView selectedArticle={currentArticle} />
+      <ReadView selectedArticle={currentArticle} {topicsObject} />
     </Pane>
 
     <!-- GRAPH 

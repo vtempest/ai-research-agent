@@ -2,9 +2,9 @@ import { parseDate } from "chrono-node";
 import { extractCite } from "../html-to-cite/extract-cite.js";
 import { convertHTMLToBasicHTML } from "./html-to-basic-html.js";
 import { parseHTML } from "linkedom";
-import { extractNamedEntity } from "../html-to-cite/human-names-recognize.js";
-import { extractContentHTML } from "./extract-content/extractor1-content.js";
-import { extractContentHTML2 } from "./extract-content/extractor2-content.js";
+import { extractHumanName } from "../html-to-cite/human-names-recognize.js";
+import { extractMainContentFromHTML } from "./extract-content/extractor1-content.js";
+import { extractMainContentFromHTML2 } from "./extract-content/extractor2-content.js";
 
 /**
  * Extracts the main content and citation information from a document or HTML string
@@ -49,19 +49,19 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
 
   var content = 
   useExtractor2
-    ? extractContentHTML2(html, options)
+    ? extractMainContentFromHTML2(html, options)
     : 
-    extractContentHTML(html, options);
+    extractMainContentFromHTML(html, options);
 
     // if Postlight Mercury returns less than 200 characters, try Mozilla Readability
     if (content.length < 200) {
-      var content2 = extractContentHTML(html, options);
+      var content2 = extractMainContentFromHTML(html, options);
       if (content2.length > content.length) 
         content = content2;
     }
 
 
-  var { author, author_cite, author_short, date, title, source } =
+  var { author, author_cite, author_short, date, title, source, cite } =
     extractCite(html);
 
 
@@ -77,6 +77,7 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     author,
     date,
     source,
+    cite,
     html,
   };
 }
