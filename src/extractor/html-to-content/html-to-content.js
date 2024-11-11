@@ -61,7 +61,7 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     }
 
 
-  var { author, author_cite, author_short, date, title, source, cite } =
+  var { author, author_cite, author_short, date, title, source } =
     extractCite(html);
 
 
@@ -77,7 +77,6 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     author,
     date,
     source,
-    cite,
     html,
   };
 }

@@ -1,49 +1,3 @@
-// import  { pipeline }  from  "../../node_modules/@huggingface/transformers/dist/transformers.mjs";
-
-
-
-// fill in indexedDB on backend
-import {
-  indexedDB,
-  IDBCursor,
-  IDBCursorWithValue,
-  IDBDatabase,
-  IDBFactory,
-  IDBIndex,
-  IDBKeyRange,
-  IDBObjectStore,
-  IDBOpenDBRequest,
-  IDBRequest,
-  IDBTransaction,
-  IDBVersionChangeEvent,
-} from "fake-indexeddb";
-
-// polyfill indexedDB on backend
-if (typeof window == "undefined") {
-  var globalVar =
-    typeof window !== "undefined"
-      ? window
-      : typeof WorkerGlobalScope !== "undefined"
-      ? self
-      : typeof global !== "undefined"
-      ? global
-      : Function("return this;")();
-
-  globalVar.indexedDB = indexedDB;
-  globalVar.IDBCursor = IDBCursor;
-  globalVar.IDBCursorWithValue = IDBCursorWithValue;
-  globalVar.IDBDatabase = IDBDatabase;
-  globalVar.IDBFactory = IDBFactory;
-  globalVar.IDBIndex = IDBIndex;
-  globalVar.IDBKeyRange = IDBKeyRange;
-  globalVar.IDBObjectStore = IDBObjectStore;
-  globalVar.IDBOpenDBRequest = IDBOpenDBRequest;
-  globalVar.IDBRequest = IDBRequest;
-  globalVar.IDBTransaction = IDBTransaction;
-  globalVar.IDBVersionChangeEvent = IDBVersionChangeEvent;
-  globalVar.Window = globalVar;
-  globalVar.self = globalVar;
-}
 import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
 
 
@@ -110,7 +64,7 @@ export async function getEmbeddingModel(options = {}) {
 }
 
 /**
- * ### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Heirarchy
+ * ### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Hierarchy
  * <img src="https://i.imgur.com/nvJ7fzO.png" width="350px">
  *  
  * 1. Compile hnswlib-node or NGT algorithm C++ to WASM JS for efficient similarity search.
@@ -259,140 +213,140 @@ export async function weighRelevanceConceptVector(
 
 
 
-/**
- * Converts an HNSW index to a base64 encoded string.
- * @param {object} index - The HNSW index object.
- * @returns {Promise<string>} A promise that resolves to a base64 encoded string representation of the index.
- * @throws {Error} If there's an error during the index serialization process.
- * @category Similarity
- */
-export async function exportEmbeddingsIndex(index) {
+// /**
+//  * Converts an HNSW index to a base64 encoded string.
+//  * @param {object} index - The HNSW index object.
+//  * @returns {Promise<string>} A promise that resolves to a base64 encoded string representation of the index.
+//  * @throws {Error} If there's an error during the index serialization process.
+//  * @category Similarity
+//  */
+// export async function exportEmbeddingsIndex(index) {
 
-  const lib = await loadHnswlib();
+//   const lib = await loadHnswlib();
 
-    const tmpFilePath = '/hnsw_tmp.dat';
+//     const tmpFilePath = '/hnsw_tmp.dat';
     
-    // Write the index to the temporary file in the Emscripten file system
-    await index.writeIndex(tmpFilePath);
+//     // Write the index to the temporary file in the Emscripten file system
+//     await index.writeIndex(tmpFilePath);
     
-    // Synchronize the file system to ensure the file is written
-    // await lib.EmscriptenFileSystemManager.syncFS(false, null); // Save data to the persistent source
+//     // Synchronize the file system to ensure the file is written
+//     // await lib.EmscriptenFileSystemManager.syncFS(false, null); // Save data to the persistent source
     
-    const databases = await indexedDB.databases();
-    const dbName = databases[0].name;
+//     const databases = await indexedDB.databases();
+//     const dbName = databases[0].name;
 
 
-    // Open the database
-    const db = await new Promise((resolve, reject) => {
-      const request = indexedDB.open(dbName);
-      request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve(request.result);
-    });
+//     // Open the database
+//     const db = await new Promise((resolve, reject) => {
+//       const request = indexedDB.open(dbName);
+//       request.onerror = () => reject(request.error);
+//       request.onsuccess = () => resolve(request.result);
+//     });
 
-    // Get the names of all object stores in the database
-    const objectStoreNames = Array.from(db.objectStoreNames);
+//     // Get the names of all object stores in the database
+//     const objectStoreNames = Array.from(db.objectStoreNames);
     
-    if (objectStoreNames.length === 0) {
-      return;
-    }
+//     if (objectStoreNames.length === 0) {
+//       return;
+//     }
 
-    // Open a transaction and get the first object store
-    const transaction = db.transaction(objectStoreNames[0], "readonly");
-    const objectStore = transaction.objectStore(objectStoreNames[0]);
+//     // Open a transaction and get the first object store
+//     const transaction = db.transaction(objectStoreNames[0], "readonly");
+//     const objectStore = transaction.objectStore(objectStoreNames[0]);
 
-    // Retrieve all records from the object store
-    const records = await new Promise((resolve, reject) => {
-      const request = objectStore.getAll();
-      request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve(request.result);
-    });
+//     // Retrieve all records from the object store
+//     const records = await new Promise((resolve, reject) => {
+//       const request = objectStore.getAll();
+//       request.onerror = () => reject(request.error);
+//       request.onsuccess = () => resolve(request.result);
+//     });
 
     
-    var U8VectorIndex = records[0].contents;
+//     var U8VectorIndex = records[0].contents;
 
 
-    var dataStringIndex = JSON.stringify(Array.from(U8VectorIndex))
+//     var dataStringIndex = JSON.stringify(Array.from(U8VectorIndex))
     
-    return dataStringIndex;
-    // Delete the temporary file
-    // lib.EmscriptenFileSystemManager.unlink(tmpFilePath);
+//     return dataStringIndex;
+//     // Delete the temporary file
+//     // lib.EmscriptenFileSystemManager.unlink(tmpFilePath);
     
-    // Convert the Uint8Array to a base64 string
-    // const base64String = btoa(String.fromCharCode.apply(null, indexData));
+//     // Convert the Uint8Array to a base64 string
+//     // const base64String = btoa(String.fromCharCode.apply(null, indexData));
     
-    // return base64String;
-  // } catch (error) {
-  //   throw new Error(`Failed to serialize HNSW index: ${error.message}`);
-  // }
-}
+//     // return base64String;
+//   // } catch (error) {
+//   //   throw new Error(`Failed to serialize HNSW index: ${error.message}`);
+//   // }
+// }
 
 
-/**
- * Imports an HNSW index from a string representation.
- * 
- * @param {string} indexString - The string representation of the HNSW index.
- * @param {number} dim - The dimensionality of the vectors in the index.
- * @param {string} space - The space type of the index (e.g., 'l2', 'ip', 'cosine').
- * @returns {Promise<object>} A promise that resolves to the imported HNSW index object.
- * @category Similarity
-*/
-export async function importVectorIndexFromString(indexString, dim = 384, space = "cosine") {
+// /**
+//  * Imports an HNSW index from a string representation.
+//  * 
+//  * @param {string} indexString - The string representation of the HNSW index.
+//  * @param {number} dim - The dimensionality of the vectors in the index.
+//  * @param {string} space - The space type of the index (e.g., 'l2', 'ip', 'cosine').
+//  * @returns {Promise<object>} A promise that resolves to the imported HNSW index object.
+//  * @category Similarity
+// */
+// export async function importVectorIndexFromString(indexString, dim = 384, space = "cosine") {
  
-  const lib = await loadHnswlib();
+//   const lib = await loadHnswlib();
     
-  // Sync the file system to ensure we have the latest data
-  await lib.EmscriptenFileSystemManager.syncFS(true, null); // Read data from the persistent source
+//   // Sync the file system to ensure we have the latest data
+//   await lib.EmscriptenFileSystemManager.syncFS(true, null); // Read data from the persistent source
   
-  const databases = await indexedDB.databases();
-  const dbName = databases[0].name;
+//   const databases = await indexedDB.databases();
+//   const dbName = databases[0].name;
 
-  // Open the database
-  const db = await new Promise((resolve, reject) => {
-    const request = indexedDB.open(dbName);
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve(request.result);
-  });
+//   // Open the database
+//   const db = await new Promise((resolve, reject) => {
+//     const request = indexedDB.open(dbName);
+//     request.onerror = () => reject(request.error);
+//     request.onsuccess = () => resolve(request.result);
+//   });
 
-  // Get the names of all object stores in the database
-  const objectStoreNames = Array.from(db.objectStoreNames);
+//   // Get the names of all object stores in the database
+//   const objectStoreNames = Array.from(db.objectStoreNames);
   
-  if (objectStoreNames.length === 0) {
-    throw new Error('No object stores found in the database');
-  }
+//   if (objectStoreNames.length === 0) {
+//     throw new Error('No object stores found in the database');
+//   }
 
-  // Open a transaction and get the first object store
-  const transaction = db.transaction(objectStoreNames[0], "readonly");
-  const objectStore = transaction.objectStore(objectStoreNames[0]);
+//   // Open a transaction and get the first object store
+//   const transaction = db.transaction(objectStoreNames[0], "readonly");
+//   const objectStore = transaction.objectStore(objectStoreNames[0]);
 
-  // Retrieve all records from the object store
-  const records = await new Promise((resolve, reject) => {
-    const request = objectStore.getAll();
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve(request.result);
-  });
+//   // Retrieve all records from the object store
+//   const records = await new Promise((resolve, reject) => {
+//     const request = objectStore.getAll();
+//     request.onerror = () => reject(request.error);
+//     request.onsuccess = () => resolve(request.result);
+//   });
 
-  if (records.length === 0) {
-    throw new Error('No records found in the object store');
-  }
+//   if (records.length === 0) {
+//     throw new Error('No records found in the object store');
+//   }
 
-  // Assume the index data is in the first record
-  const indexData = records[0].contents;
+//   // Assume the index data is in the first record
+//   const indexData = records[0].contents;
 
-  // Create a new HNSW index
-  const index = new lib.HierarchicalNSW(space, dim);
+//   // Create a new HNSW index
+//   const index = new lib.HierarchicalNSW(space, dim);
   
-  // Create a temporary file name
-  const tempFileName = 'temp_index.dat';
+//   // Create a temporary file name
+//   const tempFileName = 'temp_index.dat';
   
-  // Write the index data to a temporary file in the Emscripten file system
-  lib.FS.writeFile(tempFileName, indexData);
+//   // Write the index data to a temporary file in the Emscripten file system
+//   lib.FS.writeFile(tempFileName, indexData);
   
-  // Read the index from the temporary file
-  await index.readIndex(tempFileName, maxElements, true);
+//   // Read the index from the temporary file
+//   await index.readIndex(tempFileName, maxElements, true);
   
-  // Delete the temporary file
-  lib.FS.unlink(tempFileName);
+//   // Delete the temporary file
+//   lib.FS.unlink(tempFileName);
   
-  return index;
+//   return index;
 
-}
+// }

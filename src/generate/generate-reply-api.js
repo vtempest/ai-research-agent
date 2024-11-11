@@ -15,17 +15,11 @@ import { convertMarkdownToHTML } from "../../index.js"
  * prevents vanishing gradients.
  * 6. Output Layer: Generates probabilities for next tokens.
  * 
- * The model iteratively applies these steps to generate coherent 
- * and contextually relevant responses.
- * 
  * [The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/)
- * 
  * 
  * [Transformers Explained Visually (Part 
  * 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
  * 
- * "An important feature of a learning machine is that its teacher will often be very largely ignorant
- *  of quite what is going on inside." -A.M. Turing, 1950
  * @param {string} query - The user's input query.
  * @param {string} apiKey - The API key for authentication with Groq or OpenAI.
  * @param {string} model - The specific AI model to be used (e.g., GPT-4, Mixtral 8x7B).

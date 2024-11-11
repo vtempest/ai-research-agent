@@ -40,12 +40,12 @@
     if (!suggestions) return;
 
     var words = searchText.trim().split(/\W+/);
-
+    var name;
     suggestions = suggestions
       .map((s) => {
-        if (s.word) var name = words.slice(0, -1).join(" ") + " " + s.word;
+        if (s.word) name = words.slice(0, -1).join(" ") + " " + s.word;
         if (s.phrase) {
-          var name =
+          name =
             words
               .join(" ")
               .slice(0, words.join(" ").lastIndexOf(s.phrase.split(" ")[0])) +

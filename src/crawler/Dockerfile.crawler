@@ -1,5 +1,5 @@
 # Docker for Crawler 
-# with Bun.js, Chromium, Puppeteer, Alpine
+# with Bun.js, Chromium, Puppeteer, Alpine Linux
 
 FROM oven/bun:alpine
 RUN apk add --no-cache \
@@ -17,4 +17,4 @@ COPY package*.json ./
 RUN bun install
 COPY . .
 EXPOSE 3000
-CMD [ "bun", "crawler.js" ]
+CMD bun start

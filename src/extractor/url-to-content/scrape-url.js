@@ -5,7 +5,7 @@
  * 
  * 1. **Use Fetch API, check for bot detection.** Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
  * Scraping internet pages is a [free speech right 
- * globally](https://blog.apify.com/is-web-scraping-legal/).
+ * ](https://blog.apify.com/is-web-scraping-legal/).
  * 2. Features: timeout, redirects, default UA, referer as google, and bot 
  * detection checking. <br />
  * 3. If fetch method does not get needed HTML, use Docker proxy as backup.
@@ -28,7 +28,7 @@
  * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
  * @param {string} options.proxy default=false - use proxy url
  * @param {boolean} options.checkRobotsAllowed default=false - check robots.txt rules
- * @returns {Promise<Object|string>} -  HTML, JSON, arraybuffer, or error object
+ * @returns {Promise<string>} -  HTML, JSON, arraybuffer, or error object
  * @category Extract
  * @example await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
  * @author [ai-research-agent (2024)](https://airesearch.js.org)

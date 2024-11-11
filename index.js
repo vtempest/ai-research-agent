@@ -1,22 +1,3 @@
-/**
- * #TODO
- * seek topic
- * login
- * follow ups
- * browser sidebar results
- * QwkSearch
- * QwkDocs
- * QwkTabs
- * QwkGraph
- * QwkAds
- * if select autocompelte in red.com go direct
- * share button. email to friends. login to social media and like follow
- * for each topic, next word prediction
- * auto search for topics in sidebar
- * 
- * prioritize sidebar - ai tips about this page
- */
-
 import { searchWeb } from "./src/search/search-web.js";
 
 import { searchSTREAM } from "./src/search/search-stream.js";
@@ -28,14 +9,14 @@ import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
 import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
-import {convertLanguageReplyToJSON} from "./src/generate/languagereply-to-json.js"
+import { convertLanguageReplyToJSON } from "./src/generate/languagereply-to-json.js";
 
 import {
   convertHTMLSpecialChars,
   convertMarkdownToHTML,
   copyHTMLToClipboard,
   convertURLToAbsoluteURL,
-  convertMathLaTexToImage
+  convertMathLaTexToImage,
 } from "./src/extractor/html-to-content/html-utils.js";
 
 import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
@@ -72,18 +53,22 @@ import {
   importVectorIndexFromString,
 } from "./src/similarity/similarity-vector.js";
 
-// import { torch } from "./src/train/neural-net.js";
+
+import { convertDOCXToHTML } from "./src/extractor/url-to-content/docx-to-content.js";
 
 import { extractMainContentFromHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
 import { extractMainContentFromHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
 import { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";
 import { extractCite } from "./src/extractor/html-to-cite/extract-cite.js";
-// import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
 import { stemWordToRoot } from "./src/tokenize/word-to-root-stem.js";
 import { extractFavicon } from "./src/extractor/html-to-cite/url-to-favicon.js";
-import { embedYoutubePlayer } from "./src/extractor/url-to-content/youtube-embed.js";
+import { embedYoutubePlayer } from "./src/interface/youtube-embed.js";
 
 import { generateLanguageModelReply } from "./src/generate/generate-reply-api.js";
+
+// import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
+// import { torch } from "./src/train/neural-net.js";
+// gpu.js needs bun compatibility
 
 // Export all functions as named exports
 export {
@@ -99,6 +84,7 @@ export {
   copyHTMLToClipboard,
   convertMathLaTexToImage,
   extractCite,
+  convertDOCXToHTML,
   convertLanguageReplyToJSON,
   extractMainContentFromHTML,
   extractMainContentFromHTML2,
@@ -127,4 +113,3 @@ export {
   weighRelevanceTermFrequency,
   extractTopicTermGroupsLDA,
 };
-

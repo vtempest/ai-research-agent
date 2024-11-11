@@ -124,13 +124,14 @@
           target="_blank"
           href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko"
         >
+      </a>
+
           <a
             class="download-windows download-btn text-center justify-center"
             target="_blank"
             href="https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&hl=en-us&gl=US"
           >
           </a>
-        </a>
       </p>
 
       <div

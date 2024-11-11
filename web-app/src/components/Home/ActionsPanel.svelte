@@ -64,10 +64,10 @@
   function handleCopyHTMLToClipboard() {
     if (!selectedArticle) return;
 
-    var textToCopy = aiResponse + 
-      (selectedArticle.cite || "" ) + "\n"+
+    var textToCopy = aiResponse + "\n\n\n"+
+      (selectedArticle.cite || "" ) + "\n\n\n"+
        selectedArticle.html;
-    copyHTMLToClipboard(textToCopy).then(() => {
+    copyHTMLToClipboard(textToCopy, {pastePlainFormat: 2}).then(() => {
       showCopiedMessage = true;
       setTimeout(() => {
         showCopiedMessage = false;
@@ -112,20 +112,7 @@
           </div> -->
 
           <div class="relative flex items-center space-x-1">
-            <button
-              on:click={handleCopyHTMLToClipboard}
-              class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 text-white hover:from-blue-500 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              <Clipboard class="mr-2 h-4 w-4" />
-              Copy
-            </button>
-            {#if showCopiedMessage}
-              <div
-                class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-md shadow-lg"
-              >
-                Copied!
-              </div>
-            {/if}
+           
             <input
               bind:value={userPrompt}
               on:keydown={(e) => e.key === "Enter" && generateAISummary()}
@@ -137,16 +124,31 @@
             <button
               on:click={generateAISummary}
               disabled={status === "calling-ai"}
-              class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 transition-all duration-300 ease-in-out"
+              class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 disabled:opacity-50 transition-all duration-300 ease-in-out"
               id="ai-generate-btn"
             >
               <Bot class="mr-2 h-4 w-4" />
               {status === "calling-ai" ? "..." : "Ask AI"}
             </button>
+
+            <button
+            on:click={handleCopyHTMLToClipboard}
+            class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
+            <Clipboard class="mr-2 h-4 w-4" />
+            Copy
+          </button>
+          {#if showCopiedMessage}
+            <div
+              class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1.5 bg-blue-500 text-white text-xs font-medium rounded-md shadow-lg"
+            >
+              Copied!
+            </div>
+          {/if}
           </div>
 
       {#if errorMessage}
-        <div class="bg-red-500 text-white p-2 rounded-md">{errorMessage}</div>
+        <div class="text-white p-2 rounded-md border-red-500">{@html errorMessage}</div>
       {/if}
 
       {#if aiResponse}

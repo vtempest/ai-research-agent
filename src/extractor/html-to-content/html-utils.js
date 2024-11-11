@@ -12,17 +12,17 @@ export function convertMathLaTexToImage(html) {
     const curlyBracesContent = p1.match(/{([^}]*)}(?!.*})/);
     if (!curlyBracesContent || !curlyBracesContent[0]) return match;
 
-    var equationFormula =  curlyBracesContent[0].replace(/\\/g, "\\") 
+    var equationFormula = curlyBracesContent[0].replace(/\\/g, "\\");
 
     var htmlEquation = katex.renderToString(equationFormula, {
       throwOnError: false,
       output: "html",
       displayMode: false,
-      strict: false
+      strict: false,
     });
 
     console.log(htmlEquation);
-    return htmlEquation
+    return htmlEquation;
   });
 
   return replacedHtml;
@@ -104,7 +104,6 @@ export function convertHTMLSpecialChars(str, unescape = true) {
   }
 }
 
-
 /**
  * Convert relative URL to absolute URL using base URL.
  * @param {string} base base url of the domain
@@ -116,43 +115,39 @@ export function convertHTMLSpecialChars(str, unescape = true) {
  * var absoluteURL = convertURLToAbsoluteURL('https://example.com', '//images/image.jpg')
  * console.log(absoluteURL) // Returns: "https:images/image.jpg"
  * @category HTML Utilities
-* @author [ai-research-agent (2024)](https://airesearch.js.org)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export function convertURLToAbsoluteURL(base, relative) {
-
-  // remove the %20 codes like data:image/svg+xml,%3Csvg%20x 
+  // remove the %20 codes like data:image/svg+xml,%3Csvg%20x
   relative = decodeURI(relative);
   base = decodeURI(base);
 
-  if (relative.includes("data:") 
-    || relative.startsWith("#")
-    || relative.startsWith("http"))
-     return relative;
+  if (
+    relative.includes("data:") ||
+    relative.startsWith("#") ||
+    relative.startsWith("http")
+  )
+    return relative;
 
   // Remove hash from base URL
   base = base.replace(/#.*$/, "");
 
   // If relative URL starts with '//', add scheme from base
-  if (relative.startsWith("//"))
-    return base.split("://")[0] + ":" + relative;
+  if (relative.startsWith("//")) return base.split("://")[0] + ":" + relative;
 
   // If relative URL starts with '/', replace everything after the host in base
   if (relative[0] === "/") {
     const matchdomain = base.match(/^(https?:\/\/[^\/]+)/i);
-      const domain = matchdomain ? matchdomain[1] : null;
-    
+    const domain = matchdomain ? matchdomain[1] : null;
+
     return domain + relative;
   }
-
-
-  // Remove file part from base
-
   // Handle relative URLs
 
   if (relative.startsWith("../")) {
-  base = base.replace(/\/[^\/]+$/, "");
+    base = base.replace(/\/[^\/]+$/, "");
 
-      while (relative.substring(0, 3) === "../") {
+    while (relative.substring(0, 3) === "../") {
       relative = relative.substring(3);
       base = base.replace(/\/[^\/]+$/, "");
     }
@@ -160,20 +155,15 @@ export function convertURLToAbsoluteURL(base, relative) {
   }
 
   // Combine base and relative
-  // 
+  //
   if (relative.startsWith("/")) {
-  base = base.replace(/\/[^\/]+$/, "");
+    base = base.replace(/\/[^\/]+$/, "");
 
     return base.replace(/\/+$/, "") + relative;
   } else {
-
-    return base.split('/')
-      .slice(0, -1).join('/')   
-      + "/" + relative;
+    return base.split("/").slice(0, -1).join("/") + "/" + relative;
   }
 }
-
-
 
 /**
  * Converts Markdown text to HTML. It handles the following Markdown elements:
@@ -200,8 +190,7 @@ export function convertURLToAbsoluteURL(base, relative) {
  * // <ul><li>List item 1</li><li>List item 2</li></ul>
  */
 export function convertMarkdownToHTML(content, toHtml = true) {
-  if (!toHtml) 
-    return convertHTMLToMarkdown(content);
+  if (!toHtml) return convertHTMLToMarkdown(content);
 
   var html = content
     // Convert headers
@@ -211,32 +200,47 @@ export function convertMarkdownToHTML(content, toHtml = true) {
     })
 
     // Convert bold text
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
 
     // Convert italic text
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
 
     // Convert unordered lists
-    .replace(/^\s*\*\s(.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+    .replace(/^\s*\*\s(.+)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)/s, "<ul>$1</ul>")
 
     // Convert ordered lists
-    .replace(/^\s*\d+\.\s(.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>')
+    .replace(/^\s*\d+\.\s(.+)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)/s, "<ol>$1</ol>")
+
+    // Convert horizontal rules (---, ___, ***)
+    .replace(/^[-_*]{3,}\s*$/gm, "<hr>")
+
+    // Convert code blocks (```)
+    .replace(/```([^`]+)```/g, "<pre><code>$1</code></pre>")
+
+    // Convert inline code (`)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
 
     // Convert paragraphs
-    .split('\n\n').map(para => {
-      if (!para.startsWith('<')) {
+    .split("\n\n")
+    .map((para) => {
+      if (!para.startsWith("<")) {
         return `<p>${para.trim()}</p>`;
       }
       return para;
-    }).join('\n')
+    })
+    .join("\n")
 
-    // Convert images 
+    // Convert images
     .replace(/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" />')
 
     // Convert links
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
+
+    // Clean up extra newlines
+    .replace(/\n\s*\n/g, "\n")
+    .trim();
 
   return html;
 }
@@ -245,37 +249,40 @@ function convertHTMLToMarkdown(html) {
   var markdown = html
     // Convert headers
     .replace(/<h([1-6])>(.*?)<\/h[1-6]>/g, (match, level, content) => {
-      return '#'.repeat(parseInt(level)) + ' ' + content.trim() + '\n\n';
+      return "#".repeat(parseInt(level)) + " " + content.trim() + "\n\n";
     })
 
     // Convert bold text
-    .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+    .replace(/<strong>(.*?)<\/strong>/g, "**$1**")
+    .replace(/<b>(.*?)<\/b>/g, "**$1**")
 
     // Convert italic text
-    .replace(/<em>(.*?)<\/em>/g, '*$1*')
+    .replace(/<em>(.*?)<\/em>/g, "*$1*")
 
     // Convert unordered lists
     .replace(/<ul>(.*?)<\/ul>/gs, (match, content) => {
-      return content.replace(/<li>(.*?)<\/li>/g, '* $1\n') + '\n';
+      return content.replace(/<li>(.*?)<\/li>/g, "* $1\n") + "\n";
     })
 
     // Convert ordered lists
     .replace(/<ol>(.*?)<\/ol>/gs, (match, content) => {
       let index = 1;
-      return content.replace(/<li>(.*?)<\/li>/g, () => `${index++}. $1\n`) + '\n';
+      return (
+        content.replace(/<li>(.*?)<\/li>/g, () => `${index++}. $1\n`) + "\n"
+      );
     })
 
     // Convert paragraphs
-    .replace(/<p>(.*?)<\/p>/g, '$1\n\n')
+    .replace(/<p>(.*?)<\/p>/g, "$1\n\n")
 
     // Convert images
-    .replace(/<img src="(.*?)" alt="(.*?)".*?\/>/g, '![$2]($1)')
+    .replace(/<img src="(.*?)" alt="(.*?)".*?\/>/g, "![$2]($1)")
 
     // Convert links
-    .replace(/<a href="(.*?)">(.*?)<\/a>/g, '[$2]($1)')
+    .replace(/<a href="(.*?)">(.*?)<\/a>/g, "[$2]($1)")
 
     // Remove any remaining HTML tags
-    .replace(/<[^>]*>/g, '')
+    .replace(/<[^>]*>/g, "")
 
     // Trim extra whitespace
     .trim();
@@ -283,47 +290,43 @@ function convertHTMLToMarkdown(html) {
   return markdown;
 }
 
-
-
 /**
- * Copy HTML to clipboard. When pasting into rich text field, 
- * pastes rich text. When pasting into plain text field, pastes: 
+ * Copy HTML to clipboard. When pasting into rich text field,
+ * pastes rich text. When pasting into plain text field, pastes:
  * plain text, html, or markdown.
- * 
+ *
  * @param {string} html - The HTML content to be copied.
  * @param {object} options - The options object.
- * @param {boolean} options.pastePlainFormat -
+ * @param {number} options.pastePlainFormat -
  * default=0
  * 0 - plain text
  * 1 - markdown
  * 2 - html
- * @returns {Promise<void>} - A promise that resolves when 
+ * @returns {Promise<void>} - A promise that resolves when
  * the HTML is copied to the clipboard.
  * @category HTML Utilities
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function copyHTMLToClipboard(html, options = {}) {
-  var {
-    pastePlainFormat = 0
-  } = options;
+  var { pastePlainFormat = 0 } = options;
 
   if (typeof window == "undefined" || !navigator?.clipboard) return;
 
   const htmlBlob = new Blob([html], { type: "text/html" });
 
-  var plainText = pastePlainFormat == 0 ? 
-    html.replace(/<[^>]*>?/g, "") : 
-    pastePlainFormat == 1 ? 
-    convertMarkdownToHTML(html, false) :
-    html;
-  
-  const textBlob =  new Blob([plainText], { type: "text/plain" }) 
+  var plainText =
+    pastePlainFormat == 0
+      ? html.replace(/<[^>]*>?/g, "")
+      : pastePlainFormat == 1
+      ? convertMarkdownToHTML(html, false)
+      : html;
+
+  const textBlob = new Blob([plainText], { type: "text/plain" });
 
   const clipboardItem = new window.ClipboardItem({
     "text/html": htmlBlob,
     "text/plain": textBlob,
   });
-  
-  return await navigator.clipboard.write([clipboardItem]);
 
+  return await navigator.clipboard.write([clipboardItem]);
 }

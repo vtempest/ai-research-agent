@@ -1,6 +1,8 @@
 import { extractContentAndCite } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
 import { convertPDFToHTML, isUrlPDF } from "./pdf-to-content.js";
+import { convertDOCXToHTML } from "./docx-to-content.js";
+
 import { scrapeURL } from "./scrape-url.js";
 
 /**
@@ -107,6 +109,11 @@ export async function extractContent(urlOrDoc, options = {}) {
       // pdf checker
       response = await convertPDFToHTML(url, options);
 
+
+    } else if (url.endsWith(".docx")){
+
+      response.html = await convertDOCXToHTML(url)
+
       // check youtube
     } else if (youtubeID) {
       var { content, timestamps } = await convertYoutubeToText(url, options);
@@ -159,8 +166,16 @@ export async function extractContent(urlOrDoc, options = {}) {
     ?.replace(/<[^>]*>/g, " ")
     .split(" ").length;
 
+  //make cite
+
+  var { author, author_cite, author_short, date, title, source } = response;
+  
+  var cite = `${author_cite} ${date ? `(${new Date(date).getFullYear()}, ${new Date(
+    date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})}).` : 
+    ''} <strong>${title || ''}</strong>. <i>${source || ''}</i>. ${url || ''}`;
+
   //put url on top
-  response = Object.assign({ url }, response);
+  response = Object.assign({ url, cite }, response);
 
   return response;
 }

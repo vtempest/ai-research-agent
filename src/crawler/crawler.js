@@ -1,8 +1,4 @@
 /**
- * 
- * https://www.webshare.io/academy-article/puppeteer-login
- * 
- * 
  * 1. Server API takes url and renders with puppeteer DOM to get all HTML.
  * 2. Bypass Cloudflare bot check
  *  A webpage proxy that request through Chromium (puppeteer) - can be used

@@ -44,7 +44,7 @@
     <img src="https://github.com/codespaces/badge.svg" width="150" height="20">
     </a>
 </p>
-<h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a> <a href="https://qwksearch.com/">Live Demo (qwksearch.com)</a></h3>
+<h3 align="center"><a href="https://airesearch.js.org/">Javascript Docs (airesearch.js.org)</a>  <a href="https://qwksearch.com/">Live Demo</a></h3>
 
 
 ### 🧠💻 Reimagine the Internet as Self-Organizing Mind Map
@@ -55,7 +55,7 @@
 
 Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, evolve crowdsourced chain-of-thought reasoning, unlock faster ways to read long articles, monitor developments by topic modeling a knowledge base graph, and provide a public service of answers to research.
 
-Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Users can upload research PDFs, then the app finds the citations full text and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need this new way of self-organizing information.
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests.  Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Imagine uploading a research paper, then the app extracts full text of reference cites and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need an emergence of this "self-organizing mind map" approach to manage the complexity of information flow.
 
 
 
@@ -128,7 +128,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" > 
 </p>
 
-[extract Docs](https://airesearch.js.org/functions/extract.html)
+[extract Docs](https://airesearch.js.org/functions/extractContent.html)
 
 1. Main Content Detection: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
 2. Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.

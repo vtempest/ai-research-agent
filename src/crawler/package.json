@@ -4,7 +4,7 @@
   "description": "Server API renders DOM with puppeteer to get HTML & Bypass Cloudflare bot check.",
   "main": "crawler.js",
   "type": "module",
-  "license": "AGPL-3.0-only",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "bun crawler.js"
   },

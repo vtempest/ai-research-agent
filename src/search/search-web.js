@@ -7,6 +7,7 @@ import { scrapeURL } from "../../index.js";
  * SearXNG is a free internet metasearch engine which aggregates results from
  *  more than [180+ search sources](https://docs.searxng.org/user/configured_engines.html).
  * 
+ * [Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
  * [Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
  * @param {string} query - The search query string.
  * @param {Object} [options]
@@ -129,8 +130,8 @@ export async function searchWeb(query, options = {}) {
     `&category_${categoryName}=1&language=${language}&time_range=` +
     `${timeRangeName}&safesearch=0&pageno=${page}`;
 
-  // if(privateSearxng)
-  //   url+="&format=json"
+  if(privateSearxng)
+    url+="&format=json"
 
   //on cloudflare to avoid "Too many redirects" change SSL mode to Full
 
@@ -145,11 +146,11 @@ export async function searchWeb(query, options = {}) {
     }
   })).text();
 
-  if (privateSearxng&&0){
+  if (privateSearxng){
 
-    console.log(resultHTML);
     if (!resultHTML.startsWith("{")) 
       return {error:1}
+    //todo use public
 
     var {results, suggestions, infoboxes} = JSON.parse(resultHTML);
     
@@ -163,7 +164,9 @@ export async function searchWeb(query, options = {}) {
 
 
     console.log(resultHTML);
-    return {results, suggestions};
+    
+    return results
+    // return {results, suggestions};
 
 
   }

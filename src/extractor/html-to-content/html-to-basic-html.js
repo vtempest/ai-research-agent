@@ -29,12 +29,12 @@ import {
  */
 export function convertHTMLToBasicHTML(html, options = {}) {
   var {
-    images = 1,
-    links = 1,
+    images = true,
+    links = true,
     videos = true,
-    formatting = 1,
+    formatting = true,
     url = "",
-    mathLatex = 1,
+    mathLatex = true,
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
       ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
     allowedAttributes = "href,src,type,width,height,id,data,target",
@@ -55,7 +55,9 @@ export function convertHTMLToBasicHTML(html, options = {}) {
 
   // Convert html string to array like [{tag:"p",attr:""},{text:""}]
   var basicHtml = convertHTMLToTokens(html)
-    .filter(
+  if (!basicHtml) return;
+
+  basicHtml = basicHtml.filter(
       (token) =>
         token.text ||
         (token.tagName[0] == "/"

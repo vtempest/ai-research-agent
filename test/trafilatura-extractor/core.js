@@ -1,6 +1,7 @@
 /**
  * @summary JavaScript port of Trafilatura, a web scraping library for text extraction
- * @author Adrien Barbaresi, et al (2019), Apache-2.0
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
+ * @author Python Trafilatura by Adrien Barbaresi, et al (2019), Apache-2.0
  */
 
 var { JSDOM } = require("jsdom");

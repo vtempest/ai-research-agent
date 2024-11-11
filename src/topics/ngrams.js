@@ -40,12 +40,12 @@ export function extractNounEdgeGrams(
   // Check if the n-gram starts and ends with a noun, and all words meet the criteria
 
   if (
-    isNoun(nextWords[0]) &&
-    isNoun(nextWords[nGramSize - 1]) 
+    isTopicEntity(nextWords[0]) &&
+    isTopicEntity(nextWords[nGramSize - 1]) 
     && nextWords.every(
       (word) =>
         word[0]?.length >= minWordLength && 
-      (isNoun(word) || isWordCommonIgnored(word[0]))  )
+      (isTopicEntity(word) || isWordCommonIgnored(word[0]))  )
   ) {
     var nextWordsString = nextWords.map(v => v[0]).join(" ");
     if (!nGrams[nGramSize][nextWordsString])
@@ -57,18 +57,6 @@ export function extractNounEdgeGrams(
   return nGrams;
 }
 
-/**
- * Checks if a token represents a noun based on its part of speech tag.
- * This function uses a range of POS tags to identify nouns, including
- * common nouns, proper nouns, and potentially other noun-like categories.
- * 
- * @param {Array<string|number>} token - An array containing the word and its part of speech tag.
- *                                       The POS tag is expected to be a number at index 1.
- * @returns {boolean} True if the token is a noun, false otherwise.
- * @private
- */
-export function isNoun(token) {
-  // POS tags 3-28 and 50 are considered nouns
-  // This may need to be adjusted based on the specific POS tagging system used
-  return token[1] == 10 || token[1] == 5;
+function isTopicEntity(token) {
+  return [1, 5].includes(token[1]);
 }

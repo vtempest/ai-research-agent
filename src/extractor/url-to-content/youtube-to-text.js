@@ -20,6 +20,7 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
 
   const videoId = getURLYoutubeVideo(videoUrl);
 
+  //ip blocked on cf -- add proxy?
   // var res = await fetchTranscriptOfficialYoutube(videoId, options);
 
   // if (!res || res.error)
@@ -29,9 +30,7 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
   if (!res || res.error)
     var res = await fetchTranscriptTactiq(videoId, options);
 
-  
 
-  // console.log(res)
   if (!res || !res.content) return { error: 1 };
   var { content, timestamps } = res;
 
@@ -145,8 +144,8 @@ export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
     if (!html )
       return {error:1}
 
-    const transcriptRegex =
-      /<span data-start="([\d.]+)"[^>]*>((?:(?!<\/span>).|\n)*?)<\/span>/gs;
+    const transcriptRegex = /<span[^>]*?data-start="([\d.]+)"[^>]*?class="transcript-segment"[^>]*?>[\s\n]*((?:(?!<\/span>).|\n)*?)[\s\n]*<\/span>/gms;
+
     const matches = Array.from(html.matchAll(transcriptRegex));
 
     const transcript = matches.map((match) => ({

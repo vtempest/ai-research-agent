@@ -26,7 +26,7 @@ import {stemWordToRoot} from "../tokenize/word-to-root-stem.js";
  * @param {number} options.valueSampleLag default=10 - Lag between samples.
  * @returns {Array} - Array of topics, each containing term-probability pairs.
  * @category Topics
- * @author [Blei et al. (2003)](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export function extractTopicTermGroupsLDA(sentences, options = {}) {
 

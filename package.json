@@ -7,8 +7,8 @@
   "license": "AGPL-3.0",
   "description": "Search and outline a topic base with AI Research Agent",
   "scripts": {
-    "dev": "cd web-app; vite dev",
-    "prod": "cd web-app; bunx --max-old-space-size=8192 vite build; wrangler deploy; wrangler tail",
+    "dev": "cd web-app; bunx vite dev",
+    "prod": "cd web-app; bunx --max-old-space-size=8192 vite build; bunx wrangler deploy; bunx wrangler tail",
     "docs": "typedoc; open docs/index.html",
     "docs-win": "typedoc;  cmd.exe /c start \"\" docs/index.html",
     "test": "vitest",
@@ -18,29 +18,30 @@
   "devDependencies": {
     "@jsprismarine/typedoc-material-theme": "^1.0.4",
     "@mxssfd/typedoc-theme": "^1.1.7",
-    "@vitest/ui": "^2.1.1",
+    "@vitest/ui": "^2.1.4",
     "adm-zip": "^0.5.16",
     "axios": "^1.7.7",
     "fast-xml-parser": "^4.5.0",
     "jszip": "^3.10.1",
-    "typedoc": "^0.26.7",
+    "typedoc": "^0.26.10",
     "typedoc-material-theme": "^1.1.0",
     "typedoc-plugin-ga": "^1.0.4",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.4"
   },
   "dependencies": {
-    "@huggingface/transformers": "3.0.0-alpha.16",
-    "@langchain/anthropic": "^0.3.3",
-    "@langchain/core": "^0.3.3",
+    "@huggingface/transformers": "3.0.1",
+    "@lancedb/lancedb": "^0.12.0",
+    "@langchain/anthropic": "^0.3.7",
+    "@langchain/core": "^0.3.16",
     "@langchain/groq": "^0.1.2",
-    "@langchain/openai": "^0.3.2",
+    "@langchain/openai": "^0.3.11",
     "chrono-node": "^2.7.7",
     "fake-indexeddb": "^6.0.0",
-    "gpu.js": "^2.16.0",
     "hnswlib-wasm": "^0.8.2",
     "katex": "^0.16.11",
     "linkedom": "^0.18.5",
-    "pdfjs-serverless": "^0.5.1",
-    "umap-js": "^1.4.0"
+    "pdfjs-serverless": "^0.6.0",
+    "umap-js": "^1.4.0",
+    "usearch": "^2.16.2"
   }
 }

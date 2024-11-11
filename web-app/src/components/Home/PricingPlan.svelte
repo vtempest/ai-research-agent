@@ -12,7 +12,7 @@
       url: '#',
       price: 0,
       features: [
-        { text: ' 100 queries / 24 hours', icon: Zap },
+        // { text: ' 100 queries / 24 hours', icon: Zap },
         { text: 'Access to cutting-edge LLMs', icon: Brain },
         { text: 'Discover curated content feed', icon: Compass },
         { text: 'Standard response times', icon: Clock },
@@ -26,7 +26,7 @@
       url: 'https://buy.stripe.com/8wMdTmdi1asl1xe3cc',
       price: 5,
       features: [
-        { text: '1,000 queries / 24 hours', icon: Rocket },
+        // { text: '1,000 queries / 24 hours', icon: Rocket },
         { text: 'Custom dataset integration', icon: Database },
         { text: 'Custom-trained LLM agents', icon: Sparkles },
         { text: 'Priority server response times', icon: Gauge },
@@ -61,13 +61,14 @@
 
   <div class="flex justify-center items-center w-full">
     <div class="flex items-center">
-      <img
-      src={iconQwkLogo}
-      alt="Qwk Logo"
-      width="200px"
-      class=" object-contain mr-6"
-  
-      />
+      <a href="/" class="cursor-pointer">
+        <img
+        src={iconQwkLogo}
+        alt="Qwk Logo"
+        width="200px"
+        class=" object-contain mr-6"
+        />
+      </a>
       <div class="flex flex-col">
         <h1 class="text-3xl font-bold mb-2">QwkSearch</h1>
         <h2 class="text-2xl">

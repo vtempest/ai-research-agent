@@ -51,7 +51,8 @@ import {
  *  like forms, ads, etc. Initially, pass in the most restrictive options which will return the highest
  * quality content. On each failure, retry with slightly more lax options.
  * @returns {string} The extracted content as an HTML string, or null if extraction fails.
- * @author Based on [Postlight Mercury Parser (2017-)](https://github.com/postlight/parser/tree/main/src)
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
+ * Based on [Postlight Mercury Parser (2017-)](https://github.com/postlight/parser/tree/main/src)
  * @example var url =  "https://en.wikipedia.org/wiki/David_Hilbert"
  * var html = await (await fetch(url)).text();
  * var content = extractMainContentFromHTML(html);

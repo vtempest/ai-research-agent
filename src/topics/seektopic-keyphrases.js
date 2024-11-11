@@ -73,7 +73,7 @@ import { extractNounEdgeGrams } from "./ngrams.js";
 export function extractSEEKTOPIC(docText, options = {}) {
   var {
     phrasesModel,
-    maxWords = 3,
+    maxWords = 2,
     minWords = 1,
     minWordLength = 3,
     topKeyphrasesPercent = 0.5,
@@ -218,9 +218,9 @@ export function extractSEEKTOPIC(docText, options = {}) {
         // typosModel,
       });
       //if wiki entity, triple weight
-      if (phraseTokenized.filter((r) => r[0] == 50)[0]) {
+      if (phraseTokenized.filter((r) => r[1] == 5)[0]) {
         keyphraseObject.wiki = true;
-        keyphraseObject.weight *= 3;
+        keyphraseObject.weight *= 2;
       }
 
       //multiply weight by rarity of keyphrase to boost domain-specificity

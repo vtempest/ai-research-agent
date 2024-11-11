@@ -55,7 +55,6 @@
   onDestroy(() => {
     cleanupKeyboardListener();
     cleanupScrollListener();
-    abortActiveSearch();
   });
 
   // Reactive declarations
@@ -151,7 +150,7 @@
    * @returns {Promise<Array>} - The search results
    */
   async function fetchSearchResults(query, page) {
-    const searchUrl = `${API_ENDPOINTS.SEARCH}?q=${query}&page=${page}&public=true`;
+    const searchUrl = `${API_ENDPOINTS.SEARCH}?q=${query}&page=${page}`;
     const response = await fetch(searchUrl);
     const data = await response.json();
     return data?.results || [];
@@ -179,6 +178,10 @@
 
       document.body.focus();
       document.querySelector(".search-input").blur();
+      
+      //autoload first result
+      loadFirstResult();  
+
     } catch (error) {
       handleSearchError(error);
     } finally {
@@ -253,6 +256,15 @@
           }, 200);
         selectedResultIndex = index;
 
+        topicsObject = extractSEEKTOPIC(newArticle.html,
+          {
+            phrasesModel,
+            limitTopSentences: 5,
+            limitTopKeyphrases: 8
+          }
+        );
+        
+
         /* Implement fallback method using an invisible iframe
               const iframeId = 'article-iframe';
                iframe = document.getElementById(iframeId);
@@ -293,17 +305,14 @@
             summarizeArticle();
           }, 400);
 
-
-        var topics = extractSEEKTOPIC(newArticle.html,
+          topicsObject = extractSEEKTOPIC(newArticle.html,
           {
-            phrasesModel
+            phrasesModel,
+            limitTopSentences: 5,
+            limitTopKeyphrases: 8
           }
         );
         
-        console.log(topics)
-
-        topicsObject = topics;
-
 
 
       }

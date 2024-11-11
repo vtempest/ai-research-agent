@@ -44,9 +44,5 @@ export function extractCite(document) {
   title = extractTitle(document) || title;
   source = extractSource(document) || source;
 
-  var cite = `${author_cite} ${date ? `(${new Date(date).getFullYear()}, ${new Date(
-    date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})}).` : 
-    ''} <strong>${title || ''}</strong>. <i>${source || ''}</i>. ${document.location.href}`;
-
-  return { author, author_cite, author_short, date, title, source , cite};
+  return { author, author_cite, author_short, date, title, source };
 }

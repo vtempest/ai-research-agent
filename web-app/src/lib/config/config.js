@@ -1,10 +1,12 @@
-import { PUBLIC_GROQ_API_KEY, PUBLIC_PROXY, PUBLIC_SEARCH_URL } from '$env/static/public';
+import { PUBLIC_GROQ_API_KEY } from '$env/static/public';
 
 //the devil is in the defauls
 export const defaultSearchEngine = "QwkSearch";
 export const defaultPrompt = "Summarize in bullet points and bold topics";
+export const searxngDomain = "https://search.qwksearch.com/";
+
 export const apiKey = PUBLIC_GROQ_API_KEY;
-export const searxngDomain = PUBLIC_SEARCH_URL;
+
 
 export const searchEngines = {
   QwkSearch: "https://qwksearch.com/?q=",
@@ -21,13 +23,13 @@ export const LINK_SUPPORT = "https://discord.gg/SJdBqBz3tV";
 //llama-3.1-405b-reasoning
 
 export const enumLLMs = [
-  // "gemma2-9b-it",
-  "llama-3.1-70b-versatile",
-  "llama-3.1-8b-instant",
   "llama-3.2-90b-vision-preview",
   "llama-3.2-11b-vision-preview",
+  "llama-3.1-70b-versatile",
+  "llama-3.1-8b-instant",
+  // "gemma2-9b-it",
 ]
 
-export const proxy = PUBLIC_PROXY;
+export const proxy = 'https://proxy.qwksearch.com?url=';
 export const APP_NAME = "QwkSearch";
 export const APP_EMAIL = "support@qwksearch.com";

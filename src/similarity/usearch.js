@@ -1,102 +1,121 @@
-import usearch from 'usearch';
-import { getEmbeddingModel,
-    convertTextToEmbedding,
-    addEmbeddingVectorsToIndex,
- } from './similarity-vector.js';
+import usearch from "usearch";
+import {
+  getEmbeddingModel,
+  convertTextToEmbedding,
+  addEmbeddingVectorsToIndex,
+} from "./similarity-vector.js";
 
- /// https://i.imgur.com/rQKDTRB.png
+// Main implementation
 async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
-  const {
-    numDimensions = 384,
-    maxElements = 100,
-    metric = 'cos',
-    connectivity = 16,
-  } = options;
-
-  // Create and initialize the index
-  const index = new usearch.Index({
-    metric: metric,
-    dimensions: numDimensions,
-    connectivity: connectivity,
-    maxElements: maxElements,
-  });
-
-  // Add vectors to the index
-  const labels = [];
-  for (let i = 0; i < documentVectors.length; i++) {
-    index.add(BigInt(i), new Float32Array(documentVectors[i]));
-    // labels.push(label);
-  }
-
   return { index, labels };
 }
 
 async function searchVectorIndex(index, query, options = {}) {
   const { numNeighbors = 5, pipeline } = options;
 
-  // Convert query to embedding vector
   var queryVector = await convertTextToEmbedding(query, { pipeline });
+  // console.log(JSON.stringify(Array.from(queryVector)))
 
-  queryVector = new Float32Array(queryVector)
+  queryVector = new Float32Array(queryVector);
 
+  const results = await index.search(queryVector, numNeighbors);
+  const resultJson = Array.from(results.keys || [])
+    .map((key, index) => ({
+      key: Number(key),
+      distance: results.distances[index],
+    }))
+    .sort((a, b) => a.distance - b.distance);
 
-    const results = index.search(queryVector, 2);
-
-    console.log(results);
-
-    // Format results to match the expected output
-    const formattedResults = [];
-    for (let i = 0; i < results.keys.length; i++) {
-      formattedResults.push({
-        id: Number(results.keys[i]),
-        distance: results.distances[i],
-      });
-    }
-    return formattedResults;
+  return resultJson;
 }
 
-async function exportEmbeddingsIndex(index, dimensions, maxElements) {
-  // Placeholder function for exporting index
-  // return Buffer.from(index.data()).toString('base64');
-}
-
+import fs from "fs";
+// Example usage
 async function main() {
   const pipeline = await getEmbeddingModel();
 
-  console.log(1);
-
   const documents = [
-    "The quick brown fox jumps over the lazy dog",
-    "Lorem ipsum dolor sit amet",
-    "foxes are red",
-    "foxes are not blue",
-    "foxes like to hunt their prey",
+    {
+      id: 0,
+      text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    },
+    {
+      id: 1,
+      text: "The only way to achieve true innovation is to embrace uncertainty with an open mind.",
+    },
+    {
+      id: 2,
+      text: "Life is like riding a bicycle. To keep your balance, you must keep moving forward.",
+    },
+    {
+      id: 3,
+      text: "The best time to plant a tree was 20 years ago. The second best time is now.",
+    },
+    {
+      id: 4,
+      text: "Leadership is not about being in charge. Leadership is about taking care of those in your charge.",
+    },
+    {
+      id: 6,
+      text: "Every challenge is an opportunity in disguise, waiting to be discovered.",
+    },
+    {
+      id: 7,
+      text: "In the midst of chaos, there is also opportunity for growth and transformation.",
+    },
+    {
+      id: 8,
+      text: "The journey of a thousand miles begins with a single step forward.",
+    },
+    {
+      id: 9,
+      text: "Knowledge speaks, but wisdom listens and learns from every experience.",
+    },
+    {
+      id: 10,
+      text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    },
   ];
-  const query = "What does the fox eat?";
+  const query = "when to plant a tree";
+  // Convert documents to vectors
+  const documentVectors = await Promise.all(
+    documents.map((doc) => convertTextToEmbedding(doc.text, { pipeline }))
+  );
 
-  let documentVectors = [];
-
-  for (let doc of documents) {
-    documentVectors.push(await convertTextToEmbedding(doc, { pipeline }));
-  }
-
-  const { index, labels } = await convertEmbeddingsToUSearch(documentVectors, {
-    numDimensions: 384,
-    maxElements: 100,
+  const numDimensions = 384,
+    maxElements = 100,
+    metric = "cos",
+    connectivity = 3;
+  const index = new usearch.Index({
+    metric: "cos", // USearch supports 'cos' and 'l2'
+    dimensions: numDimensions,
+    connectivity: connectivity,
+    // quantization: "f32"  // Disable quantization for exact search
   });
 
-  console.log(322)
+  // Add vectors to index
+  const labels = [];
+  for (let i = 0; i < documentVectors.length; i++) {
+    index.add(BigInt(i), new Float32Array(documentVectors[i]));
+    labels.push(i);
+  }
 
-  // index.save('index.usearch'); // Save the index to a file
+  console.log(`Index created with ${documentVectors.length} elements`);
+  index.a;
+  index.save("./vectors.bin");
+  var content = fs.readFileSync("./vectors.bin");
+  const base64String = Buffer.from(content).toString("base64");
+  console.log(base64String);
 
-  console.log(`Index created with ${index.size()} elements`);
+  // Search
+  const results = await searchVectorIndex(index, query, {
+    pipeline,
+    numNeighbors: 5,
+  });
 
-  const result = await searchVectorIndex(index, 
-    query, { pipeline, numNeighbors: 5 });
-  console.log(result);
-
-  // const base64 = await exportEmbeddingsIndex(index, 384, 100000);
-  // console.log(base64);
+  // Display results
+  console.log(results);
 }
 
+// Execute if running directly
 main().catch(console.error);
