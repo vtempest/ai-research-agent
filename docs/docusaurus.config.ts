@@ -4,6 +4,8 @@ import type * as Plugin from "@docusaurus/types/src/plugin";
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 import { myCustomApiMdGenerator } from "./customMdGenerators";
 
+const compileForSubdomain = true;
+
 export default async function createConfig() {
   return {
     future: {
@@ -11,7 +13,7 @@ export default async function createConfig() {
     },
     title: "QwkSearch API Routes Docs",
     url: "https://qwksearch.com",
-    baseUrl: "/docs/",
+    baseUrl: compileForSubdomain ? "/" : "/docs/",
     onBrokenLinks: "warn",
     onBrokenMarkdownLinks: "warn",
     favicon: "https://qwksearch.com/favicon.ico",

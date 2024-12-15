@@ -34,18 +34,6 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
-    {
-      type: "category",
-      label: "Schemas",
-      items: [
-        {
-          type: "doc",
-          id: "routes/schemas/user",
-          label: "User",
-          className: "schema",
-        },
-      ],
-    },
   ],
 };
 
