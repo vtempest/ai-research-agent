@@ -5,17 +5,17 @@
  * It creates a weighted graph where edges connect sentences to matching
  * keyphrases, then performs random walks to distribute probabilities.
  *
- * <br> 
+ * <br /> 
  * 1. Hongyang Zhao and Qiang Xie 2021 J. Phys.: Conf. Ser. 2078 012021
  *    "An Improved TextRank Multi-feature Fusion Algorithm For
  *    Keyword Extraction of Educational Resources"
  *    https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
- * <br>
+ * <br />
  * 2. Pan, S. et al (2019). "An improved TextRank keywords extraction algorithm"
  *    https://dl.acm.org/doi/10.1145/3321408.3326659
  *    https://doi.org/10.1145/3321408.3326659
- * @param {Array<Object>} sentencesWithKeyphrases Array of objects, each containing {text, keyphrases}
- * @returns {Array<Object>} Updated array with added weights: [{text, keyphrases, weight}]
+ * @param {Array<Object>} sentencesWithKeyphrases Array of objects, each containing (text, keyphrases)
+ * @returns {Array<Object>} Updated array with added weights: text, keyphrases, weight
  */
 export function rankSentencesCentralToKeyphrase(
   sentencesWithKeyphrases,

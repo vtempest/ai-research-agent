@@ -1,5 +1,10 @@
 /**
- * Splits document text into semantic chunks based on various textual and structural elements.
+ * ### Split Text by Semantic Characters 
+ * <img width="350px"  src="https://i.imgur.com/RpXf5as.png" /> 
+ * 
+ * 
+ * Splits document text into semantic chunks based on various textual and structural 
+ * elements like HTML, markdown, and paragraphs.
  * 
  * This function performs a comprehensive tokenization of the input text, considering a wide range
  * of semantic elements and structural patterns commonly found in documents. It uses regular

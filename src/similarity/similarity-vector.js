@@ -1,4 +1,5 @@
 import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
+/** @typedef {import("@huggingface/transformers").AutoTokenizer} AutoTokenizer */
 
 
 /**
@@ -13,10 +14,10 @@ import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
  * [Text Embeddings, Classification, and Semantic Search
  *  (Youtube)](https://www.youtube.com/watch?v=sNa_uiqSlJo&t=129s)
  *
- * <img src="https://i.imgur.com/wtJqEqX.png" width="350" /> <br />
+ * <img src="https://i.imgur.com/wtJqEqX.png" width="350" />
  * @param {string} text - The text to embed.
  * @param {Object} [options]
- * @param {import("@huggingface/transformers").AutoTokenizer} options.pipeline
+ * @param {AutoTokenizer} options.pipeline
  *  - The pipeline to use for embedding.
  * @param {number} options.precision default=4 - The number of decimal places to round to.
  * @returns {Promise<{embeddingsDict: Object.<string, number[]>, embedding: number[]}>}
@@ -38,7 +39,7 @@ export async function convertTextToEmbedding(text, options = {}) {
 /**
  * Initialize HuggingFace Transformers pipeline for embedding text.
  * 
- * <img src="https://i.imgur.com/3R5Tsrf.png" width="350px">
+ * <img src="https://i.imgur.com/3R5Tsrf.png" width="350px" />
  * @param {Object} [options]
  * @param {string} options.pipelineName default "feature-extraction",
  * @param {string} options.modelName default="Xenova/all-MiniLM-L6-v2" - 
@@ -47,7 +48,6 @@ export async function convertTextToEmbedding(text, options = {}) {
   * @category Similarity
   */
 export async function getEmbeddingModel(options = {}) {
-  // const {pipeline} = await import("../../../transformers.js/dist/transformers")
   const {pipeline} = await import("@huggingface/transformers")
   const {
     pipelineName = "feature-extraction",
@@ -65,7 +65,7 @@ export async function getEmbeddingModel(options = {}) {
 
 /**
  * ### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Hierarchy
- * <img src="https://i.imgur.com/nvJ7fzO.png" width="350px">
+ * <img src="https://i.imgur.com/nvJ7fzO.png" width="350px" />
  *  
  * 1. Compile hnswlib-node or NGT algorithm C++ to WASM JS for efficient similarity search.
  * 2. Vector index is split by K-means into regional clusters, each being a
@@ -86,14 +86,13 @@ export async function getEmbeddingModel(options = {}) {
   * [ANN Benchmarks](https://ann-benchmarks.com)
  * 
  * ![Benchmark](https://ann-benchmarks.com/glove-100-angular_10_angular.png)
- *   [Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
-
  * @param {string[]} documentVectors - An array of document texts to be vectorized.
  * @param {Object} [options={}] - Optional parameters for vector generation and indexing.
  * @param {number} [options.numDimensions=384] - The length of data point vector that will be indexed.
  * @param {number} [options.maxElements=100] - The maximum number of data points.
+ * @author [Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
-  * @category Similarity
+ * @category Similarity
  */
 export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) {
     const {
@@ -116,8 +115,8 @@ export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) 
   /**
    * Searches the vector index for the nearest neighbors of a given query.
    * 
-   * <img src="https://github.com/NJU-RINC/hnsw-visulize/blob/master/path.gif?raw=true" width="350px">
-   * <img src="https://i.imgur.com/ZAAfogK.png" width="350px">
+   * <img src="https://github.com/NJU-RINC/hnsw-visulize/blob/master/path.gif?raw=true" width="350px" />
+   * <img src="https://i.imgur.com/ZAAfogK.png" width="350px" />
    * @param {HierarchicalNSW} index - The HNSW index to search.
    * @param {string} query - The query string to search for.
    * @param {Object} [options={}] - Optional parameters for the search.

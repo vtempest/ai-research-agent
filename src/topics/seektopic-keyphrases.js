@@ -1,6 +1,5 @@
 
-import { splitSentences } from "../../index.js";
-import { convertTextToTokens } from "../../index.js";
+import { splitSentences,  convertTextToTokens } from "../../index.js";
 import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js";
 import { extractNounEdgeGrams } from "./ngrams.js";
 
@@ -82,6 +81,7 @@ export function extractSEEKTOPIC(docText, options = {}) {
     minKeyPhraseLength = 5,
     heavyWeightQuery = "",
     removeHTML = true,
+    optionSkipRanking = true
   } = options;
 
   //if not string throw error
@@ -251,6 +251,9 @@ export function extractSEEKTOPIC(docText, options = {}) {
     .sort((a, b) => b.weight - a.weight);
   //limit to top % of keyphrases to give weights to
   // .slice(0, limitKeyPhrases);
+
+  if (optionSkipRanking)
+     return keyphraseObjects;
 
   //add keyphrases to sentences Map
   for (var keyphraseObject of keyphraseObjects) {

@@ -15,7 +15,6 @@ import {isWordCommonIgnored} from "../tokenize/stopwords.js";
  *                                              Example: [["The", 1], ["quick", 2], ["brown", 2], ["fox", 3]]
  * @param {number} index - The starting index in the terms array to begin extraction. This allows for sliding window extraction.
  * @param {Object<number, Object<string, number[]>>} nGrams - Object to store the extracted n-grams. 
- *                                                            Structure: {nGramSize: {nGramString: [sentenceNumbers]}}
  * @param {number} minWordLength - The minimum length a word should have to be considered in the n-gram.
  * @param {number} sentenceNumber - The current sentence number being processed. Used to track which sentences contain the n-gram.
  * @returns {Object<number, Object<string, number[]>>} The updated nGrams object with newly extracted n-grams.
@@ -36,16 +35,19 @@ export function extractNounEdgeGrams(
   if (!terms[index + nGramSize - 1]) return;
   if (!nGrams[nGramSize]) nGrams[nGramSize] = {};
 
+  // 1 is nouns, 5 is wiki titles - check the [1] of token for type
+  var topicEntities = [1, 5];
+
   var nextWords = terms.slice(index, index + nGramSize);
   // Check if the n-gram starts and ends with a noun, and all words meet the criteria
 
   if (
-    isTopicEntity(nextWords[0]) &&
-    isTopicEntity(nextWords[nGramSize - 1]) 
+    topicEntities.includes(nextWords[0][1]) &&
+    topicEntities.includes(nextWords[nGramSize - 1][1]) 
     && nextWords.every(
       (word) =>
         word[0]?.length >= minWordLength && 
-      (isTopicEntity(word) || isWordCommonIgnored(word[0]))  )
+      (topicEntities.includes(word[1]) || isWordCommonIgnored(word[0]))  )
   ) {
     var nextWordsString = nextWords.map(v => v[0]).join(" ");
     if (!nGrams[nGramSize][nextWordsString])
@@ -55,8 +57,4 @@ export function extractNounEdgeGrams(
   }
 
   return nGrams;
-}
-
-function isTopicEntity(token) {
-  return [1, 5].includes(token[1]);
 }

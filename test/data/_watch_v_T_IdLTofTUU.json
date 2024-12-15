@@ -1,24 +1,125 @@
 {
   "url": "https://www.youtube.com/watch?v=T_IdLTofTUU",
-  "timestamps": "-5,-4,-2,-1,-2,-1,0,1   1,2,3,4,5,8,19,27",
-  "word_count": 534,
-  "keyphrases": [
+  "cite": "undefined  <strong></strong>. <i></i>. https://www.youtube.com/watch?v=T_IdLTofTUU",
+  "timestamps": "-6,-4,-2,-3,-2,-1,0,1   1,2,3,4,6,10,20,27",
+  "word_count": 467,
+  "topSentences": [
     {
-      "sentences": "0",
-      "keyphrase": "monopoly reports mozilla",
-      "words": 3,
-      "weight": 250
+      "text": "EVEN TODAY, AND ALL THE DAYS, WE'VE HAD MORE OPTIONS THAN JUST GOOGLE AND FIREFOX. WE'RE CONTINUING TO PROMOTE CHOICE. > > OKAY. I REALIZE THIS IS A SITUATION THAT'S GOING TO EVOLVE AND SHAKE OUT OVER THE COURSE OF LIKELY YEARS. WE KNOW THAT GOOGLE/ALPHABET WILL APPEAL THIS DECISION AS WELL. HOW ARE YOU NAVIGATING THE SITUATION?",
+      "index": 1,
+      "keyphrases": [
+        "alphabet appeal",
+        "search engine",
+        "loser mozilla",
+        "ruling google",
+        "reaction reports",
+        "firefox mark",
+        "years know",
+        "choice okay",
+        "capabilities begin"
+      ],
+      "weight": 340
     },
     {
-      "sentences": "1",
-      "keyphrase": "google alphabet appeal",
-      "words": 3,
-      "weight": 250
+      "text": "BIG IMPACT ON COMPANIES THAT USE GOOGLE FOR THEIR DEFAULT SEARCH ENGINE, THE BIGGEST LOSER COULD BE MOZILLA AND FIREFOX. MARK, GREAT TO HAVE YOU ON. I'M GOING TO START RIGHT HERE, EVEN THOUGH WE HAVE A LOT TO COVER. THAT IS YOUR REACTION TO SOME OF THESE REPORTS NOT ONLY TO THIS RULING ABOUT GOOGLE AND ITS SEARCH BEING A MONOPOLY, BUT SOME REPORTS THAT MOZILLA WOULD BE THE BIGGEST LOSER. > > IT WILL TAKE A WHILE TO SEE THE RESULTS. MOZILLA HAS LONG BEEN A CHAMPION OF COMPETITION.",
+      "index": 0,
+      "keyphrases": [
+        "alphabet appeal",
+        "search engine",
+        "loser mozilla",
+        "ruling google",
+        "reaction reports",
+        "firefox mark",
+        "years know",
+        "choice okay",
+        "capabilities begin"
+      ],
+      "weight": 336
+    },
+    {
+      "text": "ESPECIALLY AS WE ARE SEEING THE SEARCH LANDSCAPE EVOLVE QUICKLY AS OpenAI AND GENERATIVE AI CAPABILITIES BEGIN TO INFILTRATE SEARCH OPTIONS?",
+      "index": 2,
+      "keyphrases": [
+        "alphabet appeal",
+        "search engine",
+        "loser mozilla",
+        "ruling google",
+        "reaction reports",
+        "firefox mark",
+        "years know",
+        "choice okay",
+        "capabilities begin"
+      ],
+      "weight": 324
+    }
+  ],
+  "keyphrases": [
+    {
+      "sentences": "1,0,2",
+      "keyphrase": "alphabet appeal",
+      "words": 2,
+      "weight": 220,
+      "wiki": true
+    },
+    {
+      "sentences": "0,1,2",
+      "keyphrase": "search engine",
+      "words": 1,
+      "weight": 180,
+      "wiki": true
+    },
+    {
+      "sentences": "0,1,2",
+      "keyphrase": "loser mozilla",
+      "words": 2,
+      "weight": 152,
+      "wiki": true
+    },
+    {
+      "sentences": "0,1,2",
+      "keyphrase": "ruling google",
+      "words": 2,
+      "weight": 150,
+      "wiki": true
+    },
+    {
+      "sentences": "0,1,2",
+      "keyphrase": "reaction reports",
+      "words": 2,
+      "weight": 144,
+      "wiki": true
+    },
+    {
+      "sentences": "0,1,2",
+      "keyphrase": "firefox mark",
+      "words": 2,
+      "weight": 138,
+      "wiki": true
+    },
+    {
+      "sentences": "1,0,2",
+      "keyphrase": "years know",
+      "words": 2,
+      "weight": 132,
+      "wiki": true
+    },
+    {
+      "sentences": "1,0,2",
+      "keyphrase": "choice okay",
+      "words": 2,
+      "weight": 126,
+      "wiki": true
+    },
+    {
+      "sentences": "2,0,1",
+      "keyphrase": "capabilities begin",
+      "words": 2,
+      "weight": 21
     }
   ],
   "sentences": [
-    "> > > THE RADIOLOGY COULD HAVE A BIG IMPACT ON COMPANIES THAT USE GOOGLE FOR THEIR DEFAULT SEARCH ENGINE, THE BIGGEST LOSER COULD BE MOZILLA AND FIREFOX. MARK, GREAT TO HAVE YOU ON. I'M GOING TO START RIGHT HERE, EVEN THOUGH WE HAVE A LOT TO COVER. THAT IS YOUR REACTION TO SOME OF THESE REPORTS NOT ONLY TO THIS RULING ABOUT GOOGLE AND ITS SEARCH BEING A MONOPOLY, BUT SOME REPORTS THAT MOZILLA WOULD BE THE BIGGEST LOSER. > > IT WILL TAKE A WHILE TO SEE THE RESULTS.",
-    "MOZILLA HAS LONG BEEN A CHAMPION OF COMPETITION. EVEN TODAY, AND ALL THE DAYS, WE'VE HAD MORE OPTIONS THAN JUST GOOGLE AND FIREFOX. WE'RE CONTINUING TO PROMOTE CHOICE. > > OKAY. I REALIZE THIS IS A SITUATION THAT'S GOING TO EVOLVE AND SHAKE OUT OVER THE COURSE OF LIKELY YEARS. WE KNOW THAT GOOGLE/ALPHABET WILL APPEAL THIS DECISION AS WELL. HOW ARE YOU NAVIGATING THE SITUATION?",
+    "BIG IMPACT ON COMPANIES THAT USE GOOGLE FOR THEIR DEFAULT SEARCH ENGINE, THE BIGGEST LOSER COULD BE MOZILLA AND FIREFOX. MARK, GREAT TO HAVE YOU ON. I'M GOING TO START RIGHT HERE, EVEN THOUGH WE HAVE A LOT TO COVER. THAT IS YOUR REACTION TO SOME OF THESE REPORTS NOT ONLY TO THIS RULING ABOUT GOOGLE AND ITS SEARCH BEING A MONOPOLY, BUT SOME REPORTS THAT MOZILLA WOULD BE THE BIGGEST LOSER. > > IT WILL TAKE A WHILE TO SEE THE RESULTS. MOZILLA HAS LONG BEEN A CHAMPION OF COMPETITION.",
+    "EVEN TODAY, AND ALL THE DAYS, WE'VE HAD MORE OPTIONS THAN JUST GOOGLE AND FIREFOX. WE'RE CONTINUING TO PROMOTE CHOICE. > > OKAY. I REALIZE THIS IS A SITUATION THAT'S GOING TO EVOLVE AND SHAKE OUT OVER THE COURSE OF LIKELY YEARS. WE KNOW THAT GOOGLE/ALPHABET WILL APPEAL THIS DECISION AS WELL. HOW ARE YOU NAVIGATING THE SITUATION?",
     "ESPECIALLY AS WE ARE SEEING THE SEARCH LANDSCAPE EVOLVE QUICKLY AS OpenAI AND GENERATIVE AI CAPABILITIES BEGIN TO INFILTRATE SEARCH OPTIONS?"
   ]
 }

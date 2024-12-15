@@ -6,7 +6,7 @@
  * in web search engines.  Single line function that can be used 
  * anywhere, such as UI inputs to filter a data list.
  * 
- * <img width="350px"  src="https://i.imgur.com/IuwW97p.png" > 
+ * <img width="350px"  src="https://i.imgur.com/IuwW97p.png" /> 
  * @param {string} document
  * @param {string} query
  * @returns {boolean} true if doc has all words and "phrases in quotes"

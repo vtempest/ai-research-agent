@@ -8,20 +8,32 @@ import katex from "katex";
  * @category HTML Utilities
  */
 export function convertMathLaTexToImage(html) {
-  const replacedHtml = html.replace(/<math>(.*?)<\/math>/g, (match, p1) => {
-    const curlyBracesContent = p1.match(/{([^}]*)}(?!.*})/);
-    if (!curlyBracesContent || !curlyBracesContent[0]) return match;
+  
+  const replacedHtml = html.replace(
+    /<math>(.*?)<\/math>|\[document.*?\[\/document>/gs,
+    (match, p1) => {
+      const curlyBracesContent = p1.match(/{([^}]*)}(?!.*})/) ?? [];
+      const documentClassContent = p1.match(
+        /\[document.*?\[\/document>/gs
+      ) ?? [];
 
-    var equationFormula = curlyBracesContent[0].replace(/\\/g, "\\");
+      if (!curlyBracesContent && !documentClassContent) return match;
 
-    var htmlEquation = katex.renderToString(equationFormula, {
-      throwOnError: false,
-      output: "html",
-      displayMode: false,
-      strict: false,
-    });
+      var equationFormula = curlyBracesContent[0] ?? documentClassContent[0];
 
-    console.log(htmlEquation);
+      equationFormula = equationFormula
+        .replace(/\\/g, "\\")
+        .replace(/\[documentclass.*?\[/g, "")
+        .replace(/\[\/document>/g, "")
+        .replace(/\[.+\]/g, "");
+
+      var htmlEquation = katex.renderToString(equationFormula, {
+        throwOnError: false,
+        output: "html",
+        displayMode: false,
+        strict: false,
+      });
+
     return htmlEquation;
   });
 
@@ -29,7 +41,7 @@ export function convertMathLaTexToImage(html) {
 }
 
 /**
- * Converts HTML special characters like &<>"'`&rsquo; to & escaped codes or vice versa.
+ * Converts HTML special characters like &"'`&rsquo; to & escaped codes or vice versa.
  * It handles named entities and hexadecimal numeric character references.
  *
  * @param {string} str - The string to process.
@@ -38,11 +50,11 @@ export function convertMathLaTexToImage(html) {
  * @return {string} The processed string.
  * @category HTML Utilities
  * @example
- * var normalHTML = convertHTMLSpecialChars('&lt;p&gt;This &amp; that &copy; 2023 '+
+ * var normalHTML = convertHTMLToEscapedHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
  * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
  * console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
  */
-export function convertHTMLSpecialChars(str, unescape = true) {
+export function convertHTMLToEscapedHTML(str, unescape = true) {
   const entityMap = {
     "&": "&amp;",
     "<": "&lt;",
@@ -175,6 +187,7 @@ export function convertURLToAbsoluteURL(base, relative) {
  * - Paragraphs
  * - Images
  * - Links
+ * - Code blocks
  * @param {string} content - The Markdown or HTML content to be converted.
  * @param {boolean} toHtml - default=true - If true, converts Markdown to HTML.
  *                          If false, converts HTML to Markdown.
@@ -217,7 +230,41 @@ export function convertMarkdownToHTML(content, toHtml = true) {
     .replace(/^[-_*]{3,}\s*$/gm, "<hr>")
 
     // Convert code blocks (```)
-    .replace(/```([^`]+)```/g, "<pre><code>$1</code></pre>")
+    .replace(/```([^`]+)```/g, "<code>$1</code>")
+
+    .replace(/```(\w*)\n([\s\S]*?)```/g, function(match, lang, code) {
+      code = code.trim()
+      // Remove leading whitespace from each line while preserving relative indentation
+      .replace(/^[ \t]*/gm, '')
+      // Encode HTML special characters
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+
+      return lang 
+        ? `<code class="language-${lang}">${code}</code>`
+        : `<code>${code}</code>`;
+    })
+
+    // Handle inline code blocks
+    .replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm, function(match, pre, backticks, code) {
+      code = code.trim()
+      // Remove leading and trailing whitespace
+      .replace(/^[ \t]*/g, '')
+      .replace(/[ \t]*$/g, '')
+      // Encode HTML special characters
+
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+
+      return pre + '<code>' + code + '</code>';
+    })
+  
 
     // Convert inline code (`)
     .replace(/`([^`]+)`/g, "<code>$1</code>")
@@ -245,7 +292,7 @@ export function convertMarkdownToHTML(content, toHtml = true) {
   return html;
 }
 
-function convertHTMLToMarkdown(html) {
+export function convertHTMLToMarkdown(html) {
   var markdown = html
     // Convert headers
     .replace(/<h([1-6])>(.*?)<\/h[1-6]>/g, (match, level, content) => {

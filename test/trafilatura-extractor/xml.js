@@ -1,244 +1,352 @@
-// All functions related to XML generation, processing and validation.
+// XML Generation and Processing Utilities
+const { JSDOM } = require('jsdom');
+const { sanitize, sanitizeTree, textCharsTest } = require('./utils');
 
-var { JSDOM } = require('jsdom');
-var { sanitize, sanitizeTree, textCharsTest } = require('./utils');
+// Constants
+const TEI_VALID_TAGS = new Set(['ab', 'body', 'cell', 'code', 'del', 'div', 'graphic', 'head', 'hi',
+                           'item', 'lb', 'list', 'p', 'quote', 'ref', 'row', 'table']);
+const TEI_VALID_ATTRS = new Set(['rend', 'rendition', 'role', 'target', 'type']);
+const TEI_REMOVE_TAIL = new Set(["ab", "p"]);
+const TEI_DIV_SIBLINGS = new Set(["p", "list", "table", "quote", "ab"]);
 
-var TEI_VALID_TAGS = new Set(['ab', 'body', 'cell', 'code', 'del', 'div', 'graphic', 'head', 'hi',
-                                'item', 'lb', 'list', 'p', 'quote', 'ref', 'row', 'table']);
-var TEI_VALID_ATTRS = new Set(['rend', 'rendition', 'role', 'target', 'type']);
-var TEI_REMOVE_TAIL = new Set(["ab", "p"]);
-var TEI_DIV_SIBLINGS = new Set(["p", "list", "table", "quote", "ab"]);
+const NEWLINE_ELEMS = new Set(['code', 'graphic', 'head', 'lb', 'list', 'p', 'quote', 'row', 'table']);
+const SPECIAL_FORMATTING = new Set(['del', 'head', 'hi', 'ref']);
+const WITH_ATTRIBUTES = new Set(['cell', 'row', 'del', 'graphic', 'head', 'hi', 'item', 'list', 'ref']);
+const NESTING_WHITELIST = new Set(["cell", "figure", "item", "note", "quote"]);
 
-var NEWLINE_ELEMS = new Set(['code', 'graphic', 'head', 'lb', 'list', 'p', 'quote', 'row', 'table']);
-var SPECIAL_FORMATTING = new Set(['del', 'head', 'hi', 'ref']);
-var WITH_ATTRIBUTES = new Set(['cell', 'row', 'del', 'graphic', 'head', 'hi', 'item', 'list', 'ref']);
-var NESTING_WHITELIST = new Set(["cell", "figure", "item", "note", "quote"]);
-
-var META_ATTRIBUTES = [
+const META_ATTRIBUTES = [
     'sitename', 'title', 'author', 'date', 'url', 'hostname',
     'description', 'categories', 'tags', 'license', 'id',
     'fingerprint', 'language'
 ];
 
-var HI_FORMATTING = {'#b': '**', '#i': '*', '#u': '__', '#t': '`'};
+const HI_FORMATTING = {'#b': '**', '#i': '*', '#u': '__', '#t': '`'};
+const MAX_TABLE_WIDTH = 1000;
+const PKG_VERSION = 1111111
+function replaceElementText(element, includeFormatting = false) {
+    let elemText = element.textContent || "";
+    
+    // Handle formatting
+    if (includeFormatting && element.textContent) {
+        if (element.tagName.toLowerCase() === "head") {
+            try {
+                const rend = element.getAttribute("rend");
+                const number = rend ? parseInt(rend[1]) : 2;
+                elemText = `${"#".repeat(number)} ${elemText}`;
+            } catch {
+                elemText = `## ${elemText}`;
+            }
+        } else if (element.tagName.toLowerCase() === "del") {
+            elemText = `~~${elemText}~~`;
+        } else if (element.tagName.toLowerCase() === "hi") {
+            const rend = element.getAttribute("rend");
+            if (rend in HI_FORMATTING) {
+                elemText = `${HI_FORMATTING[rend]}${elemText}${HI_FORMATTING[rend]}`;
+            }
+        } else if (element.tagName.toLowerCase() === "code") {
+            if (elemText.includes("\n")) {
+                elemText = "```\n" + elemText + "\n```";
+            } else {
+                elemText = "`" + elemText + "`";
+            }
+        }
+    }
 
-var MAX_TABLE_WIDTH = 1000;
-
-function deleteElement(element, keepTail = true) {
-    var parent = element.parentNode;
-    if (!parent) return;
-
-    if (keepTail && element.nextSibling && element.nextSibling.nodeType === Node.TEXT_NODE) {
-        var previousSibling = element.previousSibling;
-        if (previousSibling && previousSibling.nodeType === Node.TEXT_NODE) {
-            previousSibling.textContent += element.nextSibling.textContent;
-            parent.removeChild(element.nextSibling);
+    // Handle links
+    if (element.tagName.toLowerCase() === "ref") {
+        if (elemText) {
+            const linkText = `[${elemText}]`;
+            const target = element.getAttribute("target");
+            if (target) {
+                elemText = `${linkText}(${target})`;
+            } else {
+                console.warn("missing link attribute:", elemText, element.attributes);
+                elemText = linkText;
+            }
         } else {
-            parent.insertBefore(element.nextSibling, element);
+            console.warn("empty link:", elemText, element.attributes);
         }
     }
 
-    parent.removeChild(element);
-}
-
-function mergeWithParent(element, includeFormatting = false) {
-    var parent = element.parentNode;
-    if (!parent) return;
-
-    var fullText = replaceElementText(element, includeFormatting);
-    var tailText = element.nextSibling && element.nextSibling.nodeType === Node.TEXT_NODE
-        ? element.nextSibling.textContent
-        : '';
-
-    var previousSibling = element.previousSibling;
-    if (previousSibling && previousSibling.nodeType === Node.TEXT_NODE) {
-        previousSibling.textContent += ' ' + fullText + tailText;
-    } else if (parent.firstChild === element) {
-        parent.insertBefore(document.createTextNode(fullText + tailText), element);
-    } else {
-        parent.insertBefore(document.createTextNode(' ' + fullText + tailText), element);
-    }
-
-    if (element.nextSibling && element.nextSibling.nodeType === Node.TEXT_NODE) {
-        parent.removeChild(element.nextSibling);
-    }
-    parent.removeChild(element);
-}
-
-function removeEmptyElements(tree) {
-    var walker = document.createTreeWalker(tree, NodeFilter.SHOW_ELEMENT);
-    var elementsToRemove = [];
-
-    let node;
-    while (node = walker.nextNode()) {
-        if (node.childNodes.length === 0 &&
-            !textCharsTest(node.textContent) &&
-            !textCharsTest(node.nextSibling && node.nextSibling.textContent)) {
-            var parent = node.parentNode;
-            if (parent && node.tagName !== "GRAPHIC" && parent.tagName !== 'CODE') {
-                elementsToRemove.push(node);
-            }
+    // Handle cells
+    if (element.tagName.toLowerCase() === "cell" && elemText && element.children.length > 0) {
+        if (element.children[0].tagName.toLowerCase() === 'p') {
+            elemText = `${elemText} `;
         }
     }
 
-    elementsToRemove.forEach(elem => elem.parentNode.removeChild(elem));
-    return tree;
+    // Handle list items
+    if (element.tagName.toLowerCase() === "item" && elemText) {
+        elemText = `- ${elemText}\n`;
+    }
+
+    return elemText;
 }
 
-function stripDoubleTags(tree) {
-    var tagsToCheck = ['HEAD', 'CODE', 'P'];
-    tagsToCheck.forEach(tag => {
-        var elements = tree.querySelectorAll(tag);
-        for (let i = elements.length - 1; i >= 0; i--) {
-            var elem = elements[i];
-            var nestedElems = elem.querySelectorAll('code, head, p');
-            nestedElems.forEach(nestedElem => {
-                if (nestedElem.tagName === elem.tagName && 
-                    !NESTING_WHITELIST.has(nestedElem.parentNode.tagName.toLowerCase())) {
-                    mergeWithParent(nestedElem);
+function processElement(element, returnList, includeFormatting) {
+    if (element.textContent) {
+        returnList.push(replaceElementText(element, includeFormatting));
+    }
+
+    Array.from(element.children).forEach(child => {
+        processElement(child, returnList, includeFormatting);
+    });
+
+    if (!element.textContent && !element.nextSibling?.textContent) {
+        if (element.tagName.toLowerCase() === "graphic") {
+            const title = element.getAttribute("title") || "";
+            const alt = element.getAttribute("alt") || "";
+            const text = `${title} ${alt}`.trim();
+            returnList.push(`![${text}](${element.getAttribute("src") || ""})`);
+        } else if (NEWLINE_ELEMS.has(element.tagName.toLowerCase())) {
+            if (element.tagName.toLowerCase() === "row") {
+                const cellCount = element.querySelectorAll("cell").length;
+                const spanInfo = element.getAttribute("colspan") || element.getAttribute("span");
+                const maxSpan = !spanInfo || !(/^\d+$/.test(spanInfo)) ? 
+                    1 : Math.min(parseInt(spanInfo), MAX_TABLE_WIDTH);
+                
+                if (cellCount < maxSpan) {
+                    returnList.push("|".repeat(maxSpan - cellCount) + "\n");
                 }
-            });
-        }
-    });
-    return tree;
-}
-
-function buildJsonOutput(docmeta, withMetadata = true) {
-    let outputDict = {};
-    if (withMetadata) {
-        META_ATTRIBUTES.forEach(attr => {
-            if (docmeta[attr] !== undefined) {
-                outputDict[attr] = docmeta[attr];
-            }
-        });
-        outputDict.source = outputDict.url;
-        delete outputDict.url;
-        outputDict['source-hostname'] = outputDict.sitename;
-        delete outputDict.sitename;
-        outputDict.excerpt = outputDict.description;
-        delete outputDict.description;
-        outputDict.categories = outputDict.categories ? outputDict.categories.join(';') : '';
-        outputDict.tags = outputDict.tags ? outputDict.tags.join(';') : '';
-        outputDict.text = xmlToTxt(outputDict.body, false);
-        delete outputDict.body;
-    } else {
-        outputDict.text = xmlToTxt(docmeta.body, false);
-    }
-
-    if (docmeta.commentsbody) {
-        outputDict.comments = xmlToTxt(docmeta.commentsbody, false);
-    }
-
-    return JSON.stringify(outputDict);
-}
-
-function cleanAttributes(tree) {
-    var walker = document.createTreeWalker(tree, NodeFilter.SHOW_ELEMENT);
-    let node;
-    while (node = walker.nextNode()) {
-        if (!WITH_ATTRIBUTES.has(node.tagName.toLowerCase())) {
-            while (node.attributes.length > 0) {
-                node.removeAttribute(node.attributes[0].name);
-            }
-        }
-    }
-    return tree;
-}
-
-function buildXmlOutput(docmeta) {
-    var output = document.createElement('doc');
-    addXmlMeta(output, docmeta);
-    docmeta.body.tagName = 'main';
-    output.appendChild(cleanAttributes(docmeta.body));
-    if (docmeta.commentsbody) {
-        docmeta.commentsbody.tagName = 'comments';
-        output.appendChild(cleanAttributes(docmeta.commentsbody));
-    }
-    return output;
-}
-
-function controlXmlOutput(document, options) {
-    stripDoubleTags(document.body);
-    removeEmptyElements(document.body);
-
-    var func = options.format === "xml" ? buildXmlOutput : buildTeiOutput;
-    let outputTree = func(document);
-
-    outputTree = sanitizeTree(outputTree);
-
-    // JSDOM doesn't support XML validation, so we'll skip the TEI validation step here
-
-    return new XMLSerializer().serializeToString(outputTree);
-}
-
-function addXmlMeta(output, docmeta) {
-    META_ATTRIBUTES.forEach(attribute => {
-        var value = docmeta[attribute];
-        if (value) {
-            output.setAttribute(attribute, Array.isArray(value) ? value.join(';') : value);
-        }
-    });
-}
-
-function buildTeiOutput(docmeta) {
-    var output = writeTeitree(docmeta);
-    return checkTei(output, docmeta.url);
-}
-
-function checkTei(xmldoc, url) {
-    // Convert head tags
-    xmldoc.querySelectorAll('head').forEach(elem => {
-        elem.tagName = 'ab';
-        elem.setAttribute('type', 'header');
-        var parent = elem.parentNode;
-        if (parent) {
-            if (elem.children.length > 0) {
-                var newElem = teiHandleComplexHead(elem);
-                parent.replaceChild(newElem, elem);
-                elem = newElem;
-            }
-            if (parent.tagName === "P") {
-                moveElementOneLevelUp(elem);
-            }
-        }
-    });
-
-    // Convert <lb/> when child of <div> to <p>
-    xmldoc.querySelectorAll('div > lb').forEach(elem => {
-        if (elem.nextSibling && elem.nextSibling.nodeType === Node.TEXT_NODE && elem.nextSibling.textContent.trim()) {
-            var newP = document.createElement('p');
-            newP.textContent = elem.nextSibling.textContent;
-            elem.parentNode.replaceChild(newP, elem);
-        }
-    });
-
-    // Check and clean elements
-    xmldoc.querySelectorAll('body *').forEach(elem => {
-        if (!TEI_VALID_TAGS.has(elem.tagName.toLowerCase())) {
-            console.warn('not a TEI element, removing:', elem.tagName, url);
-            mergeWithParent(elem);
-        } else {
-            if (TEI_REMOVE_TAIL.has(elem.tagName.toLowerCase())) {
-                handleUnwantedTails(elem);
-            } else if (elem.tagName === "DIV") {
-                handleTextContentOfDivNodes(elem);
-                wrapUnwantedSiblingsOfDiv(elem);
-            }
-            
-            // Check attributes
-            Array.from(elem.attributes).forEach(attr => {
-                if (!TEI_VALID_ATTRS.has(attr.name)) {
-                    console.warn('not a valid TEI attribute, removing:', attr.name, 'in', elem.tagName, url);
-                    elem.removeAttribute(attr.name);
+                
+                if (element.querySelector("cell[role='head']")) {
+                    returnList.push("\n" + "---|".repeat(maxSpan) + "\n");
                 }
-            });
+            } else {
+                returnList.push("\n");
+            }
+        } else if (element.tagName.toLowerCase() !== "cell") {
+            return;
         }
-    });
+    }
 
-    return xmldoc;
+    if (NEWLINE_ELEMS.has(element.tagName.toLowerCase()) && 
+        !element.closest("cell")) {
+        returnList.push(includeFormatting ? "\n\u2424\n" : "\n");
+    } else if (element.tagName.toLowerCase() === "cell") {
+        returnList.push(" | ");
+    } else if (!SPECIAL_FORMATTING.has(element.tagName.toLowerCase())) {
+        returnList.push(" ");
+    }
+
+    if (element.nextSibling?.textContent) {
+        returnList.push(element.nextSibling.textContent);
+    }
 }
 
-// ... (implement other functions like replaceElementText, xmlToTxt, writeTeitree, etc.)
+function xmlToTxt(xmlOutput, includeFormatting = false) {
+    if (!xmlOutput) {
+        return "";
+    }
+
+    const returnList = [];
+    processElement(xmlOutput, returnList, includeFormatting);
+    
+    return sanitize(returnList.join("")) || "";
+}
+
+function xmlToCsv(document, includeFormatting, delim = "\t", nullValue = "null") {
+    const postText = xmlToTxt(document.body, includeFormatting) || nullValue;
+    const commentsText = xmlToTxt(document.commentsbody, includeFormatting) || nullValue;
+    
+    const fields = [
+        document.url,
+        document.id,
+        document.fingerprint,
+        document.hostname,
+        document.title,
+        document.image,
+        document.date,
+        postText,
+        commentsText,
+        document.license,
+        document.pagetype
+    ].map(d => d || nullValue);
+
+    // Simple CSV creation (for complex cases, use a CSV library)
+    return fields.map(field => 
+        field.includes(delim) ? `"${field.replace(/"/g, '""')}"` : field
+    ).join(delim) + "\n";
+}
+
+function writeTeitree(docmeta) {
+    const dom = new JSDOM();
+    const document = dom.window.document;
+    
+    const teidoc = document.createElement('TEI');
+    teidoc.setAttribute('xmlns', 'http://www.tei-c.org/ns/1.0');
+    
+    writeFullheader(teidoc, docmeta, document);
+    
+    const textelem = document.createElement('text');
+    const textbody = document.createElement('body');
+    
+    // Post
+    const postbody = cleanAttributes(docmeta.body.cloneNode(true));
+    postbody.tagName = 'div';
+    postbody.setAttribute('type', 'entry');
+    textbody.appendChild(postbody);
+    
+    // Comments
+    const commentsbody = cleanAttributes(docmeta.commentsbody.cloneNode(true));
+    commentsbody.tagName = 'div';
+    commentsbody.setAttribute('type', 'comments');
+    textbody.appendChild(commentsbody);
+    
+    textelem.appendChild(textbody);
+    teidoc.appendChild(textelem);
+    
+    return teidoc;
+}
+
+function writeFullheader(teidoc, docmeta, document) {
+    const header = document.createElement('teiHeader');
+    const filedesc = document.createElement('fileDesc');
+    
+    // Title Statement
+    const titleStmt = document.createElement('titleStmt');
+    const title = document.createElement('title');
+    title.setAttribute('type', 'main');
+    title.textContent = docmeta.title;
+    titleStmt.appendChild(title);
+    
+    if (docmeta.author) {
+        const author = document.createElement('author');
+        author.textContent = docmeta.author;
+        titleStmt.appendChild(author);
+    }
+    
+    filedesc.appendChild(titleStmt);
+    
+    // Publication Statement
+    const pubStmt = document.createElement('publicationStmt');
+    const publisher = definePublisherString(docmeta);
+    
+    if (docmeta.license) {
+        const publisherElem = document.createElement('publisher');
+        publisherElem.textContent = publisher;
+        pubStmt.appendChild(publisherElem);
+        
+        const availability = document.createElement('availability');
+        const p = document.createElement('p');
+        p.textContent = docmeta.license;
+        availability.appendChild(p);
+        pubStmt.appendChild(availability);
+    } else {
+        const p = document.createElement('p');
+        pubStmt.appendChild(p);
+    }
+    
+    filedesc.appendChild(pubStmt);
+    
+    // Notes Statement
+    const notesStmt = document.createElement('notesStmt');
+    if (docmeta.id) {
+        const idNote = document.createElement('note');
+        idNote.setAttribute('type', 'id');
+        idNote.textContent = docmeta.id;
+        notesStmt.appendChild(idNote);
+    }
+    
+    const fingerprintNote = document.createElement('note');
+    fingerprintNote.setAttribute('type', 'fingerprint');
+    fingerprintNote.textContent = docmeta.fingerprint;
+    notesStmt.appendChild(fingerprintNote);
+    
+    filedesc.appendChild(notesStmt);
+    
+    // Source Description
+    const sourceDesc = document.createElement('sourceDesc');
+    const bibl = document.createElement('bibl');
+    
+    const sigle = [docmeta.sitename, docmeta.date].filter(Boolean).join(', ');
+    if (!sigle) {
+        console.warn('no sigle for URL', docmeta.url);
+    }
+    
+    bibl.textContent = [docmeta.title, sigle].filter(Boolean).join(', ');
+    sourceDesc.appendChild(bibl);
+    
+    const sigleBibl = document.createElement('bibl');
+    sigleBibl.setAttribute('type', 'sigle');
+    sigleBibl.textContent = sigle;
+    sourceDesc.appendChild(sigleBibl);
+    
+    filedesc.appendChild(sourceDesc);
+    header.appendChild(filedesc);
+    
+    // Profile Description
+    const profileDesc = document.createElement('profileDesc');
+    const abstract = document.createElement('abstract');
+    const abstractP = document.createElement('p');
+    abstractP.textContent = docmeta.description;
+    abstract.appendChild(abstractP);
+    profileDesc.appendChild(abstract);
+    
+    if (docmeta.categories || docmeta.tags) {
+        const textClass = document.createElement('textClass');
+        const keywords = document.createElement('keywords');
+        
+        if (docmeta.categories) {
+            const term = document.createElement('term');
+            term.setAttribute('type', 'categories');
+            term.textContent = docmeta.categories.join(',');
+            keywords.appendChild(term);
+        }
+        
+        if (docmeta.tags) {
+            const term = document.createElement('term');
+            term.setAttribute('type', 'tags');
+            term.textContent = docmeta.tags.join(',');
+            keywords.appendChild(term);
+        }
+        
+        textClass.appendChild(keywords);
+        profileDesc.appendChild(textClass);
+    }
+    
+    const creation = document.createElement('creation');
+    const date = document.createElement('date');
+    date.setAttribute('type', 'download');
+    date.textContent = docmeta.filedate;
+    creation.appendChild(date);
+    profileDesc.appendChild(creation);
+    
+    header.appendChild(profileDesc);
+    
+    // Encoding Description
+    const encodingDesc = document.createElement('encodingDesc');
+    const appInfo = document.createElement('appInfo');
+    const application = document.createElement('application');
+    application.setAttribute('version', PKG_VERSION);
+    application.setAttribute('ident', 'Trafilatura');
+    
+    const label = document.createElement('label');
+    label.textContent = 'Trafilatura';
+    application.appendChild(label);
+    
+    const ptr = document.createElement('ptr');
+    ptr.setAttribute('target', 'https://github.com/adbar/trafilatura');
+    application.appendChild(ptr);
+    
+    appInfo.appendChild(application);
+    encodingDesc.appendChild(appInfo);
+    header.appendChild(encodingDesc);
+    
+    teidoc.appendChild(header);
+    return header;
+}
+
+function definePublisherString(docmeta) {
+    if (docmeta.hostname && docmeta.sitename) {
+        return `${docmeta.sitename.trim()} (${docmeta.hostname})`;
+    }
+    const publisher = docmeta.hostname || docmeta.sitename || 'N/A';
+    if (publisher === 'N/A') {
+        console.warn('no publisher for URL', docmeta.url);
+    }
+    return publisher;
+}
 
 module.exports = {
     deleteElement,
@@ -249,5 +357,9 @@ module.exports = {
     buildXmlOutput,
     controlXmlOutput,
     buildTeiOutput,
-    checkTei
+    checkTei,
+    xmlToTxt,
+    xmlToCsv,
+    writeTeitree,
+    writeFullheader
 };

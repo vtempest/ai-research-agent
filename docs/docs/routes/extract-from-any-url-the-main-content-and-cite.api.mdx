@@ -1,0 +1,69 @@
+---
+id: extract-from-any-url-the-main-content-and-cite
+title: "Extract from any URL the main content and cite"
+description: "Extracts main content and citation from URL"
+sidebar_label: "Extract from any URL the main content and cite"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVMtu2zAQ/BViTy3AWm6BXnTLoY8AKZo6zinxgZZWEhOKVMiVY9fQvxdLKXJiu04K1BdDi33MDmdnC6TKAOkNXKFf6QwDLCTkGDKvG9LOQgpf1uRVRkHUSluROUtoSSibi0yT4iRReFeL69kFSGiUVzUSeu66BatqhBRab0CC5nYPLfoN7A+5nl0IcgL7WeMUbgwSPD602mMOKfkWJYSswlpBugXaNNw/kNe2hK6T48iiNa/MnCG13gpOFN/nPy7GqboQAYnx8LgX8wtlwjEAS+cMKhtnFKo1NKR23YLLQ+NswMAFn6ZT/jvKMeYjBucjJpAwRLhINY3RWeQ8uQtcuT2E4pZ3mBE/hXcNetL93Ipqc8jYPidfRzJcIahC0agSoZNAmgy+Xj/ntP3aZxucrj6kIbR1rfzmZcf4k/D5GJOsY/QCvXeeSax1CNqWrE4xavP/sRrnvGGxCKfGEHYLdBJqpMrlkEKJsbWiClJIhisACSFu058S31AKFVET0iR5eLwPqHxWTTJXJ6rRBzMvvcvbLH6wCLUt3DG6uId8OjwpVpiR8/o3xgt3LRltUShBrtGZWKqA4lFTJW7t2bmYYY9BnJVoaXLL+me8fe+Pk+lkCqN04Nfj/dWQfnnOcfR1+FkMzjPsdrCawVKZJOYmIGH9wbgyLnKKD505G3axWDMJK34YZWiOa4IUYiN+hsYFqlV898E8BiH2xqbsJsqHBXjMA3Gf+u1OXf/onoOKCNeUNEZpy+cTF90O6riBJ3UsJFQuEIe2W36Ya2+6jsO93bFmch3U0jwzrr/ifDcbPO69OO3FRyHe42Z0+ZUyLWcAm/HbAbzdjU8gGEx/B2HBH14zBkhvFp2EClWOPrLT15xlGTb0rOrAD7jLeKrfvsyh6/4ABFt/eA==
+sidebar_class_name: "get api-method"
+info_path: routes/qwksearch-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Extract from any URL the main content and cite"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/extract"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Extracts main content and citation from URL
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"url","in":"query","description":"URL to extract content from","required":true,"schema":{"type":"string"}},{"name":"full","in":"query","description":"Return full HTML content if set to true","required":false,"schema":{"type":"boolean","default":false}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Extracted content or HTML","content":{"application/json":{"schema":{"type":"object","properties":{"html":{"type":"string","description":"Full HTML of the page"},"title":{"type":"string","description":"Title of the page"},"content":{"type":"string","description":"Extracted content summary of the page"}}}}}},"500":{"description":"Server error or missing URL parameter","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"}}}}}}}}
+>
+  
+</StatusCodes>
+

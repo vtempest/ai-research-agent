@@ -38,14 +38,14 @@ export function extractTitle(document) {
       }
     }
   }
-
+ 
   // Fall back to document.title if nothing else worked
   if (!title) {
     title = document.title;
   }
 
   // Clean and normalize the title
-  const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )/;
+  const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
   const DOMAIN_ENDINGS_RE = /\.(com|net|org|io|gov|edu|co\.uk)$/i;
 
   // Handle split titles
@@ -53,7 +53,7 @@ export function extractTitle(document) {
     const splitTitle = title.split(TITLE_SPLITTERS_RE);
     
     // Handle breadcrumbed titles
-    if (splitTitle.length >= 6) {
+    if (splitTitle.length >= 2) {
       const longestPart = splitTitle.reduce((acc, part) => part?.length > acc?.length ? part : acc, '');
       if (longestPart.length > 10) {
         title = longestPart;
@@ -61,6 +61,8 @@ export function extractTitle(document) {
     }
 
   }
+
+
 
   // Truncate title if it's too long
   if (title.length > 150) {

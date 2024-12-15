@@ -1,4 +1,4 @@
-import { searchEngines } from "$lib/configs/config";
+import { searchEngines } from "$ai-research-agent";
 
 // Create the context menu
 chrome.contextMenus.removeAll(function () {
@@ -8,11 +8,11 @@ chrome.contextMenus.removeAll(function () {
     contexts: ["selection"],
   });
 
-  for (const [engine, entry] of Object.entries(searchEngines)) {
+  for (var i in searchEngines) {
     chrome.contextMenus.create({
-      title: ` ${engine}`,
+      title: ` ${searchEngines[i].name}`,
       parentId: "searchWithParent",
-      id: `searchWith${engine}`,
+      id: "searchWith" + i,
       contexts: ["selection"]
     });
   }
@@ -29,9 +29,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   const { menuItemId, selectionText } = info;
 
   if (menuItemId.startsWith("searchWith")) {
-    const engine = menuItemId.replace("searchWith", "");
-    const searchUrl = searchEngines[engine];
-    const url = searchUrl + encodeURIComponent(selectionText);
+    const engineIndex = menuItemId.replace("searchWith", "");
+    const url = searchEngines[engineIndex].url + 
+      encodeURIComponent(selectionText);
 
     chrome.tabs.create({
       url,

@@ -1,34 +1,32 @@
 
-const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const AdmZip = require('adm-zip');
-const axios = require('axios');
 
-const url = 'https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/quora.zip';
+
+const outputPathScience = 'data/science-queries-10k.json';
+const urlScienceQueries = 'https://raw.githubusercontent.com/lumina-ai-inc/benchmark/master/search_benchmark/dataset/generated_questions.jsonl';
+const scienceQuieriesPath = 'data/science-queries.jsonl';
+const urlCommonQueries = 'https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/quora.zip';
 const zipFilePath = 'quora.zip';
 const dataDir =  'data';
 const quoraDir = path.join(dataDir, 'quora');
 const queriesJsonlPath = path.join(quoraDir, 'queries.jsonl');
 const outputPath = path.join(dataDir, 'quora-queries-15k.json');
 
-// Function to download the file using axios
+// Function to download the file using fetch
 async function downloadFile(fileUrl, filePath) {
-    const writer = fs.createWriteStream(filePath);
-    const response = await axios({
-        url: fileUrl,
-        method: 'GET',
-        responseType: 'stream'
-    });
+    const response = await fetch(fileUrl);
+    const data = await response.text();
 
-    response.data.pipe(writer);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-    return new Promise((resolve, reject) => {
-        writer.on('finish', resolve);
-        writer.on('error', reject);
-    });
+    fs.writeFileSync(filePath, data);
+
+    return Promise.resolve();
 }
-
 // Function to parse JSONL
 function parseJSONL(jsonlString) {
     const lines = jsonlString.split('\n');
@@ -77,26 +75,35 @@ async function deleteDirectory(dir) {
  * Script to download, decompress, parse and process 
  * Quora question pairs dataset, great for training
  *  a semantic similarity model or Query-Response model
- * @author Quora <https://huggingface.co/datasets/BeIR/quora>
+ * @author Quora https://huggingface.co/datasets/BeIR/quora
  * @returns {object} 
 
  */
 
  export async function importCommonQueries() {
     try {
-        console.log('Starting download...');
-        await downloadFile(url, zipFilePath);
-        console.log('Download complete.');
 
-        console.log('Creating data directory...');
+        //SciSpace STEM queries
+        await downloadFile(urlScienceQueries, scienceQuieriesPath);
+        var queriesContent = await fs.promises.readFile(scienceQuieriesPath, 'utf8');
+
+        let sciQueries = parseJSONL(queriesContent);
+        sciQueries = shuffleArray(sciQueries.map(query => query.question));
+        await fs.promises.writeFile(outputPathScience, JSON.stringify(sciQueries, null, 2), 'utf8');
+
+        
+        await fs.promises.unlink(scienceQuieriesPath);
+
+        //quora common queries
+        await downloadFile(urlCommonQueries, zipFilePath);
         fs.mkdirSync(dataDir, { recursive: true });
 
         console.log('Unzipping file...');
         const zip = new AdmZip(zipFilePath);
-        zip.extractAllTo(dataDir, true);
-
+        zip.extractAllTo(dataDir, true, true, true);
         console.log('Processing queries...');
-        const queriesContent = await fs.promises.readFile(queriesJsonlPath, 'utf8');
+        
+        queriesContent = await fs.promises.readFile(queriesJsonlPath, 'utf8');
         let queries = parseJSONL(queriesContent);
         queries = queries.map(query => query.text);
         queries = shuffleArray(queries);

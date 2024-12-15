@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <title>%sveltekit.error.message%</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(ellipse at top, #f0f4f8 0%, #e6eaf3 100%);
+      perspective: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .error-container {
+      width: 100%;
+      max-width: 28rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 10px 20px -5px rgba(0, 0, 0, 0.1);
+      padding: 2.5rem;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .error-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      transform: translateZ(50px);
+    }
+
+    .error-icon svg {
+      width: 100px;
+      height: 100px;
+      color: #ef4444;
+      stroke-width: 1.5;
+      transform: translateZ(30px);
+    }
+
+    .error-message {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ef4444;
+      margin-bottom: 1.5rem;
+      transform: translateZ(20px);
+    }
+
+    .error-text {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      transform: translateZ(10px);
+    }
+
+    .error-text a {
+      color: #3b82f6;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .error-text a:hover {
+      color: #2563eb;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      transform: translateZ(40px);
+    }
+
+    .error-button {
+      background-color: #fbbf24;
+      color: white;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .error-button:hover {
+      background-color: #d97706;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 640px) {
+      .error-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      .error-icon svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="error-container">
+    <div class="error-icon">
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      >
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+    </div>
+
+    <h1 class="error-message">%sveltekit.error.message%</h1>
+    
+    <p class="error-text">
+      Please try again later. 
+      You may report the issue using 
+      the support link on the homepage.
+    </p>
+    
+    <div class="error-actions">
+      <button 
+        type="button" 
+        class="error-button" 
+        onclick="window.location.href = '/'">
+        Go Home
+      </button>
+    </div>
+  </main>
+
+</body>
+</html>

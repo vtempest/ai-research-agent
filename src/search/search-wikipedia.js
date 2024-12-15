@@ -1,13 +1,13 @@
-import {splitSentences} from "../../index.js";
+import { splitSentences } from "../../index.js";
 
 /**
- * Function to query phrase in Wikipedia Search API and return page titles, images 
- * and first few sentences of each result.  Wikipedia Search API  has complex 
- * <a href="https://www.mediawiki.org/wiki/API:Opensearch">documentation</a>
- *  and is dificult to parse and clean up results.
+ * Function to query phrase in Wikipedia Search API and return 
+ * page titles, images and first few sentences of each result. 
+ *  Wikipedia Search API  has complex [documentation](https://www.mediawiki.org/wiki/API:Opensearch)
+ * and is dificult to parse and clean up results.
  *
- * @param {string} query search phrase 
- * @param {Object} [options] 
+ * @param {string} query search phrase
+ * @param {Object} [options]
  * @param {boolean} options.plainText default=false Return plain text instead of HTML
  * @param {number} options.summarySentenceLimit default=3 Limit summary to this many sentences
  * @param {number} options.limitSearchResults default=1 Limit number of search results
@@ -16,11 +16,10 @@ import {splitSentences} from "../../index.js";
  * @param {boolean} options.searchInTitleOnly default=false Search in title only
  * @param {boolean} options.filterDisambiguation default=true Filter disambiguation pages
  * @example await searchWikipedia("JavaScript", { plainText: true })
- * @returns {object} {results: [ {title, summary, image}, ...]}
- * @returns {object} Returns {error} if no results found. {error: "No results"}
+ * @returns {{results: Array<{title: string, summary: string, image: string}>}}
  * @category Search
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
-*/
+ */
 export async function searchWikipedia(query, options = {}) {
   // Set default options
   var {
@@ -99,4 +98,3 @@ export async function searchWikipedia(query, options = {}) {
 
   return { results: resultsObjects };
 }
-

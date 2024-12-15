@@ -1,4 +1,4 @@
-import { convertHTMLSpecialChars } from "../extractor/html-to-content/html-utils.js";
+import { convertHTMLToEscapedHTML } from "../extractor/html-to-content/html-utils.js";
 import { scrapeURL } from "../../index.js";
 /**
  * Search Web via SearXNG metasearch of all major search engines.
@@ -11,8 +11,8 @@ import { scrapeURL } from "../../index.js";
  * [Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
  * @param {string} query - The search query string.
  * @param {Object} [options]
- * @param {number} options.category default=0 - ["general", "news", "videos", "images",
- *  "science", "map", "music", "it", "files", "social+media"]
+ * @param {string} options.category default=general - ["general", "news", "videos", "images",
+ *  "science","it", "files", "social+media",  "map", "music"]
  * @param {number} options.recency default=0 - ["", "day", "week", "month", "year"]
  * @param {string|boolean} options.privateSearxng default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
@@ -30,12 +30,12 @@ import { scrapeURL } from "../../index.js";
 */
 export async function searchWeb(query, options = {}) {
   const {
-    category = 0,
+    category = "general",
     recency = 0,
     privateSearxng = null,
     maxRetries = 3,
     page = 1,
-    language = "en-US",
+    lang = "en-US",
     proxy = null
   } = options;
 
@@ -45,8 +45,6 @@ export async function searchWeb(query, options = {}) {
     "videos",
     "images",
     "science",
-    "map",
-    "music",
     "it",
     "files",
     "social+media",
@@ -123,11 +121,13 @@ export async function searchWeb(query, options = {}) {
   const searchDomain = privateSearxng || "https://" +
       SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
-  const categoryName = CATEGORY_LIST[category]; // Using the first category as default
+  const categoryName = typeof category === "number" ?
+     CATEGORY_LIST[category]  : category; // Using the first category as default
+  
   const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
 
   var url = `${searchDomain}/search?q=${encodeURIComponent(query)}` +
-    `&category_${categoryName}=1&language=${language}&time_range=` +
+    `&category_${categoryName}=1&language=${lang}&time_range=` +
     `${timeRangeName}&safesearch=0&pageno=${page}`;
 
   if(privateSearxng)
@@ -139,10 +139,9 @@ export async function searchWeb(query, options = {}) {
     url = proxy + url;
 
   
-  console.log(url)
   const resultHTML = await (await fetch(url, {
     headers: {
-      "accept-language": language+",en;q=0.9",
+      "accept-language": lang+",en;q=0.9",
     }
   })).text();
 
@@ -154,16 +153,34 @@ export async function searchWeb(query, options = {}) {
 
     var {results, suggestions, infoboxes} = JSON.parse(resultHTML);
     
-    results.forEach((result) => {
-      result.url = result.url.replace(/&amp;/g, "&");
+    results = results.map((result) => {
+      var title = result.title.replace(/<\/?[^>]+(>|$)/g, "");
+
+        // Clean and normalize the title
+        const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
+
+        // Handle split titles
+        if (TITLE_SPLITTERS_RE.test(title)) {
+          const splitTitle = title.split(TITLE_SPLITTERS_RE);
+          
+          // Handle breadcrumbed titles
+          if (splitTitle.length >= 2) {
+            const longestPart = splitTitle.reduce((acc, part) => part?.length > acc?.length ? part : acc, '');
+            if (longestPart.length > 10) {
+              title = longestPart;
+            }
+          }
+        }
+
+
+      var url = result.url.replace(/&amp;/g, "&");
+      var snippet = result.content?.replace(/<\/?[^>]+(>|$)/g, "");
+      var score = Math.round(result.score * 100) / 100;
+
+      return {title, url, snippet, score};
+
     });
 
-    results = results.map(({title, url, content, score}) => {
-      return {title, url, snippet: content, score};
-    });
-
-
-    console.log(resultHTML);
     
     return results
     // return {results, suggestions};
@@ -187,7 +204,7 @@ export async function searchWeb(query, options = {}) {
     const snippetMatch = snippetRegex.exec(resultHtml);
 
     if (titleUrlMatch && titleUrlMatch[1] && titleUrlMatch[2]) {
-      const url = convertHTMLSpecialChars(titleUrlMatch[1]);
+      const url = convertHTMLToEscapedHTML(titleUrlMatch[1]);
       let title = titleUrlMatch[2].replace(/<\/?[^>]+(>|$)/g, "");
       let snippet = snippetMatch
         ? snippetMatch[1].replace(/<\/?[^>]+(>|$)/g, "")
@@ -205,8 +222,8 @@ export async function searchWeb(query, options = {}) {
       //   cached = linkMatch[1];
       // }
 
-      title = convertHTMLSpecialChars(title);
-      snippet = convertHTMLSpecialChars(snippet);
+      title = convertHTMLToEscapedHTML(title);
+      snippet = convertHTMLToEscapedHTML(snippet);
       // if (!url.includes(".de/")) 
         results.push({ title, url, snippet });
     }

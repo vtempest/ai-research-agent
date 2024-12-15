@@ -1,9 +1,12 @@
 /**
+ * ### Jaro-Winkler String Similarity Comparison
+ * <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" /> 
+ * 
  * Measures similarity between two strings, taking into account the common characters and
  * their positions. Jaro-Winkler is often used in record linkage and data cleansing to improve
  * the accuracy of string matching, particularly for names and addresses, by giving
- * more weight to the common prefix of the strings and penalizing longer string differences. 
- * It is [more optimal](https://medium.com/@appaloosastore/string-similarity-algorithms-compared-3f7b4d12f0ff) 
+ * more weight to the common prefix and penalizing longer string differences.  It is [more 
+ * optimal](https://medium.com/@appaloosastore/string-similarity-algorithms-compared-3f7b4d12f0ff) 
  * for words than [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance):
  * 1. Edit operations: Levenshtein considers insertions, deletions, and substitutions, 
  * while Jaro focuses on transpositions.
@@ -14,8 +17,8 @@
  * 4. Scale of results: Levenshtein produces an edit distance (usually converted to a similarity score), 
  * while Jaro directly produces a similarity score.
  * 
- * [A Comprehensive List of Similarity Search Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-search-algorithms/)
- * <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" > 
+ * [A Comprehensive List of Similarity Search 
+ * Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-search-algorithms/)
  * @author [Jaro, M., Winkler, W. (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
  * @param {string} s1 First string
  * @param {string} s2 Second string

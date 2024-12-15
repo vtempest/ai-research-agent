@@ -95,7 +95,7 @@ async function parseWikiPageviews(inputFile) {
 
 /**
  * Script to download, decompress, parse and process Wiki Page Titles by Views 
- *  @author Wikimedia Foundation <https://dumps.wikimedia.org/other/pageviews>
+ *  @author [Wikimedia Foundation](https://dumps.wikimedia.org/other/pageviews)
  * @returns {void} 
 
 */

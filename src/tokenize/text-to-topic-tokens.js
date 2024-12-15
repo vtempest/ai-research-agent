@@ -8,6 +8,7 @@ import {isWordCommonIgnored} from "./stopwords.js";
  */
 /**
  * ### Convert Text Query to Topic Phrase Tokens
+ * <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" /> 
  * 
  * Returns a list of phrases that are found in Wiki Titles/ dictionary phrases World Model 
  * that match the input phrase, or just the single word if found. Search results will be
@@ -16,7 +17,6 @@ import {isWordCommonIgnored} from "./stopwords.js";
  *  which should be searched as a phrase but would return different context if split into words.
  *  As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
  * 
- * <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" > 
  * @param {string} phrase
  * @param {Object} [options]
   * @param {Object} options.phrasesModel - remote model
@@ -62,8 +62,10 @@ export function convertTextToTokens(phrase, options = {}) {
     var word = words[i];
 
     //ignore 300+ common stop words
-    if (ignoreStopWords && isWordCommonIgnored(word))
+    if (ignoreStopWords && isWordCommonIgnored(word)) {//todo include as ignored
+      topics.push([word, 0, 0, "" ]);
       continue;
+    }
 
     //Find next word phrase completion list
     var firstTwoLetters = word.slice(0, 2);

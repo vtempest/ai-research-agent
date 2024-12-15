@@ -1,9 +1,11 @@
 /**
+ * ### Autocomplete Topic Phrase Completions
+ * <img width="350px"  src="https://i.imgur.com/0k5mO76.png" /> 
+ * 
  * Completes the query with the most likely next words for phrases.
  * If typing 2+ letters of a word, returns all possible words matching those few letters.
  * 
  * 
- * <img width="350px"  src="https://i.imgur.com/0k5mO76.png" > 
  * @param {string} query - The input query which can be pertial words or phrases.
  * @param {Object} [options] 
  * @param {Object} options.phrasesModel - A custom phrases model to use for autocomplete suggestions.
@@ -35,8 +37,8 @@ export async function suggestNextWordCompletions(query, options = {}) {
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions
   } = options;
 
-  if (!phrasesModel)
-    phrasesModel = await import ( "../../data/wiki-phrases-model-240k.json");
+  // if (!phrasesModel)
+  //   phrasesModel = await import ( "../../data/wiki-phrases-model-240k.json");
 
   //strip non-alphanumeric characters from query and -'
   query = query.trim().replace(/[^a-zA-Z0-9\s\-\']/g, "");

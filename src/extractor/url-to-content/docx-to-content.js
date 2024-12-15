@@ -1,9 +1,3 @@
-/**
- * @fileoverview Converts DOCX documents to HTML with comprehensive feature support
- * @module docx-parser
- * @requires jszip
- */
-
 import JSZip from 'jszip';
 
 /**
@@ -24,7 +18,6 @@ import JSZip from 'jszip';
  * @property {string} [class] - CSS class name
  */
 
-/** @type {Object.<string, StyleConfig>} */
 const STYLE_MAP = {
   paragraph: { block: true, element: 'p' },
   section: { block: true, element: 'section' },
@@ -39,7 +32,6 @@ const STYLE_MAP = {
   strong: { element: 'strong' }
 };
 
-/** @type {Object.<string, string>} */
 const TABLE_STYLES = {
   firstRow: 'table-first-row',
   lastRow: 'table-last-row',
@@ -50,12 +42,11 @@ const TABLE_STYLES = {
 /**
  * Converts a DOCX document to HTML
  * 
- * @async
  * @param {string|File|Blob|ArrayBuffer} input - DOCX input to convert
  * @param {DocxOptions} [options] - Conversion options
  * @returns {Promise<string>} The converted HTML
  * @throws {Error} If conversion fails
- * 
+ * @category Extract
  * @example
  * const html = await convertDOCXToHTML('https://example.com/doc.docx');
  * const html = await convertDOCXToHTML(fileInput.files[0]);
@@ -106,7 +97,7 @@ export async function convertDOCXToHTML(input, options = {}) {
    */
   function parseStyles(xml) {
     if (!xml) return {};
-    
+
     const styles = {
       document: {},
       paragraph: {},
@@ -163,10 +154,10 @@ export async function convertDOCXToHTML(input, options = {}) {
    */
   function parseDocument(xml, context) {
     const blocks = [];
-    
+
     // Parse sections
     const sections = xml.split(/<w:sectPr[^>]*>[\s\S]*?<\/w:sectPr>/gi);
-    
+
     sections.forEach((section, index) => {
       if (!section.trim()) return;
 
@@ -180,7 +171,7 @@ export async function convertDOCXToHTML(input, options = {}) {
         if (para) content.push(para);
       }
 
-     
+
 
       // Parse tables
       const tblRegex = /<w:tbl\b[^>]*>[\s\S]*?<\/w:tbl>/gi;
@@ -324,7 +315,7 @@ function parseParagraph(xml, context) {
 
     while ((runMatch = runRegex.exec(xml)) !== null) {
       const runXml = runMatch[1];
-      
+
       // Extract run properties
       const rPrMatch = /<w:rPr>([\s\S]*?)<\/w:rPr>/.exec(runXml);
       const runStyle = getRunStyle(rPrMatch?.[1]);
@@ -412,7 +403,7 @@ function generateHtml(content, styles) {
       .map(([key, value]) => {
         // Skip null/undefined values
         if (value == null) return '';
-        
+
         // Handle boolean properties
         if (key === 'bold') return value ? 'font-weight: bold' : '';
         if (key === 'italic') return value ? 'font-style: italic' : '';
@@ -448,18 +439,18 @@ function generateHtml(content, styles) {
           ? `<span style="${style}">${run.text}</span>`
           : run.text;
       }
-      
+
       case 'tab':
         return '&nbsp;&nbsp;&nbsp;&nbsp;';
-      
+
       case 'break':
         return '<br>';
-      
+
       case 'hyperlink': {
         const style = styleToCSS(run.style);
         return `<a href="${run.target}"${style ? ` style="${style}"` : ''}>${run.text || run.target}</a>`;
       }
-      
+
       default:
         return '';
     }
@@ -482,7 +473,7 @@ function generateHtml(content, styles) {
     const styleId = paragraph.style?.styleId;
     if (styleId && styles?.paragraph?.[styleId]) {
       const baseStyle = styles.paragraph[styleId];
-      
+
       // Convert headings
       if (baseStyle.heading) {
         const level = parseInt(styleId.match(/Heading(\d+)/)?.[1] || '1');
@@ -607,13 +598,13 @@ function generateHtml(content, styles) {
     .join('\n');
 
   return `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-${css}
-</head>
-<body>
-${bodyContent}
-</body>
-</html>`;
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    ${css}
+    </head>
+    <body>
+    ${bodyContent}
+    </body>
+    </html>`;
 }

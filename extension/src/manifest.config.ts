@@ -11,7 +11,7 @@ export default defineManifest(async (env) => ({
   version: `${major}.${minor}.${patch}`,
   version_name: version,
   description: "Debate AI - Collaborative Research ",
-  permissions: ["sidePanel", "scripting", "contextMenus", "tabs", 
+  permissions: ["sidePanel", "scripting", "contextMenus", "tabs", "favicon",
     "activeTab", "webRequest", "declarativeNetRequest"],
   host_permissions: ["<all_urls>"],
   background: {
@@ -21,15 +21,16 @@ export default defineManifest(async (env) => ({
     default_path: "src/pages/sidepanel/index.html",
   },
 
-  options_page: "index.html",
+  //loads entire site as page inside the chrome extension
+  // options_page: "index.html",
 
   action: {
     default_title: "Search Tools",
   },
 
   icons: {
-    "48": "src/assets/icons/logo-48.png",
-    "128": "src/assets/icons/logo-128.png",
+    "48": "src/assets/icons/icon-48.png",
+    "128": "src/assets/icons/icon-128.png",
   },
   commands: {
     _execute_action: {
@@ -54,5 +55,10 @@ export default defineManifest(async (env) => ({
       resources: ["src/*", "*.svg"],
       matches: ["<all_urls>"],
     },
+    {
+      resources: ["_favicon/*"],
+      matches: ["<all_urls>"]
+    }
+
   ],
 }));

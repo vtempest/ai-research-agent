@@ -1,9 +1,5 @@
 import usearch from "usearch";
-import {
-  getEmbeddingModel,
-  convertTextToEmbedding,
-  addEmbeddingVectorsToIndex,
-} from "./similarity-vector.js";
+
 
 // Main implementation
 async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
@@ -28,6 +24,73 @@ async function searchVectorIndex(index, query, options = {}) {
 
   return resultJson;
 }
+
+
+
+
+/**
+ * <img src="https://i.imgur.com/wtJqEqX.png" width="350" /> 
+ * Text embeddings convert words or phrases into numerical vectors in a high-dimensional
+ * space, where each dimension represents a semantic feature extracted by a model like
+ * MiniLM-L6-v2. In this concept space, words with similar meanings have vectors that
+ * are close together, allowing for quantitative comparisons of semantic similarity.
+ * These vector representations enable powerful applications in natural language processing,
+ * including semantic search, text classification, and clustering, by leveraging the
+ * geometric properties of the embedding space to capture and analyze the relationships
+ * between words and concepts.
+ * [Text Embeddings, Classification, and Semantic Search
+ *  (Youtube)](https://www.youtube.com/watch?v=sNa_uiqSlJo&t=129s)
+ *
+ * @param {string} text - The text to embed.
+ * @param {Object} [options]
+ * @param {AutoTokenizer} options.pipeline
+ *  - The pipeline to use for embedding.
+ * @param {number} options.precision default=4 - The number of decimal places to round to.
+ * @returns {Promise<{embeddingsDict: Object.<string, number[]>, embedding: number[]}>}
+  * @category Similarity
+  */
+export async function convertTextToEmbedding(text, options = {}) {
+  var { precision = 4, pipeline } = options;
+
+  if (!pipeline) pipeline = await getEmbeddingModel();
+
+  const embedding = await pipeline(text, { pooling: "mean", normalize: true });
+  // return embedding;
+  const roundedEmbedding = Array.from(embedding.data).map((num) =>
+    parseFloat(num.toFixed(precision))
+  );
+  return roundedEmbedding;
+}
+
+/**
+ * Initialize HuggingFace Transformers pipeline for embedding text.
+ * 
+ * <img src="https://i.imgur.com/3R5Tsrf.png" width="350px" />
+ * @param {Object} [options]
+ * @param {string} options.pipelineName default "feature-extraction",
+ * @param {string} options.modelName default="Xenova/all-MiniLM-L6-v2" - 
+ * The name of the model to use
+ * @returns {Promise<import("@huggingface/transformers").AutoTokenizer>} The pipeline.
+  * @category Similarity
+  */
+export async function getEmbeddingModel(options = {}) {
+  // const {pipeline} = await import("../../../transformers.js/dist/transformers")
+  const {pipeline} = await import("@huggingface/transformers")
+  const {
+    pipelineName = "feature-extraction",
+    modelName = "Xenova/all-MiniLM-L6-v2",
+    quantized = true,
+    gpu = false,
+  } = options;
+  
+  return await pipeline(pipelineName, modelName, {
+    quantized,
+    dtype: "fp32",
+    device: gpu ? "cuda" : "cpu",
+  });
+}
+
+
 
 import fs from "fs";
 // Example usage

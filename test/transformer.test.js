@@ -2,7 +2,7 @@ import { test, expect } from "vitest";
 import { torch } from "../index.js"
 
 
-test("neural net - transformer", async () => {
+test("should train a self-attention transformer with Adam k,v,q  and GPU.js", async () => {
   const nn = torch.nn;
   const optim = torch.optim;
   const device = "gpu";

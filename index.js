@@ -1,95 +1,118 @@
-import { searchWeb } from "./src/search/search-web.js";
+/**
+ * @author vtempest <grokthiscontact@gmail.com>
+ * @license AGPL-3.0 Organizations should email grokthiscontact@gmail.com 
+ * to get a dual-use commercial license to remove the GPL requirements.
+ */
+export { searchWeb } from "./src/search/search-web.js";
 
-import { searchSTREAM } from "./src/search/search-stream.js";
+export { searchSTREAM } from "./src/search/search-stream.js";
 
-import { extractContent } from "./src/extractor/url-to-content/url-to-content.js";
+export { extractContent } from "./src/extractor/url-to-content/url-to-content.js";
 
-import { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
+export { scrapeURL } from "./src/extractor/url-to-content/scrape-url.js";
 
-import { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
+export { extractSEEKTOPIC } from "./src/topics/seektopic-keyphrases.js";
 
-import { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
-import { convertLanguageReplyToJSON } from "./src/generate/languagereply-to-json.js";
+export { weighRelevanceConceptVectorAPI } from "./src/similarity/similarity-remote-api.js";
 
-import {
-  convertHTMLSpecialChars,
+export { convertLanguageReplyToJSON } from "./src/agents/languagereply-to-json.js";
+
+export { highlightCodeSyntax } from "./src/interface/highlight-code.js";
+
+export {
+  convertHTMLToEscapedHTML,
   convertMarkdownToHTML,
   copyHTMLToClipboard,
   convertURLToAbsoluteURL,
-  convertMathLaTexToImage,
 } from "./src/extractor/html-to-content/html-utils.js";
 
-import { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
+export { convertYoutubeToText } from "./src/extractor/url-to-content/youtube-to-text.js";
 
-import { convertPDFToHTML } from "./src/extractor/url-to-content/pdf-to-content.js";
+export { convertPDFToHTML } from "./src/extractor/pdf-to-html/pdf-to-html.js";
 
-import { extractTopicTermGroupsLDA } from "./src/topics/topic-distribution.js";
+export { extractTopicTermGroupsLDA } from "./src/topics/topic-distribution.js";
 
-import { weighSimilarityByCharacter } from "./src/match/compare-letters.js";
+export { weighSimilarityByCharacter } from "./src/match/compare-letters.js";
 
-import { suggestNextWordCompletions } from "./src/tokenize/suggest-complete-word.js";
+export { suggestNextWordCompletions } from "./src/tokenize/suggest-complete-word.js";
 
-import { convertTextToTokens } from "./src/tokenize/text-to-topic-tokens.js";
+export { convertTextToTokens } from "./src/tokenize/text-to-topic-tokens.js";
 
-import { splitSentences } from "./src/tokenize/sentences.js";
+export { splitSentences } from "./src/tokenize/text-to-sentences.js";
 
-import { splitTextSemanticChars } from "./src/tokenize/text-to-chunks.js";
+export { splitTextSemanticChars } from "./src/tokenize/text-to-chunks.js";
 
-import { searchWikipedia } from "./src/search/search-wikipedia.js";
+export { searchWikipedia } from "./src/search/search-wikipedia.js";
 
-import { matchQUASAR } from "./src/match/match-quasar.js";
+export { matchQUASAR } from "./src/match/match-quasar.js";
 
-import { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequency.js";
+export { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequency.js";
 
-import { convertEmbeddingsToUMAP } from "./src/similarity/embeddings-to-graph.js";
+export { convertEmbeddingsToUMAP } from "./src/similarity/embeddings-to-graph.js";
 
-import {
+export { getAgentPrompts } from "./src/agents/agent-prompts.js";
+
+export { searchEngines } from "./src/search/search-engines.js";
+
+export {
   addEmbeddingVectorsToIndex,
   searchVectorIndex,
   getAllEmbeddings,
   convertTextToEmbedding,
   getEmbeddingModel,
-  exportEmbeddingsIndex,
-  importVectorIndexFromString,
 } from "./src/similarity/similarity-vector.js";
 
+export { convertDOCXToHTML } from "./src/extractor/url-to-content/docx-to-content.js";
 
-import { convertDOCXToHTML } from "./src/extractor/url-to-content/docx-to-content.js";
+export { extractMainContentFromHTML } from "./src/extractor/html-to-content/extract-content/extract-content-readability.js";
 
-import { extractMainContentFromHTML } from "./src/extractor/html-to-content/extract-content/extractor1-content.js";
-import { extractMainContentFromHTML2 } from "./src/extractor/html-to-content/extract-content/extractor2-content.js";
-import { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";
-import { extractCite } from "./src/extractor/html-to-cite/extract-cite.js";
-import { stemWordToRoot } from "./src/tokenize/word-to-root-stem.js";
-import { extractFavicon } from "./src/extractor/html-to-cite/url-to-favicon.js";
-import { embedYoutubePlayer } from "./src/interface/youtube-embed.js";
+export { extractMainContentFromHTML2 } from "./src/extractor/html-to-content/extract-content/extract-content-mercury.js";
 
-import { generateLanguageModelReply } from "./src/generate/generate-reply-api.js";
+export { convertHTMLToBasicHTML } from "./src/extractor/html-to-content/html-to-basic-html.js";
 
-// import {compileTopicModel} from "./src/dataset-import/compile-topic-model.js"
-// import { torch } from "./src/train/neural-net.js";
-// gpu.js needs bun compatibility
+export { extractCite } from "./src/extractor/html-to-cite/extract-cite.js";
 
-// Export all functions as named exports
+export { stemWordToRoot } from "./src/tokenize/word-to-root-stem.js";
+
+
+export { embedYoutubePlayer } from "./src/interface/youtube-embed.js";
+
 export {
   generateLanguageModelReply,
+  CHAT_MODELS,
+} from "./src/agents/generate-reply-api.js";
+
+
+export {
+  convertOpenAPIToAgentTools
+} from "./src/agents/api2ai.js";
+
+
+
+// export {compileTopicModel} from "./src/dataset-export/compile-topic-model.js"
+// export { torch } from "./src/train/neural-net.js";
+// gpu.js needs bun compatibility
+
+/** Export all functions as named exports
+export {
+  CHAT_MODELS,
+  getAgentPrompts,
+  generateLanguageModelReply,
   convertMarkdownToHTML,
-  importVectorIndexFromString,
-  convertHTMLSpecialChars,
+  convertHTMLToEscapedHTML,
   convertPDFToHTML,
   extractContent,
   extractFavicon,
   embedYoutubePlayer,
   stemWordToRoot,
   copyHTMLToClipboard,
-  convertMathLaTexToImage,
   extractCite,
   convertDOCXToHTML,
   convertLanguageReplyToJSON,
   extractMainContentFromHTML,
   extractMainContentFromHTML2,
   convertHTMLToBasicHTML,
-  exportEmbeddingsIndex,
+  highlightCodeSyntax,
   addEmbeddingVectorsToIndex,
   convertEmbeddingsToUMAP,
   convertTextToEmbedding,
@@ -113,3 +136,5 @@ export {
   weighRelevanceTermFrequency,
   extractTopicTermGroupsLDA,
 };
+
+ */

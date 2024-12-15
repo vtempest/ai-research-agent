@@ -2,7 +2,8 @@ import JSZip from "jszip";
 
 /**
  * Compress/decompress any data (such as JSON or text) with JSZip then 
- * convert zip binary to a Base64Zip text string which is easier to store in db or files.
+ * convert zip binary to a Base64Zip text string which is easier to
+ *  store in db or files.
  * @param {string} dataOrZip data to compress, or Base64Zip to decompress
  * @param {Object} [options]
   * @param {number} options.compressionLevel default=9 0-9, 9 has smallest size  at ~40%  but takes longer

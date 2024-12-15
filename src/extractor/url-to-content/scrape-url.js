@@ -1,3 +1,5 @@
+import { convertHTMLToBasicHTML } from "../html-to-content/html-to-basic-html.js";
+import {convertMarkdownToHTML} from "../html-to-content/html-utils.js";
 
 /**
  * ### Tardigrade the Web Crawler 
@@ -17,6 +19,13 @@
  * to bypass Cloudflare anti bot using cookie id javascript method.
  * 6. Send your request to the server with the port 3000 and add your URL to the "url"
  *  query string like this: `http://localhost:3000/?url=https://example.org`
+ * 
+ * 7. Optional: Setup residential IP proxy to access sites that IP-block datacenters
+ *  and manage rotation with [Scrapoxy](https://scrapoxy.io). Recommended:
+ * [Hypeproxy](https://hypeproxy.io/products/static-residential-proxies)
+ * [NinjasProxy](https://ninjasproxy.com/residential-proxies/)
+ * [Proxy-Cheap](https://app.proxy-cheap.com/order)
+ * [LiveProxies](https://liveproxies.io/rotating-residential-proxies-pricing)
  *
  * @param {string} url - any domain's URL
  * @param {Object} [options]
@@ -25,7 +34,6 @@
  * @param {number} options.checkBotDetection default=true - check for bot detection messages
  * @param {number} options.changeReferer default=true - set referer as google
  * @param {number} options.userAgentIndex default=0 - index of [google bot, default chrome]
- * @param {number} options.useCORSProxy default=false - use 60%-working corsproxy.io (in frontend JS)
  * @param {string} options.proxy default=false - use proxy url
  * @param {boolean} options.checkRobotsAllowed default=false - check robots.txt rules
  * @returns {Promise<string>} -  HTML, JSON, arraybuffer, or error object
@@ -41,7 +49,6 @@ export async function scrapeURL(url, options = {}) {
       maxRedirects = 3,
       changeReferer = 0,
       userAgentIndex = 0,
-      useCORSProxy = false,
       proxy = null,
       useProxyAsBackup = true,
       checkRobotsAllowed = false,
@@ -49,7 +56,6 @@ export async function scrapeURL(url, options = {}) {
 
     if(checkRobotsAllowed) {
       const rules = await fetchScrapingRules(url);
-      //TODO cache rules per domain
       if(!isAllowedToScrape(rules, url)) {
         return { error: "Robots.txt forbids to scrape there" };
       }
@@ -59,7 +65,7 @@ export async function scrapeURL(url, options = {}) {
     if(proxy)
       url = proxy +   url;
 
-    // console.log(url);
+    // console.log(url)
 
     var userAgentStrings =
       ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
@@ -92,23 +98,64 @@ export async function scrapeURL(url, options = {}) {
     //return based on content type
     const contentType = response.headers.get("Content-Type");
 
-    if (contentType.includes("application/json")) {
-      return await response.json();
-    } else if (contentType.includes("text")) {
+    // if (contentType.includes("application/json")) {
+    //   return await response.json();
+    // } else 
+    // if (contentType.includes("text")) {
       var html = await response.text();
-      if (checkBotDetection && isHTMLBotDetection(html))
-        return { error: "Bot detected" }; //, html: response.html };
+      if (checkBotDetection && checkHTMLForBotDetection(html)){
 
+
+
+        html = await scrapeJINA(url)
+
+        console.log(html)
+        //if all methods fail -- return jina
+        if (checkBotDetection && checkHTMLForBotDetection(html))
+          return { error: "Bot detected" }; //, html: response.html };
+
+      }
 
 
       return html;
-    } else {
-      // For other types, return as arrayBuffer
-      return await response.arrayBuffer();
-    }
+    // } else {
+    //   // For other types, return as arrayBuffer
+    //   return await response.arrayBuffer();
+    // }
   // } catch (e) {
   //   return { error: "Error in fetch", msg: e.message };
   // }
+}
+
+/**
+ * As backup, scrape with JINA to get html
+ * @param {string} url
+ * @returns {Promise<string>}
+ */
+async function scrapeJINA(url) {
+    var articleExtract = await (
+      await fetch("https://r.jina.ai/" + url)
+    ).text();
+
+    //convert Title: to <title>
+    var title = articleExtract.match(/Title: (.*)/)?.[1];
+
+
+    if (articleExtract.includes("===============\n"))
+      articleExtract = articleExtract
+        .split("===============\n")
+        .slice(1)
+        .join(" ");
+
+    var match = articleExtract.match(/Markdown Content:([\s\S]*)/);
+    articleExtract = match ? match[1] : articleExtract;
+
+    articleExtract = convertMarkdownToHTML(articleExtract);
+
+    if (title)
+      articleExtract = "<title>" + title + "</title>" + articleExtract;
+
+    return articleExtract;
 }
 
 /**
@@ -116,7 +163,7 @@ export async function scrapeURL(url, options = {}) {
  * @param {string} html
  * @returns {Boolean} true if bot detection message found
  */
-function isHTMLBotDetection(html) {
+function checkHTMLForBotDetection(html) {
   var commonBlocks = [
     "The security system for this website has been triggered",
     "You do not have permission to view this page.",
@@ -140,13 +187,18 @@ function isHTMLBotDetection(html) {
     "Enable JavaScript and cookies to continue",
     "Something went wrong. Wait a moment and try again.",
     "You’re using a web browser that isn’t supported",
-    "You can’t perform that action at this time.",
     "403 Forbidden",
     "504 Gateway Timeout",
+    "Our systems have detected unusual activity",
     "Agree & Join LinkedIn",
     "Verifying you are human. This may take a few seconds",
     "500 Internal Server Error",
     "By clicking Continue to join or sign in, you agree to LinkedIn",
+    "Enable JS in your browser",
+    "Verifying you are human",
+    "Your request has been blocked",
+    "You've been blocked by network security",
+    "Slow down, turbo! You've hit the rate limit."
   ];
 
   return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
@@ -160,8 +212,7 @@ function isHTMLBotDetection(html) {
  * @returns {Promise<Object>} A JSON object representing the parsed robots.txt.
  */
 export async function fetchScrapingRules(url) {
-  const hostname = url.split('//')[1].split('/')[0];
-  const robotsUrl = `https://${hostname}/robots.txt`;
+  const robotsUrl = `https://${url.split('//')[1].split('/')[0]}/robots.txt`;
   const content = await (await fetch(robotsUrl)).text();
   const rules = {
     directives: {},
@@ -203,6 +254,7 @@ export async function fetchScrapingRules(url) {
 
 /**
  * Checks if a given path is allowed for a specific user agent.
+ * //TODO cache rules per domain
  * @param {Object} rules - The parsed rules from robots.txt.
  * @param {string} path - The path to check.
  * @param {string} [userAgent='*'] - The user agent to check for.

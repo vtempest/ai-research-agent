@@ -1,28 +1,29 @@
 import { extractContentAndCite } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
-import { convertPDFToHTML, isUrlPDF } from "./pdf-to-content.js";
+import { convertPDFToHTML } from "../pdf-to-html/pdf-to-html.js";
+import {  isUrlPDF } from "../pdf-to-html/util/is-url-pdf.js";
 import { convertDOCXToHTML } from "./docx-to-content.js";
-
 import { scrapeURL } from "./scrape-url.js";
 
 /**
  * @typedef {Object} Article
+ * @property {string} cite - Cite in APA Format with Author name in Last, First Initial format
+ * @property {string} html - The Basic HTML content of the article
  * @property {string} url - The URL of the article
- * @property {string} html - The HTML content of the article
- * @property {string} author - The author of the article
- * @property {string} author_cite - Author name in Last, First Middle format
+ * @property {string} author - The full name of the author of the article
+ * @property {string} author_cite - Author name in Last, First Initial format
  * @property {string} author_short - Author name in Last format
  * @property {number} author_type - Author type ["single", "two-author", "more-than-two", "organization"]
  * @property {string} date - The publication date of the article
  * @property {string} title - The title of the article
- * @property {string} source - The source or origin of the article
+ * @property {string} source - The source or publisher of the article
  * @property {number} word_count - The word count of the full text (without HTML tags)
  * @category Extract
  */
 
 /**
  * ### 🚜📜 Tractor the Text Extractor 
- * <img width="350px"  src="https://i.imgur.com/cRewT07.png" >
+ * <img width="350px"  src="https://i.imgur.com/cRewT07.png" />
  * 
  * 1. Main Content Detection: Extract the main content from a URL by combining 
  * Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 
@@ -34,7 +35,7 @@ import { scrapeURL } from "./scrape-url.js";
  * retrieve the complete video transcript including both manual captions and 
  * auto-generated subtitles, maintaining proper timestamp synchronization and 
  * speaker identification where available.
- * 4. PDF Text Extraction and Structure: Process PDF documents by extracting
+ * 4. PDF to HTML: Process PDF documents by extracting
  *  formatted text while intelligently handling line breaks, page headers, 
  *  footnotes. The system analyzes text height statistics to automatically
  *  infer heading levels, creating a properly structured document hierarchy
@@ -54,7 +55,7 @@ import { scrapeURL } from "./scrape-url.js";
  * are preserved and properly formatted for the intended use case.
  * @param {document|string} urlOrDoc - url or dom object with article content
  * @param {Object} [options]
-  * @param {boolean} options.images default=true - include images
+ * @param {boolean} options.images default=true - include images
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
@@ -62,15 +63,15 @@ import { scrapeURL } from "./scrape-url.js";
  * @returns {{  
  *  title: string,
  *  author_cite: string,
- *  author_short: string,
+ *  cite: string,
  *  author: string,
  *  date: string,
  *  source: string,
  *  html: string,
  *  word_count: number
  * }} 
- 
-  *  url - The URL of the article
+  * cite - Cite in APA Format with Author name in Last, First Initial format
+  * url - The URL of the article
   *  html - The HTML content of the article
   *  author - The author of the article
   *  author_cite - Author name in Last, First Middle format
@@ -89,8 +90,10 @@ export async function extractContent(urlOrDoc, options = {}) {
     links = true,
     formatting = true,
     absoluteURLs = true,
-    timeout = 5,
+    timeout = 10,
     proxy = null,
+    citeFormatMonthFull = false,
+    citeFormatAuthorFull = true
   } = options;
   var response = {};
 
@@ -98,6 +101,7 @@ export async function extractContent(urlOrDoc, options = {}) {
 
   //url  to fetch
   if (typeof urlOrDoc === "string") {
+
     var url = urlOrDoc;
 
     isPdf = url.endsWith(".pdf");
@@ -110,32 +114,31 @@ export async function extractContent(urlOrDoc, options = {}) {
       response = await convertPDFToHTML(url, options);
 
 
-    } else if (url.endsWith(".docx")){
+    } else if (url.endsWith(".docx")) {
 
       response.html = await convertDOCXToHTML(url)
 
       // check youtube
     } else if (youtubeID) {
-      var { content, timestamps } = await convertYoutubeToText(url, options);
+      response = await convertYoutubeToText(url, options);
 
-      response.html = content;
-      response.timestamps = timestamps;
     } else {
-      try {
+      // try {
         var html = await scrapeURL(url, {
-          proxy
+          proxy,
         });
-      } catch (e) {
-        return { error: "Error in fetch", msg: e.message };
-      }
-      if (html.error){
-        return { error: "Error in fetch", msg: html.error };
-      }
+      // } catch (e) {
+      //   return { error: "Error in fetch", msg: e };
+      // }
+      // if (html.error) {
+      //   return { error: "Error in fetch", msg: html.error };
+      // }
       options.url = url;
       response = extractContentAndCite(html, options);
+
     }
   } else if (typeof urlOrDoc == "object") {
-    //if passing in dom object document
+    //if passing in dom object document from front end
 
     var url = urlOrDoc.location.href;
 
@@ -149,17 +152,18 @@ export async function extractContent(urlOrDoc, options = {}) {
     if (isPdf)
       // pdf checker
       response = await convertPDFToHTML(url, {});
-    if (youtubeID) {
-      var { content, timestamps } = await convertYoutubeToText(url);
-
-      response.html = content;
-      response.timestamps = timestamps;
+    else if (youtubeID) { // from front end
+      
+      //if on same domain page in chrome-extension
+      options.useThirdPartyBackup = false;
+      response = await convertYoutubeToText(url, options);
 
     } //pass doc to extract
     else response = extractContentAndCite(urlOrDoc, options);
   }
 
-  if (!response.html || response.html?.length == 0) return { error: "No text" };
+  //if no text
+  if (response.error ||!response.html) return { error: response.error };
 
   //word count of full text original, no html
   response.word_count = response.html
@@ -169,13 +173,18 @@ export async function extractContent(urlOrDoc, options = {}) {
   //make cite
 
   var { author, author_cite, author_short, date, title, source } = response;
-  
-  var cite = `${author_cite} ${date ? `(${new Date(date).getFullYear()}, ${new Date(
-    date).toLocaleDateString('en-US', {month: 'long', day: 'numeric'})}).` : 
-    ''} <strong>${title || ''}</strong>. <i>${source || ''}</i>. ${url || ''}`;
+
+  var apa_cite_date = new Date(date).getFullYear() > 1971 ? " (" + 
+    new Date(date).getFullYear() + ", " + new Date(date).toLocaleDateString('en-US', 
+      { month: citeFormatMonthFull ? 'long' : 'short', day: 'numeric' }) + ")" 
+      : "" //"(N.D.)";
+
+  var cite = `${author_cite || source || " "}${apa_cite_date}. <b>${title 
+    || ''}</b>. <i>${source || ''}</i>. <a href="${url}" target="_blank">${url}</a>`;
 
   //put url on top
   response = Object.assign({ url, cite }, response);
 
   return response;
+  
 }

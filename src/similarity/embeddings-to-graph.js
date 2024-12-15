@@ -2,6 +2,7 @@ import { UMAP } from "umap-js/lib/umap-js.js";
 
 
 /**
+ * 
  * ### UMAP: Convert Embeddings to 2D or 3D Graph
  * 
  * UMAP (Uniform Manifold Approximation and Projection) is a dimensionality reduction technique that 
@@ -28,12 +29,14 @@ import { UMAP } from "umap-js/lib/umap-js.js";
  * 6. **Visualization**: The resulting UMAP coordinates can reveal clusters, patterns, and 
  *    relationships in the data that were not easily visible in the original high-dimensional space.
  * 
- * [Understanding UMAP](https://pair-code.github.io/understanding-umap/) <br>
- * [UMAP Algorithm Overview](https://www.youtube.com/watch?v=VPq4Ktf2zJ4) <br>
+ * [Understanding UMAP](https://pair-code.github.io/understanding-umap/) 
  * 
- * <img src="https://i.imgur.com/Wzat3qY.png" width="1000px">
- * <img src="https://github.com/QwkSearch/datamapplot/blob/main/examples/plot_simple_arxiv.png?raw=true" width="1000px">
- * <img src="https://github.com/QwkSearch/datamapplot/raw/main/examples/ArXiv_example.gif" width="1000px">
+ * [UMAP Algorithm Overview](https://www.youtube.com/watch?v=VPq4Ktf2zJ4) 
+ * 
+ * <img src="https://i.imgur.com/7H7DbnU.png" />
+ * <img src="https://i.imgur.com/Wzat3qY.png" width="1000px" />
+ * <img src="https://github.com/TutteInstitute/datamapplot/blob/main/examples/plot_simple_arxiv.png?raw=true" width="1000px"/>
+ * <img src="https://github.com/TutteInstitute/datamapplot/raw/main/examples/ArXiv_example.gif" width="1000px"/>
  * 
  * @param {Object.<string, number[]>} embeddingsDict - The dictionary of embeddings.
  * @param {Object} [options]
@@ -75,11 +78,3 @@ export async function convertEmbeddingsToUMAP(embeddingsDict, options = {}) {
 
   return plotDataArray;
 }
-
-
-/**
- * @typedef {Object} PlotDataPoint
- * @property {number} x - The x-coordinate in the UMAP plot.
- * @property {number} y - The y-coordinate in the UMAP plot.
- * @property {string} label - The label associated with this data point.
- */

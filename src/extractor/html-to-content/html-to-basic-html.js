@@ -1,5 +1,5 @@
 import {
-  convertHTMLSpecialChars,
+  convertHTMLToEscapedHTML,
   convertURLToAbsoluteURL,
   convertMathLaTexToImage
 } from "./html-utils.js";
@@ -34,6 +34,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     videos = true,
     formatting = true,
     url = "",
+    openLinksNewWindow = false,
     mathLatex = true,
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
       ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
@@ -54,35 +55,34 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .concat("text,tagName".split(","));
 
   // Convert html string to array like [{tag:"p",attr:""},{text:""}]
-  var basicHtml = convertHTMLToTokens(html)
+  var basicHtml = convertHTMLToTokens(html);
   if (!basicHtml) return;
 
   basicHtml = basicHtml.filter(
-      (token) =>
-        token.text ||
-        (token.tagName[0] == "/"
-          ? allowTags.includes(token.tagName?.substring(1).toLowerCase())
-          : allowTags.includes(token.tagName.toLowerCase()))
-    )
+    (token) =>
+      token.text ||
+      (token.tagName[0] == "/"
+        ? allowTags.includes(token.tagName?.substring(1)?.toLowerCase())
+        : allowTags.includes(token.tagName?.toLowerCase()))
+  )
     .map((el) => {
       for (var key of Object.keys(el))
         if (!allowedAttributes.includes(key)) delete el[key];
 
-      //convert relative urls to absolute urls
       var urlValue = el.href || el.src;
 
-      // const matchdomain = url.match(/^(https?:\/\/[^\/]+)/i);
-      // const domain = matchdomain ? matchdomain[1] : null;
-
-      if (urlValue) {
-        //non-anchor links should be opened in new window
+      //non-anchor links should be opened in new window
+      if (urlValue && openLinksNewWindow)
         if (!urlValue.startsWith("#")) el.target = "_blank";
 
-        urlValue = convertURLToAbsoluteURL(url, urlValue);
+      //convert relative urls to absolute urls
+      if (el.src)
+        el.src = new URL(urlValue, url).href;
+      if (el.href)
+        el.href = new URL(urlValue, url).href;
 
-        if (el.href) el.href = urlValue;
-        if (el.src) el.src = urlValue;
-      }
+      // convertURLToAbsoluteURL(url, urlValue);
+
 
       return el;
     })
@@ -90,18 +90,18 @@ export function convertHTMLToBasicHTML(html, options = {}) {
       acc += el.text
         ? `${el.text}`
         : `<${el.tagName}${Object.keys(el).length > 1 ? " " : ""}${Object.keys(
-            el
-          )
-            .filter((key) => key != "tagName" && key != "text")
-            .map((key) => `${key}="${el[key]}"`)
-            .join(" ")}>`;
+          el
+        )
+          .filter((key) => key != "tagName" && key != "text")
+          .map((key) => `${key}="${el[key]}"`)
+          .join(" ")}>`;
       return acc;
     }, "")
     .replace(/ \s+/g, " ")
     .replace(/<p><\/p>/g, " ")
     .replace(/[\r\n\t]+/g, " "); //remove linebreaks
 
-  basicHtml = convertHTMLSpecialChars(basicHtml).replace(/&nbsp;/g, " ");
+  basicHtml = convertHTMLToEscapedHTML(basicHtml).replace(/&nbsp;/g, " ");
 
   // // CNN news edge case of data=attr <> inside of attr
   // const reHTMLInsideDataAttr =
@@ -109,7 +109,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
   // if (reHTMLInsideDataAttr.test(html))
   //   html = html.replaceAll(reHTMLInsideDataAttr, "");
 
-  if(mathLatex)
+  if (mathLatex)
     basicHtml = convertMathLaTexToImage(basicHtml);
 
   return basicHtml;
@@ -178,16 +178,16 @@ export function convertHTMLToTokens(html) {
         .match(/ \w+=("(?:[^"\\]|\\.\s)*")/g)
         ?.forEach((attr) => {
           attr = attr.trim();
-          
+
 
           var key = attr.split("=")[0];
           var value = attr.slice(key.length + 2, -1);
-          if (key == "srcset"){
+          if (key == "srcset") {
             key = "src";
             value = value.split(',')[0].trim().split(' ')[0];
           }
 
-          if (key && value) 
+          if (key && value)
             domElement[key] = value?.replace(/"/g, "");
         });
     }
@@ -260,9 +260,9 @@ export function addDOMFunctions(domObject) {
         acc += el.text
           ? `${el.text}`
           : `<${el.tagName} ${Object.keys(el)
-              .filter((key) => key != "tagName" && key != "text")
-              .map((key) => `${key}="${el[key]}"`)
-              .join(" ")}>`;
+            .filter((key) => key != "tagName" && key != "text")
+            .map((key) => `${key}="${el[key]}"`)
+            .join(" ")}>`;
         return acc;
       }, "");
     },

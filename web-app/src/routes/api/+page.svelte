@@ -9,7 +9,7 @@
     const { default: SwaggerUIBundle } = await import(
       "swagger-ui-dist/swagger-ui-bundle"
     );
-    SwaggerUI = SwaggerUIBundle({
+    SwaggerUIBundle({
       dom_id: "#swagger-ui",
       url: "/openapi.yaml", // Path to the OpenAPI spec (in this case served from static)
       presets: [SwaggerUIBundle.presets.apis],

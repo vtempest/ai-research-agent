@@ -1,7 +1,10 @@
 {
+  "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "$lib/*": ["./src/lib/*"]
+    },
     "target": "ESNext",
     "module": "ESNext",
     "resolveJsonModule": true,
@@ -9,14 +12,14 @@
     "checkJs": false,
     "isolatedModules": false,
     "skipLibCheck": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "include": [
     "./src/",
-    "index.js"
-  ],
+    "index.js"   ],
   "exclude": [
     "node_modules",
-    "dist"
   ]
 }

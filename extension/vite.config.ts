@@ -11,13 +11,17 @@ export default defineConfig({
     svelte(), crx({ manifest })],
     server: {
         port: 5173,
-        strictPort: true,
+        strictPort: false,
+        hmr: {
+            clientPort: 5173,
+        },
     },
     build: {
       rollupOptions: {
+        external: ['$app/environment'],
         input: {
           sidepanel: 'src/pages/sidepanel/index.html',
-          options: 'index.html'
+          // options: 'index.html'
         },
         
         
@@ -27,8 +31,10 @@ export default defineConfig({
     resolve: {
       alias: {
         $lib: path.resolve("../web-app/src/lib"),
+        $utils: path.resolve("../web-app/src/lib/utils/classname"),
         $assets: path.resolve("../web-app/src/assets"),
         $components: path.resolve("../web-app/src/lib/components"),
+        "$ai-research-agent": path.resolve("../"),
       },
     },
 });

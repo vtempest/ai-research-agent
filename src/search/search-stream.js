@@ -3,6 +3,8 @@ import {extractContent} from "../../index.js";
 
 /**
  * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
+ *  <img width="350px"  src="https://i.imgur.com/l5AFrS0.png"  /> 
+ * 
  * 1. Searches the Web for the query via metasearch of major engines or custom data.<br />
  * 2. Extracts text of top results using Tractor the Text Extractor.<br />
  * 3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.<br />
@@ -11,7 +13,6 @@ import {extractContent} from "../../index.js";
  * 5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq 
  *  Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
  *
- *  <img width="350px"  src="https://i.imgur.com/l5AFrS0.png" > 
  * @param {string} query - The search query string.
  * @param {Object} [options]
  * @param {number} options.categoryIndex default=0 - Index of the search category.

@@ -1,38 +1,49 @@
-import { searchSTREAM, searchWeb } from "$airesearchagent";
+import {  searchWeb } from "$ai-research-agent";
+
 import { json } from "@sveltejs/kit";
-import { searxngDomain, proxy } from "$lib/config/config.js";
+import { searxngDomain, proxy } from "$lib/middleware/config";
 
 
 export async function GET({ url }) {
-  const query = url.searchParams.get("q");
-  const category = parseInt(url.searchParams.get("cat") || "0");
-  const recency = parseInt(url.searchParams.get("time") || "0");
-  var optionUsePublicSearxng = (url.searchParams.get("public") || "false") === "true";
-  const maxTopResultsToExtract = parseInt(
-    url.searchParams.get("limitExtract") || "4"
-  );
-  const page = parseInt(url.searchParams.get("page") || "1");
+  const {
+    q: query,
+    cat = "general",
+    page = 1,
+    lang = "en-US",
+    recency = 0,
+    publicInstances = false,
+  } = Object.fromEntries(url.searchParams.entries());
+
+
   let startTime = Date.now();
   if (!query) return json({ error: "Query parameter is required" });
 
-  optionUsePublicSearxng = false;
+
+    // use custom or false to use the public instances
 
   let results = await searchWeb(query, {
-    category,
+    category: cat,
     recency,
     maxRetries: 6,
-    // use custom or false to use the public instances
-    privateSearxng:  
-      optionUsePublicSearxng ? null : searxngDomain,
+    privateSearxng: publicInstances ? false : searxngDomain,
     proxy,
+    lang,
     page
   });
+
+  if (!results)
+    results = await searchWeb(query, {
+      category: cat,
+      recency,
+      maxRetries: 6,
+      privateSearxng: false,
+      proxy,
+      page
+    });
 
 
   if (!results) 
     return json(results, { status: 500 });
-
-  results = results.results;
   
 
   let elapsedTime = Date.now() - startTime;

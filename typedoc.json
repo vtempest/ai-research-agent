@@ -9,6 +9,7 @@
     "includeFolders": false
   },
   "commentStyle":"all",
+  "skipErrorChecking": true,
   "hideGenerator": true,
   "jsDocCompatibility": {
     "exampleTag": true,
@@ -23,14 +24,15 @@
   "searchInComments": true,
   "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
   "sidebarLinks": {
-    "Source Code": "https://github.com/vtempest/ai-research-agent",
-    "Live Demo": "https://qwksearch.com",
-    "Discord Chat": "https://discord.gg/SJdBqBz3tV"
+    "📦Source Code": "https://github.com/vtempest/ai-research-agent",
+    "🚀Demo": "https://qwksearch.com",
+    "🎯Server API": "https://qwksearch.com/api",
+    "💬Discord Chat": "https://discord.gg/SJdBqBz3tV",
   },
   "navigationLinks": {
-    "Source Code": "https://github.com/vtempest/ai-research-agent",
-    "Live Demo": "https://qwksearch.com",
-    "Discord Chat": "https://discord.gg/SJdBqBz3tV"
+    "📦Code": "https://github.com/vtempest/ai-research-agent",
+    "🚀Demo": "https://qwksearch.com",
+    "🎯Server API": "https://qwksearch.com/api",
   },
   "excludePrivate": true
 }

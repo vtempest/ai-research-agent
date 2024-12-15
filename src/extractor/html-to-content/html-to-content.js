@@ -1,10 +1,10 @@
-import { parseDate } from "chrono-node";
+import { parseHTML } from "linkedom";
 import { extractCite } from "../html-to-cite/extract-cite.js";
 import { convertHTMLToBasicHTML } from "./html-to-basic-html.js";
-import { parseHTML } from "linkedom";
 import { extractHumanName } from "../html-to-cite/human-names-recognize.js";
-import { extractMainContentFromHTML } from "./extract-content/extractor1-content.js";
-import { extractMainContentFromHTML2 } from "./extract-content/extractor2-content.js";
+import { extractMainContentFromHTML } from "./extract-content/extract-content-readability.js";
+import { extractMainContentFromHTML2 } from "./extract-content/extract-content-mercury.js";
+
 
 /**
  * Extracts the main content and citation information from a document or HTML string
@@ -33,42 +33,41 @@ export function extractContentAndCite(documentOrHTML, options = {}) {
     links = true,
     formatting = true,
     url = "",
-    useExtractor2 = 0,
+    useExtractor2 = 1,
+    minExtractedLength = 400
   } = options;
 
   var html =
     typeof documentOrHTML === "string"
       ? documentOrHTML
-      : documentOrHTML.documentElement?.innerHTML;
+      : documentOrHTML?.documentElement?.innerHTML;
 
   if (!html) return { error: "No HTML found" };
 
 
-  var html = html
-    .replace(/&lt;/gi, " ").replace(/&gt;/gi, " ")
+  try {
+    var content1 =extractMainContentFromHTML(html, options)
+  } catch (e) {
+    console.log(e);
+  }
+  try {
+    var content2 =extractMainContentFromHTML2(html, options)
+  } catch (e) {
+    console.log(e);
+  }
 
-  var content = 
-  useExtractor2
-    ? extractMainContentFromHTML2(html, options)
-    : 
-    extractMainContentFromHTML(html, options);
+  //compare content lengths
+  var content = content1?.length > content2?.length ? content1 : content2;
 
-    // if Postlight Mercury returns less than 200 characters, try Mozilla Readability
-    if (content.length < 200) {
-      var content2 = extractMainContentFromHTML(html, options);
-      if (content2.length > content.length) 
-        content = content2;
-    }
+  // check if html is too short, if so use basic html
+  if (content?.replace(/<[^>]*>/g, "").length < minExtractedLength)
+    content = html;
 
-
+  //cite
   var { author, author_cite, author_short, date, title, source } =
-    extractCite(html);
+    extractCite(html, options);
 
-
-
-  var html = convertHTMLToBasicHTML(content, options);
-
-
+  html = convertHTMLToBasicHTML(content, options);
 
   return {
     title,

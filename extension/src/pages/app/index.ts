@@ -3,8 +3,6 @@ import "tailwindcss/tailwind.css";
 import "./app.pcss";
 
 
-document.addEventListener('DOMContentLoaded', () =>
-  new Main({
-   target: document.body,
- })
-);
+import { mount } from 'svelte';
+const app = mount(Main, { target: document.body });
+

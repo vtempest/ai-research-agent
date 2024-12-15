@@ -1,9 +1,11 @@
 /**
  * Extract cite info from common property names in webpage's metadata
  * @param {document} doc dom object of document
- * @returns {object} {author, date, title, source}
+ * @returns {object} author, date, title, source
  */
 export function extractCiteFromMetadata(doc) {
+  if (!doc) return null;
+
   const commonCiteMetaTags = {
     source: ["application-name", "og:site_name", "twitter:site", "dc.title"],
     title: ["title", "og:title", "twitter:title", "parsely-title"],
@@ -12,7 +14,6 @@ export function extractCiteFromMetadata(doc) {
       "creator",
       "og:creator",
       "article:author",
-      "twitter:creator",
       "dc.creator",
       "parsely-author",
     ],

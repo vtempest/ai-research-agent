@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: QwkSearch API
   description: Search and outline a topic base with AI Research Agent
-  version: 0.9.8
+  version: 0.9.9
 paths:
   /api/search:
     get:
@@ -17,18 +17,19 @@ paths:
             type: string
         - name: cat
           in: query
-          description: Category of search (optional)
+          description: Category - general, news, videos, images, science, files, it
           required: false
           schema:
-            type: integer
-            default: 0
-        - name: time
+            type: string
+            default: general
+        
+        - name: recency
           in: query
-          description: Recency filter (optional)
+          description: Recency filter - none, day, week, month, year
           required: false
           schema:
-            type: integer
-            default: 0
+            type: string
+            default: ""
         - name: public
           in: query
           description: Use public SearXNG instances (optional)
@@ -36,13 +37,6 @@ paths:
           schema:
             type: boolean
             default: false
-        - name: limitExtract
-          in: query
-          description: Max number of top results to extract (optional)
-          required: false
-          schema:
-            type: integer
-            default: 4
         - name: page
           in: query
           description: Pagination for results (optional)
@@ -50,6 +44,14 @@ paths:
           schema:
             type: integer
             default: 1
+
+        - name: lang
+          in: query
+          description: Language
+          required: false
+          schema:
+            type: string
+            default: en-US
       responses:
         '200':
           description: A list of search results
@@ -98,8 +100,7 @@ paths:
                     type: string
   /api/extract:
     get:
-      summary: Extract main content and cite from any URL
-      description: Extracts content (either full HTML or summary) from a given URL using `extract` or `scrapeURL`.
+      summary: Extract either main content and cite or full HTML from any URL, PDF, DOCX, Youtube transcript
       parameters:
         - name: url
           in: query
@@ -133,6 +134,98 @@ paths:
                     description: Extracted content summary of the page
         '500':
           description: Server error or missing URL parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+                    
+  /api/agents:
+    post:
+      summary: Generate language model reply using agent prompts
+      description: |
+        Generates a language model reply using agent prompts
+
+          summarize-bullets
+            - article
+          summarize
+            - article
+          suggest-followups,
+            - chat_history
+            - article
+          answer, 
+            - chat_history
+            - query
+          query-resolution, 
+            - chat_history
+            - query
+          knowledge-graph-nodes
+            - query 
+            - article
+          summary-longtext
+            - article
+            - sections
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - provider
+              properties:
+                prompt:
+                  type: string
+                  description: System Prompt for the language model
+                agent:
+                  type: string
+                  description: |
+                    Agent name - summarize-bullets, summarize, suggest-followups, 
+                    answer, query-resolution, knowledge-graph-nodes, 
+                    summary-longtext
+                context:
+                  type: string
+                  description: JSON Object String of variables with escaped \\" to insert into prompt like {chat_history:""}
+                provider:
+                  type: string
+                  default: groq
+                  description: AI provider - 'groq', 'openai', 'anthropic', 'together'
+                key:
+                  type: string
+                  description: Your API key for the AI provider
+                model:
+                  type: string
+                  default: "llama-3.2-11b-vision-preview"
+                html:
+                  type: string
+                  default: true
+                  description: If true, reply format is HTML. If false, Markdown.
+                temperature:
+                  type: number
+                  description: |
+                    Temperature controls the randomness of the model's predictions.
+                    A higher value means the model will be more creative and less deterministic,
+                    while a lower value means the model will be more deterministic.
+                  default: 0.7s
+        
+
+      responses:
+        '200':
+          description: Generated reply
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reply:
+                    type: string
+                    description: Generated reply
+        '500':
+          description: Server error or missing prompt parameter
           content:
             application/json:
               schema:

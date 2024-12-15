@@ -1,10 +1,12 @@
 import {convertTextToTokens} from "../../index.js";
 
 /**
+ * #### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms
+ * <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" /> 
+ * 
  * Calculate term specificity for a single doc with [BM25 
  * formula](https://www.youtube.com/watch?v=ruBm9WywevM) 
  * by using Wikipedia term frequencies as the baseline IDF. <br />
- * <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" > 
  * 
  * @param {string} document a single document to calculate the score for
  * @param {string} query phrase to search tf and idf for each word
@@ -21,9 +23,8 @@ import {convertTextToTokens} from "../../index.js";
  * @param {number} options.totalWikiPages Total number of Wikipedia pages used to calculate IDF
  * @returns {number} score for term specificity 
  * @category Match
+ * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
-
-
 export function weighRelevanceTermFrequency(
   document,
 

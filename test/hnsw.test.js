@@ -3,9 +3,7 @@ import {
   addEmbeddingVectorsToIndex, 
   searchVectorIndex, getAllEmbeddings,
   getEmbeddingModel,
-  exportEmbeddingsIndex,
   convertTextToEmbedding,
-  importVectorIndexFromString
 } from "../index.js"
 
 test("hnsw", async () => {
@@ -33,9 +31,6 @@ test("hnsw", async () => {
   const result = await searchVectorIndex(index, query, {pipeline});
   console.log(result);
   
-  const base64 = await exportEmbeddingsIndex(index, 1536, 100000);
-  // console.log(base64);
-
   // // var index2 = await importVectorIndexFromString(base64)
 
 

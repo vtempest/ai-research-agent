@@ -3,12 +3,14 @@
 	"style": "default",
 	"tailwind": {
 		"config": "../web-app/tailwind.config.ts",
-		"css": "../web-app/src/app.pcss",
+		"css": "../web-app/src/app.css",
 		"baseColor": "slate"
 	},
 	"aliases": {
 		"components": "../web-app/src/lib/components",
-		"utils": "../web-app/src/lib/utils"
+		"utils": "../web-app/src/lib/utils/classname",
+		"ui": "../web-app/src/lib/components/ui",
+		"hooks": "../web-app/src/lib/hooks"
 	},
 	"typescript": true
 }
