@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/LineItem
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineItem
 
 ## Classes
 
@@ -48,28 +48,6 @@ new default(options): default
 ###### Overrides
 
 [`default`](PageItem.md#default).[`constructor`](PageItem.md#constructors)
-
-#### Methods
-
-##### text()
-
-```ts
-text(): any
-```
-
-###### Returns
-
-`any`
-
-##### wordStrings()
-
-```ts
-wordStrings(): any
-```
-
-###### Returns
-
-`any`
 
 #### Properties
 
@@ -132,3 +110,25 @@ x: any;
 ```ts
 y: any;
 ```
+
+#### Methods
+
+##### text()
+
+```ts
+text(): any
+```
+
+###### Returns
+
+`any`
+
+##### wordStrings()
+
+```ts
+wordStrings(): any
+```
+
+###### Returns
+
+`any`

@@ -1,19 +1,30 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { Upload, Eye, X, Copy } from 'lucide-svelte';
   import { Button } from "$lib/components/ui/button";
   import * as Select from "$lib/components/ui/select";
   import * as Tabs from "$lib/components/ui/tabs";
 
-  export let viewMode: string;
-  export let recentBlocks;
-  export let handleLoadBlock;
+  let { 
+    recentBlocks, 
+    handleLoadBlock, 
+    handleViewModeChange,
+     triggerFileUpload, handleCopy 
+  } = $props();
 
-  const dispatch = createEventDispatcher();
+  
+  let viewMode = $state("show-all");
+  $effect(() => {
+    if (viewMode) {
+      document.querySelector(".editor")?.classList.remove("show-all", "highlighted", "underlined", "edit");
+
+      document.querySelector(".editor")?.classList.add(viewMode);
+    }
+  }
+  )
 
   const ENLARGE_TERM = 'Embiggen ';
-  // BBC (2018, March 6). Word created by The Simpsons added 
-  //  to US dictionary. BBC. https://www.bbc.com/news/newsbeat-43298229
+  // BBC (2018, March 6). "Word created by The Simpsons added 
+  //  to US dictionary." BBC. https://www.bbc.com/news/newsbeat-43298229
 
   const viewModes = [
     { value: "highlighted", label: ENLARGE_TERM + "Highlighted" },
@@ -22,12 +33,6 @@
     { value: "edit", label: "Editing" },
 
   ];
-
-  function handleViewModeChange(selectedValue: string) {
-    viewMode = selectedValue;
-    dispatch('viewModeChange', viewMode);
-  }
-  
   function handleRecentBlockClick(block) {
     if (block && block.blockIndex !== undefined) {
       handleLoadBlock({ detail: block });
@@ -40,24 +45,18 @@
     }
   }
 
-  function handleCopy() {
-    dispatch('copyContent');
-  }
-
-  $: activeTab = recentBlocks && recentBlocks.length > 0 && recentBlocks[0].blockIndex !== undefined 
-    ? recentBlocks[0].blockIndex.toString() 
-    : null;
 </script>
 
 <div class="border-b p-2 flex items-center space-x-4 shadow-md ">
-  <!-- <Select.Root selected={{value:viewMode }} onSelectedChange={handleViewModeChange}>
+  <Select.Root type="single" name="viewMode" bind:value={viewMode} onSelectedChange={handleViewModeChange}>
     <Select.Trigger class="min-w-[120px] w-[120px] shadow-sm bg-white">
       <Eye class="h-4 w-4 mr-2" />
-      <Select.Value placeholder={viewModes.find(mode => mode.value === viewMode)?.label || ''} />
+      {viewModes.find(mode => mode.value === viewMode)?.label || ''} 
+
     </Select.Trigger>
     <Select.Content class="bg-white shadow-md">
       <Select.Group>
-        <Select.Label>Embiggen</Select.Label>
+        <Select.GroupHeading>Embiggen</Select.GroupHeading>
         {#each viewModes as mode}
           <Select.Item value={mode.value} class="bg-white hover:bg-gray-100">
             {mode.label}
@@ -65,14 +64,14 @@
         {/each}
       </Select.Group>
     </Select.Content>
-  </Select.Root> -->
+  </Select.Root>
 
-  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" on:click={() => dispatch('triggerFileUpload')}>
+  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" onclick={triggerFileUpload}>
     <Upload class="h-4 w-4 mr-2" />
     Upload
   </Button>
 
-  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" on:click={handleCopy}>
+  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" onclick={handleCopy}>
     <Copy class="h-4 w-4 mr-2" />
       </Button>
 
@@ -84,12 +83,12 @@
             <Tabs.Trigger
               value={block.blockIndex.toString()}
               class="relative data-[state=active]:shadow-sm"
-              onClick={() => handleRecentBlockClick(block)}
+              onclick={() => handleRecentBlockClick(block)}
             >
               {block.title || 'Untitled'}
               <button
                 class="absolute top-1 right-1 text-gray-400 hover:text-gray-600"
-                on:click|stopPropagation={() => removeRecentBlock(block.blockIndex)}
+                onclick={() => removeRecentBlock(block.blockIndex)}
               >
                 <X class="h-3 w-3" />
               </button>

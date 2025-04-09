@@ -3,55 +3,30 @@
   import { fade } from "svelte/transition";
   import { quintOut } from "svelte/easing";
   import { suggestNextWordCompletions } from "$ai-research-agent";
-  import iconSearch from "$assets/icons/icon-qwksearch.svg";
+  import iconSearch from "$lib/components/icons/icon-qwksearch.svg";
 
-  import {
-    Search, // for "general"
-    Newspaper, // for "news"
-    Video, // for "videos"
-    Image, // for "images"
-    Beaker, // for "science"
-    Monitor, // for "it"
-    Files, // for "files"
-    MessageCircle, // for "social+media"
-    Map, // for "map"
-    Music, // for "music"
-  } from "lucide-svelte";
+  import {categories} from "./categories";
 
-  export let handleSearchSubmit = (text) => {  };
+  let {
+    handleSearchSubmit = () => {  },
+    selectedCategory = "general",
+    handleCategoryClick = null,
+    phrasesModel = null,  
+    searchText = "",
+    updateSearchText = () => {  },
+  } = $props()
 
-  export let selectedCategory = "general";
-  export let handleCategoryClick = null;
-  export let phrasesModel = null;
-  let searchText = "";
-  let suggestions = [];
-  let showSuggestions = false;
-  let selectedIndex = -1;
-  let isSearchOpen = false;
-  
-  const categories = [
-    { code: "general", icon: Search, name: "General" },
-    { code: "news", icon: Newspaper, name: "News" },
-    { code: "videos", icon: Video, name: "Videos" },
-    { code: "images", icon: Image, name: "Images" },
-    { code: "science", icon: Beaker, name: "Academic" },
-    { code: "files", icon: Files, name: "Files" },
-    { code: "it", icon: Monitor, name: "Tech" },
-    // { code: "social+media", icon: MessageCircle, name: "Forums" }
-  ];
+  let suggestions = $state([]);
+  let showSuggestions = $state(false);
+  let selectedIndex = $state(-1);
+  let isSearchOpen = $state(false);
+  // let searchText = $state(searchTextDefault);
 
-  $: if (searchText.length > 0) {
-    querySuggestions();
-  } else {
-    suggestions = [];
-    showSuggestions = false;
-  }
-
-  onMount(async () => {
-    setTimeout(() => document.getElementById("searchInput").focus(), 100);
+  $effect(() => {
+    if (searchText.length > 0) {
+      updateSearchText(searchText);
+    }
   });
-
-  
 
   async function querySuggestions() {
     if (!phrasesModel) {
@@ -106,7 +81,7 @@
         if (selectedIndex !== -1) {
           selectSuggestion(suggestions[selectedIndex]);
         } else {
-          handleSearchSubmit(searchText);
+          handleSearchSubmit();
           isSearchOpen = false;
         }
         break;
@@ -121,7 +96,7 @@
     searchText = suggestion.name;
     showSuggestions = false;
     isSearchOpen = false; // Close the full-page input after selecting a suggestion
-    handleSearchSubmit(searchText);
+    handleSearchSubmit();
     console.log("Selected:", searchText);
   }
 
@@ -135,20 +110,20 @@
   function handleBlur() {
     setTimeout(() => {
       showSuggestions = false;
-    }, 200);
+    }, 600);
   }
 
   function handleBlurFullPage() {
     setTimeout(() => {
       showSuggestions = false;
       isSearchOpen = false;
-    }, 200);
+    }, 600);
   }
 
   function openFullPageSearch() {
     isSearchOpen = true;
     setTimeout(
-      () => document.getElementById("searchInputFullScreen").focus(),
+      () => document.getElementById("searchInputFullScreen")?.focus(),
       100
     );
   }
@@ -157,29 +132,27 @@
     if (searchText.trim() === "") {
       openFullPageSearch();
     } else {
-      handleSearchSubmit(searchText);
+      handleSearchSubmit();
     }
   }
 </script>
 
 <div class="container">
-  <div class="search-container">
+  <div class="search-container flex  mb-16">
     <input
       id="searchInput"
       type="text"
-      bind:value={searchText}
-      on:input={querySuggestions}
-      on:keydown={handleKeydown}
-      on:blur={handleBlur}
-      on:focus={openFullPageSearch}
-      on:pointerdown={openFullPageSearch}
-      on:touchstart={openFullPageSearch}
-      on:mousedown={openFullPageSearch}
+      oninput={querySuggestions}
+      onkeydown={handleKeydown}
+      onblur={handleBlur}
+      onfocus={openFullPageSearch}
+      onpointerdown={openFullPageSearch}
+      onmousedown={openFullPageSearch}
       placeholder="Search..."
       class="search-input"
-      autofocus
+      bind:value={searchText}
     />
-    <button class="search-button" on:click={handleIconClick}>
+    <button class="search-button" onclick={handleIconClick}>
       <img
         src={iconSearch}
         alt="Search"
@@ -190,17 +163,62 @@
     {#if showSuggestions && !isSearchOpen}
       <ul class="suggestions-list">
         {#each suggestions as suggestion, index}
-          <li
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+          <div
             class="suggestion-item"
             class:highlighted={index === selectedIndex}
-            on:mousedown={() => selectSuggestion(suggestion)}
+            onmousedown={() => selectSuggestion(suggestion)}
           >
             {suggestion.name}
-          </li>
+          </div>
         {/each}
       </ul>
     {/if}
+    
   </div>
+  
+  <div class="categories-container mt-10">
+    <div class="grid grid-cols-4 gap-0">
+      {#each categories as category (category.name)}
+        {@const CategoryIcon = category.icon }
+
+        <div
+          style="padding: 0.25rem 0.25rem;"
+          class="group relative flex items-center overflow-hidden rounded-full cursor-pointer
+          {category.code === selectedCategory ? 
+            'shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset]' : ''} transition-colors duration-200"
+        >
+          <span
+            style="transform: scale(1.2);"
+            class="spark mask-gradient animate-flip before:animate-kitrotate absolute inset-0
+             h-[100%] w-[100%] overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] 
+             before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg]
+              before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] 
+              before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]"
+          >
+          </span>
+          <span
+            style="transform: scale(1.2);"
+            class="backdrop absolute inset-px rounded-full {category.code === selectedCategory ? 
+              'bg-neutral-950' : ''} transition-colors duration-200"
+          ></span>
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+          <span 
+            style="transform: scale(1.2);"
+            class="z-10 text-neutral-400 text-xs font-medium flex items-center w-full py-0.5  min-w-0"
+            onclick={() => handleCategoryClick(category)}
+          >
+            <CategoryIcon 
+              class="mr-0.5 w-4 h-4 flex-shrink-0" 
+            /> 
+            <span class=" text-[0.7rem] truncate">{category.name}</span>
+          </span>
+        </div>
+      {/each}
+    </div>
+  </div>
+  
+  
 
   {#if isSearchOpen}
     <div
@@ -210,28 +228,30 @@
       <div class="search-modal" style="max-height: 100vh; overflow: visible;">
         <div class="categories-row" style="display: flex; font-size: smaller;">
           {#each categories as category (category.name)}
+          {@const CategoryIcon = category.icon }
+
           <div
           class="group relative grid overflow-hidden rounded-full px-1 py-1 cursor-pointer
          ${category.code === selectedCategory ? 
             "  shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] " : ""} transition-colors duration-200"
         >
-          <span>
             <span
               class="spark mask-gradient animate-flip before:animate-kitrotate absolute inset-0
                h-[100%] w-[100%] overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] 
                before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg]
                 before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] 
                 before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]"
-            />
+            >
           </span>
           <span
             class="backdrop absolute inset-px rounded-full   ${category.code === selectedCategory ? 
             "bg-neutral-950" : ""}  transition-colors duration-200"
-          />
+          ></span>
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <span class="z-10 text-neutral-400 text-xs font-medium flex items-center"
-              on:click={() => handleCategoryClick(category)}
+              onclick={() => handleCategoryClick(category)}
             >
-              <svelte:component this={category.icon} class="mb-1 mr-1 w-4 h-4" style="display: inline-block; vertical-align: middle;" /> 
+              <CategoryIcon class="mb-1 mr-1 w-4 h-4" style="display: inline-block; vertical-align: middle;" /> 
               {category.name}
             </span>
             </div>
@@ -241,23 +261,24 @@
           <div class="absolute top-0 flex w-full justify-center">
             <div
               class="h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
-            />
+            ></div>
           </div>
           <div class="relative">
             <div class="absolute top-0 flex w-full justify-center">
               <div
                 class="h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
-              />
+              >
             </div>
-            <input
+          </div>
+          <input
             class="border-2 block h-12 w-full rounded-md border border-double border-slate-800 border-transparent bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] bg-origin-border px-3 py-2 text-slate-200 transition-all duration-500 [background-clip:padding-box,_border-box] placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none "
              
           id="searchInputFullScreen"
           type="text"
           bind:value={searchText}
-          on:input={querySuggestions}
-          on:keydown={handleKeydown}
-          on:blur={() => {
+          oninput={querySuggestions}
+          onkeydown={handleKeydown}
+          onblur={() => {
             handleBlurFullPage();
           }}
         />
@@ -269,13 +290,14 @@
         {#if showSuggestions}
           <ul class="suggestions-list full-page-suggestions" style="position: absolute; top: 100%; left: 0; right: 0;">
             {#each suggestions as suggestion, index}
-              <li
+              <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+              <div
                 class="suggestion-item"
                 class:highlighted={index === selectedIndex}
-                on:mousedown={() => selectSuggestion(suggestion)}
+                onmousedown={() => selectSuggestion(suggestion)}
               >
                 {suggestion.name}
-              </li>
+              </div>
             {/each}
           </ul>
         {/if}

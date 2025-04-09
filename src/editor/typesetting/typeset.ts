@@ -85,7 +85,7 @@ export interface FormatType extends BasicType {
 }
 
 export interface EmbedType extends BasicType {
-  // If this embed doesn't fill any space, set noFill to true to add a <br> afterwards if nothing else is in the line
+  // If this embed doesn't fill any space, set noFill to true to add  BR tag afterwards if nothing else is in the line
   noFill?: boolean;
 }
 

@@ -1,5 +1,5 @@
 import * as tokens from "./docx-tokens";
-import { parseDate } from "chrono-node";
+// import  parseDate  from "chrono-node";
 
 export function extractCards (doc)  {
   //TODO not all are in tag format
@@ -13,7 +13,7 @@ export function extractCards (doc)  {
  *  year, cite, url, and content in html
  * @param {document} doc
  * @param {number} anchor
- * @returns {object} {{summary: string, author: string, 
+ * @returns {{summary: string, author: string, 
  *  year: number, cite: string, url: string, content: string}}
  */
 export function parseCard (doc, anchor = 0) {
@@ -135,7 +135,6 @@ export function parseCard (doc, anchor = 0) {
 
 /**
    * Strips markup-html to plain text with array or indexes of tags removed
-   *  {text: "", tags: []}
    * @param {string} html
    * @returns {object} text: string, tags: array
    */
@@ -198,9 +197,10 @@ function rangesToHTML(text, ranges) {
   return text;
 }
 
-//extract url and remove ending char ) ] } ; : , . | > < -
+//extract url and remove ending char 
 export function extractURL  (textWithURL) {
   if (!textWithURL) return null;
+  //) ] } ; : , . | > < -
   const regexPattern =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g;
   const match = textWithURL.match(regexPattern);

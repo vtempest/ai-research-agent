@@ -1,4 +1,38 @@
-[ai-research-agent](../../index.md) / editor/rendering/rendering
+[ai-research-agent](../../modules.md) / editor/rendering/rendering
+
+## Interfaces
+
+### HTMLLineElement
+
+#### Extends
+
+- `HTMLElement`
+
+#### Properties
+
+##### key
+
+```ts
+key: string;
+```
+
+## Type Aliases
+
+### Combined
+
+```ts
+type Combined = CombinedEntry[];
+```
+
+***
+
+### CombinedEntry
+
+```ts
+type CombinedEntry = 
+  | default
+  | default[];
+```
 
 ## Functions
 
@@ -729,35 +763,3 @@ function setLineNodesRanges(editor): void
 #### Returns
 
 `void`
-
-## Interfaces
-
-### HTMLLineElement
-
-#### Extends
-
-- `HTMLElement`
-
-#### Properties
-
-##### key
-
-```ts
-key: string;
-```
-
-## Type Aliases
-
-### Combined
-
-```ts
-type Combined: CombinedEntry[];
-```
-
-***
-
-### CombinedEntry
-
-```ts
-type CombinedEntry: default | default[];
-```

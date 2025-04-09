@@ -31,7 +31,7 @@ export interface FromDomOptions {
   collapseWhitespace?: boolean;
 }
 
-// Determines if a <br> in the editable area is part of the document or a doorstop at the end of a line.
+// Determines if a BR tag in the editable area is part of the document or a doorstop at the end of a line.
 export function isBRPlaceholder(editor: Editor, node: Node) {
   if (node.nodeName !== 'BR') return false;
   return isLastNode(editor, node);

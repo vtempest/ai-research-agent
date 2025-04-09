@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/ParsedElements
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/ParsedElements
 
 ## Classes
 
@@ -41,6 +41,32 @@ new default(options): default
 
 [`default`](ParsedElements.md#default)
 
+#### Properties
+
+##### containLinks
+
+```ts
+containLinks: any;
+```
+
+##### footnoteLinks
+
+```ts
+footnoteLinks: any;
+```
+
+##### footnotes
+
+```ts
+footnotes: any;
+```
+
+##### formattedWords
+
+```ts
+formattedWords: any;
+```
+
 #### Methods
 
 ##### add()
@@ -77,29 +103,3 @@ add(parsedElements): void
 ###### Returns
 
 `void`
-
-#### Properties
-
-##### containLinks
-
-```ts
-containLinks: any;
-```
-
-##### footnoteLinks
-
-```ts
-footnoteLinks: any;
-```
-
-##### footnotes
-
-```ts
-footnotes: any;
-```
-
-##### formattedWords
-
-```ts
-formattedWords: any;
-```

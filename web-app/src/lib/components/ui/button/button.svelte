@@ -39,7 +39,7 @@
 </script>
 
 <script lang="ts">
-	import { cn } from "$lib/utils/classname.js";
+	import { cn } from "$lib/utils.js";
 
 	let {
 		class: className,
@@ -56,7 +56,7 @@
 {#if href}
 	<a
 		bind:this={ref}
-		class={cn(buttonVariants({ variant, size, className }))}
+		class={cn(buttonVariants({ variant, size }), className)}
 		{href}
 		{...restProps}
 	>
@@ -65,7 +65,7 @@
 {:else}
 	<button
 		bind:this={ref}
-		class={cn(buttonVariants({ variant, size, className }))}
+		class={cn(buttonVariants({ variant, size }), className)}
 		{type}
 		{...restProps}
 	>

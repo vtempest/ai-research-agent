@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/transformations/ToTextItemTransformation
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/ToTextItemTransformation
 
 ## Classes
 
@@ -52,6 +52,28 @@ new default(name): default
 ###### Overrides
 
 [`default`](Transformation.md#default).[`constructor`](Transformation.md#constructors)
+
+#### Properties
+
+##### itemType
+
+```ts
+itemType: any;
+```
+
+###### Inherited from
+
+[`default`](Transformation.md#default).[`itemType`](Transformation.md#itemtype)
+
+##### name
+
+```ts
+name: any;
+```
+
+###### Inherited from
+
+[`default`](Transformation.md#default).[`name`](Transformation.md#name)
 
 #### Methods
 
@@ -132,25 +154,3 @@ transform(parseResult): void
 ###### Inherited from
 
 [`default`](Transformation.md#default).[`transform`](Transformation.md#transform)
-
-#### Properties
-
-##### itemType
-
-```ts
-itemType: any;
-```
-
-###### Inherited from
-
-[`default`](Transformation.md#default).[`itemType`](Transformation.md#itemtype)
-
-##### name
-
-```ts
-name: any;
-```
-
-###### Inherited from
-
-[`default`](Transformation.md#default).[`name`](Transformation.md#name)

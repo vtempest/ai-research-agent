@@ -1,9 +1,15 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
+
   "compilerOptions": {
-    "baseUrl": ".",
+    "typeRoots": ["./web-app/src/global.d.ts"],
+
     "paths": {
-      "$lib/*": ["./src/lib/*"]
+      "$ai-research-agent": ["../*"],
+      "./$types": ["./web-app/src/global.d.ts"],
+      "$types": ["./web-app/src/global.d.ts"],
+      "$lib/*": ["./web-app/src/lib/*"],
+      "$lib": ["./web-app/src/lib/index.ts"],
+      "$components/*": ["./web-app/src/lib/components/*"]
     },
     "target": "ESNext",
     "module": "ESNext",
@@ -17,8 +23,11 @@
     "noEmit": true
   },
   "include": [
-    "./src/",
-    "index.js"   ],
+    "./src/**/*",
+    "index.js",
+    "web-app/src/global.d.ts",
+    "web-app/src/**/*",
+   ],
   "exclude": [
     "node_modules",
   ]

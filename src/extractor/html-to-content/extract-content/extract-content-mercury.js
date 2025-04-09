@@ -302,7 +302,7 @@ function scoreCommas(text) {
  * @param {Document} document - The document object.
  */
 function convertSpans(node, document) {
-  if (node.tagName.toLowerCase() === "span") {
+  if (node?.tagName?.toLowerCase() === "span") {
     // convert spans to divs
     convertNodeTo(node, document, "div");
   }

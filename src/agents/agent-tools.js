@@ -87,6 +87,3 @@ async function runConversation(userPrompt) {
 
     return responseMessage.content;
 }
-
-const userPrompt = "What is 25 * 4 + 10?";
-runConversation(userPrompt).then(console.log).catch(console.error);

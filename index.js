@@ -50,7 +50,7 @@ export { weighRelevanceTermFrequency } from "./src/match/weigh-relevance-frequen
 
 export { convertEmbeddingsToUMAP } from "./src/similarity/embeddings-to-graph.js";
 
-export { getAgentPrompts } from "./src/agents/agent-prompts.js";
+export { getAgentPrompts } from "./src/agents/agent-prompts.ts";
 
 export { searchEngines } from "./src/search/search-engines.js";
 
@@ -86,7 +86,6 @@ export {
 export {
   convertOpenAPIToAgentTools
 } from "./src/agents/api2ai.js";
-
 
 
 // export {compileTopicModel} from "./src/dataset-export/compile-topic-model.js"

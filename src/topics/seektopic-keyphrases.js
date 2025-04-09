@@ -5,6 +5,8 @@ import { extractNounEdgeGrams } from "./ngrams.js";
 
 /**
  * ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
+ * <img src="https://i.imgur.com/gZ4kI1V.png" width="360px" />
+ * 
  * Extracts unique, domain-specific key phrases from a document using noun 
  * n-grams and ranks sentences based on their centrality to the most frequently 
  * referenced key phrase concepts,  enabling efficient extraction of 

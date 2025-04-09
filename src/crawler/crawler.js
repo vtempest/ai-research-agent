@@ -10,10 +10,10 @@
  * https://github.com/ZFC-Digital/puppeteer-real-browser
  * https://github.com/rebrowser/rebrowser-puppeteer
  */
-import puppeteer from "rebrowser-puppeteer";
-// import puppeteer from "puppeteer-extra";
-// import StealthPlugin from "puppeteer-extra-plugin-stealth";
-// puppeteer.use(StealthPlugin()); // Use stealth plugin to make puppeteer harder to detect
+
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+puppeteer.use(StealthPlugin()); // Use stealth plugin to make puppeteer harder to detect
  
 // Add adblocker plugin to block all ads and trackers (saves bandwidth)
 // const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
@@ -38,24 +38,14 @@ const requestHeadersToRemove = [
   "x-forwarded-proto",
   "x-forwarded-for",
   "x-cloud-trace-context",
-  "accept-language",
-  "referer",
-  "origin",
-  "pragma",
-  "cache-control"
 ];
-
 const responseHeadersToRemove = [
   "Accept-Ranges",
   "Content-Length",
   "Keep-Alive",
   "Connection",
-  "Content-Encoding",
-  "Transfer-Encoding",
-  "Vary",
-  "Server",
-  "Date",
-  "ETag"
+  "content-encoding",
+  "set-cookie",
 ];
 
 // Main application logic
@@ -74,16 +64,12 @@ if (process.env.PROXY_URL)
 const browser = await puppeteer.launch(options);
 
 // Set up Koa middleware
-app.use(async (request) => {
-  if (request.query.url) {
-
+app.use(async (ctx) => {
+  if (ctx.query.url) {
     // Extract and decode the URL from the query string
-    const targetUrl = decodeURIComponent(request.url.replace("/?url=", ""));
-
-
-    const proxyLinks = false;
-     //urlRequest.searchParams.get("ProxyLinks") !== "false" || true;
-
+    const url = decodeURIComponent(ctx.url.replace("/?url=", ""));
+    const optionWait = ctx.query.wait || 0;
+    
     
 
     // Initialize variables for response data
@@ -115,7 +101,7 @@ app.use(async (request) => {
     await page.removeAllListeners("request");
     await page.setRequestInterception(true);
 
-    let requestHeaders = request.headers;
+    let requestHeaders = ctx.headers;
     requestHeadersToRemove.forEach((header) => {
       delete requestHeaders[header];
     });
@@ -128,11 +114,11 @@ app.use(async (request) => {
 
         requestHeaders = Object.assign({}, request.headers(), requestHeaders);
       
-        if (request.method == "POST") {
+        if (ctx.method == "POST") {
           request.continue({
             headers: requestHeaders,
             method: "POST",
-            postData: request.request.rawBody,
+            postData: ctx.request.rawBody,
           });
         } else {
           request.continue({ headers: requestHeaders });
@@ -175,11 +161,16 @@ app.use(async (request) => {
       // Navigate to the URL and handle potential challenges
       let response;
       let tryCount = 0;
-      response = await page.goto(targetUrl, {
-        timeout: 10000,
+      response = await page.goto(url, {
+        timeout: 5000,
         waitUntil: "domcontentloaded",
       });
-      request.status = response.status();
+
+      if (optionWait) {
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+      }
+
+      ctx.status = response.status();
       responseBody = await response.text();
       responseData = await response.buffer();
       while (
@@ -188,8 +179,6 @@ app.use(async (request) => {
         ) &&
         tryCount <= 10
       ) {
-
-
         newResponse = await page.waitForNavigation({
           timeout: 5000,
           waitUntil: "domcontentloaded",
@@ -199,8 +188,6 @@ app.use(async (request) => {
         responseData = await response.buffer();
         tryCount++;
       }
-
-
       responseHeaders = await response.headers();
 
       // Handle cookies
@@ -208,15 +195,18 @@ app.use(async (request) => {
       if (cookies)
         cookies.forEach((cookie) => {
           const { name, value, secure, expires, domain, ...options } = cookie;
-          request.cookies.set(cookie.name, cookie.value, options);
+          ctx.cookies.set(cookie.name, cookie.value, options);
         });
     } catch (error) {
       // Handle errors
       if (!error.toString().includes("ERR_BLOCKED_BY_CLIENT")) {
-        request.status = 500;
-        request.body = error;
+        ctx.status = 500;
+        ctx.body = error;
       }
     }
+
+    // Close the page
+    await page.close();
 
     // Process response headers
     if (responseHeaders) {
@@ -224,45 +214,22 @@ app.use(async (request) => {
         (header) => delete responseHeaders[header]
       );
       Object.keys(responseHeaders).forEach((header) =>
-        request.set(header, jsesc(responseHeaders[header]))
+        ctx.set(header, jsesc(responseHeaders[header]))
       );
     }
 
 
-      // Proxy links if requested
-      if (proxyLinks) {
-        const proxyBase = `${request.url.origin}?url=`;
-        await page.$$eval('a', (links, { url, proxyBase }) => {
-          links.forEach(link => {
-            if (link.href) {
-              try {
-                const absoluteUrl = new URL(link.href, url).href;
-                link.href = proxyBase + absoluteUrl;
-              } catch (e) { }
-            }
-          });
-        }, { url, proxyBase });
-      }
+    //spoof the base-url for relative paths on the target page
+    //split url to domain
+    responseData = (responseBody || "").replace(
+      /<head[^>]*>/i,
+      "<head><base href='" + url.split("/").slice(0, 3).join("/") + "/'>"
+    );
 
-      // Get the final HTML content
-      let html = await page.content();
-
-      
-    // Close the page
-    await page.close();
-
-
-      // Add base tag for relative resources
-      // const baseUrl = new URL(targetUrl).origin;
-      // html = html.replace(
-      //   /<head[^>]*>/i,
-      //   `<head><base href="${baseUrl}/">`
-      // );
-
-    request.body = html;
+    ctx.body = responseData;
   } else {
     // If no URL is provided, return an error message
-    request.body = "Please specify the URL in the 'url' query string.";
+    ctx.body = "Please specify the URL in the 'url' query string.";
   }
 });
 

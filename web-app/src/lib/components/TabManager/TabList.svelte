@@ -14,9 +14,10 @@
   let listElement: HTMLElement;
   let sortableInstance: Sortable;
 
+ 
+
   onMount(() => {
     fetchAllTabs();
-
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (message.type === "updateTabLists") {
         fetchAllTabs();
@@ -117,9 +118,10 @@
 
 <div bind:this={listElement} class="list-group col">
   {#each results as result (result.id)}
+        <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
     <div
       class="list-group-item no-select cursor-pointer"
-      on:click={() => handleResultClick(result)}
+      onclick={() => handleResultClick(result)}
     >
       <Card
         class="cursor-grab py-2 px-3 flex items-center space-x-3 transition-colors duration-200 {result.active
@@ -129,12 +131,12 @@
         {#if result.favIconUrl}
           <img src={result.favIconUrl} alt="" class="w-4 h-4 flex-shrink-0" />
         {:else}
-          <div class="w-4 h-4 flex-shrink-0 bg-gray-200 rounded-full" />
+          <div class="w-4 h-4 flex-shrink-0 bg-gray-200 rounded-full" ></div>
         {/if}
         {#if result.audible || result.muted}
           <span
             class="text-slate-800 cursor-pointer"
-            on:click|stopPropagation={(e) => toggleAudio(result.id, e)}
+            onclick={(e) => toggleAudio(result.id, e)}
             title={result.muted ? "Unmute" : "Mute"}
           >
             {#if result.muted}
@@ -191,7 +193,7 @@
           size="icon"
           class="flex-shrink-0 h-6 w-6 hover:bg-slate-300"
         >
-          <span on:click|stopPropagation={(e) => closeTab(result.id, e)}>
+          <span onclick={(e) => closeTab(result.id, e)}>
             <X size={14} class="text-gray-500" />
           </span>
         </Button>

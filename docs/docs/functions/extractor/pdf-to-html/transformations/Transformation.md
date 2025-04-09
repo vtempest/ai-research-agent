@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/transformations/Transformation
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/Transformation
 
 ## Classes
 
@@ -60,6 +60,20 @@ new default(name, itemType): default
 ###### Returns
 
 [`default`](Transformation.md#default)
+
+#### Properties
+
+##### itemType
+
+```ts
+itemType: any;
+```
+
+##### name
+
+```ts
+name: any;
+```
 
 #### Methods
 
@@ -132,17 +146,3 @@ transform(parseResult): void
 ###### Returns
 
 `void`
-
-#### Properties
-
-##### itemType
-
-```ts
-itemType: any;
-```
-
-##### name
-
-```ts
-name: any;
-```

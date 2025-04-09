@@ -1,4 +1,34 @@
-[ai-research-agent](../../index.md) / editor/rendering/position
+[ai-research-agent](../../modules.md) / editor/rendering/position
+
+## Interfaces
+
+### LineInfo
+
+#### Properties
+
+##### belowMid
+
+```ts
+belowMid: boolean;
+```
+
+##### element
+
+```ts
+element: HTMLLineElement;
+```
+
+##### line
+
+```ts
+line: default;
+```
+
+##### rect
+
+```ts
+rect: DOMRect;
+```
 
 ## Functions
 
@@ -213,7 +243,7 @@ function getIndexFromNodeAndOffset(
 </td>
 <td>
 
-`null` \| `number`
+`number`
 
 </td>
 </tr>
@@ -232,7 +262,7 @@ function getIndexFromNodeAndOffset(
 function getIndexFromPoint(
    editor, 
    x, 
-   y): null | number
+   y): number
 ```
 
 #### Parameters
@@ -286,14 +316,14 @@ function getIndexFromPoint(
 
 #### Returns
 
-`null` \| `number`
+`number`
 
 ***
 
 ### getLineElementAt()
 
 ```ts
-function getLineElementAt(editor, index): undefined | HTMLLineElement
+function getLineElementAt(editor, index): HTMLLineElement
 ```
 
 #### Parameters
@@ -335,7 +365,7 @@ function getLineElementAt(editor, index): undefined | HTMLLineElement
 
 #### Returns
 
-`undefined` \| [`HTMLLineElement`](rendering.md#htmllineelement)
+[`HTMLLineElement`](rendering.md#htmllineelement)
 
 ***
 
@@ -596,33 +626,3 @@ function textNodeLength(lines, node): number
 #### Returns
 
 `number`
-
-## Interfaces
-
-### LineInfo
-
-#### Properties
-
-##### belowMid
-
-```ts
-belowMid: boolean;
-```
-
-##### element
-
-```ts
-element: HTMLLineElement;
-```
-
-##### line
-
-```ts
-line: default;
-```
-
-##### rect
-
-```ts
-rect: DOMRect;
-```

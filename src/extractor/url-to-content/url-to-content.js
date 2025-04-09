@@ -170,7 +170,7 @@ export async function extractContent(urlOrDoc, options = {}) {
     ?.replace(/<[^>]*>/g, " ")
     .split(" ").length;
 
-  //make cite
+  //make APA cite
 
   var { author, author_cite, author_short, date, title, source } = response;
 
@@ -182,9 +182,12 @@ export async function extractContent(urlOrDoc, options = {}) {
   var cite = `${author_cite || source || " "}${apa_cite_date}. <b>${title 
     || ''}</b>. <i>${source || ''}</i>. <a href="${url}" target="_blank">${url}</a>`;
 
+  //shoten long urls by removing ?params=get used as state tracking
+  if (url.includes("?") && url.length > 150) 
+    response.url = url.split("?")[0]
+  
   //put url on top
   response = Object.assign({ url, cite }, response);
-
   return response;
   
 }

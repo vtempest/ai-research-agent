@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/LineConverter
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineConverter
 
 ## Classes
 
@@ -41,6 +41,14 @@ new default(fontToFormats): default
 
 [`default`](LineConverter.md#default)
 
+#### Properties
+
+##### fontToFormats
+
+```ts
+fontToFormats: any;
+```
+
 #### Methods
 
 ##### compact()
@@ -77,14 +85,6 @@ compact(textItems): default
 ###### Returns
 
 [`default`](LineItem.md#default)
-
-#### Properties
-
-##### fontToFormats
-
-```ts
-fontToFormats: any;
-```
 
 ## Variables
 

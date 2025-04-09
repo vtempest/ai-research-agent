@@ -1,19 +1,25 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   // import "./icons-download.css";
   import { highlightCodeSyntax } from "$ai-research-agent";
-  import "highlight.js/styles/github.css"; // Choose your preferred style
+  import "highlight.js/styles/monokai.css"; // Choose your preferred style
 
-  import Footer from "./Footer.svelte";
+  import Footer from "$lib/components/AppLayout/Footer.svelte";
 
-  import iconQwkLogo from "$assets/icons/icon-qwksearchlogo.svg";
+  import iconQwkLogo from "$lib/components/icons/icon-qwksearchlogo.svg";
 
-  export let currentArticle = null;
-  export let topicsObject = null;
+  import EditorComponent from "$lib/components/Editor/EditorComponent.svelte";
+  import { FOOTER_LINKS, APP_NAME, APP_SLOGAN } from "$lib/custom-domain";
 
-  export let fetchArticle = (url, index) => {};
+  let editor;
+  let {
+     currentArticle, 
+    topicsObject, 
+    fetchArticle = () => {},
+    summarizeArticle = () => {} 
+  } = $props() as any;
 
-  import { onDestroy } from "svelte";
+  
   const paletteColors = [
     "#FFB3BA", // Pastel Pink
     "#BAFFC9", // Pastel Green
@@ -36,25 +42,25 @@
     setupRemoveErrorImages();
   });
 
-  
   //remove images that don't load
   function setupRemoveErrorImages() {
     if (document.querySelector(".read-view"))
-    (new MutationObserver(() => {
-      document.querySelector(".read-view")
-      .querySelectorAll("img").forEach((node) => {
-        node.addEventListener("error", () => {
-          node.remove();
-        });
-        node.onerror = () => {
-          
-          node.remove();
-        };
+      new MutationObserver(() => {
+        document
+          .querySelector(".read-view")
+          .querySelectorAll("img")
+          .forEach((node) => {
+            node.addEventListener("error", () => {
+              node.remove();
+            });
+            node.onerror = () => {
+              node.remove();
+            };
+          });
+      })?.observe(document.querySelector(".read-view"), {
+        childList: true,
+        subtree: true,
       });
-    }))?.observe(document.querySelector(".read-view"), {
-      childList: true,
-      subtree: true,
-    });
   }
 
   const optionOpenInNewTab = false;
@@ -65,16 +71,25 @@
    * @param {MouseEvent} event - The click event.
    */
   function handleBrowserClick(event) {
-    if (event.target.closest("a")) {
-      var targetURL = event.target.closest("a").href;
+    if (event.target.closest("a") || event.target.tagName === "A") {
+      var targetURL = event.target.closest("a").href || event.target.href;
       //allow on page anchor links
-      if (targetURL.includes(currentArticle.url.split("#")?.[0]+"#")) return;
+      if (targetURL.includes(currentArticle.url.split("#")?.[0]+"#")) {
+        event.preventDefault();
+        var anchor = targetURL.split("#")?.[1];
+        var element = document.getElementById(anchor);
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+        event.preventDefault();
+        return;
+      };
+
+      if (!targetURL.startsWith("http")) return;
 
       event.preventDefault();
-      var isCtrlOrMetaPressed =
-        event.ctrlKey || event.metaKey
+      var isCtrlOrMetaPressed = event.ctrlKey || event.metaKey;
 
-      if (optionOpenInNewTab || isCtrlOrMetaPressed) window.open(targetURL, "_blank");
+      if (optionOpenInNewTab || isCtrlOrMetaPressed)
+        window.open(targetURL, "_blank");
       else fetchArticle(targetURL, 0);
     }
   }
@@ -86,11 +101,9 @@
   let colorMap = new Map();
   let usedColors = new Set();
   function toggleKeyphrase(keyphrase: string): void {
-    if (!topicsObject || !topicsObject.keyphrases) return;
+    if (!topicsObject ) return;
 
-    topicsObject = {
-      ...topicsObject,
-      keyphrases: topicsObject.keyphrases.map((topic) => {
+    topicsObject = topicsObject.map((topic) => {
         if (topic.keyphrase === keyphrase) {
           if (!topic.enabled) {
             let newColor;
@@ -106,12 +119,11 @@
           return { ...topic, enabled: !topic.enabled };
         }
         return topic;
-      }),
-    };
+      })
   }
 
   function getColor(keyphrase: string): string {
-    const topic = topicsObject?.keyphrases?.find(
+    const topic = topicsObject?.find(
       (t) => t.keyphrase === keyphrase
     );
     if (topic && topic.enabled) {
@@ -138,27 +150,35 @@
       </p>
     {/if}
 
-    {#if topicsObject}
+    <!-- {#if topicsObject} -->
       <p class="text-sm text-gray-500 mb-0">
-        {#each topicsObject.keyphrases as topic}
+        {#each topicsObject as topic}
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <span
             class="text-sm mb-0 inline-block border rounded-full px-2 py-1 mr-1 mb-1 cursor-pointer transition-all duration-200 ease-in-out hover:shadow-md hover:transform hover:translate-y-[-2px]"
             style="color: {getColor(
               topic.keyphrase
             )}; background-color: {topic.enabled ? 'gray' : 'transparent'};"
-            on:click={() => toggleKeyphrase(topic.keyphrase)}
+            onclick={() => toggleKeyphrase(topic.keyphrase)}
           >
             {topic.keyphrase}
           </span>
         {/each}
       </p>
-    {/if}
+    <!-- {/if} -->
+    <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+
     <div
       use:highlightCodeSyntax
       class="article prose prose-sm max-w-none mt-3"
-      on:click={handleBrowserClick}
+      onclick={handleBrowserClick}
     >
-      {@html currentArticle.html}
+
+    <EditorComponent
+    bind:this={editor}
+    content={currentArticle.html}
+  />
+      <!-- {@html currentArticle.html} -->
     </div>
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
@@ -169,22 +189,20 @@
           width="200px"
           class="text-lg text-gray-500 mx-auto block mb-0"
         />
-        <!-- Whatever the future of research can be,
-        <br />that is what it must become. -->
-        Reimagine the Internet as Self-Organizing Mind Map
-      </h3>
+        {APP_SLOGAN}
+        </h3>
       <p class="text-lg text-gray-500 text-center">
         <!-- Use WASD to scroll and navigate. -->
       </p>
       <p class="text-lg text-gray-500 text-center justify-center">
-        <a
+        <a aria-label="Chrome Web Store"
           class="download-chrome download-btn text-center justify-center"
           target="_blank"
           href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko"
         >
         </a>
 
-        <a
+        <a aria-label="Microsoft Store"
           class="download-windows download-btn text-center justify-center"
           target="_blank"
           href="https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&hl=en-us&gl=US"
@@ -195,8 +213,8 @@
       <div
         class="absolute bottom-0 w-full text-center text-slate-500 text-xs z-20"
       >
-        <Footer />
-      </div>
+      <Footer listFooterLinks={FOOTER_LINKS} />
+    </div>
     </div>
   {/if}
 </div>

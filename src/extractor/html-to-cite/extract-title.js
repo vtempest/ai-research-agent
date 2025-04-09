@@ -70,5 +70,5 @@ export function extractTitle(document) {
   }
 
   // Strip any remaining HTML tags and normalize spaces
-  return title.replace(/<\/?[^>]+(>|$)/g, '').replace(/\s+/g, ' ').trim();
+  return title?.replace(/<\/?[^>]+(>|$)/g, '').replace(/\s+/g, ' ').trim();
 }

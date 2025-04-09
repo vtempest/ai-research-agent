@@ -11,11 +11,12 @@
         "target": "ESNext",
         "useDefineForClassFields": true,
         "module": "ESNext",
+        "types": ["chrome"],
         "resolveJsonModule": true,
         "allowJs": true,
         "checkJs": true,
         "isolatedModules": true
     },
     "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "src/pages/app/index.ts"],
-    "references": [{ "path": "./tsconfig.node.json" }],
+    "exclude": ["node_modules", "dist"]
 }

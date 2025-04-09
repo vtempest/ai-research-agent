@@ -5,7 +5,7 @@ import {
 } from "$ai-research-agent";
 
 import { json } from "@sveltejs/kit";
-import { proxy } from "$lib/middleware/config";
+import { proxy } from "$lib/server";
 
 export async function GET({ url }) {
   const {
@@ -18,6 +18,7 @@ export async function GET({ url }) {
   if (!urlToExtract)
     return json({ error: "URL parameter is required" }, { status: 500 });
 
+  
   if (optionReturnAllHTML == "true") {
     let html = await scrapeURL(url);
 
@@ -33,12 +34,16 @@ export async function GET({ url }) {
     return json(html);
   }
 
+  //use no proxy first
   let article = await extractContent(urlToExtract, {
     proxy: false,
     timeout: 4,
   });
 
-  if (!article || article.error)
+
+
+  //as backup use via proxy puppeteer
+  if (!article || article.error || article.html?.length < 1000)
     article = await extractContent(urlToExtract, {
       proxy,
       timeout: 10,

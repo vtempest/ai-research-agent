@@ -1,121 +1,135 @@
-<script>
-  import { onMount } from "svelte";
+<script lang="ts">
+  import { onMount, tick } from "svelte";
   import TextEditor from "$lib/components/Editor/EditorMain.svelte";
-  import FileSystem from "$lib/components/FileSystem/FileSystem.svelte";
-  import Chat from "$lib/components/Chat/ChatMain.svelte";
-  import SearchWeb from "$lib/components/SearchWeb/SearchMain.svelte";
+  import FileSystem from "$lib/components/FileSystem/F2.svelte";
   import Settings from "$lib/components/Settings/Settings.svelte";
+  import SearchWeb from "$lib/components/SearchWeb/SearchMain.svelte";
+  import AppDockMenu from "./AppDockMenu.svelte";
+  import { page } from "$app/stores";
+  import { pushState } from "$app/navigation";
+  import { writable } from "svelte/store";
+	import { playSoundEffect, SoundEffect } from "$lib/components/AppLayout/sound-effects";
 
   // Import icons
-  import logoIcon from "$assets/icons/icon-logo.svg";
-  import youtubeIcon from "$assets/icons/icon-youtube-debate.svg";
-  import readIcon from "$assets/icons/icon-read.svg";
-  import graphIcon from "$assets/icons/icon-graph.svg";
-  import searchIcon from "$assets/icons/icon-searchresults.svg";
-  import flowIcon from "$assets/icons/icon-flow.svg";
-  import chatIcon from "$assets/icons/icon-chat.svg";
-  import configureIcon from "$assets/icons/icon-configure.svg";
-  import qwksearchIcon from "$assets/icons/icon-qwksearch.svg";
-  import { writable } from 'svelte/store';
+  import logoIcon from "$lib/components/icons/icon-logo.svg";
+  import youtubeIcon from "$lib/components/icons/icon-youtube-debate.svg";
+  import filesIcon from "$lib/components/icons/icon-files.svg";
+  import readIcon from "$lib/components/icons/icon-read.svg";
+  import graphIcon from "$lib/components/icons/icon-graph.svg";
+  import searchIcon from "$lib/components/icons/icon-searchresults.svg";
+  import flowIcon from "$lib/components/icons/icon-flow.svg";
+  import chatIcon from "$lib/components/icons/icon-chat.svg";
+  import organizeIcon from "$lib/components/icons/icon-organize.svg";
+  import configureIcon from "$lib/components/icons/icon-configure.svg";
+  import qwksearchIcon from "$lib/components/icons/icon-qwksearch.svg";
+
+  import {
+    APP_NAME,
+    GOOGLE_ANALYTICS,
+    PUBLIC_DOMAIN,
+    FOOTER_LINKS,
+    PUBLIC_GOOGLE_CLIENT_ID,
+  } from "$lib/custom-domain";
+
+  import { displayGoogleOneTapLogin } from "$lib/components/AppLayout/auth-google-one-tap";
 
   const browser = typeof window !== "undefined";
-  import { APP_NAME, GOOGLE_ANALYTICS } from "$lib/middleware/config";
 
-  export let data;
+
+
+  let user: OAuthUserInfo = null;
+
   // State variables
-  let activeView = "search";
+  let activeView = $state("search");
   let activeFileId = null;
-  let isMobileView = false;
-  let isNavVisible = true;
+  let isMobileView = $state(false); // default to false;
 
-  export const activeViewStore = writable('search');
-  $: activeView = $activeViewStore;
-
-  const isDebateMode = 0;
   // Navigation items configuration
-  const navigationItems = isDebateMode
-    ? [
-        { id: "chat", icon: logoIcon, label: "Research" },
-        { id: "shared", icon: searchIcon, label: "Discover Shared" },
-        { id: "read", icon: readIcon, label: "Read" },
-        { id: "documents", icon: graphIcon, label: "Organize" },
-        { id: "flow", icon: flowIcon, label: "Flow" },
-        { id: "videos", icon: youtubeIcon, label: "Watch" },
-        // { id: 'configure', icon: configureIcon, label: 'Configure' },
-      ]
-    : [
-        { id: "search", icon: qwksearchIcon, label: "Research" },
-        { id: "read", icon: readIcon, label: "Read" },
-        { id: "documents", icon: graphIcon, label: "Organize" },
-        { id: "search", icon: configureIcon, label: "Configure" },
-      ];
+  const listDockApps = [
+    {
+      id: "search",
+      icon: qwksearchIcon,
+      component: SearchWeb,
+    },
+    {
+      id: "read",
+      icon: readIcon,
+      component: TextEditor,
+    },
+    {
+      id: "documents",
+      icon: filesIcon,
+      component: FileSystem,
+      disabled: true
 
-  function handleNavigationClick(id) {
-    activeView = id;
-    activeFileId = null;
-    updateBrowserURL();
-    // Remove this line to prevent collapsing on item click
-    // if (isMobileView)
-    //   isNavVisible = false;
-  }
+    },
+    { id: "settings", 
+      icon: configureIcon, 
+      component: Settings,
+      label: "Configure",
+      disabled: true
+    },
+  ].filter(item => !item.disabled);
 
-  function updateBrowserURL() {
-    const url = activeFileId
-      ? `#${activeView}/${activeFileId}`
-      : `#${activeView}`;
-    if (browser) {
-      history.pushState(null, "", url);
+  onMount(async () => {
+    if (typeof window === "undefined") return;
+
+    user = $page.data.session?.user;
+
+    // parseURL();
+
+    checkMobileView();
+
+    window.addEventListener("popstate", parseURL);
+    window.addEventListener("resize", checkMobileView);
+
+    if (!user) {
+      var isOneTapShown = displayGoogleOneTapLogin(PUBLIC_GOOGLE_CLIENT_ID, {
+        auto_select: true,
+        use_fedcm_for_prompt: true,
+        cancel_on_tap_outside: true,
+        callback_url: `/auth/google/callback`,
+        state_cookie_domain: PUBLIC_DOMAIN,
+      });
+      if (!isOneTapShown) {
+        console.log("OneTap error - use alternatives");
+      }
     }
+  });
+
+  
+  /**
+   * Adds the search query to the URL so that the state
+   * of the search is preserved in a sharable URL.
+   * @param {string} key - The key to add to the URL
+   * @param {string} value - The value to add to the URL
+   */
+   function updateURL(key, value) {
+    if (!browser) return;
+    const url = new URL(document?.location.href);
+    url.searchParams.set(key, value);
+    window.history.replaceState({}, "", url);
   }
+
+  function handleAppDockClick(id) {
+    activeView = id;
+    playSoundEffect(SoundEffect.boop)
+    updateURL("view", id);
+  }
+
 
   function parseURL() {
-    if (browser) {
-      const hash = window.location.hash.slice(1);
-      const [view, id] = hash.split(/[/?]/);
-      if (view) activeView = view;
-      activeFileId = id || null;
-
-      activeViewStore.set(activeView);
-
-
-      console.log("view", activeView)
-    }
+    if (!browser) return;
+    const url = new URL(window.location.href);
+    const view = url.searchParams.get("view");
+    if (view) activeView = view;
   }
 
   function checkMobileView() {
     isMobileView = window.innerWidth < 768;
     // Keep isNavVisible true by default for both mobile and desktop
-    isNavVisible = true;
+    // isNavVisible = true;
   }
-
-  function toggleNavigation() {
-    isNavVisible = !isNavVisible;
-  }
-
-  onMount(() => {
-    parseURL();
-    checkMobileView();
-
-    if (browser) {
-      window.addEventListener("popstate", parseURL);
-      window.addEventListener("resize", checkMobileView);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", `${GOOGLE_ANALYTICS}`);
-    }
-
-    return () => {
-      if (browser) {
-        window.user = window?.data?.user;
-        window.removeEventListener("popstate", parseURL);
-        window.removeEventListener("resize", checkMobileView);
-      }
-    };
-  });
 </script>
 
 <svelte:head>
@@ -123,7 +137,7 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="//fonts.googleapis.com" />
-  <link rel="preconnect" href="//fonts.gstatic.com" crossorigin="true" />
+  <link rel="preconnect" href="//fonts.gstatic.com" crossorigin="" />
   <link
     href="//fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
     rel="stylesheet"
@@ -137,18 +151,12 @@
     rel="stylesheet"
   />
 
-  <style>
-    body {
-      font-family: "Montserrat", "Lato", "Open Sans", Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-    }
-  </style>
-
-  {@html `<!-- Google Analytics -->
+  <!-- Google Analytics -->
+  {#if GOOGLE_ANALYTICS}
+    {@html `
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS}" ✂prettier:content✂="CiAgICA=">{}</script>
+      src="https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS}" ✂prettier:content✂="CiAgICA=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>
     <script>
       
       window.dataLayer = window.dataLayer || []
@@ -158,12 +166,21 @@
       gtag('js', new Date())
       gtag('config', "${GOOGLE_ANALYTICS}" )
     </script>`}
+  {/if}
+
+  <!-- SimpleAnalytics.com -->
+  <script
+    async
+    defer
+    src="https://scripts.simpleanalyticscdn.com/latest.js"
+  ></script>
 </svelte:head>
 
-<div class="flex h-[100dvh] w-full overflow-hidden">
-  {#if isMobileView && !isNavVisible}
+
+<div class="flex w-full overflow-hidden">
+  <!-- {#if isMobileView && !isNavVisible}
     <button
-      on:click={toggleNavigation}
+      onclick={toggleNavigation}
       class="fixed bottom-4 right-4 z-50 bg-[#E8E5D8] p-2 rounded-full shadow-lg"
     >
       <svg
@@ -194,7 +211,7 @@
     >
       {#if isMobileView}
         <button
-          on:click={toggleNavigation}
+          onclick={toggleNavigation}
           class="absolute top-2 right-2 hover:shadow-xl hover:-translate-y-1 text-gray-600 hover:text-gray-800"
         >
           <svg
@@ -215,7 +232,7 @@
       {/if}
       {#each navigationItems as item}
         <button
-          on:click={() => handleNavigationClick(item.id)}
+          onclick={() => handleNavigationClick(item.id)}
           class="flex flex-col items-center justify-center {isMobileView
             ? 'w-auto'
             : 'w-full'} transition-colors duration-200"
@@ -241,43 +258,21 @@
         </button>
       {/each}
     </nav>
-  {/if}
+  {/if} -->
 
-  <main
-    class="flex-1 overflow-y-auto text-lg {isMobileView ? 'pb-[80px]' : ''}"
-  >
-    {#if activeView === "documents"}
-      <FileSystem />
-    {:else if activeView == "read"}
-      <TextEditor />
-    {:else if activeView === "configure"}
-      <Settings />
-    {:else if activeView === "chat"}
-      <Chat />
-    {:else if activeView === "search"}
-      <SearchWeb />
+  <main class="flex-1 overflow-y-auto text-lg {isMobileView ? ' ' : ''}">
+    <div
+      style="position: absolute; top: 0; left: 0; z-index: 100; margin-top: 4rem;"
+    >
+      <AppDockMenu {handleAppDockClick} {listDockApps} />
+    </div>
 
-      <!-- {:else if activeView === 'flow'}
-      <Flow /> -->
-      <!-- {:else if activeView === 'shared'}
-      <SearchEvidence />
-    {:else if activeView === 'videos'}
-      <Videos /> -->
-    {:else}
-      <div class="p-6">
-        <h1 class="text-3xl font-bold mb-4">
-          {activeView.charAt(0).toUpperCase() + activeView.slice(1)}
-        </h1>
-        <p class="text-xl">This is the {activeView} view.</p>
+    {#each listDockApps as view (view.id)}
+      {@const AppViewComponent = view.component}
+      <div style="display: {view.id == activeView ? 'block' : 'none'}">
+        <AppViewComponent />
       </div>
-    {/if}
+    {/each}
   </main>
 </div>
 
-<style>
-  body {
-    font-family: "Montserrat", "Lato", "Open Sans", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-  }
-</style>

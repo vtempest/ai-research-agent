@@ -1,11 +1,73 @@
-[ai-research-agent](../../index.md) / extractor/html-to-content/html-to-content
+[ai-research-agent](../../modules.md) / extractor/html-to-content/html-to-content
+
+## Interfaces
+
+### ExtractedContent
+
+#### Properties
+
+##### author
+
+```ts
+author: string;
+```
+
+The author's name
+
+##### author\_cite
+
+```ts
+author_cite: string;
+```
+
+The full citation for the author
+
+##### author\_short
+
+```ts
+author_short: string;
+```
+
+A shortened version of the author's name
+
+##### date
+
+```ts
+date: string;
+```
+
+The publication date
+
+##### html
+
+```ts
+html: string;
+```
+
+The extracted main content in HTML format
+
+##### source
+
+```ts
+source: string;
+```
+
+The source of the content
+
+##### title
+
+```ts
+title: string;
+```
+
+The title of the content
 
 ## Functions
 
 ### extractContentAndCite()
 
 ```ts
-function extractContentAndCite(documentOrHTML, options): Object
+function extractContentAndCite(documentOrHTML, options): any
 ```
 
 Extracts the main content and citation information from a document or HTML string
@@ -29,7 +91,7 @@ Extracts the main content and citation information from a document or HTML strin
 </td>
 <td>
 
-`string` \| `object`
+`any`
 
 </td>
 <td>
@@ -147,72 +209,10 @@ default=false -
 
 #### Returns
 
-`Object`
+`any`
 
 The extracted content and citation information
 
 #### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)
-
-## Interfaces
-
-### ExtractedContent
-
-#### Properties
-
-##### author
-
-```ts
-author: string;
-```
-
-The author's name
-
-##### author\_cite
-
-```ts
-author_cite: string;
-```
-
-The full citation for the author
-
-##### author\_short
-
-```ts
-author_short: string;
-```
-
-A shortened version of the author's name
-
-##### date
-
-```ts
-date: string;
-```
-
-The publication date
-
-##### html
-
-```ts
-html: string;
-```
-
-The extracted main content in HTML format
-
-##### source
-
-```ts
-source: string;
-```
-
-The source of the content
-
-##### title
-
-```ts
-title: string;
-```
-
-The title of the content

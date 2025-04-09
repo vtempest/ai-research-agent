@@ -61,14 +61,11 @@ export function extractCite(document, options = {}) {
 
     date = parseDate(date)?.toISOString().split("T")[0] || null;
 
-  // if (new Date(date).getFullYear() < 2002)
-  //   date = null;
-
   title = extractTitle(document) || title;
   source = extractSource(document) || source;
 
   if (!source)
-    source = url.split('//')[1].split('/')[0].replace("www.", "");
+    source = url.split('//')[1].split('/')[0]?.replace("www.", "");
 
   //capitalize source
   source = source

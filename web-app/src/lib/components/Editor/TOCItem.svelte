@@ -92,7 +92,7 @@
 >
   {#if heading.children.length > 0}
     <button
-      on:click={toggleExpand}
+      onclick={toggleExpand}
       class="mr-1 focus:outline-none"
       aria-label={isExpanded ? "Collapse" : "Expand"}
     >
@@ -109,8 +109,8 @@
     <input
       bind:this={inputName}
       bind:value={editText}
-      on:blur={finishEditing}
-      on:keydown={handleKeydown}
+      onblur={finishEditing}
+      onkeydown={handleKeydown}
       class="
         editing-mode text-sm w-full text-left flex-grow
         px-2 py-1 rounded-md
@@ -128,13 +128,13 @@
         transition-all duration-200 ease-in-out
         px-2 py-1 rounded-md
       "
-      on:click={handleHeadingClick}
+      onclick={handleHeadingClick}
       style="font-size: {13-(heading.level - 1) * (heading.level==4?1.5:1)}pt;"
     >
       {headingText}
     </button>
     <button
-      on:click={startEditing}
+      onclick={startEditing}
       class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-2 focus:outline-none"
       aria-label="Edit heading"
     >
@@ -145,6 +145,6 @@
 
 {#if heading.children.length > 0 && isExpanded}
   {#each heading.children as childHeading (childHeading.pos)}
-    <svelte:self heading={childHeading} {maxLevel} {scrollToHeading} on:loadBlock on:renameHeading />
+    <svelte:self heading={childHeading} {maxLevel} {scrollToHeading} onloadBlock onrenameHeading />
   {/each}
 {/if}

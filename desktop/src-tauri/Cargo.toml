@@ -1,0 +1,24 @@
+[package]
+name = "qwksearch"
+version = "0.2.0"
+description = "qwksearch Desktop"
+authors = ["qwksearch"]
+license = "AGPL-3.0"
+repository = ""
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-rc.6", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0-rc.10", features = ["unstable"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+enigo = "0.2.1"
+tauri-plugin-clipboard-manager = "2.0.0-rc"
+tauri-plugin-global-shortcut = "2.0.0-rc"
+tauri-plugin-shell = { version = "2.0.0-rc.3" }
+tauri-plugin-autostart = "2.0.0-rc"
+open = "5.3.0"
+urlencoding = "2.1.3"
+
+

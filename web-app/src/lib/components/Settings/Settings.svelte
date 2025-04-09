@@ -42,8 +42,8 @@
 	
 </svelte:head>
 
-<form on:submit={handleSubmit} class="flex flex-wrap gap-4 p-4">
-  <div class="w-full md:w-1/2 space-y-6">
+<form onsubmit={handleSubmit} class="flex flex-wrap gap-4 p-4">
+  <div class="w-full md:w-1/2 space-y-6 mt-20 pt-10">
     <div>
       <label class="flex items-center gap-2 mb-2">
         <Search size={16} />
@@ -51,7 +51,7 @@
       </label>
       <Select.Root bind:value={$formStore.searchEngine}>
         <Select.Trigger class="w-full bg-white">
-          <Select.Value placeholder="Select search engine" />
+          <!-- <Select placeholder="Select search engine" /> -->
         </Select.Trigger>
         <Select.Content class="bg-white">
           {#each searchEngines as engine}
@@ -84,7 +84,7 @@
       </label>
       <Select.Root bind:value={$formStore.favoriteFont}>
         <Select.Trigger class="w-full bg-white">
-          <Select.Value placeholder="Select favorite font" />
+          <!-- <Select.Value placeholder="Select favorite font" /> -->
         </Select.Trigger>
         <Select.Content class="bg-white">
           {#each fonts as font}

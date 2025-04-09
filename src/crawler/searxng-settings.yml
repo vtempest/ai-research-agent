@@ -36,9 +36,6 @@ engines:
     engine: bing_news
     shortcut: bin
 
-  - name: bing videos
-    engine: bing_videos
-    shortcut: biv
     
   - name: duckduckgo
     engine: duckduckgo
@@ -53,7 +50,7 @@ engines:
 
   - name: duckduckgo videos
     engine: duckduckgo_extra
-    categories: [videos, web]
+    categories: [ web]
     ddg_category: videos
     shortcut: ddv
     disabled: false

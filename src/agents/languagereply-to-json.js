@@ -11,6 +11,9 @@ export function convertLanguageReplyToJSON(text, key = null) {
     return '';
   }
 
+  //convert &lt; to < >
+  text = text.replaceAll("&lt;","<").replaceAll("&gt;",">")
+  
   // Find content between tags
   let startTag = `<${key}>`;
   if (!key) {

@@ -172,7 +172,7 @@ export async function searchWeb(query, options = {}) {
           }
         }
 
-
+      title = convertHTMLToEscapedHTML(title);
       var url = result.url.replace(/&amp;/g, "&");
       var snippet = result.content?.replace(/<\/?[^>]+(>|$)/g, "");
       var score = Math.round(result.score * 100) / 100;

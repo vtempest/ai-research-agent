@@ -1,4 +1,4 @@
-[ai-research-agent](../../../../index.md) / extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks
+[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks
 
 ## Classes
 
@@ -23,6 +23,28 @@ new default(): default
 ###### Overrides
 
 [`default`](../ToLineItemBlockTransformation.md#default).[`constructor`](../ToLineItemBlockTransformation.md#constructors)
+
+#### Properties
+
+##### itemType
+
+```ts
+itemType: any;
+```
+
+###### Inherited from
+
+[`default`](../ToLineItemBlockTransformation.md#default).[`itemType`](../ToLineItemBlockTransformation.md#itemtype)
+
+##### name
+
+```ts
+name: any;
+```
+
+###### Inherited from
+
+[`default`](../ToLineItemBlockTransformation.md#default).[`name`](../ToLineItemBlockTransformation.md#name)
 
 #### Methods
 
@@ -103,25 +125,3 @@ transform(parseResult): default
 ###### Overrides
 
 [`default`](../ToLineItemBlockTransformation.md#default).[`transform`](../ToLineItemBlockTransformation.md#transform)
-
-#### Properties
-
-##### itemType
-
-```ts
-itemType: any;
-```
-
-###### Inherited from
-
-[`default`](../ToLineItemBlockTransformation.md#default).[`itemType`](../ToLineItemBlockTransformation.md#itemtype)
-
-##### name
-
-```ts
-name: any;
-```
-
-###### Inherited from
-
-[`default`](../ToLineItemBlockTransformation.md#default).[`name`](../ToLineItemBlockTransformation.md#name)

@@ -1,29 +1,24 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "typeRoots": ["./src/global.d.ts"],
     "strict": false,
     "allowImportingTsExtensions": true,
     "target": "ESNext",
     "module": "ESNext",
     "resolveJsonModule": true,
     "allowJs": true,
+    "types": ["chrome", "vite/client"],
     "checkJs": false,
     "isolatedModules": false,
     "skipLibCheck": true,
-    "moduleResolution": "node",
-    "paths": {
-      "$lib": ["./src/lib/*"],
-      "$lib/*": ["./src/lib/*"],
-      "$components": ["./src/lib/components/*"],
-      "$components/*": ["./src/lib/components/*"],
-    }
+    "moduleResolution": "node10",
+    "noEmit": true
   },
   "include": [
+    "./src/global.d.ts",
     "./src/**/*",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "index.js",
+   ],
+  "exclude": ["node_modules"]
 }

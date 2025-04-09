@@ -1,5 +1,5 @@
 import { convertHTMLToBasicHTML } from "../html-to-content/html-to-basic-html.js";
-import {convertMarkdownToHTML} from "../html-to-content/html-utils.js";
+import { convertMarkdownToHTML } from "../html-to-content/html-utils.js";
 
 /**
  * ### Tardigrade the Web Crawler 
@@ -43,85 +43,82 @@ import {convertMarkdownToHTML} from "../html-to-content/html-utils.js";
  */
 export async function scrapeURL(url, options = {}) {
   // try {
-    let {
-      timeout = 15,
-      checkBotDetection = true,
-      maxRedirects = 3,
-      changeReferer = 0,
-      userAgentIndex = 0,
-      proxy = null,
-      useProxyAsBackup = true,
-      checkRobotsAllowed = false,
-    } = options;
+  let {
+    timeout = 15,
+    checkBotDetection = true,
+    maxRedirects = 3,
+    changeReferer = 0,
+    userAgentIndex = 0,
+    proxy = null,
+    useProxyAsBackup = true,
+    checkRobotsAllowed = false,
+  } = options;
 
-    if(checkRobotsAllowed) {
-      const rules = await fetchScrapingRules(url);
-      if(!isAllowedToScrape(rules, url)) {
-        return { error: "Robots.txt forbids to scrape there" };
-      }
+  if (checkRobotsAllowed) {
+    const rules = await fetchScrapingRules(url);
+    if (!isAllowedToScrape(rules, url)) {
+      return { error: "Robots.txt forbids to scrape there" };
     }
+  }
 
-    
-    if(proxy)
-      url = proxy +   url;
+  if (proxy)
+    url = proxy + url;
 
-    // console.log(url)
+  var userAgentStrings =
+    ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)"]
 
-    var userAgentStrings =
-      ['Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible ; Googlebot/2.1 ; +http://www.google.com/bot.html)',
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36,gzip(gfe)"]
+  var headers = {
+    ...options,
+    "User-Agent": userAgentStrings[userAgentIndex],
+    signal: AbortSignal.timeout(timeout * 1000),
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "en-US,en;q=0.9",
+  };
 
-    var headers = {
-      ...options,
-      "User-Agent": userAgentStrings[userAgentIndex],
-      signal: AbortSignal.timeout(timeout * 1000),
-      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "accept-language": "en-US,en;q=0.9",
-    };
-
-    if (changeReferer)
-      headers["Referer"] = "https://www.google.com/";
+  if (changeReferer)
+    headers["Referer"] = "https://www.google.com/";
 
 
-    let response = await fetch(url, headers);
+  let response = await fetch(url, headers);
 
-    if (response.redirected) {
-      if (maxRedirects <= 0)
-        return { error: "Max redirects exceeded" };
-      maxRedirects--;
-      options = { ...options, maxRedirects };
+  if (response.redirected) {
+    if (maxRedirects <= 0)
+      return { error: "Max redirects exceeded" };
+    maxRedirects--;
+    options = { ...options, maxRedirects };
 
-      return scrapeURL(response.url, options);
-    }
-
-
-    //return based on content type
-    const contentType = response.headers.get("Content-Type");
-
-    // if (contentType.includes("application/json")) {
-    //   return await response.json();
-    // } else 
-    // if (contentType.includes("text")) {
-      var html = await response.text();
-      if (checkBotDetection && checkHTMLForBotDetection(html)){
+    return scrapeURL(response.url, options);
+  }
 
 
+  //return based on content type
+  const contentType = response.headers.get("Content-Type");
 
-        html = await scrapeJINA(url)
+  // if (contentType.includes("application/json")) {
+  //   return await response.json();
+  // } else 
+  // if (contentType.includes("text")) {
+  var html = await response.text();
 
-        console.log(html)
-        //if all methods fail -- return jina
-        if (checkBotDetection && checkHTMLForBotDetection(html))
-          return { error: "Bot detected" }; //, html: response.html };
-
-      }
+  if (checkBotDetection && checkHTMLForBotDetection(html)) {
 
 
-      return html;
-    // } else {
-    //   // For other types, return as arrayBuffer
-    //   return await response.arrayBuffer();
-    // }
+
+    html = await scrapeJINA(url)
+
+    //if all methods fail -- return jina
+    if (checkBotDetection && checkHTMLForBotDetection(html))
+      return { error: "Bot detected" }; //, html: response.html };
+
+  }
+
+
+  return html;
+  // } else {
+  //   // For other types, return as arrayBuffer
+  //   return await response.arrayBuffer();
+  // }
   // } catch (e) {
   //   return { error: "Error in fetch", msg: e.message };
   // }
@@ -132,30 +129,30 @@ export async function scrapeURL(url, options = {}) {
  * @param {string} url
  * @returns {Promise<string>}
  */
-async function scrapeJINA(url) {
-    var articleExtract = await (
-      await fetch("https://r.jina.ai/" + url)
-    ).text();
+export async function scrapeJINA(url) {
+  var articleExtract = await (
+    await fetch("https://r.jina.ai/" + url)
+  ).text();
 
-    //convert Title: to <title>
-    var title = articleExtract.match(/Title: (.*)/)?.[1];
+  //convert Title: to <title>
+  var title = articleExtract.match(/Title: (.*)/)?.[1];
 
 
-    if (articleExtract.includes("===============\n"))
-      articleExtract = articleExtract
-        .split("===============\n")
-        .slice(1)
-        .join(" ");
+  if (articleExtract.includes("===============\n"))
+    articleExtract = articleExtract
+      .split("===============\n")
+      .slice(1)
+      .join(" ");
 
-    var match = articleExtract.match(/Markdown Content:([\s\S]*)/);
-    articleExtract = match ? match[1] : articleExtract;
+  var match = articleExtract.match(/Markdown Content:([\s\S]*)/);
+  articleExtract = match ? match[1] : articleExtract;
 
-    articleExtract = convertMarkdownToHTML(articleExtract);
+  articleExtract = convertMarkdownToHTML(articleExtract);
 
-    if (title)
-      articleExtract = "<title>" + title + "</title>" + articleExtract;
+  if (title)
+    articleExtract = "<title>" + title + "</title>" + articleExtract;
 
-    return articleExtract;
+  return articleExtract;
 }
 
 /**
@@ -165,6 +162,7 @@ async function scrapeJINA(url) {
  */
 function checkHTMLForBotDetection(html) {
   var commonBlocks = [
+    "Error 403 - Unavailable",
     "The security system for this website has been triggered",
     "You do not have permission to view this page.",
     "Our systems have detected unusual traffic from your computer network.",
@@ -189,6 +187,7 @@ function checkHTMLForBotDetection(html) {
     "You’re using a web browser that isn’t supported",
     "403 Forbidden",
     "504 Gateway Timeout",
+    "You’re Temporarily Blocked",
     "Our systems have detected unusual activity",
     "Agree & Join LinkedIn",
     "Verifying you are human. This may take a few seconds",
@@ -198,13 +197,11 @@ function checkHTMLForBotDetection(html) {
     "Verifying you are human",
     "Your request has been blocked",
     "You've been blocked by network security",
-    "Slow down, turbo! You've hit the rate limit."
+    "You've hit the rate limit."
   ];
 
   return commonBlocks.filter(m => html?.indexOf(m) > -1).length > 0;
 }
-
-
 
 /**
  * Fetches and parses the robots.txt file for a given URL.
@@ -213,7 +210,12 @@ function checkHTMLForBotDetection(html) {
  */
 export async function fetchScrapingRules(url) {
   const robotsUrl = `https://${url.split('//')[1].split('/')[0]}/robots.txt`;
-  const content = await (await fetch(robotsUrl)).text();
+  try {
+    const content = await (await fetch(robotsUrl)).text();
+  } catch (e) {
+    return { error: "No robots.txt found" };
+  }
+
   const rules = {
     directives: {},
     crawlDelay: {},
@@ -262,10 +264,10 @@ export async function fetchScrapingRules(url) {
  */
 function isAllowedToScrape(rules, path, userAgent = '*') {
   const relevantRules = rules.directives[userAgent.toLowerCase()]
-   || rules.directives['*'] || [];
-  for (const rule of relevantRules) 
-    if (path.startsWith(rule.path)) 
+    || rules.directives['*'] || [];
+  for (const rule of relevantRules)
+    if (path.startsWith(rule.path))
       return rule.allow;
-    
+
   return true; // If no rules match, it's allowed by default
 }

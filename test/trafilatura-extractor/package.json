@@ -1,7 +1,7 @@
 {
   "name": "trafilatura.js",
   "description": "JavaScript port of Trafilatura, a web scraping library for text extraction",
-  "author": "Adrien Barbaresi, et al (2019)",
+  "author": "vtempest <grokthiscontact@gmail.com>, Python Trafilatura by Adrien Barbaresi, et al (2019)",
   "license": "Apache-2.0",
   "module": "core.js",
   "type": "module",

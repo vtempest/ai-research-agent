@@ -3,7 +3,7 @@ import {extractContent} from "$ai-research-agent";
 
 import styles from "./reading-mode-style.css?raw";
 
-import tailwind from "./tailwind.min.css?raw";
+// import tailwind from "./tailwind.min.css?raw";
 
 
 // Listen for the activateReadingMode message

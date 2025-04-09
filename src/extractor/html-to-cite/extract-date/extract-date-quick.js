@@ -131,7 +131,7 @@ const DATE_PUBLISHED_META_TAGS = [
   }
   
   function cleanDateString(dateString) {
-    return dateString.replace(CLEAN_DATE_STRING_RE, '$1').trim();
+    return dateString?.replace(CLEAN_DATE_STRING_RE, '$1').trim();
   }
   
   function createDate(dateString) {

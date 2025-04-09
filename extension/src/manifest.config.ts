@@ -29,8 +29,8 @@ export default defineManifest(async (env) => ({
   },
 
   icons: {
-    "48": "src/assets/icons/icon-48.png",
-    "128": "src/assets/icons/icon-128.png",
+    "48": "src/icons/icon-48.png",
+    "128": "src/icons/icon-128.png",
   },
   commands: {
     _execute_action: {

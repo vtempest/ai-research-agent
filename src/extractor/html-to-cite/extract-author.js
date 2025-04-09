@@ -101,7 +101,7 @@
     if (author.startsWith("@")) author = author.slice(1);
     if (author.startsWith("http")) return null;
 
-    author = author.replace(CLEAN_AUTHOR_RE, "$2").trim();
+    author = author?.replace(CLEAN_AUTHOR_RE, "$2").trim();
     return author.length > 0 && author.length < AUTHOR_MAX_LENGTH
       ? author
       : null;

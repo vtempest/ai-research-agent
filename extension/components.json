@@ -8,7 +8,7 @@
 	},
 	"aliases": {
 		"components": "../web-app/src/lib/components",
-		"utils": "../web-app/src/lib/utils/classname",
+		"utils": "../web-app/src/lib/utils",
 		"ui": "../web-app/src/lib/components/ui",
 		"hooks": "../web-app/src/lib/hooks"
 	},

@@ -35,8 +35,7 @@ import { UMAP } from "umap-js/lib/umap-js.js";
  * 
  * <img src="https://i.imgur.com/7H7DbnU.png" />
  * <img src="https://i.imgur.com/Wzat3qY.png" width="1000px" />
- * <img src="https://github.com/TutteInstitute/datamapplot/blob/main/examples/plot_simple_arxiv.png?raw=true" width="1000px"/>
- * <img src="https://github.com/TutteInstitute/datamapplot/raw/main/examples/ArXiv_example.gif" width="1000px"/>
+ * <img src="https://i.imgur.com/dlSgqi9.gif" width="1000px" alt="UMAP Arxiv pdfs search" />
  * 
  * @param {Object.<string, number[]>} embeddingsDict - The dictionary of embeddings.
  * @param {Object} [options]

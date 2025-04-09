@@ -1,4 +1,28 @@
-[ai-research-agent](../../index.md) / editor/modules/virtualRendering
+[ai-research-agent](../../modules.md) / editor/modules/virtualRendering
+
+## Interfaces
+
+### VirtualRenderWhat
+
+#### Properties
+
+##### doc?
+
+```ts
+optional doc: default;
+```
+
+##### old?
+
+```ts
+optional old: default;
+```
+
+##### selection
+
+```ts
+selection: EditorRange;
+```
 
 ## Functions
 
@@ -42,27 +66,3 @@ function virtualRendering(editor): object
 | `render` | (`what`?) => `void` |
 | `destroy()` |  |
 | `init()` |  |
-
-## Interfaces
-
-### VirtualRenderWhat
-
-#### Properties
-
-##### doc?
-
-```ts
-optional doc: default;
-```
-
-##### old?
-
-```ts
-optional old: default;
-```
-
-##### selection
-
-```ts
-selection: null | EditorRange;
-```

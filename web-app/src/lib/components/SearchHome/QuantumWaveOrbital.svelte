@@ -40,7 +40,8 @@
     onDestroy(() => {
       if (intervalId) clearInterval(intervalId);
     });
-  
+    
+    //change color on click
     function handleClick(event) {
       const target = event.target;
       if (target.classList.contains('line')) {
@@ -49,8 +50,8 @@
       }
     }
   </script>
-  
-  <div class="w-full h-full p-3 flex justify-center items-center overflow-hidden" on:click={handleClick}>
+    <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <div class="w-full h-full p-3 flex justify-center items-center overflow-hidden" onclick={handleClick}>
     <div class="sphere" style="
       animation-duration: {rotationSpeed}s; 
       width: {sphereSize}px; 
@@ -91,11 +92,4 @@
       to { transform: rotateX(360deg) rotateY(360deg); }
     }
   
-    :global(body), :global(html) {
-      @apply m-0 p-0 w-full h-full;
-    }
-  
-    :global(*) {
-      @apply box-border;
-    }
   </style>

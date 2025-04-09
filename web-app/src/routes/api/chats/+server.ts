@@ -1,6 +1,6 @@
 // import { error, json } from '@sveltejs/kit';
 // import { db } from '$lib/db';
-// import { chats, messages } from '$lib/db/schema';
+// import { chats, messages } from '$lib/server/schema';
 // import { eq } from 'drizzle-orm';
 
 // /**

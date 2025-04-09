@@ -15,3 +15,4 @@ vite.config.ts.timestamp-*
 bun.lockb
 web-app/data/*
 migrations/*
+wrangler.toml

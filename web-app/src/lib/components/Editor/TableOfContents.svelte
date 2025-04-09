@@ -1,17 +1,14 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher } from "svelte";
+  import { onMount } from "svelte";
   import TOCItem from "./TOCItem.svelte";
   import { Slider } from "$lib/components/ui/slider";
+  
+  let { editor, currentHeading, 
+    mainContent, handleLoadBlock, 
+    headingsOutline } = $props()
 
-  export let editor = null;
-  export let currentHeading;
-  export let mainContent;
-  export let handleLoadBlock;
-
-  const dispatch = createEventDispatcher();
-
-  let maxLevel = 3;
-  let flattenedHeadings = [];
+  let maxLevel = $state(3);
+  let nestedHeadings = $derived(createNestedHeadings(flattenOutline(headingsOutline)));
 
   function flattenOutline(outline, level = 1) {
     let result = [];
@@ -20,7 +17,7 @@
         level,
         text: item.h1Title || item.h2Title || item.h3Title || item.h4Title,
         blocks: item.h4s,
-        pos: index, // This is a placeholder, as we don't have actual positions
+        pos: index,
       });
       if (item.h2s) {
         result = result.concat(flattenOutline(item.h2s, level + 1));
@@ -35,15 +32,10 @@
     return result;
   }
 
-  $: {
-    if (mainContent && mainContent.outline) {
-      flattenedHeadings = flattenOutline(mainContent.outline);
-    }
-  }
-
   function createNestedHeadings(headings) {
     const nestedHeadings = [];
     const stack = [{ level: 0, children: nestedHeadings }];
+    
     headings.forEach((heading) => {
       while (heading.level <= stack[stack.length - 1].level) {
         stack.pop();
@@ -59,19 +51,16 @@
       parent.children.push(newHeading);
       stack.push(newHeading);
     });
+    
     return nestedHeadings;
   }
 
-  $: nestedHeadings = createNestedHeadings(flattenedHeadings);
 
-  function handleSliderChange(value) {
-    maxLevel = value[0];
-  }
-
+  // This function needs to be adjusted based on how you want to handle scrolling
+  // with the new outline structure
   function scrollToHeading(heading) {
-    // This function needs to be adjusted based on how you want to handle scrolling
-    // with the new outline structure
-    alert(JSON.stringify(heading));
+    
+    console.log(heading);
   }
 </script>
 
@@ -83,7 +72,7 @@
     <Slider
       id="max-level-slider"
       value={[maxLevel]}
-      onValueChange={handleSliderChange}
+      onValueChange={(value)=>{maxLevel = value[0];}}
       max={4}
       min={1}
       step={1}
@@ -97,7 +86,6 @@
         {heading}
         {maxLevel}
         {scrollToHeading}
-        on:loadBlock={handleLoadBlock}
       />
     {/each}
   </div>
@@ -108,7 +96,7 @@
     @apply bg-white h-1 shadow-lg;
   }
   :global(#max-level-slider span) {
-    @apply bg-white  shadow-lg;
+    @apply bg-white shadow-lg;
   }
   :global(.slider-track) {
     @apply h-1 bg-gray-300 rounded-full shadow-md;

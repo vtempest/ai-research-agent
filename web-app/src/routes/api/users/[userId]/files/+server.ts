@@ -1,6 +1,6 @@
 
 import { json } from '@sveltejs/kit';
-import { userFileIndex } from '$lib/db/schema';
+import { userFileIndex } from '$lib/server/schema';
 import { eq } from 'drizzle-orm';
 
 export async function GET({ params , locals }) {

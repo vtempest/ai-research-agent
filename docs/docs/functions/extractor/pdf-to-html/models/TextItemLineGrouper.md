@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/TextItemLineGrouper
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/TextItemLineGrouper
 
 ## Classes
 
@@ -41,6 +41,14 @@ new default(options): default
 
 [`default`](TextItemLineGrouper.md#default)
 
+#### Properties
+
+##### mostUsedDistance
+
+```ts
+mostUsedDistance: any;
+```
+
 #### Methods
 
 ##### group()
@@ -77,11 +85,3 @@ group(textItems): any[][]
 ###### Returns
 
 `any`[][]
-
-#### Properties
-
-##### mostUsedDistance
-
-```ts
-mostUsedDistance: any;
-```

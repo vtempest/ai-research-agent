@@ -5,8 +5,6 @@ import path from "path";
 
 /**
  * Get all docx in zip as file paths array and process data
- * @param {string} dir
- * @param {string[]} files
  * @returns {string[]} files array of file paths
  */
 export async function handleZipOfDocx(zipPath, outputFolder) {

@@ -1,9 +1,11 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { Search, ArrowDown, X } from 'lucide-svelte';
 
   export let headings = [];
+  export let handleHeadingsFiltered;
   export let editor;
+
+  const browser = typeof window !== "undefined";
 
   let searchTerm = '';
   let filteredHeadings = [];
@@ -13,7 +15,6 @@
   let currentWordIndex = 0;
   let isSearchingFullPhrase = true;
 
-  const dispatch = createEventDispatcher();
 
   function searchHeadings() {
     filteredHeadings = headings.filter(heading => {
@@ -21,7 +22,7 @@
       return headingText.includes(searchTerm.toLowerCase());
     });
 
-    dispatch('headingsFiltered', filteredHeadings);
+    handleHeadingsFiltered(filteredHeadings);
   }
 
   function processSearchTerm(term: string): string[] {
@@ -29,6 +30,7 @@
   }
 
   function handleSearchClick() {
+    if (!browser) return;
     if (searchTerm.trim()) {
       if (!hasSearched) {
         // Initial search
@@ -71,10 +73,12 @@
   }
 
   function findFullPhrase(isInitialSearch: boolean = true): boolean {
+    if (!browser) return;
+    
     let found = window.find(searchTerm, false, false, true, false, true, false);
     if (found && isInitialSearch) {
       // For initial search, find the second occurrence
-      found = window.find(searchTerm, false, false, true, false, true, false);
+    found = window.find(searchTerm, false, false, true, false, true, false);
     }
     if (found) {
       scrollToCurrentMatch();
@@ -83,12 +87,14 @@
   }
 
   function findNextWordMatch(): boolean {
+    if (!browser) return;
+
     let found = false;
     let wrappedAround = false;
 
     while (!found && currentWordIndex < searchWords.length) {
       const currentWord = searchWords[currentWordIndex];
-      found = window.find(currentWord, false, false, true, false, true, false);
+    found = window.find(currentWord, false, false, true, false, true, false);
 
       if (!found) {
         currentWordIndex++;
@@ -128,15 +134,17 @@
   }
 
   function resetSearch() {
+    if (!browser) return;
+
     searchTerm = '';
     filteredHeadings = [];
-    dispatch('headingsFiltered', []);
+    handleHeadingsFiltered( []);
     hasSearched = false;
     noMatchesFound = false;
     searchWords = [];
     currentWordIndex = 0;
     isSearchingFullPhrase = true;
-    window.getSelection().removeAllRanges();
+    window?.getSelection().removeAllRanges();
   }
 
   $: {
@@ -151,26 +159,26 @@
   }
 </script>
 
-<div class="mb-4">
-  <div class="relative flex items-center">
+<div class="mb-6">
+  <div class="relative flex items-center pr-1 pl-1">
     <input
       type="text"
-      placeholder="Search doc…"
+      placeholder="Search doc..."
       bind:value={searchTerm}
-      on:input={() => { hasSearched = false; noMatchesFound = false; isSearchingFullPhrase = true; }}
-      on:keydown={handleKeyDown}
+      oninput={() => { hasSearched = false; noMatchesFound = false; isSearchingFullPhrase = true; }}
+      onkeydown={handleKeyDown}
       class="w-full pl-4 pr-20 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
     {#if searchTerm}
       <button
-        on:click={resetSearch}
+        onclick={resetSearch}
         class="absolute right-10 p-1 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         <X size={20} class="text-gray-500" />
       </button>
     {/if}
     <button
-      on:click={handleSearchClick}
+      onclick={handleSearchClick}
       class="absolute right-2 p-1 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
     >
       {#if !hasSearched}

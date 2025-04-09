@@ -1,4 +1,22 @@
-[ai-research-agent](../../index.md) / editor/modules/rendering
+[ai-research-agent](../../modules.md) / editor/modules/rendering
+
+## Interfaces
+
+### RenderWhat
+
+#### Properties
+
+##### doc?
+
+```ts
+optional doc: default;
+```
+
+##### old?
+
+```ts
+optional old: default;
+```
 
 ## Functions
 
@@ -41,21 +59,3 @@ function rendering(editor): object
 | ------ | ------ |
 | `render` | (`what`?) => `void` |
 | `destroy()` |  |
-
-## Interfaces
-
-### RenderWhat
-
-#### Properties
-
-##### doc?
-
-```ts
-optional doc: default;
-```
-
-##### old?
-
-```ts
-optional old: default;
-```

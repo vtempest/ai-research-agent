@@ -2,7 +2,7 @@
 import AttributeMap from './AttributeMap';
 
 interface Op {
-  // only one property out of {insert, delete, retain} will be present
+  // only one property out of : insert, delete, retain will be present
   insert?: string | Record<string, any>;
   delete?: number;
   retain?: number;

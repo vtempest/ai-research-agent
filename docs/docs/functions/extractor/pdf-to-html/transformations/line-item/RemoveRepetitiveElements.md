@@ -1,4 +1,4 @@
-[ai-research-agent](../../../../index.md) / extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements
+[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements
 
 ## Classes
 
@@ -23,6 +23,28 @@ new default(): default
 ###### Overrides
 
 [`default`](../ToLineItemTransformation.md#default).[`constructor`](../ToLineItemTransformation.md#constructors)
+
+#### Properties
+
+##### itemType
+
+```ts
+itemType: any;
+```
+
+###### Inherited from
+
+[`default`](../ToLineItemTransformation.md#default).[`itemType`](../ToLineItemTransformation.md#itemtype)
+
+##### name
+
+```ts
+name: any;
+```
+
+###### Inherited from
+
+[`default`](../ToLineItemTransformation.md#default).[`name`](../ToLineItemTransformation.md#name)
 
 #### Methods
 
@@ -103,25 +125,3 @@ transform(parseResult): default
 ###### Overrides
 
 [`default`](../ToLineItemTransformation.md#default).[`transform`](../ToLineItemTransformation.md#transform)
-
-#### Properties
-
-##### itemType
-
-```ts
-itemType: any;
-```
-
-###### Inherited from
-
-[`default`](../ToLineItemTransformation.md#default).[`itemType`](../ToLineItemTransformation.md#itemtype)
-
-##### name
-
-```ts
-name: any;
-```
-
-###### Inherited from
-
-[`default`](../ToLineItemTransformation.md#default).[`name`](../ToLineItemTransformation.md#name)

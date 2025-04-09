@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
 
 ## Classes
 
@@ -48,6 +48,34 @@ new default(fontMap): default
 ###### Overrides
 
 [`default`](ToTextItemTransformation.md#default).[`constructor`](ToTextItemTransformation.md#constructors)
+
+#### Properties
+
+##### fontMap
+
+```ts
+fontMap: any;
+```
+
+##### itemType
+
+```ts
+itemType: any;
+```
+
+###### Inherited from
+
+[`default`](ToTextItemTransformation.md#default).[`itemType`](ToTextItemTransformation.md#itemtype)
+
+##### name
+
+```ts
+name: any;
+```
+
+###### Inherited from
+
+[`default`](ToTextItemTransformation.md#default).[`name`](ToTextItemTransformation.md#name)
 
 #### Methods
 
@@ -128,31 +156,3 @@ transform(parseResult): default
 ###### Overrides
 
 [`default`](ToTextItemTransformation.md#default).[`transform`](ToTextItemTransformation.md#transform)
-
-#### Properties
-
-##### fontMap
-
-```ts
-fontMap: any;
-```
-
-##### itemType
-
-```ts
-itemType: any;
-```
-
-###### Inherited from
-
-[`default`](ToTextItemTransformation.md#default).[`itemType`](ToTextItemTransformation.md#itemtype)
-
-##### name
-
-```ts
-name: any;
-```
-
-###### Inherited from
-
-[`default`](ToTextItemTransformation.md#default).[`name`](ToTextItemTransformation.md#name)

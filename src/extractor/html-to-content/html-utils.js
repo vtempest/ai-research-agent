@@ -8,7 +8,7 @@ import katex from "katex";
  * @category HTML Utilities
  */
 export function convertMathLaTexToImage(html) {
-  
+  try{
   const replacedHtml = html.replace(
     /<math>(.*?)<\/math>|\[document.*?\[\/document>/gs,
     (match, p1) => {
@@ -22,7 +22,7 @@ export function convertMathLaTexToImage(html) {
       var equationFormula = curlyBracesContent[0] ?? documentClassContent[0];
 
       equationFormula = equationFormula
-        .replace(/\\/g, "\\")
+        ?.replace(/\\/g, "\\")
         .replace(/\[documentclass.*?\[/g, "")
         .replace(/\[\/document>/g, "")
         .replace(/\[.+\]/g, "");
@@ -38,6 +38,12 @@ export function convertMathLaTexToImage(html) {
   });
 
   return replacedHtml;
+}
+catch(e){
+  console.log(e);
+  return html;
+}
+//TODO error on wikipedia
 }
 
 /**
@@ -177,6 +183,13 @@ export function convertURLToAbsoluteURL(base, relative) {
   }
 }
 
+
+import { marked } from 'marked';
+import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js';
+import markdownItHighlightjs from 'markdown-it-highlightjs';
+
+
 /**
  * Converts Markdown text to HTML. It handles the following Markdown elements:
  * - Headers (h1 to h6)
@@ -205,7 +218,61 @@ export function convertURLToAbsoluteURL(base, relative) {
 export function convertMarkdownToHTML(content, toHtml = true) {
   if (!toHtml) return convertHTMLToMarkdown(content);
 
-  var html = content
+// const md = new MarkdownIt({
+//   highlight: function (str, lang) {
+//     // If a language is provided and it's recognized by hljs
+//     if (lang && hljs.getLanguage(lang)) {
+//       try {
+//         return (
+//           '<pre><code class="hljs">' +
+//           hljs.highlight(str, { language: lang, ignoreIllegals: true }).value 
+//           + '</code></pre>'
+//         );
+//       } catch (__) {}
+//     }
+
+//     // Default fallback for unsupported or no language
+//     return (
+//       '<pre><code class="hljs">' + md.utils.escapeHtml(str) + '</code></pre>'
+//     );
+//   },
+// }).use(function (md) {
+//   // Override the default fence rule for handling code blocks
+//   const fence = md.renderer.rules.fence || function (tokens, idx, options, env, slf) {
+//     const token = tokens[idx];
+//     const code = token.content
+//       .trim() // Trim leading/trailing whitespace
+//       .replace(/^[ \t]*/gm, '') // Remove leading whitespace while preserving relative indentation
+//       .replace(/&/g, '&amp;') // Encode HTML special characters
+//       .replace(/</g, '&lt;')
+//       .replace(/>/g, '&gt;')
+//       .replace(/"/g, '&quot;')
+//       .replace(/'/g, '&#39;');
+
+//     // Wrap code in a blockquote and ignore the language name
+//     return `<blockquote class="custom-code-block"><pre><code>${code}</code></pre></blockquote>`;
+//   };
+
+//   md.renderer.rules.fence = fence;
+// });
+
+
+// // Render markdown content
+// return md.render(content);
+
+
+  marked.setOptions({
+    highlight: function(code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      return hljs.highlight(code, { language }).value;
+    },
+    langPrefix: 'hljs language-'
+    });
+  
+    return marked.parse(content);
+
+  
+  var html = contentconvertMarkdownToHTML
     // Convert headers
     .replace(/^(#{1,6})\s(.+)$/gm, (match, hashes, content) => {
       const level = hashes.length;

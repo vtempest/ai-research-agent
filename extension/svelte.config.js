@@ -6,9 +6,8 @@ export default {
   kit: {
     adapter: adapter(),
     alias: {
-      $utils: "../web-app/src/lib/utils/classname",
+      $utils: "../web-app/src/lib/utils",
       $lib: '../web-app/src/lib',
-      $assets: "../web-app/src/assets",
       $components: '../web-app/src/lib/components',
       "$ai-research-agent": "../",
     }

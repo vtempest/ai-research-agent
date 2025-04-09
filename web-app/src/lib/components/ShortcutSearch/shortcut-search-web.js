@@ -42,7 +42,7 @@ export function openTabSearchWeb(query, shouldOpenInBackground = false) {
 /** 
  * Extract resuls JSON object from Google results html page
  * The results html page keeps changing so this minimizes 
- * use of classes and extracts [{title, url, snippet},...]
+ * use of classes and extracts; title, url, snippet
  * 
  * TODO insert these results into the Sidebar as you read to flip to next result
  * 

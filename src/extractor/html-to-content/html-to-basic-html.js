@@ -3,6 +3,7 @@ import {
   convertURLToAbsoluteURL,
   convertMathLaTexToImage
 } from "./html-utils.js";
+
 /**
  * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
  * Convert anchors and relative urls to absolute urls. Basic HTML supports the same
@@ -54,6 +55,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .split(",")
     .concat("text,tagName".split(","));
 
+
   // Convert html string to array like [{tag:"p",attr:""},{text:""}]
   var basicHtml = convertHTMLToTokens(html);
   if (!basicHtml) return;
@@ -75,9 +77,17 @@ export function convertHTMLToBasicHTML(html, options = {}) {
       if (urlValue && openLinksNewWindow)
         if (!urlValue.startsWith("#")) el.target = "_blank";
 
+      // remove broken images
+      if (el.tagName?.toLowerCase() == "img"){
+          if (!el.src || el.src.startsWith("data:")) 
+            return false; 
+      }
+
       //convert relative urls to absolute urls
-      if (el.src)
+      if (el.src){
         el.src = new URL(urlValue, url).href;
+
+      }
       if (el.href)
         el.href = new URL(urlValue, url).href;
 
@@ -86,6 +96,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
 
       return el;
     })
+    .filter(Boolean)
     .reduce((acc, el) => {
       acc += el.text
         ? `${el.text}`
@@ -97,9 +108,9 @@ export function convertHTMLToBasicHTML(html, options = {}) {
           .join(" ")}>`;
       return acc;
     }, "")
-    .replace(/ \s+/g, " ")
     .replace(/<p><\/p>/g, " ")
-    .replace(/[\r\n\t]+/g, " "); //remove linebreaks
+    .replace(/[\r\n\t]+/g, " ") //remove linebreaks
+    .replace(/ \s+/g, " ")
 
   basicHtml = convertHTMLToEscapedHTML(basicHtml).replace(/&nbsp;/g, " ");
 
@@ -198,10 +209,11 @@ export function convertHTMLToTokens(html) {
       continue;
     }
 
-    dom.push(domElement);
+    if (element[0] != "/")
+       dom.push(domElement);
 
     //if text node push as {text:""}
-    if (text && text.trim().length) dom.push({ tagName: "text", text: text });
+    if (text) dom.push({ tagName: "text", text: text });
   }
 
   // dom = addDOMFunctions(dom);

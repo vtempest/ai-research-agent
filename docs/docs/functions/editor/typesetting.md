@@ -1,4 +1,4 @@
-[ai-research-agent](../index.md) / editor/typesetting
+[ai-research-agent](../modules.md) / editor/typesetting
 
 ## References
 
@@ -40,7 +40,7 @@ Re-exports [dl](typesetting/lines.md#dl)
 
 ### embed
 
-Re-exports [embed](typesetting/typeset.md#embed)
+Re-exports [embed](typesetting/typeset.md#embed-1)
 
 ### EmbedType
 
@@ -48,7 +48,7 @@ Re-exports [EmbedType](typesetting/typeset.md#embedtype)
 
 ### format
 
-Re-exports [format](typesetting/typeset.md#format)
+Re-exports [format](typesetting/typeset.md#format-1)
 
 ### FormatType
 
@@ -76,7 +76,7 @@ Re-exports [italic](typesetting/formats.md#italic)
 
 ### line
 
-Re-exports [line](typesetting/typeset.md#line)
+Re-exports [line](typesetting/typeset.md#line-1)
 
 ### LineData
 

@@ -147,7 +147,6 @@ export function getURLYoutubeVideo(url) {
 
 /**
  * Fetch-based scraper of youtubetotranscript.com
- * @param {string} videoUrl
  * @returns {Object} content, timestamps -  where content is the full text of
  * the transcript, and timestamps is an array of [characterIndex, timeSeconds]
  */
@@ -179,7 +178,7 @@ export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
     const matches = Array.from(html.matchAll(transcriptRegex));
 
     const transcript = matches.map((match) => ({
-      text: match[2].replace(/<br\s*\/?>/gi, " ")?.trim(),
+      text: match[2]?.replace(/<br\s*\/?>/gi, " ")?.trim(),
       offset: parseFloat(match[1]),
     }));
 

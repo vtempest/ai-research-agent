@@ -43,12 +43,12 @@
   <button
     id="options-button"
     class={`editor-dev-button ${showSettings ? 'active' : ''}`}
-    on:click={() => (showSettings = !showSettings)} />
+    onclick={() => (showSettings = !showSettings)} />
   {#if showSettings}
     <div class="switches">
       {#if isRichText && isDevPlayground}
         <Switch
-          on:click={() => {
+          onclick={() => {
             settings.setOption('isCollab', !isCollab);
             window.location.reload();
           }}
@@ -57,7 +57,7 @@
       {/if}
       {#if isDevPlayground}
         <Switch
-          on:click={() => {
+          onclick={() => {
             if (isSplitScreen) {
               window.parent.location.href = `/${search}`;
             } else {
@@ -68,11 +68,11 @@
           text="Split Screen" />
       {/if}
       <Switch
-        on:click={() => settings.setOption('showTreeView', !showTreeView)}
+        onclick={() => settings.setOption('showTreeView', !showTreeView)}
         checked={showTreeView}
         text="Debug View" />
       <Switch
-        on:click={() => {
+        onclick={() => {
           settings.setOption('isRichText', !isRichText);
           settings.setOption('isCollab', false);
         }}

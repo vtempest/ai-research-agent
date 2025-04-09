@@ -1,4 +1,4 @@
-[ai-research-agent](../index.md) / editor/modules
+[ai-research-agent](../modules.md) / editor/modules
 
 ## Functions
 
@@ -259,11 +259,11 @@ Re-exports [DecorateEventInit](modules/decorations.md#decorateeventinit)
 
 ### decorations
 
-Re-exports [decorations](modules/decorations.md#decorations)
+Re-exports [decorations](modules/decorations.md#decorations-1)
 
 ### Decorations
 
-Re-exports [Decorations](modules/decorations.md#decorations-1)
+Re-exports [Decorations](modules/decorations.md#decorations)
 
 ### DecorationsModule
 
@@ -399,11 +399,11 @@ Re-exports [transformHistoryStack](modules/history.md#transformhistorystack)
 
 ### undoStack
 
-Re-exports [undoStack](modules/history.md#undostack)
+Re-exports [undoStack](modules/history.md#undostack-1)
 
 ### UndoStack
 
-Re-exports [UndoStack](modules/history.md#undostack-1)
+Re-exports [UndoStack](modules/history.md#undostack)
 
 ### virtualRendering
 

@@ -865,6 +865,11 @@ const typedocSidebar = { items: [
       },
       {
         "type": "doc",
+        "id": "functions/interface/ip-to-lang",
+        "label": "ip-to-lang"
+      },
+      {
+        "type": "doc",
         "id": "functions/interface/youtube-embed",
         "label": "youtube-embed"
       }
@@ -895,11 +900,6 @@ const typedocSidebar = { items: [
     "type": "category",
     "label": "search",
     "items": [
-      {
-        "type": "doc",
-        "id": "functions/search/ip-to-lang",
-        "label": "ip-to-lang"
-      },
       {
         "type": "doc",
         "id": "functions/search/search-engines",

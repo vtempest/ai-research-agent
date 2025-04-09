@@ -1,4 +1,68 @@
-[ai-research-agent](../../../index.md) / extractor/html-to-cite/extract-date/extract-date
+[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/extract-date
+
+## Variables
+
+### CLASS\_ATTRS
+
+```ts
+const CLASS_ATTRS: Set<string>;
+```
+
+***
+
+### DATE\_ATTRIBUTES
+
+```ts
+const DATE_ATTRIBUTES: Set<string>;
+```
+
+***
+
+### ITEMPROP\_ATTRS
+
+```ts
+const ITEMPROP_ATTRS: Set<string>;
+```
+
+***
+
+### ITEMPROP\_ATTRS\_MODIFIED
+
+```ts
+const ITEMPROP_ATTRS_MODIFIED: Set<string>;
+```
+
+***
+
+### ITEMPROP\_ATTRS\_ORIGINAL
+
+```ts
+const ITEMPROP_ATTRS_ORIGINAL: Set<string>;
+```
+
+***
+
+### NAME\_MODIFIED
+
+```ts
+const NAME_MODIFIED: Set<string>;
+```
+
+***
+
+### NON\_DIGITS\_REGEX
+
+```ts
+const NON_DIGITS_REGEX: RegExp;
+```
+
+***
+
+### PROPERTY\_MODIFIED
+
+```ts
+const PROPERTY_MODIFIED: Set<string>;
+```
 
 ## Functions
 
@@ -14,7 +78,7 @@ function extractDate(
    verbose?, 
    min_date?, 
    max_date?, 
-   deferred_url_extractor?): null | string
+   deferred_url_extractor?): string
 ```
 
 Extract date from document using various methods
@@ -234,7 +298,7 @@ if true, do not extract date from URL
 
 #### Returns
 
-`null` \| `string`
+`string`
 
 Extracted date or null if not found
 
@@ -242,67 +306,3 @@ Extracted date or null if not found
 
 [ai-research-agent (2024)](https://airesearch.js.org)
 Based on [Barbaresi (2020)](https://github.com/adbar/htmldate/)
-
-## Variables
-
-### CLASS\_ATTRS
-
-```ts
-const CLASS_ATTRS: Set<string>;
-```
-
-***
-
-### DATE\_ATTRIBUTES
-
-```ts
-const DATE_ATTRIBUTES: Set<string>;
-```
-
-***
-
-### ITEMPROP\_ATTRS
-
-```ts
-const ITEMPROP_ATTRS: Set<string>;
-```
-
-***
-
-### ITEMPROP\_ATTRS\_MODIFIED
-
-```ts
-const ITEMPROP_ATTRS_MODIFIED: Set<string>;
-```
-
-***
-
-### ITEMPROP\_ATTRS\_ORIGINAL
-
-```ts
-const ITEMPROP_ATTRS_ORIGINAL: Set<string>;
-```
-
-***
-
-### NAME\_MODIFIED
-
-```ts
-const NAME_MODIFIED: Set<string>;
-```
-
-***
-
-### NON\_DIGITS\_REGEX
-
-```ts
-const NON_DIGITS_REGEX: RegExp;
-```
-
-***
-
-### PROPERTY\_MODIFIED
-
-```ts
-const PROPERTY_MODIFIED: Set<string>;
-```

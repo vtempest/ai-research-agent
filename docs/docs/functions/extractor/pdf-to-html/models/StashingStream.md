@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/StashingStream
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/StashingStream
 
 ## Classes
 
@@ -15,6 +15,20 @@ new default(): default
 ###### Returns
 
 [`default`](StashingStream.md#default)
+
+#### Properties
+
+##### results
+
+```ts
+results: any[];
+```
+
+##### stash
+
+```ts
+stash: any[];
+```
 
 #### Methods
 
@@ -341,17 +355,3 @@ shouldStash(item): void
 ###### Returns
 
 `void`
-
-#### Properties
-
-##### results
-
-```ts
-results: any[];
-```
-
-##### stash
-
-```ts
-stash: any[];
-```

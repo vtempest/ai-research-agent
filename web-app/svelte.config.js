@@ -10,13 +10,6 @@ const config = {
     }
     handler(warning); // Handle other warnings normally
   },
-  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
-  // for more information about preprocessors
-  server: {
-    proxy: {
-  
-    },
-  },
    preprocess: vitePreprocess(),
   kit: {
 		adapter: adapter({
@@ -28,7 +21,8 @@ const config = {
     alias: {
       $lib: "./src/lib",
       $components: "./src/lib/components",
-      $utils: "./src/lib/utils/classname",
+      $utils: "./src/lib/utils",
+      "$ai-research-agent": "../"
     }
   }
 };

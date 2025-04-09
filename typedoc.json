@@ -1,7 +1,9 @@
 {
-  "entryPoints": ["./index.js"],
-  "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-ga"],
-  "gaID": "G-E5TZ32BZDF",
+  "entryPoints": ["./index.js", "./web-app/src"],
+  "plugin": ["typedoc-plugin-markdown"],
+
+  "outDir": "./docs",
+  "tsconfig": "./tsconfig.json",
   "entryPointStrategy": "expand",
   "navigation": {
     "includeCategories": true,
@@ -17,7 +19,24 @@
     "inheritDocTag": true,
     "ignoreUnescapedBraces": true
   },
-  "sort": ["source-order"],
+  "sort": ["kind"],
+  "kindSortOrder": [
+        "Function",
+        "Method",
+        "Reference",
+        "Project",
+        "Module",
+        "Namespace",
+        "Enum",
+        "EnumMember",
+        "Class",
+        "Interface",
+        "TypeAlias",
+        "Constructor",
+        "Property",
+        "Variable",
+        "Accessor",
+    ],
   "cname": "airesearch.js.org",
   "hostedBaseUrl": "https://airesearch.js.org",
   "searchInDocuments": true,
@@ -27,7 +46,6 @@
     "📦Source Code": "https://github.com/vtempest/ai-research-agent",
     "🚀Demo": "https://qwksearch.com",
     "🎯Server API": "https://qwksearch.com/api",
-    "💬Discord Chat": "https://discord.gg/SJdBqBz3tV",
   },
   "navigationLinks": {
     "📦Code": "https://github.com/vtempest/ai-research-agent",

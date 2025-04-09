@@ -1,48 +1,48 @@
-import { parseHTML } from 'linkedom';
+import { parseHTML } from "linkedom";
 
 /**
  * ### HTML-to-Main-Content Extractor #1
- * The function extracts main content with regex patterns, cleaning HTML, scoring nodes 
+ * The function extracts main content with regex patterns, cleaning HTML, scoring nodes
  *  based on content indicators like paragraphs and id/class names, selecting
  *  the top candidate, extracting it, and cleaning up content around it.
- * 
- * 
+ *
+ *
  * 1. Define regular expressions:
  *    - Various regex patterns are defined to identify content and non-content areas.
- * 
+ *
  * 2. Define helper functions:
  *    - normalizeSpaces: Normalizes whitespace in a string.
  *    - stripTags: Removes all HTML tags from a string.
  *    - getTextLength: Calculates the length of text after stripping tags.
  *    - calculateLinkDensity: Calculates the ratio of link text to total text.
- * 
+ *
  * 3. Clean HTML:
  *    - Remove unlikely candidates (e.g., ads, sidebars) from the HTML.
- * 
+ *
  * 4. Define scoring function:
  *    - scoreNode: Assigns a score to an HTML node based on content and attributes.
  *    - Increases score for positive indicators (e.g., article, body, content tags).
  *    - Decreases score for negative indicators (e.g., hidden, footer, sidebar tags).
  *    - Adds to score based on paragraph tags and text length.
- * 
+ *
  * 5. Find and score candidate nodes:
  *    - Identify potential content nodes in the cleaned HTML.
  *    - Score each node using the scoreNode function.
- * 
+ *
  * 6. Select top candidate:
  *    - Sort candidates by score and select the highest-scoring node.
- * 
+ *
  * 7. Extract content:
  *    - Use regex to extract content around the top candidate node.
- * 
+ *
  * 8. Clean up extracted content:
  *    - Remove script and style tags and their contents.
  *    - Process anchor tags based on content density.
  *    - Keep only specific HTML tags (a, p, img, h1-h6, ul, ol, li).
  *    - Remove excess whitespace from the final content.
- * 
+ *
  * [Article Extraction Benchmark](https://trafilatura.readthedocs.io/en/latest/evaluation.html)
- * 
+ *
  * @example
  * var url = "https://www.nytimes.com/2024/08/28/business/telegram-ceo-pavel-durov-charged.html"
  * const html = await (await fetch(url)).text();
@@ -54,9 +54,9 @@ import { parseHTML } from 'linkedom';
  * @param {number} options.retryLength default=250 - Length to retry content extraction if initial attempt fails
  * @returns {Element} Extracted HTML element of main content such as article body
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
- * Based on [Mozilla Readability (2015), Arc90 (2010)](https://github.com/mozilla/readability)
+ * Based on [Mozilla Readability (2015)](https://github.com/mozilla/readability)
  * @category Extract
-*/
+ */
 export function extractMainContentFromHTML(html, options = {}) {
   const {
     minContentLength = 140,
@@ -102,7 +102,7 @@ export function extractMainContentFromHTML(html, options = {}) {
   for (var elem of divs) {
     if (
       !/<(?:a|blockquote|dl|div|img|ol|p|pre|table|ul)/i.test(
-        elem.innerHTML.replace(/\s+/, " ")
+        elem?.innerHTML?.replace(/\s+/, " ")
       )
     ) {
       const newElem = doc.createElement("p");
@@ -118,7 +118,7 @@ export function extractMainContentFromHTML(html, options = {}) {
 
   // Score nodes
   var candidates = {};
-  var elems = Array.from(doc.querySelectorAll("p, pre, td"))
+  var elems = Array.from(doc.querySelectorAll("p, pre, td"));
 
   for (var elem of elems) {
     var parentNode = elem.parentNode;
@@ -226,7 +226,7 @@ export function extractMainContentFromHTML(html, options = {}) {
  * @param {Element} elem - The element to calculate link density for
  * @returns {number} The link density (ratio of link text length to total text length)
  */
-function getLinkDensity(elem) {
+export function getLinkDensity(elem) {
   if (!elem || !elem.textContent) {
     return 0;
   }
@@ -246,7 +246,7 @@ function getLinkDensity(elem) {
  * @param {RegExp} negativeRe - Regular expression for negative indicators
  * @returns {number} The calculated weight
  */
-function classWeight(elem, positiveRe, negativeRe) {
+export function classWeight(elem, positiveRe, negativeRe) {
   let weight = 0;
   if (!elem || !elem.getAttribute) return weight;
   if (elem.getAttribute("class")) {
@@ -267,7 +267,7 @@ function classWeight(elem, positiveRe, negativeRe) {
  * @param {RegExp} negativeRe - Regular expression for negative indicators
  * @returns {Object} An object containing the score and the element
  */
-function scoreNode(elem, positiveRe, negativeRe) {
+export function scoreNode(elem, positiveRe, negativeRe) {
   if (!elem || !elem.tagName) return { score: 0, elem };
   const DIV_SCORES = new Set(["div", "article"]);
   const BLOCK_SCORES = new Set(["pre", "td", "blockquote"]);
@@ -314,7 +314,7 @@ function scoreNode(elem, positiveRe, negativeRe) {
  * @param {number} minTextLength - Minimum text length to consider
  * @returns {Element} The sanitized node
  */
-function sanitize(
+export function sanitize(
   node,
   candidates,
   videoRe,
@@ -371,7 +371,7 @@ function sanitize(
       };
       let textContent = elem?.textContent || "";
       textContent = textContent.trim();
-      var contentLength = textContent.replace(/\s+/g, " ").length;
+      var contentLength = textContent?.replace(/\s+/g, " ").length;
 
       var linkDensity = getLinkDensity(elem);
 

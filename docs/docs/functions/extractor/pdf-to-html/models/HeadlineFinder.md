@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/HeadlineFinder
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/HeadlineFinder
 
 ## Classes
 
@@ -41,12 +41,32 @@ new default(options): default
 
 [`default`](HeadlineFinder.md#default)
 
+#### Properties
+
+##### headlineCharCodes
+
+```ts
+headlineCharCodes: any[];
+```
+
+##### stackedChars
+
+```ts
+stackedChars: number;
+```
+
+##### stackedLineItems
+
+```ts
+stackedLineItems: any[];
+```
+
 #### Methods
 
 ##### consume()
 
 ```ts
-consume(lineItem): null | any[]
+consume(lineItem): any[]
 ```
 
 ###### Parameters
@@ -76,7 +96,7 @@ consume(lineItem): null | any[]
 
 ###### Returns
 
-`null` \| `any`[]
+`any`[]
 
 ##### matchAll()
 
@@ -112,23 +132,3 @@ matchAll(normalizedCharCodes): boolean
 ###### Returns
 
 `boolean`
-
-#### Properties
-
-##### headlineCharCodes
-
-```ts
-headlineCharCodes: any[];
-```
-
-##### stackedChars
-
-```ts
-stackedChars: number;
-```
-
-##### stackedLineItems
-
-```ts
-stackedLineItems: any[];
-```

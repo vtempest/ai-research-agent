@@ -7,7 +7,7 @@
 <script lang="ts" generics="T extends Record<string, unknown>, U extends _FormPath<T>">
 	import * as FormPrimitive from "formsnap";
 	import type { WithoutChild } from "bits-ui";
-	import { cn } from "$lib/utils/classname.js";
+	import { cn } from "$utils";
 
 	let {
 		ref = $bindable(null),

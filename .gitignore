@@ -16,7 +16,8 @@ demo/.cloudflare/public/
 .cache
 .vscode
 # Diagnostic reports (https://nodejs.org/api/report.html)
-
+build   
+build/*
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Runtime data
@@ -106,6 +107,8 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+
+.docusaurus
 
 # parcel-bundler cache (https://parceljs.org/)
 

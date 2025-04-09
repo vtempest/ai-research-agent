@@ -1,59 +1,4 @@
-[ai-research-agent](../../index.md) / editor/modules/paste
-
-## Functions
-
-### paste()
-
-```ts
-function paste(editor, options?): object
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
-
-</td>
-<td>
-
-[`Editor`](../Editor.md#editor)
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`?
-
-</td>
-<td>
-
-[`PasteModuleOptions`](paste.md#pastemoduleoptions)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`object`
-
-| Name | Type |
-| ------ | ------ |
-| `commands` | \{ `paste`: (`__namedParameters`) => `void`; \} |
-| `destroy()` |  |
-| `init()` |  |
+[ai-research-agent](../../modules.md) / editor/modules/paste
 
 ## Classes
 
@@ -238,7 +183,7 @@ optional html: string;
 ##### selection?
 
 ```ts
-optional selection: null | EditorRange;
+optional selection: EditorRange;
 ```
 
 ##### text?
@@ -246,3 +191,58 @@ optional selection: null | EditorRange;
 ```ts
 optional text: string;
 ```
+
+## Functions
+
+### paste()
+
+```ts
+function paste(editor, options?): object
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`editor`
+
+</td>
+<td>
+
+[`Editor`](../Editor.md#editor)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`?
+
+</td>
+<td>
+
+[`PasteModuleOptions`](paste.md#pastemoduleoptions)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`object`
+
+| Name | Type |
+| ------ | ------ |
+| `commands` | \{ `paste`: (`__namedParameters`) => `void`; \} |
+| `destroy()` |  |
+| `init()` |  |

@@ -1,554 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/html-to-cite/extract-date/date-extractors
-
-## Functions
-
-### custom\_parse()
-
-```ts
-function custom_parse(
-   string, 
-   outputformat, 
-   min_date, 
-   max_date): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`string`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`outputformat`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`min_date`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`max_date`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
-
-***
-
-### discard\_unwanted()
-
-```ts
-function discard_unwanted(tree): any[]
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`tree`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`any`[]
-
-***
-
-### external\_date\_parser()
-
-```ts
-function external_date_parser(string, outputformat): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`string`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`outputformat`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
-
-***
-
-### extract\_url\_date()
-
-```ts
-function extract_url_date(testurl, options): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`testurl`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
-
-***
-
-### idiosyncrasies\_search()
-
-```ts
-function idiosyncrasies_search(htmlstring, options): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`htmlstring`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
-
-***
-
-### img\_search()
-
-```ts
-function img_search(tree, options): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`tree`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
-
-***
-
-### json\_search()
-
-```ts
-function json_search(tree, options): any
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`tree`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`any`
-
-***
-
-### pattern\_search()
-
-```ts
-function pattern_search(
-   text, 
-   date_pattern, 
-   options): any
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`text`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`date_pattern`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`any`
-
-***
-
-### regex\_parse()
-
-```ts
-function regex_parse(string): null | Date
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`string`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `Date`
-
-***
-
-### try\_date\_expr()
-
-```ts
-function try_date_expr(
-   string, 
-   outputformat, 
-   extensive_search, 
-   min_date, 
-   max_date): null | string
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`string`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`outputformat`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`extensive_search`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`min_date`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`max_date`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`null` \| `string`
+[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/date-extractors
 
 ## Variables
 
@@ -781,3 +231,553 @@ const YYYYMM_CATCH: RegExp;
 ```ts
 const YYYYMM_PATTERN: RegExp;
 ```
+
+## Functions
+
+### custom\_parse()
+
+```ts
+function custom_parse(
+   string, 
+   outputformat, 
+   min_date, 
+   max_date): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`string`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`outputformat`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`min_date`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`max_date`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`
+
+***
+
+### discard\_unwanted()
+
+```ts
+function discard_unwanted(tree): any[]
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`tree`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`[]
+
+***
+
+### external\_date\_parser()
+
+```ts
+function external_date_parser(string, outputformat): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`string`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`outputformat`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`
+
+***
+
+### extract\_url\_date()
+
+```ts
+function extract_url_date(testurl, options): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`testurl`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`
+
+***
+
+### idiosyncrasies\_search()
+
+```ts
+function idiosyncrasies_search(htmlstring, options): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`htmlstring`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`
+
+***
+
+### img\_search()
+
+```ts
+function img_search(tree, options): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`tree`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`
+
+***
+
+### json\_search()
+
+```ts
+function json_search(tree, options): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`tree`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### pattern\_search()
+
+```ts
+function pattern_search(
+   text, 
+   date_pattern, 
+   options): any
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`text`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`date_pattern`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`any`
+
+***
+
+### regex\_parse()
+
+```ts
+function regex_parse(string): Date
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`string`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`Date`
+
+***
+
+### try\_date\_expr()
+
+```ts
+function try_date_expr(
+   string, 
+   outputformat, 
+   extensive_search, 
+   min_date, 
+   max_date): string
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`string`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`outputformat`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`extensive_search`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`min_date`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`max_date`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`string`

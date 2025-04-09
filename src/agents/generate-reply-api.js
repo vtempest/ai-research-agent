@@ -38,6 +38,7 @@ import { convertMarkdownToHTML } from "../../index.js";
  * @param {object} options - Options
  * @param {string} options.provider - LLM provider: groq, openai, anthropic, together, xai, google
  * @param {string} options.apiKey - API key for the specified provider
+ * @param {boolean} [options.html=true] - If true, reply format is HTML. If false, Markdown
  * @param {string} [options.model] - Optional model name. If not provided, uses default
  * @param {number} [options.temperature=0.7] -
  * Temperature is a way to control the overall confidence of the model's scores

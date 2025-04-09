@@ -1,4 +1,4 @@
-[ai-research-agent](index.md) / editor
+[ai-research-agent](modules.md) / editor
 
 ## Functions
 
@@ -327,11 +327,11 @@ Re-exports [DecorateEventInit](editor/modules/decorations.md#decorateeventinit)
 
 ### decorations
 
-Re-exports [decorations](editor/modules/decorations.md#decorations)
+Re-exports [decorations](editor/modules/decorations.md#decorations-1)
 
 ### Decorations
 
-Re-exports [Decorations](editor/modules/decorations.md#decorations-1)
+Re-exports [Decorations](editor/modules/decorations.md#decorations)
 
 ### DecorationsModule
 
@@ -435,11 +435,11 @@ Re-exports [EditorRange](editor/document/EditorRange.md#editorrange)
 
 ### editorStores
 
-Re-exports [editorStores](editor/stores.md#editorstores)
+Re-exports [editorStores](editor/stores.md#editorstores-1)
 
 ### EditorStores
 
-Re-exports [EditorStores](editor/stores.md#editorstores-1)
+Re-exports [EditorStores](editor/stores.md#editorstores)
 
 ### EditorTextChange
 
@@ -447,7 +447,7 @@ Re-exports [EditorTextChange](editor/Editor.md#editortextchange)
 
 ### embed
 
-Re-exports [embed](editor/typesetting/typeset.md#embed)
+Re-exports [embed](editor/typesetting/typeset.md#embed-1)
 
 ### EmbedType
 
@@ -463,7 +463,7 @@ Re-exports [focusStore](editor/stores.md#focusstore)
 
 ### format
 
-Re-exports [format](editor/typesetting/typeset.md#format)
+Re-exports [format](editor/typesetting/typeset.md#format-1)
 
 ### FormattingOptions
 
@@ -543,11 +543,11 @@ Re-exports [getSelection](editor/rendering/selection.md#getselection)
 
 ### h
 
-Re-exports [h](editor/rendering/vdom.md#h)
+Re-exports [h](editor/rendering/vdom.md#h-1)
 
 ### H
 
-Re-exports [H](editor/rendering/vdom.md#h-1)
+Re-exports [H](editor/rendering/vdom.md#h)
 
 ### Handler
 
@@ -615,7 +615,7 @@ Re-exports [KeyboardEventWithShortcut](editor/modules/shortcutFromEvent.md#keybo
 
 ### line
 
-Re-exports [line](editor/typesetting/typeset.md#line)
+Re-exports [line](editor/typesetting/typeset.md#line-1)
 
 ### Line
 
@@ -935,11 +935,11 @@ Re-exports [underline](editor/typesetting/formats.md#underline)
 
 ### undoStack
 
-Re-exports [undoStack](editor/modules/history.md#undostack)
+Re-exports [undoStack](editor/modules/history.md#undostack-1)
 
 ### UndoStack
 
-Re-exports [UndoStack](editor/modules/history.md#undostack-1)
+Re-exports [UndoStack](editor/modules/history.md#undostack)
 
 ### Unsubscriber
 

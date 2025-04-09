@@ -1,21 +1,26 @@
 <script lang="ts">
+
   import { onMount } from "svelte";
   import { Pane, Splitpanes } from "svelte-splitpanes";
   import { writable } from "svelte/store";
   import Sidebar from "./Sidebar.svelte";
   import TopBar from "./TopBar.svelte";
   import EditorComponent from "./EditorComponent.svelte";
-  import { parseDebateDocx } from "./docx/parse-debate-docx";
+  import { convertDOCXToHTML } from "$ai-research-agent";
   import { documentToMarkup } from "./docx/docx-to-html";
-
-  const browser = typeof window !== "undefined";
-
-  export let mainContent;
-  export let fileNameId: string = null;
-
+  
+  let mainContent= $state(
+    `<h2>REASON</h2>
+    <h3>Research Editor for Annotated Summaries in Outline Notation </h3>
+    <p>Start <u>editing</u> and <mark>marking</mark> your content here.</p>`
+  );
+  let mainTitle = $state("REASON")
+  let headingsOutline = $state([]);
+  let fileNameId: string = null;
+  
   const MAX_RECENT_BLOCKS = 8;
-
-  let viewMode = "show-all";
+  
+  let viewMode = $state("show-all");
   let headings = [];
   let readingStyle = "default";
   let fileInput: HTMLInputElement;
@@ -23,28 +28,20 @@
   let activeBlockIndex: number = 0;
   let recentBlocks: { blockIndex: number; title: string; level: number }[] = [];
   let editor: any;
+  
+  const browser = typeof window !== "undefined";
 
-  const mainContentStore = writable({
-    wordCount: 0,
-    title: "REASON ",
-    content: `<h2>REASON</h2><h3>Research Editor for Annotated Summaries in Outline Notation </h3><p>Start <u>editing</u> and <mark>marking</mark> your content here.</p>`,
-    outline: [],
-  });
-
-  mainContentStore.subscribe((value) => {
-    mainContent = value;
-  });
 
   function handleScroll() {
     // Implement scrolling logic for the editor
   }
 
   function calculateWordCount() {
-    const totalWordCount = mainContent.content
-      .replace(/<[^>]*>/g, "")
-      .split(/\s+/)
-      .filter((word) => word.length > 0).length;
-    mainContentStore.update((mc) => ({ ...mc, wordCount: totalWordCount }));
+    // const totalWordCount = mainContent.content
+    //   .replace(/<[^>]*>/g, "")
+    //   .split(/\s+/)
+    //   .filter((word) => word.length > 0).length;
+    // mainContentStore.update((mc) => ({ ...mc, wordCount: totalWordCount }));
   }
 
   function handleReadingStyleChange(event) {
@@ -53,34 +50,25 @@
   }
 
   async function handleFileUpload(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
+    
+    const file = (event.target as HTMLInputElement).files?.[0];
 
     if (file) {
       try {
-        mainContentStore.update((mc) => ({
-          ...mc,
-          content: "Loading document...",
-        }));
+        mainContent =  "Loading document..."
 
         const htmlContent = await documentToMarkup(file);
+        // const htmlContent = await convertDOCXToHTML(file);
 
         editor.setHTML(htmlContent);
 
-        var outline = extractOutlineFromHTML(htmlContent);
+        headingsOutline = extractOutlineFromHTML(htmlContent);
 
-        mainContentStore.update((mc) => ({
-          ...mc,
-          content: htmlContent,
-          outline,
-        }));
+        mainContent = htmlContent;
         calculateWordCount();
       } catch (error) {
         console.error("Error parsing DOCX file:", error);
-        mainContentStore.update((mc) => ({
-          ...mc,
-          content: "Error loading document.",
-        }));
+        mainContent = "Error loading document.";
       }
     }
   }
@@ -121,11 +109,6 @@
         return { h1Title, h2s };
       });
 
-    mainContentStore.update((mc) => ({
-      ...mc,
-      outline,
-    }));
-
     return outline;
   }
 
@@ -138,28 +121,28 @@
   }
 
   function handleLoadBlock(event) {
-    const newBlockIndex = event.detail.blockIndex;
-    alert(newBlockIndex);
+    // const newBlockIndex = event.detail.blockIndex;
+    // alert(newBlockIndex);
   }
 
   function handleRenameHeading(event) {
     const { level, oldText, newText, blocks } = event.detail;
-    mainContentStore.update((mc) => {
-      const newOutline = updateOutline(mc.outline, level, oldText, newText);
+    // mainContentStore.update((mc) => {
+    //   const newOutline = updateOutline(mc.outline, level, oldText, newText);
 
-      //rename in the content
-      // const updatedBlocks = [...mc.blocks];
-      // updatedBlocks[blocks] = updatedBlocks[blocks].replace(
-      //   new RegExp(`<h${level}>${oldText}</h${level}>`),
-      //   `<h${level}>${newText}</h${level}>`
-      // );
+    //   //rename in the content
+    //   // const updatedBlocks = [...mc.blocks];
+    //   // updatedBlocks[blocks] = updatedBlocks[blocks].replace(
+    //   //   new RegExp(`<h${level}>${oldText}</h${level}>`),
+    //   //   `<h${level}>${newText}</h${level}>`
+    //   // );
 
-      recentBlocks = recentBlocks.map((block) =>
-        block.blockIndex === blocks ? { ...block, title: newText } : block
-      );
+    //   recentBlocks = recentBlocks.map((block) =>
+    //     block.blockIndex === blocks ? { ...block, title: newText } : block
+    //   );
 
-      return { ...mc, outline: newOutline, content: updatedBlocks };
-    });
+    //   return { ...mc, outline: newOutline, content: mc.content };
+    // });
   }
 
   function updateOutline(outline, level, oldText, newText) {
@@ -168,9 +151,10 @@
   }
 
   function handleEditorUpdate(event) {
-    mainContentStore.update((mc) => ({ ...mc, content: event.detail.content }));
-    calculateWordCount();
-    extractOutlineFromHTML($mainContentStore.content);
+    // mainContent = event.detail.content;
+
+    // calculateWordCount();
+    // extractOutlineFromHTML(mainContent)
   }
 
   async function handleCopy() {
@@ -215,10 +199,10 @@
     <Sidebar
       {mainContent}
       {currentHeading}
-      {headings}
-      on:readingStyleChange={handleReadingStyleChange}
-      on:renameHeading={handleRenameHeading}
-      on:loadBlock={handleLoadBlock}
+      {headingsOutline}
+      {editor}
+      {handleRenameHeading}
+      {handleLoadBlock}
     />
   </Pane>
 
@@ -227,18 +211,18 @@
       <TopBar
         {viewMode}
         {recentBlocks}
-        on:copyContent={handleCopy}
-        on:viewModeChange={handleViewModeChange}
-        on:triggerFileUpload={triggerFileUpload}
-        on:loadBlock={handleLoadBlock}
+        {handleCopy}
+        {handleViewModeChange}
+        {triggerFileUpload}
+        {handleLoadBlock}
       />
 
-      <div class="flex-grow overflow-hidden p-1" on:scroll={handleScroll}>
+      <div class="flex-grow overflow-hidden p-1" onscroll={handleScroll}>
         <EditorComponent
           bind:this={editor}
-          mainContent={$mainContentStore}
+
+          content={mainContent}
           {viewMode}
-          on:updateContent={handleEditorUpdate}
         />
       </div>
     </div>
@@ -249,6 +233,6 @@
   bind:this={fileInput}
   type="file"
   accept=".docx"
-  on:change={handleFileUpload}
+  onchange={handleFileUpload}
   style="display: none;"
 />

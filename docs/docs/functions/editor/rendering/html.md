@@ -1,4 +1,78 @@
-[ai-research-agent](../../index.md) / editor/rendering/html
+[ai-research-agent](../../modules.md) / editor/rendering/html
+
+## Interfaces
+
+### DeltaFromHTMLOptions
+
+#### Properties
+
+##### collapseWhitespace?
+
+```ts
+optional collapseWhitespace: boolean;
+```
+
+##### possiblePartial?
+
+```ts
+optional possiblePartial: boolean;
+```
+
+***
+
+### FromDomOptions
+
+#### Properties
+
+##### collapseWhitespace?
+
+```ts
+optional collapseWhitespace: boolean;
+```
+
+##### endNode?
+
+```ts
+optional endNode: Node;
+```
+
+##### includeIds?
+
+```ts
+optional includeIds: boolean;
+```
+
+##### offset?
+
+```ts
+optional offset: number;
+```
+
+##### possiblePartial?
+
+```ts
+optional possiblePartial: boolean;
+```
+
+##### root?
+
+```ts
+optional root: HTMLElement;
+```
+
+##### startNode?
+
+```ts
+optional startNode: Node;
+```
+
+## Variables
+
+### BLOCK\_ELEMENTS
+
+```ts
+const BLOCK_ELEMENTS: "address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video" = 'address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video';
+```
 
 ## Functions
 
@@ -263,7 +337,7 @@ function docFromHTML(
 </td>
 <td>
 
-`null` \| [`EditorRange`](../document/EditorRange.md#editorrange)
+[`EditorRange`](../document/EditorRange.md#editorrange)
 
 </td>
 </tr>
@@ -328,7 +402,9 @@ function docToHTML(editor, doc): string
 ### fromNode()
 
 ```ts
-function fromNode(editor, dom): undefined | default | default[]
+function fromNode(editor, dom): 
+  | default
+  | default[]
 ```
 
 #### Parameters
@@ -370,7 +446,8 @@ function fromNode(editor, dom): undefined | default | default[]
 
 #### Returns
 
-`undefined` \| [`default`](../document/Line/index.md#default) \| [`default`](../document/Line/index.md#default)[]
+  \| [`default`](../document/Line/index.md#default)
+  \| [`default`](../document/Line/index.md#default)[]
 
 ***
 
@@ -469,77 +546,3 @@ function isBRPlaceholder(editor, node): boolean
 #### Returns
 
 `boolean`
-
-## Interfaces
-
-### DeltaFromHTMLOptions
-
-#### Properties
-
-##### collapseWhitespace?
-
-```ts
-optional collapseWhitespace: boolean;
-```
-
-##### possiblePartial?
-
-```ts
-optional possiblePartial: boolean;
-```
-
-***
-
-### FromDomOptions
-
-#### Properties
-
-##### collapseWhitespace?
-
-```ts
-optional collapseWhitespace: boolean;
-```
-
-##### endNode?
-
-```ts
-optional endNode: Node;
-```
-
-##### includeIds?
-
-```ts
-optional includeIds: boolean;
-```
-
-##### offset?
-
-```ts
-optional offset: number;
-```
-
-##### possiblePartial?
-
-```ts
-optional possiblePartial: boolean;
-```
-
-##### root?
-
-```ts
-optional root: HTMLElement;
-```
-
-##### startNode?
-
-```ts
-optional startNode: Node;
-```
-
-## Variables
-
-### BLOCK\_ELEMENTS
-
-```ts
-const BLOCK_ELEMENTS: "address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video" = 'address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video';
-```

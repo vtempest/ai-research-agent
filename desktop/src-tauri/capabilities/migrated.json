@@ -1,0 +1,18 @@
+{
+  "identifier": "migrated",
+  "local": true,
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "shell:allow-open", 
+    "core:window:default",
+    "shell:default",
+    "core:default",
+    "clipboard-manager:allow-read-text",
+    "clipboard-manager:allow-write-text",
+    "clipboard-manager:default",
+    "autostart:allow-enable", 
+    "autostart:default"
+  ]
+}

@@ -1,42 +1,48 @@
 ## TODO
 
-vectorize the topic model
+    use crx to open tab scrape
 
-tabs | ai chat | web search | favorites | history
+    vectorize the topic model
+    files
+    your custom ai agent will monitor and generate news feed
 
-https://docs.lancedb.com/core/ingestion  
-queries need to be on cached pages that are part of topic outlines  
-research agents will cue up next video
+    tabs | ai chat | web search | favorites | history
+    queries need to be on cached pages that are part of topic outlines  
+    research agents will cue up next video
 
-follow ups
+    follow ups
 
-browser sidebar results
+    browser sidebar results
 
-use open tabs as context
+    use open tabs as context
 
-QwkDocs
+    QwkDocs
 
-if select autocompelte like red.com go direct
+    preload page results to common Qs with SSR
 
-share button. email to friends. login to social media and like follow
+    if select autocompelte like red.com go direct
 
-for each topic, next word prediction
+    share button. email to friends. login to social media and like follow
 
-auto search for topics in sidebar
+    suggest next page from sidebar on each page
 
-prioritize sidebar - ai tips about this page
+    for each topic, next word prediction in Model
 
-cache q's and use that to build connections
+    auto search for topics in sidebar
 
-add downloads to tab, also back refresh undo cloe new tab
+    prioritize sidebar - ai tips about this page
 
-DEFAULT search
+    cache q's and use that to build connections
 
-https://developer.chrome.com/docs/extensions/reference/manifest/chrome-settings-override#others
+    add downloads to tab, also back refresh undo cloe new tab
 
-agents that scrape web and work iwht datasets like linkedin  
-autogenerate keyphrse compeltions for on page ctrl + f search
+    DEFAULT search
 
-https://ld246.com/guide/markdown filetree view
+    https://developer.chrome.com/docs/extensions/reference/manifest/chrome-settings-override#others
 
-release on hn yt phunt
+    agents that scrape web and work iwht datasets like linkedin  
+    autogenerate keyphrse compeltions for on page ctrl + f search
+
+    https://ld246.com/guide/markdown filetree view
+
+    release on hn yt phunt

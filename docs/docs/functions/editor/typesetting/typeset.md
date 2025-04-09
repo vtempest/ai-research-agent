@@ -1,115 +1,4 @@
-[ai-research-agent](../../index.md) / editor/typesetting/typeset
-
-## Functions
-
-### embed()
-
-```ts
-function embed(type): EmbedType
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-[`EmbedType`](typeset.md#embedtype)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-[`EmbedType`](typeset.md#embedtype)
-
-***
-
-### format()
-
-```ts
-function format(type): FormatType
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-[`FormatType`](typeset.md#formattype)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-[`FormatType`](typeset.md#formattype)
-
-***
-
-### line()
-
-```ts
-function line(type): LineType
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-[`LineType`](typeset.md#linetype)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-[`LineType`](typeset.md#linetype)
+[ai-research-agent](../../modules.md) / editor/typesetting/typeset
 
 ## Classes
 
@@ -141,20 +30,6 @@ A type store to hold types and make it easy to manage them.
 </tr>
 </tbody>
 </table>
-
-#### Accessors
-
-##### default
-
-###### Get Signature
-
-```ts
-get default(): T
-```
-
-###### Returns
-
-`T`
 
 #### Constructors
 
@@ -192,6 +67,50 @@ new Types<T>(types): Types<T>
 ###### Returns
 
 [`Types`](typeset.md#typest)&lt;`T`&gt;
+
+#### Properties
+
+##### list
+
+```ts
+list: T[];
+```
+
+##### priorities
+
+```ts
+priorities: object;
+```
+
+###### Index Signature
+
+ \[`name`: `string`\]: `number`
+
+##### selector
+
+```ts
+selector: string;
+```
+
+##### types
+
+```ts
+types: TypeMap<T>;
+```
+
+#### Accessors
+
+##### default
+
+###### Get Signature
+
+```ts
+get default(): T
+```
+
+###### Returns
+
+`T`
 
 #### Methods
 
@@ -256,7 +175,7 @@ findByAttributes(attributes, fallbackToDefault): T
 </td>
 <td>
 
-`undefined` \| [`default`](../delta/AttributeMap/index.md#default)
+[`default`](../delta/AttributeMap/index.md#default)
 
 </td>
 </tr>
@@ -282,7 +201,7 @@ findByAttributes(attributes, fallbackToDefault): T
 ###### Call Signature
 
 ```ts
-findByAttributes(attributes, fallbackToDefault?): undefined | T
+findByAttributes(attributes, fallbackToDefault?): T
 ```
 
 ###### Parameters
@@ -303,7 +222,7 @@ findByAttributes(attributes, fallbackToDefault?): undefined | T
 </td>
 <td>
 
-`undefined` \| [`default`](../delta/AttributeMap/index.md#default)
+[`default`](../delta/AttributeMap/index.md#default)
 
 </td>
 </tr>
@@ -324,7 +243,7 @@ findByAttributes(attributes, fallbackToDefault?): undefined | T
 
 ###### Returns
 
-`undefined` \| `T`
+`T`
 
 ##### findByNode()
 
@@ -378,7 +297,7 @@ findByNode(node, fallbackToDefault): T
 ###### Call Signature
 
 ```ts
-findByNode(node, fallbackToDefault?): undefined | T
+findByNode(node, fallbackToDefault?): T
 ```
 
 ###### Parameters
@@ -420,7 +339,7 @@ findByNode(node, fallbackToDefault?): undefined | T
 
 ###### Returns
 
-`undefined` \| `T`
+`T`
 
 ##### get()
 
@@ -470,7 +389,7 @@ init(): void
 ##### matches()
 
 ```ts
-matches(node): undefined | boolean
+matches(node): boolean
 ```
 
 ###### Parameters
@@ -491,7 +410,7 @@ matches(node): undefined | boolean
 </td>
 <td>
 
-`null` \| `Node`
+`Node`
 
 </td>
 </tr>
@@ -500,7 +419,7 @@ matches(node): undefined | boolean
 
 ###### Returns
 
-`undefined` \| `boolean`
+`boolean`
 
 ##### priority()
 
@@ -571,36 +490,6 @@ remove(type): void
 ###### Returns
 
 `void`
-
-#### Properties
-
-##### list
-
-```ts
-list: T[];
-```
-
-##### priorities
-
-```ts
-priorities: object;
-```
-
-###### Index Signature
-
- \[`name`: `string`\]: `number`
-
-##### selector
-
-```ts
-selector: string;
-```
-
-##### types
-
-```ts
-types: TypeMap<T>;
-```
 
 ***
 
@@ -1466,7 +1355,7 @@ optional lines: (string | LineType)[];
 ### FromDom()
 
 ```ts
-type FromDom: (node) => any;
+type FromDom = (node) => any;
 ```
 
 #### Parameters
@@ -1503,7 +1392,7 @@ type FromDom: (node) => any;
 ### LineData
 
 ```ts
-type LineData: [default, VChild[], string];
+type LineData = [default, VChild[], string];
 ```
 
 ***
@@ -1511,7 +1400,7 @@ type LineData: [default, VChild[], string];
 ### MultiLineRenderer()
 
 ```ts
-type MultiLineRenderer: (lines, editor, forHTML?) => VNode;
+type MultiLineRenderer = (lines, editor, forHTML?) => VNode;
 ```
 
 #### Parameters
@@ -1572,7 +1461,7 @@ type MultiLineRenderer: (lines, editor, forHTML?) => VNode;
 ### Renderer()
 
 ```ts
-type Renderer: (attributes, children, line, editor, forHTML?) => VNode;
+type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
 ```
 
 #### Parameters
@@ -1657,7 +1546,7 @@ type Renderer: (attributes, children, line, editor, forHTML?) => VNode;
 ### ShouldCombine()
 
 ```ts
-type ShouldCombine: (prev, next) => boolean;
+type ShouldCombine = (prev, next) => boolean;
 ```
 
 #### Parameters
@@ -1700,3 +1589,114 @@ type ShouldCombine: (prev, next) => boolean;
 #### Returns
 
 `boolean`
+
+## Functions
+
+### embed()
+
+```ts
+function embed(type): EmbedType
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+[`EmbedType`](typeset.md#embedtype)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`EmbedType`](typeset.md#embedtype)
+
+***
+
+### format()
+
+```ts
+function format(type): FormatType
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+[`FormatType`](typeset.md#formattype)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`FormatType`](typeset.md#formattype)
+
+***
+
+### line()
+
+```ts
+function line(type): LineType
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+[`LineType`](typeset.md#linetype)
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`LineType`](typeset.md#linetype)

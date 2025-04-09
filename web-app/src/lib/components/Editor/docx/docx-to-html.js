@@ -3,12 +3,14 @@ import { Parser } from "htmlparser2";
 
 import * as tokens from "./docx-tokens";
 
+//TODO why is this mor accurate than other
+
 /**
  * Converts docx file to array or token objects with text and formatting
  *  1 - open document.xml and styles.xml by unzipping .docx file
  *  2 - tokenize document.xml and pull info on named styles from styles.xml
  * @param {string|File|Blob|ArrayBuffer} docxInput - File Path, File object, Blob, or ArrayBuffer of a DOCX file
- * @param {object} options - { simplified: boolean }
+ * @param {object} options - simplified: boolean 
  * @returns {Promise<Array>} Array of token objects with text and formatting
  */
 export async function documentToTokens(docxInput, options = {}) {
@@ -109,11 +111,11 @@ export async function createStyleParser (styleXML) {
 
 
 /**
- * Parses doc xml to tokenize each text range into
- * {text: "", format: { underline, strong, mark }
+ * Parses doc xml to tokenize each text range into obj:
+ * text: "", format underline, strong, mark 
  * @param {string} docXML string from docx unzip
  * @param {object} styleData parsed object of style class names
- * @returns {array}  blocks[]
+ * @returns {array}  blocks 
  */
 export async function createTokenizer (docXML, styleData) {
   const blocks = [];

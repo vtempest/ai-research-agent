@@ -1,4 +1,4 @@
-[ai-research-agent](../../../index.md) / extractor/pdf-to-html/models/LineItemBlock
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineItemBlock
 
 ## Classes
 
@@ -49,43 +49,6 @@ new default(options): default
 
 [`default`](PageItem.md#default).[`constructor`](PageItem.md#constructors)
 
-#### Methods
-
-##### addItem()
-
-```ts
-addItem(item): void
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`item`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
 #### Properties
 
 ##### annotation
@@ -123,3 +86,40 @@ type: any;
 ###### Inherited from
 
 [`default`](PageItem.md#default).[`type`](PageItem.md#type)
+
+#### Methods
+
+##### addItem()
+
+```ts
+addItem(item): void
+```
+
+###### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`item`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+###### Returns
+
+`void`

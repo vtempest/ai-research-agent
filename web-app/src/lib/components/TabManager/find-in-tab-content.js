@@ -1,11 +1,16 @@
 /**
  * Find query words in tab content and if found return object
- * {dispString, id, title, favIconUrl, lastSearchWord}
  *
- * @param {object} document - {tabId, title, favIconUrl, content}
+ * @param {{tabId: number, title: string, favIconUrl: string, content: string}} document
  * @param {string} searchText
  * @param {number} [snippetTextSize=100]
- * @returns {object} {dispString, id, title, favIconUrl, lastSearchWord}
+ * @returns {{
+ *   dispString: string,
+ *   id: number,
+ *   title: string,
+ *   favIconUrl: string,
+ *   lastSearchWord: string,
+ * }}
  */
 export default function findInTabContent(
   { tabId, title, favIconUrl, content },

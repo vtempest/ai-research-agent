@@ -1,4 +1,285 @@
-[ai-research-agent](../../index.md) / editor/rendering/vdom
+[ai-research-agent](../../modules.md) / editor/rendering/vdom
+
+## Interfaces
+
+### H()
+
+```ts
+interface H<T, P, C>(
+   type, 
+   props?, 
+   ch?): T
+```
+
+#### Type Parameters
+
+<table>
+<thead>
+<tr>
+<th>Type Parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`T`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`P` *extends* [`Props`](vdom.md#props)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`C` *extends* [`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+(`props`, `children`) => `T`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`props`?
+
+</td>
+<td>
+
+`P`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ch`?
+
+</td>
+<td>
+
+`C`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`T`
+
+```ts
+interface H(
+   type, 
+   props?, 
+   ch?): VNode
+```
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`type`
+
+</td>
+<td>
+
+`string`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`props`?
+
+</td>
+<td>
+
+[`Props`](vdom.md#props)
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ch`?
+
+</td>
+<td>
+
+[`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+[`VNode`](vdom.md#vnode)
+
+***
+
+### Props
+
+#### Indexable
+
+ \[`key`: `string`\]: `any`
+
+***
+
+### VNode
+
+#### Properties
+
+##### children
+
+```ts
+children: VChild[];
+```
+
+##### key
+
+```ts
+key: any;
+```
+
+##### props
+
+```ts
+props: Props;
+```
+
+##### type
+
+```ts
+type: string;
+```
+
+## Type Aliases
+
+### VChild
+
+```ts
+type VChild = VNode | string;
+```
+
+## Variables
+
+### options
+
+```ts
+const options: object;
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`renderKeys`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+false
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+### React
+
+```ts
+const React: object;
+```
+
+#### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`createElement`
+
+</td>
+<td>
+
+[`H`](vdom.md#h)
+
+</td>
+<td>
+
+h
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Functions
 
@@ -32,7 +313,7 @@ function h<T, P, C>(
 <tr>
 <td>
 
-`P` *extends* `undefined` \| `null` \| [`Props`](vdom.md#props)
+`P` *extends* [`Props`](vdom.md#props)
 
 </td>
 </tr>
@@ -138,7 +419,7 @@ function h(
 </td>
 <td>
 
-`null` \| [`Props`](vdom.md#props)
+[`Props`](vdom.md#props)
 
 </td>
 </tr>
@@ -230,7 +511,7 @@ function patch(
 ### recycleNode()
 
 ```ts
-function recycleNode(dom): any
+function recycleNode(dom): string | VNode
 ```
 
 #### Parameters
@@ -260,285 +541,4 @@ function recycleNode(dom): any
 
 #### Returns
 
-`any`
-
-## Interfaces
-
-### H()
-
-```ts
-interface H<T, P, C>(
-   type, 
-   props?, 
-   ch?): T
-```
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`T`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`P` *extends* `undefined` \| `null` \| [`Props`](vdom.md#props)
-
-</td>
-</tr>
-<tr>
-<td>
-
-`C` *extends* [`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-(`props`, `children`) => `T`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`props`?
-
-</td>
-<td>
-
-`P`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`ch`?
-
-</td>
-<td>
-
-`C`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`T`
-
-```ts
-interface H(
-   type, 
-   props?, 
-   ch?): VNode
-```
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`props`?
-
-</td>
-<td>
-
-`null` \| [`Props`](vdom.md#props)
-
-</td>
-</tr>
-<tr>
-<td>
-
-`ch`?
-
-</td>
-<td>
-
-[`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-[`VNode`](vdom.md#vnode)
-
-***
-
-### Props
-
-#### Indexable
-
- \[`key`: `string`\]: `any`
-
-***
-
-### VNode
-
-#### Properties
-
-##### children
-
-```ts
-children: VChild[];
-```
-
-##### key
-
-```ts
-key: any;
-```
-
-##### props
-
-```ts
-props: Props;
-```
-
-##### type
-
-```ts
-type: string;
-```
-
-## Type Aliases
-
-### VChild
-
-```ts
-type VChild: VNode | string;
-```
-
-## Variables
-
-### options
-
-```ts
-const options: object;
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Default value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`renderKeys`
-
-</td>
-<td>
-
-`boolean`
-
-</td>
-<td>
-
-false
-
-</td>
-</tr>
-</tbody>
-</table>
-
-***
-
-### React
-
-```ts
-const React: object;
-```
-
-#### Type declaration
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Default value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`createElement`
-
-</td>
-<td>
-
-[`H`](vdom.md#h-1)
-
-</td>
-<td>
-
-h
-
-</td>
-</tr>
-</tbody>
-</table>
+`string` \| [`VNode`](vdom.md#vnode)

@@ -1,23 +1,25 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher, afterUpdate } from "svelte";
-  import { fade } from "svelte/transition";
+  import { onMount } from "svelte";
 
-  export let mainContent;
-  export let viewMode;
-  let editor;
-  let Editor;
+  let {  viewMode, content } = $props();
+  
+  let editor = $state(null);
   let Root;
   let InlineMenu;
   let BubbleMenu;
 
-  const dispatch = createEventDispatcher();
+  $effect(() => {
+    if (content && editor) 
+    editor.setHTML(content);
+  })
 
   onMount(async () => {
-    if (typeof window !== "undefined") {
+    if (typeof window == "undefined") return;
+      // @ts-ignore
       const typewriterModule = await import("$ai-research-agent/src/editor");
       const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
 
-      Editor = typewriterModule.Editor;
+      let Editor = typewriterModule.Editor;
       BubbleMenu = typewriterModule.BubbleMenu;
       Root = typewriterModule.Root;
       InlineMenu = typewriterModule.InlineMenu;
@@ -31,8 +33,8 @@
         },
       });
 
+      // @ts-ignore
       window.editor = editor;
-    }
   });
 
   export function setHTML(html) {
@@ -42,111 +44,100 @@
   export function getHTML() {
     return editor.getHTML();
   }
-
-  function getEditorContent() {
-    return mainContent.content || "<p>Start typing here...</p>";
-  }
-
-  function handleEditorUpdate() {
-    if (editor) {
-      const updatedContent = editor.getHTML();
-      dispatch("updateContent", { content: updatedContent });
-    }
-  }
 </script>
 
 {#if editor}
   <InlineMenu {editor} let:active let:commands>
-    <div class="menu inline-menu" in:fade={{ duration: 100 }}>
+    <div class="menu inline-menu z-100" >
       <div data-popper-arrow class="arrow"></div>
       <button
         class="menu-button"
         class:active={active.header === 1}
-        on:click={commands.header1}>H1</button
+        onclick={commands.header1}>H1</button
       >
 
       <button
         class="menu-button"
         class:active={active.header === 2}
-        on:click={commands.header2}>H2</button
+        onclick={commands.header2}>H2</button
       >
 
       <button
         class="menu-button"
         class:active={active.header === 3}
-        on:click={commands.header3}>H3</button
+        onclick={commands.header3}>H3</button
       >
 
       <button
         class="menu-button"
         class:active={active.header === 4}
-        on:click={commands.header4}>Tag</button
+        onclick={commands.header4}>Tag</button
       >
     </div>
   </InlineMenu>
 
   <BubbleMenu {editor} let:active let:commands let:placement>
-    <div class="menu bubble-menu">
+    <div class="menu bubble-menu z-100">
       <div data-arrow class="arrow {placement}"></div>
 
       <button
         class="menu-button"
         class:active={active.mark}
-        on:click={commands.mark}>M</button
+        onclick={commands.mark}>M</button
       >
 
       <button
         class="menu-button"
         class:active={active.underline}
-        on:click={commands.underline}>U</button
+        onclick={commands.underline}>U</button
       >
       <button
         class="menu-button"
         class:active={active.bold}
-        on:click={commands.bold}>B</button
+        onclick={commands.bold}>B</button
       >
 
       <button
         class="menu-button"
         class:active={active.italic}
-        on:click={commands.italic}>I</button
+        onclick={commands.italic}>I</button
       >
 
       <button
       class="menu-button"
       class:active={active.paragraph}
-      on:click={commands.paragraph}>P</button
+      onclick={commands.paragraph}>P</button
     >
 
       <button
       class="menu-button"
       class:active={active.header === 1}
-      on:click={commands.header1}>H1</button
+      onclick={commands.header1}>H1</button
     >
 
     <button
       class="menu-button"
       class:active={active.header === 2}
-      on:click={commands.header2}>H2</button
+      onclick={commands.header2}>H2</button
     >
 
     <button
       class="menu-button"
       class:active={active.header === 3}
-      on:click={commands.header3}>H3</button
+      onclick={commands.header3}>H3</button
     >
 
     <button
       class="menu-button"
       class:active={active.header === 4}
-      on:click={commands.header4}>Tag</button
+      onclick={commands.header4}>Tag</button
     >
     </div>
   </BubbleMenu>
 
   <div class="editor {viewMode}">
-    <Root {editor} on:update={handleEditorUpdate}>
-      {@html getEditorContent()}
+    <Root {editor} >
+      {@html content}
     </Root>
   </div>
 {/if}
@@ -228,10 +219,10 @@
   }
 
   .editor {
-    margin-left: 8px;
+    /* margin-left: 8px; */
     height: 100%;
     overflow-y: auto;
-    background: #f3f3ee;
+    /* background: #f3f3ee; */
   }
 
   :global(.editor.highlighted *:is(strong, mark, h1, h2, h3, h4)) {
@@ -406,8 +397,9 @@
     transform: rotate(45deg);
   }
   
-  :global(.editor strong, em ){
-    font-weight: bold !important;
-  }
+  
+.highlight-cursor {
+  cursor:  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L26 2c-1-1-2.6-1-3.5 0L5 19.5 3.5 25.5 1 28z" fill="%23E68D2C"/><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L8 26z" fill="%23E06B34"/><path d="M17 11.5l3.5 3.5-9 9-3.5-3.5z" fill="%23A8EAEF"/><path d="M18.5 13l2 2-9 9-2-2z" fill="%2380CDD8"/><path d="M5 19.5 3.5 25.5 1 28l2 2 2.5-2.5 6-1.5L5 19.5z" fill="%23D1393C"/></svg>') 0 32, auto;
+}
 
 </style>
