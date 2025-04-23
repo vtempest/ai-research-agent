@@ -1,27 +1,29 @@
-[qwksearch-web-app](../modules.md) / lib/utils
+[Documentation](../modules.md) / lib/utils
 
-## Variables
-
-### logger
+## logger
 
 ```ts
 const logger: Logger<never, boolean>;
 ```
 
+Defined in: web-app/src/lib/utils.ts:11
+
 Log errors in development and production environments.
 
-## Functions
+***
 
-### callServerAPI()
+## callServerAPI()
 
 ```ts
-function callServerAPI(path, params?): Promise<any>
+function callServerAPI(path: string, params?: any): Promise<any>;
 ```
+
+Defined in: web-app/src/lib/utils.ts:45
 
 Fetch data from server API by defining params in JSON
 and getting response in JSON, or return error JSON object.
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -52,7 +54,7 @@ The path in the API to call
 <tr>
 <td>
 
-`params`?
+`params?`
 
 </td>
 <td>
@@ -69,13 +71,13 @@ Optional parameters to pass to the API
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Promise`&lt;`any`&gt;
 
 The response from the server API
 
-#### Example
+### Example
 
 ```ts
 var response: {
@@ -97,16 +99,18 @@ console.log(response);
 
 ***
 
-### cn()
+## cn()
 
 ```ts
-function cn(...inputs): string
+function cn(...inputs: ClassValue[]): string;
 ```
 
-Utility function for merging Tailwind classes, needed for
-[shadcn-svelte components.](https://next.shadcn-svelte.com/docs/migration/svelte-5#update-utils)
+Defined in: web-app/src/lib/utils.ts:90
 
-#### Parameters
+Utility function for merging Tailwind classes, needed for
+[shadcn-svelte.](https://next.shadcn-svelte.com/docs/migration/svelte-5#update-utils)
+
+### Parameters
 
 <table>
 <thead>
@@ -135,7 +139,7 @@ Utility function for merging Tailwind classes, needed for
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
@@ -143,15 +147,17 @@ class name
 
 ***
 
-### getUserDeviceOS()
+## getUserDeviceOS()
 
 ```ts
-function getUserDeviceOS(): "Windows" | "Mac" | "Linux" | "Android" | "iOS" | "Other"
+function getUserDeviceOS(): "Windows" | "Mac" | "Linux" | "Android" | "iOS" | "Other";
 ```
+
+Defined in: web-app/src/lib/utils.ts:98
 
 Gets the user's device OS
 
-#### Returns
+### Returns
 
 `"Windows"` \| `"Mac"` \| `"Linux"` \| `"Android"` \| `"iOS"` \| `"Other"`
 

@@ -1,14 +1,14 @@
-[ai-research-agent](../../modules.md) / editor/rendering/walker
+[Documentation](../../modules.md) / editor/rendering/walker
 
-## Functions
-
-### createTreeWalker()
+## createTreeWalker()
 
 ```ts
-function createTreeWalker(root, filter?): TreeWalker
+function createTreeWalker(root: Node, filter?: (node: Node) => number | boolean): TreeWalker;
 ```
 
-#### Parameters
+Defined in: editor/rendering/walker.ts:3
+
+### Parameters
 
 <table>
 <thead>
@@ -33,18 +33,18 @@ function createTreeWalker(root, filter?): TreeWalker
 <tr>
 <td>
 
-`filter`?
+`filter?`
 
 </td>
 <td>
 
-(`node`) => `number` \| `boolean`
+(`node`: `Node`) => `number` \| `boolean`
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `TreeWalker`

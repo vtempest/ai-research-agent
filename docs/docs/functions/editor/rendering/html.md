@@ -1,88 +1,217 @@
-[ai-research-agent](../../modules.md) / editor/rendering/html
+[Documentation](../../modules.md) / editor/rendering/html
 
-## Interfaces
+## DeltaFromHTMLOptions
 
-### DeltaFromHTMLOptions
+Defined in: editor/rendering/html.ts:19
 
-#### Properties
+### Properties
 
-##### collapseWhitespace?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional collapseWhitespace: boolean;
-```
+<a id="collapsewhitespace"></a> `collapseWhitespace?`
 
-##### possiblePartial?
+</td>
+<td>
 
-```ts
-optional possiblePartial: boolean;
-```
+`boolean`
+
+</td>
+<td>
+
+editor/rendering/html.ts:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="possiblepartial"></a> `possiblePartial?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+editor/rendering/html.ts:20
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### FromDomOptions
+## FromDomOptions
 
-#### Properties
+Defined in: editor/rendering/html.ts:24
 
-##### collapseWhitespace?
+### Properties
 
-```ts
-optional collapseWhitespace: boolean;
-```
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-##### endNode?
+<a id="collapsewhitespace-1"></a> `collapseWhitespace?`
 
-```ts
-optional endNode: Node;
-```
+</td>
+<td>
 
-##### includeIds?
+`boolean`
 
-```ts
-optional includeIds: boolean;
-```
+</td>
+<td>
 
-##### offset?
+editor/rendering/html.ts:31
 
-```ts
-optional offset: number;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-##### possiblePartial?
+<a id="endnode"></a> `endNode?`
 
-```ts
-optional possiblePartial: boolean;
-```
+</td>
+<td>
 
-##### root?
+`Node`
 
-```ts
-optional root: HTMLElement;
-```
+</td>
+<td>
 
-##### startNode?
+editor/rendering/html.ts:27
 
-```ts
-optional startNode: Node;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-## Variables
+<a id="includeids"></a> `includeIds?`
 
-### BLOCK\_ELEMENTS
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+editor/rendering/html.ts:30
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="offset"></a> `offset?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+editor/rendering/html.ts:28
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="possiblepartial-1"></a> `possiblePartial?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+editor/rendering/html.ts:29
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="root"></a> `root?`
+
+</td>
+<td>
+
+`HTMLElement`
+
+</td>
+<td>
+
+editor/rendering/html.ts:25
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="startnode"></a> `startNode?`
+
+</td>
+<td>
+
+`Node`
+
+</td>
+<td>
+
+editor/rendering/html.ts:26
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## BLOCK\_ELEMENTS
 
 ```ts
 const BLOCK_ELEMENTS: "address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video" = 'address, article, aside, blockquote, editor, dd, div, dl, dt, fieldset, figcaption, figure, footer, form,  header, hr, li, main, nav, noscript, ol, output, p, pre, section, table, tfoot, ul, video';
 ```
 
-## Functions
+Defined in: editor/rendering/html.ts:9
 
-### cleanText()
+***
+
+## cleanText()
 
 ```ts
-function cleanText(delta): void
+function cleanText(delta: default): void;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:90
+
+### Parameters
 
 <table>
 <thead>
@@ -107,19 +236,21 @@ function cleanText(delta): void
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### deltaFromDom()
+## deltaFromDom()
 
 ```ts
-function deltaFromDom(editor, options): default
+function deltaFromDom(editor: Editor, options: FromDomOptions): default;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:99
+
+### Parameters
 
 <table>
 <thead>
@@ -155,7 +286,7 @@ function deltaFromDom(editor, options): default
 </td>
 <td>
 
-[`FromDomOptions`](html.md#fromdomoptions)
+[`FromDomOptions`](#fromdomoptions)
 
 </td>
 <td>
@@ -167,22 +298,24 @@ function deltaFromDom(editor, options): default
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`default`](../delta/Delta.md#default)
 
 ***
 
-### deltaFromHTML()
+## deltaFromHTML()
 
 ```ts
 function deltaFromHTML(
-   editor, 
-   html, 
-   options?): default
+   editor: Editor, 
+   html: string, 
+   options?: DeltaFromHTMLOptions): default;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:64
+
+### Parameters
 
 <table>
 <thead>
@@ -219,31 +352,33 @@ function deltaFromHTML(
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
 
-[`DeltaFromHTMLOptions`](html.md#deltafromhtmloptions)
+[`DeltaFromHTMLOptions`](#deltafromhtmloptions)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`default`](../delta/Delta.md#default)
 
 ***
 
-### docFromDom()
+## docFromDom()
 
 ```ts
-function docFromDom(editor, root): default
+function docFromDom(editor: Editor, root: HTMLElement): default;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:76
+
+### Parameters
 
 <table>
 <thead>
@@ -280,22 +415,24 @@ function docFromDom(editor, root): default
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`default`](../document/TextDocument.md#default)
 
 ***
 
-### docFromHTML()
+## docFromHTML()
 
 ```ts
 function docFromHTML(
-   editor, 
-   html, 
-   selection?): default
+   editor: Editor, 
+   html: string, 
+   selection?: EditorRange): default;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:60
+
+### Parameters
 
 <table>
 <thead>
@@ -332,7 +469,7 @@ function docFromHTML(
 <tr>
 <td>
 
-`selection`?
+`selection?`
 
 </td>
 <td>
@@ -344,19 +481,21 @@ function docFromHTML(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`default`](../document/TextDocument.md#default)
 
 ***
 
-### docToHTML()
+## docToHTML()
 
 ```ts
-function docToHTML(editor, doc): string
+function docToHTML(editor: Editor, doc: default): string;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:50
+
+### Parameters
 
 <table>
 <thead>
@@ -393,21 +532,21 @@ function docToHTML(editor, doc): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### fromNode()
+## fromNode()
 
 ```ts
-function fromNode(editor, dom): 
-  | default
-  | default[]
+function fromNode(editor: Editor, dom: HTMLElement): Line | Line[];
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:81
+
+### Parameters
 
 <table>
 <thead>
@@ -444,20 +583,21 @@ function fromNode(editor, dom):
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-  \| [`default`](../document/Line/index.md#default)
-  \| [`default`](../document/Line/index.md#default)[]
+[`Line`](../index.md#line) \| [`Line`](../index.md#line)[]
 
 ***
 
-### inlineToHTML()
+## inlineToHTML()
 
 ```ts
-function inlineToHTML(editor, delta): string
+function inlineToHTML(editor: Editor, delta: default): string;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:54
+
+### Parameters
 
 <table>
 <thead>
@@ -494,19 +634,21 @@ function inlineToHTML(editor, delta): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### isBRPlaceholder()
+## isBRPlaceholder()
 
 ```ts
-function isBRPlaceholder(editor, node): boolean
+function isBRPlaceholder(editor: Editor, node: Node): boolean;
 ```
 
-#### Parameters
+Defined in: editor/rendering/html.ts:35
+
+### Parameters
 
 <table>
 <thead>
@@ -543,6 +685,6 @@ function isBRPlaceholder(editor, node): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`

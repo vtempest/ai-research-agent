@@ -237,13 +237,13 @@
     </div>
   </div>
   <div class="flex space-x-1 mb-2">
-    <div class="relative inline-block text-left flex-grow search-dropdown">
+    <div class="relative inline-block text-left grow search-dropdown">
       <Button 
         type="button" 
         class="w-full bg-slate-400 hover:bg-slate-500 inline-flex items-center justify-between"
       >
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-        <div class="flex items-center flex-grow" onclick={searchSelected}>
+        <div class="flex items-center grow" onclick={searchSelected}>
           <span class="flex items-center">
             <img alt={searchEngines[selectedSearchEngine].name} src={`data:image/png;base64,${searchEngines[selectedSearchEngine].icon}`} 
             class="h-4 w-4 mr-2" />
@@ -251,14 +251,14 @@
             {searchEngines[selectedSearchEngine].name}</span>
         </div>
         
-        <div class="flex-shrink-0 ml-2" onclick={toggleDropdown}>
+        <div class="shrink-0 ml-2" onclick={toggleDropdown}>
           <ChevronDown class="h-4 w-4" />
         </div>
       </Button>
 
       {#if showDropdown}
         <div
-          class="absolute left-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-slate-400 ring-opacity-5 focus:outline-none"
+          class="absolute left-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-slate-400 ring-opacity-5 focus:outline-hidden"
           transition:slide={{ duration: 200 }}
         >
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
@@ -278,7 +278,7 @@
         </div>
       {/if}
     </div>
-    <Button onclick={openDebateApp} class="flex-shrink-0 ml-1">
+    <Button onclick={openDebateApp} class="shrink-0 ml-1">
       <Maximize class="h-4 w-4" />
     </Button>
   </div>

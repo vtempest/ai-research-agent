@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/url-to-content/docx-to-content
+[Documentation](../../modules.md) / extractor/url-to-content/docx-to-content
 
 ## Extract
 
 ### convertDOCXToHTML()
 
 ```ts
-function convertDOCXToHTML(input, options?): Promise<string>
+function convertDOCXToHTML(input: string | ArrayBuffer | Blob | File, options?: DocxOptions): Promise<string>;
 ```
+
+Defined in: extractor/url-to-content/docx-to-content.js:54
 
 Converts a DOCX document to HTML
 
@@ -29,7 +31,7 @@ Converts a DOCX document to HTML
 </td>
 <td>
 
-`string` \| `Blob` \| `ArrayBuffer` \| `File`
+`string` \| `ArrayBuffer` \| `Blob` \| `File`
 
 </td>
 <td>
@@ -41,12 +43,12 @@ DOCX input to convert
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
 
-[`DocxOptions`](docx-to-content.md#docxoptions)
+[`DocxOptions`](#docxoptions)
 
 </td>
 <td>
@@ -79,182 +81,522 @@ const html = await convertDOCXToHTML(fileInput.files[0]);
 
 ### DocxOptions
 
+Defined in: extractor/url-to-content/docx-to-content.js:5
+
 #### Properties
 
-##### imgPath?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional imgPath: string;
-```
+<a id="imgpath"></a> `imgPath?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Base path for image resources
 
-##### includeStyles?
+</td>
+<td>
 
-```ts
-optional includeStyles: boolean;
-```
+extractor/url-to-content/docx-to-content.js:8
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="includestyles"></a> `includeStyles?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Whether to include document styles
 
-##### preserveShapes?
+</td>
+<td>
 
-```ts
-optional preserveShapes: boolean;
-```
+extractor/url-to-content/docx-to-content.js:7
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="preserveshapes"></a> `preserveShapes?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Whether to preserve shape elements
+
+</td>
+<td>
+
+extractor/url-to-content/docx-to-content.js:6
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### ParagraphStyle
 
+Defined in: extractor/url-to-content/docx-to-content.js:220
+
 #### Properties
 
-##### alignment?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional alignment: string;
-```
+<a id="alignment"></a> `alignment?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Text alignment (left, right, center, justify)
 
-##### indentation?
+</td>
+<td>
 
-```ts
-optional indentation: string;
-```
+extractor/url-to-content/docx-to-content.js:221
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="indentation"></a> `indentation?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Paragraph indentation
 
-##### keepNext?
+</td>
+<td>
 
-```ts
-optional keepNext: boolean;
-```
+extractor/url-to-content/docx-to-content.js:223
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="keepnext"></a> `keepNext?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Keep with next paragraph
 
-##### pageBreakBefore?
+</td>
+<td>
 
-```ts
-optional pageBreakBefore: boolean;
-```
+extractor/url-to-content/docx-to-content.js:224
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="pagebreakbefore"></a> `pageBreakBefore?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Force page break before
 
-##### spacing?
+</td>
+<td>
 
-```ts
-optional spacing: string;
-```
+extractor/url-to-content/docx-to-content.js:225
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="spacing"></a> `spacing?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Line spacing
+
+</td>
+<td>
+
+extractor/url-to-content/docx-to-content.js:222
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### RunStyle
 
+Defined in: extractor/url-to-content/docx-to-content.js:229
+
 #### Properties
 
-##### bold?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional bold: boolean;
-```
+<a id="bold"></a> `bold?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Bold text
 
-##### color?
+</td>
+<td>
 
-```ts
-optional color: string;
-```
+extractor/url-to-content/docx-to-content.js:230
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="color"></a> `color?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Text color
 
-##### font?
+</td>
+<td>
 
-```ts
-optional font: string;
-```
+extractor/url-to-content/docx-to-content.js:233
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="font"></a> `font?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Font family
 
-##### highlight?
+</td>
+<td>
 
-```ts
-optional highlight: string;
-```
+extractor/url-to-content/docx-to-content.js:236
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="highlight"></a> `highlight?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Highlight color
 
-##### italic?
+</td>
+<td>
 
-```ts
-optional italic: boolean;
-```
+extractor/url-to-content/docx-to-content.js:234
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="italic"></a> `italic?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Italic text
 
-##### size?
+</td>
+<td>
 
-```ts
-optional size: string;
-```
+extractor/url-to-content/docx-to-content.js:231
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="size"></a> `size?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Font size
 
-##### underline?
+</td>
+<td>
 
-```ts
-optional underline: boolean;
-```
+extractor/url-to-content/docx-to-content.js:235
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="underline"></a> `underline?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 Underlined text
+
+</td>
+<td>
+
+extractor/url-to-content/docx-to-content.js:232
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
 ### StyleConfig
 
+Defined in: extractor/url-to-content/docx-to-content.js:13
+
 #### Properties
 
-##### block
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-block: boolean;
-```
+<a id="block"></a> `block`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 If true, element is rendered as block
 
-##### class?
+</td>
+<td>
 
-```ts
-optional class: string;
-```
+extractor/url-to-content/docx-to-content.js:14
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="class"></a> `class?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 CSS class name
 
-##### element
+</td>
+<td>
 
-```ts
-element: string;
-```
+extractor/url-to-content/docx-to-content.js:18
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="element"></a> `element`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 HTML element name
 
-##### heading?
+</td>
+<td>
 
-```ts
-optional heading: boolean;
-```
+extractor/url-to-content/docx-to-content.js:16
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="heading"></a> `heading?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 If true, element is a heading
 
-##### xmlName?
+</td>
+<td>
 
-```ts
-optional xmlName: string;
-```
+extractor/url-to-content/docx-to-content.js:15
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="xmlname"></a> `xmlName?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 DOCX XML element name
+
+</td>
+<td>
+
+extractor/url-to-content/docx-to-content.js:17
+
+</td>
+</tr>
+</tbody>
+</table>

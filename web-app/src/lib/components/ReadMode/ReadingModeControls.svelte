@@ -161,7 +161,7 @@ function isInsideTextInput(i) {
     {#if isExpanded}
       <div class="">
         <div class="flex justify-between items-center">
-          <button onclick={toggleExpand} class="text-slate-400 hover:text-slate-200 focus:outline-none">
+          <button onclick={toggleExpand} class="text-slate-400 hover:text-slate-200 focus:outline-hidden">
             <ChevronLeft size={24} />
           </button>
         </div>
@@ -174,7 +174,7 @@ function isInsideTextInput(i) {
               <button 
                 onclick={() => toggleMode('highlight')} 
                 class={( activeMode == 'highlight' ? "bg-slate-400 " : "")  +
-                     "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 flex items-center"
+                     "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-hidden focus:ring-2 focus:ring-slate-400 flex items-center"
                   }
                 
               >
@@ -184,7 +184,7 @@ function isInsideTextInput(i) {
               <button 
                 onclick={() => toggleMode('underline')} 
                 class={( activeMode == 'underline' ? "bg-slate-400 " : "")  +
-                "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 flex items-center"
+                "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-hidden focus:ring-2 focus:ring-slate-400 flex items-center"
                 }
       
               >
@@ -194,7 +194,7 @@ function isInsideTextInput(i) {
               <button 
                 onclick={() => toggleMode('eraser')} 
                 class={( activeMode == 'eraser' ? "bg-slate-400 " : "")  +
-                     "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 flex items-center"
+                     "px-2 py-1 bg-slate-900 text-xs rounded-md focus:outline-hidden focus:ring-2 focus:ring-slate-400 flex items-center"
                 }>
                 <Eraser size={16} />
                 <span class="ml-1">Eraser</span>
@@ -209,19 +209,19 @@ function isInsideTextInput(i) {
             <div class="flex-1">
               <span class="text-xs font-medium">Text size</span>
               <div class="flex bg-slate-700 rounded-md mt-1">
-                <button onclick={() => onChangeTextSize('small')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">S</button>
-                <button onclick={() => onChangeTextSize('medium')} class="flex-1 px-2 py-1 text-xs hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">M</button>
-                <button onclick={() => onChangeTextSize('large')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">L</button>
+                <button onclick={() => onChangeTextSize('small')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">S</button>
+                <button onclick={() => onChangeTextSize('medium')} class="flex-1 px-2 py-1 text-xs hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">M</button>
+                <button onclick={() => onChangeTextSize('large')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">L</button>
               </div>
             </div>
             
             <!-- <div class="flex-1">
               <span class="text-xs font-medium">Theme</span>
               <div class="flex bg-slate-700 rounded-md mt-1">
-                <button onclick={() => onChangeTheme('light')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <button onclick={() => onChangeTheme('light')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">
                   <Sun size={16} />
                 </button>
-                <button onclick={() => onChangeTheme('dark')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <button onclick={() => onChangeTheme('dark')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">
                   <Moon size={16} />
                 </button>
               </div>
@@ -230,10 +230,10 @@ function isInsideTextInput(i) {
             <div class="flex-1">
               <span class="text-xs font-medium">Images</span>
               <div class="flex bg-slate-700 rounded-md mt-1">
-                <button onclick={() => onToggleImages('show')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <button onclick={() => onToggleImages('show')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">
                   <Image size={16} />
                 </button>
-                <button onclick={() => onToggleImages('hide')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <button onclick={() => onToggleImages('hide')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">
                   <XCircle size={16} />
                 </button>
               </div>
@@ -255,7 +255,7 @@ function isInsideTextInput(i) {
             <div class="relative flex-1 bg-slate-700 rounded-md mt-1">
               <button 
                 onclick={copyHtmlToClipboard}
-                class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400"
               >
                 <Clipboard size={16} />
               </button>
@@ -277,7 +277,7 @@ function isInsideTextInput(i) {
               onclick={handleEditMode}
               
               class={( isEditModeEnabled ? "bg-slate-400 " : "") 
-                + "flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                + "flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400"
                 }
                 >
               <Pencil size={16} />
@@ -300,7 +300,7 @@ function isInsideTextInput(i) {
             class="w-full bg-slate-700 text-slate-200 border-slate-600 rounded-md p-2"
           />
           
-          <div class="w-full inset-0 bg-gradient-to-r from-red-400 via-orange-500 via-pink-300 to-yellow-300  rounded-lg animate-gradient">
+          <div class="w-full inset-0 bg-linear-to-r from-red-400 via-orange-500 via-pink-300 to-yellow-300  rounded-lg animate-gradient">
 
           <button 
             onclick={summarizeArticle} 
@@ -333,7 +333,7 @@ function isInsideTextInput(i) {
       <div class="p-2">
         <button 
           onclick={toggleExpand} 
-          class="w-8 h-8 bg-slate-700 text-slate-200 rounded-md shadow-md hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 flex items-center justify-center"
+          class="w-8 h-8 bg-slate-700 text-slate-200 rounded-md shadow-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400 flex items-center justify-center"
         >
           <ChevronRight size={24} />
         </button>

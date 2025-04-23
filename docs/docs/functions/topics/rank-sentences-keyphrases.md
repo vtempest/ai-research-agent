@@ -1,12 +1,12 @@
-[ai-research-agent](../modules.md) / topics/rank-sentences-keyphrases
+[Documentation](../modules.md) / topics/rank-sentences-keyphrases
 
-## Functions
-
-### rankSentencesCentralToKeyphrase()
+## rankSentencesCentralToKeyphrase()
 
 ```ts
-function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases, options): any[]
+function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases: any[], options: object): any[];
 ```
+
+Defined in: topics/rank-sentences-keyphrases.js:20
 
 Rank sentences based on their centrality to key phrases.
 This function implements the TextRank algorithm to weight each sentence
@@ -24,7 +24,7 @@ keyphrases, then performs random walks to distribute probabilities.
    https://dl.acm.org/doi/10.1145/3321408.3326659
    https://doi.org/10.1145/3321408.3326659
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -60,7 +60,7 @@ Array of objects, each containing (text, keyphrases)
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 <td>
@@ -72,7 +72,7 @@ Array of objects, each containing (text, keyphrases)
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`[]
 

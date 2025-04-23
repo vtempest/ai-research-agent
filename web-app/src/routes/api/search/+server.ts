@@ -1,3 +1,4 @@
+// @ts-ignore
 import {  searchWeb } from "$ai-research-agent";
 
 import { json } from "@sveltejs/kit";
@@ -38,6 +39,7 @@ export async function GET({ url }) {
       maxRetries: 6,
       privateSearxng: false,
       proxy,
+      lang,
       page
     });
 

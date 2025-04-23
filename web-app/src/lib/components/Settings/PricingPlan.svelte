@@ -79,7 +79,7 @@
   <div class="mt-5 m-6  sm:space-y-2 sm:grid sm:grid-cols-3 sm:gap-6">
 
     {#each plans as plan}
-      <div class="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200  hover:shadow-xl hover:-translate-y-1 ">
+      <div class="border border-slate-200 rounded-lg shadow-xs divide-y divide-slate-200  hover:shadow-xl hover:-translate-y-1 ">
         <div class="p-6">
           <h2 class="text-xl leading-6 font-bold text-slate-900">{plan.name}</h2>
           <p class="mt-2 text-base text-slate-700 leading-tight">{plan.description}</p>
@@ -120,7 +120,7 @@
           <ul role="list" class="mt-4 space-y-3">
             {#each plan.features as feature}
               <li class="flex items-center space-x-3">
-                <svelte:component this={feature.icon} class="flex-shrink-0 h-5 w-5 text-blue-900" />
+                <svelte:component this={feature.icon} class="shrink-0 h-5 w-5 text-blue-900" />
                 <span class="text-base text-slate-700">{feature.text}</span>
               </li>
             {/each}

@@ -1,16 +1,16 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-author
+[Documentation](../../modules.md) / extractor/html-to-cite/extract-author
 
-## Functions
-
-### extractAuthor()
+## extractAuthor()
 
 ```ts
-function extractAuthor(document): any
+function extractAuthor(document: Document): any;
 ```
+
+Defined in: extractor/html-to-cite/extract-author.js:53
 
 Extracts the author from the document and validates it as a human name
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -39,7 +39,7 @@ Extracts the author from the document and validates it as a human name
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 

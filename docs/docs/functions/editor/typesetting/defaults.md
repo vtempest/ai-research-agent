@@ -1,9 +1,9 @@
-[ai-research-agent](../../modules.md) / editor/typesetting/defaults
+[Documentation](../../modules.md) / editor/typesetting/defaults
 
-## Variables
-
-### defaultTypes
+## defaultTypes
 
 ```ts
 const defaultTypes: TypesetTypes;
 ```
+
+Defined in: editor/typesetting/defaults.ts:6

@@ -1,12 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
+[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
 
 ## Extract
 
 ### extractMainContentFromHTML2()
 
 ```ts
-function extractMainContentFromHTML2(html, opts?): string
+function extractMainContentFromHTML2(html: string, opts?: object): string;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury.js:62
 
 ### HTML-to-Main-Content Extractor #2
 
@@ -64,7 +66,7 @@ The HTML content to extract from.
 <tr>
 <td>
 
-`opts`?
+`opts?`
 
 </td>
 <td>
@@ -81,7 +83,7 @@ The options for content extraction.
 <tr>
 <td>
 
-`opts.cleanConditionally`?
+`opts.cleanConditionally?`
 
 </td>
 <td>
@@ -100,7 +102,7 @@ quality content. On each failure, retry with slightly more lax options.
 <tr>
 <td>
 
-`opts.stripUnlikelyCandidates`?
+`opts.stripUnlikelyCandidates?`
 
 </td>
 <td>
@@ -118,7 +120,7 @@ like criteria first (e.g., elements with a classname of "comment").
 <tr>
 <td>
 
-`opts.weightNodes`?
+`opts.weightNodes?`
 
 </td>
 <td>

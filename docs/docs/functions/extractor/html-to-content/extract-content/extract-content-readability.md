@@ -1,12 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
+[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
 
 ## Extract
 
 ### extractMainContentFromHTML()
 
 ```ts
-function extractMainContentFromHTML(html, options?): Element
+function extractMainContentFromHTML(html: any, options?: object): Element;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-readability.js:60
 
 ### HTML-to-Main-Content Extractor #1
 The function extracts main content with regex patterns, cleaning HTML, scoring nodes
@@ -80,7 +82,7 @@ The function extracts main content with regex patterns, cleaning HTML, scoring n
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -95,7 +97,7 @@ The function extracts main content with regex patterns, cleaning HTML, scoring n
 <tr>
 <td>
 
-`options.minContentLength`?
+`options.minContentLength?`
 
 </td>
 <td>
@@ -112,7 +114,7 @@ default=140 - Minimum length of content to be considered valid
 <tr>
 <td>
 
-`options.minScore`?
+`options.minScore?`
 
 </td>
 <td>
@@ -129,7 +131,7 @@ default=20 - Minimum score for content to be considered valid
 <tr>
 <td>
 
-`options.minTextLength`?
+`options.minTextLength?`
 
 </td>
 <td>
@@ -146,7 +148,7 @@ default=25 - Minimum length of text to be considered valid
 <tr>
 <td>
 
-`options.retryLength`?
+`options.retryLength?`
 
 </td>
 <td>
@@ -188,10 +190,12 @@ Based on [Mozilla Readability (2015)](https://github.com/mozilla/readability)
 
 ```ts
 function classWeight(
-   elem, 
-   positiveRe, 
-   negativeRe): number
+   elem: Element, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp): number;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-readability.js:249
 
 Calculates the weight of an element based on its class and id attributes.
 
@@ -271,8 +275,10 @@ The calculated weight
 ### getLinkDensity()
 
 ```ts
-function getLinkDensity(elem): number
+function getLinkDensity(elem: Element): number;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-readability.js:229
 
 Calculates the link density of an element.
 
@@ -319,13 +325,15 @@ The link density (ratio of link text length to total text length)
 
 ```ts
 function sanitize(
-   node, 
-   candidates, 
-   videoRe, 
-   positiveRe, 
-   negativeRe, 
-   minTextLength): Element
+   node: Element, 
+   candidates: any, 
+   videoRe: RegExp, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp, 
+   minTextLength: number): Element;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-readability.js:317
 
 Sanitizes the content by removing unwanted elements and cleaning remaining elements.
 
@@ -457,10 +465,12 @@ The sanitized node
 
 ```ts
 function scoreNode(
-   elem, 
-   positiveRe, 
-   negativeRe): any
+   elem: Element, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp): any;
 ```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-readability.js:270
 
 Scores a node based on its tag name and attributes.
 

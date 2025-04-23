@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Word
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Word
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/Word.js:1
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/Word.js:2
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,26 +39,32 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](Word.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### format
+#### format
 
 ```ts
 format: any;
 ```
 
-##### string
+Defined in: extractor/pdf-to-html/models/Word.js:5
+
+#### string
 
 ```ts
 string: any;
 ```
 
-##### type
+Defined in: extractor/pdf-to-html/models/Word.js:3
+
+#### type
 
 ```ts
 type: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/Word.js:4

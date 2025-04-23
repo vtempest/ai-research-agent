@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {page} from "$app/stores";
+  // import {page} from "$app/stores";
   import { Card, CardContent } from "$lib/components/ui/card";
   import GoogleIcon from "$lib/components/icons/icon-google.svg";
   import QuantumWaveOrbital from './QuantumWaveOrbital.svelte';
@@ -40,11 +40,12 @@
     if (typeof window === 'undefined') 
       return;
 
-    user = $page.data.session?.user;
+    // user = $page.data.session?.user;
   });
 
 
   function handleKeydown(event: KeyboardEvent) {
+    
     if (event.key === 'Enter') {
     event.preventDefault();
     updateSearchText(searchText)
@@ -102,18 +103,20 @@
 </svelte:head>
 
 
-<div class="relative h-screen w-full overflow-hidden">
+<div
+  class="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
+>
  
   
   {#if typeof window !== "undefined"}
     <img
-      src={getBackground()}
-      class="absolute inset-0 w-full h-full object-cover"
+    class="absolute  z-5 inset-0 w-full h-full object-cover" 
+    src={getBackground()}
       alt="Background"
     />
   {/if}
 
-  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="absolute  z-3 inset-0 bg-black bg-opacity-50"></div>
 
   <div class="relative z-10 h-screen flex flex-col items-center justify-center text-white text-center px-2 sm:px-4">
     
@@ -121,14 +124,14 @@
       <CardContent >
         <div class="bg-transparent mb-11" >
         <QuantumWaveOrbital />
-        </div>
+        <div class="text-sm xs:text-base sm:text-xl mt-2 mb-2 sm:mb-4 text-slate-300">
+
         {#if user}
-          <div class="text-sm xs:text-base sm:text-xl mt-2 mb-2 sm:mb-4 text-slate-300">
             {getGreeting()}, {user?.name?.split(" ")[0]}
-          </div>
         {:else}
           { APP_SLOGAN }
         {/if}
+      </div>
 
         <div class="flex flex-col items-start justify-between">
           <div class="w-full">
@@ -140,14 +143,14 @@
                 onkeydown={handleKeydown}
                 onblur={handleBlur}
                 placeholder="{introSearchPlaceholder}"
-                class="search-input w-full py-0 sm:px-3 text-xs sm:text-sm text-black bg-transparent focus:outline-none rounded-lg"
+                class="search-input w-full py-0 sm:px-3 text-xs sm:text-sm text-black bg-transparent focus:outline-hidden rounded-lg"
               />
               <div class="w-full sm:w-auto flex items-center justify-between sm:justify-start mt-1 sm:mt-0  py-1 sm:py-0">
                 <!-- <Select.Root 
                 >
                   <div class="w-[100px] sm:w-[105px]">
                     <Select.Trigger 
-                      class="w-full appearance-none bg-transparent sm:border-l border-gray-300 p-1 focus:outline-none text-black text-xs sm:text-sm rounded-lg"
+                      class="w-full appearance-none bg-transparent sm:border-l border-gray-300 p-1 focus:outline-hidden text-black text-xs sm:text-sm rounded-lg"
                     >
                   <Select.Content class="bg-white shadow-md">
                     <Select.Group>
@@ -157,13 +160,14 @@
 
                 </Select.Root > -->
                 
-                <div class="relative flex-grow py-3  sm:ml-2">
-                  <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg sm:rounded-r-lg sm:rounded-l-none animate-gradient"></div>
+                <div class="relative grow py-3  sm:ml-2">
+                  <div class="absolute inset-0 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg sm:rounded-r-lg sm:rounded-l-none animate-gradient"></div>
                   <button
-                    onclick={() => handleSearchSubmit()}
+                    onclick={() => { updateSearchText(searchText); handleSearchSubmit() }}
                     class="search-button relative text-white px-3   sm:px-4 sm:py-2 rounded-lg sm:rounded-r-lg sm:rounded-l-none transition duration-300 w-full flex items-center justify-center overflow-hidden"
                   >
-                    <span class="relative z-10 flex items-center text-xs sm:text-sm">
+                    <span        
+                      class="relative z-10 flex items-center text-xs sm:text-sm">
                       <Bot size={14} class="mr-1" />
                       Ask
                     </span>
@@ -196,7 +200,7 @@
             {#if !user}
               <div class="mt-2 sm:mt-4">
                 <div class="relative inline-block" >
-                  <div class="absolute inset-0 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-400 via-green-400 via-blue-500 via-purple-500 to-pink-500 rounded-lg animate-gradient"></div>
+                  <div class="absolute inset-0 bg-linear-to-r from-red-500 via-orange-500 via-yellow-400 via-green-400 via-blue-500 via-purple-500 to-pink-500 rounded-lg animate-gradient"></div>
 
                   <button
                   onclick={()=>window.location.href = "/signin"}

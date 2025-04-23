@@ -90,21 +90,3 @@
     {/each}
   </div>
 </div>
-
-<style>
-  :global(#max-level-slider) {
-    @apply bg-white h-1 shadow-lg;
-  }
-  :global(#max-level-slider span) {
-    @apply bg-white shadow-lg;
-  }
-  :global(.slider-track) {
-    @apply h-1 bg-gray-300 rounded-full shadow-md;
-  }
-  :global(.slider-range) {
-    @apply h-2 bg-black rounded-full;
-  }
-  :global(.slider-thumb) {
-    @apply w-5 h-5 bg-black border-2 border-white rounded-full shadow-lg;
-  }
-</style>

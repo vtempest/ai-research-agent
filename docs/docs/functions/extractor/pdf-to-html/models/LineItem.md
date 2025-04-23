@@ -1,22 +1,24 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineItem
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/LineItem
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/LineItem.js:5
 
-#### Extends
+### Extends
 
 - [`default`](PageItem.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/LineItem.js:6
+
+##### Parameters
 
 <table>
 <thead>
@@ -41,94 +43,114 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](LineItem.md#default)
+[`default`](#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](PageItem.md#default).[`constructor`](PageItem.md#constructors)
+[`default`](PageItem.md#default).[`constructor`](PageItem.md#default#constructor)
 
-#### Properties
+### Properties
 
-##### annotation
+#### annotation
 
 ```ts
 annotation: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:8
 
-[`default`](PageItem.md#default).[`annotation`](PageItem.md#annotation)
+##### Inherited from
 
-##### height
+[`default`](PageItem.md#default).[`annotation`](PageItem.md#default#annotation)
+
+#### height
 
 ```ts
 height: any;
 ```
 
-##### parsedElements
+Defined in: extractor/pdf-to-html/models/LineItem.js:11
+
+#### parsedElements
 
 ```ts
 parsedElements: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:9
 
-[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#parsedelements)
+##### Inherited from
 
-##### type
+[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#default#parsedelements)
+
+#### type
 
 ```ts
 type: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:7
 
-[`default`](PageItem.md#default).[`type`](PageItem.md#type)
+##### Inherited from
 
-##### width
+[`default`](PageItem.md#default).[`type`](PageItem.md#default#type)
+
+#### width
 
 ```ts
 width: any;
 ```
 
-##### words
+Defined in: extractor/pdf-to-html/models/LineItem.js:10
+
+#### words
 
 ```ts
 words: any;
 ```
 
-##### x
+Defined in: extractor/pdf-to-html/models/LineItem.js:12
+
+#### x
 
 ```ts
 x: any;
 ```
 
-##### y
+Defined in: extractor/pdf-to-html/models/LineItem.js:8
+
+#### y
 
 ```ts
 y: any;
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/LineItem.js:9
 
-##### text()
+### Methods
+
+#### text()
 
 ```ts
-text(): any
+text(): any;
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/models/LineItem.js:22
+
+##### Returns
 
 `any`
 
-##### wordStrings()
+#### wordStrings()
 
 ```ts
-wordStrings(): any
+wordStrings(): any;
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/models/LineItem.js:26
+
+##### Returns
 
 `any`

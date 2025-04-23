@@ -87,12 +87,12 @@ export {
   convertOpenAPIToAgentTools
 } from "./src/agents/api2ai.js";
 
-
+// BUG: gpu.js lacks bun compatibility
 // export {compileTopicModel} from "./src/dataset-export/compile-topic-model.js"
 // export { torch } from "./src/train/neural-net.js";
-// gpu.js needs bun compatibility
 
-/** Export all functions as named exports
+/** 
+//Export all functions as methods of one object
 export {
   CHAT_MODELS,
   getAgentPrompts,

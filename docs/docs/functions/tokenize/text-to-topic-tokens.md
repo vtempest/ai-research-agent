@@ -1,42 +1,101 @@
-[ai-research-agent](../modules.md) / tokenize/text-to-topic-tokens
+[Documentation](../modules.md) / tokenize/text-to-topic-tokens
 
 ## Other
 
 ### Token
 
+Defined in: tokenize/text-to-topic-tokens.js:4
+
 #### Properties
 
-##### term
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-term: string;
-```
+<a id="term"></a> `term`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The actual term or phrase
 
-##### termCategory
+</td>
+<td>
 
-```ts
-termCategory: number;
-```
+tokenize/text-to-topic-tokens.js:7
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="termcategory"></a> `termCategory`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
 
 The category of the term
 
-##### uniqueness
+</td>
+<td>
 
-```ts
-uniqueness: number;
-```
+tokenize/text-to-topic-tokens.js:5
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="uniqueness"></a> `uniqueness`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
 
 The uniqueness score of the term
+
+</td>
+<td>
+
+tokenize/text-to-topic-tokens.js:6
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ## Topics
 
 ### convertTextToTokens()
 
 ```ts
-function convertTextToTokens(phrase, options?): object[]
+function convertTextToTokens(phrase: string, options?: object): object[];
 ```
+
+Defined in: tokenize/text-to-topic-tokens.js:35
 
 ### Convert Text Query to Topic Phrase Tokens
 <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" /> 
@@ -77,7 +136,7 @@ that match the input phrase, or just the single word if found. Search results wi
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -94,7 +153,7 @@ that match the input phrase, or just the single word if found. Search results wi
 <tr>
 <td>
 
-`options.checkRootWords`?
+`options.checkRootWords?`
 
 </td>
 <td>
@@ -111,7 +170,7 @@ check for word's root stem
 <tr>
 <td>
 
-`options.checkTypos`?
+`options.checkTypos?`
 
 </td>
 <td>
@@ -128,7 +187,7 @@ check for typos
 <tr>
 <td>
 
-`options.ignoreStopWords`?
+`options.ignoreStopWords?`
 
 </td>
 <td>
@@ -145,7 +204,7 @@ ignore 300+ overused words
 <tr>
 <td>
 
-`options.phrasesModel`?
+`options.phrasesModel?`
 
 </td>
 <td>
@@ -162,7 +221,7 @@ remote model
 <tr>
 <td>
 
-`options.typosModel`?
+`options.typosModel?`
 
 </td>
 <td>

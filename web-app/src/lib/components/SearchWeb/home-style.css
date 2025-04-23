@@ -104,6 +104,10 @@ pre code {
   animation: gradient 15s ease infinite;
 }
 
+button {
+  cursor: pointer;
+}
+
 
 .suggestions-list {
   position: absolute;
@@ -159,7 +163,7 @@ select {
 
   /* Ensure the text cursor is visible */
   [contenteditable]:focus::selection {
-    background: transparent;
+    background: #835d16;
   }
 
   /* Hide the resize handle in Firefox */

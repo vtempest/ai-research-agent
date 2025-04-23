@@ -1,21 +1,31 @@
 // @ts-expect-error
 import Discord from "@auth/sveltekit/providers/discord";
+// @ts-expect-error
 import Dropbox from "@auth/sveltekit/providers/dropbox";
+// @ts-expect-error
 import Facebook from "@auth/sveltekit/providers/facebook";
+// @ts-expect-error
 import GitHub from "@auth/sveltekit/providers/github";
+// @ts-expect-error
 import GitLab from "@auth/sveltekit/providers/gitlab";
+// @ts-expect-error
 import Google from "@auth/sveltekit/providers/google";
+// @ts-expect-error
 import Keycloak from "@auth/sveltekit/providers/keycloak";
+// @ts-expect-error
 import LinkedIn from "@auth/sveltekit/providers/linkedin";
+// @ts-expect-error
 import MicrosoftEntraID from "@auth/sveltekit/providers/microsoft-entra-id";
+// @ts-expect-error
 import Resend from "@auth/sveltekit/providers/resend";
+// @ts-expect-error
 import Credentials from "@auth/sveltekit/providers/credentials";
 import { SvelteKitAuth } from "@auth/sveltekit";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { eq } from "drizzle-orm";
 import { APP_EMAIL } from "$lib/custom-domain";
 import { D1Adapter } from "@auth/d1-adapter";
-import { dev } from "$app/environment";
+// import { dev } from "$app/environment";
 import { decode } from "@auth/core/jwt";
 import { drizzle } from "drizzle-orm/d1";
 import { error, redirect } from "@sveltejs/kit";
@@ -48,7 +58,7 @@ export function initAuth(env, options = {} as any) {
 
   const db = drizzle(env.DB, { schema });
   const { handle, signIn, signOut } = SvelteKitAuth({
-    debug: dev,
+    debug: true,
     trustHost: true,
     adapter: D1Adapter(env.DB),
     secret: env.AUTH_SECRET,
@@ -56,7 +66,7 @@ export function initAuth(env, options = {} as any) {
       createUser: (message: { user }) => {
         let { email, name } = message?.user;
         if (SHOULD_SEND_WELCOME_EMAIL) 
-          sendWelcomeEmail(email, name);
+          sendWelcomeEmail(email, name, env.AUTH_RESEND_KEY);
       },
     },
     callbacks: {

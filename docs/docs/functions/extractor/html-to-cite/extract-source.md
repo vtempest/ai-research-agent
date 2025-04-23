@@ -1,16 +1,16 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-source
+[Documentation](../../modules.md) / extractor/html-to-cite/extract-source
 
-## Functions
-
-### extractSource()
+## extractSource()
 
 ```ts
-function extractSource(document): any
+function extractSource(document: Document): any;
 ```
+
+Defined in: extractor/html-to-cite/extract-source.js:8
 
 Extract source from document using common class names
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -41,7 +41,7 @@ document or dom object with article content
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 

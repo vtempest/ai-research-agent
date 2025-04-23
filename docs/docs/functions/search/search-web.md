@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / search/search-web
+[Documentation](../modules.md) / search/search-web
 
 ## Search
 
 ### searchWeb()
 
 ```ts
-function searchWeb(query, options?): Promise<object[]>
+function searchWeb(query: string, options?: object): Promise<object[]>;
 ```
+
+Defined in: search/search-web.js:32
 
 Search Web via SearXNG metasearch of all major search engines.
 Options are 10 search categories, recency, and how many
@@ -48,12 +50,12 @@ The search query string.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
 
-\{ `category`: `string`; `maxRetries`: `number`; `page`: `number`; `privateSearxng`: `string` \| `boolean`; `proxy`: `string`; `recency`: `number`; \}
+\{ `category`: `string`; `lang`: `string`; `maxRetries`: `number`; `page`: `number`; `privateSearxng`: `string` \| `boolean`; `proxy`: `string`; `recency`: `number`; \}
 
 </td>
 <td>
@@ -63,7 +65,7 @@ The search query string.
 <tr>
 <td>
 
-`options.category`?
+`options.category?`
 
 </td>
 <td>
@@ -81,7 +83,24 @@ default=general - ["general", "news", "videos", "images",
 <tr>
 <td>
 
-`options.maxRetries`?
+`options.lang?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+default="en-US" - The language to use for the search.
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options.maxRetries?`
 
 </td>
 <td>
@@ -98,7 +117,7 @@ default=3 - Maximum number of retry attempts if the initial search fails.
 <tr>
 <td>
 
-`options.page`?
+`options.page?`
 
 </td>
 <td>
@@ -115,7 +134,7 @@ default=1 - The page number to retrieve.
 <tr>
 <td>
 
-`options.privateSearxng`?
+`options.privateSearxng?`
 
 </td>
 <td>
@@ -132,7 +151,7 @@ default=null - Use your custom domain SearXNG
 <tr>
 <td>
 
-`options.proxy`?
+`options.proxy?`
 
 </td>
 <td>
@@ -149,7 +168,7 @@ default=false - Use corsproxy.io to access in frontend JS
 <tr>
 <td>
 
-`options.recency`?
+`options.recency?`
 
 </td>
 <td>

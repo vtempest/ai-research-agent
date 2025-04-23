@@ -1,89 +1,105 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/extract-date
+[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/extract-date
 
-## Variables
-
-### CLASS\_ATTRS
+## CLASS\_ATTRS
 
 ```ts
 const CLASS_ATTRS: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:202
+
 ***
 
-### DATE\_ATTRIBUTES
+## DATE\_ATTRIBUTES
 
 ```ts
 const DATE_ATTRIBUTES: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:81
+
 ***
 
-### ITEMPROP\_ATTRS
+## ITEMPROP\_ATTRS
 
 ```ts
 const ITEMPROP_ATTRS: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:196
+
 ***
 
-### ITEMPROP\_ATTRS\_MODIFIED
+## ITEMPROP\_ATTRS\_MODIFIED
 
 ```ts
 const ITEMPROP_ATTRS_MODIFIED: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:193
+
 ***
 
-### ITEMPROP\_ATTRS\_ORIGINAL
+## ITEMPROP\_ATTRS\_ORIGINAL
 
 ```ts
 const ITEMPROP_ATTRS_ORIGINAL: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:187
+
 ***
 
-### NAME\_MODIFIED
+## NAME\_MODIFIED
 
 ```ts
 const NAME_MODIFIED: Set<string>;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:156
+
 ***
 
-### NON\_DIGITS\_REGEX
+## NON\_DIGITS\_REGEX
 
 ```ts
 const NON_DIGITS_REGEX: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:205
+
 ***
 
-### PROPERTY\_MODIFIED
+## PROPERTY\_MODIFIED
 
 ```ts
 const PROPERTY_MODIFIED: Set<string>;
 ```
 
-## Functions
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:166
 
-### extractDate()
+***
+
+## extractDate()
 
 ```ts
 function extractDate(
-   htmlobject, 
-   extensive_search?, 
-   original_date?, 
-   outputformat?, 
-   url?, 
-   verbose?, 
-   min_date?, 
-   max_date?, 
-   deferred_url_extractor?): string
+   htmlobject: Document, 
+   extensive_search?: boolean, 
+   original_date?: boolean, 
+   outputformat?: string, 
+   url?: string, 
+   verbose?: boolean, 
+   min_date?: Date, 
+   max_date?: Date, 
+   deferred_url_extractor?: boolean): string;
 ```
+
+Defined in: extractor/html-to-cite/extract-date/extract-date.js:957
 
 Extract date from document using various methods
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -120,7 +136,7 @@ DOM object with article content
 <tr>
 <td>
 
-`extensive_search`?
+`extensive_search?`
 
 </td>
 <td>
@@ -142,7 +158,7 @@ perform extensive search if true
 <tr>
 <td>
 
-`original_date`?
+`original_date?`
 
 </td>
 <td>
@@ -164,7 +180,7 @@ return original date if true
 <tr>
 <td>
 
-`outputformat`?
+`outputformat?`
 
 </td>
 <td>
@@ -186,7 +202,7 @@ output format
 <tr>
 <td>
 
-`url`?
+`url?`
 
 </td>
 <td>
@@ -208,7 +224,7 @@ URL of the page
 <tr>
 <td>
 
-`verbose`?
+`verbose?`
 
 </td>
 <td>
@@ -230,7 +246,7 @@ log debug messages if true
 <tr>
 <td>
 
-`min_date`?
+`min_date?`
 
 </td>
 <td>
@@ -252,7 +268,7 @@ minimum date to consider
 <tr>
 <td>
 
-`max_date`?
+`max_date?`
 
 </td>
 <td>
@@ -274,7 +290,7 @@ maximum date to consider
 <tr>
 <td>
 
-`deferred_url_extractor`?
+`deferred_url_extractor?`
 
 </td>
 <td>
@@ -296,13 +312,13 @@ if true, do not extract date from URL
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 Extracted date or null if not found
 
-#### Author
+### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)
 Based on [Barbaresi (2020)](https://github.com/adbar/htmldate/)

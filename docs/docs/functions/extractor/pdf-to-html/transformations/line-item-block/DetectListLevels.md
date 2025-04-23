@@ -1,60 +1,68 @@
-[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item-block/DetectListLevels
+[Documentation](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item-block/DetectListLevels
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/transformations/line-item-block/DetectListLevels.js:8
 
-#### Extends
+### Extends
 
 - [`default`](../ToLineItemBlockTransformation.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(): default
+new default(): default;
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/transformations/line-item-block/DetectListLevels.js:9
 
-[`default`](DetectListLevels.md#default)
+##### Returns
 
-###### Overrides
+[`default`](#default)
 
-[`default`](../ToLineItemBlockTransformation.md#default).[`constructor`](../ToLineItemBlockTransformation.md#constructors)
+##### Overrides
 
-#### Properties
+[`default`](../ToLineItemBlockTransformation.md#default).[`constructor`](../ToLineItemBlockTransformation.md#default#constructor)
 
-##### itemType
+### Properties
+
+#### itemType
 
 ```ts
 itemType: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:12
 
-[`default`](../ToLineItemBlockTransformation.md#default).[`itemType`](../ToLineItemBlockTransformation.md#itemtype)
+##### Inherited from
 
-##### name
+[`default`](../ToLineItemBlockTransformation.md#default).[`itemType`](../ToLineItemBlockTransformation.md#default#itemtype)
+
+#### name
 
 ```ts
 name: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:11
 
-[`default`](../ToLineItemBlockTransformation.md#default).[`name`](../ToLineItemBlockTransformation.md#name)
+##### Inherited from
 
-#### Methods
+[`default`](../ToLineItemBlockTransformation.md#default).[`name`](../ToLineItemBlockTransformation.md#default#name)
 
-##### completeTransform()
+### Methods
+
+#### completeTransform()
 
 ```ts
-completeTransform(parseResult): any
+completeTransform(parseResult: any): any;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:19
+
+##### Parameters
 
 <table>
 <thead>
@@ -79,21 +87,23 @@ completeTransform(parseResult): any
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`
 
-###### Inherited from
+##### Inherited from
 
-[`default`](../ToLineItemBlockTransformation.md#default).[`completeTransform`](../ToLineItemBlockTransformation.md#completetransform)
+[`default`](../ToLineItemBlockTransformation.md#default).[`completeTransform`](../ToLineItemBlockTransformation.md#default#completetransform)
 
-##### transform()
+#### transform()
 
 ```ts
-transform(parseResult): default
+transform(parseResult: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/line-item-block/DetectListLevels.js:13
+
+##### Parameters
 
 <table>
 <thead>
@@ -118,10 +128,10 @@ transform(parseResult): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 [`default`](../../models/ParseResult.md#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](../ToLineItemBlockTransformation.md#default).[`transform`](../ToLineItemBlockTransformation.md#transform)
+[`default`](../ToLineItemBlockTransformation.md#default).[`transform`](../ToLineItemBlockTransformation.md#default#transform)

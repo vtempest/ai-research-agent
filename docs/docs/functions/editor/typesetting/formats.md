@@ -1,49 +1,59 @@
-[ai-research-agent](../../modules.md) / editor/typesetting/formats
+[Documentation](../../modules.md) / editor/typesetting/formats
 
-## Variables
-
-### bold
+## bold
 
 ```ts
 const bold: FormatType;
 ```
 
+Defined in: editor/typesetting/formats.ts:13
+
 ***
 
-### code
+## code
 
 ```ts
 const code: FormatType;
 ```
 
+Defined in: editor/typesetting/formats.ts:40
+
 ***
 
-### italic
+## italic
 
 ```ts
 const italic: FormatType;
 ```
 
+Defined in: editor/typesetting/formats.ts:22
+
 ***
 
-### link
+## link
 
 ```ts
 const link: FormatType;
 ```
 
+Defined in: editor/typesetting/formats.ts:47
+
 ***
 
-### mark
+## mark
 
 ```ts
 const mark: FormatType;
 ```
 
+Defined in: editor/typesetting/formats.ts:31
+
 ***
 
-### underline
+## underline
 
 ```ts
 const underline: FormatType;
 ```
+
+Defined in: editor/typesetting/formats.ts:4

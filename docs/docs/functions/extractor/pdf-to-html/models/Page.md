@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Page
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Page
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/Page.js:2
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/Page.js:3
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,20 +39,24 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](Page.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### index
+#### index
 
 ```ts
 index: any;
 ```
 
-##### items
+Defined in: extractor/pdf-to-html/models/Page.js:4
+
+#### items
 
 ```ts
 items: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/Page.js:5

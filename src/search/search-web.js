@@ -17,6 +17,7 @@ import { scrapeURL } from "../../index.js";
  * @param {string|boolean} options.privateSearxng default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @param {number} options.page default=1 - The page number to retrieve.
+ * @param {string} options.lang default="en-US" - The language to use for the search.
  * @param {string} options.proxy default=false - Use corsproxy.io to access in frontend JS
  * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[]}>>} An array of search result objects.
  * @example  const advancedResults = await searchWeb('Node.js', {

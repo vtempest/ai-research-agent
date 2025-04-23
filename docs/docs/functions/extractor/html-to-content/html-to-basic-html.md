@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-content/html-to-basic-html
+[Documentation](../../modules.md) / extractor/html-to-content/html-to-basic-html
 
 ## HTML Utilities
 
 ### convertHTMLToBasicHTML()
 
 ```ts
-function convertHTMLToBasicHTML(html, options?): string
+function convertHTMLToBasicHTML(html: string, options?: object): string;
 ```
+
+Defined in: extractor/html-to-content/html-to-basic-html.js:31
 
 Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
 Convert anchors and relative urls to absolute urls. Basic HTML supports the same
@@ -48,7 +50,7 @@ Any page's HTML to process
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -63,7 +65,7 @@ Any page's HTML to process
 <tr>
 <td>
 
-`options.allowedAttributes`?
+`options.allowedAttributes?`
 
 </td>
 <td>
@@ -81,7 +83,7 @@ default="text,tag,href, src,type,width, height,id,data"
 <tr>
 <td>
 
-`options.allowTags`?
+`options.allowTags?`
 
 </td>
 <td>
@@ -99,7 +101,7 @@ code,ul,ol,li,dd,dl, table,th,tr,td,sub,sup" - Comma-separated list of allowed H
 <tr>
 <td>
 
-`options.formatting`?
+`options.formatting?`
 
 </td>
 <td>
@@ -116,7 +118,7 @@ default=true - Whether to include formatting
 <tr>
 <td>
 
-`options.images`?
+`options.images?`
 
 </td>
 <td>
@@ -133,7 +135,7 @@ default=true - Whether to include images
 <tr>
 <td>
 
-`options.links`?
+`options.links?`
 
 </td>
 <td>
@@ -150,7 +152,7 @@ default=true - Whether to include links
 <tr>
 <td>
 
-`options.url`?
+`options.url?`
 
 </td>
 <td>
@@ -167,7 +169,7 @@ base URL for converting relative URLs to absolute
 <tr>
 <td>
 
-`options.videos`?
+`options.videos?`
 
 </td>
 <td>
@@ -199,8 +201,10 @@ basic text formatting html
 ### addDOMFunctions()
 
 ```ts
-function addDOMFunctions(domObject): any
+function addDOMFunctions(domObject: any): any;
 ```
+
+Defined in: extractor/html-to-content/html-to-basic-html.js:224
 
 #### Parameters
 

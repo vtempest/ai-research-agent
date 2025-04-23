@@ -1,14 +1,14 @@
-[ai-research-agent](modules.md) / editor
+[Documentation](modules.md) / editor
 
-## Functions
-
-### input()
+## input()
 
 ```ts
-function input(editor): object
+function input(editor: Editor): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/input.ts:22
+
+### Parameters
 
 <table>
 <thead>
@@ -33,25 +33,84 @@ function input(editor): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `allowComposition()` |  |
-| `destroy()` |  |
-| `init()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`allowComposition()`
+
+</td>
+<td>
+
+(`value`: `boolean`) => 
+
+</td>
+<td>
+
+editor/modules/input.ts:183
+
+</td>
+</tr>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/input.ts:200
+
+</td>
+</tr>
+<tr>
+<td>
+
+`init()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/input.ts:192
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### keyboard()
+## keyboard()
 
 ```ts
-function keyboard(editor): object
+function keyboard(editor: Editor): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/keyboard.ts:12
+
+### Parameters
 
 <table>
 <thead>
@@ -76,24 +135,67 @@ function keyboard(editor): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `destroy()` |  |
-| `init()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/keyboard.ts:231
+
+</td>
+</tr>
+<tr>
+<td>
+
+`init()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/keyboard.ts:228
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### paste()
+## paste()
 
 ```ts
-function paste(editor, options?): object
+function paste(editor: Editor, options?: PasteModuleOptions): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/paste.ts:39
+
+### Parameters
 
 <table>
 <thead>
@@ -118,37 +220,98 @@ function paste(editor, options?): object
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
 
-[`PasteModuleOptions`](editor/modules/paste.md#pastemoduleoptions)
+[`PasteModuleOptions`](editor/modules/paste-2.md#pastemoduleoptions)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `commands` | \{ `paste`: (`__namedParameters`) => `void`; \} |
-| `destroy()` |  |
-| `init()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`commands`
+
+</td>
+<td>
+
+\{
+  `paste`: (`__namedParameters`: [`PasteOptions`](editor/modules/paste-2.md#pasteoptions)) => `void`;
+\}
+
+</td>
+<td>
+
+editor/modules/paste.ts:129
+
+</td>
+</tr>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/paste.ts:135
+
+</td>
+</tr>
+<tr>
+<td>
+
+`init()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/paste.ts:132
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### rendering()
+## rendering()
 
 ```ts
-function rendering(editor): object
+function rendering(editor: Editor): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/rendering.ts:10
+
+### Parameters
 
 <table>
 <thead>
@@ -173,24 +336,67 @@ function rendering(editor): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `render` | (`what`?) => `void` |
-| `destroy()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`render()`
+
+</td>
+<td>
+
+(`what?`: [`RenderWhat`](editor/modules/rendering-2.md#renderwhat)) => `void`
+
+</td>
+<td>
+
+editor/modules/rendering.ts:35
+
+</td>
+</tr>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/rendering.ts:36
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### selection()
+## selection()
 
 ```ts
-function selection(editor): object
+function selection(editor: Editor): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/selection.ts:7
+
+### Parameters
 
 <table>
 <thead>
@@ -215,748 +421,1177 @@ function selection(editor): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `pause` | () => `void` |
-| `renderSelection` | () => `void` |
-| `resume` | () => `void` |
-| `destroy()` |  |
-| `init()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-## References
+`pause()`
 
-### activeStore
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+editor/modules/selection.ts:121
+
+</td>
+</tr>
+<tr>
+<td>
+
+`renderSelection()`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+editor/modules/selection.ts:123
+
+</td>
+</tr>
+<tr>
+<td>
+
+`resume()`
+
+</td>
+<td>
+
+() => `void`
+
+</td>
+<td>
+
+editor/modules/selection.ts:122
+
+</td>
+</tr>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/selection.ts:135
+
+</td>
+</tr>
+<tr>
+<td>
+
+`init()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/selection.ts:124
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## activeStore
 
 Re-exports [activeStore](editor/stores.md#activestore)
 
-### addShortcutsToEvent
+***
+
+## addShortcutsToEvent
 
 Re-exports [addShortcutsToEvent](editor/modules/shortcutFromEvent.md#addshortcutstoevent)
 
-### applyDecorations
+***
+
+## applyDecorations
 
 Re-exports [applyDecorations](editor/modules/decorations.md#applydecorations)
 
-### asRoot
+***
+
+## asRoot
 
 Re-exports [asRoot](editor/asRoot.md#asroot)
 
-### AttributeMap
+***
 
-Renames and re-exports [default](editor/delta/AttributeMap/index.md#default)
+## AttributeMap
 
-### BasicType
+Re-exports [AttributeMap](editor/index.md#attributemap)
+
+***
+
+## BasicType
 
 Re-exports [BasicType](editor/typesetting/typeset.md#basictype)
 
-### BLOCK\_ELEMENTS
+***
+
+## BLOCK\_ELEMENTS
 
 Re-exports [BLOCK_ELEMENTS](editor/rendering/html.md#block_elements)
 
-### blockquote
+***
+
+## blockquote
 
 Re-exports [blockquote](editor/typesetting/lines.md#blockquote)
 
-### bold
+***
+
+## bold
 
 Re-exports [bold](editor/typesetting/formats.md#bold)
 
-### br
+***
+
+## br
 
 Re-exports [br](editor/typesetting/embeds.md#br)
 
-### BubbleMenu
+***
 
-Re-exports [BubbleMenu](editor.md#bubblemenu)
-
-### cleanText
+## cleanText
 
 Re-exports [cleanText](editor/rendering/html.md#cleantext)
 
-### cloneDeep
+***
+
+## cloneDeep
 
 Renames and re-exports [default](editor/delta/util/cloneDeep.md#default)
 
-### code
+***
+
+## code
 
 Re-exports [code](editor/typesetting/formats.md#code)
 
-### codeblock
+***
+
+## codeblock
 
 Re-exports [codeblock](editor/typesetting/lines.md#codeblock)
 
-### Combined
+***
+
+## Combined
 
 Re-exports [Combined](editor/rendering/rendering.md#combined)
 
-### CombinedEntry
+***
+
+## CombinedEntry
 
 Re-exports [CombinedEntry](editor/rendering/rendering.md#combinedentry)
 
-### combineLines
+***
+
+## combineLines
 
 Re-exports [combineLines](editor/rendering/rendering.md#combinelines)
 
-### Commands
+***
+
+## Commands
 
 Re-exports [Commands](editor/typesetting/typeset.md#commands-1)
 
-### copy
+***
+
+## copy
 
 Re-exports [copy](editor/modules/copy.md#copy)
 
-### CopyData
+***
+
+## CopyData
 
 Re-exports [CopyData](editor/modules/copy.md#copydata)
 
-### CopyOptions
+***
+
+## CopyOptions
 
 Re-exports [CopyOptions](editor/modules/copy.md#copyoptions)
 
-### DecorateEvent
+***
+
+## DecorateEvent
 
 Re-exports [DecorateEvent](editor/modules/decorations.md#decorateevent)
 
-### DecorateEventInit
+***
+
+## DecorateEventInit
 
 Re-exports [DecorateEventInit](editor/modules/decorations.md#decorateeventinit)
 
-### decorations
+***
+
+## decorations
 
 Re-exports [decorations](editor/modules/decorations.md#decorations-1)
 
-### Decorations
+***
+
+## Decorations
 
 Re-exports [Decorations](editor/modules/decorations.md#decorations)
 
-### DecorationsModule
+***
+
+## DecorationsModule
 
 Re-exports [DecorationsModule](editor/modules/decorations.md#decorationsmodule)
 
-### Decorator
+***
+
+## Decorator
 
 Re-exports [Decorator](editor/modules/decorations.md#decorator)
 
-### defaultHandlers
+***
+
+## defaultHandlers
 
 Re-exports [defaultHandlers](editor/modules/smartEntry.md#defaulthandlers)
 
-### defaultModules
+***
+
+## defaultModules
 
 Re-exports [defaultModules](editor/modules/defaults.md#defaultmodules)
 
-### defaultTypes
+***
+
+## defaultTypes
 
 Re-exports [defaultTypes](editor/typesetting/defaults.md#defaulttypes)
 
-### Delta
+***
+
+## Delta
 
 Renames and re-exports [default](editor/delta/Delta.md#default)
 
-### deltaFromDom
+***
+
+## deltaFromDom
 
 Re-exports [deltaFromDom](editor/rendering/html.md#deltafromdom)
 
-### deltaFromHTML
+***
+
+## deltaFromHTML
 
 Re-exports [deltaFromHTML](editor/rendering/html.md#deltafromhtml)
 
-### DeltaFromHTMLOptions
+***
+
+## DeltaFromHTMLOptions
 
 Re-exports [DeltaFromHTMLOptions](editor/rendering/html.md#deltafromhtmloptions)
 
-### deltaToText
+***
+
+## deltaToText
 
 Re-exports [deltaToText](editor/document/deltaToText.md#deltatotext)
 
-### derivedEditorStore
+***
+
+## derivedEditorStore
 
 Re-exports [derivedEditorStore](editor/stores.md#derivededitorstore)
 
-### diff
+***
 
-Renames and re-exports [default](editor/delta/fast-diff.md#default)
+## diff
 
-### dl
+Re-exports [diff](editor/index.md#diff)
+
+***
+
+## dl
 
 Re-exports [dl](editor/typesetting/lines.md#dl)
 
-### docFromDom
+***
+
+## docFromDom
 
 Re-exports [docFromDom](editor/rendering/html.md#docfromdom)
 
-### docFromHTML
+***
+
+## docFromHTML
 
 Re-exports [docFromHTML](editor/rendering/html.md#docfromhtml)
 
-### docStore
+***
+
+## docStore
 
 Re-exports [docStore](editor/stores.md#docstore)
 
-### docToHTML
+***
+
+## docToHTML
 
 Re-exports [docToHTML](editor/rendering/html.md#doctohtml)
 
-### Editor
+***
+
+## Editor
 
 Re-exports [Editor](editor/Editor.md#editor)
 
-### EditorChangeEvent
+***
+
+## EditorChangeEvent
 
 Re-exports [EditorChangeEvent](editor/Editor.md#editorchangeevent)
 
-### EditorChangeEventInit
+***
+
+## EditorChangeEventInit
 
 Re-exports [EditorChangeEventInit](editor/Editor.md#editorchangeeventinit)
 
-### EditorEventMap
+***
+
+## EditorEventMap
 
 Re-exports [EditorEventMap](editor/Editor.md#editoreventmap)
 
-### EditorFormatEvent
+***
+
+## EditorFormatEvent
 
 Re-exports [EditorFormatEvent](editor/Editor.md#editorformatevent)
 
-### EditorFormatEventInit
+***
+
+## EditorFormatEventInit
 
 Re-exports [EditorFormatEventInit](editor/Editor.md#editorformateventinit)
 
-### EditorOptions
+***
+
+## EditorOptions
 
 Re-exports [EditorOptions](editor/Editor.md#editoroptions)
 
-### EditorRange
+***
+
+## EditorRange
 
 Re-exports [EditorRange](editor/document/EditorRange.md#editorrange)
 
-### editorStores
+***
+
+## editorStores
 
 Re-exports [editorStores](editor/stores.md#editorstores-1)
 
-### EditorStores
+***
+
+## EditorStores
 
 Re-exports [EditorStores](editor/stores.md#editorstores)
 
-### EditorTextChange
+***
+
+## EditorTextChange
 
 Re-exports [EditorTextChange](editor/Editor.md#editortextchange)
 
-### embed
+***
+
+## embed
 
 Re-exports [embed](editor/typesetting/typeset.md#embed-1)
 
-### EmbedType
+***
+
+## EmbedType
 
 Re-exports [EmbedType](editor/typesetting/typeset.md#embedtype)
 
-### EventDispatcher
+***
 
-Re-exports [EventDispatcher](editor/util/EventDispatcher.md#eventdispatchert)
+## EventDispatcher
 
-### focusStore
+Re-exports [EventDispatcher](editor/util/EventDispatcher.md#eventdispatcher)
+
+***
+
+## focusStore
 
 Re-exports [focusStore](editor/stores.md#focusstore)
 
-### format
+***
+
+## format
 
 Re-exports [format](editor/typesetting/typeset.md#format-1)
 
-### FormattingOptions
+***
+
+## FormattingOptions
 
 Re-exports [FormattingOptions](editor/document/TextDocument.md#formattingoptions)
 
-### FormatType
+***
+
+## FormatType
 
 Re-exports [FormatType](editor/typesetting/typeset.md#formattype)
 
-### FromDom
+***
+
+## FromDom
 
 Re-exports [FromDom](editor/typesetting/typeset.md#fromdom-4)
 
-### FromDomOptions
+***
+
+## FromDomOptions
 
 Re-exports [FromDomOptions](editor/rendering/html.md#fromdomoptions)
 
-### fromNode
+***
+
+## fromNode
 
 Re-exports [fromNode](editor/rendering/html.md#fromnode)
 
-### getBoudingBrowserRange
+***
+
+## getBoudingBrowserRange
 
 Re-exports [getBoudingBrowserRange](editor/rendering/position.md#getboudingbrowserrange)
 
-### getBrowserRange
+***
+
+## getBrowserRange
 
 Re-exports [getBrowserRange](editor/rendering/position.md#getbrowserrange)
 
-### getChangedRanges
+***
+
+## getChangedRanges
 
 Re-exports [getChangedRanges](editor/rendering/rendering.md#getchangedranges)
 
-### getIndexFromNode
+***
+
+## getIndexFromNode
 
 Re-exports [getIndexFromNode](editor/rendering/position.md#getindexfromnode)
 
-### getIndexFromNodeAndOffset
+***
+
+## getIndexFromNodeAndOffset
 
 Re-exports [getIndexFromNodeAndOffset](editor/rendering/position.md#getindexfromnodeandoffset)
 
-### getIndexFromPoint
+***
+
+## getIndexFromPoint
 
 Re-exports [getIndexFromPoint](editor/rendering/position.md#getindexfrompoint)
 
-### getLineElementAt
+***
+
+## getLineElementAt
 
 Re-exports [getLineElementAt](editor/rendering/position.md#getlineelementat)
 
-### getLineInfoFromPoint
+***
+
+## getLineInfoFromPoint
 
 Re-exports [getLineInfoFromPoint](editor/rendering/position.md#getlineinfofrompoint)
 
-### getLineNodeEnd
+***
+
+## getLineNodeEnd
 
 Re-exports [getLineNodeEnd](editor/rendering/rendering.md#getlinenodeend)
 
-### getLineNodeStart
+***
+
+## getLineNodeStart
 
 Re-exports [getLineNodeStart](editor/rendering/rendering.md#getlinenodestart)
 
-### getNodeAndOffset
+***
+
+## getNodeAndOffset
 
 Re-exports [getNodeAndOffset](editor/rendering/position.md#getnodeandoffset)
 
-### getNodeLength
+***
+
+## getNodeLength
 
 Re-exports [getNodeLength](editor/rendering/position.md#getnodelength)
 
-### getNodesForRange
+***
+
+## getNodesForRange
 
 Re-exports [getNodesForRange](editor/rendering/position.md#getnodesforrange)
 
-### getSelection
+***
+
+## getSelection
 
 Re-exports [getSelection](editor/rendering/selection.md#getselection)
 
-### h
+***
 
-Re-exports [h](editor/rendering/vdom.md#h-1)
+## h
 
-### H
+Re-exports [h](editor/rendering/vdom.md#h-3)
+
+***
+
+## H
 
 Re-exports [H](editor/rendering/vdom.md#h)
 
-### Handler
+***
+
+## Handler
 
 Re-exports [Handler](editor/modules/smartEntry.md#handler)
 
-### hasFormat
+***
+
+## hasFormat
 
 Re-exports [hasFormat](editor/document/TextChange.md#hasformat)
 
-### header
+***
+
+## header
 
 Re-exports [header](editor/typesetting/lines.md#header)
 
-### history
+***
+
+## history
 
 Re-exports [history](editor/modules/history.md#history)
 
-### HistoryModule
+***
+
+## HistoryModule
 
 Re-exports [HistoryModule](editor/modules/history.md#historymodule)
 
-### hr
+***
+
+## hr
 
 Re-exports [hr](editor/typesetting/lines.md#hr)
 
-### HTMLLineElement
+***
+
+## HTMLLineElement
 
 Re-exports [HTMLLineElement](editor/rendering/rendering.md#htmllineelement)
 
-### image
+***
+
+## image
 
 Re-exports [image](editor/typesetting/embeds.md#image)
 
-### initHistory
+***
+
+## initHistory
 
 Re-exports [initHistory](editor/modules/history.md#inithistory)
 
-### InlineMenu
+***
 
-Renames and re-exports [BubbleMenu](editor.md#bubblemenu)
-
-### inlineToHTML
+## inlineToHTML
 
 Re-exports [inlineToHTML](editor/rendering/html.md#inlinetohtml)
 
-### intersect
+***
+
+## intersect
 
 Re-exports [intersect](editor/document/TextChange.md#intersect)
 
-### isBRPlaceholder
+***
+
+## isBRPlaceholder
 
 Re-exports [isBRPlaceholder](editor/rendering/html.md#isbrplaceholder)
 
-### isEqual
+***
+
+## isEqual
 
 Renames and re-exports [default](editor/delta/util/isEqual.md#default)
 
-### italic
+***
+
+## italic
 
 Re-exports [italic](editor/typesetting/formats.md#italic)
 
-### KeyboardEventWithShortcut
+***
+
+## KeyboardEventWithShortcut
 
 Re-exports [KeyboardEventWithShortcut](editor/modules/shortcutFromEvent.md#keyboardeventwithshortcut)
 
-### line
+***
+
+## line
 
 Re-exports [line](editor/typesetting/typeset.md#line-1)
 
-### Line
+***
 
-Renames and re-exports [default](editor/document/Line/index.md#default)
+## Line
 
-### LineData
+Re-exports [Line](editor/index.md#line)
+
+***
+
+## LineData
 
 Re-exports [LineData](editor/typesetting/typeset.md#linedata)
 
-### LineIds
+***
 
-Re-exports [LineIds](editor/document/Line/index.md#lineids-1)
+## LineIds
 
-### LineInfo
+Re-exports [LineIds](editor/document/Line.md#lineids-1)
+
+***
+
+## LineInfo
 
 Re-exports [LineInfo](editor/rendering/position.md#lineinfo)
 
-### LineIterator
+***
 
-Re-exports [LineIterator](editor/document/Line/index.md#lineiterator)
+## LineIterator
 
-### LineOp
+Re-exports [LineIterator](editor/document/Line.md#lineiterator)
 
-Renames and re-exports [default](editor/document/LineOp/namespaces/default.md)
+***
 
-### LineOpIterator
+## LineOp
 
-Re-exports [LineOpIterator](editor/document/LineOp/index.md#lineopiterator)
+Re-exports [LineOp](editor/namespaces/LineOp.md)
 
-### LineRanges
+***
 
-Re-exports [LineRanges](editor/document/Line/index.md#lineranges)
+## LineOpIterator
 
-### lineReplace
+Re-exports [LineOpIterator](editor/document/LineOp.md#lineopiterator)
+
+***
+
+## LineRanges
+
+Re-exports [LineRanges](editor/document/Line.md#lineranges)
+
+***
+
+## lineReplace
 
 Re-exports [lineReplace](editor/modules/smartEntry.md#linereplace)
 
-### lineReplacements
+***
+
+## lineReplacements
 
 Re-exports [lineReplacements](editor/modules/smartEntry.md#linereplacements)
 
-### LineType
+***
+
+## LineType
 
 Re-exports [LineType](editor/typesetting/typeset.md#linetype)
 
-### link
+***
+
+## link
 
 Re-exports [link](editor/typesetting/formats.md#link)
 
-### linkReplace
+***
+
+## linkReplace
 
 Re-exports [linkReplace](editor/modules/smartEntry.md#linkreplace)
 
-### linkReplacements
+***
+
+## linkReplacements
 
 Re-exports [linkReplacements](editor/modules/smartEntry.md#linkreplacements)
 
-### list
+***
+
+## list
 
 Re-exports [list](editor/typesetting/lines.md#list)
 
-### mark
+***
+
+## mark
 
 Re-exports [mark](editor/typesetting/formats.md#mark)
 
-### markReplace
+***
+
+## markReplace
 
 Re-exports [markReplace](editor/modules/smartEntry.md#markreplace)
 
-### markReplacements
+***
+
+## markReplacements
 
 Re-exports [markReplacements](editor/modules/smartEntry.md#markreplacements)
 
-### Module
+***
+
+## Module
 
 Re-exports [Module](editor/Editor.md#module)
 
-### ModuleInitializer
+***
+
+## ModuleInitializer
 
 Re-exports [ModuleInitializer](editor/Editor.md#moduleinitializer)
 
-### ModuleInitializers
+***
+
+## ModuleInitializers
 
 Re-exports [ModuleInitializers](editor/Editor.md#moduleinitializers)
 
-### Modules
+***
+
+## Modules
 
 Re-exports [Modules](editor/Editor.md#modules-2)
 
-### MultiLineRenderer
+***
+
+## MultiLineRenderer
 
 Re-exports [MultiLineRenderer](editor/typesetting/typeset.md#multilinerenderer)
 
-### normalizeRange
+***
+
+## normalizeRange
 
 Re-exports [normalizeRange](editor/document/EditorRange.md#normalizerange)
 
-### Op
+***
 
-Renames and re-exports [default](editor/delta/Op/index.md#default)
+## Op
 
-### OpIterator
+Re-exports [Op](editor/index.md#op)
 
-Re-exports [OpIterator](editor/delta/Op/index.md#opiterator)
+***
 
-### options
+## OpIterator
+
+Re-exports [OpIterator](editor/delta/Op.md#opiterator)
+
+***
+
+## options
 
 Re-exports [options](editor/rendering/vdom.md#options)
 
-### Options
+***
+
+## Options
 
 Re-exports [Options](editor/modules/history.md#options-1)
 
-### paragraph
+***
+
+## paragraph
 
 Re-exports [paragraph](editor/typesetting/lines.md#paragraph)
 
-### PasteEvent
+***
 
-Re-exports [PasteEvent](editor/modules/paste.md#pasteevent)
+## PasteEvent
 
-### PasteEventInit
+Re-exports [PasteEvent](editor/modules/paste-2.md#pasteevent)
 
-Re-exports [PasteEventInit](editor/modules/paste.md#pasteeventinit)
+***
 
-### PasteModuleOptions
+## PasteEventInit
 
-Re-exports [PasteModuleOptions](editor/modules/paste.md#pastemoduleoptions)
+Re-exports [PasteEventInit](editor/modules/paste-2.md#pasteeventinit)
 
-### PasteOptions
+***
 
-Re-exports [PasteOptions](editor/modules/paste.md#pasteoptions)
+## PasteModuleOptions
 
-### patch
+Re-exports [PasteModuleOptions](editor/modules/paste-2.md#pastemoduleoptions)
+
+***
+
+## PasteOptions
+
+Re-exports [PasteOptions](editor/modules/paste-2.md#pasteoptions)
+
+***
+
+## patch
 
 Re-exports [patch](editor/rendering/vdom.md#patch)
 
-### placeholder
+***
+
+## placeholder
 
 Re-exports [placeholder](editor/modules/placeholder.md#placeholder)
 
-### Props
+***
+
+## Props
 
 Re-exports [Props](editor/rendering/vdom.md#props)
 
-### React
+***
+
+## React
 
 Re-exports [React](editor/rendering/vdom.md#react)
 
-### Readable
+***
 
-Re-exports [Readable](editor/stores.md#readablet)
+## Readable
 
-### recycleNode
+Re-exports [Readable](editor/stores.md#readable)
+
+***
+
+## recycleNode
 
 Re-exports [recycleNode](editor/rendering/vdom.md#recyclenode)
 
-### render
+***
+
+## render
 
 Re-exports [render](editor/rendering/rendering.md#render)
 
-### renderChanges
+***
+
+## renderChanges
 
 Re-exports [renderChanges](editor/rendering/rendering.md#renderchanges)
 
-### renderCombined
+***
+
+## renderCombined
 
 Re-exports [renderCombined](editor/rendering/rendering.md#rendercombined)
 
-### renderDoc
+***
+
+## renderDoc
 
 Re-exports [renderDoc](editor/rendering/rendering.md#renderdoc)
 
-### Renderer
+***
+
+## Renderer
 
 Re-exports [Renderer](editor/typesetting/typeset.md#renderer)
 
-### renderInline
+***
+
+## renderInline
 
 Re-exports [renderInline](editor/rendering/rendering.md#renderinline)
 
-### renderLine
+***
+
+## renderLine
 
 Re-exports [renderLine](editor/rendering/rendering.md#renderline)
 
-### renderMultiLine
+***
+
+## renderMultiLine
 
 Re-exports [renderMultiLine](editor/rendering/rendering.md#rendermultiline)
 
-### renderSingleLine
+***
+
+## renderSingleLine
 
 Re-exports [renderSingleLine](editor/rendering/rendering.md#rendersingleline)
 
-### RenderWhat
+***
 
-Re-exports [RenderWhat](editor/modules/rendering.md#renderwhat)
+## RenderWhat
 
-### Replacement
+Re-exports [RenderWhat](editor/modules/rendering-2.md#renderwhat)
+
+***
+
+## Replacement
 
 Re-exports [Replacement](editor/modules/smartEntry.md#replacement)
 
-### Root
+***
 
-Renames and re-exports [BubbleMenu](editor.md#bubblemenu)
-
-### rootStore
+## rootStore
 
 Re-exports [rootStore](editor/stores.md#rootstore)
 
-### selectionStore
+***
+
+## selectionStore
 
 Re-exports [selectionStore](editor/stores.md#selectionstore)
 
-### setLineNodesRanges
+***
+
+## setLineNodesRanges
 
 Re-exports [setLineNodesRanges](editor/rendering/rendering.md#setlinenodesranges)
 
-### setSelection
+***
+
+## setSelection
 
 Re-exports [setSelection](editor/rendering/selection.md#setselection)
 
-### ShortcutEvent
+***
+
+## ShortcutEvent
 
 Re-exports [ShortcutEvent](editor/modules/shortcutFromEvent.md#shortcutevent)
 
-### ShortcutEventInit
+***
+
+## ShortcutEventInit
 
 Re-exports [ShortcutEventInit](editor/modules/shortcutFromEvent.md#shortcuteventinit)
 
-### shortcutFromEvent
+***
+
+## shortcutFromEvent
 
 Re-exports [shortcutFromEvent](editor/modules/shortcutFromEvent.md#shortcutfromevent)
 
-### Shortcuts
+***
+
+## Shortcuts
 
 Re-exports [Shortcuts](editor/Editor.md#shortcuts-2)
 
-### ShouldCombine
+***
+
+## ShouldCombine
 
 Re-exports [ShouldCombine](editor/typesetting/typeset.md#shouldcombine-1)
 
-### smartEntry
+***
+
+## smartEntry
 
 Re-exports [smartEntry](editor/modules/smartEntry.md#smartentry)
 
-### smartQuotes
+***
+
+## smartQuotes
 
 Re-exports [smartQuotes](editor/modules/smartQuotes.md#smartquotes)
 
-### Source
+***
+
+## Source
 
 Re-exports [Source](editor/Source.md#source)
 
-### SourceString
+***
+
+## SourceString
 
 Re-exports [SourceString](editor/Source.md#sourcestring)
 
-### StackEntry
+***
+
+## StackEntry
 
 Re-exports [StackEntry](editor/modules/history.md#stackentry)
 
-### Subscriber
+***
 
-Re-exports [Subscriber](editor/stores.md#subscribert)
+## Subscriber
 
-### TextChange
+Re-exports [Subscriber](editor/stores.md#subscriber)
+
+***
+
+## TextChange
 
 Renames and re-exports [default](editor/document/TextChange.md#default)
 
-### TextDocument
+***
+
+## TextDocument
 
 Renames and re-exports [default](editor/document/TextDocument.md#default)
 
-### textNodeLength
+***
+
+## textNodeLength
 
 Re-exports [textNodeLength](editor/rendering/position.md#textnodelength)
 
-### textReplace
+***
+
+## textReplace
 
 Re-exports [textReplace](editor/modules/smartEntry.md#textreplace)
 
-### TextReplacement
+***
+
+## TextReplacement
 
 Re-exports [TextReplacement](editor/modules/smartEntry.md#textreplacement)
 
-### textReplacements
+***
+
+## textReplacements
 
 Re-exports [textReplacements](editor/modules/smartEntry.md#textreplacements)
 
-### Toolbar
+***
 
-Renames and re-exports [BubbleMenu](editor.md#bubblemenu)
-
-### transformHistoryStack
+## transformHistoryStack
 
 Re-exports [transformHistoryStack](editor/modules/history.md#transformhistorystack)
 
-### TypeMap
+***
 
-Re-exports [TypeMap](editor/typesetting/typeset.md#typemapt)
+## TypeMap
 
-### Types
+Re-exports [TypeMap](editor/typesetting/typeset.md#typemap)
 
-Re-exports [Types](editor/typesetting/typeset.md#typest)
+***
 
-### Typeset
+## Types
+
+Re-exports [Types](editor/typesetting/typeset.md#types)
+
+***
+
+## Typeset
 
 Re-exports [Typeset](editor/typesetting/typeset.md#typeset)
 
-### TypesetTypes
+***
+
+## TypesetTypes
 
 Re-exports [TypesetTypes](editor/typesetting/typeset.md#typesettypes)
 
-### underline
+***
+
+## underline
 
 Re-exports [underline](editor/typesetting/formats.md#underline)
 
-### undoStack
+***
+
+## undoStack
 
 Re-exports [undoStack](editor/modules/history.md#undostack-1)
 
-### UndoStack
+***
+
+## UndoStack
 
 Re-exports [UndoStack](editor/modules/history.md#undostack)
 
-### Unsubscriber
+***
+
+## Unsubscriber
 
 Re-exports [Unsubscriber](editor/stores.md#unsubscriber)
 
-### VChild
+***
+
+## VChild
 
 Re-exports [VChild](editor/rendering/vdom.md#vchild)
 
-### virtualRendering
+***
+
+## virtualRendering
 
 Re-exports [virtualRendering](editor/modules/virtualRendering.md#virtualrendering)
 
-### VirtualRenderWhat
+***
+
+## VirtualRenderWhat
 
 Re-exports [VirtualRenderWhat](editor/modules/virtualRendering.md#virtualrenderwhat)
 
-### VNode
+***
+
+## VNode
 
 Re-exports [VNode](editor/rendering/vdom.md#vnode)

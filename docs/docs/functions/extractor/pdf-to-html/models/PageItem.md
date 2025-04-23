@@ -1,23 +1,25 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/PageItem
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/PageItem
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/PageItem.js:2
 
-#### Extended by
+### Extended by
 
 - [`default`](LineItem.md#default)
 - [`default`](LineItemBlock.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/PageItem.js:3
+
+##### Parameters
 
 <table>
 <thead>
@@ -42,26 +44,32 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](PageItem.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### annotation
+#### annotation
 
 ```ts
 annotation: any;
 ```
 
-##### parsedElements
+Defined in: extractor/pdf-to-html/models/PageItem.js:8
+
+#### parsedElements
 
 ```ts
 parsedElements: any;
 ```
 
-##### type
+Defined in: extractor/pdf-to-html/models/PageItem.js:9
+
+#### type
 
 ```ts
 type: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/PageItem.js:7

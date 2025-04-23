@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/url-to-content/url-to-content
+[Documentation](../../modules.md) / extractor/url-to-content/url-to-content
 
 ## Extract
 
 ### extractContent()
 
 ```ts
-function extractContent(urlOrDoc, options?): object
+function extractContent(urlOrDoc: string | Document, options?: object): object;
 ```
+
+Defined in: extractor/url-to-content/url-to-content.js:87
 
 ### 🚜📜 Tractor the Text Extractor 
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" />
@@ -71,7 +73,7 @@ url or dom object with article content
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -86,7 +88,7 @@ url or dom object with article content
 <tr>
 <td>
 
-`options.absoluteURLs`?
+`options.absoluteURLs?`
 
 </td>
 <td>
@@ -103,7 +105,7 @@ default=true - convert URLs to absolute
 <tr>
 <td>
 
-`options.formatting`?
+`options.formatting?`
 
 </td>
 <td>
@@ -120,7 +122,7 @@ default=true - preserve formatting
 <tr>
 <td>
 
-`options.images`?
+`options.images?`
 
 </td>
 <td>
@@ -137,7 +139,7 @@ default=true - include images
 <tr>
 <td>
 
-`options.links`?
+`options.links?`
 
 </td>
 <td>
@@ -154,7 +156,7 @@ default=true - include links
 <tr>
 <td>
 
-`options.timeout`?
+`options.timeout?`
 
 </td>
 <td>
@@ -187,16 +189,153 @@ http request timeout
  *  source - The source or origin of the article
  *  word_count - The word count of the full text (without HTML tags)
 
-| Name | Type |
-| ------ | ------ |
-| `author` | `string` |
-| `author_cite` | `string` |
-| `cite` | `string` |
-| `date` | `string` |
-| `html` | `string` |
-| `source` | `string` |
-| `title` | `string` |
-| `word_count` | `number` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`author`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:67
+
+</td>
+</tr>
+<tr>
+<td>
+
+`author_cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:65
+
+</td>
+</tr>
+<tr>
+<td>
+
+`cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:66
+
+</td>
+</tr>
+<tr>
+<td>
+
+`date`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:68
+
+</td>
+</tr>
+<tr>
+<td>
+
+`html`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:70
+
+</td>
+</tr>
+<tr>
+<td>
+
+`source`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:69
+
+</td>
+</tr>
+<tr>
+<td>
+
+`title`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:64
+
+</td>
+</tr>
+<tr>
+<td>
+
+`word_count`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:71
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Author
 
@@ -206,92 +345,261 @@ http request timeout
 
 ### Article
 
+Defined in: extractor/url-to-content/url-to-content.js:9
+
 #### Properties
 
-##### author
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-author: string;
-```
+<a id="author"></a> `author`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The full name of the author of the article
 
-##### author\_cite
+</td>
+<td>
 
-```ts
-author_cite: string;
-```
+extractor/url-to-content/url-to-content.js:13
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_cite"></a> `author_cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Author name in Last, First Initial format
 
-##### author\_short
+</td>
+<td>
 
-```ts
-author_short: string;
-```
+extractor/url-to-content/url-to-content.js:14
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_short"></a> `author_short`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Author name in Last format
 
-##### author\_type
+</td>
+<td>
 
-```ts
-author_type: number;
-```
+extractor/url-to-content/url-to-content.js:15
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_type"></a> `author_type`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
 
 Author type ["single", "two-author", "more-than-two", "organization"]
 
-##### cite
+</td>
+<td>
 
-```ts
-cite: string;
-```
+extractor/url-to-content/url-to-content.js:16
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="cite"></a> `cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 Cite in APA Format with Author name in Last, First Initial format
 
-##### date
+</td>
+<td>
 
-```ts
-date: string;
-```
+extractor/url-to-content/url-to-content.js:10
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="date"></a> `date`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The publication date of the article
 
-##### html
+</td>
+<td>
 
-```ts
-html: string;
-```
+extractor/url-to-content/url-to-content.js:17
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="html"></a> `html`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The Basic HTML content of the article
 
-##### source
+</td>
+<td>
 
-```ts
-source: string;
-```
+extractor/url-to-content/url-to-content.js:11
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="source"></a> `source`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The source or publisher of the article
 
-##### title
+</td>
+<td>
 
-```ts
-title: string;
-```
+extractor/url-to-content/url-to-content.js:19
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title"></a> `title`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The title of the article
 
-##### url
+</td>
+<td>
 
-```ts
-url: string;
-```
+extractor/url-to-content/url-to-content.js:18
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="url"></a> `url`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The URL of the article
 
-##### word\_count
+</td>
+<td>
 
-```ts
-word_count: number;
-```
+extractor/url-to-content/url-to-content.js:12
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="word_count"></a> `word_count`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
 
 The word count of the full text (without HTML tags)
+
+</td>
+<td>
+
+extractor/url-to-content/url-to-content.js:20
+
+</td>
+</tr>
+</tbody>
+</table>

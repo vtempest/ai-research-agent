@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/pdf-to-html/pdf-to-html
+[Documentation](../../modules.md) / extractor/pdf-to-html/pdf-to-html
 
 ## Extract
 
 ### convertPDFToHTML()
 
 ```ts
-function convertPDFToHTML(pdfURLOrBuffer, options?): any
+function convertPDFToHTML(pdfURLOrBuffer: string, options?: object): any;
 ```
+
+Defined in: extractor/pdf-to-html/pdf-to-html.js:46
 
 ### Convert PDF to HTML 
 <img src="https://i.imgur.com/6IdNDLP.png" width="350px" />
@@ -52,7 +54,7 @@ URL to a PDF file or buffer from fs.readFile
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -67,7 +69,7 @@ URL to a PDF file or buffer from fs.readFile
 <tr>
 <td>
 
-`options.addPageNumbers`?
+`options.addPageNumbers?`
 
 </td>
 <td>
@@ -84,7 +86,7 @@ default=false - Adds  #  to end of each page
 <tr>
 <td>
 
-`options.removePageHeaders`?
+`options.removePageHeaders?`
 
 </td>
 <td>

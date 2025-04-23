@@ -1,28 +1,30 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/ToLineItemBlockTransformation
+[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/ToLineItemBlockTransformation
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:11
 
-#### Extends
+### Extends
 
 - [`default`](Transformation.md#default)
 
-#### Extended by
+### Extended by
 
 - [`default`](line-item-block/DetectCodeQuoteBlocks.md#default)
 - [`default`](line-item-block/DetectListLevels.md#default)
 - [`default`](line-item-block/GatherBlocks.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(name): default
+new default(name: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:12
+
+##### Parameters
 
 <table>
 <thead>
@@ -47,45 +49,51 @@ new default(name): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](ToLineItemBlockTransformation.md#default)
+[`default`](#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](Transformation.md#default).[`constructor`](Transformation.md#constructors)
+[`default`](Transformation.md#default).[`constructor`](Transformation.md#default#constructor)
 
-#### Properties
+### Properties
 
-##### itemType
+#### itemType
 
 ```ts
 itemType: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:12
 
-[`default`](Transformation.md#default).[`itemType`](Transformation.md#itemtype)
+##### Inherited from
 
-##### name
+[`default`](Transformation.md#default).[`itemType`](Transformation.md#default#itemtype)
+
+#### name
 
 ```ts
 name: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:11
 
-[`default`](Transformation.md#default).[`name`](Transformation.md#name)
+##### Inherited from
 
-#### Methods
+[`default`](Transformation.md#default).[`name`](Transformation.md#default#name)
 
-##### completeTransform()
+### Methods
+
+#### completeTransform()
 
 ```ts
-completeTransform(parseResult): any
+completeTransform(parseResult: any): any;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:19
+
+##### Parameters
 
 <table>
 <thead>
@@ -110,21 +118,23 @@ completeTransform(parseResult): any
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`
 
-###### Overrides
+##### Overrides
 
-[`default`](Transformation.md#default).[`completeTransform`](Transformation.md#completetransform)
+[`default`](Transformation.md#default).[`completeTransform`](Transformation.md#default#completetransform)
 
-##### transform()
+#### transform()
 
 ```ts
-transform(parseResult): void
+transform(parseResult: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:16
+
+##### Parameters
 
 <table>
 <thead>
@@ -149,10 +159,10 @@ transform(parseResult): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-###### Inherited from
+##### Inherited from
 
-[`default`](Transformation.md#default).[`transform`](Transformation.md#transform)
+[`default`](Transformation.md#default).[`transform`](Transformation.md#default#transform)

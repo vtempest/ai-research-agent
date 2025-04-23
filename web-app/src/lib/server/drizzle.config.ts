@@ -1,5 +1,7 @@
 import type { Config } from "drizzle-kit";
+// @ts-ignore
 import path from 'path'
+// @ts-ignore
 import fs from 'fs'
 import { fileURLToPath } from "url";
 

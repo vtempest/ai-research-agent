@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/ParsedElements
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/ParsedElements
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:1
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:2
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,45 +39,55 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](ParsedElements.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### containLinks
+#### containLinks
 
 ```ts
 containLinks: any;
 ```
 
-##### footnoteLinks
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:5
+
+#### footnoteLinks
 
 ```ts
 footnoteLinks: any;
 ```
 
-##### footnotes
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:3
+
+#### footnotes
 
 ```ts
 footnotes: any;
 ```
 
-##### formattedWords
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:4
+
+#### formattedWords
 
 ```ts
 formattedWords: any;
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:6
 
-##### add()
+### Methods
+
+#### add()
 
 ```ts
-add(parsedElements): void
+add(parsedElements: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/ParsedElements.js:9
+
+##### Parameters
 
 <table>
 <thead>
@@ -100,6 +112,6 @@ add(parsedElements): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`

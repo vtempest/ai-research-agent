@@ -1,4 +1,4 @@
-[ai-research-agent](../modules.md) / search/search-engines
+[Documentation](../modules.md) / search/search-engines
 
 ## Search
 
@@ -7,6 +7,8 @@
 ```ts
 const searchEngines: any[];
 ```
+
+Defined in: search/search-engines.js:13
 
 A list of search engines which can be used to
 search selected text. Each item in the list is

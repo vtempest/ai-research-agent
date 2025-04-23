@@ -1,14 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/string-functions
+[Documentation](../../../modules.md) / extractor/pdf-to-html/util/string-functions
 
-## Functions
-
-### charCodeArray()
+## charCodeArray()
 
 ```ts
-function charCodeArray(string): any[]
+function charCodeArray(string: any): any[];
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:68
+
+### Parameters
 
 <table>
 <thead>
@@ -33,19 +33,21 @@ function charCodeArray(string): any[]
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`[]
 
 ***
 
-### hasOnly()
+## hasOnly()
 
 ```ts
-function hasOnly(string, char): boolean
+function hasOnly(string: any, char: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:35
+
+### Parameters
 
 <table>
 <thead>
@@ -82,19 +84,21 @@ function hasOnly(string, char): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### hasUpperCaseCharacterInMiddleOfWord()
+## hasUpperCaseCharacterInMiddleOfWord()
 
 ```ts
-function hasUpperCaseCharacterInMiddleOfWord(text): boolean
+function hasUpperCaseCharacterInMiddleOfWord(text: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:46
+
+### Parameters
 
 <table>
 <thead>
@@ -119,19 +123,21 @@ function hasUpperCaseCharacterInMiddleOfWord(text): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### isDigit()
+## isDigit()
 
 ```ts
-function isDigit(charCode): boolean
+function isDigit(charCode: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:21
+
+### Parameters
 
 <table>
 <thead>
@@ -156,19 +162,21 @@ function isDigit(charCode): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### isListItem()
+## isListItem()
 
 ```ts
-function isListItem(string): boolean
+function isListItem(string: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:102
+
+### Parameters
 
 <table>
 <thead>
@@ -193,19 +201,21 @@ function isListItem(string): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### isListItemCharacter()
+## isListItemCharacter()
 
 ```ts
-function isListItemCharacter(string): boolean
+function isListItemCharacter(string: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:94
+
+### Parameters
 
 <table>
 <thead>
@@ -230,19 +240,21 @@ function isListItemCharacter(string): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### isNumber()
+## isNumber()
 
 ```ts
-function isNumber(string): boolean
+function isNumber(string: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:25
+
+### Parameters
 
 <table>
 <thead>
@@ -267,19 +279,21 @@ function isNumber(string): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### isNumberedListItem()
+## isNumberedListItem()
 
 ```ts
-function isNumberedListItem(string): boolean
+function isNumberedListItem(string: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:106
+
+### Parameters
 
 <table>
 <thead>
@@ -304,19 +318,21 @@ function isNumberedListItem(string): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### normalizedCharCodeArray()
+## normalizedCharCodeArray()
 
 ```ts
-function normalizedCharCodeArray(string): any[]
+function normalizedCharCodeArray(string: any): any[];
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:63
+
+### Parameters
 
 <table>
 <thead>
@@ -341,19 +357,21 @@ function normalizedCharCodeArray(string): any[]
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`[]
 
 ***
 
-### prefixAfterWhitespace()
+## prefixAfterWhitespace()
 
 ```ts
-function prefixAfterWhitespace(prefix, string): any
+function prefixAfterWhitespace(prefix: any, string: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:76
+
+### Parameters
 
 <table>
 <thead>
@@ -390,19 +408,21 @@ function prefixAfterWhitespace(prefix, string): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### removeLeadingWhitespaces()
+## removeLeadingWhitespaces()
 
 ```ts
-function removeLeadingWhitespaces(string): any
+function removeLeadingWhitespaces(string: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:7
+
+### Parameters
 
 <table>
 <thead>
@@ -427,19 +447,21 @@ function removeLeadingWhitespaces(string): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### removeTrailingWhitespaces()
+## removeTrailingWhitespaces()
 
 ```ts
-function removeTrailingWhitespaces(string): any
+function removeTrailingWhitespaces(string: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:14
+
+### Parameters
 
 <table>
 <thead>
@@ -464,19 +486,21 @@ function removeTrailingWhitespaces(string): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### suffixBeforeWhitespace()
+## suffixBeforeWhitespace()
 
 ```ts
-function suffixBeforeWhitespace(string, suffix): any
+function suffixBeforeWhitespace(string: any, suffix: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:85
+
+### Parameters
 
 <table>
 <thead>
@@ -513,19 +537,21 @@ function suffixBeforeWhitespace(string, suffix): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### wordMatch()
+## wordMatch()
 
 ```ts
-function wordMatch(string1, string2): number
+function wordMatch(string1: any, string2: any): number;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/string-functions.js:110
+
+### Parameters
 
 <table>
 <thead>
@@ -562,6 +588,6 @@ function wordMatch(string1, string2): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`

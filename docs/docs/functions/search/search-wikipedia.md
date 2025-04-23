@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / search/search-wikipedia
+[Documentation](../modules.md) / search/search-wikipedia
 
 ## Search
 
 ### searchWikipedia()
 
 ```ts
-function searchWikipedia(query, options?): object
+function searchWikipedia(query: string, options?: object): object;
 ```
+
+Defined in: search/search-wikipedia.js:23
 
 Function to query phrase in Wikipedia Search API and return 
 page titles, images and first few sentences of each result. 
@@ -44,7 +46,7 @@ search phrase
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -59,7 +61,7 @@ search phrase
 <tr>
 <td>
 
-`options.filterDisambiguation`?
+`options.filterDisambiguation?`
 
 </td>
 <td>
@@ -76,7 +78,7 @@ default=true Filter disambiguation pages
 <tr>
 <td>
 
-`options.images`?
+`options.images?`
 
 </td>
 <td>
@@ -93,7 +95,7 @@ default=true Include image in results
 <tr>
 <td>
 
-`options.imageSize`?
+`options.imageSize?`
 
 </td>
 <td>
@@ -110,7 +112,7 @@ default=200 Image size in pixels
 <tr>
 <td>
 
-`options.limitSearchResults`?
+`options.limitSearchResults?`
 
 </td>
 <td>
@@ -127,7 +129,7 @@ default=1 Limit number of search results
 <tr>
 <td>
 
-`options.plainText`?
+`options.plainText?`
 
 </td>
 <td>
@@ -144,7 +146,7 @@ default=false Return plain text instead of HTML
 <tr>
 <td>
 
-`options.searchInTitleOnly`?
+`options.searchInTitleOnly?`
 
 </td>
 <td>
@@ -161,7 +163,7 @@ default=false Search in title only
 <tr>
 <td>
 
-`options.summarySentenceLimit`?
+`options.summarySentenceLimit?`
 
 </td>
 <td>
@@ -182,9 +184,34 @@ default=3 Limit summary to this many sentences
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `results` | `object`[] |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`results`
+
+</td>
+<td>
+
+`object`[]
+
+</td>
+<td>
+
+search/search-wikipedia.js:19
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Example
 

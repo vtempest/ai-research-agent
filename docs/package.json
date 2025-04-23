@@ -1,27 +1,28 @@
 {
-  "name": "openapi-docusaurus",
+  "name": "docusaurus-openapi-typedoc",
   "version": "4.2.0",
+  "description": "Docusaurus with OpenAPI and Typedoc and Lunr Search",
   "private": true,
   "scripts": {
-    "docs": "docusaurus serve --dir ../static/docs",
-    "docs:build": "NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ; NODE_NO_WARNINGS=1 docusaurus  gen-api-docs all  --all-versions ;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus build --out-dir ../static/docs"
+    "docs": "docusaurus serve --dir ./docs2",
+    "docs:build": "rm -rf ./docs2; mkdir docs2; NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ; NODE_NO_WARNINGS=1 docusaurus  gen-api-docs all  --all-versions ;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus build --out-dir ./docs2; cp ./docs2/functions/index.html ./docs2/index.html"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/faster": "^3.7.0",
     "@docusaurus/plugin-google-gtag": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
-    "@types/node": "^22.10.6",
+    "ajv": "^8.17.1",
     "clsx": "^2.1.1",
+    "docusaurus": "^1.14.7",
     "docusaurus-lunr-search": "^3.6.0",
-    "docusaurus-plugin-openapi-docs": "^4.3.1",
-    "docusaurus-plugin-typedoc": "^1.2.1",
-    "docusaurus-theme-openapi-docs": "^4.3.1",
+    "docusaurus-plugin-openapi-docs": "^4.3.7",
+    "docusaurus-plugin-typedoc": "^1.3.0",
+    "docusaurus-theme-openapi-docs": "^4.3.7",
+    "eslint-plugin-prettier": "^5.2.6",
+    "postcss": "^8.5.3",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "typedoc": "^0.27.6",
-    "typedoc-plugin-markdown": "^4.4.1",
-    "typescript": "^5.7.3"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

@@ -99,6 +99,32 @@ const typedocSidebar = { items: [
     "label": "editor",
     "items": [
       {
+        "type": "category",
+        "label": "Namespaces",
+        "items": [
+          {
+            "type": "doc",
+            "id": "functions/editor/namespaces/AttributeMap",
+            "label": "AttributeMap"
+          },
+          {
+            "type": "doc",
+            "id": "functions/editor/namespaces/Line",
+            "label": "Line"
+          },
+          {
+            "type": "doc",
+            "id": "functions/editor/namespaces/LineOp",
+            "label": "LineOp"
+          },
+          {
+            "type": "doc",
+            "id": "functions/editor/namespaces/Op",
+            "label": "Op"
+          }
+        ]
+      },
+      {
         "type": "doc",
         "id": "functions/editor/asRoot",
         "label": "asRoot"
@@ -108,25 +134,9 @@ const typedocSidebar = { items: [
         "label": "delta",
         "items": [
           {
-            "type": "category",
-            "label": "AttributeMap",
-            "items": [
-              {
-                "type": "category",
-                "label": "Namespaces",
-                "items": [
-                  {
-                    "type": "doc",
-                    "id": "functions/editor/delta/AttributeMap/namespaces/default",
-                    "label": "default"
-                  }
-                ]
-              }
-            ],
-            "link": {
-              "type": "doc",
-              "id": "functions/editor/delta/AttributeMap/index"
-            }
+            "type": "doc",
+            "id": "functions/editor/delta/AttributeMap",
+            "label": "AttributeMap"
           },
           {
             "type": "doc",
@@ -139,25 +149,9 @@ const typedocSidebar = { items: [
             "label": "fast-diff"
           },
           {
-            "type": "category",
-            "label": "Op",
-            "items": [
-              {
-                "type": "category",
-                "label": "Namespaces",
-                "items": [
-                  {
-                    "type": "doc",
-                    "id": "functions/editor/delta/Op/namespaces/default",
-                    "label": "default"
-                  }
-                ]
-              }
-            ],
-            "link": {
-              "type": "doc",
-              "id": "functions/editor/delta/Op/index"
-            }
+            "type": "doc",
+            "id": "functions/editor/delta/Op",
+            "label": "Op"
           },
           {
             "type": "category",
@@ -183,7 +177,7 @@ const typedocSidebar = { items: [
       },
       {
         "type": "doc",
-        "id": "functions/editor/delta",
+        "id": "functions/editor/delta-1",
         "label": "delta"
       },
       {
@@ -201,46 +195,14 @@ const typedocSidebar = { items: [
             "label": "EditorRange"
           },
           {
-            "type": "category",
-            "label": "Line",
-            "items": [
-              {
-                "type": "category",
-                "label": "Namespaces",
-                "items": [
-                  {
-                    "type": "doc",
-                    "id": "functions/editor/document/Line/namespaces/default",
-                    "label": "default"
-                  }
-                ]
-              }
-            ],
-            "link": {
-              "type": "doc",
-              "id": "functions/editor/document/Line/index"
-            }
+            "type": "doc",
+            "id": "functions/editor/document/Line",
+            "label": "Line"
           },
           {
-            "type": "category",
-            "label": "LineOp",
-            "items": [
-              {
-                "type": "category",
-                "label": "Namespaces",
-                "items": [
-                  {
-                    "type": "doc",
-                    "id": "functions/editor/document/LineOp/namespaces/default",
-                    "label": "default"
-                  }
-                ]
-              }
-            ],
-            "link": {
-              "type": "doc",
-              "id": "functions/editor/document/LineOp/index"
-            }
+            "type": "doc",
+            "id": "functions/editor/document/LineOp",
+            "label": "LineOp"
           },
           {
             "type": "doc",
@@ -260,7 +222,7 @@ const typedocSidebar = { items: [
       },
       {
         "type": "doc",
-        "id": "functions/editor/document",
+        "id": "functions/editor/document-1",
         "label": "document"
       },
       {
@@ -294,17 +256,17 @@ const typedocSidebar = { items: [
           },
           {
             "type": "doc",
-            "id": "functions/editor/modules/input",
+            "id": "functions/editor/modules/input-2",
             "label": "input"
           },
           {
             "type": "doc",
-            "id": "functions/editor/modules/keyboard",
+            "id": "functions/editor/modules/keyboard-2",
             "label": "keyboard"
           },
           {
             "type": "doc",
-            "id": "functions/editor/modules/paste",
+            "id": "functions/editor/modules/paste-2",
             "label": "paste"
           },
           {
@@ -314,7 +276,7 @@ const typedocSidebar = { items: [
           },
           {
             "type": "doc",
-            "id": "functions/editor/modules/rendering",
+            "id": "functions/editor/modules/rendering-2",
             "label": "rendering"
           },
           {
@@ -324,7 +286,7 @@ const typedocSidebar = { items: [
           },
           {
             "type": "doc",
-            "id": "functions/editor/modules/selection",
+            "id": "functions/editor/modules/selection-2",
             "label": "selection"
           },
           {
@@ -360,7 +322,7 @@ const typedocSidebar = { items: [
       },
       {
         "type": "doc",
-        "id": "functions/editor/modules",
+        "id": "functions/editor/modules-1",
         "label": "modules"
       },
       {
@@ -451,7 +413,7 @@ const typedocSidebar = { items: [
       },
       {
         "type": "doc",
-        "id": "functions/editor/typesetting",
+        "id": "functions/editor/typesetting-1",
         "label": "typesetting"
       },
       {
@@ -468,7 +430,7 @@ const typedocSidebar = { items: [
     ],
     "link": {
       "type": "doc",
-      "id": "functions/editor"
+      "id": "functions/editor/index"
     }
   },
   {
@@ -858,6 +820,11 @@ const typedocSidebar = { items: [
     "type": "category",
     "label": "interface",
     "items": [
+      {
+        "type": "doc",
+        "id": "functions/interface/get-weather",
+        "label": "get-weather"
+      },
       {
         "type": "doc",
         "id": "functions/interface/highlight-code",

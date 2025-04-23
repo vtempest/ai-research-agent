@@ -1,16 +1,16 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/page-number-functions
+[Documentation](../../../modules.md) / extractor/pdf-to-html/util/page-number-functions
 
-## Functions
-
-### findFirstPage()
+## findFirstPage()
 
 ```ts
-function findFirstPage(pageIndexNumMap): any
+function findFirstPage(pageIndexNumMap: any): any;
 ```
+
+Defined in: extractor/pdf-to-html/util/page-number-functions.js:63
 
 Checks when the page number first begins and returns it
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -41,7 +41,7 @@ object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
@@ -49,18 +49,20 @@ For example: pageIndex: 10, pageNum: 3
 
 ***
 
-### findPageNumbers()
+## findPageNumbers()
 
 ```ts
 function findPageNumbers(
-   pageIndexNumMap, 
-   pageIndex, 
-   items): any
+   pageIndexNumMap: any, 
+   pageIndex: number, 
+   items: any[]): any;
 ```
+
+Defined in: extractor/pdf-to-html/util/page-number-functions.js:48
 
 Searches both top and bottom area and returns an object
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -125,7 +127,7 @@ textContent.items
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
@@ -133,15 +135,17 @@ pageIndexNumMap object
 
 ***
 
-### removePageNumber()
+## removePageNumber()
 
 ```ts
-function removePageNumber(textContent, pageNum): any
+function removePageNumber(textContent: any, pageNum: number): any;
 ```
+
+Defined in: extractor/pdf-to-html/util/page-number-functions.js:104
 
 Return textContent with items that have pageNum removed
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -187,7 +191,7 @@ object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 

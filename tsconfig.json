@@ -1,5 +1,6 @@
 {
 
+  "extends": "./web-app/.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "typeRoots": ["./web-app/src/global.d.ts"],
 
@@ -16,6 +17,8 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "checkJs": false,
+    "noEmitOnError": false,
+    "strict": false,
     "isolatedModules": false,
     "skipLibCheck": true,
     "moduleResolution": "node",
@@ -23,7 +26,8 @@
     "noEmit": true
   },
   "include": [
-    "./src/**/*",
+    "src",
+    "src/*",
     "index.js",
     "web-app/src/global.d.ts",
     "web-app/src/**/*",

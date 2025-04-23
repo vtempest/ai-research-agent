@@ -77,6 +77,7 @@
     
     setupKeyboardListener();
 
+    document.title = "QwkSearch - AI Research Agent";
     //focus on input
     document.querySelector("#searchInput")?.dispatchEvent(
       new MouseEvent('mousedown', {
@@ -306,6 +307,7 @@
       resetSearchView();
 
       document.body.focus();
+      // @ts-ignore
       document.querySelector(".search-input")?.blur();
 
       //autoload first result
@@ -443,7 +445,9 @@
 </script>
 
 <svelte:head>
-  <title>{APP_NAME} - {APP_SLOGAN}</title>
+  <title>QwkSearch - AI Research Agent</title>
+
+  <!-- <title>{APP_NAME} - {APP_SLOGAN}</title> -->
 </svelte:head>
 
 <main class="flex h-screen w-full">

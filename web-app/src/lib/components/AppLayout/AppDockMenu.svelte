@@ -143,12 +143,12 @@
                 hover:bg-[#E5DFC9]
                 shadow-md
                 before:absolute before:inset-0 before:rounded-full
-                before:bg-gradient-to-tl
+                before:bg-linear-to-tl
                 before:from-white/40
                 before:to-transparent
                 before:opacity-100
                 after:absolute after:inset-0 after:rounded-full
-                after:bg-gradient-to-br
+                after:bg-linear-to-br
                 after:from-transparent
                 after:to-black/10
                 active:duration-4000 active:ease-out
@@ -159,7 +159,7 @@
                 [&.active]:animate-shine"
             >
               <div
-                class="absolute inset-0.5 rounded-full bg-gradient-to-br from-white/30 to-black/5 opacity-50
+                class="absolute inset-0.5 rounded-full bg-linear-to-br from-white/30 to-black/5 opacity-50
                 group-[:has(.active)]:from-white/50"
               ></div>
 

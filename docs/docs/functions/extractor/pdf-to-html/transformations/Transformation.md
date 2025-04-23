@@ -1,10 +1,10 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/Transformation
+[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/Transformation
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:3
 
-#### Extended by
+### Extended by
 
 - [`default`](ToHTML.md#default)
 - [`default`](ToLineItemBlockTransformation.md#default)
@@ -12,15 +12,17 @@
 - [`default`](ToTextBlocks.md#default)
 - [`default`](ToTextItemTransformation.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(name, itemType): default
+new default(name: any, itemType: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:4
+
+##### Parameters
 
 <table>
 <thead>
@@ -57,33 +59,39 @@ new default(name, itemType): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](Transformation.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### itemType
+#### itemType
 
 ```ts
 itemType: any;
 ```
 
-##### name
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:12
+
+#### name
 
 ```ts
 name: any;
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:11
 
-##### completeTransform()
+### Methods
+
+#### completeTransform()
 
 ```ts
-completeTransform(parseResult): any
+completeTransform(parseResult: any): any;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:21
+
+##### Parameters
 
 <table>
 <thead>
@@ -108,17 +116,19 @@ completeTransform(parseResult): any
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`
 
-##### transform()
+#### transform()
 
 ```ts
-transform(parseResult): void
+transform(parseResult: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:16
+
+##### Parameters
 
 <table>
 <thead>
@@ -143,6 +153,6 @@ transform(parseResult): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`

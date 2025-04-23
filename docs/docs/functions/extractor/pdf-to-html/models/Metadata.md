@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Metadata
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Metadata
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/Metadata.js:2
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(originalMetadata): default
+new default(originalMetadata: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/Metadata.js:3
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,32 +39,40 @@ new default(originalMetadata): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](Metadata.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### author
+#### author
 
 ```ts
 author: any;
 ```
 
-##### creator
+Defined in: extractor/pdf-to-html/models/Metadata.js:10
+
+#### creator
 
 ```ts
 creator: any;
 ```
 
-##### producer
+Defined in: extractor/pdf-to-html/models/Metadata.js:6
+
+#### producer
 
 ```ts
 producer: any;
 ```
 
-##### title
+Defined in: extractor/pdf-to-html/models/Metadata.js:7
+
+#### title
 
 ```ts
 title: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/Metadata.js:5

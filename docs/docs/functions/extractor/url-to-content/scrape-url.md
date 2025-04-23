@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/url-to-content/scrape-url
+[Documentation](../../modules.md) / extractor/url-to-content/scrape-url
 
 ## Extract
 
 ### scrapeURL()
 
 ```ts
-function scrapeURL(url, options?): Promise<string>
+function scrapeURL(url: string, options?: object): Promise<string>;
 ```
+
+Defined in: extractor/url-to-content/scrape-url.js:44
 
 ### Tardigrade the Web Crawler 
 <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
@@ -64,7 +66,7 @@ any domain's URL
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -79,7 +81,7 @@ any domain's URL
 <tr>
 <td>
 
-`options.changeReferer`?
+`options.changeReferer?`
 
 </td>
 <td>
@@ -96,7 +98,7 @@ default=true - set referer as google
 <tr>
 <td>
 
-`options.checkBotDetection`?
+`options.checkBotDetection?`
 
 </td>
 <td>
@@ -113,7 +115,7 @@ default=true - check for bot detection messages
 <tr>
 <td>
 
-`options.checkRobotsAllowed`?
+`options.checkRobotsAllowed?`
 
 </td>
 <td>
@@ -130,7 +132,7 @@ default=false - check robots.txt rules
 <tr>
 <td>
 
-`options.maxRedirects`?
+`options.maxRedirects?`
 
 </td>
 <td>
@@ -147,7 +149,7 @@ default=3 - max redirects to follow
 <tr>
 <td>
 
-`options.proxy`?
+`options.proxy?`
 
 </td>
 <td>
@@ -164,7 +166,7 @@ default=false - use proxy url
 <tr>
 <td>
 
-`options.timeout`?
+`options.timeout?`
 
 </td>
 <td>
@@ -181,7 +183,7 @@ default=5 -  abort request if not retrived, in seconds
 <tr>
 <td>
 
-`options.userAgentIndex`?
+`options.userAgentIndex?`
 
 </td>
 <td>
@@ -219,8 +221,10 @@ await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
 ### fetchScrapingRules()
 
 ```ts
-function fetchScrapingRules(url): Promise<any>
+function fetchScrapingRules(url: string): Promise<any>;
 ```
+
+Defined in: extractor/url-to-content/scrape-url.js:211
 
 Fetches and parses the robots.txt file for a given URL.
 
@@ -266,8 +270,10 @@ A JSON object representing the parsed robots.txt.
 ### scrapeJINA()
 
 ```ts
-function scrapeJINA(url): Promise<string>
+function scrapeJINA(url: string): Promise<string>;
 ```
+
+Defined in: extractor/url-to-content/scrape-url.js:132
 
 As backup, scrape with JINA to get html
 

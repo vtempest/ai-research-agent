@@ -209,7 +209,7 @@
             onclick={() => handleCategoryClick(category)}
           >
             <CategoryIcon 
-              class="mr-0.5 w-4 h-4 flex-shrink-0" 
+              class="mr-0.5 w-4 h-4 shrink-0" 
             /> 
             <span class=" text-[0.7rem] truncate">{category.name}</span>
           </span>
@@ -260,18 +260,18 @@
         <div class="relative">
           <div class="absolute top-0 flex w-full justify-center">
             <div
-              class="h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
+              class="h-[1px] animate-border-width rounded-full bg-linear-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
             ></div>
           </div>
           <div class="relative">
             <div class="absolute top-0 flex w-full justify-center">
               <div
-                class="h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
+                class="h-[1px] animate-border-width rounded-full bg-linear-to-r from-[rgba(17,17,17,0)] via-white to-[rgba(17,17,17,0)] transition-all duration-1000"
               >
             </div>
           </div>
           <input
-            class="border-2 block h-12 w-full rounded-md border border-double border-slate-800 border-transparent bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] bg-origin-border px-3 py-2 text-slate-200 transition-all duration-500 [background-clip:padding-box,_border-box] placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none "
+            class="border-2 block h-12 w-full rounded-md border border-double border-slate-800 border-transparent bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] bg-origin-border px-3 py-2 text-slate-200 transition-all duration-500 [background-clip:padding-box,_border-box] placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-hidden "
              
           id="searchInputFullScreen"
           type="text"
@@ -330,7 +330,7 @@
     cursor: pointer;
     color: #333;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
+    shrink: 0;
   }
 
   .search-overlay {
@@ -362,7 +362,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     background-color: rgba(255, 255, 255, 0.9);
-    flex-grow: 1;
+    grow: 1;
     margin-right: 10px;
   }
 

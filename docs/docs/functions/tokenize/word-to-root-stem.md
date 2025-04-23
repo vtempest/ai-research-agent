@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / tokenize/word-to-root-stem
+[Documentation](../modules.md) / tokenize/word-to-root-stem
 
 ## Topics
 
 ### stemWordToRoot()
 
 ```ts
-function stemWordToRoot(word): string
+function stemWordToRoot(word: string): string;
 ```
+
+Defined in: tokenize/word-to-root-stem.js:12
 
 Stems a word using the <a
 href="https://snowballstem.org/algorithms/porter/stemmer.html">Porter

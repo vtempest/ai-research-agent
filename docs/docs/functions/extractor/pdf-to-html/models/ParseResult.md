@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/ParseResult
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/ParseResult
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/ParseResult.js:2
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/ParseResult.js:3
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,26 +39,32 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](ParseResult.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### globals
+#### globals
 
 ```ts
 globals: any;
 ```
 
-##### messages
+Defined in: extractor/pdf-to-html/models/ParseResult.js:5
+
+#### messages
 
 ```ts
 messages: any;
 ```
 
-##### pages
+Defined in: extractor/pdf-to-html/models/ParseResult.js:6
+
+#### pages
 
 ```ts
 pages: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/ParseResult.js:4

@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / tokenize/text-to-chunks
+[Documentation](../modules.md) / tokenize/text-to-chunks
 
 ## Topics
 
 ### splitTextSemanticChars()
 
 ```ts
-function splitTextSemanticChars(text, options?): string[]
+function splitTextSemanticChars(text: string, options?: any): string[];
 ```
+
+Defined in: tokenize/text-to-chunks.js:45
 
 ### Split Text by Semantic Characters 
 <img width="350px"  src="https://i.imgur.com/RpXf5as.png" /> 
@@ -70,7 +72,7 @@ The input text to be split into semantic chunks.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>

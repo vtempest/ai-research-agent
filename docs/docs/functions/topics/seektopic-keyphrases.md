@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / topics/seektopic-keyphrases
+[Documentation](../modules.md) / topics/seektopic-keyphrases
 
 ## Topics
 
 ### extractSEEKTOPIC()
 
 ```ts
-function extractSEEKTOPIC(docText, options?): object
+function extractSEEKTOPIC(docText: string, options?: object): object;
 ```
+
+Defined in: topics/seektopic-keyphrases.js:74
 
 ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
 <img src="https://i.imgur.com/gZ4kI1V.png" width="360px" />
@@ -82,7 +84,7 @@ input text to analyze
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -97,7 +99,7 @@ input text to analyze
 <tr>
 <td>
 
-`options.heavyWeightQuery`?
+`options.heavyWeightQuery?`
 
 </td>
 <td>
@@ -114,7 +116,7 @@ query to give heavy weight to
 <tr>
 <td>
 
-`options.limitTopKeyphrases`?
+`options.limitTopKeyphrases?`
 
 </td>
 <td>
@@ -131,7 +133,7 @@ default=10 - maximum number of top keyphrases to return
 <tr>
 <td>
 
-`options.limitTopSentences`?
+`options.limitTopSentences?`
 
 </td>
 <td>
@@ -148,7 +150,7 @@ default=5 - maximum number of top sentences to return
 <tr>
 <td>
 
-`options.maxWords`?
+`options.maxWords?`
 
 </td>
 <td>
@@ -165,7 +167,7 @@ default=5 - maximum words in a keyphrase
 <tr>
 <td>
 
-`options.minKeyPhraseLength`?
+`options.minKeyPhraseLength?`
 
 </td>
 <td>
@@ -182,7 +184,7 @@ default=6 - minimum length of a keyphrase
 <tr>
 <td>
 
-`options.minWordLength`?
+`options.minWordLength?`
 
 </td>
 <td>
@@ -199,7 +201,7 @@ default=3 - minimum length of a word
 <tr>
 <td>
 
-`options.minWords`?
+`options.minWords?`
 
 </td>
 <td>
@@ -216,7 +218,7 @@ default=1 - minimum words in a keyphrase
 <tr>
 <td>
 
-`options.phrasesModel`?
+`options.phrasesModel?`
 
 </td>
 <td>
@@ -233,7 +235,7 @@ phrases model
 <tr>
 <td>
 
-`options.topKeyphrasesPercent`?
+`options.topKeyphrasesPercent?`
 
 </td>
 <td>
@@ -254,11 +256,68 @@ default=0.2 - percentage of top keyphrases to consider
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `keyphrases` | `any`[] |
-| `sentences` | `string`[] |
-| `topSentences` | `any`[] |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`keyphrases`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+<td>
+
+topics/seektopic-keyphrases.js:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+`sentences`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+topics/seektopic-keyphrases.js:64
+
+</td>
+</tr>
+<tr>
+<td>
+
+`topSentences`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+<td>
+
+topics/seektopic-keyphrases.js:62
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Example
 

@@ -159,7 +159,7 @@ export async function generateLanguageModelReply(query, options = {}) {
  */
 export const CHAT_MODELS = {
   defaults: {
-    groq: "llama-3.2-11b-vision-preview",
+    groq: "meta-llama/llama-4-maverick-17b-128e-instruct",
     anthropic: "claude-3-5-sonnet-20240620",
     openai: "gpt-4o",
     together: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
@@ -178,6 +178,21 @@ export const CHAT_MODELS = {
     },
   ],
   groq: [
+    {
+      name: "DeepSeek R1 Distill Llama 70B",
+      model: "deepseek-r1-distill-llama-70b",
+      contextLength: 131072,
+    },
+    {
+      name: "Llama 4 Maverick 17B",
+      model: "meta-llama/llama-4-maverick-17b-128e-instruct",
+      contextLength: 131072,
+    },
+    {
+      name: "Llama 4 Scout 17B",
+      model: "meta-llama/llama-4-scout-17b-16e-instruct",
+      contextLength: 131072,
+    },
     {
       name: "Llama 3.3 70B Versatile",
       model: "llama-3.3-70b-versatile",

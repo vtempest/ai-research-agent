@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-content/html-utils
+[Documentation](../../modules.md) / extractor/html-to-content/html-utils
 
 ## HTML Utilities
 
 ### convertHTMLToEscapedHTML()
 
 ```ts
-function convertHTMLToEscapedHTML(str, unescape): string
+function convertHTMLToEscapedHTML(str: string, unescape: boolean): string;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:63
 
 Converts HTML special characters like &"'`&rsquo; to & escaped codes or vice versa.
 It handles named entities and hexadecimal numeric character references.
@@ -90,8 +92,10 @@ console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophe
 ### convertMarkdownToHTML()
 
 ```ts
-function convertMarkdownToHTML(content, toHtml): string
+function convertMarkdownToHTML(content: string, toHtml: boolean): string;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:218
 
 Converts Markdown text to HTML. It handles the following Markdown elements:
 - Headers (h1 to h6)
@@ -187,8 +191,10 @@ console.log(html);
 ### convertMathLaTexToImage()
 
 ```ts
-function convertMathLaTexToImage(html): string
+function convertMathLaTexToImage(html: string): string;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:10
 
 Convert LaTex &lt;math&gt; equations found inside HTML
 into easy-to-read SVG and HTML with [KaTex.js](https://katex.org).
@@ -235,8 +241,10 @@ html with SVG of equations
 ### convertURLToAbsoluteURL()
 
 ```ts
-function convertURLToAbsoluteURL(base, relative): string
+function convertURLToAbsoluteURL(base: string, relative: string): string;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:138
 
 Convert relative URL to absolute URL using base URL.
 
@@ -312,8 +320,10 @@ console.log(absoluteURL) // Returns: "https:images/image.jpg"
 ### copyHTMLToClipboard()
 
 ```ts
-function copyHTMLToClipboard(html, options): Promise<void>
+function copyHTMLToClipboard(html: string, options: object): Promise<void>;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:424
 
 Copy HTML to clipboard. When pasting into rich text field,
 pastes rich text. When pasting into plain text field, pastes:
@@ -403,8 +413,10 @@ the HTML is copied to the clipboard.
 ### convertHTMLToMarkdown()
 
 ```ts
-function convertHTMLToMarkdown(html): any
+function convertHTMLToMarkdown(html: any): any;
 ```
+
+Defined in: extractor/html-to-content/html-utils.js:362
 
 #### Parameters
 

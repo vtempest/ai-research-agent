@@ -3,7 +3,6 @@
 
   export let headings = [];
   export let handleHeadingsFiltered;
-  export let editor;
 
   const browser = typeof window !== "undefined";
 
@@ -167,19 +166,19 @@
       bind:value={searchTerm}
       oninput={() => { hasSearched = false; noMatchesFound = false; isSearchingFullPhrase = true; }}
       onkeydown={handleKeyDown}
-      class="w-full pl-4 pr-20 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="w-full pl-4 pr-20 py-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
     />
     {#if searchTerm}
       <button
         onclick={resetSearch}
-        class="absolute right-10 p-1 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        class="absolute right-10 p-1 rounded-full hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         <X size={20} class="text-gray-500" />
       </button>
     {/if}
     <button
       onclick={handleSearchClick}
-      class="absolute right-2 p-1 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      class="absolute right-2 p-1 rounded-full hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
     >
       {#if !hasSearched}
         <Search size={20} class="text-blue-500" />

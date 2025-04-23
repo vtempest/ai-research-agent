@@ -1,12 +1,12 @@
-[ai-research-agent](../../modules.md) / editor/typesetting/typeset
+[Documentation](../../modules.md) / editor/typesetting/typeset
 
-## Classes
+## Types&lt;T&gt;
 
-### Types&lt;T&gt;
+Defined in: editor/typesetting/typeset.ts:144
 
 A type store to hold types and make it easy to manage them.
 
-#### Type Parameters
+### Type Parameters
 
 <table>
 <thead>
@@ -19,27 +19,29 @@ A type store to hold types and make it easy to manage them.
 <tr>
 <td>
 
-`T` *extends* [`BasicType`](typeset.md#basictype)
+`T` *extends* [`BasicType`](#basictype)
 
 </td>
 <td>
 
-[`BasicType`](typeset.md#basictype)
+[`BasicType`](#basictype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Constructors
+### Constructors
 
-##### new Types()
+#### Constructor
 
 ```ts
-new Types<T>(types): Types<T>
+new Types<T>(types: T[]): Types<T>;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:157
+
+##### Parameters
 
 <table>
 <thead>
@@ -64,63 +66,77 @@ new Types<T>(types): Types<T>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`Types`](typeset.md#typest)&lt;`T`&gt;
+[`Types`](#types)&lt;`T`&gt;
 
-#### Properties
+### Properties
 
-##### list
+#### list
 
 ```ts
 list: T[];
 ```
 
-##### priorities
+Defined in: editor/typesetting/typeset.ts:146
+
+#### priorities
 
 ```ts
 priorities: object;
 ```
 
-###### Index Signature
+Defined in: editor/typesetting/typeset.ts:155
 
- \[`name`: `string`\]: `number`
+##### Index Signature
 
-##### selector
+```ts
+[name: string]: number
+```
+
+#### selector
 
 ```ts
 selector: string;
 ```
 
-##### types
+Defined in: editor/typesetting/typeset.ts:149
+
+#### types
 
 ```ts
 types: TypeMap<T>;
 ```
 
-#### Accessors
+Defined in: editor/typesetting/typeset.ts:152
 
-##### default
+### Accessors
 
-###### Get Signature
+#### default
+
+##### Get Signature
 
 ```ts
-get default(): T
+get default(): T;
 ```
+
+Defined in: editor/typesetting/typeset.ts:162
 
 ###### Returns
 
 `T`
 
-#### Methods
+### Methods
 
-##### add()
+#### add()
 
 ```ts
-add(type): void
+add(type: T): void;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:184
+
+##### Parameters
 
 <table>
 <thead>
@@ -145,17 +161,19 @@ add(type): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### findByAttributes()
+#### findByAttributes()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
-findByAttributes(attributes, fallbackToDefault): T
+findByAttributes(attributes: AttributeMap, fallbackToDefault: true): T;
 ```
+
+Defined in: editor/typesetting/typeset.ts:230
 
 ###### Parameters
 
@@ -175,7 +193,7 @@ findByAttributes(attributes, fallbackToDefault): T
 </td>
 <td>
 
-[`default`](../delta/AttributeMap/index.md#default)
+[`AttributeMap`](../index.md#attributemap)
 
 </td>
 </tr>
@@ -198,11 +216,13 @@ findByAttributes(attributes, fallbackToDefault): T
 
 `T`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
-findByAttributes(attributes, fallbackToDefault?): T
+findByAttributes(attributes: AttributeMap, fallbackToDefault?: boolean): T;
 ```
+
+Defined in: editor/typesetting/typeset.ts:231
 
 ###### Parameters
 
@@ -222,14 +242,14 @@ findByAttributes(attributes, fallbackToDefault?): T
 </td>
 <td>
 
-[`default`](../delta/AttributeMap/index.md#default)
+[`AttributeMap`](../index.md#attributemap)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`fallbackToDefault`?
+`fallbackToDefault?`
 
 </td>
 <td>
@@ -245,13 +265,15 @@ findByAttributes(attributes, fallbackToDefault?): T
 
 `T`
 
-##### findByNode()
+#### findByNode()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
-findByNode(node, fallbackToDefault): T
+findByNode(node: Node, fallbackToDefault: true): T;
 ```
+
+Defined in: editor/typesetting/typeset.ts:217
 
 ###### Parameters
 
@@ -294,11 +316,13 @@ findByNode(node, fallbackToDefault): T
 
 `T`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
-findByNode(node, fallbackToDefault?): T
+findByNode(node: Node, fallbackToDefault?: boolean): T;
 ```
+
+Defined in: editor/typesetting/typeset.ts:218
 
 ###### Parameters
 
@@ -325,7 +349,7 @@ findByNode(node, fallbackToDefault?): T
 <tr>
 <td>
 
-`fallbackToDefault`?
+`fallbackToDefault?`
 
 </td>
 <td>
@@ -341,13 +365,15 @@ findByNode(node, fallbackToDefault?): T
 
 `T`
 
-##### get()
+#### get()
 
 ```ts
-get(name): T
+get(name: string): T;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:195
+
+##### Parameters
 
 <table>
 <thead>
@@ -372,27 +398,31 @@ get(name): T
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `T`
 
-##### init()
+#### init()
 
 ```ts
-init(): void
+init(): void;
 ```
 
-###### Returns
+Defined in: editor/typesetting/typeset.ts:166
+
+##### Returns
 
 `void`
 
-##### matches()
+#### matches()
 
 ```ts
-matches(node): boolean
+matches(node: Node): boolean;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:208
+
+##### Parameters
 
 <table>
 <thead>
@@ -417,17 +447,19 @@ matches(node): boolean
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `boolean`
 
-##### priority()
+#### priority()
 
 ```ts
-priority(name): number
+priority(name: string): number;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:199
+
+##### Parameters
 
 <table>
 <thead>
@@ -452,17 +484,19 @@ priority(name): number
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `number`
 
-##### remove()
+#### remove()
 
 ```ts
-remove(type): void
+remove(type: string | T): void;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:189
+
+##### Parameters
 
 <table>
 <thead>
@@ -487,23 +521,27 @@ remove(type): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
 ***
 
-### Typeset
+## Typeset
 
-#### Constructors
+Defined in: editor/typesetting/typeset.ts:11
 
-##### new Typeset()
+### Constructors
+
+#### Constructor
 
 ```ts
-new Typeset(types): Typeset
+new Typeset(types: TypesetTypes): Typeset;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:20
+
+##### Parameters
 
 <table>
 <thead>
@@ -521,44 +559,52 @@ new Typeset(types): Typeset
 </td>
 <td>
 
-[`TypesetTypes`](typeset.md#typesettypes)
+[`TypesetTypes`](#typesettypes)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`Typeset`](typeset.md#typeset)
+[`Typeset`](#typeset)
 
-#### Properties
+### Properties
 
-##### embeds
+#### embeds
 
 ```ts
 embeds: Types<EmbedType>;
 ```
 
-##### formats
+Defined in: editor/typesetting/typeset.ts:14
+
+#### formats
 
 ```ts
 formats: Types<FormatType>;
 ```
 
-##### lines
+Defined in: editor/typesetting/typeset.ts:13
+
+#### lines
 
 ```ts
 lines: Types<LineType>;
 ```
 
-##### embed()
+Defined in: editor/typesetting/typeset.ts:12
+
+#### embed()
 
 ```ts
-static embed: (type) => EmbedType;
+static embed: (type: EmbedType) => EmbedType;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:18
+
+##### Parameters
 
 <table>
 <thead>
@@ -576,24 +622,26 @@ static embed: (type) => EmbedType;
 </td>
 <td>
 
-[`EmbedType`](typeset.md#embedtype)
+[`EmbedType`](#embedtype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`EmbedType`](typeset.md#embedtype)
+[`EmbedType`](#embedtype)
 
-##### format()
+#### format()
 
 ```ts
-static format: (type) => FormatType;
+static format: (type: FormatType) => FormatType;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:17
+
+##### Parameters
 
 <table>
 <thead>
@@ -611,24 +659,26 @@ static format: (type) => FormatType;
 </td>
 <td>
 
-[`FormatType`](typeset.md#formattype)
+[`FormatType`](#formattype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`FormatType`](typeset.md#formattype)
+[`FormatType`](#formattype)
 
-##### line()
+#### line()
 
 ```ts
-static line: (type) => LineType;
+static line: (type: LineType) => LineType;
 ```
 
-###### Parameters
+Defined in: editor/typesetting/typeset.ts:16
+
+##### Parameters
 
 <table>
 <thead>
@@ -646,586 +696,266 @@ static line: (type) => LineType;
 </td>
 <td>
 
-[`LineType`](typeset.md#linetype)
+[`LineType`](#linetype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`LineType`](typeset.md#linetype)
+[`LineType`](#linetype)
 
-## Interfaces
+***
 
-### BasicType
+## BasicType
 
-#### Extended by
+Defined in: editor/typesetting/typeset.ts:61
 
-- [`FormatType`](typeset.md#formattype)
-- [`EmbedType`](typeset.md#embedtype)
-- [`LineType`](typeset.md#linetype)
+### Extended by
 
-#### Properties
+- [`FormatType`](#formattype)
+- [`EmbedType`](#embedtype)
+- [`LineType`](#linetype)
 
-##### commands()?
-
-```ts
-optional commands: (editor) => Function | Commands;
-```
-
-###### Parameters
+### Properties
 
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
+<th>Property</th>
 <th>Type</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`editor`
+<a id="commands"></a> `commands?`
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
+(`editor`: [`Editor`](../Editor.md#editor)) => `Function` \| [`Commands`](#commands-1)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:74
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="fromdom"></a> `fromDom?`
+
+</td>
+<td>
+
+`false` \| [`FromDom`](#fromdom-4)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:72
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="render"></a> `render?`
+
+</td>
+<td>
+
+[`Renderer`](#renderer)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:80
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="selector-1"></a> `selector`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:66
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shortcuts"></a> `shortcuts?`
+
+</td>
+<td>
+
+`string` \| [`Shortcuts`](../Editor.md#shortcuts-2)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:77
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="styleselector"></a> `styleSelector?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:69
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+***
 
-`Function` \| [`Commands`](typeset.md#commands-1)
+## Commands
 
-##### fromDom?
+Defined in: editor/typesetting/typeset.ts:56
 
-```ts
-optional fromDom: false | FromDom;
-```
-
-##### name
+### Indexable
 
 ```ts
-name: string;
-```
-
-##### render?
-
-```ts
-optional render: Renderer;
-```
-
-##### selector
-
-```ts
-selector: string;
-```
-
-##### shortcuts?
-
-```ts
-optional shortcuts: string | Shortcuts;
-```
-
-##### styleSelector?
-
-```ts
-optional styleSelector: string;
+[name: string]: (...args: any[]) => any
 ```
 
 ***
 
-### Commands
+## EmbedType
 
-#### Indexable
+Defined in: editor/typesetting/typeset.ts:87
 
- \[`name`: `string`\]: (...`args`) => `any`
+### Extends
 
-***
+- [`BasicType`](#basictype)
 
-### EmbedType
-
-#### Extends
-
-- [`BasicType`](typeset.md#basictype)
-
-#### Properties
-
-##### commands()?
-
-```ts
-optional commands: (editor) => Function | Commands;
-```
-
-###### Parameters
+### Properties
 
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
+<th>Property</th>
 <th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`editor`
+<a id="commands-2"></a> `commands?`
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`Function` \| [`Commands`](typeset.md#commands-1)
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`commands`](typeset.md#commands)
-
-##### fromDom?
-
-```ts
-optional fromDom: false | FromDom;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`fromDom`](typeset.md#fromdom)
-
-##### name
-
-```ts
-name: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`name`](typeset.md#name)
-
-##### noFill?
-
-```ts
-optional noFill: boolean;
-```
-
-##### render?
-
-```ts
-optional render: Renderer;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`render`](typeset.md#render)
-
-##### selector
-
-```ts
-selector: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`selector`](typeset.md#selector-1)
-
-##### shortcuts?
-
-```ts
-optional shortcuts: string | Shortcuts;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`shortcuts`](typeset.md#shortcuts)
-
-##### styleSelector?
-
-```ts
-optional styleSelector: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`styleSelector`](typeset.md#styleselector)
-
-***
-
-### FormatType
-
-#### Extends
-
-- [`BasicType`](typeset.md#basictype)
-
-#### Properties
-
-##### commands()?
-
-```ts
-optional commands: (editor) => Function | Commands;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
+(`editor`: [`Editor`](../Editor.md#editor)) => `Function` \| [`Commands`](#commands-1)
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`Function` \| [`Commands`](typeset.md#commands-1)
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`commands`](typeset.md#commands)
-
-##### fromDom?
-
-```ts
-optional fromDom: false | FromDom;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`fromDom`](typeset.md#fromdom)
-
-##### greedy?
-
-```ts
-optional greedy: boolean;
-```
-
-##### name
-
-```ts
-name: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`name`](typeset.md#name)
-
-##### render?
-
-```ts
-optional render: Renderer;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`render`](typeset.md#render)
-
-##### selector
-
-```ts
-selector: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`selector`](typeset.md#selector-1)
-
-##### shortcuts?
-
-```ts
-optional shortcuts: string | Shortcuts;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`shortcuts`](typeset.md#shortcuts)
-
-##### styleSelector?
-
-```ts
-optional styleSelector: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`styleSelector`](typeset.md#styleselector)
-
-***
-
-### LineType
-
-#### Extends
-
-- [`BasicType`](typeset.md#basictype)
-
-#### Properties
-
-##### child?
-
-```ts
-optional child: boolean;
-```
-
-##### commands()?
-
-```ts
-optional commands: (editor) => Function | Commands;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
+[`BasicType`](#basictype).[`commands`](#commands)
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`Function` \| [`Commands`](typeset.md#commands-1)
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`commands`](typeset.md#commands)
-
-##### contained?
-
-```ts
-optional contained: boolean;
-```
-
-##### defaultFollows?
-
-```ts
-optional defaultFollows: boolean;
-```
-
-##### fromDom?
-
-```ts
-optional fromDom: false | FromDom;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`fromDom`](typeset.md#fromdom)
-
-##### frozen?
-
-```ts
-optional frozen: boolean;
-```
-
-##### indentable?
-
-```ts
-optional indentable: boolean;
-```
-
-##### name
-
-```ts
-name: string;
-```
-
-###### Inherited from
-
-[`BasicType`](typeset.md#basictype).[`name`](typeset.md#name)
-
-##### nextLineAttributes()?
-
-```ts
-optional nextLineAttributes: (attributes) => default;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`attributes`
-
-</td>
-<td>
-
-[`default`](../delta/AttributeMap/index.md#default)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-[`default`](../delta/AttributeMap/index.md#default)
-
-##### onEmptyEnter()?
-
-```ts
-optional onEmptyEnter: (editor, line) => boolean;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
-
-</td>
-<td>
-
-[`Editor`](../Editor.md#editor)
+editor/typesetting/typeset.ts:74
 
 </td>
 </tr>
 <tr>
 <td>
 
-`line`
+<a id="fromdom-1"></a> `fromDom?`
 
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`boolean`
-
-##### onEnter()?
-
-```ts
-optional onEnter: (editor) => void;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
+`false` \| [`FromDom`](#fromdom-4)
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
-
-</td>
-</tr>
-</tbody>
-</table>
-
-###### Returns
-
-`void`
-
-##### onTab()?
-
-```ts
-optional onTab: (editor, shiftKey) => void;
-```
-
-###### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`editor`
+[`BasicType`](#basictype).[`fromDom`](#fromdom)
 
 </td>
 <td>
 
-[`Editor`](../Editor.md#editor)
+editor/typesetting/typeset.ts:72
 
 </td>
 </tr>
 <tr>
 <td>
 
-`shiftKey`
+<a id="name-1"></a> `name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`name`](#name)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="nofill"></a> `noFill?`
 
 </td>
 <td>
@@ -1233,71 +963,828 @@ optional onTab: (editor, shiftKey) => void;
 `boolean`
 
 </td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:89
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="render-1"></a> `render?`
+
+</td>
+<td>
+
+[`Renderer`](#renderer)
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`render`](#render)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:80
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="selector-2"></a> `selector`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`selector`](#selector-1)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:66
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shortcuts-1"></a> `shortcuts?`
+
+</td>
+<td>
+
+`string` \| [`Shortcuts`](../Editor.md#shortcuts-2)
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`shortcuts`](#shortcuts)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:77
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="styleselector-1"></a> `styleSelector?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`styleSelector`](#styleselector)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:69
+
+</td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+***
 
-`void`
+## FormatType
 
-##### render?
+Defined in: editor/typesetting/typeset.ts:83
 
-```ts
-optional render: Renderer;
-```
+### Extends
 
-###### Overrides
+- [`BasicType`](#basictype)
 
-[`BasicType`](typeset.md#basictype).[`render`](typeset.md#render)
+### Properties
 
-##### renderMultiple?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional renderMultiple: MultiLineRenderer;
-```
+<a id="commands-3"></a> `commands?`
 
-##### selector
+</td>
+<td>
 
-```ts
-selector: string;
-```
+(`editor`: [`Editor`](../Editor.md#editor)) => `Function` \| [`Commands`](#commands-1)
 
-###### Inherited from
+</td>
+<td>
 
-[`BasicType`](typeset.md#basictype).[`selector`](typeset.md#selector-1)
+[`BasicType`](#basictype).[`commands`](#commands)
 
-##### shortcuts?
+</td>
+<td>
 
-```ts
-optional shortcuts: string | Shortcuts;
-```
+editor/typesetting/typeset.ts:74
 
-###### Inherited from
+</td>
+</tr>
+<tr>
+<td>
 
-[`BasicType`](typeset.md#basictype).[`shortcuts`](typeset.md#shortcuts)
+<a id="fromdom-2"></a> `fromDom?`
 
-##### shouldCombine?
+</td>
+<td>
 
-```ts
-optional shouldCombine: ShouldCombine;
-```
+`false` \| [`FromDom`](#fromdom-4)
 
-##### styleSelector?
+</td>
+<td>
 
-```ts
-optional styleSelector: string;
-```
+[`BasicType`](#basictype).[`fromDom`](#fromdom)
 
-###### Inherited from
+</td>
+<td>
 
-[`BasicType`](typeset.md#basictype).[`styleSelector`](typeset.md#styleselector)
+editor/typesetting/typeset.ts:72
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="greedy"></a> `greedy?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:84
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-2"></a> `name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`name`](#name)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="render-2"></a> `render?`
+
+</td>
+<td>
+
+[`Renderer`](#renderer)
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`render`](#render)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:80
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="selector-3"></a> `selector`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`selector`](#selector-1)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:66
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shortcuts-2"></a> `shortcuts?`
+
+</td>
+<td>
+
+`string` \| [`Shortcuts`](../Editor.md#shortcuts-2)
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`shortcuts`](#shortcuts)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:77
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="styleselector-2"></a> `styleSelector?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`styleSelector`](#styleselector)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:69
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### TypeMap&lt;T&gt;
+## LineType
 
-#### Type Parameters
+Defined in: editor/typesetting/typeset.ts:92
+
+### Extends
+
+- [`BasicType`](#basictype)
+
+### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Overrides</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="child"></a> `child?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:98
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="commands-4"></a> `commands?`
+
+</td>
+<td>
+
+(`editor`: [`Editor`](../Editor.md#editor)) => `Function` \| [`Commands`](#commands-1)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`commands`](#commands)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:74
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="contained"></a> `contained?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:107
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="defaultfollows"></a> `defaultFollows?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:101
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="fromdom-3"></a> `fromDom?`
+
+</td>
+<td>
+
+`false` \| [`FromDom`](#fromdom-4)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`fromDom`](#fromdom)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:72
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="frozen"></a> `frozen?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:104
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="indentable"></a> `indentable?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:94
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name-3"></a> `name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`name`](#name)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="nextlineattributes"></a> `nextLineAttributes?`
+
+</td>
+<td>
+
+(`attributes`: [`AttributeMap`](../index.md#attributemap)) => [`AttributeMap`](../index.md#attributemap)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:116
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onemptyenter"></a> `onEmptyEnter?`
+
+</td>
+<td>
+
+(`editor`: [`Editor`](../Editor.md#editor), `line`: [`Line`](../index.md#line)) => `boolean`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:120
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="onenter"></a> `onEnter?`
+
+</td>
+<td>
+
+(`editor`: [`Editor`](../Editor.md#editor)) => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:110
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="ontab"></a> `onTab?`
+
+</td>
+<td>
+
+(`editor`: [`Editor`](../Editor.md#editor), `shiftKey`: `boolean`) => `void`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:113
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="render-3"></a> `render?`
+
+</td>
+<td>
+
+[`Renderer`](#renderer)
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`render`](#render)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:123
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="rendermultiple"></a> `renderMultiple?`
+
+</td>
+<td>
+
+[`MultiLineRenderer`](#multilinerenderer)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:126
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="selector-4"></a> `selector`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`selector`](#selector-1)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:66
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shortcuts-3"></a> `shortcuts?`
+
+</td>
+<td>
+
+`string` \| [`Shortcuts`](../Editor.md#shortcuts-2)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`shortcuts`](#shortcuts)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:77
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shouldcombine"></a> `shouldCombine?`
+
+</td>
+<td>
+
+[`ShouldCombine`](#shouldcombine-1)
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:128
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="styleselector-3"></a> `styleSelector?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+[`BasicType`](#basictype).[`styleSelector`](#styleselector)
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:69
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## TypeMap&lt;T&gt;
+
+Defined in: editor/typesetting/typeset.ts:137
+
+### Type Parameters
 
 <table>
 <thead>
@@ -1310,55 +1797,106 @@ optional styleSelector: string;
 <tr>
 <td>
 
-`T` *extends* [`BasicType`](typeset.md#basictype)
+`T` *extends* [`BasicType`](#basictype)
 
 </td>
 <td>
 
-[`BasicType`](typeset.md#basictype)
+[`BasicType`](#basictype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Indexable
+### Indexable
 
- \[`name`: `string`\]: `T`
+```ts
+[name: string]: T
+```
 
 ***
 
-### TypesetTypes
+## TypesetTypes
 
-#### Properties
+Defined in: editor/typesetting/typeset.ts:131
 
-##### embeds?
+### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="embeds-1"></a> `embeds?`
+
+</td>
+<td>
+
+(`string` \| [`EmbedType`](#embedtype))[]
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:134
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="formats-1"></a> `formats?`
+
+</td>
+<td>
+
+(`string` \| [`FormatType`](#formattype))[]
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:133
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="lines-1"></a> `lines?`
+
+</td>
+<td>
+
+(`string` \| [`LineType`](#linetype))[]
+
+</td>
+<td>
+
+editor/typesetting/typeset.ts:132
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## FromDom()
 
 ```ts
-optional embeds: (string | EmbedType)[];
+type FromDom = (node: HTMLElement) => any;
 ```
 
-##### formats?
+Defined in: editor/typesetting/typeset.ts:45
 
-```ts
-optional formats: (string | FormatType)[];
-```
-
-##### lines?
-
-```ts
-optional lines: (string | LineType)[];
-```
-
-## Type Aliases
-
-### FromDom()
-
-```ts
-type FromDom = (node) => any;
-```
-
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -1383,27 +1921,31 @@ type FromDom = (node) => any;
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### LineData
+## LineData
 
 ```ts
-type LineData = [default, VChild[], string];
+type LineData = [AttributeMap, VChild[], string];
 ```
+
+Defined in: editor/typesetting/typeset.ts:46
 
 ***
 
-### MultiLineRenderer()
+## MultiLineRenderer()
 
 ```ts
-type MultiLineRenderer = (lines, editor, forHTML?) => VNode;
+type MultiLineRenderer = (lines: LineData[], editor: Editor, forHTML?: boolean) => VNode;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:54
+
+### Parameters
 
 <table>
 <thead>
@@ -1421,7 +1963,7 @@ type MultiLineRenderer = (lines, editor, forHTML?) => VNode;
 </td>
 <td>
 
-[`LineData`](typeset.md#linedata)[]
+[`LineData`](#linedata)[]
 
 </td>
 </tr>
@@ -1440,7 +1982,7 @@ type MultiLineRenderer = (lines, editor, forHTML?) => VNode;
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -1452,19 +1994,21 @@ type MultiLineRenderer = (lines, editor, forHTML?) => VNode;
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](../rendering/vdom.md#vnode)
 
 ***
 
-### Renderer()
+## Renderer()
 
 ```ts
-type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
+type Renderer = (attributes: AttributeMap, children: VChild[], line: Line, editor: Editor, forHTML?: boolean) => VNode;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:47
+
+### Parameters
 
 <table>
 <thead>
@@ -1482,7 +2026,7 @@ type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
 </td>
 <td>
 
-[`default`](../delta/AttributeMap/index.md#default)
+[`AttributeMap`](../index.md#attributemap)
 
 </td>
 </tr>
@@ -1506,7 +2050,7 @@ type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)
+[`Line`](../index.md#line)
 
 </td>
 </tr>
@@ -1525,7 +2069,7 @@ type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -1537,19 +2081,21 @@ type Renderer = (attributes, children, line, editor, forHTML?) => VNode;
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](../rendering/vdom.md#vnode)
 
 ***
 
-### ShouldCombine()
+## ShouldCombine()
 
 ```ts
-type ShouldCombine = (prev, next) => boolean;
+type ShouldCombine = (prev: AttributeMap, next: AttributeMap) => boolean;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:55
+
+### Parameters
 
 <table>
 <thead>
@@ -1567,7 +2113,7 @@ type ShouldCombine = (prev, next) => boolean;
 </td>
 <td>
 
-[`default`](../delta/AttributeMap/index.md#default)
+[`AttributeMap`](../index.md#attributemap)
 
 </td>
 </tr>
@@ -1579,26 +2125,28 @@ type ShouldCombine = (prev, next) => boolean;
 </td>
 <td>
 
-[`default`](../delta/AttributeMap/index.md#default)
+[`AttributeMap`](../index.md#attributemap)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
-## Functions
+***
 
-### embed()
+## embed()
 
 ```ts
-function embed(type): EmbedType
+function embed(type: EmbedType): EmbedType;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:41
+
+### Parameters
 
 <table>
 <thead>
@@ -1616,26 +2164,28 @@ function embed(type): EmbedType
 </td>
 <td>
 
-[`EmbedType`](typeset.md#embedtype)
+[`EmbedType`](#embedtype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`EmbedType`](typeset.md#embedtype)
+[`EmbedType`](#embedtype)
 
 ***
 
-### format()
+## format()
 
 ```ts
-function format(type): FormatType
+function format(type: FormatType): FormatType;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:37
+
+### Parameters
 
 <table>
 <thead>
@@ -1653,26 +2203,28 @@ function format(type): FormatType
 </td>
 <td>
 
-[`FormatType`](typeset.md#formattype)
+[`FormatType`](#formattype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`FormatType`](typeset.md#formattype)
+[`FormatType`](#formattype)
 
 ***
 
-### line()
+## line()
 
 ```ts
-function line(type): LineType
+function line(type: LineType): LineType;
 ```
 
-#### Parameters
+Defined in: editor/typesetting/typeset.ts:32
+
+### Parameters
 
 <table>
 <thead>
@@ -1690,13 +2242,13 @@ function line(type): LineType
 </td>
 <td>
 
-[`LineType`](typeset.md#linetype)
+[`LineType`](#linetype)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`LineType`](typeset.md#linetype)
+[`LineType`](#linetype)

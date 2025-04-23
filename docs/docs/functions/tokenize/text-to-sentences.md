@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / tokenize/text-to-sentences
+[Documentation](../modules.md) / tokenize/text-to-sentences
 
 ## Topics
 
 ### splitSentences()
 
 ```ts
-function splitSentences(inputText, options?): string[]
+function splitSentences(inputText: string, options?: object): string[];
 ```
+
+Defined in: tokenize/text-to-sentences.js:14
 
 Splits text into sentences, handling 220+ common abbreviations,
 and infering acronyms, numbers, URLs, times, names, etc.
@@ -42,7 +44,7 @@ The text to be split into sentences.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -57,7 +59,7 @@ The text to be split into sentences.
 <tr>
 <td>
 
-`options.maxSize`?
+`options.maxSize?`
 
 </td>
 <td>
@@ -74,7 +76,7 @@ default=600 - Maximum size for a sentence.
 <tr>
 <td>
 
-`options.minSize`?
+`options.minSize?`
 
 </td>
 <td>
@@ -91,7 +93,7 @@ default=20 - Minimum size for a sentence.
 <tr>
 <td>
 
-`options.splitOnHtmlTags`?
+`options.splitOnHtmlTags?`
 
 </td>
 <td>

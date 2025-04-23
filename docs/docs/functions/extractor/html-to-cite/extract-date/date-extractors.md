@@ -1,250 +1,308 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/date-extractors
+[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/date-extractors
 
-## Variables
-
-### COPYRIGHT\_PATTERN
+## COPYRIGHT\_PATTERN
 
 ```ts
 const COPYRIGHT_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:89
+
 ***
 
-### DATE\_EXPRESSIONS
+## DATE\_EXPRESSIONS
 
 ```ts
 const DATE_EXPRESSIONS: string;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:40
+
 ***
 
-### DATESTRINGS\_CATCH
+## DATESTRINGS\_CATCH
 
 ```ts
 const DATESTRINGS_CATCH: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:98
+
 ***
 
-### DATESTRINGS\_PATTERN
+## DATESTRINGS\_PATTERN
 
 ```ts
 const DATESTRINGS_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:97
+
 ***
 
-### FAST\_PREPEND
+## FAST\_PREPEND
 
 ```ts
 const FAST_PREPEND: "" = '';
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:30
+
 ***
 
-### FREE\_TEXT\_EXPRESSIONS
+## FREE\_TEXT\_EXPRESSIONS
 
 ```ts
 const FREE_TEXT_EXPRESSIONS: ".//*[self::div or self::h2 or self::h3 or self::h4 or self::li or self::p or self::span or self::time or self::ul]/text()" = ".//*[self::div or self::h2 or self::h3 or self::h4 or self::li or self::p or self::span or self::time or self::ul]/text()";
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:80
+
 ***
 
-### MAX\_SEGMENT\_LEN
+## MAX\_SEGMENT\_LEN
 
 ```ts
 const MAX_SEGMENT_LEN: 52 = 52;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:34
+
 ***
 
-### MIN\_SEGMENT\_LEN
+## MIN\_SEGMENT\_LEN
 
 ```ts
 const MIN_SEGMENT_LEN: 6 = 6;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:33
+
 ***
 
-### MMYYYY\_PATTERN
+## MMYYYY\_PATTERN
 
 ```ts
 const MMYYYY_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:103
+
 ***
 
-### MMYYYY\_YEAR
+## MMYYYY\_YEAR
 
 ```ts
 const MMYYYY_YEAR: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:104
+
 ***
 
-### SELECT\_YMD\_PATTERN
+## SELECT\_YMD\_PATTERN
 
 ```ts
 const SELECT_YMD_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:94
+
 ***
 
-### SELECT\_YMD\_YEAR
+## SELECT\_YMD\_YEAR
 
 ```ts
 const SELECT_YMD_YEAR: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:95
+
 ***
 
-### SIMPLE\_PATTERN
+## SIMPLE\_PATTERN
 
 ```ts
 const SIMPLE_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:105
+
 ***
 
-### SLASHES\_PATTERN
+## SLASHES\_PATTERN
 
 ```ts
 const SLASHES_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:99
+
 ***
 
-### SLASHES\_YEAR
+## SLASHES\_YEAR
 
 ```ts
 const SLASHES_YEAR: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:100
+
 ***
 
-### SLOW\_PREPEND
+## SLOW\_PREPEND
 
 ```ts
 const SLOW_PREPEND: "" = "";
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:74
+
 ***
 
-### THREE\_CATCH
+## THREE\_CATCH
 
 ```ts
 const THREE_CATCH: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:91
+
 ***
 
-### THREE\_COMP\_REGEX\_A
+## THREE\_COMP\_REGEX\_A
 
 ```ts
 const THREE_COMP_REGEX_A: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:83
+
 ***
 
-### THREE\_COMP\_REGEX\_B
+## THREE\_COMP\_REGEX\_B
 
 ```ts
 const THREE_COMP_REGEX_B: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:84
+
 ***
 
-### THREE\_LOOSE\_CATCH
+## THREE\_LOOSE\_CATCH
 
 ```ts
 const THREE_LOOSE_CATCH: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:93
+
 ***
 
-### THREE\_LOOSE\_PATTERN
+## THREE\_LOOSE\_PATTERN
 
 ```ts
 const THREE_LOOSE_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:92
+
 ***
 
-### THREE\_PATTERN
+## THREE\_PATTERN
 
 ```ts
 const THREE_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:90
+
 ***
 
-### TIMESTAMP\_PATTERN
+## TIMESTAMP\_PATTERN
 
 ```ts
 const TIMESTAMP_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:140
+
 ***
 
-### TWO\_COMP\_REGEX
+## TWO\_COMP\_REGEX
 
 ```ts
 const TWO_COMP_REGEX: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:85
+
 ***
 
-### YEAR\_PATTERN
+## YEAR\_PATTERN
 
 ```ts
 const YEAR_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:88
+
 ***
 
-### YMD\_PATTERN
+## YMD\_PATTERN
 
 ```ts
 const YMD_PATTERN: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:109
+
 ***
 
-### YMD\_YEAR
+## YMD\_YEAR
 
 ```ts
 const YMD_YEAR: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:96
+
 ***
 
-### YYYYMM\_CATCH
+## YYYYMM\_CATCH
 
 ```ts
 const YYYYMM_CATCH: RegExp;
 ```
 
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:102
+
 ***
 
-### YYYYMM\_PATTERN
+## YYYYMM\_PATTERN
 
 ```ts
 const YYYYMM_PATTERN: RegExp;
 ```
 
-## Functions
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:101
 
-### custom\_parse()
+***
+
+## custom\_parse()
 
 ```ts
 function custom_parse(
-   string, 
-   outputformat, 
-   min_date, 
-   max_date): string
+   string: any, 
+   outputformat: any, 
+   min_date: any, 
+   max_date: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:247
+
+### Parameters
 
 <table>
 <thead>
@@ -305,19 +363,21 @@ function custom_parse(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### discard\_unwanted()
+## discard\_unwanted()
 
 ```ts
-function discard_unwanted(tree): any[]
+function discard_unwanted(tree: any): any[];
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:186
+
+### Parameters
 
 <table>
 <thead>
@@ -342,19 +402,21 @@ function discard_unwanted(tree): any[]
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`[]
 
 ***
 
-### external\_date\_parser()
+## external\_date\_parser()
 
 ```ts
-function external_date_parser(string, outputformat): string
+function external_date_parser(string: any, outputformat: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:342
+
+### Parameters
 
 <table>
 <thead>
@@ -391,19 +453,21 @@ function external_date_parser(string, outputformat): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### extract\_url\_date()
+## extract\_url\_date()
 
 ```ts
-function extract_url_date(testurl, options): string
+function extract_url_date(testurl: any, options: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:196
+
+### Parameters
 
 <table>
 <thead>
@@ -440,19 +504,21 @@ function extract_url_date(testurl, options): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### idiosyncrasies\_search()
+## idiosyncrasies\_search()
 
 ```ts
-function idiosyncrasies_search(htmlstring, options): string
+function idiosyncrasies_search(htmlstring: any, options: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:416
+
+### Parameters
 
 <table>
 <thead>
@@ -489,19 +555,21 @@ function idiosyncrasies_search(htmlstring, options): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### img\_search()
+## img\_search()
 
 ```ts
-function img_search(tree, options): string
+function img_search(tree: any, options: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:386
+
+### Parameters
 
 <table>
 <thead>
@@ -538,19 +606,21 @@ function img_search(tree, options): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### json\_search()
+## json\_search()
 
 ```ts
-function json_search(tree, options): any
+function json_search(tree: any, options: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:403
+
+### Parameters
 
 <table>
 <thead>
@@ -587,22 +657,24 @@ function json_search(tree, options): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### pattern\_search()
+## pattern\_search()
 
 ```ts
 function pattern_search(
-   text, 
-   date_pattern, 
-   options): any
+   text: any, 
+   date_pattern: any, 
+   options: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:394
+
+### Parameters
 
 <table>
 <thead>
@@ -651,19 +723,21 @@ function pattern_search(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### regex\_parse()
+## regex\_parse()
 
 ```ts
-function regex_parse(string): Date
+function regex_parse(string: any): Date;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:225
+
+### Parameters
 
 <table>
 <thead>
@@ -688,24 +762,26 @@ function regex_parse(string): Date
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Date`
 
 ***
 
-### try\_date\_expr()
+## try\_date\_expr()
 
 ```ts
 function try_date_expr(
-   string, 
-   outputformat, 
-   extensive_search, 
-   min_date, 
-   max_date): string
+   string: any, 
+   outputformat: any, 
+   extensive_search: any, 
+   min_date: any, 
+   max_date: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-extractors.js:356
+
+### Parameters
 
 <table>
 <thead>
@@ -778,6 +854,6 @@ function try_date_expr(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`

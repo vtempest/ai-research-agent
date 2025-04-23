@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/url-to-favicon
+[Documentation](../../modules.md) / extractor/html-to-cite/url-to-favicon
 
 ## Extract
 
 ### convertFaviconToBase64String()
 
 ```ts
-function convertFaviconToBase64String(url, size?): Promise<string>
+function convertFaviconToBase64String(url: string, size?: number): Promise<string>;
 ```
+
+Defined in: extractor/html-to-cite/url-to-favicon.js:17
 
 Convert a ICO/PNG favicon from URL using npm sharp into 16px
 image base64 string. This prevents the need for many requests
@@ -49,7 +51,7 @@ The URL of the favicon
 <tr>
 <td>
 
-`size`?
+`size?`
 
 </td>
 <td>

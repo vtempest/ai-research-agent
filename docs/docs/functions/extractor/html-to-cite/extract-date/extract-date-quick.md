@@ -1,16 +1,16 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/extract-date-quick
+[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/extract-date-quick
 
-## Functions
-
-### extractDateQuick()
+## extractDateQuick()
 
 ```ts
-function extractDateQuick(document, url): string
+function extractDateQuick(document: Document, url: string): string;
 ```
+
+Defined in: extractor/html-to-cite/extract-date/extract-date-quick.js:61
 
 Extract date from document using various methods
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -58,7 +58,7 @@ URL of the page
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 

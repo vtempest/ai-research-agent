@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineConverter
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/LineConverter
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/LineConverter.js:58
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(fontToFormats): default
+new default(fontToFormats: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/LineConverter.js:59
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,27 +39,31 @@ new default(fontToFormats): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](LineConverter.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### fontToFormats
+#### fontToFormats
 
 ```ts
 fontToFormats: any;
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/LineConverter.js:60
 
-##### compact()
+### Methods
+
+#### compact()
 
 ```ts
-compact(textItems): default
+compact(textItems: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/LineConverter.js:64
+
+##### Parameters
 
 <table>
 <thead>
@@ -82,32 +88,35 @@ compact(textItems): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 [`default`](LineItem.md#default)
 
-## Variables
+***
 
-### WordFormat
+## WordFormat
 
 ```ts
 const WordFormat: object;
 ```
 
-#### Type declaration
+Defined in: extractor/pdf-to-html/models/LineConverter.js:9
+
+### Type declaration
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`BOLD`
+<a id="bold"></a> `BOLD`
 
 </td>
 <td>
@@ -116,14 +125,19 @@ const WordFormat: object;
   `endSymbol`: `string`;
   `name`: `string`;
   `startSymbol`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:10
 
 </td>
 </tr>
 <tr>
 <td>
 
-`BOLD_OBLIQUE`
+<a id="bold_oblique"></a> `BOLD_OBLIQUE`
 
 </td>
 <td>
@@ -132,14 +146,19 @@ const WordFormat: object;
   `endSymbol`: `string`;
   `name`: `string`;
   `startSymbol`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:22
 
 </td>
 </tr>
 <tr>
 <td>
 
-`OBLIQUE`
+<a id="oblique"></a> `OBLIQUE`
 
 </td>
 <td>
@@ -148,7 +167,12 @@ const WordFormat: object;
   `endSymbol`: `string`;
   `name`: `string`;
   `startSymbol`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:16
 
 </td>
 </tr>
@@ -157,26 +181,29 @@ const WordFormat: object;
 
 ***
 
-### WordType
+## WordType
 
 ```ts
 const WordType: object;
 ```
 
-#### Type declaration
+Defined in: extractor/pdf-to-html/models/LineConverter.js:30
+
+### Type declaration
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`FOOTNOTE`
+<a id="footnote"></a> `FOOTNOTE`
 
 </td>
 <td>
@@ -184,14 +211,19 @@ const WordType: object;
 \{
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:47
 
 </td>
 </tr>
 <tr>
 <td>
 
-`FOOTNOTE_LINK`
+<a id="footnote_link"></a> `FOOTNOTE_LINK`
 
 </td>
 <td>
@@ -201,14 +233,19 @@ const WordType: object;
   `name`: `string`;
   `plainTextFormat`: `boolean`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:38
 
 </td>
 </tr>
 <tr>
 <td>
 
-`LINK`
+<a id="link"></a> `LINK`
 
 </td>
 <td>
@@ -216,7 +253,12 @@ const WordType: object;
 \{
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/LineConverter.js:31
 
 </td>
 </tr>

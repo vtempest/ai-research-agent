@@ -1,33 +1,32 @@
-[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/models/BlockType
+[Documentation](../../../../modules.md) / extractor/pdf-to-html/models/BlockType
 
-## Index
-
-### Namespaces
+## Namespaces
 
 - [default](namespaces/default.md)
 
-## Variables
-
-### default
+## default
 
 ```ts
 const default: object;
 ```
 
-#### Type declaration
+Defined in: extractor/pdf-to-html/models/BlockType.js:3
+
+### Type declaration
 
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`CODE`
+<a id="code"></a> `CODE`
 
 </td>
 <td>
@@ -36,14 +35,19 @@ const default: object;
   `mergeToBlock`: `boolean`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:67
 
 </td>
 </tr>
 <tr>
 <td>
 
-`FOOTNOTES`
+<a id="footnotes"></a> `FOOTNOTES`
 
 </td>
 <td>
@@ -53,14 +57,19 @@ const default: object;
   `mergeToBlock`: `boolean`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:59
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H1`
+<a id="h1"></a> `H1`
 
 </td>
 <td>
@@ -70,14 +79,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:4
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H2`
+<a id="h2"></a> `H2`
 
 </td>
 <td>
@@ -87,14 +101,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:12
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H3`
+<a id="h3"></a> `H3`
 
 </td>
 <td>
@@ -104,14 +123,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:20
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H4`
+<a id="h4"></a> `H4`
 
 </td>
 <td>
@@ -121,14 +145,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:28
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H5`
+<a id="h5"></a> `H5`
 
 </td>
 <td>
@@ -138,14 +167,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:36
 
 </td>
 </tr>
 <tr>
 <td>
 
-`H6`
+<a id="h6"></a> `H6`
 
 </td>
 <td>
@@ -155,14 +189,19 @@ const default: object;
   `headlineLevel`: `number`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:44
 
 </td>
 </tr>
 <tr>
 <td>
 
-`LIST`
+<a id="list"></a> `LIST`
 
 </td>
 <td>
@@ -172,14 +211,19 @@ const default: object;
   `mergeToBlock`: `boolean`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:74
 
 </td>
 </tr>
 <tr>
 <td>
 
-`PARAGRAPH`
+<a id="paragraph"></a> `PARAGRAPH`
 
 </td>
 <td>
@@ -187,14 +231,19 @@ const default: object;
 \{
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:82
 
 </td>
 </tr>
 <tr>
 <td>
 
-`TOC`
+<a id="toc"></a> `TOC`
 
 </td>
 <td>
@@ -203,7 +252,12 @@ const default: object;
   `mergeToBlock`: `boolean`;
   `name`: `string`;
   `toText`: `string`;
- \}
+\}
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:52
 
 </td>
 </tr>

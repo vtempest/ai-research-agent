@@ -1,22 +1,24 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
+[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/transformations/CalculateGlobalStats.js:5
 
-#### Extends
+### Extends
 
 - [`default`](ToTextItemTransformation.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(fontMap): default
+new default(fontMap: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/CalculateGlobalStats.js:6
+
+##### Parameters
 
 <table>
 <thead>
@@ -41,51 +43,59 @@ new default(fontMap): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](CalculateGlobalStats.md#default)
+[`default`](#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](ToTextItemTransformation.md#default).[`constructor`](ToTextItemTransformation.md#constructors)
+[`default`](ToTextItemTransformation.md#default).[`constructor`](ToTextItemTransformation.md#default#constructor)
 
-#### Properties
+### Properties
 
-##### fontMap
+#### fontMap
 
 ```ts
 fontMap: any;
 ```
 
-##### itemType
+Defined in: extractor/pdf-to-html/transformations/CalculateGlobalStats.js:8
+
+#### itemType
 
 ```ts
 itemType: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:12
 
-[`default`](ToTextItemTransformation.md#default).[`itemType`](ToTextItemTransformation.md#itemtype)
+##### Inherited from
 
-##### name
+[`default`](ToTextItemTransformation.md#default).[`itemType`](ToTextItemTransformation.md#default#itemtype)
+
+#### name
 
 ```ts
 name: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/transformations/Transformation.js:11
 
-[`default`](ToTextItemTransformation.md#default).[`name`](ToTextItemTransformation.md#name)
+##### Inherited from
 
-#### Methods
+[`default`](ToTextItemTransformation.md#default).[`name`](ToTextItemTransformation.md#default#name)
 
-##### completeTransform()
+### Methods
+
+#### completeTransform()
 
 ```ts
-completeTransform(parseResult): any
+completeTransform(parseResult: any): any;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/ToTextItemTransformation.js:13
+
+##### Parameters
 
 <table>
 <thead>
@@ -110,21 +120,23 @@ completeTransform(parseResult): any
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`
 
-###### Inherited from
+##### Inherited from
 
-[`default`](ToTextItemTransformation.md#default).[`completeTransform`](ToTextItemTransformation.md#completetransform)
+[`default`](ToTextItemTransformation.md#default).[`completeTransform`](ToTextItemTransformation.md#default#completetransform)
 
-##### transform()
+#### transform()
 
 ```ts
-transform(parseResult): default
+transform(parseResult: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/transformations/CalculateGlobalStats.js:11
+
+##### Parameters
 
 <table>
 <thead>
@@ -149,10 +161,10 @@ transform(parseResult): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 [`default`](../models/ParseResult.md#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](ToTextItemTransformation.md#default).[`transform`](ToTextItemTransformation.md#transform)
+[`default`](ToTextItemTransformation.md#default).[`transform`](ToTextItemTransformation.md#default#transform)

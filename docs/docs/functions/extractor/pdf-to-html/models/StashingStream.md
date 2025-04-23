@@ -1,54 +1,64 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/StashingStream
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/StashingStream
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/StashingStream.js:2
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(): default
+new default(): default;
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/models/StashingStream.js:3
 
-[`default`](StashingStream.md#default)
+##### Returns
 
-#### Properties
+[`default`](#default)
 
-##### results
+### Properties
+
+#### results
 
 ```ts
 results: any[];
 ```
 
-##### stash
+Defined in: extractor/pdf-to-html/models/StashingStream.js:7
+
+#### stash
 
 ```ts
 stash: any[];
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/StashingStream.js:8
 
-##### complete()
+### Methods
+
+#### complete()
 
 ```ts
-complete(): any[]
+complete(): any[];
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/models/StashingStream.js:34
+
+##### Returns
 
 `any`[]
 
-##### consume()
+#### consume()
 
 ```ts
-consume(item): void
+consume(item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:15
+
+##### Parameters
 
 <table>
 <thead>
@@ -73,17 +83,19 @@ consume(item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### consumeAll()
+#### consumeAll()
 
 ```ts
-consumeAll(items): void
+consumeAll(items: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:11
+
+##### Parameters
 
 <table>
 <thead>
@@ -108,17 +120,19 @@ consumeAll(items): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### doFlushStash()
+#### doFlushStash()
 
 ```ts
-doFlushStash(stash, results): void
+doFlushStash(stash: any, results: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:69
+
+##### Parameters
 
 <table>
 <thead>
@@ -155,17 +169,19 @@ doFlushStash(stash, results): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### doMatchesStash()
+#### doMatchesStash()
 
 ```ts
-doMatchesStash(lastItem, item): void
+doMatchesStash(lastItem: any, item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:65
+
+##### Parameters
 
 <table>
 <thead>
@@ -202,27 +218,31 @@ doMatchesStash(lastItem, item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### flushStash()
+#### flushStash()
 
 ```ts
-flushStash(): void
+flushStash(): void;
 ```
 
-###### Returns
+Defined in: extractor/pdf-to-html/models/StashingStream.js:50
+
+##### Returns
 
 `void`
 
-##### matchesStash()
+#### matchesStash()
 
 ```ts
-matchesStash(item): true | void
+matchesStash(item: any): true | void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:42
+
+##### Parameters
 
 <table>
 <thead>
@@ -247,17 +267,19 @@ matchesStash(item): true | void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `true` \| `void`
 
-##### onPushOnStash()
+#### onPushOnStash()
 
 ```ts
-onPushOnStash(item): void
+onPushOnStash(item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:57
+
+##### Parameters
 
 <table>
 <thead>
@@ -282,17 +304,19 @@ onPushOnStash(item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### pushOnStash()
+#### pushOnStash()
 
 ```ts
-pushOnStash(item): void
+pushOnStash(item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:29
+
+##### Parameters
 
 <table>
 <thead>
@@ -317,17 +341,19 @@ pushOnStash(item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### shouldStash()
+#### shouldStash()
 
 ```ts
-shouldStash(item): void
+shouldStash(item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/StashingStream.js:61
+
+##### Parameters
 
 <table>
 <thead>
@@ -352,6 +378,6 @@ shouldStash(item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`

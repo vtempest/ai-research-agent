@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/HeadlineFinder
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/HeadlineFinder
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:3
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:4
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,39 +39,47 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](HeadlineFinder.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### headlineCharCodes
+#### headlineCharCodes
 
 ```ts
 headlineCharCodes: any[];
 ```
 
-##### stackedChars
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:5
+
+#### stackedChars
 
 ```ts
 stackedChars: number;
 ```
 
-##### stackedLineItems
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:7
+
+#### stackedLineItems
 
 ```ts
 stackedLineItems: any[];
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:6
 
-##### consume()
+### Methods
+
+#### consume()
 
 ```ts
-consume(lineItem): any[]
+consume(lineItem: any): any[];
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:10
+
+##### Parameters
 
 <table>
 <thead>
@@ -94,17 +104,19 @@ consume(lineItem): any[]
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`[]
 
-##### matchAll()
+#### matchAll()
 
 ```ts
-matchAll(normalizedCharCodes): boolean
+matchAll(normalizedCharCodes: any): boolean;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/HeadlineFinder.js:30
+
+##### Parameters
 
 <table>
 <thead>
@@ -129,6 +141,6 @@ matchAll(normalizedCharCodes): boolean
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `boolean`

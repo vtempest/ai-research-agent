@@ -1,18 +1,18 @@
-[ai-research-agent](../modules.md) / tokenize/stopwords
+[Documentation](../modules.md) / tokenize/stopwords
 
-## Functions
-
-### isWordCommonIgnored()
+## isWordCommonIgnored()
 
 ```ts
-function isWordCommonIgnored(word): boolean
+function isWordCommonIgnored(word: string): boolean;
 ```
+
+Defined in: tokenize/stopwords.js:47
 
 Checks word is in [320 commonly ignored "stop words 
 "](https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt) 
 in queries, using efficient JS Set method
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -41,6 +41,6 @@ in queries, using efficient JS Set method
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`

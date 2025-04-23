@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkopenapi_docusaurus=self.webpackChunkopenapi_docusaurus||[]).push([["3155"],{22648:function(e){e.exports=JSON.parse('{"categoryGeneratedIndex":{"title":"Qwksearch API","slug":"/category/qwksearch-api","permalink":"/category/qwksearch-api","sidebar":"qwksearch","navigation":{"next":{"title":"Introduction","permalink":"/routes/qwksearch-api"}}}}')}}]);

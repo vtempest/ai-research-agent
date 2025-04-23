@@ -1,8 +1,10 @@
-[ai-research-agent](../modules.md) / train/neural-net
+[Documentation](../modules.md) / train/neural-net
 
 ## Neural Net
 
 ### torch
+
+Defined in: train/neural-net.js:2224
 
 ### TORCH: Tensor Operations with the Reasoning Capacity of Humans 
 <img src="https://i.imgur.com/vKBjkfd.png" width="360px" />
@@ -91,8 +93,10 @@ See also: [Brain.js](https://github.com/BrainJS/brain.js)
 ##### \_reshape()
 
 ```ts
-static _reshape: (a, shape) => any;
+static _reshape: (a: any, shape: any) => any;
 ```
+
+Defined in: train/neural-net.js:2242
 
 ###### Parameters
 
@@ -138,8 +142,10 @@ static _reshape: (a, shape) => any;
 ##### add()
 
 ```ts
-static add: (a, b) => any;
+static add: (a: any, b: any) => any;
 ```
+
+Defined in: train/neural-net.js:2228
 
 ###### Parameters
 
@@ -185,8 +191,10 @@ static add: (a, b) => any;
 ##### at()
 
 ```ts
-static at: (a, idx1, idx2) => any;
+static at: (a: any, idx1: any, idx2: any) => any;
 ```
+
+Defined in: train/neural-net.js:2240
 
 ###### Parameters
 
@@ -244,8 +252,10 @@ static at: (a, idx1, idx2) => any;
 ##### broadcast()
 
 ```ts
-static broadcast: (a, b) => Tensor;
+static broadcast: (a: any, b: any) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2251
 
 ###### Parameters
 
@@ -291,8 +301,10 @@ static broadcast: (a, b) => Tensor;
 ##### div()
 
 ```ts
-static div: (a, b) => any;
+static div: (a: any, b: any) => any;
 ```
+
+Defined in: train/neural-net.js:2231
 
 ###### Parameters
 
@@ -338,8 +350,10 @@ static div: (a, b) => any;
 ##### exp()
 
 ```ts
-static exp: (a) => any;
+static exp: (a: any) => any;
 ```
+
+Defined in: train/neural-net.js:2233
 
 ###### Parameters
 
@@ -373,8 +387,10 @@ static exp: (a) => any;
 ##### getShape()
 
 ```ts
-static getShape: (data, shape) => any[];
+static getShape: (data: any, shape: any[]) => any[];
 ```
+
+Defined in: train/neural-net.js:2257
 
 ###### Parameters
 
@@ -431,8 +447,10 @@ static getShape: (data, shape) => any[];
 ##### load()
 
 ```ts
-static load: (model, loadedData) => any;
+static load: (model: any, loadedData: any) => any;
 ```
+
+Defined in: train/neural-net.js:2253
 
 ###### Parameters
 
@@ -478,8 +496,10 @@ static load: (model, loadedData) => any;
 ##### log()
 
 ```ts
-static log: (a) => any;
+static log: (a: any) => any;
 ```
+
+Defined in: train/neural-net.js:2234
 
 ###### Parameters
 
@@ -513,8 +533,10 @@ static log: (a) => any;
 ##### masked\_fill()
 
 ```ts
-static masked_fill: (a, mask, condition, value) => any;
+static masked_fill: (a: any, mask: any, condition: any, value: any) => any;
 ```
+
+Defined in: train/neural-net.js:2238
 
 ###### Parameters
 
@@ -584,8 +606,10 @@ static masked_fill: (a, mask, condition, value) => any;
 ##### matmul()
 
 ```ts
-static matmul: (a, b) => any;
+static matmul: (a: any, b: any) => any;
 ```
+
+Defined in: train/neural-net.js:2232
 
 ###### Parameters
 
@@ -631,8 +655,10 @@ static matmul: (a, b) => any;
 ##### mean()
 
 ```ts
-static mean: (a, dim, keepdims) => any;
+static mean: (a: any, dim: number, keepdims: boolean) => any;
 ```
+
+Defined in: train/neural-net.js:2237
 
 ###### Parameters
 
@@ -706,8 +732,10 @@ static mean: (a, dim, keepdims) => any;
 ##### mul()
 
 ```ts
-static mul: (a, b) => any;
+static mul: (a: any, b: any) => any;
 ```
+
+Defined in: train/neural-net.js:2230
 
 ###### Parameters
 
@@ -753,8 +781,10 @@ static mul: (a, b) => any;
 ##### neg()
 
 ```ts
-static neg: (a) => any;
+static neg: (a: any) => any;
 ```
+
+Defined in: train/neural-net.js:2229
 
 ###### Parameters
 
@@ -791,83 +821,231 @@ static neg: (a) => any;
 static nn: object;
 ```
 
-###### Block
+Defined in: train/neural-net.js:2255
 
-```ts
-Block: typeof Block;
-```
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-###### CrossEntropyLoss
+`Block`
 
-```ts
-CrossEntropyLoss: typeof CrossEntropyLoss;
-```
+</td>
+<td>
 
-###### Dropout
+*typeof* `Block`
 
-```ts
-Dropout: typeof Dropout;
-```
+</td>
+<td>
 
-###### Embedding
+train/neural-net.js:2075
 
-```ts
-Embedding: typeof Embedding;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-###### FullyConnected
+`CrossEntropyLoss`
 
-```ts
-FullyConnected: typeof FullyConnected;
-```
+</td>
+<td>
 
-###### LayerNorm
+*typeof* `CrossEntropyLoss`
 
-```ts
-LayerNorm: typeof LayerNorm;
-```
+</td>
+<td>
 
-###### Linear
+train/neural-net.js:2082
 
-```ts
-Linear: typeof Linear;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-###### Module
+`Dropout`
 
-```ts
-Module: typeof Module;
-```
+</td>
+<td>
 
-###### MultiHeadSelfAttention
+*typeof* `Dropout`
 
-```ts
-MultiHeadSelfAttention: typeof MultiHeadSelfAttention;
-```
+</td>
+<td>
 
-###### PositionalEmbedding
+train/neural-net.js:2080
 
-```ts
-PositionalEmbedding: typeof PositionalEmbedding;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-###### ReLU
+`Embedding`
 
-```ts
-ReLU: typeof ReLU;
-```
+</td>
+<td>
 
-###### Softmax
+*typeof* `Embedding`
 
-```ts
-Softmax: typeof Softmax;
-```
+</td>
+<td>
+
+train/neural-net.js:2076
+
+</td>
+</tr>
+<tr>
+<td>
+
+`FullyConnected`
+
+</td>
+<td>
+
+*typeof* `FullyConnected`
+
+</td>
+<td>
+
+train/neural-net.js:2074
+
+</td>
+</tr>
+<tr>
+<td>
+
+`LayerNorm`
+
+</td>
+<td>
+
+*typeof* `LayerNorm`
+
+</td>
+<td>
+
+train/neural-net.js:2081
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Linear`
+
+</td>
+<td>
+
+*typeof* `Linear`
+
+</td>
+<td>
+
+train/neural-net.js:2072
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Module`
+
+</td>
+<td>
+
+*typeof* `Module`
+
+</td>
+<td>
+
+train/neural-net.js:2071
+
+</td>
+</tr>
+<tr>
+<td>
+
+`MultiHeadSelfAttention`
+
+</td>
+<td>
+
+*typeof* `MultiHeadSelfAttention`
+
+</td>
+<td>
+
+train/neural-net.js:2073
+
+</td>
+</tr>
+<tr>
+<td>
+
+`PositionalEmbedding`
+
+</td>
+<td>
+
+*typeof* `PositionalEmbedding`
+
+</td>
+<td>
+
+train/neural-net.js:2077
+
+</td>
+</tr>
+<tr>
+<td>
+
+`ReLU`
+
+</td>
+<td>
+
+*typeof* `ReLU`
+
+</td>
+<td>
+
+train/neural-net.js:2078
+
+</td>
+</tr>
+<tr>
+<td>
+
+`Softmax`
+
+</td>
+<td>
+
+*typeof* `Softmax`
+
+</td>
+<td>
+
+train/neural-net.js:2079
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ##### ones()
 
 ```ts
-static ones: (shape, requires_grad, device) => Tensor;
+static ones: (shape: any, requires_grad: boolean, device: string) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2249
 
 ###### Parameters
 
@@ -944,11 +1122,36 @@ static ones: (shape, requires_grad, device) => Tensor;
 static optim: object;
 ```
 
-###### Adam
+Defined in: train/neural-net.js:2256
 
-```ts
-Adam: typeof Adam;
-```
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`Adam`
+
+</td>
+<td>
+
+*typeof* `Adam`
+
+</td>
+<td>
+
+train/neural-net.js:2084
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ##### Parameter
 
@@ -956,11 +1159,15 @@ Adam: typeof Adam;
 static Parameter: typeof Parameter;
 ```
 
+Defined in: train/neural-net.js:2227
+
 ##### pow()
 
 ```ts
-static pow: (a, n) => any;
+static pow: (a: any, n: any) => any;
 ```
+
+Defined in: train/neural-net.js:2236
 
 ###### Parameters
 
@@ -1006,8 +1213,10 @@ static pow: (a, n) => any;
 ##### rand()
 
 ```ts
-static rand: (shape, requires_grad, device) => Tensor;
+static rand: (shape: any, requires_grad: boolean, device: string) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2247
 
 ###### Parameters
 
@@ -1081,8 +1290,10 @@ static rand: (shape, requires_grad, device) => Tensor;
 ##### randint()
 
 ```ts
-static randint: (low, high, shape, requires_grad) => Tensor;
+static randint: (low: number, high: number, shape: number[], requires_grad: boolean) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2245
 
 ###### Parameters
 
@@ -1173,8 +1384,10 @@ static randint: (low, high, shape, requires_grad) => Tensor;
 ##### randn()
 
 ```ts
-static randn: (shape, requires_grad, device, xavier) => Tensor;
+static randn: (shape: any, requires_grad: boolean, device: string, xavier: boolean) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2246
 
 ###### Parameters
 
@@ -1265,8 +1478,10 @@ static randn: (shape, requires_grad, device, xavier) => Tensor;
 ##### reshape()
 
 ```ts
-static reshape: (a, shape) => any;
+static reshape: (a: any, shape: any) => any;
 ```
+
+Defined in: train/neural-net.js:2241
 
 ###### Parameters
 
@@ -1312,8 +1527,10 @@ static reshape: (a, shape) => any;
 ##### save()
 
 ```ts
-static save: (model, file) => string;
+static save: (model: any, file: any) => string;
 ```
+
+Defined in: train/neural-net.js:2252
 
 ###### Parameters
 
@@ -1359,8 +1576,10 @@ static save: (model, file) => string;
 ##### sqrt()
 
 ```ts
-static sqrt: (a) => any;
+static sqrt: (a: any) => any;
 ```
+
+Defined in: train/neural-net.js:2235
 
 ###### Parameters
 
@@ -1394,8 +1613,10 @@ static sqrt: (a) => any;
 ##### tensor()
 
 ```ts
-static tensor: (data, requires_grad, device) => Tensor;
+static tensor: (data: any, requires_grad: boolean, device: string) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2244
 
 ###### Parameters
 
@@ -1472,11 +1693,15 @@ static tensor: (data, requires_grad, device) => Tensor;
 static Tensor: typeof Tensor;
 ```
 
+Defined in: train/neural-net.js:2226
+
 ##### transpose()
 
 ```ts
-static transpose: (a, dim1, dim2) => any;
+static transpose: (a: any, dim1: any, dim2: any) => any;
 ```
+
+Defined in: train/neural-net.js:2243
 
 ###### Parameters
 
@@ -1534,8 +1759,10 @@ static transpose: (a, dim1, dim2) => any;
 ##### tril()
 
 ```ts
-static tril: (shape, requires_grad, device) => Tensor;
+static tril: (shape: any, requires_grad: boolean, device: string) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2248
 
 ###### Parameters
 
@@ -1609,8 +1836,10 @@ static tril: (shape, requires_grad, device) => Tensor;
 ##### variance()
 
 ```ts
-static variance: (a, dim, keepdims) => any;
+static variance: (a: any, dim: number, keepdims: boolean) => any;
 ```
+
+Defined in: train/neural-net.js:2239
 
 ###### Parameters
 
@@ -1684,8 +1913,10 @@ static variance: (a, dim, keepdims) => any;
 ##### zeros()
 
 ```ts
-static zeros: (shape, requires_grad, device) => Tensor;
+static zeros: (shape: any, requires_grad: boolean, device: string) => Tensor;
 ```
+
+Defined in: train/neural-net.js:2250
 
 ###### Parameters
 

@@ -1,14 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
+[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
 
-## Functions
-
-### brsToPs()
+## brsToPs()
 
 ```ts
-function brsToPs(document): any
+function brsToPs(document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:349
+
+### Parameters
 
 <table>
 <thead>
@@ -33,68 +33,21 @@ function brsToPs(document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### cleanAttributes()
+## cleanAttributes()
 
 ```ts
-function cleanAttributes(article, document): any
+function cleanAttributes(article: any, document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:464
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`article`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`document`
-
-</td>
-<td>
-
-`any`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`any`
-
-***
-
-### cleanHOnes()
-
-```ts
-function cleanHOnes(article, document): any
-```
-
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -131,19 +84,21 @@ function cleanHOnes(article, document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### cleanImages()
+## cleanHOnes()
 
 ```ts
-function cleanImages(article, document): any
+function cleanHOnes(article: any, document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:449
+
+### Parameters
 
 <table>
 <thead>
@@ -180,22 +135,75 @@ function cleanImages(article, document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### convertNodeTo()
+## cleanImages()
+
+```ts
+function cleanImages(article: any, document: any): any;
+```
+
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:424
+
+### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`article`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`document`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## convertNodeTo()
 
 ```ts
 function convertNodeTo(
-   node, 
-   document, 
-   tag): any
+   node: any, 
+   document: any, 
+   tag: string): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:326
+
+### Parameters
 
 <table>
 <thead>
@@ -260,19 +268,21 @@ function convertNodeTo(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### convertToParagraphs()
+## convertToParagraphs()
 
 ```ts
-function convertToParagraphs(document): any
+function convertToParagraphs(document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:392
+
+### Parameters
 
 <table>
 <thead>
@@ -297,19 +307,21 @@ function convertToParagraphs(document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### getAttrs()
+## getAttrs()
 
 ```ts
-function getAttrs(node): any
+function getAttrs(node: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:316
+
+### Parameters
 
 <table>
 <thead>
@@ -334,19 +346,21 @@ function getAttrs(node): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### isWordpress()
+## isWordpress()
 
 ```ts
-function isWordpress(document): boolean
+function isWordpress(document: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:645
+
+### Parameters
 
 <table>
 <thead>
@@ -371,19 +385,21 @@ function isWordpress(document): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### linkDensity()
+## linkDensity()
 
 ```ts
-function linkDensity(node): number
+function linkDensity(node: any): number;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:578
+
+### Parameters
 
 <table>
 <thead>
@@ -408,19 +424,21 @@ function linkDensity(node): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### nodeIsSufficient()
+## nodeIsSufficient()
 
 ```ts
-function nodeIsSufficient(node): boolean
+function nodeIsSufficient(node: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:640
+
+### Parameters
 
 <table>
 <thead>
@@ -445,19 +463,21 @@ function nodeIsSufficient(node): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### normalizeSpaces()
+## normalizeSpaces()
 
 ```ts
-function normalizeSpaces(text): any
+function normalizeSpaces(text: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:288
+
+### Parameters
 
 <table>
 <thead>
@@ -482,22 +502,24 @@ function normalizeSpaces(text): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### paragraphize()
+## paragraphize()
 
 ```ts
 function paragraphize(
-   node, 
-   document, 
-   br): any
+   node: any, 
+   document: any, 
+   br: boolean): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:293
+
+### Parameters
 
 <table>
 <thead>
@@ -562,19 +584,21 @@ function paragraphize(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### removeEmpty()
+## removeEmpty()
 
 ```ts
-function removeEmpty(article): any
+function removeEmpty(article: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:495
+
+### Parameters
 
 <table>
 <thead>
@@ -599,19 +623,21 @@ function removeEmpty(article): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### removeUnlessContent()
+## removeUnlessContent()
 
 ```ts
-function removeUnlessContent(node, weight): void
+function removeUnlessContent(node: any, weight: any): void;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:508
+
+### Parameters
 
 <table>
 <thead>
@@ -648,19 +674,21 @@ function removeUnlessContent(node, weight): void
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### rewriteTopLevel()
+## rewriteTopLevel()
 
 ```ts
-function rewriteTopLevel(article, document): any
+function rewriteTopLevel(article: any, document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:565
+
+### Parameters
 
 <table>
 <thead>
@@ -697,22 +725,24 @@ function rewriteTopLevel(article, document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### setAttr()
+## setAttr()
 
 ```ts
 function setAttr(
-   node, 
-   attr, 
-   val): any
+   node: any, 
+   attr: any, 
+   val: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:650
+
+### Parameters
 
 <table>
 <thead>
@@ -761,19 +791,21 @@ function setAttr(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### setAttrs()
+## setAttrs()
 
 ```ts
-function setAttrs(node, attrs): any
+function setAttrs(node: any, attrs: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:656
+
+### Parameters
 
 <table>
 <thead>
@@ -810,22 +842,24 @@ function setAttrs(node, attrs): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### stripJunkTags()
+## stripJunkTags()
 
 ```ts
 function stripJunkTags(
-   article, 
-   document, 
-   tags): any
+   article: any, 
+   document: any, 
+   tags: any[]): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:434
+
+### Parameters
 
 <table>
 <thead>
@@ -890,19 +924,21 @@ function stripJunkTags(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### stripTags()
+## stripTags()
 
 ```ts
-function stripTags(text, document): any
+function stripTags(text: any, document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:597
+
+### Parameters
 
 <table>
 <thead>
@@ -939,19 +975,21 @@ function stripTags(text, document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### stripUnlikelyCandidates()
+## stripUnlikelyCandidates()
 
 ```ts
-function stripUnlikelyCandidates(document): any
+function stripUnlikelyCandidates(document: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:605
+
+### Parameters
 
 <table>
 <thead>
@@ -976,19 +1014,21 @@ function stripUnlikelyCandidates(document): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### textLength()
+## textLength()
 
 ```ts
-function textLength(text): any
+function textLength(text: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:573
+
+### Parameters
 
 <table>
 <thead>
@@ -1013,19 +1053,21 @@ function textLength(text): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### withinComment()
+## withinComment()
 
 ```ts
-function withinComment(node): boolean
+function withinComment(node: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-content/extract-content/extract-content-mercury-utils.js:624
+
+### Parameters
 
 <table>
 <thead>
@@ -1050,6 +1092,6 @@ function withinComment(node): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`

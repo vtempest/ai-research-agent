@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / search/search-stream
+[Documentation](../modules.md) / search/search-stream
 
 ## Search
 
 ### searchSTREAM()
 
 ```ts
-function searchSTREAM(query, options?): Promise<any[]>
+function searchSTREAM(query: string, options?: object): Promise<any[]>;
 ```
+
+Defined in: search/search-stream.js:34
 
 ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
  <img width="350px"  src="https://i.imgur.com/l5AFrS0.png"  /> 
@@ -50,7 +52,7 @@ The search query string.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -65,7 +67,7 @@ The search query string.
 <tr>
 <td>
 
-`options.categoryIndex`?
+`options.categoryIndex?`
 
 </td>
 <td>
@@ -82,7 +84,7 @@ default=0 - Index of the search category.
 <tr>
 <td>
 
-`options.customSearxngDomain`?
+`options.customSearxngDomain?`
 
 </td>
 <td>
@@ -99,7 +101,7 @@ default=null - Use your custom domain SearXNG
 <tr>
 <td>
 
-`options.maxRetries`?
+`options.maxRetries?`
 
 </td>
 <td>
@@ -116,7 +118,7 @@ default=5 - Maximum number of retry attempts for the search.
 <tr>
 <td>
 
-`options.maxTopResultsToExtract`?
+`options.maxTopResultsToExtract?`
 
 </td>
 <td>
@@ -133,7 +135,7 @@ default=6 - Maximum number of top results to extract and analyze.
 <tr>
 <td>
 
-`options.recencyIndex`?
+`options.recencyIndex?`
 
 </td>
 <td>

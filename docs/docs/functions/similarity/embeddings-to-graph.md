@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / similarity/embeddings-to-graph
+[Documentation](../modules.md) / similarity/embeddings-to-graph
 
 ## Similarity
 
 ### convertEmbeddingsToUMAP()
 
 ```ts
-function convertEmbeddingsToUMAP(embeddingsDict, options?): Promise<PlotDataPoint[]>
+function convertEmbeddingsToUMAP(embeddingsDict: object, options?: object): Promise<PlotDataPoint[]>;
 ```
+
+Defined in: similarity/embeddings-to-graph.js:50
 
 ### UMAP: Convert Embeddings to 2D or 3D Graph
 
@@ -61,7 +63,7 @@ takes high-dimensional embeddings and converts into lower-dimensional coordinate
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 <td>
@@ -73,7 +75,7 @@ The dictionary of embeddings.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -88,7 +90,7 @@ The dictionary of embeddings.
 <tr>
 <td>
 
-`options.numberDimensions`?
+`options.numberDimensions?`
 
 </td>
 <td>
@@ -105,7 +107,7 @@ The dictionary of embeddings.
 <tr>
 <td>
 
-`options.numberDistance`?
+`options.numberDistance?`
 
 </td>
 <td>
@@ -122,7 +124,7 @@ The dictionary of embeddings.
 <tr>
 <td>
 
-`options.numberNeighbors`?
+`options.numberNeighbors?`
 
 </td>
 <td>

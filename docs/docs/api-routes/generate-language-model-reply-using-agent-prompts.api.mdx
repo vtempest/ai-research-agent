@@ -1,0 +1,92 @@
+---
+id: generate-language-model-reply-using-agent-prompts
+title: "Generate language model reply using agent prompts"
+description: "Generates a language model reply using agent prompts."
+sidebar_label: "Generate language model reply using agent prompts"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVt9v4zYM/lcIvezFdtrebgfkrTcctg7t2l26h6E5HBSbsXWRJVeSk2ZB/veRsvOjSdAWuL1tRtFIFEVR5MePWokgSy+GD2KEbq5y9OJLIgr0uVNNUNaIofgFDToZ0IMELU3ZyhKhtgVqcNjoJbRemRJIagI0ztZN8NnYjM319Q3P56pABymUzj4mYBs0UiUgTaicbVSeQLAlhgpdAk+8UlpbamQDAOcZ+LaupVN/Yzpptcbgh7zAXwrSBZWzLsDFnuZpjXesUZboQzq1WttF2+zbyisZvlbKB+uWJ/f/mJHTfoHu1U2PLXbT91k3Th16q1sO6Ns3/5TBzNiFxqLEtHSyqVJDUd/3eat75OyHTTiWqbamDPgUTkelE3jM2Tk/NiIRDsmuDx9tsRTDVZwqh4UYBtdiInJrAqWal2TTaJVL3jr45hktK+HzCmvJo7BskPBjJ9/Iem+3M/QgNrhguNG4QfKIwEe7OgTt7ffBEb7EISxHSx+w7gEHU+uAMHQAULFORMTl6+YuI3yNrJHDcYi5ZCdKjlGUwNh00EiO8p2cTiJvOUwQBX/dh/fpDR7/Nrr9HW5jcGEUVcBOYU5Oyommal2oUAHtkA0WMOZPUKmBMp6CTT807oOn1QxhtQ/H4ViMxZrd2SbqpD9T2WpyVXBtHzn4XfXPZ89w+XoY/rKtg8u7KyDtLQwur7Yns6EODC/eQGtZy/RddpGen0/SufJkPW0czhUu2EQV6pctdMXx3LerKURxT5TkXS0p9B5+vb+5zoCWp1J7Wr+RblbYhcn4KIJ1w4zbOtw70bT1hG5zeMT9ThkYOs5qH0PgpClsbdB7hgVLYhR+8BQZLFRX78TTl1CpkqJPyNEtKSEheadOKNIaJjzjAxxSsc+RsleAZtMFBnS1MgQbSuXYLCqlkRuFXbzN5DMDWeSfbUjPsg/r+DF3+Ib87Sji4uyMf063qaILtvgOonpOSJ25V3F4eP7G8/ennOVuS/FB5wiw9FcrH5toX5CNdEREIab7X7pFPOr1W3yKHtWUWuLN/g5cQFSglohbNNZH2zJUNBtEcvUk8PFC/JJYidZRpVDBBOqvg8HjYuZRurzKclsPZKOOzrxztmgjHsWa2gHf7POuBX16knWjcb817JzvyX0n2LLnTrRjsA1NRV7ZKfTs8DIFbBigK/NnJcowTYQyU3sq0Xz1BMgnJ/OQwJySY7mPxBqybdDKcMEE5kKYSI8dcVNhXsFn7EIHsTt11cFh7myfZ2fZGUmCChwf8cdiNurV765YToXlb6f9y65PyVFGNJZSD6LugDY9UTsq40VeSqOiOPudLO7J/DymRIf7LgPREKOHQVPLCFdusHvF8uYH5SFoVru6+P+B+l97oPYUxnsGjZYqvpsiXFc9Mz2InpmITyqmLJKsVlxdfzq9XrM4ukZyGm7eTDzjVo8y0gVRWccUP3dQS+/5XFanrkbiIzpeJ5sdl3mOTXhR98seq97dju5JedK/uBm7JHWSaYf/DwUNbIR+15JYthIbsNN6Z5O/fwCMN76/
+sidebar_class_name: "post api-method"
+info_path: api-routes/qwksearch-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generate language model reply using agent prompts"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/agents"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generates a language model reply using agent prompts.
+
+LLM provider - groq, openai, anthropic, together, xai, google
+
+  1. summarize-bullets:
+      - article
+  2. summarize:
+      - article
+  3. suggest-followups:
+      - chat_history
+      - article
+  4. answer:
+      - chat_history
+      - query
+  5. query-resolution:
+      - chat_history
+      - query
+  6. knowledge-graph-nodes:
+      - query
+      - article
+  7. summary-longtext:
+      - article
+      - sections
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["provider"],"properties":{"prompt":{"type":"string","description":"System prompt for the language model"},"agent":{"type":"string","description":"Agent name - summarize-bullets, summarize, suggest-followups, \nanswer, query-resolution, knowledge-graph-nodes, \nsummary-longtext\n"},"context":{"type":"string","description":"JSON Object String of variables with escaped \\\\\" to insert into prompt like {chat_history:\"\"}"},"provider":{"type":"string","default":"groq","description":"LLM provider - groq, openai, anthropic, together, xai, google"},"key":{"type":"string","description":"Your API key for the AI provider"},"model":{"type":"string","default":"llama-3.2-11b-vision-preview"},"html":{"type":"string","default":true,"description":"If true, reply format is HTML. If false, Markdown."},"temperature":{"type":"number","description":"Temperature controls the randomness of the model's predictions.\nA higher value means the model will be more creative and less deterministic,\nwhile a lower value means the model will be more deterministic.\n","default":0.7}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Generated reply","content":{"application/json":{"schema":{"type":"object","properties":{"reply":{"type":"string","description":"Generated reply"}}}}}},"500":{"description":"Server error or missing prompt parameter","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"}}}}}}}}
+>
+  
+</StatusCodes>
+

@@ -1,56 +1,76 @@
-[qwksearch-web-app](../modules.md) / lib/custom-domain
+[Documentation](../modules.md) / lib/custom-domain
 
-## Variables
-
-### API\_ACCESS\_ALLOW\_GUEST
+## API\_ACCESS\_ALLOW\_GUEST
 
 ```ts
 const API_ACCESS_ALLOW_GUEST: true = true;
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:20
+
 Domain Specific Customizations
 
 ***
 
-### APP\_EMAIL
+## APP\_EMAIL
 
 ```ts
 const APP_EMAIL: string;
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:17
+
 Domain Specific Customizations
 
 ***
 
-### APP\_ICON
+## APP\_ICON
 
 ```ts
 const APP_ICON: string;
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:18
+
 Domain Specific Customizations
 
 ***
 
-### APP\_NAME
+## APP\_NAME
 
 ```ts
 const APP_NAME: "QwkSearch" = "QwkSearch";
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:15
+
 Domain Specific Customizations
 
 ***
 
-### FOOTER\_LINKS
+## APP\_SLOGAN
+
+```ts
+const APP_SLOGAN: "Reimagine the Internet as Self-Organizing Mind Map" = "Reimagine the Internet as Self-Organizing Mind Map";
+```
+
+Defined in: web-app/src/lib/custom-domain.ts:16
+
+Domain Specific Customizations
+
+***
+
+## FOOTER\_LINKS
 
 ```ts
 const FOOTER_LINKS: object[];
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:24
+
 Domain Specific Customizations
 
-#### Type declaration
+### Type declaration
 
 <table>
 <thead>
@@ -58,6 +78,7 @@ Domain Specific Customizations
 <th>Name</th>
 <th>Type</th>
 <th>Default value</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
@@ -74,7 +95,12 @@ Domain Specific Customizations
 </td>
 <td>
 
-"Docs"
+`"Docs"`
+
+</td>
+<td>
+
+web-app/src/lib/custom-domain.ts:25
 
 </td>
 </tr>
@@ -91,7 +117,12 @@ Domain Specific Customizations
 </td>
 <td>
 
-"https://airesearch.js.org"
+`"https://airesearch.js.org"`
+
+</td>
+<td>
+
+web-app/src/lib/custom-domain.ts:25
 
 </td>
 </tr>
@@ -100,60 +131,72 @@ Domain Specific Customizations
 
 ***
 
-### GOOGLE\_ANALYTICS
+## GOOGLE\_ANALYTICS
 
 ```ts
 const GOOGLE_ANALYTICS: "G-E5TZ32BZDF" = "G-E5TZ32BZDF";
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:19
+
 Domain Specific Customizations
 
 ***
 
-### proxy
+## proxy
 
 ```ts
 const proxy: string;
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:23
+
 Domain Specific Customizations
 
 ***
 
-### PUBLIC\_DOMAIN
+## PUBLIC\_DOMAIN
 
 ```ts
-const PUBLIC_DOMAIN: any = DOMAIN;
+const PUBLIC_DOMAIN: "qwksearch.com" = DOMAIN;
 ```
+
+Defined in: web-app/src/lib/custom-domain.ts:13
 
 Domain Specific Customizations
 
 ***
 
-### PUBLIC\_GOOGLE\_CLIENT\_ID
+## PUBLIC\_GOOGLE\_CLIENT\_ID
 
 ```ts
-const PUBLIC_GOOGLE_CLIENT_ID: any = GOOGLE_CLIENT_ID;
+const PUBLIC_GOOGLE_CLIENT_ID: "644604561446-niuns88krqdrs260kptpf1ti10ecrfls.apps.googleusercontent.com" = GOOGLE_CLIENT_ID;
 ```
+
+Defined in: web-app/src/lib/custom-domain.ts:14
 
 Domain Specific Customizations
 
 ***
 
-### searxngDomain
+## searxngDomain
 
 ```ts
 const searxngDomain: string;
 ```
 
+Defined in: web-app/src/lib/custom-domain.ts:22
+
 Domain Specific Customizations
 
 ***
 
-### SERVER\_API\_URL
+## SERVER\_API\_URL
 
 ```ts
 const SERVER_API_URL: "/api/" = "/api/";
 ```
+
+Defined in: web-app/src/lib/custom-domain.ts:21
 
 Domain Specific Customizations

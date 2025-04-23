@@ -1,12 +1,12 @@
-[ai-research-agent](../../modules.md) / editor/modules/placeholder
+[Documentation](../../modules.md) / editor/modules/placeholder
 
-## Functions
-
-### placeholder()
+## placeholder()
 
 ```ts
-function placeholder(placeholder, options?): (editor) => object
+function placeholder(placeholder: string | Function, options?: PlaceholderOptions): (editor: Editor) => object;
 ```
+
+Defined in: editor/modules/placeholder.ts:25
 
 Set placeholder text in the editable area when there is no content. Then add the css:
 
@@ -23,7 +23,7 @@ Set placeholder text in the editable area when there is no content. Then add the
 }
 ```
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -48,7 +48,7 @@ Set placeholder text in the editable area when there is no content. Then add the
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -60,11 +60,13 @@ Set placeholder text in the editable area when there is no content. Then add the
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-`Function`
+```ts
+(editor: Editor): object;
+```
 
-##### Parameters
+#### Parameters
 
 <table>
 <thead>
@@ -89,10 +91,35 @@ Set placeholder text in the editable area when there is no content. Then add the
 </tbody>
 </table>
 
-##### Returns
+#### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `destroy()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/placeholder.ts:57
+
+</td>
+</tr>
+</tbody>
+</table>

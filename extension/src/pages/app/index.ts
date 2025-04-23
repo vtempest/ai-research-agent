@@ -1,8 +1,6 @@
-import Main from '$components/DebateApp/DebateApp.svelte';
-import "tailwindcss/tailwind.css";
-import "./app.pcss";
-
-
+import Main from '$components/AppLayout/AppLayout.svelte';
+import "./app.css";
 import { mount } from 'svelte';
+
 const app = mount(Main, { target: document.body });
 

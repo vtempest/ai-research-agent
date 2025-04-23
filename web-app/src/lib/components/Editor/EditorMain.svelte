@@ -32,6 +32,10 @@
   const browser = typeof window !== "undefined";
 
 
+  onMount(() => {
+       
+  });
+
   function handleScroll() {
     // Implement scrolling logic for the editor
   }
@@ -188,11 +192,11 @@
   let showCopiedMessage = false;
 </script>
 
-<svelte:head>
-  <title
-    >REASON: Research Editor for Annotated Summaries in Outline Notation</title
-  >
-</svelte:head>
+<!-- <svelte:head>
+  {#if browser}
+    <title>REASON: Research Editor for Annotated Summaries in Outline Notation</title>
+  {/if}
+</svelte:head> -->
 
 <Splitpanes style="height: 100vh;">
   <Pane size={20}>
@@ -209,7 +213,6 @@
   <Pane>
     <div class="h-full flex flex-col">
       <TopBar
-        {viewMode}
         {recentBlocks}
         {handleCopy}
         {handleViewModeChange}
@@ -217,7 +220,7 @@
         {handleLoadBlock}
       />
 
-      <div class="flex-grow overflow-hidden p-1" onscroll={handleScroll}>
+      <div class="grow overflow-hidden p-1" onscroll={handleScroll}>
         <EditorComponent
           bind:this={editor}
 

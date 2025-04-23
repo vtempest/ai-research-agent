@@ -34,7 +34,7 @@ function handleResultClick(index) {
 }
 </script>
 
-<div bind:this={resultsList} class="results-list flex-grow overflow-y-auto overflow-x-hidden p-0">
+<div bind:this={resultsList} class="results-list grow overflow-y-auto overflow-x-hidden p-0">
 {#if searchResultList.length > 0}
   <div class="space-y-1">
     <!-- // @ts-ignore -->
@@ -50,7 +50,7 @@ function handleResultClick(index) {
       >
         <div class="flex justify-between items-top mb-1">
           <div
-            class="text-md font-medium mb-0 text-slate-600 flex-grow pr-2 max-w-full"
+            class="text-md font-medium mb-0 text-slate-600 grow pr-2 max-w-full"
           >
             {title}
           </div>
@@ -59,7 +59,7 @@ function handleResultClick(index) {
             target="_blank"
             aria-label="Open in new tab"
             rel="noopener noreferrer"
-            class="text-gray-500 hover:text-gray-700 flex-shrink-0 absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            class="text-gray-500 hover:text-gray-700 shrink-0 absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             title="Open in new tab"
           >
             <svg

@@ -129,9 +129,9 @@
           : 'bg-slate-200 border-slate-300  hover:bg-gray-100'}"
       >
         {#if result.favIconUrl}
-          <img src={result.favIconUrl} alt="" class="w-4 h-4 flex-shrink-0" />
+          <img src={result.favIconUrl} alt="" class="w-4 h-4 shrink-0" />
         {:else}
-          <div class="w-4 h-4 flex-shrink-0 bg-gray-200 rounded-full" ></div>
+          <div class="w-4 h-4 shrink-0 bg-gray-200 rounded-full" ></div>
         {/if}
         {#if result.audible || result.muted}
           <span
@@ -175,7 +175,7 @@
             {/if}
           </span>
         {/if}
-        <div class="flex-grow flex flex-col justify-center overflow-hidden">
+        <div class="grow flex flex-col justify-center overflow-hidden">
           <p
             class="text-sm font-medium text-gray-900 truncate"
             title={result.title}
@@ -191,7 +191,7 @@
         <Button
           variant="ghost"
           size="icon"
-          class="flex-shrink-0 h-6 w-6 hover:bg-slate-300"
+          class="shrink-0 h-6 w-6 hover:bg-slate-300"
         >
           <span onclick={(e) => closeTab(result.id, e)}>
             <X size={14} class="text-gray-500" />

@@ -1,19 +1,19 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/url-to-domain
+[Documentation](../../modules.md) / extractor/html-to-cite/url-to-domain
 
-## Functions
-
-### convertURLToDomain()
+## convertURLToDomain()
 
 ```ts
-function convertURLToDomain(domain): string
+function convertURLToDomain(domain: string): string;
 ```
+
+Defined in: extractor/html-to-cite/url-to-domain.js:10
 
 Extract TLD and hostname from domain in Regex. There's [two or more part 
 TLDs](https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains)
 so it is hard to tell if host.secondTLD.tld or host.tld is correct way
 to get root domain (e.g. abc.go.jp, abc.co.uk)
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -42,7 +42,7 @@ to get root domain (e.g. abc.go.jp, abc.co.uk)
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 

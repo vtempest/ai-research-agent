@@ -1,16 +1,16 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-title
+[Documentation](../../modules.md) / extractor/html-to-cite/extract-title
 
-## Functions
-
-### extractTitle()
+## extractTitle()
 
 ```ts
-function extractTitle(document): string
+function extractTitle(document: Document): string;
 ```
+
+Defined in: extractor/html-to-cite/extract-title.js:7
 
 Extract and clean title from document
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -41,7 +41,7 @@ DOM object with article content
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 

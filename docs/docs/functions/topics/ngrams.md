@@ -1,18 +1,18 @@
-[ai-research-agent](../modules.md) / topics/ngrams
+[Documentation](../modules.md) / topics/ngrams
 
-## Functions
-
-### extractNounEdgeGrams()
+## extractNounEdgeGrams()
 
 ```ts
 function extractNounEdgeGrams(
-   nGramSize, 
-   terms, 
-   index, 
-   nGrams, 
-   minWordLength, 
-   sentenceNumber): object
+   nGramSize: number, 
+   terms: (string | number)[][], 
+   index: number, 
+   nGrams: object, 
+   minWordLength: number, 
+   sentenceNumber: number): object;
 ```
+
+Defined in: topics/ngrams.js:27
 
 Extracts noun-based edge grams from a given set of terms. This function is crucial
 for identifying important multi-word concepts in the text.
@@ -22,7 +22,7 @@ The function looks for sequences of words (n-grams) that:
 2. Contain words that are either nouns or common ignored words (like articles or prepositions)
 3. Meet the minimum word length requirement
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -93,7 +93,7 @@ The starting index in the terms array to begin extraction. This allows for slidi
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 <td>
@@ -139,13 +139,13 @@ The current sentence number being processed. Used to track which sentences conta
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
 The updated nGrams object with newly extracted n-grams.
 
-#### Example
+### Example
 
 ```ts
 let terms = [["The", 1], ["quick", 2], ["brown", 2], ["fox", 3], ["jumps", 4]];

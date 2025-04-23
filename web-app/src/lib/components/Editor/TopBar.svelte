@@ -49,7 +49,7 @@
 
 <div class="border-b p-2 flex items-center space-x-4 shadow-md ">
   <Select.Root type="single" name="viewMode" bind:value={viewMode} onSelectedChange={handleViewModeChange}>
-    <Select.Trigger class="min-w-[120px] w-[120px] shadow-sm bg-white">
+    <Select.Trigger class="min-w-[120px] w-[120px] shadow-xs bg-white">
       <Eye class="h-4 w-4 mr-2" />
       {viewModes.find(mode => mode.value === viewMode)?.label || ''} 
 
@@ -66,23 +66,23 @@
     </Select.Content>
   </Select.Root>
 
-  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" onclick={triggerFileUpload}>
+  <Button variant="outline" class="whitespace-nowrap shadow-xs bg-white" onclick={triggerFileUpload}>
     <Upload class="h-4 w-4 mr-2" />
     Upload
   </Button>
 
-  <Button variant="outline" class="whitespace-nowrap shadow-sm bg-white" onclick={handleCopy}>
+  <Button variant="outline" class="whitespace-nowrap shadow-xs bg-white" onclick={handleCopy}>
     <Copy class="h-4 w-4 mr-2" />
       </Button>
 
   {#if recentBlocks && recentBlocks.length > 0}
     <Tabs.Root value={activeTab} class="flex-1">
-      <Tabs.List class="w-full bg-muted p-1 rounded-md shadow-sm">
+      <Tabs.List class="w-full bg-muted p-1 rounded-md shadow-xs">
         {#each recentBlocks as block (block.blockIndex)}
           {#if block && block.blockIndex !== undefined}
             <Tabs.Trigger
               value={block.blockIndex.toString()}
-              class="relative data-[state=active]:shadow-sm"
+              class="relative data-[state=active]:shadow-xs"
               onclick={() => handleRecentBlockClick(block)}
             >
               {block.title || 'Untitled'}

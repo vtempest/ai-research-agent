@@ -1,16 +1,16 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/metadata-to-cite
+[Documentation](../../modules.md) / extractor/html-to-cite/metadata-to-cite
 
-## Functions
-
-### extractCiteFromMetadata()
+## extractCiteFromMetadata()
 
 ```ts
-function extractCiteFromMetadata(doc): any
+function extractCiteFromMetadata(doc: Document): any;
 ```
+
+Defined in: extractor/html-to-cite/metadata-to-cite.js:6
 
 Extract cite info from common property names in webpage's metadata
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -41,7 +41,7 @@ dom object of document
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 

@@ -1,48 +1,75 @@
-[ai-research-agent](../../modules.md) / editor/rendering/rendering
+[Documentation](../../modules.md) / editor/rendering/rendering
 
-## Interfaces
+## HTMLLineElement
 
-### HTMLLineElement
+Defined in: editor/rendering/rendering.ts:22
 
-#### Extends
+### Extends
 
 - `HTMLElement`
 
-#### Properties
+### Properties
 
-##### key
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-key: string;
-```
+<a id="key"></a> `key`
 
-## Type Aliases
+</td>
+<td>
 
-### Combined
+`string`
+
+</td>
+<td>
+
+editor/rendering/rendering.ts:23
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## Combined
 
 ```ts
 type Combined = CombinedEntry[];
 ```
 
+Defined in: editor/rendering/rendering.ts:16
+
 ***
 
-### CombinedEntry
+## CombinedEntry
 
 ```ts
-type CombinedEntry = 
-  | default
-  | default[];
+type CombinedEntry = Line | Line[];
 ```
 
-## Functions
+Defined in: editor/rendering/rendering.ts:15
 
-### combineLines()
+***
+
+## combineLines()
 
 ```ts
-function combineLines(editor, lines): CombinedData
+function combineLines(editor: Editor, lines: Line[]): CombinedData;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:141
+
+### Parameters
 
 <table>
 <thead>
@@ -72,26 +99,28 @@ function combineLines(editor, lines): CombinedData
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)[]
+[`Line`](../index.md#line)[]
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `CombinedData`
 
 ***
 
-### getChangedRanges()
+## getChangedRanges()
 
 ```ts
-function getChangedRanges(oldC, newC): LineRanges
+function getChangedRanges(oldC: Combined, newC: Combined): LineRanges;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:179
+
+### Parameters
 
 <table>
 <thead>
@@ -109,7 +138,7 @@ function getChangedRanges(oldC, newC): LineRanges
 </td>
 <td>
 
-[`Combined`](rendering.md#combined)
+[`Combined`](#combined)
 
 </td>
 </tr>
@@ -121,26 +150,28 @@ function getChangedRanges(oldC, newC): LineRanges
 </td>
 <td>
 
-[`Combined`](rendering.md#combined)
+[`Combined`](#combined)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `LineRanges`
 
 ***
 
-### getLineNodeEnd()
+## getLineNodeEnd()
 
 ```ts
-function getLineNodeEnd(root, node): number
+function getLineNodeEnd(root: HTMLElement, node: Node): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:30
+
+### Parameters
 
 <table>
 <thead>
@@ -177,19 +208,21 @@ function getLineNodeEnd(root, node): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### getLineNodeStart()
+## getLineNodeStart()
 
 ```ts
-function getLineNodeStart(root, node): number
+function getLineNodeStart(root: HTMLElement, node: Node): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:26
+
+### Parameters
 
 <table>
 <thead>
@@ -226,19 +259,21 @@ function getLineNodeStart(root, node): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### render()
+## render()
 
 ```ts
-function render(editor, doc): void
+function render(editor: Editor, doc: default): void;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:69
+
+### Parameters
 
 <table>
 <thead>
@@ -275,22 +310,24 @@ function render(editor, doc): void
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### renderChanges()
+## renderChanges()
 
 ```ts
 function renderChanges(
-   editor, 
-   oldDoc, 
-   newDoc): void
+   editor: Editor, 
+   oldDoc: default, 
+   newDoc: default): void;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:78
+
+### Parameters
 
 <table>
 <thead>
@@ -339,22 +376,24 @@ function renderChanges(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### renderCombined()
+## renderCombined()
 
 ```ts
 function renderCombined(
-   editor, 
-   combined, 
-   forHTML?): VNode[]
+   editor: Editor, 
+   combined: Combined, 
+   forHTML?: boolean): VNode[];
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:111
+
+### Parameters
 
 <table>
 <thead>
@@ -384,14 +423,14 @@ function renderCombined(
 </td>
 <td>
 
-[`Combined`](rendering.md#combined)
+[`Combined`](#combined)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -403,22 +442,24 @@ function renderCombined(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](vdom.md#vnode)[]
 
 ***
 
-### renderDoc()
+## renderDoc()
 
 ```ts
 function renderDoc(
-   editor, 
-   doc, 
-   forHTML?): VNode[]
+   editor: Editor, 
+   doc: default, 
+   forHTML?: boolean): VNode[];
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:107
+
+### Parameters
 
 <table>
 <thead>
@@ -455,7 +496,7 @@ function renderDoc(
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -467,22 +508,24 @@ function renderDoc(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](vdom.md#vnode)[]
 
 ***
 
-### renderInline()
+## renderInline()
 
 ```ts
 function renderInline(
-   editor, 
-   line, 
-   forHTML?): VChild[]
+   editor: Editor, 
+   line: Line, 
+   forHTML?: boolean): VChild[];
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:206
+
+### Parameters
 
 <table>
 <thead>
@@ -512,14 +555,14 @@ function renderInline(
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)
+[`Line`](../index.md#line)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -531,22 +574,24 @@ function renderInline(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VChild`](vdom.md#vchild)[]
 
 ***
 
-### renderLine()
+## renderLine()
 
 ```ts
 function renderLine(
-   editor, 
-   line, 
-   forHTML?): VNode
+   editor: Editor, 
+   line: CombinedEntry, 
+   forHTML?: boolean): VNode;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:115
+
+### Parameters
 
 <table>
 <thead>
@@ -576,14 +621,14 @@ function renderLine(
 </td>
 <td>
 
-[`CombinedEntry`](rendering.md#combinedentry)
+[`CombinedEntry`](#combinedentry)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -595,22 +640,24 @@ function renderLine(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](vdom.md#vnode)
 
 ***
 
-### renderMultiLine()
+## renderMultiLine()
 
 ```ts
 function renderMultiLine(
-   editor, 
-   lines, 
-   forHTML?): VNode
+   editor: Editor, 
+   lines: Line[], 
+   forHTML?: boolean): VNode;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:128
+
+### Parameters
 
 <table>
 <thead>
@@ -640,14 +687,14 @@ function renderMultiLine(
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)[]
+[`Line`](../index.md#line)[]
 
 </td>
 </tr>
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -659,22 +706,24 @@ function renderMultiLine(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](vdom.md#vnode)
 
 ***
 
-### renderSingleLine()
+## renderSingleLine()
 
 ```ts
 function renderSingleLine(
-   editor, 
-   line, 
-   forHTML?): VNode
+   editor: Editor, 
+   line: Line, 
+   forHTML?: boolean): VNode;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:119
+
+### Parameters
 
 <table>
 <thead>
@@ -704,14 +753,14 @@ function renderSingleLine(
 </td>
 <td>
 
-[`default`](../document/Line/index.md#default)
+[`Line`](../index.md#line)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`forHTML`?
+`forHTML?`
 
 </td>
 <td>
@@ -723,19 +772,21 @@ function renderSingleLine(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`VNode`](vdom.md#vnode)
 
 ***
 
-### setLineNodesRanges()
+## setLineNodesRanges()
 
 ```ts
-function setLineNodesRanges(editor): void
+function setLineNodesRanges(editor: Editor): void;
 ```
 
-#### Parameters
+Defined in: editor/rendering/rendering.ts:34
+
+### Parameters
 
 <table>
 <thead>
@@ -760,6 +811,6 @@ function setLineNodesRanges(editor): void
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`

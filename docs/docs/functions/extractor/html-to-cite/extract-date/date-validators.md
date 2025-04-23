@@ -1,14 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/date-validators
+[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/date-validators
 
-## Functions
-
-### check\_date\_input()
+## check\_date\_input()
 
 ```ts
-function check_date_input(date_object, default_date): any
+function check_date_input(date_object: any, default_date: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:153
+
+### Parameters
 
 <table>
 <thead>
@@ -45,19 +45,21 @@ function check_date_input(date_object, default_date): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### check\_extracted\_reference()
+## check\_extracted\_reference()
 
 ```ts
-function check_extracted_reference(reference, options): string
+function check_extracted_reference(reference: any, options: any): string;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:142
+
+### Parameters
 
 <table>
 <thead>
@@ -94,22 +96,24 @@ function check_extracted_reference(reference, options): string
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`
 
 ***
 
-### compare\_values()
+## compare\_values()
 
 ```ts
 function compare_values(
-   reference, 
-   attempt, 
-   options): any
+   reference: any, 
+   attempt: any, 
+   options: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:105
+
+### Parameters
 
 <table>
 <thead>
@@ -158,22 +162,24 @@ function compare_values(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### convert\_date()
+## convert\_date()
 
 ```ts
 function convert_date(
-   datestring, 
-   inputformat, 
-   outputformat): any
+   datestring: any, 
+   inputformat: any, 
+   outputformat: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:131
+
+### Parameters
 
 <table>
 <thead>
@@ -222,26 +228,28 @@ function convert_date(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### filter\_ymd\_candidate()
+## filter\_ymd\_candidate()
 
 ```ts
 function filter_ymd_candidate(
-   bestmatch, 
-   pattern, 
-   original_date, 
-   copyear, 
-   outputformat, 
-   min_date, 
-   max_date): any
+   bestmatch: any, 
+   pattern: any, 
+   original_date: any, 
+   copyear: any, 
+   outputformat: any, 
+   min_date: any, 
+   max_date: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:119
+
+### Parameters
 
 <table>
 <thead>
@@ -338,19 +346,21 @@ function filter_ymd_candidate(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### get\_max\_date()
+## get\_max\_date()
 
 ```ts
-function get_max_date(max_date): any
+function get_max_date(max_date: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:171
+
+### Parameters
 
 <table>
 <thead>
@@ -375,19 +385,21 @@ function get_max_date(max_date): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### get\_min\_date()
+## get\_min\_date()
 
 ```ts
-function get_min_date(min_date): any
+function get_min_date(min_date: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:167
+
+### Parameters
 
 <table>
 <thead>
@@ -412,23 +424,25 @@ function get_min_date(min_date): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### is\_valid\_date()
+## is\_valid\_date()
 
 ```ts
 function is_valid_date(
-   date_input, 
-   outputformat, 
-   earliest, 
-   latest): boolean
+   date_input: any, 
+   outputformat: any, 
+   earliest: any, 
+   latest: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:11
+
+### Parameters
 
 <table>
 <thead>
@@ -489,19 +503,21 @@ function is_valid_date(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### is\_valid\_format()
+## is\_valid\_format()
 
 ```ts
-function is_valid_format(outputformat): boolean
+function is_valid_format(outputformat: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:48
+
+### Parameters
 
 <table>
 <thead>
@@ -526,25 +542,27 @@ function is_valid_format(outputformat): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### plausible\_year\_filter()
+## plausible\_year\_filter()
 
 ```ts
 function plausible_year_filter(
-   htmlstring, 
-   pattern, 
-   yearpat, 
-   earliest, 
-   latest, 
-   incomplete): Map<any, any>
+   htmlstring: any, 
+   pattern: any, 
+   yearpat: any, 
+   earliest: any, 
+   latest: any, 
+   incomplete: boolean): Map<any, any>;
 ```
 
-#### Parameters
+Defined in: extractor/html-to-cite/extract-date/date-validators.js:65
+
+### Parameters
 
 <table>
 <thead>
@@ -660,6 +678,6 @@ function plausible_year_filter(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Map`&lt;`any`, `any`&gt;

@@ -7,10 +7,10 @@ const [major, minor, patch] = version.replace(/[^\d.-]+/g, "").split(/[.-]/);
 
 export default defineManifest(async (env) => ({
   manifest_version: 3,
-  name: "Debate AI - Collaborative Research",
+  name: "QwkSearch Tab Manager AI",
   version: `${major}.${minor}.${patch}`,
   version_name: version,
-  description: "Debate AI - Collaborative Research ",
+  description: "QwkSearch Tab Manager AI",
   permissions: ["sidePanel", "scripting", "contextMenus", "tabs", "favicon",
     "activeTab", "webRequest", "declarativeNetRequest"],
   host_permissions: ["<all_urls>"],
@@ -21,7 +21,8 @@ export default defineManifest(async (env) => ({
     default_path: "src/pages/sidepanel/index.html",
   },
 
-  //loads entire site as page inside the chrome extension
+  // loads entire site as page inside the chrome extension
+  // TODO: fix svelte $app imports not working
   // options_page: "index.html",
 
   action: {
@@ -40,13 +41,13 @@ export default defineManifest(async (env) => ({
       },
     },
   },
-  content_scripts: [
-    {
-      matches: ["<all_urls>"],
-      js: ["src/pages/content/index.js"],
-    },
-  ],
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/pages/content/index.js"]
+    }
+  ],
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self'",
   },
@@ -59,6 +60,5 @@ export default defineManifest(async (env) => ({
       resources: ["_favicon/*"],
       matches: ["<all_urls>"]
     }
-
-  ],
+  ]
 }));

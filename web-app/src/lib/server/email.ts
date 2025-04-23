@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 import { PUBLIC_DOMAIN, APP_EMAIL, APP_NAME, APP_ICON } from "$lib/custom-domain";
 // @ts-ignore
-import { AUTH_RESEND_KEY } from "$env/static/private";
+// import { AUTH_RESEND_KEY } from "$env/static/private";
 
 var EmailChangeHtml = `
   <h4>Hello {{user}}!</h4>
@@ -11,7 +11,7 @@ var EmailChangeHtml = `
     <p>If you didn't ask to change your email address, you can ignore this email.</p>
     <p>
       Thanks,<br />
-      {{appName}} 
+      {{appName}}  
 
     </p>
     `;
@@ -60,10 +60,11 @@ var WelcomeHtml = `
   export async function sendEmail(
     email: string,
     subject: string,
-    body: string
+    body: string,
+    authResendKey: string
   ): Promise<boolean> {
     try {
-      const resend = new Resend(AUTH_RESEND_KEY);
+      const resend = new Resend(authResendKey);
 
     const data = await resend.emails.send({
       from: APP_NAME + " <" + APP_EMAIL + ">",
@@ -90,7 +91,8 @@ var WelcomeHtml = `
 export async function sendEmailVerificationEmail(
   email: string,
   name: string,
-  token: string
+  token: string,
+  authResendKey: string
 ): Promise<boolean> {
   if (!email || !name || !token) return false;
 
@@ -100,12 +102,13 @@ export async function sendEmailVerificationEmail(
     .replace("{{urlLogo}}", APP_ICON)
     .replace("{{token}}", token);
 
-  return await sendEmail(email, "Verify your " + APP_NAME + " email", body);
+  return await sendEmail(email, "Verify your " + APP_NAME + " email", body, authResendKey);
 }
 
 export async function sendWelcomeEmail(
   email: string,
   name: string,
+  authResendKey: string
 ): Promise<boolean> {
   if (!email || !name) return false;
 
@@ -114,13 +117,14 @@ export async function sendWelcomeEmail(
     .replace("{{urlLogo}}", APP_ICON)
     .replace("{{url}}", PUBLIC_DOMAIN);
 
-  return await sendEmail(email, "Welcome to " + APP_NAME, body);
+  return await sendEmail(email, "Welcome to " + APP_NAME, body, authResendKey);
 }
 
 // TODO insert welcome user in this email
 export async function sendPasswordResetEmail(
   email: string,
-  token: string
+  token: string,
+  authResendKey: string
 ): Promise<boolean> {
   if (!email || !token) return false;
 
@@ -129,13 +133,14 @@ export async function sendPasswordResetEmail(
     .replace("{{urlLogo}}", APP_ICON)
     .replace("{{token}}", token);
 
-  return await sendEmail(email, "Reset your password for " + APP_NAME, body);
+  return await sendEmail(email, "Reset your password for " + APP_NAME, body, authResendKey);
 }
 
 export async function sendEmailChangeEmail(
   email: string,
   name: string,
-  token: string
+  token: string,
+  authResendKey: string
 ): Promise<boolean> {
   if (!email || !name || !token) return false;
 
@@ -148,6 +153,7 @@ export async function sendEmailChangeEmail(
   return await sendEmail(
     email,
     "Confirm your " + APP_NAME + " new email address",
-    body
+    body,
+    authResendKey
   );
 }

@@ -84,7 +84,7 @@
 </script>
 
 <div
-	class="flex items-center space-x-2 p-2 bg-white border rounded-md shadow-sm folder-dropzone"
+	class="flex items-center space-x-2 p-2 bg-white border rounded-md shadow-xs folder-dropzone"
 	class:cursor-grab={!renaming}
 	data-id={safeItem?.id}
 	use:dndzone={{
@@ -103,7 +103,7 @@
 	</div>
 
 	{#if safeItem.type === 'folder'}
-		<button on:click={handleToggleFolder} class="focus:outline-none">
+		<button on:click={handleToggleFolder} class="focus:outline-hidden">
 			{#if safeItem.expanded}
 				<ChevronDown class="h-4 w-4 text-gray-600" />
 			{:else}
@@ -122,10 +122,10 @@
 			bind:value={newName}
 			on:blur={finishRename}
 			on:keypress={(e) => e.key === 'Enter' && finishRename()}
-			class="flex-grow bg-gray-100 px-2 py-1 rounded"
+			class="grow bg-gray-100 px-2 py-1 rounded"
 		/>
 	{:else}
-		<span class="flex-grow cursor-pointer" on:click={handleClickFile}>
+		<span class="grow cursor-pointer" on:click={handleClickFile}>
 			{safeItem.name}
 		</span>
 	{/if}

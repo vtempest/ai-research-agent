@@ -1,22 +1,24 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/TextItem
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/TextItem
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/TextItem.js:15
 
-#### Extends
+### Extends
 
 - `PageItem`
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/TextItem.js:16
+
+##### Parameters
 
 <table>
 <thead>
@@ -41,96 +43,128 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](TextItem.md#default)
+[`default`](#default)
 
-###### Overrides
+##### Overrides
 
-`PageItem.constructor`
+```ts
+PageItem.constructor
+```
 
-#### Properties
+### Properties
 
-##### annotation
+#### annotation
 
 ```ts
 annotation: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/TextItem.js:8
 
-`PageItem.annotation`
+##### Inherited from
 
-##### font
+```ts
+PageItem.annotation
+```
+
+#### font
 
 ```ts
 font: any;
 ```
 
-##### height
+Defined in: extractor/pdf-to-html/models/TextItem.js:23
+
+#### height
 
 ```ts
 height: any;
 ```
 
-##### lineFormat
+Defined in: extractor/pdf-to-html/models/TextItem.js:21
+
+#### lineFormat
 
 ```ts
 lineFormat: any;
 ```
 
-##### parsedElements
+Defined in: extractor/pdf-to-html/models/TextItem.js:25
+
+#### parsedElements
 
 ```ts
 parsedElements: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/TextItem.js:9
 
-`PageItem.parsedElements`
+##### Inherited from
 
-##### text
+```ts
+PageItem.parsedElements
+```
+
+#### text
 
 ```ts
 text: any;
 ```
 
-##### type
+Defined in: extractor/pdf-to-html/models/TextItem.js:22
+
+#### type
 
 ```ts
 type: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/TextItem.js:7
 
-`PageItem.type`
+##### Inherited from
 
-##### unclosedFormat
+```ts
+PageItem.type
+```
+
+#### unclosedFormat
 
 ```ts
 unclosedFormat: any;
 ```
 
-##### unopenedFormat
+Defined in: extractor/pdf-to-html/models/TextItem.js:27
+
+#### unopenedFormat
 
 ```ts
 unopenedFormat: any;
 ```
 
-##### width
+Defined in: extractor/pdf-to-html/models/TextItem.js:26
+
+#### width
 
 ```ts
 width: any;
 ```
 
-##### x
+Defined in: extractor/pdf-to-html/models/TextItem.js:20
+
+#### x
 
 ```ts
 x: any;
 ```
 
-##### y
+Defined in: extractor/pdf-to-html/models/TextItem.js:18
+
+#### y
 
 ```ts
 y: any;
 ```
+
+Defined in: extractor/pdf-to-html/models/TextItem.js:19

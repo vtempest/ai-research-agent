@@ -1,40 +1,39 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let {  viewMode, content } = $props();
-  
+  let { viewMode, content } = $props();
+
   let editor = $state(null);
   let Root;
   let InlineMenu;
   let BubbleMenu;
 
   $effect(() => {
-    if (content && editor) 
-    editor.setHTML(content);
-  })
+    if (content && editor) editor.setHTML(content);
+  });
 
   onMount(async () => {
-    if (typeof window == "undefined") return;
-      // @ts-ignore
-      const typewriterModule = await import("$ai-research-agent/src/editor");
-      const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
+    // if (typeof window == "undefined") return;
+    // // @ts-ignore
+    // const typewriterModule = await import("$ai-research-agent/src/editor");
+    // const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
 
-      let Editor = typewriterModule.Editor;
-      BubbleMenu = typewriterModule.BubbleMenu;
-      Root = typewriterModule.Root;
-      InlineMenu = typewriterModule.InlineMenu;
+    // let Editor = typewriterModule.Editor;
+    // BubbleMenu = typewriterModule.BubbleMenu;
+    // Root = typewriterModule.Root;
+    // InlineMenu = typewriterModule.InlineMenu;
 
-      editor = new Editor({
-        formats: ["link", "bold", "mark", "italic", "code", "underline"],
-        modules: {
-          smartEntry: smartEntry(),
-          smartQuotes,
-          rendering: virtualRendering,
-        },
-      });
+    // editor = new Editor({
+    //   formats: ["link", "bold", "mark", "italic", "code", "underline"],
+    //   modules: {
+    //     smartEntry: smartEntry(),
+    //     smartQuotes,
+    //     rendering: virtualRendering,
+    //   },
+    // });
 
-      // @ts-ignore
-      window.editor = editor;
+    // // @ts-ignore
+    // window.editor = editor;
   });
 
   export function setHTML(html) {
@@ -48,7 +47,7 @@
 
 {#if editor}
   <InlineMenu {editor} let:active let:commands>
-    <div class="menu inline-menu z-100" >
+    <div class="menu inline-menu z-100">
       <div data-popper-arrow class="arrow"></div>
       <button
         class="menu-button"
@@ -104,57 +103,51 @@
       >
 
       <button
-      class="menu-button"
-      class:active={active.paragraph}
-      onclick={commands.paragraph}>P</button
-    >
+        class="menu-button"
+        class:active={active.paragraph}
+        onclick={commands.paragraph}>P</button
+      >
 
       <button
-      class="menu-button"
-      class:active={active.header === 1}
-      onclick={commands.header1}>H1</button
-    >
+        class="menu-button"
+        class:active={active.header === 1}
+        onclick={commands.header1}>H1</button
+      >
 
-    <button
-      class="menu-button"
-      class:active={active.header === 2}
-      onclick={commands.header2}>H2</button
-    >
+      <button
+        class="menu-button"
+        class:active={active.header === 2}
+        onclick={commands.header2}>H2</button
+      >
 
-    <button
-      class="menu-button"
-      class:active={active.header === 3}
-      onclick={commands.header3}>H3</button
-    >
+      <button
+        class="menu-button"
+        class:active={active.header === 3}
+        onclick={commands.header3}>H3</button
+      >
 
-    <button
-      class="menu-button"
-      class:active={active.header === 4}
-      onclick={commands.header4}>Tag</button
-    >
+      <button
+        class="menu-button"
+        class:active={active.header === 4}
+        onclick={commands.header4}>Tag</button
+      >
     </div>
   </BubbleMenu>
 
   <div class="editor {viewMode}">
-    <Root {editor} >
+    <Root {editor}>
       {@html content}
     </Root>
   </div>
 {/if}
 
 <style>
-  
-  :global(.editor h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6) {
+  :global(.editor h1, h2, h3, h4, h5, h6) {
     font-weight: bold !important;
     margin-top: 10px;
     padding: 4px;
   }
- 
+
   :global(.editor h1) {
     font-size: 18pt !important;
   }
@@ -172,44 +165,44 @@
   }
   :global(.editor h1),
   :global(.editor h2),
-  :global(.editor h3){
+  :global(.editor h3) {
     margin: 10px 5px;
     border-top: #dfdfdf 2px solid;
   }
-  :global(.editor h1){
+  :global(.editor h1) {
     margin: 10px 5px;
     font-variant: small-caps;
     /* border: 2px solid gray; */
     border-radius: 10px;
     background-color: rgb(225, 222, 222, 0.6);
-    
+
     --tw-shadow: 0 3px 5px 0 rgb(0 0 0 / 0.4);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
-  :global(.editor h2){
+  :global(.editor h2) {
     font-variant: small-caps;
     background-color: rgb(225, 222, 222, 0.4);
-     margin: 10px 5px;
+    margin: 10px 5px;
     /* border: 2px solid gray; */
     border-radius: 10px;
     --tw-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.25);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
   :global(.editor h3) {
     background-color: rgb(225, 222, 222, 0.2);
-    
+
     font-variant: small-caps;
-     margin: 10px 5px;
+    margin: 10px 5px;
     /* border: 2px solid gray; */
     border-radius: 10px;
     --tw-shadow: 0 2px 2px 0 rgb(0 0 0 / 0.15);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   :global(.editor h3),
@@ -244,8 +237,7 @@
     then make the underlined text normal
   */
 
-  :global(.editor.highlighted  p:not(:has(mark)) u) {   
-    
+  :global(.editor.highlighted p:not(:has(mark)) u) {
     font-size: initial;
     letter-spacing: normal;
     line-height: 150%;
@@ -300,7 +292,7 @@
     --sky: #e1f6fd;
   }
 
-   :global(.editor mark) {
+  :global(.editor mark) {
     background-color: var(--yellow);
     text-decoration: underline;
   }
@@ -346,7 +338,7 @@
     z-index: 100;
     height: 32px;
     white-space: nowrap;
-    background-color: #E8E5D8;
+    background-color: #e8e5d8;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
@@ -396,10 +388,11 @@
     content: "";
     transform: rotate(45deg);
   }
-  
-  
-.highlight-cursor {
-  cursor:  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L26 2c-1-1-2.6-1-3.5 0L5 19.5 3.5 25.5 1 28z" fill="%23E68D2C"/><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L8 26z" fill="%23E06B34"/><path d="M17 11.5l3.5 3.5-9 9-3.5-3.5z" fill="%23A8EAEF"/><path d="M18.5 13l2 2-9 9-2-2z" fill="%2380CDD8"/><path d="M5 19.5 3.5 25.5 1 28l2 2 2.5-2.5 6-1.5L5 19.5z" fill="%23D1393C"/></svg>') 0 32, auto;
-}
 
+  .highlight-cursor {
+    cursor:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L26 2c-1-1-2.6-1-3.5 0L5 19.5 3.5 25.5 1 28z" fill="%23E68D2C"/><path d="M2 30l3-3 6-1.5L28.5 8c1-1 1-2.6 0-3.5L8 26z" fill="%23E06B34"/><path d="M17 11.5l3.5 3.5-9 9-3.5-3.5z" fill="%23A8EAEF"/><path d="M18.5 13l2 2-9 9-2-2z" fill="%2380CDD8"/><path d="M5 19.5 3.5 25.5 1 28l2 2 2.5-2.5 6-1.5L5 19.5z" fill="%23D1393C"/></svg>')
+        0 32,
+      auto;
+  }
 </style>

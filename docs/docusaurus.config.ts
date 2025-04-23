@@ -56,17 +56,26 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  * @returns {Promise<Config>}
  * @author [vtempest](https://github.com/vtempest/)
  */
-module.exports = async function createConfig(options: any = {}) {
+export default async function createConfig(options: any = {}) {
   const {
     name = "QwkSearch",
     domain = "https://qwksearch.com",
-    foldersWithFunctions = ["../web-app/src/**/*"],
-    foldersWithFunctions2 = ["../src/**/*"],
+    baseFolder = "./",
+    typedocFolders = [
+      {
+        id: "web-app",
+        entryPoints: ["../web-app/src/**/*"],
+
+      },
+      {
+        id: "functions",
+        entryPoints: ["../src/**/*"],
+      },
+    ],
     showEditsOnGitHub = true,
     GOOGLE_ANALYTICS_ID = "/////G-E5TZ32BZD",
-    gitRepo = "https://github.com/vtempest/ai-research-agent/",
+    gitRepo = "https://github.com/vtempest/ai-research-agent",
     compileForSubdomain = !!process.env.DOCS_ON_SUBDOMAIN,
-    baseFolder = "./",
     tsconfig = "../tsconfig.json",
     tsconfig2 = "../web-app/tsconfig.json",
     readme = "../readme.md",
@@ -96,8 +105,8 @@ module.exports = async function createConfig(options: any = {}) {
         {
           docs: {
             routeBasePath: "/",
-            sidebarPath: baseFolder + "sidebars.ts",
-            editUrl: showEditsOnGitHub ? gitRepo : undefined,
+            sidebarPath: './sidebars.ts',
+            editUrl:  gitRepo,
             // docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           },
           blog: false,
@@ -113,37 +122,38 @@ module.exports = async function createConfig(options: any = {}) {
     ],
 
     plugins: [
-      // [
-      //   "docusaurus-plugin-openapi-docs",
-      //   {
-      //     id: "openapi",
-      //     docsPluginId: "classic",
-      //     config: {
-      //       qwksearch: {
-      //         specPath: "api-routes.yaml",
-      //         outputDir: "./api",
-      //         sidebarOptions: {
-      //           groupPathsBy: "tag",
-      //           categoryLinkSource: "tag",
-      //           sidebarCollapsed: false,
-      //         },
-      //         template:  "api.mustache", // Customize API MDX with mustache template
-      //         hideSendButton: false,
-      //         markdownGenerators: { createApiPageMD }, // customize MDX with markdown generator
-      //         showSchemas: true,
-      //       } satisfies OpenApiPlugin.Options,
-      //     } satisfies Plugin.PluginOptions,
-      //   },
-      // ],
-
       require.resolve("docusaurus-lunr-search"),
+
       [
+        "docusaurus-plugin-openapi-docs",
+        {
+          id: "openapi",
+          docsPluginId: "classic",
+          config: {
+            qwksearch: {
+              specPath: "api-routes.yaml",
+              outputDir: "./docs/api-routes",
+              sidebarOptions: {
+                groupPathsBy: "tag",
+                categoryLinkSource: "tag",
+                sidebarCollapsed: false,
+              },
+              template: "api.mustache", // Customize API MDX with mustache template
+              hideSendButton: false,
+              // markdownGenerators: { createApiPageMD }, // customize MDX with markdown generator
+              showSchemas: false,
+            } satisfies OpenApiPlugin.Options,
+          } satisfies Plugin.PluginOptions,
+        },
+      ],
+      ...(typedocFolders.map(({ id, entryPoints }) => [
         "docusaurus-plugin-typedoc",
         {
-          entryPoints: foldersWithFunctions,
+          id,
+          entryPoints,
           exclude: ["**/node_modules/**/*"],
-          tsconfig: tsconfig,
-          out: baseFolder + "web-app",
+          tsconfig,
+          out: baseFolder + "docs/" + id,
           readme,
           disableSources: !showEditsOnGitHub,
           sidebar: { pretty: true },
@@ -169,9 +179,21 @@ module.exports = async function createConfig(options: any = {}) {
           outputFileStrategy: "modules",
           useCodeBlocks: true,
         },
-      ],
+      ])),
+      // [
+      //   "docusaurus-lunr-search",
+      //   {
+      //     indexBaseUrl: true,
+      //     languages: ["en"],
+      //     excludeRoutes: [], // Verify no unintended exclusions
+      //     maxIndexSize: 10000,
+      //     highlightResult: true,
+      //     searchResultLimits: 8,
+      //     searchResultContextMaxLength: 50,
+      //   },
+      // ]
     ],
-
+      
     themeConfig: {
       docs: {
         sidebar: {
@@ -179,7 +201,7 @@ module.exports = async function createConfig(options: any = {}) {
         },
       },
       navbar: {
-        title: name + "Docs",
+        title: name + " Docs",
         logo: {
           alt: "logo",
           src: appLogoURL,
@@ -193,8 +215,13 @@ module.exports = async function createConfig(options: any = {}) {
             position: "left",
           },
           {
-            to: "/api/qwksearch-api",
+            to: "/api-routes/qwksearch-api",
             label: "API Routes",
+            position: "left",
+          },
+          {
+            to: "/web-app/modules",
+            label: "Web App",
             position: "left",
           },
         ],
@@ -261,7 +288,7 @@ module.exports = async function createConfig(options: any = {}) {
     } satisfies Preset.ThemeConfig,
 
     themes: [
-      // "docusaurus-theme-openapi-docs"
+      "docusaurus-theme-openapi-docs"
     ],
     stylesheets: [
       {
@@ -273,16 +300,16 @@ module.exports = async function createConfig(options: any = {}) {
 }
 
 
-function createServersTable(servers: any[] | undefined) {
+function createServersTable(servers: any = []) {
   return ''
-  if (servers.length) {
+  if (servers && servers.length) {
     return `| URL | Description |
 | ---- | ----- |
 ${servers
-  .map((server) => {
-    return `| ${server.url} | ${server.description} | `.replace("\n", "<br/>");
-  })
-  .join("\n")}
+        .map((server) => {
+          return `| ${server.url} | ${server.description} | `.replace("\n", "<br/>");
+        })
+        .join("\n")}
     `;
   }
 }

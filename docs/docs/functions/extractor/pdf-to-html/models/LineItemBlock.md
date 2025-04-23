@@ -1,22 +1,24 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineItemBlock
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/LineItemBlock
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/LineItemBlock.js:5
 
-#### Extends
+### Extends
 
 - [`default`](PageItem.md#default)
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/LineItemBlock.js:6
+
+##### Parameters
 
 <table>
 <thead>
@@ -41,61 +43,71 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](LineItemBlock.md#default)
+[`default`](#default)
 
-###### Overrides
+##### Overrides
 
-[`default`](PageItem.md#default).[`constructor`](PageItem.md#constructors)
+[`default`](PageItem.md#default).[`constructor`](PageItem.md#default#constructor)
 
-#### Properties
+### Properties
 
-##### annotation
+#### annotation
 
 ```ts
 annotation: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:8
 
-[`default`](PageItem.md#default).[`annotation`](PageItem.md#annotation)
+##### Inherited from
 
-##### items
+[`default`](PageItem.md#default).[`annotation`](PageItem.md#default#annotation)
+
+#### items
 
 ```ts
 items: any[];
 ```
 
-##### parsedElements
+Defined in: extractor/pdf-to-html/models/LineItemBlock.js:8
+
+#### parsedElements
 
 ```ts
 parsedElements: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:9
 
-[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#parsedelements)
+##### Inherited from
 
-##### type
+[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#default#parsedelements)
+
+#### type
 
 ```ts
 type: any;
 ```
 
-###### Inherited from
+Defined in: extractor/pdf-to-html/models/PageItem.js:7
 
-[`default`](PageItem.md#default).[`type`](PageItem.md#type)
+##### Inherited from
 
-#### Methods
+[`default`](PageItem.md#default).[`type`](PageItem.md#default#type)
 
-##### addItem()
+### Methods
+
+#### addItem()
 
 ```ts
-addItem(item): void
+addItem(item: any): void;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/LineItemBlock.js:14
+
+##### Parameters
 
 <table>
 <thead>
@@ -120,6 +132,6 @@ addItem(item): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`

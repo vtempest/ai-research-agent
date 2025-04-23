@@ -24,7 +24,7 @@ export const PUBLIC_DOMAIN = DOMAIN,
   FOOTER_LINKS = [
     { url: "https://airesearch.js.org", text: "Docs" },
     // { url: "/docs/functions/", text: "Docs" },
-    { url: "/settings/pricing", text: "Pricing" },
+    { url: "/pricing", text: "Pricing" },
     { url: "https://www.linkedin.com/company/qwksearch/posts/", text: "Blog" },
     { url: "https://discord.gg/SJdBqBz3tV", text: "Support" },
     { url: "/legal/privacy", text: "Privacy" },

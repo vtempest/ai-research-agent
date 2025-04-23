@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / match/compare-letters
+[Documentation](../modules.md) / match/compare-letters
 
 ## Match
 
 ### weighSimilarityByCharacter()
 
 ```ts
-function weighSimilarityByCharacter(s1, s2): number
+function weighSimilarityByCharacter(s1: string, s2: string): number;
 ```
+
+Defined in: match/compare-letters.js:28
 
 ### Jaro-Winkler String Similarity Comparison
 <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" /> 

@@ -1,12 +1,12 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/human-names-recognize
+[Documentation](../../modules.md) / extractor/html-to-cite/human-names-recognize
 
-## Functions
-
-### extractHumanName()
+## extractHumanName()
 
 ```ts
-function extractHumanName(author, options): any
+function extractHumanName(author: string, options: object): any;
 ```
+
+Defined in: extractor/html-to-cite/human-names-recognize.js:23
 
 Validates and formats an author name string by comparing it against common lists of
 first names, last names, name affixes, and organizations.
@@ -15,7 +15,7 @@ This function determines whether the name should be reversed (starting with the 
 for citation purposes, as organizations are not reversed. It also checks against common
 salutations, middle parts, and titles to properly format the citation in "Last, First Middle" format.
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -51,7 +51,7 @@ The author name string to be processed.
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 <td>
@@ -63,7 +63,7 @@ The author name string to be processed.
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 

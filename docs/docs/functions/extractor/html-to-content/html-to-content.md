@@ -1,78 +1,191 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-content/html-to-content
+[Documentation](../../modules.md) / extractor/html-to-content/html-to-content
 
-## Interfaces
+## ExtractedContent
 
-### ExtractedContent
+Defined in: extractor/html-to-content/html-to-content.js:83
 
-#### Properties
+### Properties
 
-##### author
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-author: string;
-```
+<a id="author"></a> `author`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The author's name
 
-##### author\_cite
+</td>
+<td>
 
-```ts
-author_cite: string;
-```
+extractor/html-to-content/html-to-content.js:87
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_cite"></a> `author_cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The full citation for the author
 
-##### author\_short
+</td>
+<td>
 
-```ts
-author_short: string;
-```
+extractor/html-to-content/html-to-content.js:85
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_short"></a> `author_short`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 A shortened version of the author's name
 
-##### date
+</td>
+<td>
 
-```ts
-date: string;
-```
+extractor/html-to-content/html-to-content.js:86
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="date"></a> `date`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The publication date
 
-##### html
+</td>
+<td>
 
-```ts
-html: string;
-```
+extractor/html-to-content/html-to-content.js:88
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="html"></a> `html`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The extracted main content in HTML format
 
-##### source
+</td>
+<td>
 
-```ts
-source: string;
-```
+extractor/html-to-content/html-to-content.js:90
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="source"></a> `source`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The source of the content
 
-##### title
+</td>
+<td>
 
-```ts
-title: string;
-```
+extractor/html-to-content/html-to-content.js:89
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title"></a> `title`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 The title of the content
 
-## Functions
+</td>
+<td>
 
-### extractContentAndCite()
+extractor/html-to-content/html-to-content.js:84
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## extractContentAndCite()
 
 ```ts
-function extractContentAndCite(documentOrHTML, options): any
+function extractContentAndCite(documentOrHTML: any, options: object): any;
 ```
+
+Defined in: extractor/html-to-content/html-to-content.js:30
 
 Extracts the main content and citation information from a document or HTML string
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -207,12 +320,12 @@ default=false -
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 The extracted content and citation information
 
-#### Author
+### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)

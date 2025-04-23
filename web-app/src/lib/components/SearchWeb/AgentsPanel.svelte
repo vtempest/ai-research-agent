@@ -11,7 +11,8 @@
   import { callServerAPI } from "$lib/utils";
 
   const defaultPrompt = "Summarize in bullet points and bold topics";
-  const MAX_ARTICLE_LENGTH = 6000;
+  const MAX_ARTICLE_LENGTH = 2000;
+  const MAX_FOLLOWUP_QUESTIONS = 4;
 
   let { currentArticle, searchText } = $props();
 
@@ -64,7 +65,7 @@
     var article = currentArticle.html
       .replace(/<[^>]*>?/g, "")
       .replace(/<[^>]*>?/g, "")
-      .slice(0, 10000);
+      .slice(0, MAX_ARTICLE_LENGTH);
 
     let { content, error } = await callServerAPI("agents", {
       agent: "suggest-followups",
@@ -82,7 +83,7 @@
       defaultPrompt,
       ...(convertLanguageReplyToJSON(convertHTMLToEscapedHTML(content), "suggestions") || []).map(
         (q) => (q.endsWith("?") || q.endsWith(".") ? q : q + "?")
-      ),
+      ).slice(0, MAX_FOLLOWUP_QUESTIONS)
     ];
 
     errorMessage = error;
@@ -128,7 +129,7 @@
   {#if isExpanded}
     <div id="expanded-content" class="p-2 space-y-2">
       <!-- <div class="flex justify-between items-center">
-            <button onclick={toggleExpand} class="hover:text-slate-200 focus:outline-none">
+            <button onclick={toggleExpand} class="hover:text-slate-200 focus:outline-hidden">
               <ChevronRight />
             </button>
           </div> -->
@@ -173,7 +174,7 @@
         </button>
         <button
           onclick={handleCopyHTMLToClipboard}
-          class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 focus:outline-hidden focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           <Clipboard class="mr-2 h-4 w-4" />
         </button>
@@ -193,7 +194,7 @@
           id="summary-prompt"
           type="text"
           placeholder="Ask AI any question..."
-          class="w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
         />
       </div>
 

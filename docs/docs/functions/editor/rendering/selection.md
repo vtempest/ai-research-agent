@@ -1,16 +1,16 @@
-[ai-research-agent](../../modules.md) / editor/rendering/selection
+[Documentation](../../modules.md) / editor/rendering/selection
 
-## Functions
-
-### getSelection()
+## getSelection()
 
 ```ts
-function getSelection(editor): EditorRange | null
+function getSelection(editor: Editor): EditorRange;
 ```
+
+Defined in: editor/rendering/selection.ts:8
 
 Get the selection range from the current browser selection
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -35,21 +35,23 @@ Get the selection range from the current browser selection
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`EditorRange`](../document/EditorRange.md#editorrange) \| `null`
+[`EditorRange`](../document/EditorRange.md#editorrange)
 
 ***
 
-### setSelection()
+## setSelection()
 
 ```ts
-function setSelection(editor, range): void
+function setSelection(editor: Editor, range: EditorRange): void;
 ```
+
+Defined in: editor/rendering/selection.ts:49
 
 Set the current browser selection to the given selection range
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -86,6 +88,6 @@ Set the current browser selection to the given selection range
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`

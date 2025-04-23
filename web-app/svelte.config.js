@@ -11,6 +11,10 @@ const config = {
     handler(warning); // Handle other warnings normally
   },
    preprocess: vitePreprocess(),
+  //  paths: {
+  //   base: process.env.NODE_ENV === 'production' ? '/' : '',
+  //   relative: true // Required for proper path resolution [5]
+  // },
   kit: {
 		adapter: adapter({
       config: 'wrangler.toml',

@@ -1,14 +1,14 @@
-[ai-research-agent](../../modules.md) / editor/modules/smartEntry
+[Documentation](../../modules.md) / editor/modules/smartEntry
 
-## Type Aliases
-
-### Handler()
+## Handler()
 
 ```ts
-type Handler = (editor?, index?, prefix?, wholeText?) => void;
+type Handler = (editor?: Editor, index?: number, prefix?: string, wholeText?: string) => void;
 ```
 
-#### Parameters
+Defined in: editor/modules/smartEntry.ts:10
+
+### Parameters
 
 <table>
 <thead>
@@ -21,7 +21,7 @@ type Handler = (editor?, index?, prefix?, wholeText?) => void;
 <tr>
 <td>
 
-`editor`?
+`editor?`
 
 </td>
 <td>
@@ -33,7 +33,7 @@ type Handler = (editor?, index?, prefix?, wholeText?) => void;
 <tr>
 <td>
 
-`index`?
+`index?`
 
 </td>
 <td>
@@ -45,7 +45,7 @@ type Handler = (editor?, index?, prefix?, wholeText?) => void;
 <tr>
 <td>
 
-`prefix`?
+`prefix?`
 
 </td>
 <td>
@@ -57,7 +57,7 @@ type Handler = (editor?, index?, prefix?, wholeText?) => void;
 <tr>
 <td>
 
-`wholeText`?
+`wholeText?`
 
 </td>
 <td>
@@ -69,37 +69,43 @@ type Handler = (editor?, index?, prefix?, wholeText?) => void;
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### Replacement
+## Replacement
 
 ```ts
-type Replacement = [RegExp, (captured, attr) => default];
+type Replacement = [RegExp, (captured: string, attr: AttributeMap) => AttributeMap];
 ```
+
+Defined in: editor/modules/smartEntry.ts:4
 
 ***
 
-### TextReplacement
+## TextReplacement
 
 ```ts
-type TextReplacement = [RegExp, (captured) => string];
+type TextReplacement = [RegExp, (captured: string) => string];
 ```
 
-## Variables
+Defined in: editor/modules/smartEntry.ts:5
 
-### defaultHandlers
+***
+
+## defaultHandlers
 
 ```ts
-const defaultHandlers: (editor, index, prefix) => boolean[];
+const defaultHandlers: (editor: Editor, index: number, prefix: string) => boolean[];
 ```
+
+Defined in: editor/modules/smartEntry.ts:151
 
 Allow text representations to format a line
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -148,65 +154,75 @@ Allow text representations to format a line
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### lineReplacements
+## lineReplacements
 
 ```ts
 const lineReplacements: Replacement[];
 ```
+
+Defined in: editor/modules/smartEntry.ts:16
 
 A list of [ RegExp, Function ] tuples to convert text into a formatted line with the attributes returned by the
 function. The function's argument will be the captured text from the regular expression.
 
 ***
 
-### linkReplacements
+## linkReplacements
 
 ```ts
 const linkReplacements: Replacement[];
 ```
 
+Defined in: editor/modules/smartEntry.ts:63
+
 ***
 
-### markReplacements
+## markReplacements
 
 ```ts
 const markReplacements: Replacement[];
 ```
+
+Defined in: editor/modules/smartEntry.ts:57
 
 A list of [ RegExp, Function ] tuples to convert text into formatted text with the attributes returned by the
 function. The function's argument will be the captured text from the regular expression.
 
 ***
 
-### textReplacements
+## textReplacements
 
 ```ts
 const textReplacements: TextReplacement[];
 ```
 
+Defined in: editor/modules/smartEntry.ts:73
+
 A list of [ RegExp, Function ] tuples to convert text into another string of text which is returned by the function.
 The function's argument will be the captured text from the regular expression.
 
-## Functions
+***
 
-### lineReplace()
+## lineReplace()
 
 ```ts
 function lineReplace(
-   editor, 
-   index, 
-   prefix): boolean
+   editor: Editor, 
+   index: number, 
+   prefix: string): boolean;
 ```
+
+Defined in: editor/modules/smartEntry.ts:82
 
 Allow text representations to format a line
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -255,22 +271,24 @@ Allow text representations to format a line
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### linkReplace()
+## linkReplace()
 
 ```ts
 function linkReplace(
-   editor, 
-   index, 
-   prefix): boolean
+   editor: Editor, 
+   index: number, 
+   prefix: string): boolean;
 ```
 
-#### Parameters
+Defined in: editor/modules/smartEntry.ts:100
+
+### Parameters
 
 <table>
 <thead>
@@ -319,23 +337,25 @@ function linkReplace(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### markReplace()
+## markReplace()
 
 ```ts
 function markReplace(
-   editor, 
-   index, 
-   prefix, 
-   wholeText): boolean
+   editor: Editor, 
+   index: number, 
+   prefix: string, 
+   wholeText: string): boolean;
 ```
 
-#### Parameters
+Defined in: editor/modules/smartEntry.ts:119
+
+### Parameters
 
 <table>
 <thead>
@@ -396,19 +416,21 @@ function markReplace(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`
 
 ***
 
-### smartEntry()
+## smartEntry()
 
 ```ts
-function smartEntry(handlers): (editor) => object
+function smartEntry(handlers: Handler[]): (editor: Editor) => object;
 ```
 
-#### Parameters
+Defined in: editor/modules/smartEntry.ts:154
+
+### Parameters
 
 <table>
 <thead>
@@ -427,7 +449,7 @@ function smartEntry(handlers): (editor) => object
 </td>
 <td>
 
-[`Handler`](smartEntry.md#handler)[]
+[`Handler`](#handler)[]
 
 </td>
 <td>
@@ -439,11 +461,13 @@ function smartEntry(handlers): (editor) => object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-`Function`
+```ts
+(editor: Editor): object;
+```
 
-##### Parameters
+#### Parameters
 
 <table>
 <thead>
@@ -468,26 +492,53 @@ function smartEntry(handlers): (editor) => object
 </tbody>
 </table>
 
-##### Returns
+#### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `destroy()` |  |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`destroy()`
+
+</td>
+<td>
+
+() => 
+
+</td>
+<td>
+
+editor/modules/smartEntry.ts:173
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### textReplace()
+## textReplace()
 
 ```ts
 function textReplace(
-   editor, 
-   index, 
-   prefix): boolean
+   editor: Editor, 
+   index: number, 
+   prefix: string): boolean;
 ```
 
-#### Parameters
+Defined in: editor/modules/smartEntry.ts:139
+
+### Parameters
 
 <table>
 <thead>
@@ -536,6 +587,6 @@ function textReplace(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`

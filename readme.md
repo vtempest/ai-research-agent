@@ -1,3 +1,10 @@
+---
+sidebar_position: 1
+sidebar_label:  Introduction
+title:  Introduction    
+slug: /
+---
+
 <p align="center">
     <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg" />
 </p>

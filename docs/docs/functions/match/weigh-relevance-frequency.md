@@ -1,4 +1,4 @@
-[ai-research-agent](../modules.md) / match/weigh-relevance-frequency
+[Documentation](../modules.md) / match/weigh-relevance-frequency
 
 ## Match
 
@@ -6,10 +6,12 @@
 
 ```ts
 function weighRelevanceTermFrequency(
-   document, 
-   query, 
-   options?): number
+   document: string, 
+   query: string, 
+   options?: object): number;
 ```
+
+Defined in: match/weigh-relevance-frequency.js:28
 
 #### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms
 <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" /> 
@@ -66,7 +68,7 @@ phrase to search tf and idf for each word
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -81,7 +83,7 @@ phrase to search tf and idf for each word
 <tr>
 <td>
 
-`options.avgDocWordCount`?
+`options.avgDocWordCount?`
 
 </td>
 <td>
@@ -98,7 +100,7 @@ Estimated average word count of all documents
 <tr>
 <td>
 
-`options.normalizeLength`?
+`options.normalizeLength?`
 
 </td>
 <td>
@@ -118,7 +120,7 @@ normalizeLengthcontrols the document length normalization.
 <tr>
 <td>
 
-`options.saturationWeight`?
+`options.saturationWeight?`
 
 </td>
 <td>
@@ -137,7 +139,7 @@ saturationWeight controls the impact of term frequency saturation.
 <tr>
 <td>
 
-`options.totalWikiPages`?
+`options.totalWikiPages?`
 
 </td>
 <td>
@@ -169,8 +171,10 @@ score for term specificity
 ### calculatePhraseSpecificity()
 
 ```ts
-function calculatePhraseSpecificity(phrase, options): number
+function calculatePhraseSpecificity(phrase: string, options: any): number;
 ```
+
+Defined in: match/weigh-relevance-frequency.js:76
 
 Calculate overall domain-speicificity after Query Resolution to Phrases. 
 Words are tokenized into phrases and their specificity is calculated based on 

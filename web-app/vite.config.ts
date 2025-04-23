@@ -2,13 +2,22 @@
 import { defineConfig } from 'vite';
 import { sveltekit } from "@sveltejs/kit/vite";
 import path from "path";
+import tailwindcss from "@tailwindcss/vite";
 
 // @ts-ignore
 export default defineConfig({
   plugins: [
+    tailwindcss(),
+
     // @ts-ignore
     sveltekit()
   ],
+  ssr: false,
+  build: {
+    rollupOptions: {
+      external: ['$app/paths']
+    }
+  },
   resolve: {
     alias: {
       "./$types":  path.resolve("./web-app/src/global.d.ts"),

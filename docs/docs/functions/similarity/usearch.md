@@ -1,15 +1,18 @@
-[ai-research-agent](../modules.md) / similarity/usearch
+[Documentation](../modules.md) / similarity/usearch
 
 ## Similarity
 
 ### convertTextToEmbedding()
 
 ```ts
-function convertTextToEmbedding(text, options?): Promise<{
+function convertTextToEmbedding(text: string, options?: object): Promise<{
   embedding: number[];
-  embeddingsDict: {};
- }>
+  embeddingsDict: {
+  };
+}>;
 ```
+
+Defined in: similarity/usearch.js:52
 
 <img src="https://i.imgur.com/wtJqEqX.png" width="350" /> 
 Text embeddings convert words or phrases into numerical vectors in a high-dimensional
@@ -54,7 +57,7 @@ The text to embed.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -69,7 +72,7 @@ The text to embed.
 <tr>
 <td>
 
-`options.pipeline`?
+`options.pipeline?`
 
 </td>
 <td>
@@ -86,7 +89,7 @@ The pipeline to use for embedding.
 <tr>
 <td>
 
-`options.precision`?
+`options.precision?`
 
 </td>
 <td>
@@ -107,8 +110,9 @@ default=4 - The number of decimal places to round to.
 
 `Promise`&lt;\{
   `embedding`: `number`[];
-  `embeddingsDict`: \{\};
- \}&gt;
+  `embeddingsDict`: \{
+  \};
+\}&gt;
 
 *
 
@@ -117,8 +121,10 @@ default=4 - The number of decimal places to round to.
 ### getEmbeddingModel()
 
 ```ts
-function getEmbeddingModel(options?): Promise<AutoTokenizer>
+function getEmbeddingModel(options?: object): Promise<AutoTokenizer>;
 ```
+
+Defined in: similarity/usearch.js:76
 
 Initialize HuggingFace Transformers pipeline for embedding text.
 
@@ -138,7 +144,7 @@ Initialize HuggingFace Transformers pipeline for embedding text.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -153,7 +159,7 @@ Initialize HuggingFace Transformers pipeline for embedding text.
 <tr>
 <td>
 
-`options.modelName`?
+`options.modelName?`
 
 </td>
 <td>
@@ -171,7 +177,7 @@ The name of the model to use
 <tr>
 <td>
 
-`options.pipelineName`?
+`options.pipelineName?`
 
 </td>
 <td>

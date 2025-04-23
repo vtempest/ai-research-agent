@@ -1,12 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/is-url-pdf
+[Documentation](../../../modules.md) / extractor/pdf-to-html/util/is-url-pdf
 
 ## Extract
 
 ### isUrlPDF()
 
 ```ts
-function isUrlPDF(url): Promise<boolean>
+function isUrlPDF(url: string): Promise<boolean>;
 ```
+
+Defined in: extractor/pdf-to-html/util/is-url-pdf.js:12
 
 Detects if a given URL points to a PDF file by checking
 the stream's first bytes for %PDF-  then ends  the request.

@@ -1,4 +1,4 @@
-[ai-research-agent](../modules.md) / similarity/similarity-remote-api
+[Documentation](../modules.md) / similarity/similarity-remote-api
 
 ## Similarity
 
@@ -6,10 +6,12 @@
 
 ```ts
 function weighRelevanceConceptVectorAPI(
-   source_sentence, 
-   sentences, 
-   options?): Promise<any>
+   source_sentence: string, 
+   sentences: string[], 
+   options?: object): Promise<any>;
 ```
+
+Defined in: similarity/similarity-remote-api.js:18
 
 Calculate the semantic similarity between one text and a list of
 other sentences by comparing their embeddings.
@@ -68,7 +70,7 @@ against the source_sentence.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -85,7 +87,7 @@ against the source_sentence.
 <tr>
 <td>
 
-`options.HF_API_KEY`?
+`options.HF_API_KEY?`
 
 </td>
 <td>
@@ -102,7 +104,7 @@ Required https://huggingface.co/settings/tokens
 <tr>
 <td>
 
-`options.model`?
+`options.model?`
 
 </td>
 <td>

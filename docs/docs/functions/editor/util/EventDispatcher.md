@@ -1,14 +1,14 @@
-[ai-research-agent](../../modules.md) / editor/util/EventDispatcher
+[Documentation](../../modules.md) / editor/util/EventDispatcher
 
-## Classes
+## EventDispatcher&lt;T&gt;
 
-### EventDispatcher&lt;T&gt;
+Defined in: editor/util/EventDispatcher.ts:6
 
-#### Extended by
+### Extended by
 
 - [`Editor`](../Editor.md#editor)
 
-#### Type Parameters
+### Type Parameters
 
 <table>
 <thead>
@@ -33,30 +33,32 @@
 </tbody>
 </table>
 
-#### Constructors
+### Constructors
 
-##### new EventDispatcher()
+#### Constructor
 
 ```ts
-new EventDispatcher<T>(): EventDispatcher<T>
+new EventDispatcher<T>(): EventDispatcher<T>;
 ```
 
-###### Returns
+##### Returns
 
-[`EventDispatcher`](EventDispatcher.md#eventdispatchert)&lt;`T`&gt;
+[`EventDispatcher`](#eventdispatcher)&lt;`T`&gt;
 
-#### Methods
+### Methods
 
-##### addEventListener()
+#### addEventListener()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 addEventListener<K>(
-   type, 
-   listener, 
-   options?): void
+   type: K, 
+   listener: (event: T[K]) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:19
 
 ###### Type Parameters
 
@@ -107,14 +109,14 @@ addEventListener<K>(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `T`\[`K`\]) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -130,14 +132,16 @@ addEventListener<K>(
 
 `void`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 addEventListener(
-   type, 
-   listener, 
-   options?): void
+   type: string, 
+   listener: (event: Event) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:20
 
 ###### Parameters
 
@@ -169,14 +173,14 @@ addEventListener(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `Event`) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -192,13 +196,15 @@ addEventListener(
 
 `void`
 
-##### dispatchEvent()
+#### dispatchEvent()
 
 ```ts
-dispatchEvent(event, catchErrors?): void
+dispatchEvent(event: Event, catchErrors?: boolean): void;
 ```
 
-###### Parameters
+Defined in: editor/util/EventDispatcher.ts:39
+
+##### Parameters
 
 <table>
 <thead>
@@ -223,7 +229,7 @@ dispatchEvent(event, catchErrors?): void
 <tr>
 <td>
 
-`catchErrors`?
+`catchErrors?`
 
 </td>
 <td>
@@ -235,20 +241,22 @@ dispatchEvent(event, catchErrors?): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
-##### off()
+#### off()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 off<K>(
-   type, 
-   listener, 
-   options?): void
+   type: K, 
+   listener: (event: T[K]) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:13
 
 ###### Type Parameters
 
@@ -299,14 +307,14 @@ off<K>(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `T`\[`K`\]) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -322,14 +330,16 @@ off<K>(
 
 `void`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 off(
-   type, 
-   listener, 
-   options?): void
+   type: string, 
+   listener: (event: Event) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:14
 
 ###### Parameters
 
@@ -361,14 +371,14 @@ off(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `Event`) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -384,16 +394,18 @@ off(
 
 `void`
 
-##### on()
+#### on()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 on<K>(
-   type, 
-   listener, 
-   options?): void
+   type: K, 
+   listener: (event: T[K]) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:7
 
 ###### Type Parameters
 
@@ -444,14 +456,14 @@ on<K>(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `T`\[`K`\]) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -467,14 +479,16 @@ on<K>(
 
 `void`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 on(
-   type, 
-   listener, 
-   options?): void
+   type: string, 
+   listener: (event: Event) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:8
 
 ###### Parameters
 
@@ -506,14 +520,14 @@ on(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `Event`) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -529,16 +543,18 @@ on(
 
 `void`
 
-##### removeEventListener()
+#### removeEventListener()
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 removeEventListener<K>(
-   type, 
-   listener, 
-   options?): void
+   type: K, 
+   listener: (event: T[K]) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:26
 
 ###### Type Parameters
 
@@ -589,14 +605,14 @@ removeEventListener<K>(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `T`\[`K`\]) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -612,14 +628,16 @@ removeEventListener<K>(
 
 `void`
 
-###### Call Signature
+##### Call Signature
 
 ```ts
 removeEventListener(
-   type, 
-   listener, 
-   options?): void
+   type: string, 
+   listener: (event: Event) => any, 
+   options?: AddEventListenerOptions): void;
 ```
+
+Defined in: editor/util/EventDispatcher.ts:31
 
 ###### Parameters
 
@@ -651,14 +669,14 @@ removeEventListener(
 </td>
 <td>
 
-(`event`) => `any`
+(`event`: `Event`) => `any`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>

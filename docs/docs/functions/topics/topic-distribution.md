@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / topics/topic-distribution
+[Documentation](../modules.md) / topics/topic-distribution
 
 ## Topics
 
 ### extractTopicTermGroupsLDA()
 
 ```ts
-function extractTopicTermGroupsLDA(sentences, options?): any[]
+function extractTopicTermGroupsLDA(sentences: string[], options?: object): any[];
 ```
+
+Defined in: topics/topic-distribution.js:31
 
 Latent Dirichlet (pronounced Dee-ruesh-ley) allocation  is used
 in natural language processing to discover abstract topics in a
@@ -52,7 +54,7 @@ Array of input sentences.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -69,7 +71,7 @@ Configuration options for LDA.
 <tr>
 <td>
 
-`options.alpha`?
+`options.alpha?`
 
 </td>
 <td>
@@ -86,7 +88,7 @@ default=0.1 - Dirichlet prior on document-topic distributions.
 <tr>
 <td>
 
-`options.beta`?
+`options.beta?`
 
 </td>
 <td>
@@ -103,7 +105,7 @@ default=0.01 - Dirichlet prior on topic-word distributions.
 <tr>
 <td>
 
-`options.numberOfIterations`?
+`options.numberOfIterations?`
 
 </td>
 <td>
@@ -120,7 +122,7 @@ default=1000 - Number of iterations for the LDA algorithm.
 <tr>
 <td>
 
-`options.numberOfTermsPerTopic`?
+`options.numberOfTermsPerTopic?`
 
 </td>
 <td>
@@ -137,7 +139,7 @@ default=10 - Number of terms to show for each topic.
 <tr>
 <td>
 
-`options.topicCount`?
+`options.topicCount?`
 
 </td>
 <td>
@@ -154,7 +156,7 @@ default=10 - Number of topics to extract.
 <tr>
 <td>
 
-`options.valueBurnIn`?
+`options.valueBurnIn?`
 
 </td>
 <td>
@@ -171,7 +173,7 @@ default=100 - Number of burn-in iterations.
 <tr>
 <td>
 
-`options.valueSampleLag`?
+`options.valueSampleLag?`
 
 </td>
 <td>

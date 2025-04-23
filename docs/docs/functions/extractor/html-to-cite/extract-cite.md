@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-cite
+[Documentation](../../modules.md) / extractor/html-to-cite/extract-cite
 
 ## Extract
 
 ### extractCite()
 
 ```ts
-function extractCite(document, options): object
+function extractCite(document: Document, options: object): object;
 ```
+
+Defined in: extractor/html-to-cite/extract-cite.js:25
 
 ### 📚💎 Extract Expert Excerpt 
 <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
@@ -54,7 +56,7 @@ dom object or html string with article content
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 <td>
@@ -72,14 +74,119 @@ dom object or html string with article content
 
 An object containing extracted citation information.
 
-| Name | Type |
-| ------ | ------ |
-| `author` | `string` |
-| `author_cite` | `string` |
-| `author_short` | `string` |
-| `date` | `string` |
-| `source` | `string` |
-| `title` | `string` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`author`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+`author_cite`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+`author_short`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+`date`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+`source`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+<tr>
+<td>
+
+`title`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/html-to-cite/extract-cite.js:21
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Author
 

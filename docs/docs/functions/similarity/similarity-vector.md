@@ -1,4 +1,4 @@
-[ai-research-agent](../modules.md) / similarity/similarity-vector
+[Documentation](../modules.md) / similarity/similarity-vector
 
 ## Other
 
@@ -7,6 +7,8 @@
 ```ts
 type AutoTokenizer<> = AutoTokenizer;
 ```
+
+Defined in: similarity/similarity-vector.js:2
 
 #### Type Parameters
 
@@ -25,8 +27,10 @@ type AutoTokenizer<> = AutoTokenizer;
 ### calculateCosineSimilarity()
 
 ```ts
-function calculateCosineSimilarity(vectorA, vectorB): number
+function calculateCosineSimilarity(vectorA: number[], vectorB: number[]): number;
 ```
+
+Defined in: similarity/similarity-vector.js:168
 
 [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) gets similarity of two
 vectors by whether they have the same direction (similar) or are poles apart. Cosine similarity
@@ -89,8 +93,10 @@ two vectors are completely dissimilar, and 1 indicates maximum similarity.
 ### addEmbeddingVectorsToIndex()
 
 ```ts
-function addEmbeddingVectorsToIndex(documentVectors, options?): Promise<HierarchicalNSW>
+function addEmbeddingVectorsToIndex(documentVectors: string[], options?: object): Promise<HierarchicalNSW>;
 ```
+
+Defined in: similarity/similarity-vector.js:97
 
 ### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Hierarchy
 <img src="https://i.imgur.com/nvJ7fzO.png" width="350px" />
@@ -145,7 +151,7 @@ An array of document texts to be vectorized.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -162,7 +168,7 @@ Optional parameters for vector generation and indexing.
 <tr>
 <td>
 
-`options.maxElements`?
+`options.maxElements?`
 
 </td>
 <td>
@@ -179,7 +185,7 @@ The maximum number of data points.
 <tr>
 <td>
 
-`options.numDimensions`?
+`options.numDimensions?`
 
 </td>
 <td>
@@ -211,11 +217,14 @@ The created HNSW index.
 ### convertTextToEmbedding()
 
 ```ts
-function convertTextToEmbedding(text, options?): Promise<{
+function convertTextToEmbedding(text: string, options?: object): Promise<{
   embedding: number[];
-  embeddingsDict: {};
- }>
+  embeddingsDict: {
+  };
+}>;
 ```
+
+Defined in: similarity/similarity-vector.js:26
 
 Text embeddings convert words or phrases into numerical vectors in a high-dimensional
 space, where each dimension represents a semantic feature extracted by a model like
@@ -261,7 +270,7 @@ The text to embed.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -276,7 +285,7 @@ The text to embed.
 <tr>
 <td>
 
-`options.pipeline`?
+`options.pipeline?`
 
 </td>
 <td>
@@ -293,7 +302,7 @@ The pipeline to use for embedding.
 <tr>
 <td>
 
-`options.precision`?
+`options.precision?`
 
 </td>
 <td>
@@ -314,8 +323,9 @@ default=4 - The number of decimal places to round to.
 
 `Promise`&lt;\{
   `embedding`: `number`[];
-  `embeddingsDict`: \{\};
- \}&gt;
+  `embeddingsDict`: \{
+  \};
+\}&gt;
 
 *
 
@@ -324,8 +334,10 @@ default=4 - The number of decimal places to round to.
 ### getAllEmbeddings()
 
 ```ts
-function getAllEmbeddings(index, precision): number[][]
+function getAllEmbeddings(index: HierarchicalNSW, precision: number): number[][];
 ```
+
+Defined in: similarity/similarity-vector.js:148
 
 Retrieves all embeddings from the HNSW index.
 
@@ -400,8 +412,10 @@ An array of embedding vectors.
 ### getEmbeddingModel()
 
 ```ts
-function getEmbeddingModel(options?): Promise<AutoTokenizer>
+function getEmbeddingModel(options?: object): Promise<AutoTokenizer>;
 ```
+
+Defined in: similarity/similarity-vector.js:50
 
 Initialize HuggingFace Transformers pipeline for embedding text.
 
@@ -421,7 +435,7 @@ Initialize HuggingFace Transformers pipeline for embedding text.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -436,7 +450,7 @@ Initialize HuggingFace Transformers pipeline for embedding text.
 <tr>
 <td>
 
-`options.modelName`?
+`options.modelName?`
 
 </td>
 <td>
@@ -454,7 +468,7 @@ The name of the model to use
 <tr>
 <td>
 
-`options.pipelineName`?
+`options.pipelineName?`
 
 </td>
 <td>
@@ -484,10 +498,12 @@ The pipeline.
 
 ```ts
 function searchVectorIndex(
-   index, 
-   query, 
-   options?): Promise<object[]>
+   index: HierarchicalNSW, 
+   query: string, 
+   options?: object): Promise<object[]>;
 ```
+
+Defined in: similarity/similarity-vector.js:132
 
 Searches the vector index for the nearest neighbors of a given query.
 
@@ -542,7 +558,7 @@ The query string to search for.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -559,7 +575,7 @@ Optional parameters for the search.
 <tr>
 <td>
 
-`options.numNeighbors`?
+`options.numNeighbors?`
 
 </td>
 <td>
@@ -600,10 +616,12 @@ console.log(results); // [{id: 3, distance: 0.1}, {id: 7, distance: 0.2}, ...]
 
 ```ts
 function weighRelevanceConceptVector(
-   documents, 
-   query, 
-   options?): Promise<object[]>
+   documents: string[], 
+   query: string, 
+   options?: any): Promise<object[]>;
 ```
+
+Defined in: similarity/similarity-vector.js:189
 
 Rerank documents's chunks based on relevance to query,
 based on cosine similarity of their concept vectors generated
@@ -655,7 +673,7 @@ by a 20MB MiniLM transformer model downloaded locally.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>

@@ -1,50 +1,119 @@
-[ai-research-agent](../modules.md) / editor/stores
+[Documentation](../modules.md) / editor/stores
 
-## Interfaces
+## EditorStores
 
-### EditorStores
+Defined in: editor/stores.ts:22
 
-#### Properties
+### Properties
 
-##### active
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="active"></a> `active`
+
+</td>
+<td>
+
+[`Readable`](#readable)&lt;[`AttributeMap`](index.md#attributemap)&gt;
+
+</td>
+<td>
+
+editor/stores.ts:23
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="doc"></a> `doc`
+
+</td>
+<td>
+
+[`Readable`](#readable)&lt;[`default`](document/TextDocument.md#default)&gt;
+
+</td>
+<td>
+
+editor/stores.ts:24
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="focus"></a> `focus`
+
+</td>
+<td>
+
+[`Readable`](#readable)&lt;`boolean`&gt;
+
+</td>
+<td>
+
+editor/stores.ts:27
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="root"></a> `root`
+
+</td>
+<td>
+
+[`Readable`](#readable)&lt;`HTMLElement`&gt;
+
+</td>
+<td>
+
+editor/stores.ts:26
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="selection"></a> `selection`
+
+</td>
+<td>
+
+[`Readable`](#readable)&lt;[`EditorRange`](document/EditorRange.md#editorrange)&gt;
+
+</td>
+<td>
+
+editor/stores.ts:25
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Methods
+
+#### updateEditor()
 
 ```ts
-active: Readable<default>;
+updateEditor(editor: Editor): void;
 ```
 
-##### doc
+Defined in: editor/stores.ts:28
 
-```ts
-doc: Readable<default>;
-```
-
-##### focus
-
-```ts
-focus: Readable<boolean>;
-```
-
-##### root
-
-```ts
-root: Readable<HTMLElement>;
-```
-
-##### selection
-
-```ts
-selection: Readable<EditorRange>;
-```
-
-#### Methods
-
-##### updateEditor()
-
-```ts
-updateEditor(editor): void
-```
-
-###### Parameters
+##### Parameters
 
 <table>
 <thead>
@@ -69,15 +138,17 @@ updateEditor(editor): void
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `void`
 
 ***
 
-### Readable&lt;T&gt;
+## Readable&lt;T&gt;
 
-#### Type Parameters
+Defined in: editor/stores.ts:6
+
+### Type Parameters
 
 <table>
 <thead>
@@ -96,29 +167,33 @@ updateEditor(editor): void
 </tbody>
 </table>
 
-#### Methods
+### Methods
 
-##### get()
+#### get()
 
 ```ts
-get(): T
+get(): T;
 ```
+
+Defined in: editor/stores.ts:10
 
 Return the current value.
 
-###### Returns
+##### Returns
 
 `T`
 
-##### subscribe()
+#### subscribe()
 
 ```ts
-subscribe(callback): Unsubscriber
+subscribe(callback: Subscriber<T>): Unsubscriber;
 ```
+
+Defined in: editor/stores.ts:15
 
 Subscribe to changes with a callback. Returns an unsubscribe function.
 
-###### Parameters
+##### Parameters
 
 <table>
 <thead>
@@ -136,28 +211,30 @@ Subscribe to changes with a callback. Returns an unsubscribe function.
 </td>
 <td>
 
-[`Subscriber`](stores.md#subscribert)&lt;`T`&gt;
+[`Subscriber`](#subscriber)&lt;`T`&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`Unsubscriber`](stores.md#unsubscriber)
+[`Unsubscriber`](#unsubscriber)
 
-## Type Aliases
+***
 
-### Subscriber()&lt;T&gt;
+## Subscriber()&lt;T&gt;
 
 ```ts
-type Subscriber<T> = (value) => void;
+type Subscriber<T> = (value: T) => void;
 ```
+
+Defined in: editor/stores.ts:21
 
 Callback to inform of a value updates.
 
-#### Type Parameters
+### Type Parameters
 
 <table>
 <thead>
@@ -176,7 +253,7 @@ Callback to inform of a value updates.
 </tbody>
 </table>
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -201,33 +278,37 @@ Callback to inform of a value updates.
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`
 
 ***
 
-### Unsubscriber()
+## Unsubscriber()
 
 ```ts
 type Unsubscriber = () => void;
 ```
 
+Defined in: editor/stores.ts:18
+
 Unsubscribes from value updates.
 
-#### Returns
+### Returns
 
 `void`
 
-## Functions
+***
 
-### activeStore()
+## activeStore()
 
 ```ts
-function activeStore(editorStore): Readable<default>
+function activeStore(editorStore: Readable<Editor>): Readable<AttributeMap>;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:96
+
+### Parameters
 
 <table>
 <thead>
@@ -245,31 +326,33 @@ function activeStore(editorStore): Readable<default>
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;[`default`](delta/AttributeMap/index.md#default)&gt;
+[`Readable`](#readable)&lt;[`AttributeMap`](index.md#attributemap)&gt;
 
 ***
 
-### derivedEditorStore()
+## derivedEditorStore()
 
 ```ts
 function derivedEditorStore<T>(
-   editorStore, 
-   defaultValue, 
-   changeEvents, 
-   update, 
-   checkEquality?): Readable<T>
+   editorStore: Readable<Editor>, 
+   defaultValue: T, 
+   changeEvents: string[], 
+   update: (editor: Editor) => T, 
+   checkEquality?: boolean): Readable<T>;
 ```
 
-#### Type Parameters
+Defined in: editor/stores.ts:54
+
+### Type Parameters
 
 <table>
 <thead>
@@ -288,7 +371,7 @@ function derivedEditorStore<T>(
 </tbody>
 </table>
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -306,7 +389,7 @@ function derivedEditorStore<T>(
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
@@ -342,14 +425,14 @@ function derivedEditorStore<T>(
 </td>
 <td>
 
-(`editor`) => `T`
+(`editor`: [`Editor`](Editor.md#editor)) => `T`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`checkEquality`?
+`checkEquality?`
 
 </td>
 <td>
@@ -361,19 +444,21 @@ function derivedEditorStore<T>(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;`T`&gt;
+[`Readable`](#readable)&lt;`T`&gt;
 
 ***
 
-### docStore()
+## docStore()
 
 ```ts
-function docStore(editorStore): Readable<default>
+function docStore(editorStore: Readable<Editor>): Readable<default>;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:100
+
+### Parameters
 
 <table>
 <thead>
@@ -391,26 +476,28 @@ function docStore(editorStore): Readable<default>
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;[`default`](document/TextDocument.md#default)&gt;
+[`Readable`](#readable)&lt;[`default`](document/TextDocument.md#default)&gt;
 
 ***
 
-### editorStores()
+## editorStores()
 
 ```ts
-function editorStores(editor): EditorStores
+function editorStores(editor: Editor): EditorStores;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:31
+
+### Parameters
 
 <table>
 <thead>
@@ -435,19 +522,21 @@ function editorStores(editor): EditorStores
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`EditorStores`](stores.md#editorstores)
+[`EditorStores`](#editorstores)
 
 ***
 
-### focusStore()
+## focusStore()
 
 ```ts
-function focusStore(editorStore): Readable<boolean>
+function focusStore(editorStore: Readable<Editor>): Readable<boolean>;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:108
+
+### Parameters
 
 <table>
 <thead>
@@ -465,26 +554,28 @@ function focusStore(editorStore): Readable<boolean>
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;`boolean`&gt;
+[`Readable`](#readable)&lt;`boolean`&gt;
 
 ***
 
-### rootStore()
+## rootStore()
 
 ```ts
-function rootStore(editorStore): Readable<HTMLElement>
+function rootStore(editorStore: Readable<Editor>): Readable<HTMLElement>;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:112
+
+### Parameters
 
 <table>
 <thead>
@@ -502,26 +593,28 @@ function rootStore(editorStore): Readable<HTMLElement>
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;`HTMLElement`&gt;
+[`Readable`](#readable)&lt;`HTMLElement`&gt;
 
 ***
 
-### selectionStore()
+## selectionStore()
 
 ```ts
-function selectionStore(editorStore): Readable<EditorRange>
+function selectionStore(editorStore: Readable<Editor>): Readable<EditorRange>;
 ```
 
-#### Parameters
+Defined in: editor/stores.ts:104
+
+### Parameters
 
 <table>
 <thead>
@@ -539,13 +632,13 @@ function selectionStore(editorStore): Readable<EditorRange>
 </td>
 <td>
 
-[`Readable`](stores.md#readablet)&lt;[`Editor`](Editor.md#editor)&gt;
+[`Readable`](#readable)&lt;[`Editor`](Editor.md#editor)&gt;
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Readable`](stores.md#readablet)&lt;[`EditorRange`](document/EditorRange.md#editorrange)&gt;
+[`Readable`](#readable)&lt;[`EditorRange`](document/EditorRange.md#editorrange)&gt;

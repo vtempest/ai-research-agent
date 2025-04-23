@@ -1,14 +1,14 @@
-[ai-research-agent](../../modules.md) / editor/modules/tables
+[Documentation](../../modules.md) / editor/modules/tables
 
-## Functions
-
-### table()
+## table()
 
 ```ts
-function table(editor): object
+function table(editor: Editor): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/tables.ts:26
+
+### Parameters
 
 <table>
 <thead>
@@ -33,10 +33,46 @@ function table(editor): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `commands` | \{ `addColumn`: (`direction`) => `void`; `addColumnLeft`: () => `void`; `addColumnRight`: () => `void`; `addRow`: (`direction`) => `void`; `addRowAbove`: () => `void`; `addRowBelow`: () => `void`; `deleteColumn`: () => `void`; `deleteRow`: () => `void`; `deleteTable`: () => `void`; `insertTable`: (`rows`, `columns`) => `void`; \} |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`commands`
+
+</td>
+<td>
+
+\{
+  `addColumn`: (`direction`: `-1` \| `1`) => `void`;
+  `addColumnLeft`: () => `void`;
+  `addColumnRight`: () => `void`;
+  `addRow`: (`direction`: `-1` \| `1`) => `void`;
+  `addRowAbove`: () => `void`;
+  `addRowBelow`: () => `void`;
+  `deleteColumn`: () => `void`;
+  `deleteRow`: () => `void`;
+  `deleteTable`: () => `void`;
+  `insertTable`: (`rows`: `number`, `columns`: `number`) => `void`;
+\}
+
+</td>
+<td>
+
+editor/modules/tables.ts:53
+
+</td>
+</tr>
+</tbody>
+</table>

@@ -1,22 +1,24 @@
-[ai-research-agent](../../modules.md) / editor/modules/shortcutFromEvent
+[Documentation](../../modules.md) / editor/modules/shortcutFromEvent
 
-## Classes
+## ShortcutEvent
 
-### ShortcutEvent
+Defined in: editor/modules/shortcutFromEvent.ts:15
 
-#### Extends
+### Extends
 
 - `KeyboardEvent`
 
-#### Constructors
+### Constructors
 
-##### new ShortcutEvent()
+#### Constructor
 
 ```ts
-new ShortcutEvent(type, init?): ShortcutEvent
+new ShortcutEvent(type: string, init?: ShortcutEventInit): ShortcutEvent;
 ```
 
-###### Parameters
+Defined in: editor/modules/shortcutFromEvent.ts:20
+
+##### Parameters
 
 <table>
 <thead>
@@ -41,55 +43,65 @@ new ShortcutEvent(type, init?): ShortcutEvent
 <tr>
 <td>
 
-`init`?
+`init?`
 
 </td>
 <td>
 
-[`ShortcutEventInit`](shortcutFromEvent.md#shortcuteventinit)
+[`ShortcutEventInit`](#shortcuteventinit)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`ShortcutEvent`](shortcutFromEvent.md#shortcutevent)
+[`ShortcutEvent`](#shortcutevent)
 
-###### Overrides
+##### Overrides
 
-`KeyboardEvent.constructor`
+```ts
+KeyboardEvent.constructor
+```
 
-#### Properties
+### Properties
 
-##### modShortcut
+#### modShortcut
 
 ```ts
 readonly modShortcut: string;
 ```
 
-##### osShortcut
+Defined in: editor/modules/shortcutFromEvent.ts:18
+
+#### osShortcut
 
 ```ts
 readonly osShortcut: string;
 ```
 
-##### shortcut
+Defined in: editor/modules/shortcutFromEvent.ts:17
+
+#### shortcut
 
 ```ts
 readonly shortcut: string;
 ```
 
-#### Methods
+Defined in: editor/modules/shortcutFromEvent.ts:16
 
-##### fromKeyboardEvent()
+### Methods
+
+#### fromKeyboardEvent()
 
 ```ts
-static fromKeyboardEvent(event): ShortcutEvent
+static fromKeyboardEvent(event: KeyboardEvent): ShortcutEvent;
 ```
 
-###### Parameters
+Defined in: editor/modules/shortcutFromEvent.ts:27
+
+##### Parameters
 
 <table>
 <thead>
@@ -114,63 +126,137 @@ static fromKeyboardEvent(event): ShortcutEvent
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`ShortcutEvent`](shortcutFromEvent.md#shortcutevent)
-
-## Interfaces
-
-### KeyboardEventWithShortcut
-
-#### Extends
-
-- `KeyboardEvent`
-
-#### Properties
-
-##### modShortcut?
-
-```ts
-optional modShortcut: string;
-```
-
-##### osShortcut?
-
-```ts
-optional osShortcut: string;
-```
-
-##### shortcut?
-
-```ts
-optional shortcut: string;
-```
+[`ShortcutEvent`](#shortcutevent)
 
 ***
 
-### ShortcutEventInit
+## KeyboardEventWithShortcut
 
-#### Extends
+Defined in: editor/modules/shortcutFromEvent.ts:33
+
+### Extends
+
+- `KeyboardEvent`
+
+### Properties
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="modshortcut-1"></a> `modShortcut?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/modules/shortcutFromEvent.ts:36
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="osshortcut-1"></a> `osShortcut?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/modules/shortcutFromEvent.ts:35
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="shortcut-1"></a> `shortcut?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/modules/shortcutFromEvent.ts:34
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## ShortcutEventInit
+
+Defined in: editor/modules/shortcutFromEvent.ts:11
+
+### Extends
 
 - `KeyboardEventInit`
 
-#### Properties
+### Properties
 
-##### shortcut?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="shortcut-2"></a> `shortcut?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/modules/shortcutFromEvent.ts:12
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## addShortcutsToEvent()
 
 ```ts
-optional shortcut: string;
+function addShortcutsToEvent(event: KeyboardEventWithShortcut): KeyboardEventWithShortcut;
 ```
 
-## Functions
+Defined in: editor/modules/shortcutFromEvent.ts:39
 
-### addShortcutsToEvent()
-
-```ts
-function addShortcutsToEvent(event): KeyboardEventWithShortcut
-```
-
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -188,24 +274,26 @@ function addShortcutsToEvent(event): KeyboardEventWithShortcut
 </td>
 <td>
 
-[`KeyboardEventWithShortcut`](shortcutFromEvent.md#keyboardeventwithshortcut)
+[`KeyboardEventWithShortcut`](#keyboardeventwithshortcut)
 
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`KeyboardEventWithShortcut`](shortcutFromEvent.md#keyboardeventwithshortcut)
+[`KeyboardEventWithShortcut`](#keyboardeventwithshortcut)
 
 ***
 
-### shortcutFromEvent()
+## shortcutFromEvent()
 
 ```ts
-function shortcutFromEvent(event): string
+function shortcutFromEvent(event: KeyboardEvent): string;
 ```
+
+Defined in: editor/modules/shortcutFromEvent.ts:58
 
 Returns the textual representation of a shortcut given a keyboard event. Examples of shortcuts:
 Cmd+L
@@ -218,7 +306,7 @@ Shift+Down
 Shift+F1
 Space
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -243,6 +331,6 @@ Space
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `string`

@@ -1,57 +1,69 @@
-[ai-research-agent](../../modules.md) / editor/typesetting/lines
+[Documentation](../../modules.md) / editor/typesetting/lines
 
-## Variables
-
-### blockquote
+## blockquote
 
 ```ts
 const blockquote: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:164
+
 ***
 
-### codeblock
+## codeblock
 
 ```ts
 const codeblock: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:188
+
 ***
 
-### dl
+## dl
 
 ```ts
 const dl: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:228
+
 ***
 
-### header
+## header
 
 ```ts
 const header: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:14
+
 ***
 
-### hr
+## hr
 
 ```ts
 const hr: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:206
+
 ***
 
-### list
+## list
 
 ```ts
 const list: LineType;
 ```
 
+Defined in: editor/typesetting/lines.ts:39
+
 ***
 
-### paragraph
+## paragraph
 
 ```ts
 const paragraph: LineType;
 ```
+
+Defined in: editor/typesetting/lines.ts:6

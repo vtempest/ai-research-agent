@@ -1,10 +1,10 @@
-[qwksearch-web-app](modules.md) / global
+[Documentation](modules.md) / global
 
-## Interfaces
+## AgentPrompt
 
-### AgentPrompt
+Defined in: web-app/src/global.d.ts:83
 
-#### Extends
+### Extends
 
 - `Partial`&lt;\{
   `context`: `string`;
@@ -12,65 +12,150 @@
   `prompt`: `string`;
   `tools`: `string`[];
   `variablesNotProvided`: `any`[];
- \}&gt;
+\}&gt;
 
-#### Properties
+### Properties
 
-##### context?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional context: string;
-```
+<a id="context"></a> `context?`
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.context`
+`string`
 
-##### error?
-
-```ts
-optional error: string;
-```
-
-###### Inherited from
-
-`Partial.error`
-
-##### prompt?
-
-```ts
-optional prompt: string;
-```
-
-###### Inherited from
-
-`Partial.prompt`
-
-##### tools?
+</td>
+<td>
 
 ```ts
-optional tools: string[];
+Partial.context
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.tools`
+web-app/src/global.d.ts:86
 
-##### variablesNotProvided?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="error"></a> `error?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional variablesNotProvided: any[];
+Partial.error
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.variablesNotProvided`
+web-app/src/global.d.ts:89
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="prompt"></a> `prompt?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.prompt
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:85
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="tools"></a> `tools?`
+
+</td>
+<td>
+
+`string`[]
+
+</td>
+<td>
+
+```ts
+Partial.tools
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:87
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="variablesnotprovided"></a> `variablesNotProvided?`
+
+</td>
+<td>
+
+`any`[]
+
+</td>
+<td>
+
+```ts
+Partial.variablesNotProvided
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:88
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### Article
+## Article
 
-#### Extends
+Defined in: web-app/src/global.d.ts:68
+
+### Extends
 
 - `Partial`&lt;\{
   `author`: `string`;
@@ -84,125 +169,294 @@ optional variablesNotProvided: any[];
   `title`: `string`;
   `url`: `string`;
   `word_count`: `number`;
- \}&gt;
+\}&gt;
 
-#### Properties
+### Properties
 
-##### author?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional author: string;
-```
+<a id="author"></a> `author?`
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.author`
+`string`
 
-##### author\_cite?
-
-```ts
-optional author_cite: string;
-```
-
-###### Inherited from
-
-`Partial.author_cite`
-
-##### author\_type?
-
-```ts
-optional author_type: string;
-```
-
-###### Inherited from
-
-`Partial.author_type`
-
-##### cite?
+</td>
+<td>
 
 ```ts
-optional cite: string;
+Partial.author
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.cite`
+web-app/src/global.d.ts:74
 
-##### date?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_cite"></a> `author_cite?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional date: string;
+Partial.author_cite
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.date`
+web-app/src/global.d.ts:75
 
-##### error?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="author_type"></a> `author_type?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional error: string;
+Partial.author_type
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.error`
+web-app/src/global.d.ts:76
 
-##### html?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="cite"></a> `cite?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional html: string;
+Partial.cite
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.html`
+web-app/src/global.d.ts:73
 
-##### source?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="date"></a> `date?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional source: string;
+Partial.date
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.source`
+web-app/src/global.d.ts:77
 
-##### title?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="error-1"></a> `error?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional title: string;
+Partial.error
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.title`
+web-app/src/global.d.ts:80
 
-##### url?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="html"></a> `html?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional url: string;
+Partial.html
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.url`
+web-app/src/global.d.ts:72
 
-##### word\_count?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="source"></a> `source?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional word_count: number;
+Partial.source
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.word_count`
+web-app/src/global.d.ts:78
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title"></a> `title?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.title
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:71
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="url"></a> `url?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.url
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:70
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="word_count"></a> `word_count?`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+```ts
+Partial.word_count
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:79
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### OAuthUserInfo
+## OAuthUserInfo
 
-#### Extends
+Defined in: web-app/src/global.d.ts:98
+
+### Extends
 
 - `Partial`&lt;\{
   `email`: `string`;
@@ -211,75 +465,174 @@ optional word_count: number;
   `picture`: `string`;
   `providerUserId`: `string`;
   `sub`: `string`;
- \}&gt;
+\}&gt;
 
-#### Properties
+### Properties
 
-##### email?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional email: string;
-```
+<a id="email"></a> `email?`
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.email`
+`string`
 
-##### email\_verified?
-
-```ts
-optional email_verified: boolean;
-```
-
-###### Inherited from
-
-`Partial.email_verified`
-
-##### name?
-
-```ts
-optional name: string;
-```
-
-###### Inherited from
-
-`Partial.name`
-
-##### picture?
+</td>
+<td>
 
 ```ts
-optional picture: string;
+Partial.email
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.picture`
+web-app/src/global.d.ts:100
 
-##### providerUserId?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="email_verified"></a> `email_verified?`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
 
 ```ts
-optional providerUserId: string;
+Partial.email_verified
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.providerUserId`
+web-app/src/global.d.ts:105
 
-##### sub?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="name"></a> `name?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional sub: string;
+Partial.name
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.sub`
+web-app/src/global.d.ts:101
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="picture"></a> `picture?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.picture
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:102
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="provideruserid"></a> `providerUserId?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.providerUserId
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:103
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="sub"></a> `sub?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.sub
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:104
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### SearchResult
+## SearchResult
 
-#### Extends
+Defined in: web-app/src/global.d.ts:58
+
+### Extends
 
 - `Partial`&lt;\{
   `domain`: `string`;
@@ -288,66 +641,163 @@ optional sub: string;
   `snippet`: `string`;
   `title`: `string`;
   `url`: `string`;
- \}&gt;
+\}&gt;
 
-#### Properties
+### Properties
 
-##### domain?
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Inherited from</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-```ts
-optional domain: string;
-```
+<a id="domain"></a> `domain?`
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.domain`
+`string`
 
-##### favicon?
-
-```ts
-optional favicon: string;
-```
-
-###### Inherited from
-
-`Partial.favicon`
-
-##### score?
-
-```ts
-optional score: string;
-```
-
-###### Inherited from
-
-`Partial.score`
-
-##### snippet?
+</td>
+<td>
 
 ```ts
-optional snippet: string;
+Partial.domain
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.snippet`
+web-app/src/global.d.ts:64
 
-##### title?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="favicon"></a> `favicon?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional title: string;
+Partial.favicon
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.title`
+web-app/src/global.d.ts:65
 
-##### url?
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="score"></a> `score?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
 
 ```ts
-optional url: string;
+Partial.score
 ```
 
-###### Inherited from
+</td>
+<td>
 
-`Partial.url`
+web-app/src/global.d.ts:63
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="snippet"></a> `snippet?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.snippet
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:62
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="title-1"></a> `title?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.title
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:61
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="url-1"></a> `url?`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+```ts
+Partial.url
+```
+
+</td>
+<td>
+
+web-app/src/global.d.ts:60
+
+</td>
+</tr>
+</tbody>
+</table>

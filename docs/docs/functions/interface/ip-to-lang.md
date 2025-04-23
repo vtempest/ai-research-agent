@@ -1,14 +1,14 @@
-[ai-research-agent](../modules.md) / interface/ip-to-lang
+[Documentation](../modules.md) / interface/ip-to-lang
 
-## Variables
-
-### countryToLanguage
+## countryToLanguage
 
 ```ts
 const countryToLanguage: object[];
 ```
 
-#### Type declaration
+Defined in: interface/ip-to-lang.js:36
+
+### Type declaration
 
 <table>
 <thead>
@@ -16,6 +16,7 @@ const countryToLanguage: object[];
 <th>Name</th>
 <th>Type</th>
 <th>Default value</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
@@ -32,7 +33,12 @@ const countryToLanguage: object[];
 </td>
 <td>
 
-"ad"
+`"ad"`
+
+</td>
+<td>
+
+interface/ip-to-lang.js:37
 
 </td>
 </tr>
@@ -49,7 +55,12 @@ const countryToLanguage: object[];
 </td>
 <td>
 
-"Andorra"
+`"Andorra"`
+
+</td>
+<td>
+
+interface/ip-to-lang.js:37
 
 </td>
 </tr>
@@ -66,20 +77,27 @@ const countryToLanguage: object[];
 </td>
 <td>
 
-"es"
+`"es"`
+
+</td>
+<td>
+
+interface/ip-to-lang.js:37
 
 </td>
 </tr>
 </tbody>
 </table>
 
-## Functions
+***
 
-### getLanguageFromIP()
+## getLanguageFromIP()
 
 ```ts
-function getLanguageFromIP(ip): Promise<any>
+function getLanguageFromIP(ip: string): Promise<any>;
 ```
+
+Defined in: interface/ip-to-lang.js:19
 
 Retrieves language information for a given IP address using 
 a remote API. Rate limit 45 req/min
@@ -88,7 +106,7 @@ You should first use Accept-Language header or navigator.language
 in front-end for user-set language
 https://stackoverflow.com/questions/673905/how-can-i-determine-a-users-locale-within-the-browser/31135571#31135571
 
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -119,22 +137,12 @@ The IP address to look up.
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Promise`&lt;`any`&gt;
 
 A promise that resolves to an object containing country and language information, or undefined if not found.
 
-returns.country - The name of the country.
-
-returns.code - The two-letter country code.
-
-returns.lang - The two-letter language code.
-
-returns.language - The full name of the language.
-
-returns.greeting - A greeting in the detected language.
-
-#### Author
+### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)

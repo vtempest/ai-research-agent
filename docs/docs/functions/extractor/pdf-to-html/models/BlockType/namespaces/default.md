@@ -1,14 +1,14 @@
-[ai-research-agent](../../../../../modules.md) / [extractor/pdf-to-html/models/BlockType](../index.md) / default
+[Documentation](../../../../../modules.md) / [extractor/pdf-to-html/models/BlockType](../index.md) / default
 
-## Functions
-
-### blockToText()
+## blockToText()
 
 ```ts
-function blockToText(block): any
+function blockToText(block: any): any;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/models/BlockType.js:155
+
+### Parameters
 
 <table>
 <thead>
@@ -33,19 +33,21 @@ function blockToText(block): any
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `any`
 
 ***
 
-### headlineByLevel()
+## headlineByLevel()
 
 ```ts
-function headlineByLevel(level): object
+function headlineByLevel(level: any): object;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/models/BlockType.js:162
+
+### Parameters
 
 <table>
 <thead>
@@ -70,26 +72,122 @@ function headlineByLevel(level): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| `headline` | `boolean` | true |
-| `headlineLevel` | `number` | 1 |
-| `name` | `string` | 'H1' |
-| `toText()` |  | - |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`headline`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+`true`
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:6
+
+</td>
+</tr>
+<tr>
+<td>
+
+`headlineLevel`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+`1`
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:7
+
+</td>
+</tr>
+<tr>
+<td>
+
+`name`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+`'H1'`
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:5
+
+</td>
+</tr>
+<tr>
+<td>
+
+`toText()`
+
+</td>
+<td>
+
+(`block`: `any`) => 
+
+</td>
+<td>
+
+&hyphen;
+
+</td>
+<td>
+
+extractor/pdf-to-html/models/BlockType.js:8
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### isHeadline()
+## isHeadline()
 
 ```ts
-function isHeadline(type): boolean
+function isHeadline(type: any): boolean;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/models/BlockType.js:151
+
+### Parameters
 
 <table>
 <thead>
@@ -114,6 +212,6 @@ function isHeadline(type): boolean
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `boolean`

@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/TextItemLineGrouper
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/TextItemLineGrouper
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/TextItemLineGrouper.js:9
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/TextItemLineGrouper.js:10
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,27 +39,31 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](TextItemLineGrouper.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### mostUsedDistance
+#### mostUsedDistance
 
 ```ts
 mostUsedDistance: any;
 ```
 
-#### Methods
+Defined in: extractor/pdf-to-html/models/TextItemLineGrouper.js:11
 
-##### group()
+### Methods
+
+#### group()
 
 ```ts
-group(textItems): any[][]
+group(textItems: any): any[][];
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/TextItemLineGrouper.js:15
+
+##### Parameters
 
 <table>
 <thead>
@@ -82,6 +88,6 @@ group(textItems): any[][]
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
 `any`[][]

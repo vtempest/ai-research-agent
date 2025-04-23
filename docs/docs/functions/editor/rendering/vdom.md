@@ -1,15 +1,19 @@
-[ai-research-agent](../../modules.md) / editor/rendering/vdom
+[Documentation](../../modules.md) / editor/rendering/vdom
 
-## Interfaces
+## H()
 
-### H()
+Defined in: editor/rendering/vdom.ts:266
+
+### Call Signature
 
 ```ts
-interface H<T, P, C>(
-   type, 
-   props?, 
-   ch?): T
+H<T, P, C>(
+   type: (props: P, children: C) => T, 
+   props?: P, 
+   ch?: C): T;
 ```
+
+Defined in: editor/rendering/vdom.ts:267
 
 #### Type Parameters
 
@@ -30,14 +34,14 @@ interface H<T, P, C>(
 <tr>
 <td>
 
-`P` *extends* [`Props`](vdom.md#props)
+`P` *extends* [`Props`](#props)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`C` *extends* [`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
+`C` *extends* [`VChild`](#vchild) \| [`VChild`](#vchild)[]
 
 </td>
 </tr>
@@ -62,14 +66,14 @@ interface H<T, P, C>(
 </td>
 <td>
 
-(`props`, `children`) => `T`
+(`props`: `P`, `children`: `C`) => `T`
 
 </td>
 </tr>
 <tr>
 <td>
 
-`props`?
+`props?`
 
 </td>
 <td>
@@ -81,7 +85,7 @@ interface H<T, P, C>(
 <tr>
 <td>
 
-`ch`?
+`ch?`
 
 </td>
 <td>
@@ -97,12 +101,16 @@ interface H<T, P, C>(
 
 `T`
 
+### Call Signature
+
 ```ts
-interface H(
-   type, 
-   props?, 
-   ch?): VNode
+H(
+   type: string, 
+   props?: Props, 
+   ch?: VChild | VChild[]): VNode;
 ```
+
+Defined in: editor/rendering/vdom.ts:272
 
 #### Parameters
 
@@ -129,24 +137,24 @@ interface H(
 <tr>
 <td>
 
-`props`?
+`props?`
 
 </td>
 <td>
 
-[`Props`](vdom.md#props)
+[`Props`](#props)
 
 </td>
 </tr>
 <tr>
 <td>
 
-`ch`?
+`ch?`
 
 </td>
 <td>
 
-[`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
+[`VChild`](#vchild) \| [`VChild`](#vchild)[]
 
 </td>
 </tr>
@@ -155,63 +163,139 @@ interface H(
 
 #### Returns
 
-[`VNode`](vdom.md#vnode)
+[`VNode`](#vnode)
 
 ***
 
-### Props
+## Props
 
-#### Indexable
+Defined in: editor/rendering/vdom.ts:4
 
- \[`key`: `string`\]: `any`
+### Indexable
+
+```ts
+[key: string]: any
+```
 
 ***
 
-### VNode
+## VNode
 
-#### Properties
+Defined in: editor/rendering/vdom.ts:10
 
-##### children
+### Properties
 
-```ts
-children: VChild[];
-```
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-##### key
+<a id="children"></a> `children`
 
-```ts
-key: any;
-```
+</td>
+<td>
 
-##### props
+[`VChild`](#vchild)[]
 
-```ts
-props: Props;
-```
+</td>
+<td>
 
-##### type
+editor/rendering/vdom.ts:13
 
-```ts
-type: string;
-```
+</td>
+</tr>
+<tr>
+<td>
 
-## Type Aliases
+<a id="key"></a> `key`
 
-### VChild
+</td>
+<td>
+
+`any`
+
+</td>
+<td>
+
+editor/rendering/vdom.ts:14
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="props-1"></a> `props`
+
+</td>
+<td>
+
+[`Props`](#props)
+
+</td>
+<td>
+
+editor/rendering/vdom.ts:12
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="type"></a> `type`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+editor/rendering/vdom.ts:11
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## VChild
 
 ```ts
 type VChild = VNode | string;
 ```
 
-## Variables
+Defined in: editor/rendering/vdom.ts:8
 
-### options
+***
+
+## h
+
+```ts
+const h: H;
+```
+
+Defined in: editor/rendering/vdom.ts:275
+
+***
+
+## options
 
 ```ts
 const options: object;
 ```
 
-#### Type declaration
+Defined in: editor/rendering/vdom.ts:18
+
+### Type declaration
 
 <table>
 <thead>
@@ -219,13 +303,14 @@ const options: object;
 <th>Name</th>
 <th>Type</th>
 <th>Default value</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`renderKeys`
+<a id="renderkeys"></a> `renderKeys`
 
 </td>
 <td>
@@ -235,7 +320,12 @@ const options: object;
 </td>
 <td>
 
-false
+`false`
+
+</td>
+<td>
+
+editor/rendering/vdom.ts:19
 
 </td>
 </tr>
@@ -244,13 +334,15 @@ false
 
 ***
 
-### React
+## React
 
 ```ts
 const React: object;
 ```
 
-#### Type declaration
+Defined in: editor/rendering/vdom.ts:282
+
+### Type declaration
 
 <table>
 <thead>
@@ -258,202 +350,49 @@ const React: object;
 <th>Name</th>
 <th>Type</th>
 <th>Default value</th>
+<th>Defined in</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
 
-`createElement`
+<a id="createelement"></a> `createElement`
 
 </td>
 <td>
 
-[`H`](vdom.md#h)
+[`H`](#h)
 
 </td>
 <td>
 
-h
+`h`
+
+</td>
+<td>
+
+editor/rendering/vdom.ts:282
 
 </td>
 </tr>
 </tbody>
 </table>
-
-## Functions
-
-### h()
-
-#### Call Signature
-
-```ts
-function h<T, P, C>(
-   type, 
-   props?, 
-   ch?): T
-```
-
-##### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`T`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`P` *extends* [`Props`](vdom.md#props)
-
-</td>
-</tr>
-<tr>
-<td>
-
-`C` *extends* [`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-(`props`, `children`) => `T`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`props`?
-
-</td>
-<td>
-
-`P`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`ch`?
-
-</td>
-<td>
-
-`C`
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-`T`
-
-#### Call Signature
-
-```ts
-function h(
-   type, 
-   props?, 
-   ch?): VNode
-```
-
-##### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`type`
-
-</td>
-<td>
-
-`string`
-
-</td>
-</tr>
-<tr>
-<td>
-
-`props`?
-
-</td>
-<td>
-
-[`Props`](vdom.md#props)
-
-</td>
-</tr>
-<tr>
-<td>
-
-`ch`?
-
-</td>
-<td>
-
-[`VChild`](vdom.md#vchild) \| [`VChild`](vdom.md#vchild)[]
-
-</td>
-</tr>
-</tbody>
-</table>
-
-##### Returns
-
-[`VNode`](vdom.md#vnode)
 
 ***
 
-### patch()
+## patch()
 
 ```ts
 function patch(
-   dom, 
-   vdom, 
-   oldKids?): Node
+   dom: Node, 
+   vdom: VNode | VNode[], 
+   oldKids?: ChildNode[]): Node;
 ```
 
-#### Parameters
+Defined in: editor/rendering/vdom.ts:284
+
+### Parameters
 
 <table>
 <thead>
@@ -483,14 +422,14 @@ function patch(
 </td>
 <td>
 
-[`VNode`](vdom.md#vnode) \| [`VNode`](vdom.md#vnode)[]
+[`VNode`](#vnode) \| [`VNode`](#vnode)[]
 
 </td>
 </tr>
 <tr>
 <td>
 
-`oldKids`?
+`oldKids?`
 
 </td>
 <td>
@@ -502,19 +441,21 @@ function patch(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Node`
 
 ***
 
-### recycleNode()
+## recycleNode()
 
 ```ts
-function recycleNode(dom): string | VNode
+function recycleNode(dom: Node): string | VNode;
 ```
 
-#### Parameters
+Defined in: editor/rendering/vdom.ts:256
+
+### Parameters
 
 <table>
 <thead>
@@ -539,6 +480,6 @@ function recycleNode(dom): string | VNode
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-`string` \| [`VNode`](vdom.md#vnode)
+`string` \| [`VNode`](#vnode)

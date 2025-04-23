@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / tokenize/suggest-complete-word
+[Documentation](../modules.md) / tokenize/suggest-complete-word
 
 ## Topics
 
 ### suggestNextWordCompletions()
 
 ```ts
-function suggestNextWordCompletions(query, options?): Promise<any[]>
+function suggestNextWordCompletions(query: string, options?: object): Promise<any[]>;
 ```
+
+Defined in: tokenize/suggest-complete-word.js:33
 
 ### Autocomplete Topic Phrase Completions
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" /> 
@@ -45,7 +47,7 @@ The input query which can be pertial words or phrases.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -60,7 +62,7 @@ The input query which can be pertial words or phrases.
 <tr>
 <td>
 
-`options.limitMaxResults`?
+`options.limitMaxResults?`
 
 </td>
 <td>
@@ -77,7 +79,7 @@ default=10 - The maximum number of autocomplete suggestions to return.
 <tr>
 <td>
 
-`options.numberOfLastWordsToCheck`?
+`options.numberOfLastWordsToCheck?`
 
 </td>
 <td>
@@ -94,7 +96,7 @@ default=5 - The number of last words in the query to check for phrase completion
 <tr>
 <td>
 
-`options.phrasesModel`?
+`options.phrasesModel?`
 
 </td>
 <td>

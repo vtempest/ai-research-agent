@@ -1,12 +1,14 @@
-[ai-research-agent](../../modules.md) / extractor/url-to-content/youtube-to-text
+[Documentation](../../modules.md) / extractor/url-to-content/youtube-to-text
 
 ## Extract
 
 ### convertYoutubeToText()
 
 ```ts
-function convertYoutubeToText(videoUrl, options?): object
+function convertYoutubeToText(videoUrl: string, options?: object): object;
 ```
+
+Defined in: extractor/url-to-content/youtube-to-text.js:19
 
 Fetch youtube.com video's webpage HTML for embedded transcript.
 If blocked, use scraper of alternative sites providing transcripts.
@@ -40,7 +42,7 @@ If blocked, use scraper of alternative sites providing transcripts.
 <tr>
 <td>
 
-`options`?
+`options?`
 
 </td>
 <td>
@@ -55,7 +57,7 @@ If blocked, use scraper of alternative sites providing transcripts.
 <tr>
 <td>
 
-`options.addTimestamps`?
+`options.addTimestamps?`
 
 </td>
 <td>
@@ -73,7 +75,7 @@ true to return timestamps, default true
 <tr>
 <td>
 
-`options.timeout`?
+`options.timeout?`
 
 </td>
 <td>
@@ -98,11 +100,68 @@ where content is the full text of the transcript,
 timestamps is a string of comma-separated [characterIndex, timeSeconds] pairs,
 and word_count is the number of words in the transcript.
 
-| Name | Type |
-| ------ | ------ |
-| `content` | `string` |
-| `timestamps` | `string` |
-| `word_count` | `number` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`content`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/youtube-to-text.js:12
+
+</td>
+</tr>
+<tr>
+<td>
+
+`timestamps`
+
+</td>
+<td>
+
+`string`
+
+</td>
+<td>
+
+extractor/url-to-content/youtube-to-text.js:12
+
+</td>
+</tr>
+<tr>
+<td>
+
+`word_count`
+
+</td>
+<td>
+
+`number`
+
+</td>
+<td>
+
+extractor/url-to-content/youtube-to-text.js:12
+
+</td>
+</tr>
+</tbody>
+</table>
 
 #### Author
 
@@ -113,8 +172,10 @@ and word_count is the number of words in the transcript.
 ### fetchViaYoutubeToTranscriptCom()
 
 ```ts
-function fetchViaYoutubeToTranscriptCom(videoId, options): any
+function fetchViaYoutubeToTranscriptCom(videoId: any, options: object): any;
 ```
+
+Defined in: extractor/url-to-content/youtube-to-text.js:153
 
 Fetch-based scraper of youtubetotranscript.com
 
@@ -148,7 +209,7 @@ Fetch-based scraper of youtubetotranscript.com
 </td>
 <td>
 
-\{\}
+\{ \}
 
 </td>
 </tr>

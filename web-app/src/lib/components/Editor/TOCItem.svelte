@@ -93,7 +93,7 @@
   {#if heading.children.length > 0}
     <button
       onclick={toggleExpand}
-      class="mr-1 focus:outline-none"
+      class="mr-1 focus:outline-hidden"
       aria-label={isExpanded ? "Collapse" : "Expand"}
     >
       {#if isExpanded}
@@ -112,9 +112,9 @@
       onblur={finishEditing}
       onkeydown={handleKeydown}
       class="
-        editing-mode text-sm w-full text-left flex-grow
+        editing-mode text-sm w-full text-left grow
         px-2 py-1 rounded-md
-        border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500
+        border border-gray-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500
       "
       style="font-size: {13-(heading.level - 1) * (heading.level==4?1.5:1)}pt;"
     />
@@ -122,9 +122,9 @@
     <button
       bind:this={headingElement}
       class="
-        {heading.level === 4 ? 'shadow-sm shadow-slate-300' : ''} 
+        {heading.level === 4 ? 'shadow-xs shadow-slate-300' : ''} 
         {heading.isSelected ? 'active-toc-node bg-[#DED8C4] text-gray-900 font-medium' : 'bg-transparent text-gray-700 hover:opacity-70 hover:bg-[#DED8C4]'}
-        text-sm w-full text-left flex-grow
+        text-sm w-full text-left grow
         transition-all duration-200 ease-in-out
         px-2 py-1 rounded-md
       "
@@ -135,7 +135,7 @@
     </button>
     <button
       onclick={startEditing}
-      class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-2 focus:outline-none"
+      class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-2 focus:outline-hidden"
       aria-label="Edit heading"
     >
       <Edit2 size={14} />

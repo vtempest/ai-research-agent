@@ -1,14 +1,14 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/page-item-functions
+[Documentation](../../../modules.md) / extractor/pdf-to-html/util/page-item-functions
 
-## Functions
-
-### minXFromBlocks()
+## minXFromBlocks()
 
 ```ts
-function minXFromBlocks(blocks): number
+function minXFromBlocks(blocks: any): number;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/page-item-functions.js:6
+
+### Parameters
 
 <table>
 <thead>
@@ -33,19 +33,21 @@ function minXFromBlocks(blocks): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### minXFromPageItems()
+## minXFromPageItems()
 
 ```ts
-function minXFromPageItems(items): number
+function minXFromPageItems(items: any): number;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/page-item-functions.js:19
+
+### Parameters
 
 <table>
 <thead>
@@ -70,19 +72,21 @@ function minXFromPageItems(items): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### sortByX()
+## sortByX()
 
 ```ts
-function sortByX(items): void
+function sortByX(items: any): void;
 ```
 
-#### Parameters
+Defined in: extractor/pdf-to-html/util/page-item-functions.js:30
+
+### Parameters
 
 <table>
 <thead>
@@ -107,6 +111,6 @@ function sortByX(items): void
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `void`

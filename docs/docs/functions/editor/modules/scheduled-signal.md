@@ -1,14 +1,14 @@
-[ai-research-agent](../../modules.md) / editor/modules/scheduled-signal
+[Documentation](../../modules.md) / editor/modules/scheduled-signal
 
-## Functions
-
-### readable()
+## readable()
 
 ```ts
-function readable(initialValue, start): object
+function readable(initialValue: any, start: () => void): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/scheduled-signal.js:93
+
+### Parameters
 
 <table>
 <thead>
@@ -56,24 +56,67 @@ function readable(initialValue, start): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `get` | () => `any` |
-| `subscribe` | (`subscriber`, `invalidate`) => `any` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`get()`
+
+</td>
+<td>
+
+() => `any`
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:95
+
+</td>
+</tr>
+<tr>
+<td>
+
+`subscribe()`
+
+</td>
+<td>
+
+(`subscriber`: `any`, `invalidate`: `any`) => `any`
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:95
+
+</td>
+</tr>
+</tbody>
+</table>
 
 ***
 
-### writable()
+## writable()
 
 ```ts
-function writable(value, start): object
+function writable(value: any, start: () => void): object;
 ```
 
-#### Parameters
+Defined in: editor/modules/scheduled-signal.js:99
+
+### Parameters
 
 <table>
 <thead>
@@ -121,13 +164,89 @@ function writable(value, start): object
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `object`
 
-| Name | Type |
-| ------ | ------ |
-| `get` | () => `any` |
-| `set` | (`newValue`) => `void` |
-| `subscribe` | (`subscriber`, `invalidate`) => `any` |
-| `update` | (`fn`) => `void` |
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`get()`
+
+</td>
+<td>
+
+() => `any`
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:172
+
+</td>
+</tr>
+<tr>
+<td>
+
+`set()`
+
+</td>
+<td>
+
+\{
+(`newValue`: `any`): `void`;
+  `[subscribersKey]`: `Map`&lt;`any`, `any`&gt;;
+\}
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:172
+
+</td>
+</tr>
+<tr>
+<td>
+
+`subscribe()`
+
+</td>
+<td>
+
+(`subscriber`: `any`, `invalidate`: `any`) => `any`
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:172
+
+</td>
+</tr>
+<tr>
+<td>
+
+`update()`
+
+</td>
+<td>
+
+(`fn`: `any`) => `void`
+
+</td>
+<td>
+
+editor/modules/scheduled-signal.js:172
+
+</td>
+</tr>
+</tbody>
+</table>

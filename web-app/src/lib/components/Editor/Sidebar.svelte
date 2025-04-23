@@ -25,7 +25,7 @@
 </script>
 
 <div class="bg-[#F3F3EE] h-full pl-2  flex flex-col">
-  <div class="space-y-4 overflow-y-auto flex-grow">
+  <div class="space-y-4 overflow-y-auto grow">
     <div class="sticky top-0 bg-[#F3F3EE] pt-2 z-10 pb-14">
       <SearchBox {editor} {handleHeadingsFiltered} />
     </div>

@@ -1,44 +1,102 @@
-[ai-research-agent](../../modules.md) / editor/rendering/position
+[Documentation](../../modules.md) / editor/rendering/position
 
-## Interfaces
+## LineInfo
 
-### LineInfo
+Defined in: editor/rendering/position.ts:13
 
-#### Properties
+### Properties
 
-##### belowMid
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+<a id="belowmid"></a> `belowMid`
+
+</td>
+<td>
+
+`boolean`
+
+</td>
+<td>
+
+editor/rendering/position.ts:17
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="element"></a> `element`
+
+</td>
+<td>
+
+[`HTMLLineElement`](rendering.md#htmllineelement)
+
+</td>
+<td>
+
+editor/rendering/position.ts:15
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="line"></a> `line`
+
+</td>
+<td>
+
+[`Line`](../index.md#line)
+
+</td>
+<td>
+
+editor/rendering/position.ts:14
+
+</td>
+</tr>
+<tr>
+<td>
+
+<a id="rect"></a> `rect`
+
+</td>
+<td>
+
+`DOMRect`
+
+</td>
+<td>
+
+editor/rendering/position.ts:16
+
+</td>
+</tr>
+</tbody>
+</table>
+
+***
+
+## getBoudingBrowserRange()
 
 ```ts
-belowMid: boolean;
+function getBoudingBrowserRange(editor: Editor, range: EditorRange): Range;
 ```
 
-##### element
+Defined in: editor/rendering/position.ts:70
 
-```ts
-element: HTMLLineElement;
-```
-
-##### line
-
-```ts
-line: default;
-```
-
-##### rect
-
-```ts
-rect: DOMRect;
-```
-
-## Functions
-
-### getBoudingBrowserRange()
-
-```ts
-function getBoudingBrowserRange(editor, range): Range
-```
-
-#### Parameters
+### Parameters
 
 <table>
 <thead>
@@ -75,19 +133,21 @@ function getBoudingBrowserRange(editor, range): Range
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Range`
 
 ***
 
-### getBrowserRange()
+## getBrowserRange()
 
 ```ts
-function getBrowserRange(editor, range): Range
+function getBrowserRange(editor: Editor, range: EditorRange): Range;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:59
+
+### Parameters
 
 <table>
 <thead>
@@ -124,19 +184,21 @@ function getBrowserRange(editor, range): Range
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `Range`
 
 ***
 
-### getIndexFromNode()
+## getIndexFromNode()
 
 ```ts
-function getIndexFromNode(editor, startNode): number
+function getIndexFromNode(editor: Editor, startNode: Node): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:111
+
+### Parameters
 
 <table>
 <thead>
@@ -173,23 +235,25 @@ function getIndexFromNode(editor, startNode): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### getIndexFromNodeAndOffset()
+## getIndexFromNodeAndOffset()
 
 ```ts
 function getIndexFromNodeAndOffset(
-   editor, 
-   node, 
-   offset, 
-   current?): number
+   editor: Editor, 
+   node: Node, 
+   offset: number, 
+   current?: number): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:80
+
+### Parameters
 
 <table>
 <thead>
@@ -238,7 +302,7 @@ function getIndexFromNodeAndOffset(
 <tr>
 <td>
 
-`current`?
+`current?`
 
 </td>
 <td>
@@ -250,22 +314,24 @@ function getIndexFromNodeAndOffset(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### getIndexFromPoint()
+## getIndexFromPoint()
 
 ```ts
 function getIndexFromPoint(
-   editor, 
-   x, 
-   y): number
+   editor: Editor, 
+   x: number, 
+   y: number): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:20
+
+### Parameters
 
 <table>
 <thead>
@@ -314,19 +380,21 @@ function getIndexFromPoint(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### getLineElementAt()
+## getLineElementAt()
 
 ```ts
-function getLineElementAt(editor, index): HTMLLineElement
+function getLineElementAt(editor: Editor, index: number): HTMLLineElement;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:134
+
+### Parameters
 
 <table>
 <thead>
@@ -363,19 +431,21 @@ function getLineElementAt(editor, index): HTMLLineElement
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 [`HTMLLineElement`](rendering.md#htmllineelement)
 
 ***
 
-### getLineInfoFromPoint()
+## getLineInfoFromPoint()
 
 ```ts
-function getLineInfoFromPoint(editor, y): LineInfo | undefined
+function getLineInfoFromPoint(editor: Editor, y: number): LineInfo;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:42
+
+### Parameters
 
 <table>
 <thead>
@@ -412,22 +482,24 @@ function getLineInfoFromPoint(editor, y): LineInfo | undefined
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`LineInfo`](position.md#lineinfo) \| `undefined`
+[`LineInfo`](#lineinfo)
 
 ***
 
-### getNodeAndOffset()
+## getNodeAndOffset()
 
 ```ts
 function getNodeAndOffset(
-   editor, 
-   index, 
-   direction): NodeOffsetAndFrozen
+   editor: Editor, 
+   index: number, 
+   direction: 0 | 1): NodeOffsetAndFrozen;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:183
+
+### Parameters
 
 <table>
 <thead>
@@ -476,19 +548,21 @@ function getNodeAndOffset(
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `NodeOffsetAndFrozen`
 
 ***
 
-### getNodeLength()
+## getNodeLength()
 
 ```ts
-function getNodeLength(editor, parentNode): number
+function getNodeLength(editor: Editor, parentNode: Node): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:143
+
+### Parameters
 
 <table>
 <thead>
@@ -525,19 +599,21 @@ function getNodeLength(editor, parentNode): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`
 
 ***
 
-### getNodesForRange()
+## getNodesForRange()
 
 ```ts
-function getNodesForRange(editor, range): [Node | null, number, Node | null, number]
+function getNodesForRange(editor: Editor, range: EditorRange): [Node, number, Node, number];
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:164
+
+### Parameters
 
 <table>
 <thead>
@@ -574,19 +650,21 @@ function getNodesForRange(editor, range): [Node | null, number, Node | null, num
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
-[`Node` \| `null`, `number`, `Node` \| `null`, `number`]
+\[`Node`, `number`, `Node`, `number`\]
 
 ***
 
-### textNodeLength()
+## textNodeLength()
 
 ```ts
-function textNodeLength(lines, node): number
+function textNodeLength(lines: Types, node: Node): number;
 ```
 
-#### Parameters
+Defined in: editor/rendering/position.ts:242
+
+### Parameters
 
 <table>
 <thead>
@@ -604,7 +682,7 @@ function textNodeLength(lines, node): number
 </td>
 <td>
 
-[`Types`](../typesetting/typeset.md#typest)&lt;[`BasicType`](../typesetting/typeset.md#basictype)&gt;
+[`Types`](../typesetting/typeset.md#types)
 
 </td>
 </tr>
@@ -623,6 +701,6 @@ function textNodeLength(lines, node): number
 </tbody>
 </table>
 
-#### Returns
+### Returns
 
 `number`

@@ -1,18 +1,20 @@
-[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Annotation
+[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Annotation
 
-## Classes
+## default
 
-### default
+Defined in: extractor/pdf-to-html/models/Annotation.js:1
 
-#### Constructors
+### Constructors
 
-##### new default()
+#### Constructor
 
 ```ts
-new default(options): default
+new default(options: any): default;
 ```
 
-###### Parameters
+Defined in: extractor/pdf-to-html/models/Annotation.js:2
+
+##### Parameters
 
 <table>
 <thead>
@@ -37,60 +39,74 @@ new default(options): default
 </tbody>
 </table>
 
-###### Returns
+##### Returns
 
-[`default`](Annotation.md#default)
+[`default`](#default)
 
-#### Properties
+### Properties
 
-##### category
+#### category
 
 ```ts
 category: any;
 ```
 
-##### color
+Defined in: extractor/pdf-to-html/models/Annotation.js:3
+
+#### color
 
 ```ts
 color: any;
 ```
 
-## Variables
+Defined in: extractor/pdf-to-html/models/Annotation.js:4
 
-### ADDED\_ANNOTATION
+***
+
+## ADDED\_ANNOTATION
 
 ```ts
 const ADDED_ANNOTATION: default;
 ```
 
+Defined in: extractor/pdf-to-html/models/Annotation.js:8
+
 ***
 
-### DETECTED\_ANNOTATION
+## DETECTED\_ANNOTATION
 
 ```ts
 const DETECTED_ANNOTATION: default;
 ```
 
+Defined in: extractor/pdf-to-html/models/Annotation.js:23
+
 ***
 
-### MODIFIED\_ANNOTATION
+## MODIFIED\_ANNOTATION
 
 ```ts
 const MODIFIED_ANNOTATION: default;
 ```
 
+Defined in: extractor/pdf-to-html/models/Annotation.js:28
+
 ***
 
-### REMOVED\_ANNOTATION
+## REMOVED\_ANNOTATION
 
 ```ts
 const REMOVED_ANNOTATION: default;
 ```
 
+Defined in: extractor/pdf-to-html/models/Annotation.js:13
+
 ***
 
-### UNCHANGED\_ANNOTATION
+## UNCHANGED\_ANNOTATION
 
 ```ts
 const UNCHANGED_ANNOTATION: default;
 ```
+
+Defined in: extractor/pdf-to-html/models/Annotation.js:18

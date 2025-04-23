@@ -1,12 +1,14 @@
-[ai-research-agent](../modules.md) / match/match-quasar
+[Documentation](../modules.md) / match/match-quasar
 
 ## Match
 
 ### matchQUASAR()
 
 ```ts
-function matchQUASAR(document, query): boolean
+function matchQUASAR(document: string, query: string): boolean;
 ```
+
+Defined in: match/match-quasar.js:19
 
 ### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp 
 
