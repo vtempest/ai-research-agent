@@ -36,6 +36,7 @@ jobs:
       - name: Generate documentation
         run: |
           cd docs
+          npm install
           DOCS_ON_SUBDOMAIN=true npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
