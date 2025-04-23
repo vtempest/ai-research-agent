@@ -106,6 +106,5 @@
 - [routes/settings/+layout](routes/settings/+layout.md)
 - [routes/settings/+layout.server](routes/settings/+layout.server.md)
 - [routes/settings/+page.server](routes/settings/+page.server.md)
-- [routes/settings/account/+page.server](routes/settings/account/+page.server.md)
 - [routes/signin/+page.server](routes/signin/+page.server.md)
 - [routes/signout/+page.server](routes/signout/+page.server.md)

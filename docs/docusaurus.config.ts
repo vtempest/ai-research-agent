@@ -237,7 +237,12 @@ export default async function createConfig(options: any = {}) {
             to: "/web-app/modules",
             label: "💻 Web App",
             position: "left",
-          }
+          },
+          {
+            href: "https://qwksearch.com/",
+            label: "🚀 Demo",
+            position: "right",
+          },
         ],
       },
 

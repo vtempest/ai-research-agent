@@ -34,7 +34,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Generate documentation
-        run: DOCS_ON_SUBDOMAIN=true npm run docs:build
+        run: |
+          cd docs
+          DOCS_ON_SUBDOMAIN=true npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

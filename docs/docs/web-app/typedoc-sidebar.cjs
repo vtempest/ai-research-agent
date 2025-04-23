@@ -692,17 +692,6 @@ const typedocSidebar = { items: [
             "type": "doc",
             "id": "web-app/routes/settings/+page.server",
             "label": "+page.server"
-          },
-          {
-            "type": "category",
-            "label": "account",
-            "items": [
-              {
-                "type": "doc",
-                "id": "web-app/routes/settings/account/+page.server",
-                "label": "+page.server"
-              }
-            ]
           }
         ]
       },

@@ -8,8 +8,6 @@
   "scripts": {
     "dev": "cd web-app; bun dev",
     "serve": "cd web-app; bun serve;",
-    "docs": "docusaurus serve --dir ./web-app/static/docs",
-    "docs:build": "NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ; NODE_NO_WARNINGS=1 docusaurus  gen-api-docs all  --all-versions ; rm -rf web-app/static/docs;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus build --out-dir ./web-app/static/docs",
     "test": "vitest",
     "test-ui": "vitest --ui --watch"
   },
