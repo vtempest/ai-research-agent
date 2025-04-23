@@ -1,4 +1,4 @@
-import wikiWordFrequency from "../../data/wiki-word-freq-325k.json" //with { type: "json" };
+import wikiWordFrequency from "../wordlists/wiki-word-freq-325k.json" //with { type: "json" };
 import fs from "fs";
 
 /**
@@ -37,10 +37,10 @@ export async function compileTopicModel(options = {}) {
   //array key: var [nextWords, wikiTitle, category,
   // uniqueness, capsIndexes] = dict[key.slice(0,2)][key];
 
-  var dict = JSON.parse(fs.readFileSync("./data/dictionary-index-152k.json", "utf8"));
+  var dict = JSON.parse(fs.readFileSync("./src/wordlists/dictionary-index-152k.json", "utf8"));
 
   var wikiTopPages = JSON.parse(
-    fs.readFileSync("./data/wiki-pages-200k.json", "utf8")
+    fs.readFileSync("./src/wordlists/wiki-pages-200k.json", "utf8")
   );
 
   var wordsPhrasesTree = {};
@@ -203,7 +203,7 @@ export async function compileTopicModel(options = {}) {
     }, {});
 
     fs.writeFileSync(
-      "./data/wiki-phrases-model-240k.json",
+      "./src/wordlists/wiki-phrases-model-240k.json",
       addJSONLineBreaks
         ? JSON.stringify(firstTwoLettersTree, null, 2)
         : JSON.stringify(firstTwoLettersTree),

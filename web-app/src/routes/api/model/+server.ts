@@ -1,4 +1,6 @@
 import { json } from "@sveltejs/kit";
+import topicModel from  "../../../../../src/wordlists/wiki-phrases-model-240k.json?raw"
+
 
 /**
  * Return the topic model from GitHub storage as JSON 
@@ -7,10 +9,9 @@ import { json } from "@sveltejs/kit";
  * @returns 
  */
 export async function GET({ url }) {
-  // import topicModel from  ai-research-agent/data/wiki-phrases-model-240k.json'
-  var topicModel = await fetch(
+  let topicModelFinal = topicModel ? topicModel : await fetch(
     "https://raw.githubusercontent.com/vtempest/" +
-      "ai-research-agent/master/data/wiki-phrases-model-240k.json"
+      "ai-research-agent/master/src/wordlists/wiki-phrases-model-240k.json"
   ).then(r => r.json());
 
   return json(topicModel, {

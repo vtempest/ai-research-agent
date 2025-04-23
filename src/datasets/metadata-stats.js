@@ -1,10 +1,10 @@
 import fs from "fs";
 import {compileTopicModel} from "./compile-topic-model.js";
 
-var dictindex = fs.readFileSync("./data/dictionary-152k.json", "utf8");
-// var dictDefs = JSON.parse(fs.readFileSync("./data/dictionary-defs.json", "utf8"));
+var dictindex = fs.readFileSync("./src/wordlists/dictionary-152k.json", "utf8");
+// var dictDefs = JSON.parse(fs.readFileSync("./src/wordlistsw/dictionary-defs.json", "utf8"));
 
-var dict = JSON.parse(fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8"));
+var dict = JSON.parse(fs.readFileSync("./src/wordlists/wiki-phrases-model-240k.json", "utf8"));
 
 // look thru all children of dict and add up their children to toal
 var totalFirsts = Object.keys(dict).reduce(

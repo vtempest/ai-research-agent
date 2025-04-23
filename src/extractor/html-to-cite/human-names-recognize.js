@@ -1,4 +1,4 @@
-import dataHumanNames from "../../../data/human-names-92k.json" // with { type: "json" };
+import dataHumanNames from "../../wordlists/human-names-92k.json?raw"  with { type: "json" };
 
 // const dataHumanNames = {}
 

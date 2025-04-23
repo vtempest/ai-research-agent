@@ -6,7 +6,7 @@
 function GET(param0: object): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/model/+server.ts:9
+Defined in: web-app/src/routes/api/model/+server.ts:11
 
 Return the topic model from GitHub storage as JSON 
 cached for 100 hours

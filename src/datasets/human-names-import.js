@@ -42,7 +42,7 @@ export async function importHumanNames() {
     const jsonData = JSON.stringify(nameData, null, 0);
 
     // Save the JSON data to a file
-    await fs.writeFile("./data/human-names-92k.json", jsonData);
+    await fs.writeFile("./src/wordlists/human-names-92k.json", jsonData);
 
     console.log(
       Object.keys(nameData).length +

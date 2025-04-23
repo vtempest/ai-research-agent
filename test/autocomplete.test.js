@@ -1,10 +1,10 @@
 import { test, expect } from "vitest";
 import {suggestNextWordCompletions} from "../index.js"
 import fs from "fs";
-import phrasesModel from "../data/wiki-phrases-model-240k.json"
+import phrasesModel from "../src/wordlists/wiki-phrases-model-240k.json"
 
 var queries = JSON.parse(
-  fs.readFileSync("./data/quora-queries-15k.json", "utf8")
+  fs.readFileSync("./src/wordlists/quora-queries-15k.json", "utf8")
 );
 
 var q = "who is john s" //"when is the 2024 ";

@@ -4,12 +4,12 @@ import { extractSEEKTOPIC, extractContent } from "../index.js";
 import fs from "fs";
 //load models or pass them in
 var phrasesModel = JSON.parse(
-  fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8")
+  fs.readFileSync("./src/wordlists/wiki-phrases-model-240k.json", "utf8")
 );
 
 // //check for typos
 var typosModel = JSON.parse(
-  fs.readFileSync("./data/misspelled-typos-8k.json", "utf8")
+  fs.readFileSync("./src/wordlists/misspelled-typos-8k.json", "utf8")
 ); 
 
 test("get top sentences specific to a query", async () => {

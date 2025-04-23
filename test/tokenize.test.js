@@ -5,11 +5,11 @@ import  {
 import fs from "fs";
 
 var phrasesModel = JSON.parse(
-  fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8")
+  fs.readFileSync("./src/wordlists/wiki-phrases-model-240k.json", "utf8")
 );
 
 var  queries = JSON.parse(
-  fs.readFileSync("./data/quora-queries-15k.json", "utf8")
+  fs.readFileSync("./src/wordlists/quora-queries-15k.json", "utf8")
 );
  
 // var queries = ["what is  albert einstein's favorite programming language?"];

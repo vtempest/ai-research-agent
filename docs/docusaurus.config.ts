@@ -32,7 +32,7 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  *  @docusaurus/preset-classic docusaurus-lunr-search docusaurus-plugin-openapi-docs 
  * docusaurus-plugin-typedoc docusaurus-theme-openapi-docs prism-react-renderer react
  *  react-dom clsx typedoc typedoc-plugin-markdown typescript
- * 
+ * https://github.com/vtempest/ai-research-agent/blob/master/docs/api.mustache
  * *Add to package.json*:
  * "docs": "docusaurus serve --dir web-app/static/docs",
  * "docs:build": "NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ;
@@ -47,6 +47,8 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
     title:  Introduction    
     slug: /
     ---
+
+x
 
  * @see
  * [Docusaurus Docs](https://docusaurus.io/docs)
@@ -74,7 +76,7 @@ export default async function createConfig(options: any = {}) {
     ],
     showEditsOnGitHub = true,
     GOOGLE_ANALYTICS_ID = "/////G-E5TZ32BZD",
-    gitRepo = "https://github.com/vtempest/ai-research-agent",
+    gitRepo = "https://github.com/vtempest/ai-research-agent/blob/main/",
     compileForSubdomain = !!process.env.DOCS_ON_SUBDOMAIN,
     tsconfig = "../tsconfig.json",
     tsconfig2 = "../web-app/tsconfig.json",
@@ -95,8 +97,8 @@ export default async function createConfig(options: any = {}) {
     title: name + " API Routes Docs",
     url: domain,
     baseUrl: compileForSubdomain ? "/" : "/docs/",
-    onBrokenLinks: "warn",
-    onBrokenMarkdownLinks: "warn",
+    onBrokenLinks: "ignore",
+    onBrokenMarkdownLinks: "ignore",
     favicon: domain + "/favicon.ico",
     projectName: "qwksearch",
     presets: [
@@ -105,9 +107,9 @@ export default async function createConfig(options: any = {}) {
         {
           docs: {
             routeBasePath: "/",
-            sidebarPath: './sidebars.ts',
-            editUrl:  gitRepo,
-            // docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+            sidebarPath: require.resolve("./sidebars.ts"),
+            editUrl: gitRepo,
+            docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           },
           blog: false,
           theme: {
@@ -122,7 +124,6 @@ export default async function createConfig(options: any = {}) {
     ],
 
     plugins: [
-      require.resolve("docusaurus-lunr-search"),
 
       [
         "docusaurus-plugin-openapi-docs",
@@ -138,20 +139,26 @@ export default async function createConfig(options: any = {}) {
                 categoryLinkSource: "tag",
                 sidebarCollapsed: false,
               },
-              template: "api.mustache", // Customize API MDX with mustache template
+              template: "openapi.mustache", // Customize API MDX with mustache template
               hideSendButton: false,
-              // markdownGenerators: { createApiPageMD }, // customize MDX with markdown generator
+              markdownGenerators: { createApiPageMD }, // customize MDX with markdown generator
               showSchemas: false,
             } satisfies OpenApiPlugin.Options,
           } satisfies Plugin.PluginOptions,
         },
       ],
+      require.resolve("docusaurus-lunr-search"),
+
       ...(typedocFolders.map(({ id, entryPoints }) => [
         "docusaurus-plugin-typedoc",
         {
           id,
           entryPoints,
-          exclude: ["**/node_modules/**/*"],
+          exclude: [
+            "**/node_modules/**/*",
+            "**/src/wordlists/**",
+            "src/wordlists"
+          ],
           tsconfig,
           out: baseFolder + "docs/" + id,
           readme,
@@ -193,7 +200,7 @@ export default async function createConfig(options: any = {}) {
       //   },
       // ]
     ],
-      
+
     themeConfig: {
       docs: {
         sidebar: {
@@ -211,19 +218,25 @@ export default async function createConfig(options: any = {}) {
 
           {
             to: "/functions",
-            label: "Introduction",
+            label: "👋 Intro",
             position: "left",
           },
           {
-            to: "/api-routes/qwksearch-api",
-            label: "API Routes",
+            to: "/api-routes/services",
+            label: "🔌 API Routes",
+            position: "left",
+          },
+
+          {
+            to: "/functions/modules",
+            label: "🔧 Core Functions",
             position: "left",
           },
           {
             to: "/web-app/modules",
-            label: "Web App",
+            label: "💻 Web App",
             position: "left",
-          },
+          }
         ],
       },
 

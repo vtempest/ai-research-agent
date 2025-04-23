@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers:
-  - url: https://qwksearch.com/api
-    description: Production
+  - url: https://qwksearch.com/api/
+    description: Production Server URL
 info:
   description: |
     Search, extract, vectorize and outline a topic base with 
@@ -188,8 +188,8 @@ paths:
           description: Recency filter - none, day, week, month, year
           required: false
           schema:
-            type: string
-            default: ""
+            type: number
+            default: 0
         - name: public
           in: query
           description: Use public server instances (optional)

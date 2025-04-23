@@ -4,7 +4,7 @@ import { test, expect } from "vitest";
 import fs from "fs";
 //load models or pass them in
 var phrasesModel = JSON.parse(
-  fs.readFileSync("./data/wiki-phrases-model-240k.json", "utf8")
+  fs.readFileSync("./src/wordlists/wiki-phrases-model-240k.json", "utf8")
 );
 
 

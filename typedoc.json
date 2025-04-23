@@ -23,7 +23,6 @@
   "kindSortOrder": [
         "Function",
         "Method",
-        "Reference",
         "Project",
         "Module",
         "Namespace",
@@ -35,6 +34,7 @@
         "Constructor",
         "Property",
         "Variable",
+        "Reference",
         "Accessor",
     ],
   "cname": "airesearch.js.org",

@@ -15,4 +15,3 @@ vite.config.ts.timestamp-*
 .cloudflare
 .wrangler
 bun.lockb
-web-app/data/*

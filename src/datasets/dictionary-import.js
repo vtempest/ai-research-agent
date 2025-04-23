@@ -11,11 +11,11 @@ const OPTION_ADD_DEFINITIONS = 1;
 
 const url =
   "https://github.com/globalwordnet/english-wordnet/releases/download/2023-edition/english-wordnet-2023.xml.gz";
-const gzipOutputPath = "./data/english-wordnet-2023.xml.gz";
-const xmlFilePath = "./data/english-wordnet-2023.xml";
-const jsonOutputPath = "./data/english-wordnet-2023.json";
-const outputPathDict = "./data/dictionary-152k.json";
-const outputPathIndex = "./data/dictionary-index-152k.json";
+const gzipOutputPath = "./src/wordlists/english-wordnet-2023.xml.gz";
+const xmlFilePath = "./src/wordlists/english-wordnet-2023.xml";
+const jsonOutputPath = "./src/wordlists/english-wordnet-2023.json";
+const outputPathDict = "./src/wordlists/dictionary-152k.json";
+const outputPathIndex = "./src/wordlists/dictionary-index-152k.json";
 const pos_categories = ["n", "v", "r", "a", "s"]; //a and s is for adjectives
 const stringExampleIntro = " Example: ";
 const categories = [

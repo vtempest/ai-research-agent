@@ -14,7 +14,7 @@ describe('favicon parser', async() => {
     }
     
     console.log(searchEngines);
-    fs.writeFileSync('./data/search-engines.json', JSON.stringify(searchEngines, null, 2));
+    fs.writeFileSync('./src/wordlists/search-engines.json', JSON.stringify(searchEngines, null, 2));
 
 
     // Verify document content

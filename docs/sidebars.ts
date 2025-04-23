@@ -47,4 +47,6 @@ export default {
   apiroutes: sidebarConfig,
   functions: sidebarConfig,
   webapp: sidebarConfig,
+  qwksearch: sidebarConfig,
+  default: sidebarConfig,
 };

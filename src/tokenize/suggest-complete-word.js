@@ -38,7 +38,7 @@ export async function suggestNextWordCompletions(query, options = {}) {
   } = options;
 
   // if (!phrasesModel)
-  //   phrasesModel = await import ( "../../data/wiki-phrases-model-240k.json");
+  //   phrasesModel = await import ( "../wordlists/wiki-phrases-model-240k.json");
 
   //strip non-alphanumeric characters from query and -'
   query = query.trim().replace(/[^a-zA-Z0-9\s\-\']/g, "");

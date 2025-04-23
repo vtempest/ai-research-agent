@@ -34,5 +34,6 @@
    ],
   "exclude": [
     "node_modules",
+    "src/wordlists"
   ]
 }
