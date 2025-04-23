@@ -41,7 +41,8 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  *  build --out-dir web-app/static/docs",
  * 
  * For homepage Add to docs/functions/index.md
- * ---
+ * 
+    ---
     sidebar_position: 1
     sidebar_label:  Introduction
     title:  Introduction    
@@ -107,7 +108,7 @@ export default async function createConfig(options: any = {}) {
         {
           docs: {
             routeBasePath: "/",
-            sidebarPath: require.resolve("./sidebars.ts"),
+            sidebarPath: "./sidebars.ts",
             editUrl: gitRepo,
             docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           },
@@ -222,7 +223,7 @@ export default async function createConfig(options: any = {}) {
             position: "left",
           },
           {
-            to: "/api-routes/services",
+            to: "/api-routes/qwksearch-api",
             label: "🔌 API Routes",
             position: "left",
           },

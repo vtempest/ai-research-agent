@@ -4,8 +4,8 @@
   "description": "Docusaurus with OpenAPI and Typedoc and Lunr Search",
   "private": true,
   "scripts": {
-    "docs": "docusaurus serve --dir ./docs-dist",
-    "docs:build": "rm -rf ./docs-dist; mkdir ./docs-dist; NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ; NODE_NO_WARNINGS=1 docusaurus  gen-api-docs all  --all-versions ;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus build --out-dir ./docs-dist;",
+    "docs": "npx docusaurus serve --dir ./docs-dist",
+    "docs:build": "rm -rf ./docs-dist; mkdir ./docs-dist; NODE_NO_WARNINGS=1 npx docusaurus clean-api-docs  all --all-versions ; NODE_NO_WARNINGS=1 npx docusaurus  gen-api-docs all  --all-versions ;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true npx docusaurus build --out-dir ./docs-dist;",
     "docs:copy": "cp ./docs-dist/functions/index.html ./docs-dist/index.html; cp -r ./docs-dist ../web-app/static/docs"
   },
   "dependencies": {

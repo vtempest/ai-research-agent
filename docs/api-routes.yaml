@@ -185,7 +185,7 @@ paths:
             default: general
         - name: recency
           in: query
-          description: Recency filter - none, day, week, month, year
+          description: Recency filter - index of [none, day, week, month, year]
           required: false
           schema:
             type: number

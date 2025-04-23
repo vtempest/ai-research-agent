@@ -58,7 +58,7 @@ export function initAuth(env, options = {} as any) {
 
   const db = drizzle(env.DB, { schema });
   const { handle, signIn, signOut } = SvelteKitAuth({
-    debug: true,
+    debug: false, //true,
     trustHost: true,
     adapter: D1Adapter(env.DB),
     secret: env.AUTH_SECRET,

@@ -19,7 +19,7 @@
     "src",
     "./src/global.d.ts",
     "./src/**/*",
-    "index.js",
+    "index.js", "static/account",
    ],
   "exclude": ["node_modules"]
 }

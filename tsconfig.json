@@ -6,6 +6,7 @@
 
     "paths": {
       "$ai-research-agent": ["../*"],
+      "$ai-research-agent/*": ["../*"],
       "./$types": ["./web-app/src/global.d.ts"],
       "$types": ["./web-app/src/global.d.ts"],
       "$lib/*": ["./web-app/src/lib/*"],
@@ -30,7 +31,7 @@
     "src/*",
     "index.js",
     "web-app/src/global.d.ts",
-    "web-app/src/**/*",
+    "web-app/src/**/*", "web-app/static/account",
    ],
   "exclude": [
     "node_modules",

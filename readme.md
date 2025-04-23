@@ -191,6 +191,7 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 
 ## Further Research
 
+*   [ThoughtSource Reasoning Datasets](https://github.com/OpenBioLink/ThoughtSource) 
 *   [Debate on Graph (arxiv)](https://arxiv.org/html/2409.03155v1)
 *   [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
 *   [AI Research Agent's NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)

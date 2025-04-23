@@ -12,10 +12,9 @@ export default defineConfig({
     // @ts-ignore
     sveltekit()
   ],
-  ssr: false,
   build: {
     rollupOptions: {
-      external: ['$app/paths']
+      // external: ['$app/paths']
     }
   },
   resolve: {
