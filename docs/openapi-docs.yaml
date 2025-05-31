@@ -1,0 +1,436 @@
+openapi: 3.0.0
+servers:
+  - url: https://qwksearch.com/api/
+    description: Production Server URL
+info:
+  description: |
+    Search, extract, vectorize and outline a topic base with 
+    AI Research Agent.
+   
+  version: 1.0.0
+  title: QwkSearch API
+  termsOfService: "http://qwksearch.com/legal/terms/"
+  x-logo:
+    url: "https://qwksearch.com/icons/qwksearch-logo.svg"
+    altText: logo
+
+tags:
+  - name: Services
+    description: "Core services of QwkSearch API"
+paths:
+  /extract:
+    get:
+      tags:
+        - Services
+      summary: Extract structured content and cite from any URL
+      description: |
+          ### 🚜📜 Tractor the Text Extractor 
+          ![Extractor](https://i.imgur.com/cRewT07.png){width=350}
+          
+          1. Main Content Detection: Extract the main content from a URL by combining 
+          Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 
+          custom adapters for major sites for article, author, date HTML classes.
+          2. Basic HTML Standardization: Transform complex HTML into a simplified 
+          reading-mode format of basic HTML, making it ideal for research note archival
+            and focused reading, with headings, images and links.
+          3. YouTube Transcript Processing: When a YouTube video URL is detected, 
+          retrieve the complete video transcript including both manual captions and 
+          auto-generated subtitles, maintaining proper timestamp synchronization and 
+          speaker identification where available.
+          4. PDF to HTML: Process PDF documents by extracting
+            formatted text while intelligently handling line breaks, page headers, 
+            footnotes. The system analyzes text height statistics to automatically
+            infer heading levels, creating a properly structured document hierarchy
+            based on standard deviation from mean text size.
+          5. Citation Information Extraction: Identify and extract citation metadata
+            including author names, publication dates, sources, and titles using HTML
+            meta tags and common class name patterns. The system validates author names
+            against a comprehensive database of 90,000 first and last names, 
+          distinguishing between personal and organizational authors to properly 
+          format citations.
+          6. Author Name Formatting: Process author names by checking against 
+          known name databases, handling affixes and titles correctly, and determining
+            whether to reverse the name order based on whether it's a personal or 
+          organizational author, ensuring proper citation formatting.
+          
+      parameters:
+        - name: url
+          in: query
+          description: URL to extract content from (supports articles, PDFs, YouTube)
+          required: true
+          schema:
+            type: string
+            format: uri
+        - name: images
+          in: query
+          description: Include images in output (default true)
+          schema:
+            type: boolean
+            default: true
+        - name: links
+          in: query
+          description: Include hyperlinks in output (default true)
+          schema:
+            type: boolean
+            default: true
+        - name: formatting
+          in: query
+          description: Preserve text formatting (default true)
+          schema:
+            type: boolean
+            default: true
+        - name: absoluteURLs
+          in: query
+          description: Convert relative URLs to absolute (default true)
+          schema:
+            type: boolean
+            default: true
+        - name: timeout
+          in: query
+          description: HTTP request timeout in seconds (default 5)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 30
+            default: 5
+      responses:
+        '200':
+          description: Structured content extraction result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: Article/video title
+                  html:
+                    type: string
+                    description: Simplified HTML content with standardized structure
+                  cite:
+                    type: string
+                    description: APA citation with Last, First Initial format
+                  author_cite:
+                    type: string
+                    description: Author name in Last, First Middle format
+                  author_short:
+                    type: string
+                    description: Author surname only
+                  author_type:
+                    type: string
+                    enum: [single, two-author, more-than-two, organization]
+                    description: Type of authorship
+                  author:
+                    type: string
+                    description: Original author string from source
+                  date:
+                    type: string
+                    format: date
+                    description: Publication date in YYYY-MM-DD format
+                  source:
+                    type: string
+                    description: Publishing organization/site name
+                  word_count:
+                    type: integer
+                    description: Clean text word count excluding HTML
+                  url:
+                    type: string
+                    format: uri
+                    description: Canonical URL of the resource
+                required:
+                  - title
+                  - html
+                  - cite
+                  - word_count
+                  - url
+
+        '500':
+          description: Server error or missing URL parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+
+  /agents:
+    post:
+      tags:
+        - Services
+      summary: Generate language model reply using agent prompts
+      description: |
+          
+          Generates language response to language prompt with agent templates.
+          
+          - *Requires*: LLM provider, API Key, and agent name, and context variables.
+          - *Agent Templates*: summarize-bullets(article), summarize(article), 
+          suggest-followups(chat_history, article), answer-cite-sources(context, chat_history, query),
+          query-resolution(chat_history, query), knowledge-graph-nodes(query, article), 
+          summary-longtext(summaries)
+          - *How it Works*: Language models are machine learning systems trained on vast amounts of text to predict 
+          the most likely next word or sequence of words given a prompt. They represent words and 
+          their contexts as high-dimensional vectors, allowing them to capture complex relationships 
+          and nuances in language. Using neural network architectures like transformers, these models 
+          analyze input text, apply attention mechanisms to understand context, and generate human-like 
+          responses based on learned patterns.
+          
+          - *Providers*: groq, togetherai, openai, anthropic, xai, google, perplexity
+          - [Groq Docs](https://console.groq.com/docs/overview) [Groq Keys](https://console.groq.com/keys):
+            Llama, Mixtral 8x7B, Gemma2 9B
+          - [OpenAI Docs](https://platform.openai.com/docs/overview) [OpenAI Keys](https://platform.openai.com/api-keys):
+            GPT-3.5 Turbo, GPT-4, GPT-4 Turbo, GPT-4 Omni, GPT-4 Omni Mini
+          - [Anthropic Docs](https://docs.anthropic.com/en/docs/welcome) [Anthropic Keys](https://console.anthropic.com/settings/keys):
+            Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
+          - [TogetherAI Docs](https://docs.together.ai/docs/quickstart) [TogetherAI Keys](https://api.together.xyz/settings/api-keys):
+          Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena.
+          - [XAI Docs](https://docs.x.ai/docs#models) [XAI Keys](https://console.x.ai/): Grok, Grok Vision
+          - [Google Vertex Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) 
+            [Google Vertex Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
+          - [Perplexity Docs](https://docs.perplexity.ai/models/model-cards) 
+            [Perplexity Keys](https://www.perplexity.ai/settings/keys): Sonar, Sonar Deep Research
+          
+          ![Language Model Response](https://i.imgur.com/bailW5n.gif)
+          ![Agent Processing](https://i.imgur.com/uW6E9VJ.gif)
+          
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - provider
+                - key
+              properties:
+                prompt:
+                  type: string
+                  description: System prompt for the language model
+                agent:
+                  type: string
+                  enum:
+                    - summarize-bullets
+                    - summarize
+                    - suggest-followups
+                    - answer-cite-sources
+                    - query-resolution
+                    - knowledge-graph-nodes
+                    - summary-longtext
+                  description: |
+                    Agent name - summarize-bullets, summarize, suggest-followups, 
+                    answer-cite-sources, query-resolution, knowledge-graph-nodes, 
+                    summary-longtext
+                context:
+                  type: string
+                  description: JSON Object of to insert into agent prompt
+                provider:
+                  type: string
+                  default: groq
+                  enum:
+                    - groq
+                    - openai
+                    - anthropic
+                    - together
+                    - xai
+                    - google
+                    - perplexity
+                  description: LLM provider - groq, openai, anthropic, together, xai, google
+                key:
+                  type: string
+                  description: Your API key for the AI provider
+                model:
+                  type: string
+                  default: "meta-llama/llama-4-maverick-17b-128e-instruct"
+                html:
+                  type: string
+                  default: true
+                  description: If true, reply format is HTML. If false, Markdown.
+                temperature:
+                  type: number
+                  description: |
+                    Temperature controls the randomness of the model's predictions.
+                    A higher value means the model will be more creative and less deterministic,
+                    while a lower value means the model will be more deterministic.
+                  default: 1
+        
+
+      responses:
+        '200':
+          description: Generated reply
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reply:
+                    type: string
+                    description: Generated reply
+        '500':
+          description: Server error or missing prompt parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+
+  /search:
+    get:
+      tags:
+        - Services
+      summary: Search the web
+      description: |
+        ![AILogo](https://i.imgur.com/AvFLGdR.png)
+
+        Search the web by sending a query via SearXNG metasearch engine of 100+ sources.
+        You can specify the type of content you want—such as general web results,
+        news articles, videos, images, science topics, files, or IT-related 
+        information—by choosing the appropriate category. 
+        Additional filters let you narrow results by recency (like results
+        from the past day, week, month, or year), language, and page number.
+        The API returns a structured list of results, each including a title, URL, snippet, domain, and other useful details, making it easy to display or analyze the information. This flexible and robust search tool is ideal for apps, research projects, and any situation where up-to-date, diverse web data is needed.
+        
+        [Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
+
+      parameters:
+        - name: q
+          in: query
+          description: Search query string
+          required: true
+          schema:
+            type: string
+        - name: cat
+          in: query
+          description: Category - general, news, videos, images, science, files, it
+          required: false
+          enum:
+            - general
+            - news
+            - videos
+            - images
+            - science
+            - files
+            - it
+          schema:
+            type: string
+            default: general
+        - name: recency
+          in: query
+          description: Recency filter - index of [none, day, week, month, year]
+          required: false
+          schema:
+            type: number
+            default: 0
+        - name: public
+          in: query
+          description: Use public server instances (optional)
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: page
+          in: query
+          description: Pagination for results (optional)
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: lang
+          in: query
+          description: Language
+          required: false
+          schema:
+            type: string
+            default: en-US
+      responses:
+        '200':
+          description: A list of search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          description: Title of the search result
+                        link:
+                          type: string
+                          description: URL of the search result
+                        snippet:
+                          type: string
+                          description: Snippet of the text around the query
+                        domain:
+                          type: string
+                          description: Domain of the search result
+                        favicon:
+                          type: string
+                          description: Favicon of the search result
+                        path:
+                          type: string
+                          description: Path of the search result
+                        engines:
+                          type: array
+                          description: Engines used to find the search result
+                          
+        '400':
+          description: Missing required query parameter `q`
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Server error when fetching search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+
+components:
+  schemas:
+    
+    User:
+      type: object
+      properties:
+        username:
+          description: User supplied username
+          type: string
+          minLength: 4
+          example: John78
+        email:
+          description: User email address
+          type: string
+          format: email
+          example: john.smith@example.com
+        password:
+          type: string
+          description: >-
+            User password, MUST contain a mix of upper and lower case letters,
+            as well as digits
+          format: password
+          minLength: 8
+          pattern: "/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/"
+          example: drowssaP123
+        phone:
+          description: User phone number in international format
+          type: string
+          pattern: '/^\+(?:[0-9]-?){6,14}[0-9]$/'
+          example: +1-202-555-0192
+        userStatus:
+          description: User status
+          type: integer
+          format: int32

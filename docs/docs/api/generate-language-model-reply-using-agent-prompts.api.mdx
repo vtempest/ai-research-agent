@@ -1,0 +1,101 @@
+---
+id: generate-language-model-reply-using-agent-prompts
+title: "Generate language model reply using agent prompts"
+description: "Generates language response to language prompt with agent templates."
+sidebar_label: "Generate language model reply using agent prompts"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: api/qwksearch-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generate language model reply using agent prompts"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/agents"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+
+Generates language response to language prompt with agent templates.
+
+- *Requires*: LLM provider, API Key, and agent name, and context variables.
+- *Agent Templates*: summarize-bullets(article), summarize(article), 
+suggest-followups(chat_history, article), answer-cite-sources(context, chat_history, query),
+query-resolution(chat_history, query), knowledge-graph-nodes(query, article), 
+summary-longtext(summaries)
+- *How it Works*: Language models are machine learning systems trained on vast amounts of text to predict 
+the most likely next word or sequence of words given a prompt. They represent words and 
+their contexts as high-dimensional vectors, allowing them to capture complex relationships 
+and nuances in language. Using neural network architectures like transformers, these models 
+analyze input text, apply attention mechanisms to understand context, and generate human-like 
+responses based on learned patterns.
+
+- *Providers*: groq, togetherai, openai, anthropic, xai, google, perplexity
+- [Groq Docs](https://console.groq.com/docs/overview) [Groq Keys](https://console.groq.com/keys):
+  Llama, Mixtral 8x7B, Gemma2 9B
+- [OpenAI Docs](https://platform.openai.com/docs/overview) [OpenAI Keys](https://platform.openai.com/api-keys):
+  GPT-3.5 Turbo, GPT-4, GPT-4 Turbo, GPT-4 Omni, GPT-4 Omni Mini
+- [Anthropic Docs](https://docs.anthropic.com/en/docs/welcome) [Anthropic Keys](https://console.anthropic.com/settings/keys):
+  Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
+- [TogetherAI Docs](https://docs.together.ai/docs/quickstart) [TogetherAI Keys](https://api.together.xyz/settings/api-keys):
+Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena.
+- [XAI Docs](https://docs.x.ai/docs#models) [XAI Keys](https://console.x.ai/): Grok, Grok Vision
+- [Google Vertex Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) 
+  [Google Vertex Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
+- [Perplexity Docs](https://docs.perplexity.ai/models/model-cards) 
+  [Perplexity Keys](https://www.perplexity.ai/settings/keys): Sonar, Sonar Deep Research
+
+![Language Model Response](https://i.imgur.com/bailW5n.gif)
+![Agent Processing](https://i.imgur.com/uW6E9VJ.gif)
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["provider","key"],"properties":{"prompt":{"type":"string","description":"System prompt for the language model"},"agent":{"type":"string","enum":["summarize-bullets","summarize","suggest-followups","answer-cite-sources","query-resolution","knowledge-graph-nodes","summary-longtext"],"description":"Agent name - summarize-bullets, summarize, suggest-followups, \nanswer-cite-sources, query-resolution, knowledge-graph-nodes, \nsummary-longtext\n"},"context":{"type":"string","description":"JSON Object of to insert into agent prompt"},"provider":{"type":"string","default":"groq","enum":["groq","openai","anthropic","together","xai","google","perplexity"],"description":"LLM provider - groq, openai, anthropic, together, xai, google"},"key":{"type":"string","description":"Your API key for the AI provider"},"model":{"type":"string","default":"meta-llama/llama-4-maverick-17b-128e-instruct"},"html":{"type":"string","default":true,"description":"If true, reply format is HTML. If false, Markdown."},"temperature":{"type":"number","description":"Temperature controls the randomness of the model's predictions.\nA higher value means the model will be more creative and less deterministic,\nwhile a lower value means the model will be more deterministic.\n","default":1}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Generated reply","content":{"application/json":{"schema":{"type":"object","properties":{"reply":{"type":"string","description":"Generated reply"}}}}}},"500":{"description":"Server error or missing prompt parameter","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"}}}}}}}}
+>
+  
+</StatusCodes>
+
