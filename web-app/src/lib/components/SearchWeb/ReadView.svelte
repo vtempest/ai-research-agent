@@ -3,23 +3,26 @@
   // import "./icons-download.css";
   import { highlightCodeSyntax } from "$ai-research-agent";
   import "highlight.js/styles/monokai.css"; // Choose your preferred style
-
-  import Footer from "$lib/components/AppLayout/Footer.svelte";
-
   import iconQwkLogo from "$lib/components/icons/icon-qwksearchlogo.svg";
-
+  import iconLoadingInfinity from "$lib/components/icons/icon-loading-infinity.svg";
+  import QuantumWaveOrbital from "$lib/components/SearchWeb/extras/QuantumWaveOrbital.svelte";
   import EditorComponent from "$lib/components/Editor/EditorComponent.svelte";
-  import { FOOTER_LINKS, APP_NAME, APP_SLOGAN } from "$lib/custom-domain";
+  import { FOOTER_LINKS, APP_NAME, APP_SLOGAN } from "$lib/customize-site";
 
-  let editor;
   let {
-     currentArticle, 
-    topicsObject, 
-    fetchArticle = () => {},
-    summarizeArticle = () => {} 
-  } = $props() as any;
-
+    extractedArticle,
+    fetchArticle = () => Promise.resolve(),
+    fetchingURL = "",
+  }: {
+    extractedArticle?: Response & Article;
+    fetchArticle?: (url: string, index?: number) => any;
+    fetchingURL?: string;
+  } = $props();
   
+
+  let topicsObject = $state([]);
+  let editor = $state(null);
+
   const paletteColors = [
     "#FFB3BA", // Pastel Pink
     "#BAFFC9", // Pastel Green
@@ -42,14 +45,17 @@
     setupRemoveErrorImages();
   });
 
-  //remove images that don't load
+  /**
+   * Removes images that fail to load from the read view
+   * @private
+   */
   function setupRemoveErrorImages() {
     if (document.querySelector(".read-view"))
       new MutationObserver(() => {
         document
           .querySelector(".read-view")
-          .querySelectorAll("img")
-          .forEach((node) => {
+          ?.querySelectorAll("img")
+          ?.forEach((node) => {
             node.addEventListener("error", () => {
               node.remove();
             });
@@ -74,14 +80,14 @@
     if (event.target.closest("a") || event.target.tagName === "A") {
       var targetURL = event.target.closest("a").href || event.target.href;
       //allow on page anchor links
-      if (targetURL.includes(currentArticle.url.split("#")?.[0]+"#")) {
+      if (targetURL.includes(extractedArticle.url.split("#")?.[0] + "#")) {
         event.preventDefault();
         var anchor = targetURL.split("#")?.[1];
         var element = document.getElementById(anchor);
         if (element) element.scrollIntoView({ behavior: "smooth" });
         event.preventDefault();
         return;
-      };
+      }
 
       if (!targetURL.startsWith("http")) return;
 
@@ -101,31 +107,29 @@
   let colorMap = new Map();
   let usedColors = new Set();
   function toggleKeyphrase(keyphrase: string): void {
-    if (!topicsObject ) return;
+    if (!topicsObject) return;
 
     topicsObject = topicsObject.map((topic) => {
-        if (topic.keyphrase === keyphrase) {
-          if (!topic.enabled) {
-            let newColor;
-            do {
-              newColor = getRandomColor();
-            } while (usedColors.has(newColor));
-            usedColors.add(newColor);
-            colorMap.set(keyphrase, newColor);
-          } else {
-            usedColors.delete(colorMap.get(keyphrase));
-            colorMap.delete(keyphrase);
-          }
-          return { ...topic, enabled: !topic.enabled };
+      if (topic.keyphrase === keyphrase) {
+        if (!topic.enabled) {
+          let newColor;
+          do {
+            newColor = getRandomColor();
+          } while (usedColors.has(newColor));
+          usedColors.add(newColor);
+          colorMap.set(keyphrase, newColor);
+        } else {
+          usedColors.delete(colorMap.get(keyphrase));
+          colorMap.delete(keyphrase);
         }
-        return topic;
-      })
+        return { ...topic, enabled: !topic.enabled };
+      }
+      return topic;
+    });
   }
 
   function getColor(keyphrase: string): string {
-    const topic = topicsObject?.find(
-      (t) => t.keyphrase === keyphrase
-    );
+    const topic = topicsObject?.find((t) => t.keyphrase === keyphrase);
     if (topic && topic.enabled) {
       return colorMap.get(keyphrase) || "gray";
     }
@@ -137,34 +141,36 @@
   });
 </script>
 
-<div class="article-container read-view h-full overflow-y-auto p-3">
-  {#if currentArticle && currentArticle.html}
-    {#if currentArticle.cite}
+<div
+  class="article-container read-view h-full overflow-y-auto overflow-x-hidden p-3"
+>
+  {#if extractedArticle?.html}
+    {#if extractedArticle.cite}
       <p class="text-md mb-0">
-        {@html currentArticle.cite}
+        {@html extractedArticle.cite}
       </p>
     {/if}
-    {#if currentArticle.word_count}
+    {#if extractedArticle.word_count}
       <p class="text-sm text-gray-500 mb-0">
-        {currentArticle.word_count} words
+        {extractedArticle.word_count} words
       </p>
     {/if}
 
     <!-- {#if topicsObject} -->
-      <p class="text-sm text-gray-500 mb-0">
-        {#each topicsObject as topic}
-          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <span
-            class="text-sm mb-0 inline-block border rounded-full px-2 py-1 mr-1 mb-1 cursor-pointer transition-all duration-200 ease-in-out hover:shadow-md hover:transform hover:translate-y-[-2px]"
-            style="color: {getColor(
-              topic.keyphrase
-            )}; background-color: {topic.enabled ? 'gray' : 'transparent'};"
-            onclick={() => toggleKeyphrase(topic.keyphrase)}
-          >
-            {topic.keyphrase}
-          </span>
-        {/each}
-      </p>
+    <p class="text-sm text-gray-500 mb-0">
+      {#each topicsObject as topic}
+        <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+        <span
+          class="text-sm mb-0 inline-block border rounded-full px-2 py-1 mr-1 mb-1 cursor-pointer transition-all duration-200 ease-in-out hover:shadow-md hover:transform hover:translate-y-[-2px]"
+          style="color: {getColor(
+            topic.keyphrase,
+          )}; background-color: {topic.enabled ? 'gray' : 'transparent'};"
+          onclick={() => toggleKeyphrase(topic.keyphrase)}
+        >
+          {topic.keyphrase}
+        </span>
+      {/each}
+    </p>
     <!-- {/if} -->
     <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 
@@ -173,12 +179,35 @@
       class="article prose prose-sm max-w-none mt-3"
       onclick={handleBrowserClick}
     >
-
-    <EditorComponent
-    bind:this={editor}
-    content={currentArticle.html}
-  />
-      <!-- {@html currentArticle.html} -->
+      <EditorComponent
+        bind:this={editor}
+        content={extractedArticle.html}
+        viewMode="read"
+      />
+    </div>
+  {:else if extractedArticle?.error}
+    <div class="relative h-full text-lg text-gray-500 text-center">
+      <h3 class="text-xl text-gray-500 text-center">
+        Cannot Extract Web Page
+      </h3>
+      <a href={fetchingURL} target="_blank">
+        {fetchingURL}
+     </a>
+    </div>
+  {:else if extractedArticle?.isLoading}
+    <div class="relative h-full text-lg text-gray-500 text-center">
+      <div class="flex justify-center items-center">
+        <QuantumWaveOrbital />
+        <!-- <img
+          src={iconLoadingInfinity}
+          alt="Loading"
+          width="200px"
+          class="bg-transparent"
+        /> -->
+      </div>
+      <a href={fetchingURL} target="_blank">
+         {fetchingURL}
+      </a>
     </div>
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
@@ -190,19 +219,19 @@
           class="text-lg text-gray-500 mx-auto block mb-0"
         />
         {APP_SLOGAN}
-        </h3>
-      <p class="text-lg text-gray-500 text-center">
-        <!-- Use WASD to scroll and navigate. -->
-      </p>
+      </h3>
+
       <p class="text-lg text-gray-500 text-center justify-center">
-        <a aria-label="Chrome Web Store"
+        <a
+          aria-label="Chrome Web Store"
           class="download-chrome download-btn text-center justify-center"
           target="_blank"
           href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko"
         >
         </a>
 
-        <a aria-label="Microsoft Store"
+        <a
+          aria-label="Microsoft Store"
           class="download-windows download-btn text-center justify-center"
           target="_blank"
           href="https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&hl=en-us&gl=US"
@@ -213,39 +242,8 @@
       <div
         class="absolute bottom-0 w-full text-center text-slate-500 text-xs z-20"
       >
-      <Footer listFooterLinks={FOOTER_LINKS} />
-    </div>
+        <!-- <Footer listFooterLinks={FOOTER_LINKS} /> -->
+      </div>
     </div>
   {/if}
 </div>
-
-<style>
-  .article {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  :global(.article p) {
-    margin-top: 16px;
-  }
-
-  :global(.article a) {
-    color: #353c45;
-    text-decoration: underline;
-  }
-
-  /* Optional: Add some additional styles to take advantage of the new fonts */
-  :global(h1, h2, h3, h4, h5, h6) {
-    font-weight: 700;
-  }
-
-  :global(li *) {
-    display: inline;
-  }
-
-  :global(.article img) {
-    max-width: 96%;
-    display: block;
-    height: auto;
-  }
-</style>

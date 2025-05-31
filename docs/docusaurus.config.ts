@@ -24,8 +24,8 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  * Generate docs from JSDoc comments in files, OpenAPI.yml spec for 
  * routes, search index of everything, custom pages, sidebar & theme.
  * 
- * Files: api-routes.yaml, docs-theme.css, plugin-openapi.mustache, 
- *  plugin-typedoc.js, sidebars.ts, docusaurus.config.ts
+ * Files: openapi-docs.yaml, docs-theme.css, plugin-openapi.mustache, 
+ *  plugin-typedoc.js, sidebars.ts, docusaurus.config.ts, typedoc.json, tsconfig.json
  * 
  * *Install dependencies*:
  * bun install -D @docusaurus/core @docusaurus/faster @docusaurus/plugin-google-gtag
@@ -93,6 +93,9 @@ export default async function createConfig(options: any = {}) {
   // sanitizeComments helps avoid errors in markdown like <> {} etc
   return {
     future: {
+      v4: {
+        removeLegacyPostBuildHeadAttribute: true, // REQUIRED for ssgWorkerThreads
+      },
       experimental_faster: true,
     },
     title: name + " API Routes Docs",
@@ -133,12 +136,12 @@ export default async function createConfig(options: any = {}) {
           docsPluginId: "classic",
           config: {
             qwksearch: {
-              specPath: "api-routes.yaml",
-              outputDir: "./docs/api-routes",
+              specPath: "openapi-docs.yaml",
+              outputDir: "./docs/api",
               sidebarOptions: {
                 groupPathsBy: "tag",
-                categoryLinkSource: "tag",
-                sidebarCollapsed: false,
+                categoryLinkSource: "auto",
+                sidebarCollapsed: false
               },
               template: "openapi.mustache", // Customize API MDX with mustache template
               hideSendButton: false,
@@ -223,7 +226,7 @@ export default async function createConfig(options: any = {}) {
             position: "left",
           },
           {
-            to: "/api-routes/qwksearch-api",
+            to: "/category/qwksearch-api",
             label: "🔌 API Routes",
             position: "left",
           },

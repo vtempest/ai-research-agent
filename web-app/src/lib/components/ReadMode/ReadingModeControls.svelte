@@ -2,11 +2,10 @@
   import { Highlighter, Underline, Eraser, Pencil, Sun, Moon, Image, XCircle, Bot, ChevronLeft, ChevronRight, Clipboard } from 'lucide-svelte';
   import { ChatGroq } from '@langchain/groq';
   import { HumanMessage } from '@langchain/core/messages';
-  // import { apiKey } from '$lib/custom-domain';  
+  // import { apiKey } from '$lib/customize-site';  
 
   // import {toggleHighlight} from './auto-highlight.js';
 
-  export let onChangeTextSize;
   export let onChangeTheme;
   export let onToggleImages;
   export let onToggleMarkupMode;
@@ -209,9 +208,6 @@ function isInsideTextInput(i) {
             <div class="flex-1">
               <span class="text-xs font-medium">Text size</span>
               <div class="flex bg-slate-700 rounded-md mt-1">
-                <button onclick={() => onChangeTextSize('small')} class="flex-1 px-2 py-1 text-xs rounded-l-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">S</button>
-                <button onclick={() => onChangeTextSize('medium')} class="flex-1 px-2 py-1 text-xs hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">M</button>
-                <button onclick={() => onChangeTextSize('large')} class="flex-1 px-2 py-1 text-xs rounded-r-md hover:bg-slate-600 focus:outline-hidden focus:ring-2 focus:ring-slate-400">L</button>
               </div>
             </div>
             

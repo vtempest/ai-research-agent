@@ -8,7 +8,7 @@
 function weightWikiWordSpecificity(query: string): number;
 ```
 
-Defined in: datasets/compile-topic-model.js:232
+Defined in: datasets/compile-topic-model.js:246
 
 Find domain-specific unique words for a single doc with BM25 formula
 by using Wikipedia term frequencies as the common words corpus.

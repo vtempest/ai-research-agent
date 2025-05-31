@@ -16,6 +16,10 @@ const config = {
   //   relative: true // Required for proper path resolution [5]
   // },
   kit: {
+    files: {
+      appTemplate: 'src/loading.html',
+      errorTemplate: 'src/error.html',
+    },
 		adapter: adapter({
       config: 'wrangler.toml',
       platformProxy: {
@@ -26,7 +30,7 @@ const config = {
       $lib: "./src/lib",
       $components: "./src/lib/components",
       $utils: "./src/lib/utils",
-      "$ai-research-agent": "../"
+      "ai-research-agent": "../"
     }
   }
 };

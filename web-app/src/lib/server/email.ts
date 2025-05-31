@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 
-import { PUBLIC_DOMAIN, APP_EMAIL, APP_NAME, APP_ICON } from "$lib/custom-domain";
-// @ts-ignore
-// import { AUTH_RESEND_KEY } from "$env/static/private";
+import { PUBLIC_DOMAIN, APP_EMAIL, APP_NAME, APP_ICON } from "$lib/customize-site";
 
 var EmailChangeHtml = `
   <h4>Hello {{user}}!</h4>

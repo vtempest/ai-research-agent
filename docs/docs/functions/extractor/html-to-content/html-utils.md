@@ -95,7 +95,7 @@ console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophe
 function convertMarkdownToHTML(content: string, toHtml: boolean): string;
 ```
 
-Defined in: extractor/html-to-content/html-utils.js:218
+Defined in: extractor/html-to-content/html-utils.js:216
 
 Converts Markdown text to HTML. It handles the following Markdown elements:
 - Headers (h1 to h6)
@@ -323,7 +323,7 @@ console.log(absoluteURL) // Returns: "https:images/image.jpg"
 function copyHTMLToClipboard(html: string, options: object): Promise<void>;
 ```
 
-Defined in: extractor/html-to-content/html-utils.js:424
+Defined in: extractor/html-to-content/html-utils.js:422
 
 Copy HTML to clipboard. When pasting into rich text field,
 pastes rich text. When pasting into plain text field, pastes:
@@ -416,7 +416,7 @@ the HTML is copied to the clipboard.
 function convertHTMLToMarkdown(html: any): any;
 ```
 
-Defined in: extractor/html-to-content/html-utils.js:362
+Defined in: extractor/html-to-content/html-utils.js:360
 
 #### Parameters
 

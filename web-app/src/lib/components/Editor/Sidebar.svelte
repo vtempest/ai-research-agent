@@ -1,7 +1,10 @@
 <script lang="ts">
   import TableOfContents from './TableOfContents.svelte';
   import SearchBox from './SearchBox.svelte';
-  import { Tabs, TabsContent, TabsList, TabsTrigger } from "$lib/components/ui/tabs"
+
+  import * as Tabs from "$lib/components/ui/tabs/index.js";
+  import * as Card from "$lib/components/ui/card/index.js";
+  
   import FileSystem from "$lib/components/FileSystem/F2.svelte";
   import { FileIcon, SettingsIcon } from "lucide-svelte" // or your preferred icon library
 
@@ -11,7 +14,6 @@
     editor,
     handleLoadBlock,
     currentHeading,
-    handleReadingStyleChange,
     handleRenameHeading
   } = $props()
 
@@ -34,47 +36,48 @@
       {mainContent.title}
     </div>
 
-    <Tabs defaultValue="outline" className="w-[400px]">
-      <TabsList>
-        <TabsTrigger value="outline">
-          <FileIcon className="mr-2 h-4 w-4" />
-          Outline
-        </TabsTrigger>
-        <TabsTrigger value="docs">
-          <SettingsIcon className="mr-2 h-4 w-4" />
-          Docs
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="outline">
-        
 
-            <!-- Outline -->
-            <div class="space-y-2">
-              <!-- <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Outline</h3> -->
-              <div class="space-y-2">
-                <TableOfContents 
-                  {headingsOutline}
-                  {handleLoadBlock}
-                  {mainContent} 
-                  {editor} 
-                  {currentHeading}
-                />
-              </div>
-            </div>
+<Tabs.Root value="outline" class="w-full">
+  <Tabs.List class="grid w-full grid-cols-2"> <!-- Added grid classes -->
+    <Tabs.Trigger value="outline">
+      <FileIcon class="mr-2 h-4 w-4" />
+      Outline
+    </Tabs.Trigger>
+    <Tabs.Trigger value="docs">
+      <SettingsIcon class="mr-2 h-4 w-4" />
+      Docs
+    </Tabs.Trigger>
+  </Tabs.List>
 
-            <div class="space-y-2">
-              <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Document Info</h3>
-              <p class="text-sm text-gray-600">Last edited: {lastEdited}</p>
-              <div class="text-sm text-gray-500">Word count: {mainContent.wordCount}</div>
-            </div>
+  <Tabs.Content value="outline">
+    <Card.Root> <!-- Added Card container -->
+      <Card.Content>
+        <div class="space-y-2">
+          <TableOfContents 
+            {headingsOutline}
+            {handleLoadBlock}
+            {mainContent} 
+            {editor} 
+            {currentHeading}
+          />
+        </div>
+        <div class="space-y-2 mt-4">
+          <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Document Info</h3>
+          <p class="text-sm text-gray-600">Last edited: {lastEdited}</p>
+          <div class="text-sm text-gray-500">Word count: {mainContent.wordCount}</div>
+        </div>
+      </Card.Content>
+    </Card.Root>
+  </Tabs.Content>
 
-    </TabsContent>
-      <TabsContent value="docs">
+  <Tabs.Content value="docs">
+    <Card.Root> <!-- Added Card container -->
+      <Card.Content>
         <FileSystem />
-      
-      </TabsContent>
-    </Tabs>
+      </Card.Content>
+    </Card.Root>
+  </Tabs.Content>
+</Tabs.Root>
 
-    
   </div>
 </div>

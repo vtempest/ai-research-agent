@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { SignIn } from "@auth/sveltekit/components";
-  // import { page } from "$app/state";
 
   import {
     APP_ICON,
     APP_NAME,
     PUBLIC_GOOGLE_CLIENT_ID,
-  } from "$lib/custom-domain";
+  } from "$lib/customize-site";
+  import { grab } from "grab-api.js";
 
   import { displayGoogleOneTapLogin } from "$lib/components/AppLayout/auth-google-one-tap";
   import Apple from "@auth/sveltekit/providers/apple";
@@ -24,10 +24,12 @@
   import MicrosoftEntraID from "@auth/sveltekit/providers/microsoft-entra-id";
   import Resend from "@auth/sveltekit/providers/resend";
 
-  onMount(() => {
+  let user = $state<User>();
+    
+  onMount(async () => {
     if (typeof window === "undefined") return;
 
-    // var user = $page.data.session?.user;
+    await grab("user", user);
     if (!user) {
       var isOneTapShown = displayGoogleOneTapLogin(PUBLIC_GOOGLE_CLIENT_ID, {
         auto_select: true,
@@ -43,7 +45,7 @@
     // LinkedIn,
     // Facebook,
     MicrosoftEntraID,
-    GitHub,
+    // GitHub,
     Resend,
   ].map((provider) => {
     // @ts-ignore

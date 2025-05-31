@@ -6,9 +6,9 @@
 const changeEmailFormSchemaFirstStep: ZodObject<{
   email: ZodString;
 }, "strip", ZodTypeAny, {
-  email: string;
+  email?: string;
 }, {
-  email: string;
+  email?: string;
 }>;
 ```
 
@@ -22,9 +22,9 @@ Defined in: web-app/src/lib/server/validations.ts:138
 const changeEmailFormSchemaSecondStep: ZodObject<{
   token: ZodString;
 }, "strip", ZodTypeAny, {
-  token: string;
+  token?: string;
 }, {
-  token: string;
+  token?: string;
 }>;
 ```
 
@@ -89,11 +89,11 @@ const loginFormSchema: ZodObject<{
   email: ZodString;
   password: ZodString;
 }, "strip", ZodTypeAny, {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }, {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }>;
 ```
 
@@ -200,25 +200,25 @@ const registerFormSchema: ZodEffects<ZodObject<{
   password: ZodString;
   passwordConfirm: ZodString;
 }, "strip", ZodTypeAny, {
-  email: string;
-  name: string;
-  password: string;
-  passwordConfirm: string;
+  email?: string;
+  name?: string;
+  password?: string;
+  passwordConfirm?: string;
 }, {
-  email: string;
-  name: string;
-  password: string;
-  passwordConfirm: string;
+  email?: string;
+  name?: string;
+  password?: string;
+  passwordConfirm?: string;
 }>, {
-  email: string;
-  name: string;
-  password: string;
-  passwordConfirm: string;
+  email?: string;
+  name?: string;
+  password?: string;
+  passwordConfirm?: string;
 }, {
-  email: string;
-  name: string;
-  password: string;
-  passwordConfirm: string;
+  email?: string;
+  name?: string;
+  password?: string;
+  passwordConfirm?: string;
 }>;
 ```
 
@@ -232,9 +232,9 @@ Defined in: web-app/src/lib/server/validations.ts:124
 const resetPasswordFormSchemaFirstStep: ZodObject<{
   email: ZodString;
 }, "strip", ZodTypeAny, {
-  email: string;
+  email?: string;
 }, {
-  email: string;
+  email?: string;
 }>;
 ```
 
@@ -248,9 +248,9 @@ Defined in: web-app/src/lib/server/validations.ts:147
 const resetPasswordFormSchemaSecondStep: ZodObject<{
   token: ZodString;
 }, "strip", ZodTypeAny, {
-  token: string;
+  token?: string;
 }, {
-  token: string;
+  token?: string;
 }>;
 ```
 
@@ -265,17 +265,17 @@ const resetPasswordFormSchemaThirdStep: ZodEffects<ZodObject<{
   password: ZodString;
   passwordConfirm: ZodString;
 }, "strip", ZodTypeAny, {
-  password: string;
-  passwordConfirm: string;
+  password?: string;
+  passwordConfirm?: string;
 }, {
-  password: string;
-  passwordConfirm: string;
+  password?: string;
+  passwordConfirm?: string;
 }>, {
-  password: string;
-  passwordConfirm: string;
+  password?: string;
+  passwordConfirm?: string;
 }, {
-  password: string;
-  passwordConfirm: string;
+  password?: string;
+  passwordConfirm?: string;
 }>;
 ```
 
@@ -299,9 +299,9 @@ Defined in: web-app/src/lib/server/validations.ts:27
 const settingsAccountFormSchema: ZodObject<{
   name: ZodString;
 }, "strip", ZodTypeAny, {
-  name: string;
+  name?: string;
 }, {
-  name: string;
+  name?: string;
 }>;
 ```
 
@@ -315,9 +315,9 @@ Defined in: web-app/src/lib/server/validations.ts:163
 const settingsNotificationsFormSchema: ZodObject<{
   name: ZodString;
 }, "strip", ZodTypeAny, {
-  name: string;
+  name?: string;
 }, {
-  name: string;
+  name?: string;
 }>;
 ```
 
@@ -331,9 +331,9 @@ Defined in: web-app/src/lib/server/validations.ts:167
 const settingsProfileFormSchema: ZodObject<{
   username: ZodString;
 }, "strip", ZodTypeAny, {
-  username: string;
+  username?: string;
 }, {
-  username: string;
+  username?: string;
 }>;
 ```
 
@@ -377,9 +377,9 @@ Defined in: web-app/src/lib/server/validations.ts:96
 const tokenSchema: ZodObject<{
   token: ZodString;
 }, "strip", ZodTypeAny, {
-  token: string;
+  token?: string;
 }, {
-  token: string;
+  token?: string;
 }>;
 ```
 
@@ -393,9 +393,9 @@ Defined in: web-app/src/lib/server/validations.ts:176
 const updateUserFormSchema: ZodObject<{
   name: ZodString;
 }, "strip", ZodTypeAny, {
-  name: string;
+  name?: string;
 }, {
-  name: string;
+  name?: string;
 }>;
 ```
 
@@ -429,9 +429,9 @@ Defined in: web-app/src/lib/server/validations.ts:101
 const userIdSchema: ZodObject<{
   userId: ZodString;
 }, "strip", ZodTypeAny, {
-  userId: string;
+  userId?: string;
 }, {
-  userId: string;
+  userId?: string;
 }>;
 ```
 
@@ -483,9 +483,9 @@ Defined in: web-app/src/lib/server/validations.ts:108
 const verifyEmailFormSchema: ZodObject<{
   token: ZodString;
 }, "strip", ZodTypeAny, {
-  token: string;
+  token?: string;
 }, {
-  token: string;
+  token?: string;
 }>;
 ```
 

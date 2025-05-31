@@ -411,7 +411,7 @@ Defined in: editor/Editor.ts:353
 </td>
 <td>
 
-\{ `dontFixNewline`: `boolean`; \}
+\{ `dontFixNewline?`: `boolean`; \}
 
 </td>
 </tr>
@@ -937,7 +937,7 @@ Defined in: editor/Editor.ts:311
 </td>
 <td>
 
-\{ `dontFixNewline`: `boolean`; \}
+\{ `dontFixNewline?`: `boolean`; \}
 
 </td>
 </tr>
@@ -3250,7 +3250,7 @@ Defined in: editor/document/TextChange.ts:57
 </td>
 <td>
 
-\{ `dontFixNewline`: `boolean`; \}
+\{ `dontFixNewline?`: `boolean`; \}
 
 </td>
 </tr>
@@ -3464,7 +3464,7 @@ Defined in: editor/document/TextChange.ts:76
 </td>
 <td>
 
-\{ `dontFixNewline`: `boolean`; \}
+\{ `dontFixNewline?`: `boolean`; \}
 
 </td>
 </tr>

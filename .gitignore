@@ -2,6 +2,7 @@
 debate-ai/*
 # Logs
 bun.lockb
+bun.lock
 logs
 _.log
 npm-debug.log_

@@ -6,7 +6,6 @@ import {
 } from "@sveltejs/kit";
 
 import {
-  logger,
   validateApiKey,
   initDatabase,
   initAuthRouteHandler,
@@ -80,22 +79,22 @@ export const allowCORSAccessAPI: Handle = async ({ event, resolve }) => {
  * @param {Error} param0.error - The error object
  * @returns {Object} The resolved event
  */
-export const handleError = ({ status, message, error }) => {
-  if (status !== 404) {
-    logger.error(error);
-  }
-  if (status === 404) {
-    throw redirect(302, '/');
-  }
+// export const handleError = ({ status, message, error }) => {
+//   if (status !== 404) {
+//     console.log(error);
+//   }
+//   if (status === 404) {
+//     throw redirect(302, '/');
+//   }
 
 
-  // do not return sensitive data here as it will be sent to the client
-  return { message };
-};
+//   // do not return sensitive data here as it will be sent to the client
+//   return { message };
+// };
 
 export const handle = sequence(
   initDatabase,
-  initAuthRouteHandler,
-  checkAuthorization,
-  allowCORSAccessAPI
+  // initAuthRouteHandler,
+  // checkAuthorization,
+  // allowCORSAccessAPI
 );

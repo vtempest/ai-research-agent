@@ -6,7 +6,7 @@
 function GET(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/files/+server.ts:5
+Defined in: web-app/src/routes/api/files/+server.ts:6
 
 ### Parameters
 
@@ -57,7 +57,7 @@ Defined in: web-app/src/routes/api/files/+server.ts:5
 function POST(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/files/+server.ts:10
+Defined in: web-app/src/routes/api/files/+server.ts:16
 
 ### Parameters
 

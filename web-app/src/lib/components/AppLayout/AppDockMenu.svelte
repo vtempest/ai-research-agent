@@ -7,12 +7,11 @@
   } from "svelte-motion";
   import { writable } from "svelte/store";
   import { cn } from "$lib/utils";
-   
   /**
    * @module AppDockMenu
-   * App Dock Menu with zoom animation on hover, and 
+   * App Dock Menu with zoom animation on hover, and
    * enhances current app with opacity and shine effect.
-   * Option: automatically click on hover 
+   * Option: automatically click on hover
    * @property {string[]} listDockApps - List of dock apps
    * @property {(id: string) => void} handleAppDockClick - Called when a dock app is clicked with id
    * @property {boolean} [shouldAutoClickOnHover=true] - Whether to automatically click on hover
@@ -27,9 +26,10 @@
     shouldAnimateZoom = true,
     gapBetweenItems = false,
     bgColor = "#DED8C4",
-  } : {
+  }: {
     listDockApps: {
       id: string;
+      title: string;
       icon: string;
     }[];
     handleAppDockClick: (id: string) => void;
@@ -42,7 +42,10 @@
   const activeViewStore = writable(listDockApps?.[0]?.id);
 
   activeViewStore.subscribe((value) => {
-    handleAppDockClick(value);
+    document.title =
+      listDockApps.find((app) => app.id === value)?.title || document.title;
+
+    if (value) handleAppDockClick(value);
   });
   const dockItemPositions = writable({});
 
@@ -81,10 +84,7 @@
   }
 </script>
 
-<div
-  style="user-select: none;"
-  class={cn("bottom-4", className)}
->
+<div style="user-select: none;" class={cn("bottom-4", className)}>
   <Motion let:motion>
     <div
       use:motion
@@ -94,9 +94,11 @@
       aria-label="Dock Menu"
       style="user-select: none;"
       tabindex="0"
-      class="h-16 items-end {gapBetweenItems ? 'gap-5' : 'gap-1'} rounded-full bg-[{bgColor}] border border-[{bgColor}] px-3 pb-2 flex shadow-inner shadow-neutral-300/5"
-     onmouseleave={() => mouseX.set(Infinity)}
-     onmousemove={(e) => {
+      class="h-16 items-end {gapBetweenItems
+        ? 'gap-5'
+        : 'gap-1'} rounded-full bg-[{bgColor}] border border-[{bgColor}] px-3 pb-2 flex shadow-inner shadow-neutral-300/5"
+      onmouseleave={() => mouseX.set(Infinity)}
+      onmousemove={(e) => {
         const rect = containerRef.getBoundingClientRect();
         if (rect) {
           mouseX.set(e.clientX - rect.left);
@@ -109,16 +111,21 @@
         {@const widthSync = useTransform(
           distance,
           [-125, 0, 125],
-          [44, 85, 44],
+          [44, 85, 44]
         )}
-        {@const width = shouldAnimateZoom && useSpring(widthSync, { stiffness: 400, damping: 25 })}
+        {@const width =
+          shouldAnimateZoom &&
+          useSpring(widthSync, { stiffness: 400, damping: 25 })}
         <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
         <div
           role="button"
           tabindex={index}
-         onmouseenter={() => (window.appDockClickOnHover = shouldAutoClickOnHover && setTimeout(() => activeViewStore.set(dockItem.id), 500))}
-         onmouseleave={() => clearTimeout(window?.appDockClickOnHover)}
-         onclick={() => activeViewStore.set(dockItem.id)}
+          onmouseenter={() =>
+            (window.appDockClickOnHover =
+              shouldAutoClickOnHover &&
+              setTimeout(() => activeViewStore.set(dockItem.id), 500))}
+          onmouseleave={() => clearTimeout(window?.appDockClickOnHover)}
+          onclick={() => activeViewStore.set(dockItem.id)}
         >
           <Motion
             let:motion
@@ -136,7 +143,7 @@
               use:motion
               class="{$activeViewStore === dockItem.id
                 ? 'active ring-1 ring-slate-300'
-                : ''} 
+                : 'cursor-pointer'} 
                 group relative p-0.5 flex aspect-square items-center justify-center overflow-hidden rounded-full
                 transition active:-translate-y-10 duration-500
                 bg-[#DED8C4]

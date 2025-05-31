@@ -192,12 +192,6 @@
   let showCopiedMessage = false;
 </script>
 
-<!-- <svelte:head>
-  {#if browser}
-    <title>REASON: Research Editor for Annotated Summaries in Outline Notation</title>
-  {/if}
-</svelte:head> -->
-
 <Splitpanes style="height: 100vh;">
   <Pane size={20}>
     <Sidebar

@@ -8,10 +8,9 @@
 function convertOpenAPIToAgentTools(fileContents: string): any[];
 ```
 
-Defined in: agents/api2ai.js:21
+Defined in: agents/api2ai.js:20
 
 ### API2AI
-<img width="350px"  src="https://i.imgur.com/AvFLGdR.png" />
 
 Translates any website's OpenAPI.yml file to LLM agent tool
 LangChain.js function format

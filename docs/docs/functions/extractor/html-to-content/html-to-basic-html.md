@@ -8,7 +8,7 @@
 function convertHTMLToBasicHTML(html: string, options?: object): string;
 ```
 
-Defined in: extractor/html-to-content/html-to-basic-html.js:31
+Defined in: extractor/html-to-content/html-to-basic-html.js:32
 
 Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
 Convert anchors and relative urls to absolute urls. Basic HTML supports the same
@@ -204,7 +204,7 @@ basic text formatting html
 function addDOMFunctions(domObject: any): any;
 ```
 
-Defined in: extractor/html-to-content/html-to-basic-html.js:224
+Defined in: extractor/html-to-content/html-to-basic-html.js:225
 
 #### Parameters
 

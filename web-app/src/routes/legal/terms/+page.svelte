@@ -1,6 +1,5 @@
 <script>
-    import { APP_EMAIL, APP_NAME } from '$lib/custom-domain';
-  import { Unlink } from 'lucide-svelte';
+    import { APP_EMAIL, APP_NAME, LAST_REVISED_DATE } from '$lib/customize-site';
 </script>
 
 <svelte:head>
@@ -9,7 +8,7 @@
   
 <main>
     <h1>{APP_NAME} Terms of Service</h1>
-    <p><strong>Revised Date: August 10, 2024</strong></p>
+    <p><strong>Revised Date: {LAST_REVISED_DATE}</strong></p>
     
 
     <ol><h2>1. Introduction</h2></ol>

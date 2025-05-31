@@ -13,7 +13,8 @@
     "isolatedModules": false,
     "skipLibCheck": true,
     "moduleResolution": "node10",
-    "noEmit": true
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src",

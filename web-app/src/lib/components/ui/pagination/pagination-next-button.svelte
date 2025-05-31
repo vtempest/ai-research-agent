@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Pagination as PaginationPrimitive } from "bits-ui";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import { cn } from "$lib/utils";
 	import { buttonVariants } from "$lib/components/ui/button/index.js";
-	import { cn } from "$utils";
 
 	let {
 		ref = $bindable(null),
@@ -14,18 +14,12 @@
 
 {#snippet Fallback()}
 	<span>Next</span>
-	<ChevronRight class="size-4" />
+	<ChevronRight />
 {/snippet}
 
 <PaginationPrimitive.NextButton
 	bind:ref
-	class={cn(
-		buttonVariants({
-			variant: "ghost",
-			class: "gap-1 pr-2.5",
-		}),
-		className
-	)}
-	children={children || Fallback}
 	{...restProps}
+	class={cn(buttonVariants({ variant: "ghost", className: "gap-1 pr-2.5" }), className)}
+	children={children || Fallback}
 />

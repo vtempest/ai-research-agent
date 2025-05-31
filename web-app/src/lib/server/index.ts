@@ -10,5 +10,8 @@ export * from "./email";
 export * from "./ratelimits";
 export * from "./validations";
 
+export * from "./types.d";
+
 export * from "../utils";
-export * from "../custom-domain";
+
+export * from "../customize-site";

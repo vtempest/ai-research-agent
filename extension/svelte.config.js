@@ -6,7 +6,6 @@ export default {
   kit: {
     adapter: adapter(),
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '/' : '',
       relative: true // Required for proper path resolution [5]
     },
     alias: {

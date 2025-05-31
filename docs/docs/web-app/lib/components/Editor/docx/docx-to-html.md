@@ -6,7 +6,7 @@
 function createStyleParser(styleXML: any): Promise<any>;
 ```
 
-Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:70
+Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:68
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:70
 function createTokenizer(docXML: string, styleData: any): any[];
 ```
 
-Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:120
+Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:118
 
 Parses doc xml to tokenize each text range into obj:
 text: "", format underline, strong, mark
@@ -112,7 +112,7 @@ blocks
 function documentToMarkup(filepath: any): Promise<string>;
 ```
 
-Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:64
+Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:62
 
 1 - open document.xml
 2 - tokenize xml
@@ -155,7 +155,7 @@ Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:64
 function documentToTokens(docxInput: string | ArrayBuffer | Blob | File, options: any): Promise<any[]>;
 ```
 
-Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:16
+Defined in: web-app/src/lib/components/Editor/docx/docx-to-html.js:14
 
 Converts docx file to array or token objects with text and formatting
  1 - open document.xml and styles.xml by unzipping .docx file

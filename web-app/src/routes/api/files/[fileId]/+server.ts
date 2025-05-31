@@ -2,9 +2,14 @@
 import { json } from '@sveltejs/kit';
 import { files } from '$lib/server/schema';
 import { eq } from 'drizzle-orm';
+import { initializeUser } from '$lib/server';
 
-export async function GET({ params, locals: {db} }) {
-  const file = await db.select().from(files).where(eq(files.id, params.fileId)).get();
+export async function GET({ params, locals }) {
+  let user = await initializeUser(locals);
+  
+  const file = await locals.db.select().from(files)
+    .where(eq(files.id, params.fileId)).get();
+  
   if (!file) {
     return json({ error: 'File not found' }, { status: 404 });
   }

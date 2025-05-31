@@ -2,35 +2,13 @@
 
 ## Other
 
-### AutoTokenizer
-
-```ts
-type AutoTokenizer<> = AutoTokenizer;
-```
-
-Defined in: similarity/similarity-vector.js:2
-
-#### Type Parameters
-
-<table>
-<thead>
-<tr>
-<th>Type Parameter</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-
-***
-
 ### calculateCosineSimilarity()
 
 ```ts
 function calculateCosineSimilarity(vectorA: number[], vectorB: number[]): number;
 ```
 
-Defined in: similarity/similarity-vector.js:168
+Defined in: similarity/similarity-vector.js:165
 
 [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) gets similarity of two
 vectors by whether they have the same direction (similar) or are poles apart. Cosine similarity
@@ -90,130 +68,6 @@ two vectors are completely dissimilar, and 1 indicates maximum similarity.
 
 ## Similarity
 
-### addEmbeddingVectorsToIndex()
-
-```ts
-function addEmbeddingVectorsToIndex(documentVectors: string[], options?: object): Promise<HierarchicalNSW>;
-```
-
-Defined in: similarity/similarity-vector.js:97
-
-### VSEARCH: Vector Similarity Embedding Approximation in RAM-Limited Cluster Hierarchy
-<img src="https://i.imgur.com/nvJ7fzO.png" width="350px" />
- 
-1. Compile hnswlib-node or NGT algorithm C++ to WASM JS for efficient similarity search.
-2. Vector index is split by K-means into regional clusters, each being a
-specific size to fit in RAM. This is better than popular vector engines that
- require costly 100gb-RAM servers because they load all the vectors at once. 
-3. Vectors for centroids of each cluster are stored in a list in SQL, each
-cluster's binary quantized data is exported as base64 string to SQL, S3, etc.
-4. Search: Embed Query, Compare to each cluster centroid to pick top clusters,
-download  base64 strings for those clusters, load each into WASM, find top neighbors 
-per cluster, merge results sorted by distance.  
-
-[NGT Algorithm](https://github.com/yahoojapan/NGT/wiki)
-[NGT Cluster](https://github.com/yahoojapan/NGT/blob/main/lib/NGT/Clustering.h#L82)
-https://qdrant.tech/articles/memory-consumption/ 
-[Lancedb](https://lancedb.com)
-[Usearch](https://unum-cloud.github.io/usearch/javascript/index.html)
- * [ANN Benchmarks](https://ann-benchmarks.com)
-
-![Benchmark](https://ann-benchmarks.com/glove-100-angular_10_angular.png)
-
-#### Parameters
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-`documentVectors`
-
-</td>
-<td>
-
-`string`[]
-
-</td>
-<td>
-
-An array of document texts to be vectorized.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options?`
-
-</td>
-<td>
-
-\{ `maxElements`: `number`; `numDimensions`: `number`; \}
-
-</td>
-<td>
-
-Optional parameters for vector generation and indexing.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options.maxElements?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The maximum number of data points.
-
-</td>
-</tr>
-<tr>
-<td>
-
-`options.numDimensions?`
-
-</td>
-<td>
-
-`number`
-
-</td>
-<td>
-
-The length of data point vector that will be indexed.
-
-</td>
-</tr>
-</tbody>
-</table>
-
-#### Returns
-
-`Promise`&lt;`HierarchicalNSW`&gt;
-
-The created HNSW index.
-
-#### Author
-
-[Malkov et al. (2016)](https://arxiv.org/abs/1603.09320),
-
-***
-
 ### convertTextToEmbedding()
 
 ```ts
@@ -224,7 +78,7 @@ function convertTextToEmbedding(text: string, options?: object): Promise<{
 }>;
 ```
 
-Defined in: similarity/similarity-vector.js:26
+Defined in: similarity/similarity-vector.js:23
 
 Text embeddings convert words or phrases into numerical vectors in a high-dimensional
 space, where each dimension represents a semantic feature extracted by a model like
@@ -337,7 +191,7 @@ default=4 - The number of decimal places to round to.
 function getAllEmbeddings(index: HierarchicalNSW, precision: number): number[][];
 ```
 
-Defined in: similarity/similarity-vector.js:148
+Defined in: similarity/similarity-vector.js:145
 
 Retrieves all embeddings from the HNSW index.
 
@@ -415,7 +269,7 @@ An array of embedding vectors.
 function getEmbeddingModel(options?: object): Promise<AutoTokenizer>;
 ```
 
-Defined in: similarity/similarity-vector.js:50
+Defined in: similarity/similarity-vector.js:47
 
 Initialize HuggingFace Transformers pipeline for embedding text.
 
@@ -503,7 +357,7 @@ function searchVectorIndex(
    options?: object): Promise<object[]>;
 ```
 
-Defined in: similarity/similarity-vector.js:132
+Defined in: similarity/similarity-vector.js:129
 
 Searches the vector index for the nearest neighbors of a given query.
 
@@ -563,7 +417,7 @@ The query string to search for.
 </td>
 <td>
 
-\{ `numNeighbors`: `number`; \}
+\{ `numNeighbors?`: `number`; \}
 
 </td>
 <td>
@@ -621,7 +475,7 @@ function weighRelevanceConceptVector(
    options?: any): Promise<object[]>;
 ```
 
-Defined in: similarity/similarity-vector.js:189
+Defined in: similarity/similarity-vector.js:186
 
 Rerank documents's chunks based on relevance to query,
 based on cosine similarity of their concept vectors generated

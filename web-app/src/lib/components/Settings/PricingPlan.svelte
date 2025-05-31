@@ -2,7 +2,7 @@
   import { Zap, Globe, Clock, Database, Headphones, SmilePlus, 
     BarChart3,BarChart2, Infinity, Gauge, Sparkles, Users, UserPlus, Cog, Shield, Rocket, Brain, Target, Compass, Laptop, MessageCircleQuestion, CreditCard, PhoneCall } from 'lucide-svelte';
 
-  import { APP_ICON, APP_NAME, APP_SLOGAN } from "$lib/custom-domain";
+  import { APP_ICON, APP_NAME, APP_SLOGAN } from "$lib/customize-site";
 
   const plans = [
     {

@@ -1,5 +1,5 @@
 import { convertHTMLToEscapedHTML } from "../html-to-content/html-utils.js";
-import { scrapeURL } from "./scrape-url.js";
+import { scrapeURL } from "./url-to-html.js";
 
 /**
  * Fetch youtube.com video's webpage HTML for embedded transcript.

@@ -6,6 +6,7 @@
 
   const browser = typeof window !== "undefined";
 
+
   let searchTerm = '';
   let filteredHeadings = [];
   let hasSearched = false;
@@ -72,7 +73,9 @@
   }
 
   function findFullPhrase(isInitialSearch: boolean = true): boolean {
-    if (!browser) return;
+    if (!browser) return
+    
+  
     
     let found = window.find(searchTerm, false, false, true, false, true, false);
     if (found && isInitialSearch) {

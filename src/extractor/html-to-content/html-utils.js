@@ -185,9 +185,7 @@ export function convertURLToAbsoluteURL(base, relative) {
 
 
 import { marked } from 'marked';
-import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
-import markdownItHighlightjs from 'markdown-it-highlightjs';
 
 
 /**
@@ -269,7 +267,7 @@ export function convertMarkdownToHTML(content, toHtml = true) {
     langPrefix: 'hljs language-'
     });
   
-    return marked.parse(content);
+    return content?.length ? marked.parse(content) : "";
 
   
   var html = contentconvertMarkdownToHTML

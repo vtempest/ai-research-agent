@@ -6,7 +6,7 @@
 function POST(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/agents/+server.ts:10
+Defined in: web-app/src/routes/api/agents/+server.ts:7
 
 ### Parameters
 
@@ -26,7 +26,19 @@ Defined in: web-app/src/routes/api/agents/+server.ts:10
 </td>
 <td>
 
-\{ `request`: `any`; \}
+\{ `platform`: `any`; `request`: `any`; \}
+
+</td>
+</tr>
+<tr>
+<td>
+
+`__namedParameters.platform`
+
+</td>
+<td>
+
+`any`
 
 </td>
 </tr>

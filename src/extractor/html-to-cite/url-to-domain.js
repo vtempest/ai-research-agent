@@ -9,7 +9,7 @@
  */
 export function convertURLToDomain(domain) {
   var tldRegExp = new RegExp(
-    "(?=[^^]).(fr|de|cz|at|com|wiki|co|edu|g ov|info|mil|id|"+
+    "(?=[^^]).(fr|de|cz|at|com|wiki|co|edu|gov|info|mil|id|"+
     "gv|tv|int|name|net|org|pro|ac|me|ltd|parliament)(.|$).*$"
   );
   var match =
@@ -18,8 +18,17 @@ export function convertURLToDomain(domain) {
     domain.match(/\.[^\.]{2,}$/);
   var tld = match && match.index;
   var domainWithoutSuffix = domain.substring(0, tld);
-  if (domainWithoutSuffix.includes("."))
-    domainWithoutSuffix = domainWithoutSuffix.split(".").pop();
+  
+  // Get the main domain part, handling subdomains
+  if (domainWithoutSuffix.includes(".")) {
+    // Split by dots and get the last two parts for domains like en.wikipedia.org
+    const parts = domainWithoutSuffix.split(".");
+    if (parts.length >= 2) {
+      domainWithoutSuffix = parts.slice(-2).join(".");
+    } else {
+      domainWithoutSuffix = parts[parts.length - 1];
+    }
+  }
   return domainWithoutSuffix;
 }
 

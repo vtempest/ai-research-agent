@@ -5,9 +5,9 @@ import {
 } from "$ai-research-agent";
 
 import { json } from "@sveltejs/kit";
-import { proxy } from "$lib/server";
+import { proxyDomain, initializeUser } from '$lib/server';
 
-export async function GET({ url }) {
+export async function GET({ url, locals }) {
   const {
     url: urlToExtract,
     full: optionReturnAllHTML = false,
@@ -18,20 +18,16 @@ export async function GET({ url }) {
   if (!urlToExtract)
     return json({ error: "URL parameter is required" }, { status: 500 });
 
+  let user = await initializeUser(locals);
+
   
   if (optionReturnAllHTML == "true") {
     let html = await scrapeURL(url);
 
-    if (proxylinks && html)
-      html = html.replace(
-        /<head[^>]*>/i,
-        "<head><base href='" + option.url.split("://")[1].split("/")[0] + "/'>"
-      );
-
     if (optionBasicHTML)
       html = convertHTMLToBasicHTML(html, { url: urlToExtract });
 
-    return json(html);
+    return json({html});
   }
 
   //use no proxy first
@@ -45,22 +41,12 @@ export async function GET({ url }) {
   //as backup use via proxy puppeteer
   if (!article || article.error || article.html?.length < 1000)
     article = await extractContent(urlToExtract, {
-      proxy,
+      proxy: proxyDomain,
       timeout: 10,
     });
 
   if (!article || article.error)
     return json({ error: article.error }, { status: 500 });
 
-  // var html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-  // <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  // <title>${article.title}</title></head>
-  // <body>${article.cite + article.html}</body></html>`
-
-  return json(article, {
-    headers: {
-      "Content-Type": "application/json",
-      // "Cache-Control": "public, max-age=360000",
-    },
-  });
+  return json(article);
 }

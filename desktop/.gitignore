@@ -10,3 +10,4 @@ vite.config.ts.timestamp-*
 src-tauri/target
 src-tauri/target/*
 target
+build

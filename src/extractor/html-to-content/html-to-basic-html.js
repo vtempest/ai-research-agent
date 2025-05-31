@@ -1,8 +1,10 @@
 import {
   convertHTMLToEscapedHTML,
   convertURLToAbsoluteURL,
-  convertMathLaTexToImage
+  convertMathLaTexToImage,
+  convertMarkdownToHTML
 } from "./html-utils.js";
+
 
 /**
  * Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
@@ -41,6 +43,8 @@ export function convertHTMLToBasicHTML(html, options = {}) {
       ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
     allowedAttributes = "href,src,type,width,height,id,data,target",
   } = options;
+
+  // return convertMarkdownToHTML(convertMarkdownToHTML(html, false), true)
 
   allowTags = allowTags.split(",");
   if (links) allowTags.push("a");

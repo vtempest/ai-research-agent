@@ -7,7 +7,6 @@
     "paths": {
       "$ai-research-agent": ["../*"],
       "$ai-research-agent/*": ["../*"],
-      "./$types": ["./web-app/src/global.d.ts"],
       "$types": ["./web-app/src/global.d.ts"],
       "$lib/*": ["./web-app/src/lib/*"],
       "$lib": ["./web-app/src/lib/index.ts"],
@@ -24,17 +23,19 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src",
     "src/*",
-    "index.js",
+    "index.ts",
     "web-app/src/global.d.ts",
-    "web-app/src/**/*", "web-app/static/account",
+    "web-app/src/**/*"
    ],
   "exclude": [
     "node_modules",
-    "src/wordlists"
+    "src/wordlists",
+    "web-app/src/lib/components/ui"
   ]
 }

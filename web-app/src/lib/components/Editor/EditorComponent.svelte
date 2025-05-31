@@ -13,27 +13,26 @@
   });
 
   onMount(async () => {
-    // if (typeof window == "undefined") return;
-    // // @ts-ignore
-    // const typewriterModule = await import("$ai-research-agent/src/editor");
-    // const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
+    if (typeof window == "undefined") return;
+    // @ts-ignore
+    const typewriterModule = await import("$ai-research-agent/src/editor");
+    const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
 
-    // let Editor = typewriterModule.Editor;
-    // BubbleMenu = typewriterModule.BubbleMenu;
-    // Root = typewriterModule.Root;
-    // InlineMenu = typewriterModule.InlineMenu;
+    let Editor = typewriterModule.Editor;
+    BubbleMenu = typewriterModule.BubbleMenu;
+    Root = typewriterModule.Root;
+    InlineMenu = typewriterModule.InlineMenu;
 
-    // editor = new Editor({
-    //   formats: ["link", "bold", "mark", "italic", "code", "underline"],
-    //   modules: {
-    //     smartEntry: smartEntry(),
-    //     smartQuotes,
-    //     rendering: virtualRendering,
-    //   },
-    // });
+    editor = new Editor({
+      modules: {
+        smartEntry: smartEntry(),
+        smartQuotes,
+        rendering: virtualRendering,
+      },
+    });
 
-    // // @ts-ignore
-    // window.editor = editor;
+    // @ts-ignore
+    window.editor = editor;
   });
 
   export function setHTML(html) {
@@ -76,7 +75,7 @@
   </InlineMenu>
 
   <BubbleMenu {editor} let:active let:commands let:placement>
-    <div class="menu bubble-menu z-100">
+    <div class="menu bubble-menu  ">
       <div data-arrow class="arrow {placement}"></div>
 
       <button
@@ -141,7 +140,44 @@
   </div>
 {/if}
 
+
 <style>
+  
+
+/* editor textbox fixes */
+
+/* Hide outline on contenteditable elements */
+[contenteditable] {
+  outline: none;
+}
+
+/* Optional: Add a custom focus style for accessibility */
+[contenteditable]:focus {
+  box-shadow: 0 0 0 0px black;
+}
+
+/* Ensure the text cursor is visible */
+[contenteditable]:focus::selection {
+  background: #835d16;
+}
+
+/* Hide the resize handle in Firefox */
+[contenteditable] {
+  resize: none;
+}
+
+/* Remove the default focus ring in Firefox */
+[contenteditable]::-moz-focus-inner {
+  border: 0;
+}
+
+/* Optional: Custom styling for placeholder text */
+[contenteditable]:empty:before {
+  content: attr(placeholder);
+  color: #888;
+  font-style: italic;
+}
+
   :global(.editor h1, h2, h3, h4, h5, h6) {
     font-weight: bold !important;
     margin-top: 10px;
@@ -335,7 +371,6 @@
   .menu {
     position: absolute;
     display: flex;
-    z-index: 100;
     height: 32px;
     white-space: nowrap;
     background-color: #e8e5d8;
@@ -349,7 +384,7 @@
   }
 
   .bubble-menu {
-    transform: translateY(-100%);
+    transform: translate(-30%, 0%);
   }
 
   .menu-button {

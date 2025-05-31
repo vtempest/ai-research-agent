@@ -116,11 +116,11 @@ web-app/src/lib/server/drizzle.config.ts:47
 ## getLocalDb()
 
 ```ts
-function getLocalDb(): any;
+function getLocalDb(): string;
 ```
 
 Defined in: web-app/src/lib/server/drizzle.config.ts:8
 
 ### Returns
 
-`any`
+`string`

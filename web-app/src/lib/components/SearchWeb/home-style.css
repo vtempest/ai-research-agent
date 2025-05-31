@@ -1,184 +1,210 @@
-:global(.splitpanes) {
-  height: 100vh;
-}
 
+.article {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  :global(.article p) {
+    margin-top: 16px;
+  }
+
+  :global(.article a) {
+    color: #353c45;
+    text-decoration: underline;
+  }
+
+  /* Optional: Add some additional styles to take advantage of the new fonts */
+  :global(h1) {
+    font-weight: 700;
+  }
+  :global(h2) {
+    font-weight: 700;
+  }
+  :global(h3) {
+    font-weight: 700;
+  }
+  :global(h4) {
+    font-weight: 700;
+  }
+  :global(h5) {
+    font-weight: 700;
+  }
+  :global(h6) {
+    font-weight: 700;
+  }
+
+  :global(li *) {
+    display: inline;
+  }
+
+  :global(.article img) {
+    max-width: 96%;
+    display: block;
+    height: auto;
+  }
 body {
-  font-family:  "Open Sans", "Montserrat", "Lato",  Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
+    font-family: "Open Sans", "Montserrat", "Lato", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .splitpanes__pane {
-  background-color: #FAFAF7 !important;
-}
-
-
-
-.suggestions-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  max-height: 500px;
-  overflow-y: auto;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  z-index: 10;
-}
-
-.suggestion-item {
-  padding: 10px;
-  cursor: pointer;
+    background-color: #FAFAF7 !important;
 }
 
 .splitpanes.default-theme .splitpanes__pane {
-  /* background-color: white !important; */
+    /* background-color: white !important; */
 }
 
 code {
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-family: "Menlo", "Monaco", "Courier New", monospace;
-  color: #404040;
-  border: 1px solid #eaeaea;
-  margin: 0 2px;
-  font-weight: 500;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: "Menlo", "Monaco", "Courier New", monospace;
+    color: #404040;
+    border: 1px solid #eaeaea;
+    margin: 0 2px;
+    font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
-  code {
-    color: #404040;
-    border-color: #404040;
-  }
+    code {
+        color: #404040;
+        border-color: #404040;
+    }
 }
 
 /* When code appears inside pre */
 pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  font-size: inherit;
-  font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 600;
 }
 
 
 :global(pre) {
-  background: #f6f8fa;
-  border-radius: 6px;
-  padding: 1rem;
-  margin: 1rem 0;
-  overflow-x: auto;
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
 }
 
 :global(code) {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-  font-size: 14px;
-  line-height: 1.4;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  background: #f6f8fa;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    background: #f6f8fa;
 }
 
 :global(pre code) {
-  padding: 0;
-  background: transparent;
+    padding: 0;
+    background: transparent;
 }
 
 
 
 @keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .animate-gradient {
-  background-size: 800% 800%;
-  animation: gradient 15s ease infinite;
+    background-size: 800% 800%;
+    animation: gradient 15s ease infinite;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 
 .suggestions-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 150px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  max-height: 200px;
-  overflow-y: auto;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  z-index: 10;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 150px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
 }
 
 .suggestion-item {
-  padding: 10px;
-  cursor: pointer;
-  color: black;
-  text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+    text-align: left;
 }
 
 .suggestion-item:hover,
 .suggestion-item.selected {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* Add styles for the legal links to ensure they're clickable */
 .absolute.bottom-4.right-4 {
-  pointer-events: auto;
+    pointer-events: auto;
 }
 
 
 
-  /* Hide outline on contenteditable elements */
-  [contenteditable] {
+/* Hide outline on contenteditable elements */
+[contenteditable] {
     outline: none;
-  }
+}
 
-  /* Optional: Add a custom focus style for accessibility */
-  [contenteditable]:focus {
+/* Optional: Add a custom focus style for accessibility */
+[contenteditable]:focus {
     box-shadow: 0 0 0 0px black;
-  }
+}
 
-  /* Ensure the text cursor is visible */
-  [contenteditable]:focus::selection {
+/* Ensure the text cursor is visible */
+[contenteditable]:focus::selection {
     background: #835d16;
-  }
+    text-shadow: 2px 2px 2px rgb(81, 81, 10);
+    color: #342d06;
+}
 
-  /* Hide the resize handle in Firefox */
-  [contenteditable] {
+/* Hide the resize handle in Firefox */
+[contenteditable] {
     resize: none;
-  }
+}
 
-  /* Remove the default focus ring in Firefox */
-  [contenteditable]::-moz-focus-inner {
+/* Remove the default focus ring in Firefox */
+[contenteditable]::-moz-focus-inner {
     border: 0;
-  }
+}
 
-  /* Optional: Custom styling for placeholder text */
-  [contenteditable]:empty:before {
+/* Optional: Custom styling for placeholder text */
+[contenteditable]:empty:before {
     /* content: attr(placeholder); */
     /* color: #888; */
     /* font-style: italic; */
-  }
+}

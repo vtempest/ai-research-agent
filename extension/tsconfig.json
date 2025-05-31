@@ -15,7 +15,8 @@
         "resolveJsonModule": true,
         "allowJs": true,
         "checkJs": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "allowSyntheticDefaultImports": true
     },
     "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "src/pages/app/index.ts"],
     "exclude": ["node_modules", "dist"]

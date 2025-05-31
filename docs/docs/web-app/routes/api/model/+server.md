@@ -3,7 +3,7 @@
 ## GET()
 
 ```ts
-function GET(param0: object): Promise<Response>;
+function GET(request: any): Promise<Response>;
 ```
 
 Defined in: web-app/src/routes/api/model/+server.ts:11
@@ -25,22 +25,7 @@ cached for 100 hours
 <tr>
 <td>
 
-`param0`
-
-</td>
-<td>
-
-\{ `url`: `any`; \}
-
-</td>
-<td>
-
-</td>
-</tr>
-<tr>
-<td>
-
-`param0.url`
+`request`
 
 </td>
 <td>
@@ -50,8 +35,6 @@ cached for 100 hours
 </td>
 <td>
 
-&hyphen;
-
 </td>
 </tr>
 </tbody>
@@ -60,3 +43,5 @@ cached for 100 hours
 ### Returns
 
 `Promise`&lt;`Response`&gt;
+
+topicModelFinal

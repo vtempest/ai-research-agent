@@ -6,7 +6,7 @@ async function convertEmbeddingsToUSearch(documentVectors, options = {}) {
   return { index, labels };
 }
 
-async function searchVectorIndex(index, query, options = {}) {
+export async function searchVectorIndex(index, query, options = {}) {
   const { numNeighbors = 5, pipeline } = options;
 
   var queryVector = await convertTextToEmbedding(query, { pipeline });
@@ -181,4 +181,4 @@ async function main() {
 }
 
 // Execute if running directly
-main().catch(console.error);
+// main().catch(console.error);

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as FormPrimitive from "formsnap";
 	import type { WithoutChild } from "bits-ui";
-	import { cn } from "$utils";
+	import { cn } from "$lib/utils";
 
 	let {
 		ref = $bindable(null),
@@ -15,15 +15,14 @@
 </script>
 
 <FormPrimitive.FieldErrors
-	bind:ref
-	class={cn("text-destructive text-sm font-medium", className)}
+	class={cn("text-destructive text-[0.8rem] font-medium", className)}
 	{...restProps}
 >
 	{#snippet children({ errors, errorProps })}
 		{#if childrenProp}
 			{@render childrenProp({ errors, errorProps })}
 		{:else}
-			{#each errors as error}
+			{#each errors as error (error)}
 				<div {...errorProps} class={cn(errorClasses)}>{error}</div>
 			{/each}
 		{/if}

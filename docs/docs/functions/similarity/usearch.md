@@ -1,5 +1,71 @@
 [Documentation](../modules.md) / similarity/usearch
 
+## Other
+
+### searchVectorIndex()
+
+```ts
+function searchVectorIndex(
+   index: any, 
+   query: any, 
+   options: object): Promise<object[]>;
+```
+
+Defined in: similarity/usearch.js:9
+
+#### Parameters
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`index`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`query`
+
+</td>
+<td>
+
+`any`
+
+</td>
+</tr>
+<tr>
+<td>
+
+`options`
+
+</td>
+<td>
+
+\{ \}
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Returns
+
+`Promise`&lt;`object`[]&gt;
+
 ## Similarity
 
 ### convertTextToEmbedding()

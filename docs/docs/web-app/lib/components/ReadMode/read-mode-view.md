@@ -6,7 +6,7 @@
 function toggleReadingMode(): Promise<void>;
 ```
 
-Defined in: web-app/src/lib/components/ReadMode/read-mode-view.js:23
+Defined in: web-app/src/lib/components/ReadMode/read-mode-view.js:22
 
 Toggles Reading Mode on the current page, with extracted content,
 cite, markup tools, and AI generated summary.

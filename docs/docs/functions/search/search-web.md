@@ -8,7 +8,7 @@
 function searchWeb(query: string, options?: object): Promise<object[]>;
 ```
 
-Defined in: search/search-web.js:32
+Defined in: search/search-web.js:37
 
 Search Web via SearXNG metasearch of all major search engines.
 Options are 10 search categories, recency, and how many

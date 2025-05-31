@@ -2,48 +2,40 @@
 
 ## Generate
 
-### getAgentPrompts()
+### AGENT\_PROMPTS
 
 ```ts
-function getAgentPrompts(agentName: any, options?: any): 
+const AGENT_PROMPTS: (
   | {
+  after: any;
+  before: (prompt: any, params: any) => any;
   name: string;
   prompt: string;
-  tools: any[];
 }
   | {
-  error: string;
-};
+  after: (content: any, options: object) => any[];
+  before?: undefined;
+  name: string;
+  prompt: string;
+})[];
 ```
 
-Defined in: agents/agent-prompts.ts:40
+Defined in: agents/agent-prompts.js:12
 
-### Agent Prompts
+Agent prompt templates which have in brackets the needed 
+variables and reformat the response in json with a callback.
 
- 1. summarize-bullets:
-       - article
-   2. summarize:
-       - article
-   3. suggest-followups:
-       - chat_history
-       - article
-   4. answer:
-       - chat_history
-       - query
-   5. query-resolution:
-       - chat_history
-       - query
-   6. knowledge-graph-nodes:
-       - query
-       - article
-   7. summary-longtext:
-       - article
-       - sections 
+***
 
-Returns an object with agent prompts based on the provided agent name and options
-Uses regex to detect any variables in %7Bbrackets%7D in the prompts
-and replace them with values from the options object
-Values inside brackets must be the matching variable name
+### extractJSONFromLanguageReply()
+
+```ts
+function extractJSONFromLanguageReply(text: string, key?: string): any[];
+```
+
+Defined in: agents/agent-prompts.js:241
+
+This function extracts and cleans content between XML-style tags and returns a JSON object.
 
 #### Parameters
 
@@ -52,6 +44,7 @@ Values inside brackets must be the matching variable name
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Default value</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -59,37 +52,44 @@ Values inside brackets must be the matching variable name
 <tr>
 <td>
 
-`agentName`
+`text`
 
 </td>
 <td>
 
-`any`
+`string`
 
 </td>
 <td>
 
-The name of the agent to generate prompts for.
+`undefined`
+
+</td>
+<td>
+
+Input text to parse
 
 </td>
 </tr>
 <tr>
 <td>
 
-`options?`
+`key?`
 
 </td>
 <td>
 
-`any`
+`string`
 
 </td>
 <td>
 
-An options object that can contain the following
-  properties:
-  - `context`: An object containing context variables to be used when
-    generating the prompts.variablesNotProvided
+`null`
+
+</td>
+<td>
+
+Tag name to look for
 
 </td>
 </tr>
@@ -98,23 +98,6 @@ An options object that can contain the following
 
 #### Returns
 
-  \| \{
-  `name`: `string`;
-  `prompt`: `string`;
-  `tools`: `any`[];
-\}
-  \| \{
-  `error`: `string`;
-\}
+`any`[]
 
-An object with agent prompts.
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-
-#### Example
-
-```ts
-var prompt = getAgentPrompts("summarize-bullets", {article})
-```
+Array of objects containing cleaned content items

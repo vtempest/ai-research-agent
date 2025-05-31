@@ -1,19 +1,22 @@
 import { integer, sqliteTable, text, primaryKey } from "drizzle-orm/sqlite-core"
 
-/****************** FILES INDEX & CHATS *******************/
 
+/****************** INDEX & CHATS *******************/
 
 export const articles = sqliteTable('articles', {
+  id: text('id').primaryKey(),
   cite: text('cite').notNull(),
   html: text('html').notNull(),
   url: text('url').notNull(),
-  author: text('author').notNull(),
+  author: text('author'),
   author_cite: text('author_cite').notNull(),
-  author_type: integer('author_type').notNull(),
-  date: text('date').notNull(),
-  title: text('title').notNull(),
-  source: text('source').notNull(),
+  author_type: integer('author_type'),
+  date: text('date'),
+  title: text('title'),
+  source: text('source'),
   word_count: integer('word_count').notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
 });
 
 
@@ -23,9 +26,9 @@ export const messages = sqliteTable("messages", {
   chatId: text("chatId").default(""),
   messageId: text("messageId").default(""),
   role: text("type", { enum: ["assistant", "user"] }),
-  metadata: text("metadata", {
-    mode: "json",
-  }),
+  metadata: text("metadata", {mode: "json"}),
+  createdAt: integer("created_at", { mode: "timestamp" }),
+
 });
 
 export const chats = sqliteTable("chats", {
@@ -35,21 +38,53 @@ export const chats = sqliteTable("chats", {
   focusMode: text("focusMode").default(""),
 });
 
+export const userFavorites = sqliteTable("user_favorites", {
+  id: text("id").primaryKey(),
+  userId: text("userId")
+  .notNull()
+  .references(() => users.id, { onDelete: "cascade" }),
+  articleId: text("articleId")
+  .notNull()
+  .references(() => articles.id, { onDelete: "cascade" }),
+  createdAt: integer("created_at", { mode: "timestamp" }),
+});
+
+/**************  FILES & TEAMS  ****************/
 export const files = sqliteTable("files", {
   id: text("id").primaryKey(),
   title: text("title").default(""),
+  public: integer("public", { mode: "boolean" }).default(false),
+  ownerId: text("ownerId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
   content: text("content").default(""),
-  users: text("users").default(""),
-  lastUpdated: integer("last_updated", { mode: "timestamp" }),
+  metadata: text("metadata", { mode: "json"}),
+  sharedUserIds: text("shared_user_ids", { mode: "json" }).default("[]"),
+  sharedTeamIds: text("shared_team_ids", { mode: "json" }).default("[]"),
+  updatedAt: integer("updated_at", { mode: "timestamp" }),
+  createdAt: integer("created_at", { mode: "timestamp" }),
 });
+ 
+
+export const teams = sqliteTable("teams", {
+  id: text("id").primaryKey(),
+  name: text("name").default(""),
+  users: text("users", { mode: "json" }).default("[]"),
+  updatedAt: integer("updated_at", { mode: "timestamp" }),
+  ownerId: text("ownerId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+  metadata: text("metadata", {  mode: "json"})
+})
 
 export const userFileIndex = sqliteTable("user_file_index", {
   userId: text("user_id").default("").primaryKey(),
-  fileId: text("file_id").default(""),
+  fileIds: text("file_ids", { mode: "json" }).default("[]"),
+  updatedAt: integer("updated_at", { mode: "timestamp" }),
 });
 
 
-/**************  AUTH MODELS  ****************/
+/**************  USER & AUTH MODELS  ****************/
 
 export const users = sqliteTable("users", {
   id: text("id")
@@ -59,13 +94,12 @@ export const users = sqliteTable("users", {
   email: text("email").unique(),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
-  subscription: integer("subscription").default(0),
-  avatarUrl: text("avatar_url"),
+  subscription: text("subscription").default(""),
   isAdmin: integer("is_admin", { mode: "boolean" }).default(false),
   createdAt: integer("created_at", { mode: "timestamp_ms" }).$default(
     () => new Date()
   ),
-  modifiedAt: integer("modified_at", { mode: "timestamp_ms" }).$onUpdate(
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" }).$onUpdate(
     () => new Date()
   ),
   settings: text("settings").default(""),
@@ -123,3 +157,9 @@ export const verificationTokens = sqliteTable(
     }),
   })
 )
+
+
+
+
+
+

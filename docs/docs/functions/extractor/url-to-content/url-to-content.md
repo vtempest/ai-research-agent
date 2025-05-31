@@ -8,7 +8,7 @@
 function extractContent(urlOrDoc: string | Document, options?: object): object;
 ```
 
-Defined in: extractor/url-to-content/url-to-content.js:87
+Defined in: extractor/url-to-content/url-to-content.js:88
 
 ### 🚜📜 Tractor the Text Extractor 
 <img width="350px"  src="https://i.imgur.com/cRewT07.png" />
@@ -166,7 +166,7 @@ default=true - include links
 </td>
 <td>
 
-http request timeout
+default=5 - http request timeout
 
 </td>
 </tr>
@@ -211,7 +211,7 @@ http request timeout
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:67
+extractor/url-to-content/url-to-content.js:68
 
 </td>
 </tr>
@@ -228,7 +228,7 @@ extractor/url-to-content/url-to-content.js:67
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:65
+extractor/url-to-content/url-to-content.js:66
 
 </td>
 </tr>
@@ -245,7 +245,7 @@ extractor/url-to-content/url-to-content.js:65
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:66
+extractor/url-to-content/url-to-content.js:67
 
 </td>
 </tr>
@@ -262,7 +262,7 @@ extractor/url-to-content/url-to-content.js:66
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:68
+extractor/url-to-content/url-to-content.js:69
 
 </td>
 </tr>
@@ -279,7 +279,7 @@ extractor/url-to-content/url-to-content.js:68
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:70
+extractor/url-to-content/url-to-content.js:71
 
 </td>
 </tr>
@@ -296,7 +296,7 @@ extractor/url-to-content/url-to-content.js:70
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:69
+extractor/url-to-content/url-to-content.js:70
 
 </td>
 </tr>
@@ -313,7 +313,7 @@ extractor/url-to-content/url-to-content.js:69
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:64
+extractor/url-to-content/url-to-content.js:65
 
 </td>
 </tr>
@@ -330,7 +330,7 @@ extractor/url-to-content/url-to-content.js:64
 </td>
 <td>
 
-extractor/url-to-content/url-to-content.js:71
+extractor/url-to-content/url-to-content.js:72
 
 </td>
 </tr>

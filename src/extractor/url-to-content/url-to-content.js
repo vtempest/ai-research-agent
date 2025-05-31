@@ -3,7 +3,7 @@ import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
 import { convertPDFToHTML } from "../pdf-to-html/pdf-to-html.js";
 import {  isUrlPDF } from "../pdf-to-html/util/is-url-pdf.js";
 import { convertDOCXToHTML } from "./docx-to-content.js";
-import { scrapeURL } from "./scrape-url.js";
+import { scrapeURL } from "./url-to-html.js";
 
 /**
  * @typedef {Object} Article
@@ -20,6 +20,7 @@ import { scrapeURL } from "./scrape-url.js";
  * @property {number} word_count - The word count of the full text (without HTML tags)
  * @category Extract
  */
+
 
 /**
  * ### 🚜📜 Tractor the Text Extractor 
@@ -59,7 +60,7 @@ import { scrapeURL } from "./scrape-url.js";
  * @param {boolean} options.links default=true - include links
  * @param {boolean} options.formatting default=true - preserve formatting
  * @param {boolean} options.absoluteURLs default=true - convert URLs to absolute
- * @param {number} [options.timeout=5] - http request timeout
+ * @param {number} options.timeout default=5 - http request timeout
  * @returns {{  
  *  title: string,
  *  author_cite: string,
@@ -97,17 +98,23 @@ export async function extractContent(urlOrDoc, options = {}) {
   } = options;
   var response = {};
 
-  let isPdf;
+  let url, isPdf;
 
   //url  to fetch
   if (typeof urlOrDoc === "string") {
 
-    var url = urlOrDoc;
+    url = urlOrDoc;
 
-    isPdf = url.endsWith(".pdf");
+    // check if google doc, then extract html or pdf file
+    let googleDocId = url.match(/google\.com\/(file|document)\/d\/([\w-]+)/);
+    if (googleDocId) 
+      url = googleDocId[1] === 'file'
+        ? `https://drive.google.com/uc?export=download&id=${googleDocId[2]}`
+        : `https://docs.google.com/document/d/${googleDocId[2]}/export?format=html`;
+    
 
-    if (!isPdf) isPdf = await isUrlPDF(url);
-    var youtubeID = getURLYoutubeVideo(url);
+    isPdf = url.endsWith(".pdf") || await isUrlPDF(url);
+    let youtubeID = getURLYoutubeVideo(url);
 
     if (isPdf) {
       // pdf checker
@@ -127,12 +134,6 @@ export async function extractContent(urlOrDoc, options = {}) {
         var html = await scrapeURL(url, {
           proxy,
         });
-      // } catch (e) {
-      //   return { error: "Error in fetch", msg: e };
-      // }
-      // if (html.error) {
-      //   return { error: "Error in fetch", msg: html.error };
-      // }
       options.url = url;
       response = extractContentAndCite(html, options);
 
@@ -140,7 +141,7 @@ export async function extractContent(urlOrDoc, options = {}) {
   } else if (typeof urlOrDoc == "object") {
     //if passing in dom object document from front end
 
-    var url = urlOrDoc.location.href;
+    url = urlOrDoc.location.href;
 
     //pdf checker for embeded docs
     if (urlOrDoc?.querySelectorAll)

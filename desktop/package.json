@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "QwkSearch Desktop - Select text, press ` to search web",
   "type": "module",
+  "homepage": "https://qwksearch.com",
+  "license": "AGPL-3.0",
+  "author": "QwkSearch <support@qwksearch.com>",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -11,7 +14,6 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "tauri": "tauri build"
   },
-  "license": "AGPL-3.0",
   "dependencies": {
     "@tauri-apps/api": "2.0.0-rc.4",
     "@tauri-apps/plugin-autostart": "2.0.0-rc.1",

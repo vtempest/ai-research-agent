@@ -6,7 +6,7 @@
  *
  * - `name`: The name of the search engine.
  * - `url`: The base search URL that should have the query appended.
- * - `icon`: A URL or data URL of an SVG icon for the search engine. Prepend "data:image/png;base64,"
+ * - `icon`: A URL or data URL for the search engine. Prepend "data:image/png;base64,"
  * @type {Object[]}
  * @category Search
  */

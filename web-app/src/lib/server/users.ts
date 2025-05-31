@@ -13,10 +13,14 @@ export async function createUser(db, newUser) {
   newUser = {
     ...newUser,
     email: newUser.email.toLowerCase(),
-    username: newUser.username.toLowerCase()
+    username: newUser.username.toLowerCase(),
   };
 
-  const res = await db.insert(users).values(newUser).onConflictDoNothing().returning();
+  const res = await db
+    .insert(users)
+    .values(newUser)
+    .onConflictDoNothing()
+    .returning();
 
   if (res.length === 0) return;
 
@@ -78,7 +82,11 @@ export async function getUserByUsername(db, name) {
 export async function updateUserById(db, id, userData) {
   if (!id) return;
 
-  const res = await db.update(users).set(userData).where(eq(users.id, id)).returning();
+  const res = await db
+    .update(users)
+    .set(userData)
+    .where(eq(users.id, id))
+    .returning();
 
   if (res.length === 0) return;
 
@@ -109,15 +117,22 @@ export async function deleteUserById(db, id) {
 export function createApiKey(length = 64) {
   let result = "";
   let charCodeRanges = [
-    [65, 90],   // Uppercase 
-    [97, 122],  // Lowercase 
-    [48, 57]    // Digits
-  ].map(range => {
-    return Array.from({ length: range[1] - range[0] + 1 }, (_, i) => range[0] + i);
-  }).reduce((acc, range) => acc.concat(range), []);
+    [65, 90], // Uppercase
+    [97, 122], // Lowercase
+    [48, 57], // Digits
+  ]
+    .map((range) => {
+      return Array.from(
+        { length: range[1] - range[0] + 1 },
+        (_, i) => range[0] + i
+      );
+    })
+    .reduce((acc, range) => acc.concat(range), []);
 
   while (length--)
-    result += String.fromCharCode(charCodeRanges[Math.floor(Math.random() * charCodeRanges.length)])
+    result += String.fromCharCode(
+      charCodeRanges[Math.floor(Math.random() * charCodeRanges.length)]
+    );
 
   return result;
 }
@@ -125,67 +140,65 @@ export function createApiKey(length = 64) {
 export async function validateApiKey(db, apiKey: string): Promise<boolean> {
   // Query your database to check if the API key is valid
   const user = await db.query.users.findFirst({
-    where: 
-    // @ts-ignore
-      eq(users.apiKey, apiKey)
+    where:
+      // @ts-ignore
+      eq(users.apiKey, apiKey),
   });
 
   return !!user;
 }
-
 
 /**
  * Cancels all subscriptions for a given customer email
  * @param {string} email
  * @param {Object} env
  */
-export async function cancelStripeCustomerSubscriptions(email: string, env: any) {
-
+export async function cancelStripeCustomerSubscriptions(
+  email: string,
+  env: any
+) {
   const stripe = new Stripe(env.STRIPE_API_KEY);
 
   try {
     // Find customer by email
     const customers = await stripe.customers.list({ email: email, limit: 1 });
-    
+
     if (customers.data.length === 0) {
-      console.log('No customer found with this email');
+      console.log("No customer found with this email");
       return;
     }
-    
+
     const customer = customers.data[0];
-    
+
     // Retrieve all subscriptions for the customer
     const subscriptions = await stripe.subscriptions.list({
-      customer: customer.id
+      customer: customer.id,
     });
-    
+
     // Cancel each subscription
     for (const subscription of subscriptions.data) {
       await stripe.subscriptions.cancel(subscription.id);
       console.log(`Cancelled subscription: ${subscription.id}`);
     }
-    
-    console.log('All subscriptions cancelled successfully');
+
+    console.log("All subscriptions cancelled successfully");
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error("Error:", error.message);
   }
 }
 
-
-
 export async function getStripeManageSubscriptionURL(email, env) {
-  
   const stripe = new Stripe(env.STRIPE_API_KEY);
 
   try {
     // Step 1: Retrieve the customer ID using the email address
     const customers = await stripe.customers.list({
       email: email,
-      limit: 1
+      limit: 1,
     });
 
     if (customers.data.length === 0) {
-      throw new Error('No customer found with this email address');
+      throw new Error("No customer found with this email address");
     }
 
     const customerId = customers.data[0].id;
@@ -193,7 +206,7 @@ export async function getStripeManageSubscriptionURL(email, env) {
     // Step 2: Create a billing portal session
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: 'https://'+env.PUBLIC_DOMAIN
+      return_url: "https://" + env.PUBLIC_DOMAIN,
     });
 
     // Step 3: Return the URL for redirection

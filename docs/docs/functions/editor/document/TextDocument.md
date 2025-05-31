@@ -225,7 +225,7 @@ Defined in: editor/document/TextDocument.ts:353
 </td>
 <td>
 
-\{ `contentOnly`: `boolean`; \}
+\{ `contentOnly?`: `boolean`; \}
 
 </td>
 </tr>

@@ -10,7 +10,7 @@
 	
 	export let nodes: Record<string, any>;
 	export let node: any;
-	let isExpanded = true;
+	export let isExpanded = true;
 	const flipDurationMs = 300;
 	let searchText = '';
 	let sortBy: 'name' | 'type' = 'name';
@@ -122,11 +122,11 @@
 	  nodes = sortedNodes;
 	}
 	
-	$: filteredNodes = Object.values(nodes).filter(n => n.name.toLowerCase().includes(searchText.toLowerCase()));
+	$: filteredNodes = Object.values(nodes).filter(n => n.name?.toLowerCase().includes(searchText.toLowerCase()));
 	</script>
 	
 	<div class="flex items-center space-x-1 p-1 hover:bg-gray-100 rounded-md text-sm">
-	  <Button variant="ghost" size="icon" on:click={toggleExpand} class="p-0 h-6 w-6">
+	  <Button variant="ghost" size="icon" onclick={toggleExpand} class="p-0 h-6 w-6">
 		{#if node?.hasOwnProperty("items")}
 		  {#if node.isExpanded}
 			<ChevronDown class="h-4 w-4" />
@@ -147,10 +147,10 @@
 	  <span class="font-medium" style="color:{node?.color}">{node?.name}</span>
 	
 	  <div class="ml-auto flex space-x-1">
-		<Button variant="ghost" size="icon" on:click={handleRename} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleRename} class="p-0 h-6 w-6">
 		  <Edit class="h-3 w-3" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleDelete} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleDelete} class="p-0 h-6 w-6">
 		  <Trash2 class="h-3 w-3" />
 		</Button>
 	  </div>
@@ -158,22 +158,22 @@
 	
 	<div class="flex justify-between items-center mb-2">
 	  <div class="flex space-x-1">
-		<Button variant="ghost" size="icon" on:click={handleUpload} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleUpload} class="p-0 h-6 w-6">
 		  <Upload class="h-4 w-4" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleSort} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleSort} class="p-0 h-6 w-6">
 		  <ArrowDownWideNarrow class="h-4 w-4" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleCollapseAll} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleCollapseAll} class="p-0 h-6 w-6">
 			<ArrowUp10 class="h-4 w-4" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleExpandAll} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleExpandAll} class="p-0 h-6 w-6">
 		  <ArrowDown10 class="h-4 w-4" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleNewFile} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleNewFile} class="p-0 h-6 w-6">
 		  <File class="h-4 w-4" />
 		</Button>
-		<Button variant="ghost" size="icon" on:click={handleNewFolder} class="p-0 h-6 w-6">
+		<Button variant="ghost" size="icon" onclick={handleNewFolder} class="p-0 h-6 w-6">
 		  <Folder class="h-4 w-4" />
 		</Button>
 	  </div>
@@ -190,8 +190,8 @@
 		  use:dndzone={{items: node.items, flipDurationMs, centreDraggedOnCursor: true,
 			dropTargetStyle: {outline: 'rgba(0, 0, 0, 0.2) solid 2px'}
 		  }}
-		  on:consider={handleDndConsider}
-		  on:finalize={handleDndFinalize}
+		  onconsider={handleDndConsider}
+		  onfinalize={handleDndFinalize}
 		  class="rounded-md"
 		>
 		  {#each filteredNodes as item (item.id)}

@@ -1,5 +1,10 @@
+import { getDomainWithoutSuffix } from 'tldts';
+
 import { convertHTMLToEscapedHTML } from "../extractor/html-to-content/html-utils.js";
 import { scrapeURL } from "../../index.js";
+
+
+
 /**
  * Search Web via SearXNG metasearch of all major search engines.
  * Options are 10 search categories, recency, and how many
@@ -19,7 +24,7 @@ import { scrapeURL } from "../../index.js";
  * @param {number} options.page default=1 - The page number to retrieve.
  * @param {string} options.lang default="en-US" - The language to use for the search.
  * @param {string} options.proxy default=false - Use corsproxy.io to access in frontend JS
- * @returns {Promise<Array<{title: string, url: string, snippet: string, engines: string[]}>>} An array of search result objects.
+ * @returns {Promise<Array<{title: string, url: string, snippet: string, domain: string, favicon: string, path: string, engines: string[]}>>} An array of search result objects.
  * @example  const advancedResults = await searchWeb('Node.js', {
  *   category: 2,
  *   recency: 1,
@@ -183,7 +188,34 @@ export async function searchWeb(query, options = {}) {
     });
 
     
-    return results
+    return results.map((result) => {
+
+      var favicon = "https://www.google.com/s2/favicons?domain=" 
+        + result.url.match(/^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i)?.[0] 
+        + "&sz=16"
+  
+      var domain = result.url
+        ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "").split("/")[0]
+      
+      var source = getDomainWithoutSuffix(domain).replace(/\b\w/g, l => l.toUpperCase())
+      // for small source names like CNN
+      if (source.length < 5)
+        source = source.toUpperCase();
+
+      var path = result.url
+                  ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
+                  .split("/")
+                  .slice(1)
+                  .join("/")
+                  .replace(/^/, "/")
+      return {
+        ...result,
+        domain,
+        source,
+        favicon,
+        path
+      };
+    })
     // return {results, suggestions};
 
 
@@ -241,12 +273,35 @@ export async function searchWeb(query, options = {}) {
   //filter out url that end with .de
   // results = results.filter((result) => !result.url.includes(".de/"));
 
+  results = results.map((result) => {
+
+    var favicon = "https://www.google.com/s2/favicons?domain=" 
+      + result.url.match(/^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i)?.[0] 
+
+    var domain = result.url
+      ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "").split("/")[0]
+    
+
+    var path = result.url
+                ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
+                .split("/")
+                .slice(1)
+                .join("/")
+                .replace(/^/, "/")
+    return {
+      ...result,
+      domain,
+      favicon,
+      path
+    };
+  })
   return results;
   // } catch (error) {
   //   console.error(`Error fetching search results: ${error.message}`);
   //   return [];
   // }
 }
+
 
 
 var sources = [

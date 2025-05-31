@@ -11,7 +11,6 @@ const plans = [
 ];
 
 
-
 /**
  * Webhook listens to Stripe Subscription change
  * and updates subscription status in db.
@@ -44,7 +43,7 @@ export async function POST({ request, platform, locals }: RequestEvent) {
   var plan_cost = event.data.object.items?.data?.[0].plan?.amount;
 
   var plan =
-    plans.filter((p) => p.cost == plan_cost)?.[0].name ||
+    plans.find((p) => p.cost == plan_cost)?.name ||
     "Other - " + plan_cost;
 
   var isActive =
@@ -82,7 +81,7 @@ export async function POST({ request, platform, locals }: RequestEvent) {
  */
 export async function GET({ request, platform, locals }: RequestEvent) {
   try {
-    let session = await locals.auth();
+    let session //= await locals.auth();
     if (!session) return json({ error: "Unauthorized" }, { status: 401 });
 
     const stripe = new Stripe(platform?.env.STRIPE_API_KEY);

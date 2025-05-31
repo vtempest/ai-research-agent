@@ -20,7 +20,8 @@
         <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
             alt="Join Discord" />
     </a>
-    <img alt="GitHub Stars" src="https://img.shields.io/github/stars/vtempest/ai-research-agent" />
+     <a href="https://github.com/vtempest/ai-research-agent/discussions">
+     <img alt="GitHub Stars" src="https://img.shields.io/github/stars/vtempest/ai-research-agent" /></a>
     <a href="https://github.com/vtempest/ai-research-agent/discussions">
     <img alt="GitHub Discussions"
         src="https://img.shields.io/github/discussions/vtempest/ai-research-agent" />
@@ -74,11 +75,11 @@ Language Models can distill the essence of collective thought into a vector spac
 
 [searchSTREAM Docs](https://airesearch.js.org/functions/search/search-stream)
 
-1.  Search Web for query via metasearch of major engines or your custom data
+1.  Search Web via metasearch of major engines or your custom data
 2.  Extract text of top results with Tractor the Text Extractor.
 3.  SEEKTOPIC: Extract Keyphrase Topics and Top Sentences that centralize those topics
 4.  Rerank documents's chunks based on relevance to query, using embeddings by convert text to concept vector, get cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.
-5.  Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or Anthropic API Key and suggest follow-ups
+5.  Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or other LLMs and suggest follow-ups
 
 ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context
 
@@ -114,12 +115,10 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
 
 1.  Main Content Detection: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
-2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
 3.  YouTube Transcript Processing: When a YouTube video URL is detected, retrieve the complete video transcript including both manual captions and auto-generated subtitles, maintaining proper timestamp synchronization.
 4. PDF to HTML: Extracts formatted text from PDF with parsing of linebreaks , page headers, footnotes, and section headings. Supports fonts, links, bold, italics, lists, headings, headers, footnotes, and Table of Contents, Quotes, and Code Blocks. Removes repeated headers, links footnote anchors to the footnote, and preserves number of the PDF page with invisible I element. This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless) to work in more environments than PDF.js-based tools: Cloudflare workers, serverless, node.js, and front-end only.
+2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
 5.  Cite: Identify and extract citation metadata including author names, publication dates, sources, and titles using HTML meta tags and common class name patterns. The system validates author names against a comprehensive database of 90,000 first and last names, distinguishing between personal and organizational authors to properly format citations.
-6.  Author Name Formatting: Process author names by checking against known name databases, handling affixes and titles correctly, and determining whether to reverse the name order based on whether it's a personal or organizational author, ensuring proper citation formatting.
-7.  Content Validation: Verify the extracted content's completeness and accuracy by comparing results from multiple extraction methods, ensuring all essential elements are preserved and properly formatted for the intended use case.
 
 ### 🕸️🖥️ Tardigrade the Web Crawler
 <p align="center">
@@ -166,12 +165,12 @@ Search and outline a research base using Wikipedia's 100k popular pages as the c
 
 Calculate term specificity for a single doc with BM25 formula by using Wikipedia term frequencies as the baseline Inverse Frequency across Documents. WikiBM25 solves the need to pass in all docs to compute against all documents in a database. The problem with BM25 and TF-IDF is that a large set of documents is needed to find the words that are repeated often across all. These overused words are often the same list of words, so using Wikipedia's term frequencies ensures a common sense baseline against a neutral corpus.
 
-All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.  
+**Data Model**: All words in English Wikipedia are sorted by number of pages they are in for 325K words with frequencies of at least 32 wikipages, between 3 to 23 characters of Latin alphanumerics like az09, punctuation like .-, and diacritics like éï, but filtering out numbers and foreign language.  
 Use this list to Replace or Combine with All Documents IDF - Many websites may have less than a hundred pages to search through and that is not enough to find which terms are domain-specific. They can score a single doc at a time to find the weight each word in query gets. Wikipedia IDf can be a baseline IDF to average with the All Docs IDF for uniqueness across the average public and the specific domain.
 
-Example: Given a query "Superbowl wins by year" we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domains-specific. This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score.
+**Example**: Given a query "Superbowl wins by year" we do not want to simply return docs filled with common words like year, but rather recognize Superbowl is more domain-specific. This requires precomputing IDF values across all docs, and for websites that may not have that many docs to start with may consider averaging their precomputed score with wikiIDF values to ensure most unique words get a score.
 
-Use Case: LLM RAG Chunk to Query Similarity - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighted to relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand.
+**LLM RAG Use Case**: LLM RAG Chunk to Query Similarity - When we chunk a document into parts to find which to pass into a LLM prompt, they need to be weighed by relevance to the query. Semantic Embedding with a LLM not only takes resources to compute & store the vectors, it also [performs worse (video)](https://youtu.be/9QJXvNiJIG8?si=ey4GbqtV8tD5WV2P&t=725) than BM25 on its own. Hybrid BM25 & Embeddings RAG is best, but there may not be time to compute BM25 idf scores across all doc chunks. We need a fast way to distinguish more unique words to give them more weight rather than common short words that get repeated a lot in an edge case paragraph. WikiBM25 is the best in use cases like realtime web search where chunking the text cannot be done beforehand.
 
 ### 🧩🔍 Autocomplete & Query To Topic Phrase Tokenization
 <p align="center">
@@ -198,12 +197,15 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 *   [Google Search Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
 *   [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
 *   [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
-*   [Graph Algorithms Playground](https://playground.memgraph.com)
+*   [Graph Algorithms Playground](https://playground.memgraph.com)  
 *   [CommonCrawl C4 Download](https://huggingface.co/datasets/allenai/c4)
 *   [Knowledge Graphs Prompts Papers](https://github.com/zjunlp/PromptKG)
 *   [Paper - Iterative Research Idea Generation](https://arxiv.org/abs/2404.07738)
 *   [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8&t=70s)
-
+*   [Awesome-LLM-Graph-Theory](https://github.com/XiaoxinHe/Awesome-Graph-LLM)
+*   [Open Deep Search](https://arxiv.org/html/2503.20201v1)   
+*   [LangChain Hub](https://smith.langchain.com/hub) - A collection of reusable prompts, chains, and agents for building LLM applications
+*   [LangChain Documentation](https://js.langchain.com/docs) - Comprehensive documentation for LangChain.js
 
  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
             alt="PRs Welcome" /> Please star this repo for updates! 🌟

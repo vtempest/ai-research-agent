@@ -1,7 +1,17 @@
 <script>
 	import FileSystem from './FileSystem.svelte'
+	import {grab} from '$lib/grab-api.js';
+	import { onMount } from 'svelte';
 
-  let nodes = {
+
+	let nodes = $state({});
+	let show = $state(false);
+
+	onMount(async () => {
+
+
+	window.grabMockServer = {
+	  files: { method: "GET", response: {
 		node1: {
 			name: 'folder 1',
 			items: [
@@ -42,14 +52,30 @@
 			id: 'node4',
 			color: 'salmon'
 		}
+		}
+	}	
 	};
+
+
+		await grab("files", nodes);
+
+		for (let i = 5; i < 17; i++) {
+			nodes[`node${i}`]={id:`node${i}`, name:`item ${i}`}
+		}
+		show = true;
 		
-for (let i = 5; i < 17; i++) {
-  nodes[`node${i}`]={id:`node${i}`, name:`item ${i}`}
-}
+	});
+
 		
+
 </script>
 
-<div  class="w-[400px]">
-<FileSystem node={nodes.node1} bind:nodes={nodes} />
+<div class="w-[400px]">
+	{#if show}
+		<FileSystem node={nodes.node1} bind:nodes />
+	 {:else}
+		<div class="flex justify-center items-center h-full">
+			<div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+		</div>
+	{/if}
 </div>

@@ -1,22 +1,21 @@
 import { json } from "@sveltejs/kit";
-import topicModel from  "../../../../../src/wordlists/wiki-phrases-model-240k.json?raw"
+import topicModelJSON from  "../../../../../src/wordlists/wiki-phrases-model-240k.json" with { type: "json" }
 
 
 /**
  * Return the topic model from GitHub storage as JSON 
  * cached for 100 hours
- * @param {Object} param0 
- * @returns 
+ * @param {Object} request 
+ * @returns {Object} topicModelFinal
  */
-export async function GET({ url }) {
-  let topicModelFinal = topicModel ? topicModel : await fetch(
+export async function GET(request) {
+  let topicModel = topicModelJSON ? topicModelJSON : await fetch(
     "https://raw.githubusercontent.com/vtempest/" +
       "ai-research-agent/master/src/wordlists/wiki-phrases-model-240k.json"
   ).then(r => r.json());
 
-  return json(topicModel, {
+  return json({topicModel}, {
     headers: {
-      "Content-Type": "application/json",
       "Cache-Control": "public, max-age=36000000",
     },
   });

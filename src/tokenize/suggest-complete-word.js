@@ -35,6 +35,7 @@ export async function suggestNextWordCompletions(query, options = {}) {
     phrasesModel, //pass in remote model
     limitMaxResults = 10, //limit the number of results
     numberOfLastWordsToCheck = 5, // check last few words for their phrase completions
+    optionShowFullQuery = true, //show full query in the result
   } = options;
 
   // if (!phrasesModel)
@@ -88,6 +89,24 @@ export async function suggestNextWordCompletions(query, options = {}) {
       .map((phrase) => ({ word: phrase }))
   );
 
-  return autocompletes.flat(2).slice(0, limitMaxResults);
+  autocompletes = autocompletes.flat(2).slice(0, limitMaxResults)
+  
+  if (optionShowFullQuery)
+    autocompletes = autocompletes.map((s) => {
+      var name;
+      if (s.word) name = words.slice(0, -1).join(" ") + " " + s.word;
+      if (s.phrase) {
+        name =
+          words
+            .join(" ")
+            .slice(0, words.join(" ").lastIndexOf(s.phrase.split(" ")[0])) +
+          " " +
+          s.phrase;
+      }
+      return { name };
+    })
+    .filter(Boolean);
+
+  return autocompletes;
 
 }

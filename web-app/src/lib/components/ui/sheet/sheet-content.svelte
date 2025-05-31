@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import { tv, type VariantProps } from "tailwind-variants";
+
 	export const sheetVariants = tv({
 		base: "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 gap-4 p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
 		variants: {
@@ -20,16 +21,16 @@
 
 <script lang="ts">
 	import { Dialog as SheetPrimitive, type WithoutChildrenOrChild } from "bits-ui";
-	import X from "lucide-svelte/icons/x";
+	import X from "@lucide/svelte/icons/x";
 	import type { Snippet } from "svelte";
 	import SheetOverlay from "./sheet-overlay.svelte";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "$lib/utils";
 
 	let {
 		ref = $bindable(null),
 		class: className,
-		side = "right",
 		portalProps,
+		side = "right",
 		children,
 		...restProps
 	}: WithoutChildrenOrChild<SheetPrimitive.ContentProps> & {
@@ -44,7 +45,7 @@
 	<SheetPrimitive.Content bind:ref class={cn(sheetVariants({ side }), className)} {...restProps}>
 		{@render children?.()}
 		<SheetPrimitive.Close
-			class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none"
+			class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none"
 		>
 			<X class="size-4" />
 			<span class="sr-only">Close</span>

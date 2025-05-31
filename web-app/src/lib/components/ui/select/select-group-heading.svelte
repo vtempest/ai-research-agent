@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select as SelectPrimitive } from "bits-ui";
-	import { cn } from "$utils";
+	import { cn } from "$lib/utils";
 
 	let {
 		ref = $bindable(null),
@@ -11,6 +11,6 @@
 
 <SelectPrimitive.GroupHeading
 	bind:ref
-	class={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
+	class={cn("px-2 py-1.5 text-sm font-semibold", className)}
 	{...restProps}
 />

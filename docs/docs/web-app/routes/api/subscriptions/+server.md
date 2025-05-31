@@ -6,7 +6,7 @@
 function GET(event: RequestEvent): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/subscriptions/+server.ts:83
+Defined in: web-app/src/routes/api/subscriptions/+server.ts:82
 
 Redirects to Stripe's Manage Subscription page.
 
@@ -51,7 +51,7 @@ Redirects to Stripe's Manage Subscription page.
 function POST(event: RequestEvent): Promise<Response>;
 ```
 
-Defined in: web-app/src/routes/api/subscriptions/+server.ts:22
+Defined in: web-app/src/routes/api/subscriptions/+server.ts:21
 
 Webhook listens to Stripe Subscription change
 and updates subscription status in db.

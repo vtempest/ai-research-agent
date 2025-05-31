@@ -54,7 +54,7 @@ Google OAuth Client ID
 </td>
 <td>
 
-\{ `auto_select`: `boolean`; `callback_url`: `string`; `cancel_on_tap_outside`: `boolean`; `state_cookie_domain`: `string`; `use_fedcm_for_prompt`: `boolean`; \}
+\{ `auto_select?`: `boolean`; `callback_url`: `string`; `cancel_on_tap_outside?`: `boolean`; `state_cookie_domain?`: `string`; `use_fedcm_for_prompt?`: `boolean`; \}
 
 </td>
 <td>

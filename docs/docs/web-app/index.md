@@ -111,12 +111,10 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
 
 1.  Main Content Detection: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
-2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
 3.  YouTube Transcript Processing: When a YouTube video URL is detected, retrieve the complete video transcript including both manual captions and auto-generated subtitles, maintaining proper timestamp synchronization.
 4. PDF to HTML: Extracts formatted text from PDF with parsing of linebreaks , page headers, footnotes, and section headings. Supports fonts, links, bold, italics, lists, headings, headers, footnotes, and Table of Contents, Quotes, and Code Blocks. Removes repeated headers, links footnote anchors to the footnote, and preserves number of the PDF page with invisible I element. This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless) to work in more environments than PDF.js-based tools: Cloudflare workers, serverless, node.js, and front-end only.
+2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
 5.  Cite: Identify and extract citation metadata including author names, publication dates, sources, and titles using HTML meta tags and common class name patterns. The system validates author names against a comprehensive database of 90,000 first and last names, distinguishing between personal and organizational authors to properly format citations.
-6.  Author Name Formatting: Process author names by checking against known name databases, handling affixes and titles correctly, and determining whether to reverse the name order based on whether it's a personal or organizational author, ensuring proper citation formatting.
-7.  Content Validation: Verify the extracted content's completeness and accuracy by comparing results from multiple extraction methods, ensuring all essential elements are preserved and properly formatted for the intended use case.
 
 ### 🕸️🖥️ Tardigrade the Web Crawler
 <p align="center">
@@ -195,11 +193,15 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 *   [Google Search Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
 *   [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
 *   [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
-*   [Graph Algorithms Playground](https://playground.memgraph.com)
+*   [Graph Algorithms Playground](https://playground.memgraph.com)  
 *   [CommonCrawl C4 Download](https://huggingface.co/datasets/allenai/c4)
 *   [Knowledge Graphs Prompts Papers](https://github.com/zjunlp/PromptKG)
 *   [Paper - Iterative Research Idea Generation](https://arxiv.org/abs/2404.07738)
 *   [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8&t=70s)
+*   [Awesome-LLM-Graph-Theory](https://github.com/XiaoxinHe/Awesome-Graph-LLM)
+*   [Open Deep Search](https://arxiv.org/html/2503.20201v1)   
+*   [LangChain Hub](https://smith.langchain.com/hub) - A collection of reusable prompts, chains, and agents for building LLM applications
+*   [LangChain Documentation](https://js.langchain.com/docs) - Comprehensive documentation for LangChain.js
 
  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
             alt="PRs Welcome" /> Please star this repo for updates! 🌟

@@ -1,6 +1,3 @@
-import { loadHnswlib } from 'hnswlib-wasm/dist/hnswlib.js';
-/** @typedef {import("@huggingface/transformers").AutoTokenizer} AutoTokenizer */
-
 
 /**
  * Text embeddings convert words or phrases into numerical vectors in a high-dimensional
@@ -94,23 +91,23 @@ export async function getEmbeddingModel(options = {}) {
  * @returns {Promise<HierarchicalNSW>} The created HNSW index.
  * @category Similarity
  */
-export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) {
-    const {
-      numDimensions = 384, // the length of data point vector that will be indexed.
-      maxElements = 100, // the maximum number of data points.
-      m = 16,
-      efConstruction = 200,
-      efSearch = 100,
-    } = options;
-    // Load the hnswlib library
-    const lib = await loadHnswlib();
-    // Create and initialize the index
-    const index = new lib.HierarchicalNSW('cosine', numDimensions, "a");
-    index.initIndex(maxElements, m, efConstruction, efSearch);
-    // Add points to the index
-    const labels = index.addItems(documentVectors, true);
-    return { index, labels };
-  }
+// export async function addEmbeddingVectorsToIndex(documentVectors, options = {}) {
+//     const {
+//       numDimensions = 384, // the length of data point vector that will be indexed.
+//       maxElements = 100, // the maximum number of data points.
+//       m = 16,
+//       efConstruction = 200,
+//       efSearch = 100,
+//     } = options;
+//     // Load the hnswlib library
+//     const lib = await loadHnswlib();
+//     // Create and initialize the index
+//     const index = new lib.HierarchicalNSW('cosine', numDimensions, "a");
+//     index.initIndex(maxElements, m, efConstruction, efSearch);
+//     // Add points to the index
+//     const labels = index.addItems(documentVectors, true);
+//     return { index, labels };
+//   }
 
   /**
    * Searches the vector index for the nearest neighbors of a given query.

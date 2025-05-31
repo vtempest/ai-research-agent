@@ -1,8 +1,7 @@
 // @ts-ignore
 import {  searchWeb } from "$ai-research-agent";
-
 import { json } from "@sveltejs/kit";
-import { searxngDomain, proxy } from "$lib/server";
+import { searxngDomain, proxyDomain } from "$lib/server";
 
 
 export async function GET({ url }) {
@@ -27,7 +26,7 @@ export async function GET({ url }) {
     recency,
     maxRetries: 6,
     privateSearxng: publicInstances ? false : searxngDomain,
-    proxy,
+    proxy: proxyDomain,
     lang,
     page
   });
@@ -38,17 +37,16 @@ export async function GET({ url }) {
       recency,
       maxRetries: 6,
       privateSearxng: false,
-      proxy,
+      proxy: proxyDomain,
       lang,
       page
     });
 
 
   if (!results) 
-    return json(results, { status: 500 });
+    return json({ error: "No results found" }, { status: 500 });
   
 
   let elapsedTime = Date.now() - startTime;
-  let response = { results, elapsedTime };
-  return json(response);
+  return json({ results, elapsedTime });
 }

@@ -1,5 +1,5 @@
 <script>
-    import { APP_EMAIL, APP_NAME } from '$lib/custom-domain';
+    import { APP_EMAIL, APP_NAME, LAST_REVISED_DATE } from '$lib/customize-site';
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 </svelte:head>
 <main>
     <h1>{APP_NAME}'s Privacy Policy</h1>
-    <p>Revised Date: August 10, 2024</p>
+    <p>Revised Date: {LAST_REVISED_DATE}</p>
 
     <p>This Privacy Notice describes how {APP_NAME} ("we", "us," "our") collects, uses and discloses information about individuals who use our websites, applications, services, tools and features, purchase our products or otherwise interact with us (collectively, the "Services"). For the purposes of this Privacy Notice, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, job applicant, representative of a company with whom we do business, or another individual whose information we have collected pursuant to this Privacy Notice.  Please note that the Services are designed for users in the United States only and are not intended for users located outside the United States. </p>
 

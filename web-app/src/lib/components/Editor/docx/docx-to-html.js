@@ -1,9 +1,7 @@
-import JSZip from "jszip";
+import JSZip from "jszip"
 import { Parser } from "htmlparser2";
 
 import * as tokens from "./docx-tokens";
-
-//TODO why is this mor accurate than other
 
 /**
  * Converts docx file to array or token objects with text and formatting

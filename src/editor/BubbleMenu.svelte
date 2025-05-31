@@ -121,7 +121,7 @@
 </script>
 
 {#if activeSelection && activeSelection[0] !== activeSelection[1]}
-  <div class={className} on:focusin={onGainFocus} on:focusout={onLoseFocus} bind:this={menu}>
+  <div class="{className} z-10000" on:focusin={onGainFocus} on:focusout={onLoseFocus} bind:this={menu}>
     <slot
       commands={editor.commands}
       active={$active}

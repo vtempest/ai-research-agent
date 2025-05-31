@@ -1,7 +1,6 @@
 import ReadingModeControls from "./ReadingModeControls.svelte";
 import {extractContent} from "$ai-research-agent";
 
-import styles from "./reading-mode-style.css?raw";
 
 // import tailwind from "./tailwind.min.css?raw";
 
@@ -96,43 +95,118 @@ export async function toggleReadingMode() {
       .filter(Boolean)
       .join(" ");
 
+
+
+/// toggle all css
+
+toggleAllCSS()
+
+
     // Create a new body with extracted content
     var title = document.title;
-    document.head.innerHTML = `
-            <title>${title}</title>
-            <base target="_blank">
-        `;
+ // 1. Create the overlay container
+const overlay = document.createElement('div');
+overlay.id = 'custom-reading-overlay';
+overlay.style.position = 'fixed';
+overlay.style.top = 0;
+overlay.style.left = 0;
+overlay.style.width = '100vw';
+overlay.style.height = '100vh';
+overlay.style.zIndex = 999999; // Very high to ensure it's on top
+overlay.style.background = 'rgba(255,255,255,0.98)'; // Slightly transparent background
+overlay.style.overflow = 'auto';
 
-    document.body.innerHTML = ` 
-       <body><div class="flex flex-row h-screen overflow-hidden">
-          <div id="reading-mode-controls" class="w-[100px] overflow-y-auto text-black bg-gray-100 p-4">
-            <!-- Sidebar content goes here -->
-          </div>
-          <div id="readability-content"  class="bg-slate-200 flex-1 overflow-y-auto py-[100px]">
-            <div class="max-w-3xl mx-auto p-6 font-serif text-lg leading-relaxed">
-            <div contenteditable class=" text-gray-600 mb-4">
-                ${author_short ? author_short + " " + year : ""}    
-            </div>
-              <div class="border-b border-gray-300 text-sm text-gray-600">
-                <p class="mt-2" contenteditable>${citation}</p>
-              </div>
-              <div class="text-md text-slate-600">
-                ${article.title}    
-            </div>
-              
-              <div  id="article-text" class="bg-slate-200 prose prose-lg" >${article.html}</div>
-            </div>
-          </div>
+// 2. Insert your content into the overlay
+overlay.innerHTML = `
+  <div class="flex flex-row h-screen overflow-hidden">
+    <div id="reading-mode-controls" class="w-[100px] overflow-y-auto text-black bg-gray-100 p-4">
+      <!-- Sidebar content goes here -->
+    </div>
+    <div id="readability-content" class="bg-slate-200 flex-1 overflow-y-auto py-[100px]">
+      <div class="max-w-3xl mx-auto p-6 font-serif text-lg leading-relaxed">
+        <div contenteditable class="text-gray-600 mb-4">
+          ${author_short ? author_short + " " + year : ""}    
         </div>
-        <style>${styles}</style>
-        </body>
-      `;
+        <div class="border-b border-gray-300 text-sm text-gray-600">
+          <p class="mt-2" contenteditable>${article.cite}</p>
+        </div>
+        <div class="text-md text-slate-600">
+          ${article.title}    
+        </div>
+        <div id="article-text" class="bg-slate-200 prose prose-lg">${article.html}</div>
+      </div>
+    </div>
+  </div>
+  <button id="close-reading-overlay" style="
+    position: fixed; top: 20px; right: 20px; z-index: 1000000;
+    background: #333; color: #fff; border: none; border-radius: 4px;
+    padding: 10px 16px; font-size: 18px; cursor: pointer;
+  ">✕</button>
+`;
+
+// 3. Append the overlay to the body
+document.body.appendChild(overlay);
+
+
+
+
+
+// 4. Add a close button handler
+document.getElementById('close-reading-overlay').onclick = () => {
+  overlay.remove();
+};
+
+
+
+
+
+// Stores state for toggling
+let cssToggleState = {
+  stylesheets: [],
+  inlineStyles: new Map(),
+  disabled: false
+};
+
+function toggleAllCSS() {
+  // Disable if currently enabled
+  if (!cssToggleState.disabled) {
+    // Find all <style> and <link rel="stylesheet"> in the document (including <head>)
+    cssToggleState.stylesheets = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'));
+    cssToggleState.stylesheets.forEach(el => {
+      el.disabled = true; // disables stylesheet, works for both <style> and <link> [3][5]
+    });
+
+    // Store and remove all inline style attributes
+    cssToggleState.inlineStyles.clear();
+    document.querySelectorAll('[style]').forEach(el => {
+      cssToggleState.inlineStyles.set(el, el.getAttribute('style'));
+      el.removeAttribute('style');
+    });
+
+    cssToggleState.disabled = true;
+  } else {
+    // Re-enable all <style> and <link rel="stylesheet"> elements
+    cssToggleState.stylesheets.forEach(el => {
+      el.disabled = false;
+    });
+
+    // Restore all inline style attributes
+    cssToggleState.inlineStyles.forEach((style, el) => {
+      if (el) {
+        el.setAttribute('style', style);
+      }
+    });
+
+    cssToggleState.disabled = false;
+  }
+}
+
+
 
     // Initialize Svelte component
     new ReadingModeControls({
       target: document.getElementById("reading-mode-controls"),
       props: {
-        onChangeTextSize: changeTextSize,
         onChangeTypography: changeTypography,
         onChangeTheme: changeTheme,
         onToggleImages: toggleImages,

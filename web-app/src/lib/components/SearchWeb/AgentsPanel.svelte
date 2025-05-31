@@ -1,124 +1,104 @@
 <script lang="ts">
-  import { ChevronLeft, Clipboard, Bot, MessageCircleQuestion } from "lucide-svelte";
-  import "highlight.js/styles/github.css"; // Choose your preferred style
-
   import {
-    highlightCodeSyntax,
-    copyHTMLToClipboard,
-    convertHTMLToEscapedHTML,
-    convertLanguageReplyToJSON,
-  } from "$ai-research-agent";
-  import { callServerAPI } from "$lib/utils";
-
-  const defaultPrompt = "Summarize in bullet points and bold topics";
-  const MAX_ARTICLE_LENGTH = 2000;
+    ChevronLeft,
+    Clipboard,
+    Bot,
+    MessageCircleQuestion,
+  } from "lucide-svelte";
+  import "highlight.js/styles/github.css"; // Choose your preferred style
+  import iconLoadingRipple from "$lib/components/icons/icon-loading-ripple.svg";
+  // @ts-ignore
+  import { highlightCodeSyntax, copyHTMLToClipboard } from "$ai-research-agent";
+  import {grab} from "$lib/grab-api.js";
+  // import "grab-api.js/globals"
+  // import {getLoadingIcon} from "grab-api.js/icons"
+  const defaultSummarizePrompt = "Summarize in bullet points and bold topics";
+  const MAX_ARTICLE_LENGTH = 1500;
   const MAX_FOLLOWUP_QUESTIONS = 4;
 
-  let { currentArticle, searchText } = $props();
+  let {
+    extractedArticle,
+    searchText,
+  }: Partial<{
+    extractedArticle?: Article;
+    searchText?: string;
+  }> = $props();
 
-  let aiResponse = $state("");
-  let followupQuestions = $state([]);
-  let status = $state("idle");
-  let errorMessage = $state("");
+  let chat_history = $state([]);
   let isExpanded = $state(true); // default to true;
   let showCopiedMessage = $state(false);
-  let userPrompt = $state(defaultPrompt);
+  let userPrompt = $state(defaultSummarizePrompt);
 
-  export async function generateAISummary() {
-    if (!currentArticle) return;
-    var html = document.querySelector(".read-view").innerHTML;
+  let AIResponse = $state({}) as Response & {
+    content?: string;
+  };
+  let AIResponseFollowUps = $state({}) as Response & {
+    content?: string;
+    data?: Array<string>;
+  };
 
-    if (html?.length < 100) return;
-
-    var article = currentArticle.html
-      .replace(/<[^>]*>?/g, "")
-      .replace(/<[^>]*>?/g, "")
+  export async function callLanguageAPI(agent: string, options = {}) {
+    //limit article length without html
+    var article = extractedArticle?.html
+      ?.replace(/<[^>]*>?/g, "")
       .slice(0, MAX_ARTICLE_LENGTH);
 
-    //remove html tags
-    const prompt = userPrompt + " " + searchText + " " + article;
-
-    let { content, error } = await callServerAPI("agents", {
-      prompt,
-      context: {
-        // article,
-        query: searchText,
-      },
-      provider: "groq",
-      method: "POST",
-      html: true,
-    });
-
-    aiResponse = content;
-    errorMessage = error;
-    status = "idle";
-  }
-
-  export async function generateFollowupQuestions() {
-    if (!currentArticle) return;
-    var html = document.querySelector(".read-view").innerHTML;
-
-    if (html?.length < 100) {
-      return;
-    }
-
-    var article = currentArticle.html
-      .replace(/<[^>]*>?/g, "")
-      .replace(/<[^>]*>?/g, "")
-      .slice(0, MAX_ARTICLE_LENGTH);
-
-    let { content, error } = await callServerAPI("agents", {
-      agent: "suggest-followups",
-      context: {
+      await grab(
+      "agents",
+      {
+        // @ts-ignore
+        agent,
+        response: agent === "question" ? AIResponse : AIResponseFollowUps,
+        query: searchText + "\n" + userPrompt,
+        chat_history: chat_history
+          .slice(-5)
+          ?.map((c) => c.role + ": " + c.content)
+          .join("\n"),
         article,
-        chat_history: [],
-        query: searchText,
+        MAX_FOLLOWUP_QUESTIONS,
+        provider: "groq",
+        cancelOngoingIfNew: false,
+        method: "POST",
+        rateLimit: 1,
+        timeout: 30,
       },
-      provider: "groq",
-      method: "POST",
-      html: true,
-    });
+    );
 
-    followupQuestions = [
-      defaultPrompt,
-      ...(convertLanguageReplyToJSON(convertHTMLToEscapedHTML(content), "suggestions") || []).map(
-        (q) => (q.endsWith("?") || q.endsWith(".") ? q : q + "?")
-      ).slice(0, MAX_FOLLOWUP_QUESTIONS)
-    ];
-
-    errorMessage = error;
-    status = "idle";
+    if (agent === "question")
+      //save to chat history
+      chat_history.push(
+        { role: "user", content: userPrompt, time: new Date().toISOString() },
+        { role: "assistant", content: AIResponse.content, time: new Date().toISOString() },
+      );
   }
 
   function toggleExpand() {
     isExpanded = !isExpanded;
   }
-  
+
   function handleQuestionClick(event) {
-    var question =
+    userPrompt =
       event.target.closest("question")?.innerHTML || event.target.innerHTML;
 
-    userPrompt = question;
-
-    generateAISummary();
+    callLanguageAPI("question");
   }
 
-  function handleCopyHTMLToClipboard() {
-    if (!currentArticle) return;
+  async function handleCopyHTMLToClipboard() {
+    if (!extractedArticle) return;
 
     var textToCopy =
-      aiResponse +
+      AIResponse.content +
       "\n\n\n" +
-      (currentArticle.cite || "") +
+      (extractedArticle.cite || "") +
       "\n\n\n" +
-      currentArticle.html;
+      extractedArticle.html;
 
-    copyHTMLToClipboard(textToCopy, { pastePlainFormat: 1 }).then(() => {
-      showCopiedMessage = true;
-      setTimeout(() => {
-        showCopiedMessage = false;
-      }, 2000);
-    });
+    await copyHTMLToClipboard(textToCopy, { pastePlainFormat: 1 });
+
+    showCopiedMessage = true;
+    setTimeout(() => {
+      showCopiedMessage = false;
+    }, 2000);
   }
 </script>
 
@@ -154,7 +134,7 @@
 
       <div class="relative flex items-center space-x-1">
         <button
-          onclick={generateAISummary}
+          onclick={() => callLanguageAPI("question")}
           disabled={status === "calling-ai"}
           class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 disabled:opacity-50 transition-all duration-300 ease-in-out"
           id="ai-generate-btn"
@@ -164,13 +144,12 @@
         </button>
 
         <button
-          onclick={generateFollowupQuestions}
-          disabled={status === "calling-ai"}
+          onclick={() => callLanguageAPI("suggest-followups")}
           class="px-6 py-2.5 text-sm font-semibold flex items-center rounded-md bg-white text-blue-500 hover:bg-blue-100 disabled:opacity-50 transition-all duration-300 ease-in-out"
           id="ai-generate-btn"
         >
           <MessageCircleQuestion class="mr-2 h-4 w-4" />
-          {status === "calling-ai" ? "..." : "Suggest ?"}
+          Suggest ?
         </button>
         <button
           onclick={handleCopyHTMLToClipboard}
@@ -190,35 +169,54 @@
       <div class="relative flex items-center space-x-1">
         <input
           bind:value={userPrompt}
-          onkeydown={(e) => e.key === "Enter" && generateAISummary()}
+          onkeydown={(e) => e.key === "Enter" && callLanguageAPI("question")}
           id="summary-prompt"
           type="text"
           placeholder="Ask AI any question..."
           class="w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
         />
       </div>
-
+      <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <div onclick={handleQuestionClick}>
-        {#each followupQuestions as question (question)}
+        {#if AIResponseFollowUps?.data}
           <div
             class="question cursor-pointer rounded-md p-1.5 mb-0.5 text-md font-semibold hover:bg-slate-100 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-800 border border-slate-300"
           >
-            {question}
+            {defaultSummarizePrompt}
           </div>
-        {/each}
+          {#each AIResponseFollowUps?.data as question}
+            <div
+              class="question cursor-pointer rounded-md p-1.5 mb-0.5 text-md font-semibold hover:bg-slate-100 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-800 border border-slate-300"
+            >
+              {@html question}
+            </div>
+          {/each}
+        {:else if AIResponseFollowUps.isLoading}
+          <div class="flex justify-center">
+            <img src={iconLoadingRipple} alt="Loading" width="40px" />
+          </div>
+        {:else if AIResponseFollowUps.error}
+          <div class="bg-red-500 text-white p-2 rounded-md">
+            {AIResponseFollowUps.error}
+          </div>
+        {/if}
       </div>
 
-      {#if aiResponse}
+      {#if AIResponse.isLoading}
+      <div class="flex justify-center">
+
+        <img src={iconLoadingRipple} alt="Loading" width="40px" />
+      </div>  
+      {:else if AIResponse.content}
         <div
-       
           class="bg-[#FAFAF7] rounded-lg shadow-md p-2 mb-4"
           use:highlightCodeSyntax
         >
-          {@html aiResponse}
+          {@html AIResponse.content}
         </div>
-      {:else if errorMessage}
+      {:else if AIResponse.error}
         <div class="bg-red-500 text-white p-2 rounded-md">
-          {errorMessage}
+          {AIResponse.error}
         </div>
       {/if}
     </div>

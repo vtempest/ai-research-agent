@@ -1,33 +1,57 @@
+import type {
+  AgentPromptType,
+  SearchResultType,
+} from "$ai-research-agent";
+import type * as schema from "$lib/server/schema";
+
 declare global {
-  namespace App {
-    interface Session {
-      user: User | null;
-      id: string;
-    }
+  type SearchResult = SearchResultType;
+  type AgentPrompt = AgentPromptType;
+    
+  type Article = typeof schema.articles.$inferSelect;
+  type Message = typeof schema.messages.$inferSelect;
+  type Chat = typeof schema.chats.$inferSelect;
+  type File = typeof schema.files.$inferSelect;
+  type Team = typeof schema.teams.$inferSelect;
+  type User = typeof schema.users.$inferSelect & {
+    settings: UserSettings;
+  };
+  type Session = typeof schema.sessions.$inferSelect;
+  type Account = typeof schema.accounts.$inferSelect;
+  type VerificationToken = typeof schema.verificationTokens.$inferSelect;
 
-    interface PageData {
-      flash?: FlashMessage;
-    }
-
-    interface User {
-      token: string;
-      email: string;
-      username: string;
+  type UserSettings = Partial<{
+    provider: string;
+    model: string;
+    temperature: number;
+    topP: number;
+    frequencyPenalty: number;
+    providerApiKeys: Array<{
+      provider: string;
+      key: string;
+    }>;
+    theme: string;
+    language: string;
+    fontSize: number;
+    fontFamily: string;
+    searchEngines: Array<{
       name: string;
-      id: string;
-      isVerified: boolean;
-      isAdmin: boolean;
-    }
-
-    interface FlashMessage {
       status: string;
-      text: string;
-    }
-
+    }>;
+    searchEngineDefault: string;
+    OpenFirstResultInBackgroundTab: boolean;
+    OpenFirstResultInSameTab: boolean;
+    AutoSummarize: boolean;
+    showURLPath: boolean;
+    showHeadings: boolean;
+    enableQueryExpansion: boolean;
+    numberTopResultToExtract: number;
+  }>;
+  
+  namespace App {
     interface Locals {
       db: Database;
       user: User | null;
-      session: Session | null;
     }
     interface Platform {
       env: Env;
@@ -35,15 +59,14 @@ declare global {
       ctx: ExecutionContext;
     }
   }
-  /**
-   * @private
-   */
-  namespace Superforms {
-    type Message = FlashMessage;
+  
+  interface Response {
+    isLoading?: boolean;
+    error?: string;
   }
 
   interface Window {
-    appDockClickOnHover: Timeout | any;
+    appDockClickOnHover: Timeout | null;
     find(
       SearchString: string,
       CaseSensitive: boolean,
@@ -54,56 +77,6 @@ declare global {
       ShowDialog: boolean
     ): boolean;
   }
-
-  interface SearchResult
-    extends Partial<{
-      url: string;
-      title: string;
-      snippet: string;
-      score: string;
-      domain: string;
-      favicon: string;
-    }> {}
-
-  interface Article
-    extends Partial<{
-      url: string;
-      title: string;
-      html: string;
-      cite: string;
-      author: string;
-      author_cite: string;
-      author_type: string;
-      date: string;
-      source: string;
-      word_count: number;
-      error: string;
-    }> {}
-
-  interface AgentPrompt
-    extends Partial<{
-      prompt: string;
-      context: string;
-      tools: string[];
-      variablesNotProvided: any[];
-      error: string;
-    }> {}
-
-  interface Error 
-  extends Partial<{
-    error: string;
-    message: string;
-  }> {}
-
-  interface OAuthUserInfo
-    extends Partial<{
-      email: string;
-      name: string;
-      picture: string;
-      providerUserId: string;
-      sub: string;
-      email_verified: boolean;
-    }> {}
-  }
+}
 
 export {};
