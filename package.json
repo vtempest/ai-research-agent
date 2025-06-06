@@ -10,6 +10,7 @@
     ],
     "packageManager": "bun@1.2.13",
     "scripts": {
+        "build:api": "turbo build:api --filter=qwksearch-api-client",
         "docs": "turbo docs:build --filter=docusaurus-openapi-typedoc;",
         "docs:serve": "turbo docs",
         "dev": "turbo dev --filter=qwksearch-web-app",

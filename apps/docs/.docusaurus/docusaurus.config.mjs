@@ -61,7 +61,7 @@ export default {
         "docsPluginId": "classic",
         "config": {
           "qwksearch": {
-            "specPath": "openapi-docs.yaml",
+            "specPath": "openapi-docs.yml",
             "outputDir": "./docs/api",
             "sidebarOptions": {
               "groupPathsBy": "tag",

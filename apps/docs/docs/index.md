@@ -111,7 +111,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/cRewT07.png" /> 
+<img width="350px"  src="https://i.imgur.com/NUcvBaY.png" /> 
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)

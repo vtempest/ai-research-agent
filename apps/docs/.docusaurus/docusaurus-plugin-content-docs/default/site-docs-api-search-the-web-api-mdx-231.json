@@ -1,7 +1,7 @@
 {
   "id": "api/search-the-web",
   "title": "Search the web",
-  "description": "![AILogo](https://i.imgur.com/AvFLGdR.png)",
+  "description": "![AILogo](https://i.imgur.com/yYMTcTX.png)",
   "source": "@site/docs/api/search-the-web.api.mdx",
   "sourceDirName": "api",
   "slug": "/api/search-the-web",
@@ -14,7 +14,7 @@
   "frontMatter": {
     "id": "search-the-web",
     "title": "Search the web",
-    "description": "![AILogo](https://i.imgur.com/AvFLGdR.png)",
+    "description": "![AILogo](https://i.imgur.com/yYMTcTX.png)",
     "sidebar_label": "Search the web",
     "hide_title": true,
     "hide_table_of_contents": true,

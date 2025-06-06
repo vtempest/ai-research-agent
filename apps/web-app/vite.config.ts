@@ -30,7 +30,7 @@ export default defineConfig({
   },
   optimizeDeps: {
 
-    exclude: ['node:stream',  'child_process'],
+    exclude: ['node:stream',  'child_process', 'canvas'],
     esbuildOptions: {
       define: {
         global: 'globalThis' // Fix global scope

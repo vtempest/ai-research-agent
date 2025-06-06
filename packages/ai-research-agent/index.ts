@@ -36,7 +36,3 @@ export * from "./src/tokenize/word-to-root-stem.js";
 export * from "../reason-editor/interface/youtube-embed.js";
 
 export type * from "./src/types.d.ts";
-// export * from "./src/wordlists/import/compile-topic-model.js"
-// BUG: gpu.js lacks bun compatibility
-// export * from "./src/train/neural-net.js";
-// export * from "./src/train/transformer.js";

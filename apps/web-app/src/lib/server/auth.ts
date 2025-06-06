@@ -4,10 +4,10 @@ import { oneTap } from "better-auth/plugins";
 import { drizzle } from "drizzle-orm/d1";
 import { eq } from "drizzle-orm";
 import { redirect, error } from "@sveltejs/kit";
-import { APP_EMAIL } from "$lib/customize-site";
-import * as schema from "$lib/server/schema";
-import { users } from "$lib/server/schema";
-import { sendWelcomeEmail } from "$lib/server";
+import { APP_EMAIL } from "../customize-site";
+import * as schema from "./schema";
+import { users } from "./schema";
+// import { sendWelcomeEmail } from "./email";
 
 /**
  * Initialize Better Auth instance

@@ -24,7 +24,7 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  * Generate docs from JSDoc comments in files, OpenAPI.yml spec for 
  * routes, search index of everything, custom pages, sidebar & theme.
  * 
- * Files: openapi-docs.yaml, docs-theme.css, plugin-openapi.mustache, 
+ * Files: openapi-docs.yml, docs-theme.css, plugin-openapi.mustache, 
  *  plugin-typedoc.js, sidebars.ts, docusaurus.config.ts, typedoc.json, tsconfig.json
  * 
  * *Install dependencies*:
@@ -135,7 +135,7 @@ export default async function createConfig(options: any = {}) {
           docsPluginId: "classic",
           config: {
             qwksearch: {
-              specPath: "openapi-docs.yaml",
+              specPath: "openapi-docs.yml",
               outputDir: "./docs/api",
               sidebarOptions: {
                 groupPathsBy: "tag",

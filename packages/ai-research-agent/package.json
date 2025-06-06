@@ -5,14 +5,32 @@
   "description": "Search, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",
   "author": "vtempest <grokthiscontact@gmail.com>",
   "license": "AGPL-3.0",
+  "main": "./index.ts",
+  "types": "./src/types.d.ts",
   "exports": {
-    ".": "./index.ts",
-    "./editor": "./src/editor/index.ts",
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/research-agent.es.js",
+      "require": "./dist/research-agent.cjs.js"
+    },
     "./model": "./src/wordlists/wiki-phrases-model-240k.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
   },
   "scripts": {
     "test": "vitest",
-    "test-ui": "vitest --ui --watch"
+    "test-ui": "vitest --ui --watch",
+    "make": "BUN_JSC_forceRAMSize=8192 vite build",
+    "make:node": "NODE_OPTIONS=--max-old-space-size=8192 npx vite build "
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",
@@ -23,6 +41,8 @@
     "typedoc": "^0.28.5",
     "typedoc-plugin-markdown": "^4.6.4",
     "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.2"
   },
   "dependencies": {

@@ -11,7 +11,7 @@ function extractContent(urlOrDoc: string | Document, options?: object): object;
 Defined in: extractor/url-to-content/url-to-content.js:88
 
 ### 🚜📜 Tractor the Text Extractor 
-<img width="350px"  src="https://i.imgur.com/cRewT07.png" />
+<img width="350px"  src="https://i.imgur.com/NUcvBaY.png" />
 
 1. Main Content Detection: Extract the main content from a URL by combining 
 Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 

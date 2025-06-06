@@ -10,11 +10,43 @@
   // @ts-ignore
   import { highlightCodeSyntax, copyHTMLToClipboard } from "ai-research-agent";
   import {grab} from "grab-api.js";
+
+  import QwkSearch from "qwksearch-api-client";
+  QwkSearch.extractContent({
+    query: {
+      url: "https://www.google.com",
+      absoluteURLs: true,
+      
+    },
+  })
+  QwkSearch.searchWeb({
+    query: {
+      q: "What is the capital of France?",
+      cat: "general",
+    },
+  })
+  QwkSearch.writeLanguage({
+    body:{
+      agent: "query-resolution",
+      model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+      provider: "perplexity",
+      key: "perplexity-api-key",
+      prompt: "What is the capital of France?",
+      temperature: 0.7,
+    }
+  })
+
   // import "grab-api.js/globals"
   // import {getLoadingIcon} from "grab-api.js/icons"
   const defaultSummarizePrompt = "Summarize in bullet points and bold topics";
   const MAX_ARTICLE_LENGTH = 1500;
   const MAX_FOLLOWUP_QUESTIONS = 4;
+
+  api.getSearch({
+    query: {
+      q: "https://www.google.com",
+    },
+  })
 
   let {
     extractedArticle,
@@ -38,6 +70,15 @@
   };
 
   export async function callLanguageAPI(agent: string, options = {}) {
+
+    api.search.search({
+      query: searchText + "\n" + userPrompt,
+      chat_history: chat_history
+        .slice(-5)
+        ?.map((c) => c.role + ": " + c.content)
+        .join("\n"),
+    })
+
     //limit article length without html
     var article = extractedArticle?.html
       ?.replace(/<[^>]*>?/g, "")

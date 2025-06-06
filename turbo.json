@@ -15,6 +15,9 @@
       },
       "dev": {
         "outputs": ["dist/**"]
+      },
+      "build:api": {
+        "outputs": ["dist/**"]
       }
     }
   }
