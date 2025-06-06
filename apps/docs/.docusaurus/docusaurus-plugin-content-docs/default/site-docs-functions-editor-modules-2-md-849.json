@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules-2",
+  "title": "modules-2",
+  "description": "Documentation / editor/modules",
+  "source": "@site/docs/functions/editor/modules-2.md",
+  "sourceDirName": "functions/editor",
+  "slug": "/functions/editor/modules-2",
+  "permalink": "/docs/functions/editor/modules-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "modules-1",
+    "permalink": "/docs/functions/editor/modules-1"
+  },
+  "next": {
+    "title": "modules",
+    "permalink": "/docs/functions/editor/modules"
+  }
+}

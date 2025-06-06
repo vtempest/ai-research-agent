@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/AppLayout/sound-effects",
+  "title": "sound-effects",
+  "description": "Documentation / lib/components/AppLayout/sound-effects",
+  "source": "@site/docs/web-app/lib/components/AppLayout/sound-effects.md",
+  "sourceDirName": "web-app/lib/components/AppLayout",
+  "slug": "/web-app/lib/components/AppLayout/sound-effects",
+  "permalink": "/docs/web-app/lib/components/AppLayout/sound-effects",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/AppLayout/sound-effects.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "sound-effects-3",
+    "permalink": "/docs/web-app/lib/components/AppLayout/sound-effects-3"
+  },
+  "next": {
+    "title": "docx-to-html-1",
+    "permalink": "/docs/web-app/lib/components/Editor/docx/docx-to-html-1"
+  }
+}

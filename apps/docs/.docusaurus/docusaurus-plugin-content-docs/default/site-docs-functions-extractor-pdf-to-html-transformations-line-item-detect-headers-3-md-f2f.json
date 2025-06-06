@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-3",
+  "title": "DetectHeaders-3",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item/DetectHeaders",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-3.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-3",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "DetectHeaders-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-2"
+  },
+  "next": {
+    "title": "DetectHeaders-4",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-4"
+  }
+}

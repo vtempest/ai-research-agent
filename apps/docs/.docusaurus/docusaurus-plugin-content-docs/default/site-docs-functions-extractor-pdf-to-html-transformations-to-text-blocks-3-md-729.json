@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/ToTextBlocks-3",
+  "title": "ToTextBlocks-3",
+  "description": "Documentation / extractor/pdf-to-html/transformations/ToTextBlocks",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-3.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations",
+  "slug": "/functions/extractor/pdf-to-html/transformations/ToTextBlocks-3",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ToTextBlocks-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-2"
+  },
+  "next": {
+    "title": "ToTextBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks"
+  }
+}

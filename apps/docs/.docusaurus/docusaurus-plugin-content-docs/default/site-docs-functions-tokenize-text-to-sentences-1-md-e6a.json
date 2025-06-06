@@ -1,0 +1,24 @@
+{
+  "id": "functions/tokenize/text-to-sentences-1",
+  "title": "text-to-sentences-1",
+  "description": "Documentation / tokenize/text-to-sentences",
+  "source": "@site/docs/functions/tokenize/text-to-sentences-1.md",
+  "sourceDirName": "functions/tokenize",
+  "slug": "/functions/tokenize/text-to-sentences-1",
+  "permalink": "/docs/functions/tokenize/text-to-sentences-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/tokenize/text-to-sentences-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "text-to-chunks",
+    "permalink": "/docs/functions/tokenize/text-to-chunks"
+  },
+  "next": {
+    "title": "text-to-sentences",
+    "permalink": "/docs/functions/tokenize/text-to-sentences"
+  }
+}

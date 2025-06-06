@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/smartQuotes",
+  "title": "smartQuotes",
+  "description": "Documentation / editor/modules/smartQuotes",
+  "source": "@site/docs/functions/editor/modules/smartQuotes.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/smartQuotes",
+  "permalink": "/docs/functions/editor/modules/smartQuotes",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/smartQuotes.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "smartQuotes-2",
+    "permalink": "/docs/functions/editor/modules/smartQuotes-2"
+  },
+  "next": {
+    "title": "tables-1",
+    "permalink": "/docs/functions/editor/modules/tables-1"
+  }
+}

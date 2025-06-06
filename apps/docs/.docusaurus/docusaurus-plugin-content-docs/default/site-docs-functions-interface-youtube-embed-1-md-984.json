@@ -1,0 +1,24 @@
+{
+  "id": "functions/interface/youtube-embed-1",
+  "title": "youtube-embed-1",
+  "description": "Documentation / interface/youtube-embed",
+  "source": "@site/docs/functions/interface/youtube-embed-1.md",
+  "sourceDirName": "functions/interface",
+  "slug": "/functions/interface/youtube-embed-1",
+  "permalink": "/docs/functions/interface/youtube-embed-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/interface/youtube-embed-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "highlight-code",
+    "permalink": "/docs/functions/interface/highlight-code"
+  },
+  "next": {
+    "title": "youtube-embed",
+    "permalink": "/docs/functions/interface/youtube-embed"
+  }
+}

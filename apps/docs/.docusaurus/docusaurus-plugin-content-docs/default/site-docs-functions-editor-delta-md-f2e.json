@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/delta",
+  "title": "delta",
+  "description": "Documentation / editor/delta",
+  "source": "@site/docs/functions/editor/delta.md",
+  "sourceDirName": "functions/editor",
+  "slug": "/functions/editor/delta",
+  "permalink": "/docs/functions/editor/delta",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/delta.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "delta-1",
+    "permalink": "/docs/functions/editor/delta-1"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/functions/editor/document/"
+  }
+}

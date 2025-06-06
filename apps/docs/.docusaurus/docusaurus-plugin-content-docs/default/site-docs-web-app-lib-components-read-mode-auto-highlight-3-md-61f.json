@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ReadMode/auto-highlight-3",
+  "title": "auto-highlight-3",
+  "description": "Documentation / lib/components/ReadMode/auto-highlight",
+  "source": "@site/docs/web-app/lib/components/ReadMode/auto-highlight-3.md",
+  "sourceDirName": "web-app/lib/components/ReadMode",
+  "slug": "/web-app/lib/components/ReadMode/auto-highlight-3",
+  "permalink": "/docs/web-app/lib/components/ReadMode/auto-highlight-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ReadMode/auto-highlight-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "auto-highlight-2",
+    "permalink": "/docs/web-app/lib/components/ReadMode/auto-highlight-2"
+  },
+  "next": {
+    "title": "auto-highlight",
+    "permalink": "/docs/web-app/lib/components/ReadMode/auto-highlight"
+  }
+}

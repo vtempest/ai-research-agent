@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/TextItem",
+  "title": "TextItem",
+  "description": "Documentation / extractor/pdf-to-html/models/TextItem",
+  "source": "@site/docs/functions/extractor/pdf-to-html/models/TextItem.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/TextItem",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItem",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/TextItem.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "TextItem-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItem-3"
+  },
+  "next": {
+    "title": "TextItemLineGrouper-1",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper-1"
+  }
+}

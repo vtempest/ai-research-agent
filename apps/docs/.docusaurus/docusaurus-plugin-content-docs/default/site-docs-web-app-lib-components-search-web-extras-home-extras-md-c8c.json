@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/SearchWeb/extras/home-extras",
+  "title": "home-extras",
+  "description": "Documentation / lib/components/SearchWeb/extras/home-extras",
+  "source": "@site/docs/web-app/lib/components/SearchWeb/extras/home-extras.md",
+  "sourceDirName": "web-app/lib/components/SearchWeb/extras",
+  "slug": "/web-app/lib/components/SearchWeb/extras/home-extras",
+  "permalink": "/docs/web-app/lib/components/SearchWeb/extras/home-extras",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/SearchWeb/extras/home-extras.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "home-extras-4",
+    "permalink": "/docs/web-app/lib/components/SearchWeb/extras/home-extras-4"
+  },
+  "next": {
+    "title": "shortcut-search-1",
+    "permalink": "/docs/web-app/lib/components/ShortcutSearch/shortcut-search-1"
+  }
+}

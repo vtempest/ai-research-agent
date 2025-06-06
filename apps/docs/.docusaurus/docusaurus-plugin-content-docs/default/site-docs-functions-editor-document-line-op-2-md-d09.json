@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/document/LineOp-2",
+  "title": "LineOp-2",
+  "description": "Documentation / editor/document/LineOp",
+  "source": "@site/docs/functions/editor/document/LineOp-2.md",
+  "sourceDirName": "functions/editor/document",
+  "slug": "/functions/editor/document/LineOp-2",
+  "permalink": "/docs/functions/editor/document/LineOp-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/document/LineOp-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "LineOp-1",
+    "permalink": "/docs/functions/editor/document/LineOp-1"
+  },
+  "next": {
+    "title": "LineOp",
+    "permalink": "/docs/functions/editor/document/LineOp"
+  }
+}

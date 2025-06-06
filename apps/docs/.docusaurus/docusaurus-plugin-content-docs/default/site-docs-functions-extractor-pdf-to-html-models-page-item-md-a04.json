@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/PageItem",
+  "title": "PageItem",
+  "description": "Documentation / extractor/pdf-to-html/models/PageItem",
+  "source": "@site/docs/functions/extractor/pdf-to-html/models/PageItem.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/PageItem",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/PageItem",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/PageItem.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "PageItem-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/PageItem-3"
+  },
+  "next": {
+    "title": "ParseResult-1",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/ParseResult-1"
+  }
+}

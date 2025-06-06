@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/selection-1",
+  "title": "selection-1",
+  "description": "Documentation / editor/modules/selection",
+  "source": "@site/docs/functions/editor/modules/selection-1.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/selection-1",
+  "permalink": "/docs/functions/editor/modules/selection-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/selection-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "rendering-5",
+    "permalink": "/docs/functions/editor/modules/rendering-5"
+  },
+  "next": {
+    "title": "selection-3",
+    "permalink": "/docs/functions/editor/modules/selection-3"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/LineItemBlock-1",
+  "title": "LineItemBlock-1",
+  "description": "Documentation / extractor/pdf-to-html/models/LineItemBlock",
+  "source": "@site/docs/functions/extractor/pdf-to-html/models/LineItemBlock-1.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/LineItemBlock-1",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/LineItemBlock-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "LineItem",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem"
+  },
+  "next": {
+    "title": "LineItemBlock-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock-2"
+  }
+}

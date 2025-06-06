@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/url-to-content/url-to-html",
+  "title": "url-to-html",
+  "description": "Documentation / extractor/url-to-content/url-to-html",
+  "source": "@site/docs/functions/extractor/url-to-content/url-to-html.md",
+  "sourceDirName": "functions/extractor/url-to-content",
+  "slug": "/functions/extractor/url-to-content/url-to-html",
+  "permalink": "/docs/functions/extractor/url-to-content/url-to-html",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/url-to-content/url-to-html.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "url-to-html-2",
+    "permalink": "/docs/functions/extractor/url-to-content/url-to-html-2"
+  },
+  "next": {
+    "title": "youtube-to-text-1",
+    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text-1"
+  }
+}

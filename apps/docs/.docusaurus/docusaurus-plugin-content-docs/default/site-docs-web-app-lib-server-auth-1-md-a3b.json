@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/server/auth-1",
+  "title": "auth-1",
+  "description": "Documentation / lib/server/auth",
+  "source": "@site/docs/web-app/lib/server/auth-1.md",
+  "sourceDirName": "web-app/lib/server",
+  "slug": "/web-app/lib/server/auth-1",
+  "permalink": "/docs/web-app/lib/server/auth-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/server/auth-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "log",
+    "permalink": "/docs/web-app/lib/log"
+  },
+  "next": {
+    "title": "auth-2",
+    "permalink": "/docs/web-app/lib/server/auth-2"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4",
+  "title": "DetectListItems-4",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item/DetectListItems",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "DetectListItems-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-3"
+  },
+  "next": {
+    "title": "DetectListItems",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems"
+  }
+}

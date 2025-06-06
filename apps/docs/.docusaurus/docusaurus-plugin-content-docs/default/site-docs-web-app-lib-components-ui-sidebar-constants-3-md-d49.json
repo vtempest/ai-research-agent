@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/sidebar/constants-3",
+  "title": "constants-3",
+  "description": "Documentation / lib/components/ui/sidebar/constants",
+  "source": "@site/docs/web-app/lib/components/ui/sidebar/constants-3.md",
+  "sourceDirName": "web-app/lib/components/ui/sidebar",
+  "slug": "/web-app/lib/components/ui/sidebar/constants-3",
+  "permalink": "/docs/web-app/lib/components/ui/sidebar/constants-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/sidebar/constants-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "constants-2",
+    "permalink": "/docs/web-app/lib/components/ui/sidebar/constants-2"
+  },
+  "next": {
+    "title": "constants-4",
+    "permalink": "/docs/web-app/lib/components/ui/sidebar/constants-4"
+  }
+}

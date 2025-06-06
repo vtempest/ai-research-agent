@@ -1,0 +1,24 @@
+{
+  "id": "functions/interface/highlight-code-1",
+  "title": "highlight-code-1",
+  "description": "Documentation / interface/highlight-code",
+  "source": "@site/docs/functions/interface/highlight-code-1.md",
+  "sourceDirName": "functions/interface",
+  "slug": "/functions/interface/highlight-code-1",
+  "permalink": "/docs/functions/interface/highlight-code-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/interface/highlight-code-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "youtube-to-text",
+    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text"
+  },
+  "next": {
+    "title": "highlight-code",
+    "permalink": "/docs/functions/interface/highlight-code"
+  }
+}

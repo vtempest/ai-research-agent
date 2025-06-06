@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/document/EditorRange",
+  "title": "EditorRange",
+  "description": "Documentation / editor/document/EditorRange",
+  "source": "@site/docs/functions/editor/document/EditorRange.md",
+  "sourceDirName": "functions/editor/document",
+  "slug": "/functions/editor/document/EditorRange",
+  "permalink": "/docs/functions/editor/document/EditorRange",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/document/EditorRange.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "EditorRange-2",
+    "permalink": "/docs/functions/editor/document/EditorRange-2"
+  },
+  "next": {
+    "title": "Line-2",
+    "permalink": "/docs/functions/editor/document/Line-2"
+  }
+}

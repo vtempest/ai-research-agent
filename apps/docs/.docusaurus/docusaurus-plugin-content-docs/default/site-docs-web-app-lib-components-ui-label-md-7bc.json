@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/label",
+  "title": "label",
+  "description": "Documentation / lib/components/ui/label",
+  "source": "@site/docs/web-app/lib/components/ui/label.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/label",
+  "permalink": "/docs/web-app/lib/components/ui/label",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/label.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "label-4",
+    "permalink": "/docs/web-app/lib/components/ui/label-4"
+  },
+  "next": {
+    "title": "menubar-1",
+    "permalink": "/docs/web-app/lib/components/ui/menubar-1"
+  }
+}

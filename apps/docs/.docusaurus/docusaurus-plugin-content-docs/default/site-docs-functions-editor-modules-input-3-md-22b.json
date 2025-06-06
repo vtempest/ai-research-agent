@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/input-3",
+  "title": "input-3",
+  "description": "Documentation / editor/modules/input",
+  "source": "@site/docs/functions/editor/modules/input-3.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/input-3",
+  "permalink": "/docs/functions/editor/modules/input-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/input-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "input-1",
+    "permalink": "/docs/functions/editor/modules/input-1"
+  },
+  "next": {
+    "title": "input-5",
+    "permalink": "/docs/functions/editor/modules/input-5"
+  }
+}

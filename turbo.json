@@ -1,0 +1,21 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+      "build": {
+        "outputs": ["dist/**"]
+      },
+      "docs:build": {
+        "outputs": ["docs/**"]
+      },
+      "docs": {
+        "outputs": ["docs/**"]
+      },
+      "test": {
+        "outputs": ["test-results/**"]
+      },
+      "dev": {
+        "outputs": ["dist/**"]
+      }
+    }
+  }
+  

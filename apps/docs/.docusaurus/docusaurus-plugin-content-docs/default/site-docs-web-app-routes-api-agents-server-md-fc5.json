@@ -1,0 +1,24 @@
+{
+  "id": "web-app/routes/api/agents/+server",
+  "title": "+server",
+  "description": "Documentation / routes/api/agents/+server",
+  "source": "@site/docs/web-app/routes/api/agents/+server.md",
+  "sourceDirName": "web-app/routes/api/agents",
+  "slug": "/web-app/routes/api/agents/+server",
+  "permalink": "/docs/web-app/routes/api/agents/+server",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/routes/api/agents/+server.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+server-3",
+    "permalink": "/docs/web-app/routes/api/agents/+server-3"
+  },
+  "next": {
+    "title": "+server-1",
+    "permalink": "/docs/web-app/routes/api/chats/+server-1"
+  }
+}

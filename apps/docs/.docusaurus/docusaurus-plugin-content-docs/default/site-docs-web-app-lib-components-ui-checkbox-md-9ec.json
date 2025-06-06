@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/checkbox",
+  "title": "checkbox",
+  "description": "Documentation / lib/components/ui/checkbox",
+  "source": "@site/docs/web-app/lib/components/ui/checkbox.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/checkbox",
+  "permalink": "/docs/web-app/lib/components/ui/checkbox",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/checkbox.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "checkbox-4",
+    "permalink": "/docs/web-app/lib/components/ui/checkbox-4"
+  },
+  "next": {
+    "title": "command-1",
+    "permalink": "/docs/web-app/lib/components/ui/command-1"
+  }
+}

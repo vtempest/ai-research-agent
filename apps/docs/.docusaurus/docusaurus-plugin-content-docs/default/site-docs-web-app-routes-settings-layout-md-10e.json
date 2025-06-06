@@ -1,0 +1,24 @@
+{
+  "id": "web-app/routes/settings/+layout",
+  "title": "+layout",
+  "description": "Documentation / routes/settings/+layout",
+  "source": "@site/docs/web-app/routes/settings/+layout.md",
+  "sourceDirName": "web-app/routes/settings",
+  "slug": "/web-app/routes/settings/+layout",
+  "permalink": "/docs/web-app/routes/settings/+layout",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/routes/settings/+layout.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+layout-2",
+    "permalink": "/docs/web-app/routes/settings/+layout-2"
+  },
+  "next": {
+    "title": "+layout.server-1",
+    "permalink": "/docs/web-app/routes/settings/+layout.server-1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/defaults",
+  "title": "defaults",
+  "description": "Documentation / editor/modules/defaults",
+  "source": "@site/docs/functions/editor/modules/defaults.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/defaults",
+  "permalink": "/docs/functions/editor/modules/defaults",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/defaults.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "defaults-2",
+    "permalink": "/docs/functions/editor/modules/defaults-2"
+  },
+  "next": {
+    "title": "history-1",
+    "permalink": "/docs/functions/editor/modules/history-1"
+  }
+}

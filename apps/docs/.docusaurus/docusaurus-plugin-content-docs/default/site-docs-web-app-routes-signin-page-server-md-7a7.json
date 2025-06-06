@@ -1,0 +1,24 @@
+{
+  "id": "web-app/routes/signin/+page.server",
+  "title": "+page.server",
+  "description": "Documentation / routes/signin/+page.server",
+  "source": "@site/docs/web-app/routes/signin/+page.server.md",
+  "sourceDirName": "web-app/routes/signin",
+  "slug": "/web-app/routes/signin/+page.server",
+  "permalink": "/docs/web-app/routes/signin/+page.server",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/routes/signin/+page.server.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+page.server-2",
+    "permalink": "/docs/web-app/routes/signin/+page.server-2"
+  },
+  "next": {
+    "title": "+page.server-1",
+    "permalink": "/docs/web-app/routes/signout/+page.server-1"
+  }
+}

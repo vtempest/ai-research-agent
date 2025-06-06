@@ -1,0 +1,24 @@
+{
+  "id": "functions/topics/seektopic-keyphrases",
+  "title": "seektopic-keyphrases",
+  "description": "Documentation / topics/seektopic-keyphrases",
+  "source": "@site/docs/functions/topics/seektopic-keyphrases.md",
+  "sourceDirName": "functions/topics",
+  "slug": "/functions/topics/seektopic-keyphrases",
+  "permalink": "/docs/functions/topics/seektopic-keyphrases",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/topics/seektopic-keyphrases.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "seektopic-keyphrases-1",
+    "permalink": "/docs/functions/topics/seektopic-keyphrases-1"
+  },
+  "next": {
+    "title": "topic-distribution-1",
+    "permalink": "/docs/functions/topics/topic-distribution-1"
+  }
+}

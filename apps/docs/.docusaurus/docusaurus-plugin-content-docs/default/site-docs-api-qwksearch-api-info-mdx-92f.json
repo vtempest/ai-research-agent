@@ -1,0 +1,33 @@
+{
+  "id": "api/qwksearch-api",
+  "title": "QwkSearch API",
+  "description": "Search, extract, vectorize and outline a topic base with",
+  "source": "@site/docs/api/qwksearch-api.info.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/qwksearch-api",
+  "permalink": "/docs/api/qwksearch-api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "qwksearch-api",
+    "title": "QwkSearch API",
+    "description": "Search, extract, vectorize and outline a topic base with",
+    "sidebar_label": "Introduction",
+    "sidebar_position": 0,
+    "hide_title": true,
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "API Routes",
+    "permalink": "/docs/category/qwksearch-api"
+  },
+  "next": {
+    "title": "Extract structured content and cite from any URL",
+    "permalink": "/docs/api/extract-structured-content-and-cite-from-any-url"
+  }
+}

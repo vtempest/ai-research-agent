@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-1",
+  "title": "DetectCodeQuoteBlocks-1",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-1.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item-block",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-1",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "VerticalToHorizontal",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal"
+  },
+  "next": {
+    "title": "DetectCodeQuoteBlocks-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-2"
+  }
+}

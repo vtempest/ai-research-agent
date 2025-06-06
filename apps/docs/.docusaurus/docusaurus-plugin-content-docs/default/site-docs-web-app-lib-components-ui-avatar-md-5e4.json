@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/avatar",
+  "title": "avatar",
+  "description": "Documentation / lib/components/ui/avatar",
+  "source": "@site/docs/web-app/lib/components/ui/avatar.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/avatar",
+  "permalink": "/docs/web-app/lib/components/ui/avatar",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/avatar.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "avatar-4",
+    "permalink": "/docs/web-app/lib/components/ui/avatar-4"
+  },
+  "next": {
+    "title": "badge-1",
+    "permalink": "/docs/web-app/lib/components/ui/badge-1"
+  }
+}

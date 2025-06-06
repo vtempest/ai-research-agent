@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/switch-4",
+  "title": "switch-4",
+  "description": "Documentation / lib/components/ui/switch",
+  "source": "@site/docs/web-app/lib/components/ui/switch-4.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/switch-4",
+  "permalink": "/docs/web-app/lib/components/ui/switch-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/switch-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "switch-3",
+    "permalink": "/docs/web-app/lib/components/ui/switch-3"
+  },
+  "next": {
+    "title": "switch",
+    "permalink": "/docs/web-app/lib/components/ui/switch"
+  }
+}

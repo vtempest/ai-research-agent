@@ -1,0 +1,48 @@
+
+[0m[2m[35m$[0m [2m[1mconcurrently "NODE_NO_WARNINGS=1 vite dev" "wait-on http://localhost:5173 && opener http://localhost:5173"[0m
+[0m[0][0m 
+[0m[0][0m   [32m[1mVITE[22m v6.3.5[39m  [2mready in [0m[1m2699[22m[2m[0m ms[22m
+[0m[0][0m 
+[0m[0][0m   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[0m[0][0m [2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[0m[1][0m /home/deck/Projects/ai-research-agent/node_modules/opener/bin/opener-bin.js:8
+[0m[1][0m         throw error;
+[0m[1][0m         ^
+[0m[1][0m 
+[0m[1][0m Error: Command failed: xdg-open http://localhost:5173
+[0m[1][0m /usr/bin/xdg-open: line 1045: x-www-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: firefox: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: iceweasel: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: seamonkey: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: mozilla: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: epiphany: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: konqueror: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: chromium: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: chromium-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: google-chrome: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: www-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: links2: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: elinks: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: links: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: lynx: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: w3m: command not found
+[0m[1][0m xdg-open: no method available for opening 'http://localhost:5173'
+[0m[1][0m 
+[0m[1][0m [90m    at genericNodeError (node:internal/errors:983:15)[39m
+[0m[1][0m [90m    at wrappedFn (node:internal/errors:537:14)[39m
+[0m[1][0m [90m    at ChildProcess.exithandler (node:child_process:414:12)[39m
+[0m[1][0m [90m    at ChildProcess.emit (node:events:513:28)[39m
+[0m[1][0m [90m    at maybeClose (node:internal/child_process:1101:16)[39m
+[0m[1][0m [90m    at Socket.<anonymous> (node:internal/child_process:457:11)[39m
+[0m[1][0m [90m    at Socket.emit (node:events:513:28)[39m
+[0m[1][0m [90m    at Pipe.<anonymous> (node:net:351:12)[39m {
+[0m[1][0m   code: [33m3[39m,
+[0m[1][0m   killed: [33mfalse[39m,
+[0m[1][0m   signal: [1mnull[22m,
+[0m[1][0m   cmd: [32m'xdg-open http://localhost:5173'[39m
+[0m[1][0m }
+[0m[1][0m 
+[0m[1][0m Node.js v23.4.0
+[0m[1][0m [0mwait-on http://localhost:5173 && opener http://localhost:5173 exited with code 1[0m
+[0m[0][0m [0mNODE_NO_WARNINGS=1 vite dev exited with code 0[0m
+[0m[31merror[0m[2m:[0m script [1m"dev"[0m exited with code 1[0m

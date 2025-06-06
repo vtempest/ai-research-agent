@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/delta/namespaces/AttributeMap",
+  "title": "AttributeMap",
+  "description": "Documentation / editor/delta / AttributeMap",
+  "source": "@site/docs/functions/editor/delta/namespaces/AttributeMap.md",
+  "sourceDirName": "functions/editor/delta/namespaces",
+  "slug": "/functions/editor/delta/namespaces/AttributeMap",
+  "permalink": "/docs/functions/editor/delta/namespaces/AttributeMap",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/delta/namespaces/AttributeMap.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "README",
+    "permalink": "/docs/functions/editor/delta/"
+  },
+  "next": {
+    "title": "Op",
+    "permalink": "/docs/functions/editor/delta/namespaces/Op"
+  }
+}

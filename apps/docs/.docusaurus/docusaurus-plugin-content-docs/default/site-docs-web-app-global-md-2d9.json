@@ -1,0 +1,24 @@
+{
+  "id": "web-app/global",
+  "title": "global",
+  "description": "Documentation / global",
+  "source": "@site/docs/web-app/global.md",
+  "sourceDirName": "web-app",
+  "slug": "/web-app/global",
+  "permalink": "/docs/web-app/global",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/global.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "README",
+    "permalink": "/docs/web-app/"
+  },
+  "next": {
+    "title": "hooks.server",
+    "permalink": "/docs/web-app/hooks.server"
+  }
+}

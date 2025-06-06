@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-cite/extract-date/date-validators-1",
+  "title": "date-validators-1",
+  "description": "Documentation / extractor/html-to-cite/extract-date/date-validators",
+  "source": "@site/docs/functions/extractor/html-to-cite/extract-date/date-validators-1.md",
+  "sourceDirName": "functions/extractor/html-to-cite/extract-date",
+  "slug": "/functions/extractor/html-to-cite/extract-date/date-validators-1",
+  "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-validators-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-date/date-validators-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "date-extractors",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors"
+  },
+  "next": {
+    "title": "date-validators-2",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-validators-2"
+  }
+}

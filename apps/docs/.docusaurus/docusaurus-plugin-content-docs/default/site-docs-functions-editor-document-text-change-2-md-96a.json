@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/document/TextChange-2",
+  "title": "TextChange-2",
+  "description": "Documentation / editor/document/TextChange",
+  "source": "@site/docs/functions/editor/document/TextChange-2.md",
+  "sourceDirName": "functions/editor/document",
+  "slug": "/functions/editor/document/TextChange-2",
+  "permalink": "/docs/functions/editor/document/TextChange-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/document/TextChange-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "TextChange-1",
+    "permalink": "/docs/functions/editor/document/TextChange-1"
+  },
+  "next": {
+    "title": "TextChange",
+    "permalink": "/docs/functions/editor/document/TextChange"
+  }
+}

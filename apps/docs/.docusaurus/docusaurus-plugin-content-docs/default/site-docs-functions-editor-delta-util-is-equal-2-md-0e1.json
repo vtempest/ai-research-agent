@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/delta/util/isEqual-2",
+  "title": "isEqual-2",
+  "description": "Documentation / editor/delta/util/isEqual",
+  "source": "@site/docs/functions/editor/delta/util/isEqual-2.md",
+  "sourceDirName": "functions/editor/delta/util",
+  "slug": "/functions/editor/delta/util/isEqual-2",
+  "permalink": "/docs/functions/editor/delta/util/isEqual-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/delta/util/isEqual-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "isEqual-1",
+    "permalink": "/docs/functions/editor/delta/util/isEqual-1"
+  },
+  "next": {
+    "title": "isEqual-3",
+    "permalink": "/docs/functions/editor/delta/util/isEqual-3"
+  }
+}

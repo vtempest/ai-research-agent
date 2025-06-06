@@ -1,0 +1,24 @@
+{
+  "id": "functions/search/search-web",
+  "title": "search-web",
+  "description": "Documentation / search/search-web",
+  "source": "@site/docs/functions/search/search-web.md",
+  "sourceDirName": "functions/search",
+  "slug": "/functions/search/search-web",
+  "permalink": "/docs/functions/search/search-web",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/search/search-web.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "search-web-1",
+    "permalink": "/docs/functions/search/search-web-1"
+  },
+  "next": {
+    "title": "search-wikipedia-1",
+    "permalink": "/docs/functions/search/search-wikipedia-1"
+  }
+}

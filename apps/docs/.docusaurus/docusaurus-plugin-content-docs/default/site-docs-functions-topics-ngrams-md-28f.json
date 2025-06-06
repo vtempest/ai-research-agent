@@ -1,0 +1,24 @@
+{
+  "id": "functions/topics/ngrams",
+  "title": "ngrams",
+  "description": "Documentation / topics/ngrams",
+  "source": "@site/docs/functions/topics/ngrams.md",
+  "sourceDirName": "functions/topics",
+  "slug": "/functions/topics/ngrams",
+  "permalink": "/docs/functions/topics/ngrams",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/topics/ngrams.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ngrams-1",
+    "permalink": "/docs/functions/topics/ngrams-1"
+  },
+  "next": {
+    "title": "rank-sentences-keyphrases-1",
+    "permalink": "/docs/functions/topics/rank-sentences-keyphrases-1"
+  }
+}

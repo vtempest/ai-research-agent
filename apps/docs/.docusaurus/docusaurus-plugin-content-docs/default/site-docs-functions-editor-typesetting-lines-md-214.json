@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/typesetting/lines",
+  "title": "lines",
+  "description": "Documentation / editor/typesetting/lines",
+  "source": "@site/docs/functions/editor/typesetting/lines.md",
+  "sourceDirName": "functions/editor/typesetting",
+  "slug": "/functions/editor/typesetting/lines",
+  "permalink": "/docs/functions/editor/typesetting/lines",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/typesetting/lines.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "lines-2",
+    "permalink": "/docs/functions/editor/typesetting/lines-2"
+  },
+  "next": {
+    "title": "typeset-1",
+    "permalink": "/docs/functions/editor/typesetting/typeset-1"
+  }
+}

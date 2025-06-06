@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/tabs",
+  "title": "tabs",
+  "description": "Documentation / lib/components/ui/tabs",
+  "source": "@site/docs/web-app/lib/components/ui/tabs.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/tabs",
+  "permalink": "/docs/web-app/lib/components/ui/tabs",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/tabs.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "tabs-4",
+    "permalink": "/docs/web-app/lib/components/ui/tabs-4"
+  },
+  "next": {
+    "title": "textarea-1",
+    "permalink": "/docs/web-app/lib/components/ui/textarea-1"
+  }
+}

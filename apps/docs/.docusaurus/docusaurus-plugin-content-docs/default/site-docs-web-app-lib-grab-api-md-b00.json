@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/grab-api",
+  "title": "grab-api",
+  "description": "Documentation / lib/grab-api",
+  "source": "@site/docs/web-app/lib/grab-api.md",
+  "sourceDirName": "web-app/lib",
+  "slug": "/web-app/lib/grab-api",
+  "permalink": "/docs/web-app/lib/grab-api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/grab-api.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "grab-api-1",
+    "permalink": "/docs/web-app/lib/grab-api-1"
+  },
+  "next": {
+    "title": "log-1",
+    "permalink": "/docs/web-app/lib/log-1"
+  }
+}

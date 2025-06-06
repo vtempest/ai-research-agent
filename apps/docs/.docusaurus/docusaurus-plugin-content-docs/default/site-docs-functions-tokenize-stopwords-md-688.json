@@ -1,0 +1,24 @@
+{
+  "id": "functions/tokenize/stopwords",
+  "title": "stopwords",
+  "description": "Documentation / tokenize/stopwords",
+  "source": "@site/docs/functions/tokenize/stopwords.md",
+  "sourceDirName": "functions/tokenize",
+  "slug": "/functions/tokenize/stopwords",
+  "permalink": "/docs/functions/tokenize/stopwords",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/tokenize/stopwords.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "stopwords-1",
+    "permalink": "/docs/functions/tokenize/stopwords-1"
+  },
+  "next": {
+    "title": "suggest-complete-word-1",
+    "permalink": "/docs/functions/tokenize/suggest-complete-word-1"
+  }
+}

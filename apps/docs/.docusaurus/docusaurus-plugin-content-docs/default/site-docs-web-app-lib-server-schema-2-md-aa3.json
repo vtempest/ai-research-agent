@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/server/schema-2",
+  "title": "schema-2",
+  "description": "Documentation / lib/server/schema",
+  "source": "@site/docs/web-app/lib/server/schema-2.md",
+  "sourceDirName": "web-app/lib/server",
+  "slug": "/web-app/lib/server/schema-2",
+  "permalink": "/docs/web-app/lib/server/schema-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/server/schema-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "schema-1",
+    "permalink": "/docs/web-app/lib/server/schema-1"
+  },
+  "next": {
+    "title": "schema",
+    "permalink": "/docs/web-app/lib/server/schema"
+  }
+}

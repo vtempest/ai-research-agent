@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/placeholder-1",
+  "title": "placeholder-1",
+  "description": "Documentation / editor/modules/placeholder",
+  "source": "@site/docs/functions/editor/modules/placeholder-1.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/placeholder-1",
+  "permalink": "/docs/functions/editor/modules/placeholder-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/placeholder-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "paste-5",
+    "permalink": "/docs/functions/editor/modules/paste-5"
+  },
+  "next": {
+    "title": "placeholder-2",
+    "permalink": "/docs/functions/editor/modules/placeholder-2"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/history-1",
+  "title": "history-1",
+  "description": "Documentation / editor/modules/history",
+  "source": "@site/docs/functions/editor/modules/history-1.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/history-1",
+  "permalink": "/docs/functions/editor/modules/history-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/history-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "defaults",
+    "permalink": "/docs/functions/editor/modules/defaults"
+  },
+  "next": {
+    "title": "history-2",
+    "permalink": "/docs/functions/editor/modules/history-2"
+  }
+}

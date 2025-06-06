@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/typesetting/typeset",
+  "title": "typeset",
+  "description": "Documentation / editor/typesetting/typeset",
+  "source": "@site/docs/functions/editor/typesetting/typeset.md",
+  "sourceDirName": "functions/editor/typesetting",
+  "slug": "/functions/editor/typesetting/typeset",
+  "permalink": "/docs/functions/editor/typesetting/typeset",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/typesetting/typeset.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "typeset-2",
+    "permalink": "/docs/functions/editor/typesetting/typeset-2"
+  },
+  "next": {
+    "title": "typesetting-1",
+    "permalink": "/docs/functions/editor/typesetting-1"
+  }
+}

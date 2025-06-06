@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/rendering/html-2",
+  "title": "html-2",
+  "description": "Documentation / editor/rendering/html",
+  "source": "@site/docs/functions/editor/rendering/html-2.md",
+  "sourceDirName": "functions/editor/rendering",
+  "slug": "/functions/editor/rendering/html-2",
+  "permalink": "/docs/functions/editor/rendering/html-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/rendering/html-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "html-1",
+    "permalink": "/docs/functions/editor/rendering/html-1"
+  },
+  "next": {
+    "title": "html",
+    "permalink": "/docs/functions/editor/rendering/html"
+  }
+}

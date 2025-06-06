@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/url-to-content/docx-to-content-2",
+  "title": "docx-to-content-2",
+  "description": "Documentation / extractor/url-to-content/docx-to-content",
+  "source": "@site/docs/functions/extractor/url-to-content/docx-to-content-2.md",
+  "sourceDirName": "functions/extractor/url-to-content",
+  "slug": "/functions/extractor/url-to-content/docx-to-content-2",
+  "permalink": "/docs/functions/extractor/url-to-content/docx-to-content-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/url-to-content/docx-to-content-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "docx-to-content-1",
+    "permalink": "/docs/functions/extractor/url-to-content/docx-to-content-1"
+  },
+  "next": {
+    "title": "docx-to-content",
+    "permalink": "/docs/functions/extractor/url-to-content/docx-to-content"
+  }
+}

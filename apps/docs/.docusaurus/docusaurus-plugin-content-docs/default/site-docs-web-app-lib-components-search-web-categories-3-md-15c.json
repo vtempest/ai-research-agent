@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/SearchWeb/categories-3",
+  "title": "categories-3",
+  "description": "Documentation / lib/components/SearchWeb/categories",
+  "source": "@site/docs/web-app/lib/components/SearchWeb/categories-3.md",
+  "sourceDirName": "web-app/lib/components/SearchWeb",
+  "slug": "/web-app/lib/components/SearchWeb/categories-3",
+  "permalink": "/docs/web-app/lib/components/SearchWeb/categories-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/SearchWeb/categories-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "categories-2",
+    "permalink": "/docs/web-app/lib/components/SearchWeb/categories-2"
+  },
+  "next": {
+    "title": "categories",
+    "permalink": "/docs/web-app/lib/components/SearchWeb/categories"
+  }
+}

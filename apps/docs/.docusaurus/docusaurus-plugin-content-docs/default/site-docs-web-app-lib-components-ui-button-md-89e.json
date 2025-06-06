@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/button",
+  "title": "button",
+  "description": "Documentation / lib/components/ui/button",
+  "source": "@site/docs/web-app/lib/components/ui/button.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/button",
+  "permalink": "/docs/web-app/lib/components/ui/button",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/button.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "button-4",
+    "permalink": "/docs/web-app/lib/components/ui/button-4"
+  },
+  "next": {
+    "title": "card-1",
+    "permalink": "/docs/web-app/lib/components/ui/card-1"
+  }
+}

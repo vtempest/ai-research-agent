@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/paste-1",
+  "title": "paste-1",
+  "description": "Documentation / editor/modules/paste",
+  "source": "@site/docs/functions/editor/modules/paste-1.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/paste-1",
+  "permalink": "/docs/functions/editor/modules/paste-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/paste-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "keyboard-5",
+    "permalink": "/docs/functions/editor/modules/keyboard-5"
+  },
+  "next": {
+    "title": "paste-3",
+    "permalink": "/docs/functions/editor/modules/paste-3"
+  }
+}

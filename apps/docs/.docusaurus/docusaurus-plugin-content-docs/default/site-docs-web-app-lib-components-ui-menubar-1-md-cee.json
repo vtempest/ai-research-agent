@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/menubar-1",
+  "title": "menubar-1",
+  "description": "Documentation / lib/components/ui/menubar",
+  "source": "@site/docs/web-app/lib/components/ui/menubar-1.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/menubar-1",
+  "permalink": "/docs/web-app/lib/components/ui/menubar-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/menubar-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "label",
+    "permalink": "/docs/web-app/lib/components/ui/label"
+  },
+  "next": {
+    "title": "menubar-2",
+    "permalink": "/docs/web-app/lib/components/ui/menubar-2"
+  }
+}

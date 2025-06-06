@@ -1,0 +1,24 @@
+{
+  "id": "web-app/routes/api/user/+server-2",
+  "title": "+server-2",
+  "description": "Documentation / routes/api/user/+server",
+  "source": "@site/docs/web-app/routes/api/user/+server-2.md",
+  "sourceDirName": "web-app/routes/api/user",
+  "slug": "/web-app/routes/api/user/+server-2",
+  "permalink": "/docs/web-app/routes/api/user/+server-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/routes/api/user/+server-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+server-1",
+    "permalink": "/docs/web-app/routes/api/user/+server-1"
+  },
+  "next": {
+    "title": "+server-3",
+    "permalink": "/docs/web-app/routes/api/user/+server-3"
+  }
+}

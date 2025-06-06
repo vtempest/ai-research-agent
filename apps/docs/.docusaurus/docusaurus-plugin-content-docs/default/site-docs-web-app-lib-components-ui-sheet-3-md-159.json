@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/sheet-3",
+  "title": "sheet-3",
+  "description": "Documentation / lib/components/ui/sheet",
+  "source": "@site/docs/web-app/lib/components/ui/sheet-3.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/sheet-3",
+  "permalink": "/docs/web-app/lib/components/ui/sheet-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/sheet-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "sheet-2",
+    "permalink": "/docs/web-app/lib/components/ui/sheet-2"
+  },
+  "next": {
+    "title": "sheet-4",
+    "permalink": "/docs/web-app/lib/components/ui/sheet-4"
+  }
+}

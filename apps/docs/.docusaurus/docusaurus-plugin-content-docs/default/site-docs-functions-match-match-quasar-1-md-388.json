@@ -1,0 +1,24 @@
+{
+  "id": "functions/match/match-quasar-1",
+  "title": "match-quasar-1",
+  "description": "Documentation / match/match-quasar",
+  "source": "@site/docs/functions/match/match-quasar-1.md",
+  "sourceDirName": "functions/match",
+  "slug": "/functions/match/match-quasar-1",
+  "permalink": "/docs/functions/match/match-quasar-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/match/match-quasar-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "compare-letters",
+    "permalink": "/docs/functions/match/compare-letters"
+  },
+  "next": {
+    "title": "match-quasar",
+    "permalink": "/docs/functions/match/match-quasar"
+  }
+}

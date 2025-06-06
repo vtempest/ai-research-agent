@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4",
+  "title": "CompactLines-4",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item/CompactLines",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "CompactLines-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-3"
+  },
+  "next": {
+    "title": "CompactLines",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines"
+  }
+}

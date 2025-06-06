@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/keyboard-5",
+  "title": "keyboard-5",
+  "description": "Documentation / editor/modules/keyboard",
+  "source": "@site/docs/functions/editor/modules/keyboard-5.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/keyboard-5",
+  "permalink": "/docs/functions/editor/modules/keyboard-5",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/keyboard-5.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "keyboard-3",
+    "permalink": "/docs/functions/editor/modules/keyboard-3"
+  },
+  "next": {
+    "title": "paste-1",
+    "permalink": "/docs/functions/editor/modules/paste-1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/table",
+  "title": "table",
+  "description": "Documentation / lib/components/ui/table",
+  "source": "@site/docs/web-app/lib/components/ui/table.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/table",
+  "permalink": "/docs/web-app/lib/components/ui/table",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/table.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "table-4",
+    "permalink": "/docs/web-app/lib/components/ui/table-4"
+  },
+  "next": {
+    "title": "tabs-1",
+    "permalink": "/docs/web-app/lib/components/ui/tabs-1"
+  }
+}

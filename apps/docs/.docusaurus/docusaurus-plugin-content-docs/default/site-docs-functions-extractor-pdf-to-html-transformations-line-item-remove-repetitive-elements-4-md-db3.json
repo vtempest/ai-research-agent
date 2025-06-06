@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4",
+  "title": "RemoveRepetitiveElements-4",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "RemoveRepetitiveElements-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-3"
+  },
+  "next": {
+    "title": "RemoveRepetitiveElements",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements"
+  }
+}

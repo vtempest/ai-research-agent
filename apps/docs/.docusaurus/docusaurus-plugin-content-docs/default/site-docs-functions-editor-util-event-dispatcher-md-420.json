@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/util/EventDispatcher",
+  "title": "EventDispatcher",
+  "description": "Documentation / editor/util/EventDispatcher",
+  "source": "@site/docs/functions/editor/util/EventDispatcher.md",
+  "sourceDirName": "functions/editor/util",
+  "slug": "/functions/editor/util/EventDispatcher",
+  "permalink": "/docs/functions/editor/util/EventDispatcher",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/util/EventDispatcher.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "EventDispatcher-2",
+    "permalink": "/docs/functions/editor/util/EventDispatcher-2"
+  },
+  "next": {
+    "title": "editor-1",
+    "permalink": "/docs/functions/editor-1"
+  }
+}

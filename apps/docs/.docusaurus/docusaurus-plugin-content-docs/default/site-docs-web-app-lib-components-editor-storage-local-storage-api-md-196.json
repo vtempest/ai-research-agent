@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/Editor/storage/local-storage-api",
+  "title": "local-storage-api",
+  "description": "Documentation / lib/components/Editor/storage/local-storage-api",
+  "source": "@site/docs/web-app/lib/components/Editor/storage/local-storage-api.md",
+  "sourceDirName": "web-app/lib/components/Editor/storage",
+  "slug": "/web-app/lib/components/Editor/storage/local-storage-api",
+  "permalink": "/docs/web-app/lib/components/Editor/storage/local-storage-api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/Editor/storage/local-storage-api.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "local-storage-api-4",
+    "permalink": "/docs/web-app/lib/components/Editor/storage/local-storage-api-4"
+  },
+  "next": {
+    "title": "seed-test-data-1",
+    "permalink": "/docs/web-app/lib/components/Editor/storage/seed-test-data-1"
+  }
+}

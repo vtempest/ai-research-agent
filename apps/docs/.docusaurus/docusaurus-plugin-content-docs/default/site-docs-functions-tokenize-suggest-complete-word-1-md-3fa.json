@@ -1,0 +1,24 @@
+{
+  "id": "functions/tokenize/suggest-complete-word-1",
+  "title": "suggest-complete-word-1",
+  "description": "Documentation / tokenize/suggest-complete-word",
+  "source": "@site/docs/functions/tokenize/suggest-complete-word-1.md",
+  "sourceDirName": "functions/tokenize",
+  "slug": "/functions/tokenize/suggest-complete-word-1",
+  "permalink": "/docs/functions/tokenize/suggest-complete-word-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/tokenize/suggest-complete-word-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "stopwords",
+    "permalink": "/docs/functions/tokenize/stopwords"
+  },
+  "next": {
+    "title": "suggest-complete-word",
+    "permalink": "/docs/functions/tokenize/suggest-complete-word"
+  }
+}

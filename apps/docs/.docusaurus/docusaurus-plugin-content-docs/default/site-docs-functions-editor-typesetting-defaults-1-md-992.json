@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/typesetting/defaults-1",
+  "title": "defaults-1",
+  "description": "Documentation / editor/typesetting/defaults",
+  "source": "@site/docs/functions/editor/typesetting/defaults-1.md",
+  "sourceDirName": "functions/editor/typesetting",
+  "slug": "/functions/editor/typesetting/defaults-1",
+  "permalink": "/docs/functions/editor/typesetting/defaults-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/typesetting/defaults-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "stores",
+    "permalink": "/docs/functions/editor/stores"
+  },
+  "next": {
+    "title": "defaults-2",
+    "permalink": "/docs/functions/editor/typesetting/defaults-2"
+  }
+}

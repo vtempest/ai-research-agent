@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/popper-1",
+  "title": "popper-1",
+  "description": "Documentation / editor/popper",
+  "source": "@site/docs/functions/editor/popper-1.md",
+  "sourceDirName": "functions/editor",
+  "slug": "/functions/editor/popper-1",
+  "permalink": "/docs/functions/editor/popper-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/popper-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "modules",
+    "permalink": "/docs/functions/editor/modules"
+  },
+  "next": {
+    "title": "popper",
+    "permalink": "/docs/functions/editor/popper"
+  }
+}

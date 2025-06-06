@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/modules/tables-1",
+  "title": "tables-1",
+  "description": "Documentation / editor/modules/tables",
+  "source": "@site/docs/functions/editor/modules/tables-1.md",
+  "sourceDirName": "functions/editor/modules",
+  "slug": "/functions/editor/modules/tables-1",
+  "permalink": "/docs/functions/editor/modules/tables-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/modules/tables-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "smartQuotes",
+    "permalink": "/docs/functions/editor/modules/smartQuotes"
+  },
+  "next": {
+    "title": "tables-2",
+    "permalink": "/docs/functions/editor/modules/tables-2"
+  }
+}

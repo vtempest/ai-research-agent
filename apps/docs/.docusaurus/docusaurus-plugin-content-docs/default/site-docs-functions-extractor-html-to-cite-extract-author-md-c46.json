@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-cite/extract-author",
+  "title": "extract-author",
+  "description": "Documentation / extractor/html-to-cite/extract-author",
+  "source": "@site/docs/functions/extractor/html-to-cite/extract-author.md",
+  "sourceDirName": "functions/extractor/html-to-cite",
+  "slug": "/functions/extractor/html-to-cite/extract-author",
+  "permalink": "/docs/functions/extractor/html-to-cite/extract-author",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-author.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "extract-author-2",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-author-2"
+  },
+  "next": {
+    "title": "extract-cite-1",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite-1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-content/html-to-content",
+  "title": "html-to-content",
+  "description": "Documentation / extractor/html-to-content/html-to-content",
+  "source": "@site/docs/functions/extractor/html-to-content/html-to-content.md",
+  "sourceDirName": "functions/extractor/html-to-content",
+  "slug": "/functions/extractor/html-to-content/",
+  "permalink": "/docs/functions/extractor/html-to-content/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-content/html-to-content.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "url-to-domain",
+    "permalink": "/docs/functions/extractor/html-to-cite/url-to-domain"
+  },
+  "next": {
+    "title": "extract-content-mercury-1",
+    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-1"
+  }
+}

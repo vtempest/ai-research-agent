@@ -1,0 +1,24 @@
+{
+  "id": "functions/types",
+  "title": "types",
+  "description": "Documentation / types",
+  "source": "@site/docs/functions/types.md",
+  "sourceDirName": "functions",
+  "slug": "/functions/types",
+  "permalink": "/docs/functions/types",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/types.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "topic-distribution",
+    "permalink": "/docs/functions/topics/topic-distribution"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/web-app/"
+  }
+}

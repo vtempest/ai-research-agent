@@ -1,0 +1,35 @@
+{
+  "id": "api/search-the-web",
+  "title": "Search the web",
+  "description": "![AILogo](https://i.imgur.com/AvFLGdR.png)",
+  "source": "@site/docs/api/search-the-web.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/search-the-web",
+  "permalink": "/docs/api/search-the-web",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "search-the-web",
+    "title": "Search the web",
+    "description": "![AILogo](https://i.imgur.com/AvFLGdR.png)",
+    "sidebar_label": "Search the web",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "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",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/qwksearch-api",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Generate language model reply using agent prompts",
+    "permalink": "/docs/api/generate-language-model-reply-using-agent-prompts"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/functions/"
+  }
+}

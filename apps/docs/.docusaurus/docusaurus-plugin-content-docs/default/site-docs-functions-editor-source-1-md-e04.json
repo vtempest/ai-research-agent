@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/Source-1",
+  "title": "Source-1",
+  "description": "Documentation / editor/Source",
+  "source": "@site/docs/functions/editor/Source-1.md",
+  "sourceDirName": "functions/editor",
+  "slug": "/functions/editor/Source-1",
+  "permalink": "/docs/functions/editor/Source-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/Source-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Editor-1",
+    "permalink": "/docs/functions/editor/Editor-1"
+  },
+  "next": {
+    "title": "Source",
+    "permalink": "/docs/functions/editor/Source"
+  }
+}

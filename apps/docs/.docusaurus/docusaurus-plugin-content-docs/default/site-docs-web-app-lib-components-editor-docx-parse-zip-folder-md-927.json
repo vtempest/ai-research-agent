@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/Editor/docx/parse-zip-folder",
+  "title": "parse-zip-folder",
+  "description": "Documentation / lib/components/Editor/docx/parse-zip-folder",
+  "source": "@site/docs/web-app/lib/components/Editor/docx/parse-zip-folder.md",
+  "sourceDirName": "web-app/lib/components/Editor/docx",
+  "slug": "/web-app/lib/components/Editor/docx/parse-zip-folder",
+  "permalink": "/docs/web-app/lib/components/Editor/docx/parse-zip-folder",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/Editor/docx/parse-zip-folder.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "parse-zip-folder-4",
+    "permalink": "/docs/web-app/lib/components/Editor/docx/parse-zip-folder-4"
+  },
+  "next": {
+    "title": "files-api-frontend-1",
+    "permalink": "/docs/web-app/lib/components/Editor/storage/files-api-frontend-1"
+  }
+}

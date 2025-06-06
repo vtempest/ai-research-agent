@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4",
+  "title": "GatherBlocks-4",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item-block",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "GatherBlocks-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-3"
+  },
+  "next": {
+    "title": "GatherBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks"
+  }
+}

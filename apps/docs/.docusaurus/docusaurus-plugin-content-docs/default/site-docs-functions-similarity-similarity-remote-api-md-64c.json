@@ -1,0 +1,24 @@
+{
+  "id": "functions/similarity/similarity-remote-api",
+  "title": "similarity-remote-api",
+  "description": "Documentation / similarity/similarity-remote-api",
+  "source": "@site/docs/functions/similarity/similarity-remote-api.md",
+  "sourceDirName": "functions/similarity",
+  "slug": "/functions/similarity/similarity-remote-api",
+  "permalink": "/docs/functions/similarity/similarity-remote-api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/similarity/similarity-remote-api.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "similarity-remote-api-1",
+    "permalink": "/docs/functions/similarity/similarity-remote-api-1"
+  },
+  "next": {
+    "title": "stopwords-1",
+    "permalink": "/docs/functions/tokenize/stopwords-1"
+  }
+}

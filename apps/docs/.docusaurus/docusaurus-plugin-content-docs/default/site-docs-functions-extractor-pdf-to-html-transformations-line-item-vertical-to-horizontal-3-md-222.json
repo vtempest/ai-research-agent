@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-3",
+  "title": "VerticalToHorizontal-3",
+  "description": "Documentation / extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
+  "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-3.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-3",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "VerticalToHorizontal-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-2"
+  },
+  "next": {
+    "title": "VerticalToHorizontal-4",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-4"
+  }
+}

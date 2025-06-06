@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/rendering/walker",
+  "title": "walker",
+  "description": "Documentation / editor/rendering/walker",
+  "source": "@site/docs/functions/editor/rendering/walker.md",
+  "sourceDirName": "functions/editor/rendering",
+  "slug": "/functions/editor/rendering/walker",
+  "permalink": "/docs/functions/editor/rendering/walker",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/rendering/walker.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "walker-2",
+    "permalink": "/docs/functions/editor/rendering/walker-2"
+  },
+  "next": {
+    "title": "stores-1",
+    "permalink": "/docs/functions/editor/stores-1"
+  }
+}

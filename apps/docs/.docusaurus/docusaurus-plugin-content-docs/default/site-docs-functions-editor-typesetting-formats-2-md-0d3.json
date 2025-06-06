@@ -1,0 +1,24 @@
+{
+  "id": "functions/editor/typesetting/formats-2",
+  "title": "formats-2",
+  "description": "Documentation / editor/typesetting/formats",
+  "source": "@site/docs/functions/editor/typesetting/formats-2.md",
+  "sourceDirName": "functions/editor/typesetting",
+  "slug": "/functions/editor/typesetting/formats-2",
+  "permalink": "/docs/functions/editor/typesetting/formats-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/editor/typesetting/formats-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "formats-1",
+    "permalink": "/docs/functions/editor/typesetting/formats-1"
+  },
+  "next": {
+    "title": "formats",
+    "permalink": "/docs/functions/editor/typesetting/formats"
+  }
+}

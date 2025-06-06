@@ -1,0 +1,21 @@
+{
+  "id": "index",
+  "title": "Introduction",
+  "description": "Being is Becoming",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/docs/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "sidebar_label": "Introduction",
+    "title": "Introduction",
+    "slug": "/"
+  }
+}

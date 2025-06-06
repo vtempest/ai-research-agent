@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/textarea",
+  "title": "textarea",
+  "description": "Documentation / lib/components/ui/textarea",
+  "source": "@site/docs/web-app/lib/components/ui/textarea.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/textarea",
+  "permalink": "/docs/web-app/lib/components/ui/textarea",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/textarea.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "textarea-4",
+    "permalink": "/docs/web-app/lib/components/ui/textarea-4"
+  },
+  "next": {
+    "title": "tooltip-1",
+    "permalink": "/docs/web-app/lib/components/ui/tooltip-1"
+  }
+}

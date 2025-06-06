@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/Annotation",
+  "title": "Annotation",
+  "description": "Documentation / extractor/pdf-to-html/models/Annotation",
+  "source": "@site/docs/functions/extractor/pdf-to-html/models/Annotation.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/Annotation",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/Annotation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/Annotation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Annotation-3",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Annotation-3"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType/"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-cite/human-names-recognize-2",
+  "title": "human-names-recognize-2",
+  "description": "Documentation / extractor/html-to-cite/human-names-recognize",
+  "source": "@site/docs/functions/extractor/html-to-cite/human-names-recognize-2.md",
+  "sourceDirName": "functions/extractor/html-to-cite",
+  "slug": "/functions/extractor/html-to-cite/human-names-recognize-2",
+  "permalink": "/docs/functions/extractor/html-to-cite/human-names-recognize-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/human-names-recognize-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "human-names-recognize-1",
+    "permalink": "/docs/functions/extractor/html-to-cite/human-names-recognize-1"
+  },
+  "next": {
+    "title": "human-names-recognize",
+    "permalink": "/docs/functions/extractor/html-to-cite/human-names-recognize"
+  }
+}

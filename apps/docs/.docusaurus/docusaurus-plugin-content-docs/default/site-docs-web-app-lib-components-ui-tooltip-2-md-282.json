@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/ui/tooltip-2",
+  "title": "tooltip-2",
+  "description": "Documentation / lib/components/ui/tooltip",
+  "source": "@site/docs/web-app/lib/components/ui/tooltip-2.md",
+  "sourceDirName": "web-app/lib/components/ui",
+  "slug": "/web-app/lib/components/ui/tooltip-2",
+  "permalink": "/docs/web-app/lib/components/ui/tooltip-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/ui/tooltip-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "tooltip-1",
+    "permalink": "/docs/web-app/lib/components/ui/tooltip-1"
+  },
+  "next": {
+    "title": "tooltip-3",
+    "permalink": "/docs/web-app/lib/components/ui/tooltip-3"
+  }
+}

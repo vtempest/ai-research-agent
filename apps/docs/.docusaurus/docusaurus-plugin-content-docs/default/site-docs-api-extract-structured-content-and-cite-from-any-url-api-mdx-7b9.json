@@ -1,0 +1,35 @@
+{
+  "id": "api/extract-structured-content-and-cite-from-any-url",
+  "title": "Extract structured content and cite from any URL",
+  "description": "### 🚜📜 Tractor the Text Extractor",
+  "source": "@site/docs/api/extract-structured-content-and-cite-from-any-url.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/extract-structured-content-and-cite-from-any-url",
+  "permalink": "/docs/api/extract-structured-content-and-cite-from-any-url",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "extract-structured-content-and-cite-from-any-url",
+    "title": "Extract structured content and cite from any URL",
+    "description": "### 🚜📜 Tractor the Text Extractor",
+    "sidebar_label": "Extract structured content and cite from any URL",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztWN1uGzcWfhXu5KIJMJaUpt7FCuiF2yStgbjxxioWhWUU1AylYcwhJyRHsmzoKXpXFOgr9hH2OyRHki1D9qa5tC/k0Yg8/M453/nhuck8n7lseJ6dCTuXhXDZRZ6VwhVWNl4anQ2zZ8+esb/+/P2Pv/787Q82srzwxjJfCTYSV569ufLp1Vj/43z97eJ55X3jhv2+7Ml61tpeYep+8UEsRoN/9Ro9e3GzkKWvvn11OFiN9Vi/7LETLjX73mgvtGevhRcFIRh2R4Qza1pTpDVTa2rG2c8f3rHJEm/ridRSz4DkxFxLpTj7IHjJJ1JJv2Rcl+zUOK/krPLsRNiitXirZsZKX9UuZ63HymuSYObCspeDAUQVrfN0TMkbL6xjU6ha84/4dNKL+J1bLwslcsZbXxmbs5J7wX4cnbxjheLOCdcb66977DvuZBHfn3ng4baU1zxqCctqB2E1KdIocRXXSe0NdHQS7+RUihKQLLQCyoPalILOr7lnZsoma+k5EF6SHtIzWQquAkornOC2qJg2QEdPcs7VWLNgmqmBphCfhOdsAauwKn6DcWTNZ1CXliqpL0mjVz32i2lH7URE9IE07NQa8Mhh15D9txIa6LtVc4AxwV/SsTJ4WJR50MhbKeYi+Djq77vlfiNa6kK1hIdNDMDVXLfQreCBqhHbWMMH5mAmtLBwQslcO/HSK+HyQB7PI0caaxr42MtaOM/rhrmlLiprdHJIEuYawS+xDki0h/2L+OOiEhYmnHOp+EQJ2OKbHjt9/ZbBWeSAYWeF8LKEaWvsd0RTEdkMDGT56D3C6SmaFpVUgnwuFGiKLWrJKiBRBBkfgk3gn0vo0sAbwTvgJFmQRBlPnnU9NoIV3dJ5Ad5qrpbXcFyQX4lAfmjspQNnHQEmgwEEdFNqSZKknkLl5Hqm4BeFMwqcTLDhz2g8YHPetoVvLfB3SrJKwvIgVxAFTuI3WMwlvsPtcxmNGMK3FlxHbE5ekyEPe+x76eOKYx3tQ88pC4RYOY7eiDGdDMqKblctPKLV86hKx5gYmkzzmqjQtBPVOZOCFa+caW1BDyQ0Uoa1ROPgURJGghklzLAENK2xOwR4EAufwJNW33YAQkyGE24hCFE3Axedhz2J8VYgVpxEDBB2shvF9L8H+QBpaCotLaTY43hISox1SV7Us1a6KkSF8AuBiINznIHjww5jZ7xjNb0KKILj124cJzuvbUjR/c8eO4qIfyLl3kamhrDuyL2tUUjBlShC3ulUG+tLbRY6mqfTC8jXnObTqbxKaSXZvDDWIjGoZfQEpQlbh6AloyHykCMswbcgpnUxZ4QDjEU0bCjXLZX+K0ek7YwSatW9VskZXNDarfywJtV0rT5Mk+VZwy2OpIqA6nmT0fmola1V+E1S2fzUCrvM7hZTyn2AvubsdiV77tqmMRZpItUTGArpA58pf76AOCs+tRLxlg0ReiLPHGxe82x4k/llQxAQkgCJlRFxACWz1Spfg4yZfD/O4xA3osv6KLqm9U3r2fNSTHmrUI1xPAHaATAxRiGog8iwNELdRhAKyOMAVEuiKK3/0iA2Ht2P5JTqpqXaRFlqs+vLoOATZ1TrBYjxgEXQGYHvHrRXoCTw0JaQv5OILwOIKiLMvB/Lj6PRKSMqoniytIP84wQYXboNksN7YVCBmwmLnyiw67bOhi/xzK/i86vBFr7D1eqCaO8apCXQFlK+Hgzo321IZ5tS1EWVWJcM6n1IWp6l32g/b5quBvQ/OhJyswvVTD4iGVHAh4TgZYQQctV9UXcb1FEM5H7qZMKmVZ5VvlYPbz7b9HyxlUxqhcbMrftH6nE63Uk4UtZjkJ0ebZJbkPgOlSVnb0OlOdbSy9g2Ug6B1Jggf32k8E1dIFZsSz6RZanErmCHD/9oyUjSMeNrtdwSEvfuyhCaaHWeUTWHB/LML8xB3EMcNFYceJSkA7zG9+3SsHsdGkE2VeZURyvZbAA8jP+9lTO5KTgsLov5PzYgJI36hb0pPSzYSVR3ehoy/S/4Ozg5OXj9esvk6aAHwQaBsbPYtkmfLj7BuSRsgar7a2Fa7e8N8Ds5TK3bPdrHwj7EadekEc9JKNXRh0rajmyu0b2jiQ0XDHiI+gLEfbLqart2nqcATqGYguaWMhHExWpFOw/vzThUFSwT1sKRdCuU4dYTjl+3B18u5YRzHnbamwAHDZlD5c5W8Q8kRy9koHk2E0E09xW+9FOKpCQdtIndTDB/1t3gPy0u48Ux3OF5I/v31EhTtjHTJqvACBklbtwlzH2mI3l5l6FzNhc0NUAyiy1r68NlB922aXCnDd1wSFJjfXSMW326yB7RFSn2Y4Q9yn7ZG/QGFOMxRWf/WVyepeWnx/Qe7aR7P00Dj6TnjppKzLjqh7Wk7tWBMrOgyD7bSLjabd6FPT03Jydx5WleQs0PCSKXNMZ5XGFJaKq93aTD7daycOOguItDD70MFr7jh5sN157GNk9jm6exzdPY5mls8zS2eRrbrMc2qXci5vYbBW23us3YE51nXU+E7qVC4aFXNzcE72erVit6HS/F1CnBk5RJ0FhNuXJiTz1+/iF1ny/Y3x4C3avFpViuJ1Bgb0srMrrYPx7j46c+exCsx0t/E8TjJj97gHRTps/E8fi5zx4Mt4ZMnwnkMwY/exDdGTh9Jqb/bwC0B85m3LRBckFfrCQoCLILGpiEihkiLm47KgrRbO/auVmRlPWl54c3I7Tc/wNe2lNP",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/qwksearch-api",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/docs/api/qwksearch-api"
+  },
+  "next": {
+    "title": "Generate language model reply using agent prompts",
+    "permalink": "/docs/api/generate-language-model-reply-using-agent-prompts"
+  }
+}

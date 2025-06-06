@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/server/ratelimits-2",
+  "title": "ratelimits-2",
+  "description": "Documentation / lib/server/ratelimits",
+  "source": "@site/docs/web-app/lib/server/ratelimits-2.md",
+  "sourceDirName": "web-app/lib/server",
+  "slug": "/web-app/lib/server/ratelimits-2",
+  "permalink": "/docs/web-app/lib/server/ratelimits-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/server/ratelimits-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ratelimits-1",
+    "permalink": "/docs/web-app/lib/server/ratelimits-1"
+  },
+  "next": {
+    "title": "ratelimits",
+    "permalink": "/docs/web-app/lib/server/ratelimits"
+  }
+}

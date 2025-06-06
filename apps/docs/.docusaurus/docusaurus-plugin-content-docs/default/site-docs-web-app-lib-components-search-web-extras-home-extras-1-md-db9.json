@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/components/SearchWeb/extras/home-extras-1",
+  "title": "home-extras-1",
+  "description": "Documentation / lib/components/SearchWeb/extras/home-extras",
+  "source": "@site/docs/web-app/lib/components/SearchWeb/extras/home-extras-1.md",
+  "sourceDirName": "web-app/lib/components/SearchWeb/extras",
+  "slug": "/web-app/lib/components/SearchWeb/extras/home-extras-1",
+  "permalink": "/docs/web-app/lib/components/SearchWeb/extras/home-extras-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/components/SearchWeb/extras/home-extras-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "get-weather",
+    "permalink": "/docs/web-app/lib/components/SearchWeb/extras/get-weather"
+  },
+  "next": {
+    "title": "home-extras-2",
+    "permalink": "/docs/web-app/lib/components/SearchWeb/extras/home-extras-2"
+  }
+}

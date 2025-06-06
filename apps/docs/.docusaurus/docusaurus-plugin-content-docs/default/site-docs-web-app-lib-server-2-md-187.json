@@ -1,0 +1,24 @@
+{
+  "id": "web-app/lib/server-2",
+  "title": "server-2",
+  "description": "Documentation / lib/server",
+  "source": "@site/docs/web-app/lib/server-2.md",
+  "sourceDirName": "web-app/lib",
+  "slug": "/web-app/lib/server-2",
+  "permalink": "/docs/web-app/lib/server-2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/web-app/lib/server-2.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "server-1",
+    "permalink": "/docs/web-app/lib/server-1"
+  },
+  "next": {
+    "title": "server",
+    "permalink": "/docs/web-app/lib/server"
+  }
+}
