@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //@ts-ignore
 export { default as BubbleMenu } from './BubbleMenu.svelte';
 //@ts-ignore
