@@ -1156,8 +1156,8 @@
   "docusaurus-lunr-search": {
     "default": {
       "fileNames": {
-        "searchDoc": "search-doc-1750134637061.json",
-        "lunrIndex": "lunr-index-1750134637061.json"
+        "searchDoc": "search-doc-1750134812442.json",
+        "lunrIndex": "lunr-index-1750134812442.json"
       }
     }
   }
