@@ -74,7 +74,6 @@
     "svelte": "^5.33.14",
     "svelte-dnd-action": "^0.9.61",
     "svelte-lightbox": "^1.1.7",
-    "svelte-markdown": "^0.4.1",
     "svelte-motion": "^0.12.2",
     "svelte-sonner": "^1.0.4",
     "svelte-splitpanes": "^8.0.9",

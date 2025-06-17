@@ -11,6 +11,7 @@ vite.config.ts.timestamp-*
 .cloudflare
 .wrangler
 bun.lockb
+bun.lock*
 migrations/*
 wrangler.toml
 .turbo
