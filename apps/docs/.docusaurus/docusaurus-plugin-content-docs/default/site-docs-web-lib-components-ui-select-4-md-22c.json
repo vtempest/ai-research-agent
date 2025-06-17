@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/select-4",
+  "title": "select-4",
+  "description": "Documentation / lib/components/ui/select",
+  "source": "@site/docs/web/lib/components/ui/select-4.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/select-4",
+  "permalink": "/docs/web/lib/components/ui/select-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/select-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "select-3",
+    "permalink": "/docs/web/lib/components/ui/select-3"
+  },
+  "next": {
+    "title": "select",
+    "permalink": "/docs/web/lib/components/ui/select"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "api/schemas/user",
+  "title": "User",
+  "description": "",
+  "source": "@site/docs/api/schemas/user.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/user",
+  "permalink": "/docs/api/schemas/user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "user",
+    "title": "User",
+    "description": "",
+    "sidebar_label": "User",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "username": "string",
+      "email": "john.smith@example.com",
+      "password": "drowssaP123"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "## Extract structured content and cite from any URL",
+    "permalink": "/docs/api/extract-content"
+  },
+  "next": {
+    "title": "## Search the web",
+    "permalink": "/docs/api/search-web"
+  }
+}

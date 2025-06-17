@@ -1,0 +1,38 @@
+{
+  "id": "api/schemas/history",
+  "title": "History",
+  "description": "",
+  "source": "@site/docs/api/schemas/history.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/history",
+  "permalink": "/docs/api/schemas/history",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "history",
+    "title": "History",
+    "description": "",
+    "sidebar_label": "History",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "description": "string",
+      "updated_by": "string",
+      "updated_at": "string"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "File",
+    "permalink": "/docs/api/schemas/file"
+  },
+  "next": {
+    "title": "Login",
+    "permalink": "/docs/api/schemas/login"
+  }
+}

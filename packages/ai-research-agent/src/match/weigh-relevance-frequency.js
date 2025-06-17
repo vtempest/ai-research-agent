@@ -1,4 +1,4 @@
-import {convertTextToTokens} from "../../index.js";
+import {convertTextToTokens} from "../index.js";
 
 /**
  * #### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms

@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/README.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/README.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "Search the web",
-    "permalink": "/docs/api/search-the-web"
+    "title": "## Generate language model reply using agent prompts",
+    "permalink": "/docs/api/write-language"
   },
   "next": {
-    "title": "agent-prompts-1",
-    "permalink": "/docs/functions/agents/agent-prompts-1"
+    "title": "globals",
+    "permalink": "/docs/functions/globals"
   }
 }

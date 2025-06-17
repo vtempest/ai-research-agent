@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/tokenize/text-to-chunks",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/tokenize/text-to-chunks.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/tokenize/text-to-chunks.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "text-to-chunks-1",
-    "permalink": "/docs/functions/tokenize/text-to-chunks-1"
+    "title": "suggest-complete-word",
+    "permalink": "/docs/functions/tokenize/suggest-complete-word"
   },
   "next": {
-    "title": "text-to-sentences-1",
-    "permalink": "/docs/functions/tokenize/text-to-sentences-1"
+    "title": "text-to-sentences",
+    "permalink": "/docs/functions/tokenize/text-to-sentences"
   }
 }

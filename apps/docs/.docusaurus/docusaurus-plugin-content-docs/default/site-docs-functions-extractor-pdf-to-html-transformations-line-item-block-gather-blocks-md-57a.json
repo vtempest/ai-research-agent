@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "GatherBlocks-4",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-4"
+    "title": "DetectListLevels",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels"
   },
   "next": {
-    "title": "is-url-pdf-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf-1"
+    "title": "is-url-pdf",
+    "permalink": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf"
   }
 }

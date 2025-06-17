@@ -1,0 +1,35 @@
+{
+  "id": "api/get-school",
+  "title": "Returns a school",
+  "description": "Returns a school",
+  "source": "@site/docs/api/get-school.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-school",
+  "permalink": "/docs/api/get-school",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-school",
+    "title": "Returns a school",
+    "description": "Returns a school",
+    "sidebar_label": "Returns a school",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVFFv0zAQ/iuRn2BK127SHuhbhSY0gRDaQEhUAbnptTFN7My+VCuR/zt3SZw1a4YYvLSOz3ff5+++cy1MCVaiMvpmLeZiC3iXZsbkIhaltLIABOvEfFkLpSleSswopClAX6l0kCuHtLMGl1pVciEKfM1UmkUhHKGJLGBldeSa4hHVioWF+0pZIFi0FcSCYlBIMa8FHkou79AqvRXex6PoLhAdw+6AeuQX4SV82JVGO3Acv5zN+G+I0+uUGo2gkU+cTc/476SyWf2EFAcclmKtXJnLw0e+DSGWlluBqoVs7/iUWiwK+fAB9JZ0mF9eXcViY2whCVt8Xy4m3+Tk12zyJpokwseD+iOV/pDpUOI4utI9+pALdaXKc7nKoZWXmiZQIX8GpbznzTVsZJXjqZ7X1hr7QjmHmhXgnNzCM6WjEI5P/TXoSziXPN6ACjT0WRtIK6vw0MxEasxO0YFlwp4Zgt42vnORjHqj0jRlphuzZsBYOjENc+KmdVj6aZtEW+3CC4a2+zCNlc05dX8hGDmQumOlWjECtV40War3cKAyzSh14ZNR/oFmB7rRROmNafI7Ed6GcV58uokIOBbMpr3sxfnsfMbWKY3DQupHC4/pMBCqJ4jwgFNyLPGjQs0F606jZc/PUfr86N3pZOLdrjzJkREJTqrrFZ38YnPvefu+Ast9o+VeWtWalbSkQeE1NWYjcwcn/HpHile3nU9eR3/1xI3eLPRDczP2Mq/4i5Y76s7Rm8qv3n8wG3kA/4FNp6lP6GQGcg22UawNLtIUSjxK43llO/Y+f3f9mcKy4h4eG3HXGLFbcMFRFk88GTjxL4szmlPXrc+978+3oWczumuF06xKQpP+Gws4Zg4=",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns the history log for a school",
+    "permalink": "/docs/api/get-school-history"
+  },
+  "next": {
+    "title": "Returns list of schools in a caselist",
+    "permalink": "/docs/api/get-schools"
+  }
+}

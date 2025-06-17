@@ -1,7 +1,7 @@
 import { getDomainWithoutSuffix } from 'tldts';
 
-import { convertHTMLToEscapedHTML } from "../extractor/html-to-content/html-utils.js";
-import { scrapeURL } from "../../index.js";
+import { convertEscapedHTMLToHTML } from "../extractor/html-to-content/html-utils.js";
+import { scrapeURL } from "../index.js";
 
 
 
@@ -178,7 +178,7 @@ export async function searchWeb(query, options = {}) {
           }
         }
 
-      title = convertHTMLToEscapedHTML(title);
+      title = convertEscapedHTMLToHTML(title);
       var url = result.url.replace(/&amp;/g, "&");
       var snippet = result.content?.replace(/<\/?[^>]+(>|$)/g, "");
       var score = Math.round(result.score * 100) / 100;
@@ -237,7 +237,7 @@ export async function searchWeb(query, options = {}) {
     const snippetMatch = snippetRegex.exec(resultHtml);
 
     if (titleUrlMatch && titleUrlMatch[1] && titleUrlMatch[2]) {
-      const url = convertHTMLToEscapedHTML(titleUrlMatch[1]);
+      const url = convertEscapedHTMLToHTML(titleUrlMatch[1]);
       let title = titleUrlMatch[2].replace(/<\/?[^>]+(>|$)/g, "");
       let snippet = snippetMatch
         ? snippetMatch[1].replace(/<\/?[^>]+(>|$)/g, "")
@@ -255,8 +255,8 @@ export async function searchWeb(query, options = {}) {
       //   cached = linkMatch[1];
       // }
 
-      title = convertHTMLToEscapedHTML(title);
-      snippet = convertHTMLToEscapedHTML(snippet);
+      title = convertEscapedHTMLToHTML(title);
+      snippet = convertEscapedHTMLToHTML(snippet);
       // if (!url.includes(".de/")) 
         results.push({ title, url, snippet });
     }

@@ -12,7 +12,7 @@
 export const AGENT_PROMPTS = [
   {
     name: "question",
-    prompt: `
+    template: `
     {article}
     Chat history: {chat_history}
     User query: {query}
@@ -22,17 +22,20 @@ export const AGENT_PROMPTS = [
       return prompt;
     },
     after: null,
+    // tools: ['get_weather']
   },
   {
     name: "summarize-bullets",
-    prompt: `Summarize in 3 bullet points that provide key takeaways and bold topics phrases.
+    template: `Summarize in 3 bullet points that provide key takeaways and bold topics phrases.
       
       {article}`,
     after: null,
+    // tools: ['get_weather']
+
   },
   {
     name: "summarize",
-    prompt: `As a professional summarizer, create a concise and comprehensive summary of the
+    template: `As a professional summarizer, create a concise and comprehensive summary of the
       provided text, be it an article, post, conversation, or passage, while adhering to these 
       guidelines:
     Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining 
@@ -48,7 +51,7 @@ export const AGENT_PROMPTS = [
   },
   {
     name: "suggest-followups",
-    prompt: `
+    template: `
     You are a suggestion generator for an AI powered search engine. You will be given a 
     conversation below. You need to generate 4-5 suggestions based on the conversation. The
      suggestion should be relevant to the conversation that can be used by the user to ask 
@@ -77,13 +80,13 @@ export const AGENT_PROMPTS = [
       content && extractJSONFromLanguageReply(content, "suggestions")
         ?.slice(0, options?.MAX_FOLLOWUP_QUESTIONS || 4)
         // ensure the question ends with a question mark or a period
-        ?.map(q => (q.endsWith("?") || q.endsWith(".")) ? q : q + "?")
+        ?.map(q => (q.includes("?") || q.endsWith(".")) ? q : q + "?")
         // remove all asterisks like bold text
         ?.map(q => q.replaceAll("*", ""))
   },
   {
     name: "answer-cite-sources",
-    prompt: `
+    template: `
   You are an expert at searching the web and answering user's queries. Generate a response that
     is informative and relevant to the user's query based on provided context (the context 
     consits of search results containing a brief description of the content of that page).
@@ -127,7 +130,7 @@ export const AGENT_PROMPTS = [
 
   {
     name: "query-resolution",
-    prompt: `You will be given a conversation history and a follow-up question.
+    template: `You will be given a conversation history and a follow-up question.
 
       Your task is to rephrase user's question so that it becomes a
        clearer question with correct keyphrases in context of the conversation history. For example:
@@ -164,7 +167,7 @@ export const AGENT_PROMPTS = [
 
   {
     name: "knowledge-graph-nodes",
-    prompt: `
+    template: `
   Your task is to construct a comprehensive Temporal Knowledge Graph
 1. Read and understand the Document: Familiarize yourself with the essential elements, including
 (but not limited to) ideas, events, people, organizations, impacts, and key points, along with 
@@ -190,7 +193,7 @@ of your knowledge graph. For each edge:
 
   {
     name: "summary-longtext",
-    prompt: `
+    template: `
     1. Read Summarized Sections: Carefully review all the summarized sections of the document. 
     Ensure that you have a clear understanding of the main points, key details, and essential 
     information presented in each section.
@@ -217,7 +220,7 @@ of your knowledge graph. For each edge:
   },
   {
     name: "results-relevance-filter",
-    prompt: `
+    template: `
       You are an AI research assistant. From the following list of search results, choose the most relevant URLs for the query:  
 **"{user_query}"**
 
@@ -232,7 +235,7 @@ Evaluate relevance by semantic similarity and keyword alignment. Rephrase the qu
 
 
 /**
-* This function extracts and cleans content between XML-style tags and returns a JSON object.
+* Extracts and cleans content between XML-style tags and returns a JSON object.
 * @param {string} text - Input text to parse
 * @param {string} [key='questions'] - Tag name to look for
 * @category Generate

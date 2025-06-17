@@ -1,0 +1,35 @@
+{
+  "id": "api/post-team",
+  "title": "Creates a team",
+  "description": "Creates a team",
+  "source": "@site/docs/api/post-team.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-team",
+  "permalink": "/docs/api/post-team",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-team",
+    "title": "Creates a team",
+    "description": "Creates a team",
+    "sidebar_label": "Creates a team",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVk1v2zAM/SuGTluRNZ+n3Npih2KHFWt2CoJAsZlGi2N5Ep0tMPzfR1qW49bOXHTYrZdEFik+8ulJVC50Ckai0sl9JOYi1RYXIA9iIFJp5AEQjBXzZS5UwmaJOzIlZKCvUFqIlUWaicCGRqUchwx3Z4OBn5kyQLHRZDAQNtzBQYp5LvCUchCLRiVPoigGnRjkr3XcQnj006+Pv3LOYPFWRyf2eB5ysYMAqfQAdRAakAgd4UOdICTIq6+GV/zXAtSbHxBy6alhblGBZaurp5UWFaZsGsvT+qJDotGFaC+FDaVpxuutMhb/7hLLPg+LWUS1rVXU8FNU7xOYhuOkH23SizZ5Ldq0H23aizZ9LdqsH23WizbrQSNPVBjzXHnUioKnDNhUJ9bt9GQ0bgv0rhRlVIpUvEvxXYr/S4oRbGUWY1uBn43R5p+kdwBr5RNcCB1486DdHRpX8bIOszrnTwHK9MnTQpgZhaeyb4Va7xU5LFfcAbpOlA2kP1PU73ba98GyB1Ivmouh73R2mPthMXStiabcoBhyECsY3xx928xMzAGOY8HwPrNHpssx4vOrmZOp+gInClN2w8rc6rlr1HtISmJUstXl+ooJ332Dm4f7gIAHgrNxFY+vR9cjFggXeJDJ+Tpok/GMqzo9hN84pFuCsqMwZXl5xdOyzo5ZmDeeBxVVPFs3dMcWkbJjrmlxnm9oxXcTFwVPU6s2vIU0PEqj5IaLI0bpkuIx7dJWxhZaedbiFB++VZL5GDReJJ11eO4TJv4o44y/aLinnWg8dPiR8ib8+r3yBvSKsWJFnjuQER1c5sEZ7xzapwWHOC/mY8nJOqebMIQUX5pXDb0/fH1ckH1TvYwOOmI3I3/xG4h+KR1Clxlvc1Op+1Kp1YCz6izlhWh9YfzLSXauyXN3EEgM3t+ZLq6ouPHeTO2K7oM/60a6ag==",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates a tabroom link",
+    "permalink": "/docs/api/post-tabroom-link"
+  },
+  "next": {
+    "title": "Updates a round",
+    "permalink": "/docs/api/put-round"
+  }
+}

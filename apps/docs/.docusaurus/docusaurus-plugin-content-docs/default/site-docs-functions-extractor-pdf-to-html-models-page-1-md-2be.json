@@ -8,14 +8,14 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/Page-1",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/Page-1.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/Page-1.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "LineItemBlock",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock"
+    "title": "Metadata",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata"
   },
   "next": {
     "title": "Page-2",

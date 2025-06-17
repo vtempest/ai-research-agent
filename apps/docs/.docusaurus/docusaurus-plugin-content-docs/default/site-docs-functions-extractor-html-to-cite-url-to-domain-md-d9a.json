@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/html-to-cite/url-to-domain",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/url-to-domain.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/url-to-domain.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "url-to-domain-2",
-    "permalink": "/docs/functions/extractor/html-to-cite/url-to-domain-2"
+    "title": "metadata-to-cite",
+    "permalink": "/docs/functions/extractor/html-to-cite/metadata-to-cite"
   },
   "next": {
-    "title": "html-to-content",
-    "permalink": "/docs/functions/extractor/html-to-content/"
+    "title": "url-to-favicon",
+    "permalink": "/docs/functions/extractor/html-to-cite/url-to-favicon"
   }
 }

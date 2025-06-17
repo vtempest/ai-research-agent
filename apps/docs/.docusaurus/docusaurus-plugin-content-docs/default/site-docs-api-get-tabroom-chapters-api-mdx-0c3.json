@@ -1,0 +1,35 @@
+{
+  "id": "api/get-tabroom-chapters",
+  "title": "Returns list of chapters linked to a user on Tabroom",
+  "description": "Returns list of chapters linked to a user on Tabroom",
+  "source": "@site/docs/api/get-tabroom-chapters.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-tabroom-chapters",
+  "permalink": "/docs/api/get-tabroom-chapters",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-tabroom-chapters",
+    "title": "Returns list of chapters linked to a user on Tabroom",
+    "description": "Returns list of chapters linked to a user on Tabroom",
+    "sidebar_label": "Returns list of chapters linked to a user on Tabroom",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJydUk1v2zAM/SuCjoXRpDvmVhTFUOwytN0pCAbFZmLNtqRSdDDD8H8facuJ2zXAsIs/9B6p9x7Zax8ADVnvngq90UegV7NH75uH0gQCjDrTCDF4FyHqTa+/rNfyKiDmaIMUctmCnHtH4Eg4N6sbecW8hMbIF3UBmG0QTcdUS9DExbnf/4KcGAgoqshON9piwbHc/Qioh0w708ACiYTWHfXACFmq5ei9FYYGQQs4mLamv108Inr8NwtXpDYQoznCldZqhrNPNCO8tRaBvW7PbXYXK9xg1h8hb9FSx8yetfrKMmG7G3bZh0ufgVp0UdU2kvIHlacp8YGroFDklVFtBFTeqZSVWDLIyY7j5LYZq6HSp+UYYSr5Z0VTwSq/zJ5bnaayXrdYC+t0p0XYrPlFgpyympVf1iLYbzDuhYhP8DxmnZsIYuQn+QrcGJl1Bz/Wp4weEkXdf39SfHGmRc2Uxd3t+nYtWxN8pMY4qUud/zOmd1mfTRD8plWoDXvgy8YQ+hTZVtO5+BwaZ1OyIkH7fs8GfmA9DHL81gJ20wROBq3Z19OYuQBMwessKVcc2Ebf5zkEmc3J1K2okLUdlqP7+vjKsGlFxzLwagw8fUjDGXLdot2H7LN0rTyH7EpN30/zZDMzf4KuViRbM1sS3PHC/wGTHpIf",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/get-status"
+  },
+  "next": {
+    "title": "Returns list of rounds linked to a user or slug on Tabroom",
+    "permalink": "/docs/api/get-tabroom-rounds"
+  }
+}

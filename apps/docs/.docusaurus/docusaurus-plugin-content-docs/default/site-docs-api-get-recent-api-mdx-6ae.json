@@ -1,0 +1,35 @@
+{
+  "id": "api/get-recent",
+  "title": "Returns recent modifications in a caselist",
+  "description": "Returns recent modifications in a caselist",
+  "source": "@site/docs/api/get-recent.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-recent",
+  "permalink": "/docs/api/get-recent",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-recent",
+    "title": "Returns recent modifications in a caselist",
+    "description": "Returns recent modifications in a caselist",
+    "sidebar_label": "Returns recent modifications in a caselist",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJydVE1v2zAM/SuCTlthNMmOvhVDURS7DN2GHYIgUGUm1mJLqj6CBYb/+0jbcpPGRrddEtmPpB4fH91wY8GJoIx+LHjO9xCeQIIOPONWOFFDAOd5vm640ohbEUqENAL4JIWHSnkKLsBLpywVQuBnqWTJEsyCYViY1aZQOyW72zzbGYd5Dl6icoB3Bxch416WUAueNzycLN3hg1N6z9t2Q8HeYip4wj8tl/R3eXFPnjkTdeGxvDQ6UDcYeLO4ob+rC8zzL5Bdv460CKovH0DUW1WcBSostQciXSut6ljzfNUiY1XABN+MBxMdCdVffwV3HCcRY7HLuTTkqD1WljOXEu1+PHNoobytxGk+CiUypnoXf7dOtIUIUGzFVCfERoUKxqHhK3pZwE7EKlyP9t65zjH/P9IavBd7mCnNEpxNUH216Xoss3ntAAt09EkckNGpcOp2RhpzUBiw3pB931o1oD88c71lL5dDaSbY2XrhHpZmWNBuNXENc75IEX7RpGO7cGmBPbhj2t7oKko4rjgxSSS/kXK9OInqKKKw6gucsEy3+AN8tfrbYA6gO42U3pkufxDlc1r/u6+PDC/OOLHpm1/dLm+X5BFrfKiFpryh8j/pciHpSD3A77BAbyJzsiG13gyarUfm9HnIz0oNsqE6JXKiyKZ5RviHq9qWXr9EcDRWPB6FU+KZukRpcQ/ojNPZicrDFanRsPzD02Cjj+zvv5CTPaUZaRrQUVSRnvB4wImdfZfbDcaWIAr8bBHVHr6TEmw4S6Q9IluMLnu4/46wiKTYuSEOnSGGAxWc5PHGG4kV/bbZTE7T9H5DqVN8D81mDG2laNJlgxv4B7nqVr8=",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns files for an open evidence year",
+    "permalink": "/docs/api/get-files"
+  },
+  "next": {
+    "title": "Returns a single round",
+    "permalink": "/docs/api/get-round"
+  }
+}

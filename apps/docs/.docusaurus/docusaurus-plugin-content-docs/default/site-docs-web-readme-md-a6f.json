@@ -1,0 +1,24 @@
+{
+  "id": "web/README",
+  "title": "README",
+  "description": "Being is Becoming",
+  "source": "@site/docs/web/README.md",
+  "sourceDirName": "web",
+  "slug": "/web/",
+  "permalink": "/docs/web/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "globals",
+    "permalink": "/docs/functions/globals"
+  },
+  "next": {
+    "title": "global",
+    "permalink": "/docs/web/global"
+  }
+}

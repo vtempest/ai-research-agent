@@ -1,0 +1,35 @@
+{
+  "id": "api/get-school-history",
+  "title": "Returns the history log for a school",
+  "description": "Returns the history log for a school",
+  "source": "@site/docs/api/get-school-history.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-school-history",
+  "permalink": "/docs/api/get-school-history",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-school-history",
+    "title": "Returns the history log for a school",
+    "description": "Returns the history log for a school",
+    "sidebar_label": "Returns the history log for a school",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJytVE1v2zAM/SuGTlth1OmOuRVDsRW7DO2GHYKgUGwm1uJIqkQHCwz/95Gy5SS1sxXdLoksfj0+PqoRxoKTqIy+L8RcbAAf89KY6rPyaNxBpMJKJ3eA4LyYLxqhNLlZiSWZNBnoK5ceKvKnmwJ87pTlfGT4Uaq8TKI5QZM4wNrpBEtIKrNJ1sZRkIPnWjmg+uhqSIXPS9hJMW8EHiwX8OiU3oi2TSfr+4D4QvXO+B9qL9nZW6M9eLZ/mM3477xmTxsXoOS50Qga2e0qu+K/UXqz+gk5M2cdTwJVl/ws6whLKmpbSITiaXX4o1niJIsCFVZwhEt3fFvAWtYVjru6cy6Q9fZ+duC93MCF1Ek0pxNYjxNaDGmWxxYoQYBPnh7y2ik8BJ3mxmwVOSyWPLnzog9BCT5IoTxOjCWRyGSQE6m+NP1WhEUg0c1FFvXssyYe26wLoqvu0GblsEAe3D5uT+0qTrG/EYwqAn5kFjuiIuyBUGnVF+A0Qfi9ebR6T2i2oANfSq9NiO8J+hjX7/brfUKFU8FoOiJurmfXMxaMNR53Mmitz/xKjqaFivALM1tJwsxq5Kabnr/FgNlT+Pzk7egp5NshfWSRyCoJIoc3zYpivruqbfn6uQbHE6fjXjolV9w0MV0oz2ca31pWHkZIBy2Ldw+9wt4nr3ywJruM89I8rL2sav6i45amd/JG8hv2D9j+8py9AVnPdbskzxJkAS7w1xlv8xwsnoTx3rN0h934dPeNzLLm2Z6KdhtE2x844SSKF/qNmPiXiZqMaZpuJ2j+0b8zXYzo24rezMqSXozfFHhjVw==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns list of rounds for a team",
+    "permalink": "/docs/api/get-rounds"
+  },
+  "next": {
+    "title": "Returns a school",
+    "permalink": "/docs/api/get-school"
+  }
+}

@@ -20,7 +20,7 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./apps/web-app:/app
+      - ./apps/web:/app
     working_dir: /app
     restart: unless-stopped
     command: bash -c "bun i; bun make; bun preview"

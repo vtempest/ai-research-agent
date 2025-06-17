@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/slider-1",
+  "title": "slider-1",
+  "description": "Documentation / lib/components/ui/slider",
+  "source": "@site/docs/web/lib/components/ui/slider-1.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/slider-1",
+  "permalink": "/docs/web/lib/components/ui/slider-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/slider-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "skeleton",
+    "permalink": "/docs/web/lib/components/ui/skeleton"
+  },
+  "next": {
+    "title": "slider",
+    "permalink": "/docs/web/lib/components/ui/slider"
+  }
+}

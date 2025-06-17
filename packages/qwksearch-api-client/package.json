@@ -14,7 +14,7 @@
   "scripts": {
     "test:api": "vitest",
     "test:api:ui": "vitest --ui",
-    "build:api": "npx @hey-api/openapi-ts -i ../../apps/docs/openapi-docs.yml -o ./src -c @hey-api/client-fetch; npm run build:js"
+    "build:api": "npx @hey-api/openapi-ts -i ../../apps/docs/openapi-docs.yml -o ./src -c @hey-api/client-fetch; vite build"
   },
   "files": [
     "dist"

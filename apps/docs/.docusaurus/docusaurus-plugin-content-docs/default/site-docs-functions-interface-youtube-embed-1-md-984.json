@@ -8,14 +8,14 @@
   "permalink": "/docs/functions/interface/youtube-embed-1",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/interface/youtube-embed-1.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/interface/youtube-embed-1.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "highlight-code",
-    "permalink": "/docs/functions/interface/highlight-code"
+    "title": "ip-to-lang",
+    "permalink": "/docs/functions/interface/ip-to-lang"
   },
   "next": {
     "title": "youtube-embed",

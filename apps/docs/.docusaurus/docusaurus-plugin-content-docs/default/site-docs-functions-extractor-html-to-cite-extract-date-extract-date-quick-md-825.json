@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "extract-date-quick-3",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick-3"
+    "title": "date-validators",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-validators"
   },
   "next": {
-    "title": "extract-source-1",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-source-1"
+    "title": "extract-source",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-source"
   }
 }

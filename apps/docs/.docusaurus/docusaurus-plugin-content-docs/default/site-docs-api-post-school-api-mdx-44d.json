@@ -1,0 +1,35 @@
+{
+  "id": "api/post-school",
+  "title": "Creates a school",
+  "description": "Creates a school",
+  "source": "@site/docs/api/post-school.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-school",
+  "permalink": "/docs/api/post-school",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-school",
+    "title": "Creates a school",
+    "description": "Creates a school",
+    "sidebar_label": "Creates a school",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztlcGO2jAQhl8l8qldhQVW2kO5UdTDqlW7KvRSlK1MMhCXxE5thy6N8u6diWMgJFtp772AkxnP/PN5PKmYKkBzK5R8SNiMFcrYZZwqlbGQFVzzHCxow2briglJDtymaJJowKeYG8iEsfgmARNrUVAkNCzOBg2/SqEBo1tdQshMnELO2axi9lhQEGO1kDtW15FzBmPfq+RIHt2gqxQC04gLrApiDdzCQIJYSQvS0v6b8Q399VKqzU+Iu+LWLBGmyPjxM5WGUgpNaKwAQxtdwdeaQ5bz508gdwhldnd/H7Kt0jnH3OxpPR9956M/k9G7YBSxOuzEH4j0j53GUqVD2YU8Ze9qwSMqs4xvMnBYagxjhaVH1h5wXdNLDaZQ0rgq7ybTPvZFAzpp0bP/gF8HOIEtLzPb5/pBa6VfibPLLAdj+A5eCB14c9i7ad1z8X7RuQIM0MgnNhCXWthjMwNipfYCHdYR3dahPjEBP3cKTo9U+bnSTBRix8Z+bphx5Zf12O0yjFLqg586pc5ox2HKKKMXsyRCDoKXdILFC/ERjhimGVituTeyfli1B9mwEHKrmv1t8X54BfPHhwATh4zUuCKnt5PbCbUMVZRzeW7dofo7gE4CLTzbMXYq6sNATYFVi2Z90kccZhfz1dNBCCnBRNeq2qD9m87qml7j5NR0Srg8cC1cayJBvBa0xmPY8sxAT9Wp/9ibr21XvA0uBvigas9aEugDz0p6wuUeyV98F+oIfVPgCehGizMvXMbRioKct1P316F3mscxFPbaHF001eOX5Qrtm/ZjkauE3DT/TXMHf1EQZuclgb3sjn3THe2CVA0Wc9UovjT6JZGDe6rKNR8eiPd3phd3tGy8N8GN8Nr9BWnUinI=",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates a round",
+    "permalink": "/docs/api/post-round"
+  },
+  "next": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/post-status"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "api/patch-team",
+  "title": "Patches a team",
+  "description": "Patches a team",
+  "source": "@site/docs/api/patch-team.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/patch-team",
+  "permalink": "/docs/api/patch-team",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "patch-team",
+    "title": "Patches a team",
+    "description": "Patches a team",
+    "sidebar_label": "Patches a team",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVU1v2zAM/SuGTluRNR/tKbeuGLBil2JtT0EQKDbTaLEtT6KzBYb/+0jJdtzYnYP0ksgSxff4JD0WQmdgJCqdPkRiLjKJ4fYZZCJGNDYyAQRjxXxRCJX69S0tpbRAX6G0ECuLNBOBDY3KOBEt3B8XDPzOlQFKjiaHkbDhFhIp5oXAQ8ZJLBqVvoqyHPViULzWcQfhqZ7+aH70xb7NXilwfu6lDwaLX3V04IiThFsInLZBo3ew0SZAmsd+sFCnCClyrqvxFf914KUx8kBbFUJiW/N6/QtCFh8VxjzxkkUSQZQjkaj0wUdPT5ct1UEqERGb6dSCyzibTHqqIcZB7jZF4iymDaPMsACofHZ/Bh056TiUzWJ5WL0bkGoE278V1sTLTFcbZSz+PySWQxEW84hqW6moFaeo3lcwrcDZMNpsEG12LtrNMNrNINrNuWi3w2i3g2i3A2jl8Ta6x+evYgQbmcfYvYHfjNHmQ1cvAWvlK7yTOqiXR10bab3URZNmeeRPCRx9irQQ5kbhwRloqPVOUcBiyXbxFvSRvQFsIGs3IOPd6saRnRuTa83FuPZcOy7qYTn2JklTflCOOQt98l8pmIfZ1z6em5jz7KeCadQMn1g2r0zN82gzmfoBzmeYarXcaQIr1DtInUAq3Wi3v1KkbgfB3eNDQMAjwWx85dPryfWEL0qmLSYyPdpCV5Q3mjX0EP7imNyC2FEaV15RybVo2FnaPm/1q0oxnm06jBONZxwcibPVfKkXoijWtPPFxGXJ0+Tzho+UhntplFxzkaQsmRaP6dQ2MrbQ4dtcVvHpZ3WFPgetVtlbT30GKR/AXsY5f9FwRyfS6sDc3S7CbxrpBeiVchdjV232AmR3QuWS4rYgIzIQ1t8v3XukL8+c4LiV7YGJ+qC7MIQMT5eXrXf3ePd8/50C1lU/T3TEcUb+4V5Nv8SG4GXO96z9VHbuqVQDptVbycmrqeviX2bZu6co/EssyybeL727oxKnjmZll2RM/wCfeWFL",
+    "sidebar_class_name": "patch api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/patch-status"
+  },
+  "next": {
+    "title": "Creates a cite",
+    "permalink": "/docs/api/post-cite"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "web/routes/api/search/+server",
+  "title": "+server",
+  "description": "Documentation / routes/api/search/+server",
+  "source": "@site/docs/web/routes/api/search/+server.md",
+  "sourceDirName": "web/routes/api/search",
+  "slug": "/web/routes/api/search/+server",
+  "permalink": "/docs/web/routes/api/search/+server",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/api/search/+server.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+server",
+    "permalink": "/docs/web/routes/api/model/+server"
+  },
+  "next": {
+    "title": "+server",
+    "permalink": "/docs/web/routes/api/subscriptions/+server"
+  }
+}

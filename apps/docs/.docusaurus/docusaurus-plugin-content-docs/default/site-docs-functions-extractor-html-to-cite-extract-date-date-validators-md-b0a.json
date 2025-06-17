@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-validators",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-date/date-validators.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-date/date-validators.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "date-validators-3",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-validators-3"
+    "title": "date-extractors",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors"
   },
   "next": {
-    "title": "extract-date-1",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-1"
+    "title": "extract-date-quick",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick"
   }
 }

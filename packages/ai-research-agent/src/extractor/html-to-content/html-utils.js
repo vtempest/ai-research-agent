@@ -56,11 +56,11 @@ catch(e){
  * @return {string} The processed string.
  * @category HTML Utilities
  * @example
- * var normalHTML = convertHTMLToEscapedHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
+ * var normalHTML = convertEscapedHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
  * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
  * console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
  */
-export function convertHTMLToEscapedHTML(str, unescape = true) {
+export function convertEscapedHTMLToHTML(str, unescape = true) {
   const entityMap = {
     "&": "&amp;",
     "<": "&lt;",

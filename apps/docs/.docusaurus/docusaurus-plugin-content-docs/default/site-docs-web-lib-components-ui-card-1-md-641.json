@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/card-1",
+  "title": "card-1",
+  "description": "Documentation / lib/components/ui/card",
+  "source": "@site/docs/web/lib/components/ui/card-1.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/card-1",
+  "permalink": "/docs/web/lib/components/ui/card-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/card-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "button",
+    "permalink": "/docs/web/lib/components/ui/button"
+  },
+  "next": {
+    "title": "card",
+    "permalink": "/docs/web/lib/components/ui/card"
+  }
+}

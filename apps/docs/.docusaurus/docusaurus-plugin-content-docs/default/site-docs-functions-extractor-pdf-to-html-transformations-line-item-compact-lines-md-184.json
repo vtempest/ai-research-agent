@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "CompactLines-4",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-4"
+    "title": "Transformation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/Transformation"
   },
   "next": {
-    "title": "DetectHeaders-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-1"
+    "title": "DetectHeaders",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders"
   }
 }

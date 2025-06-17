@@ -1,0 +1,35 @@
+{
+  "id": "api/get-cites",
+  "title": "Returns list of cites for a team",
+  "description": "Returns list of cites for a team",
+  "source": "@site/docs/api/get-cites.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-cites",
+  "permalink": "/docs/api/get-cites",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-cites",
+    "title": "Returns list of cites for a team",
+    "description": "Returns list of cites for a team",
+    "sidebar_label": "Returns list of cites for a team",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJytVcFu2zAM/RVDp60w6nTH3IqhKIpdhm7DDkFQqDYTa3EkV6KDBYb/faQsOU7jdF27S+yIEt/jE/ncClODlaiMvivEXKwBPysEJ1JRSyu3gGCdmC9aoTSFa4klhTQF6F8uHVTKIa0U4HKras5DgZ+lysskhhM0iQVsrE5cXhpTuYSSpcLCU6MsECzaBlJBQdhKMW8F7mvO79AqvRZdl07C98nOgPfBETSC3P4nYE51BpZDI9CctXwr6FMDdj8qVxVwrlgKnaCujD2CXcnKvYi75N2uNtrR/VP802zGj2PA2B250QgaecNFdsGPk8TSWsn86cTWjdbN4y/I8YjbQljT6OJBFYJY1JabElVPg6vhwCGBIug1WNGlh2OTUVRYwUSpqU/qJsWPh3yltNDxWgEr2VR4KseNtV7mV8gxlH1c3hack2s4kzqJ4XSC6Vi/uG95KIASRP4O8sYq3PtJzo3ZKNqwWPKVH4Pe+w5yiZ9bszq0UiKT0PbkCaUJXuFtgkZjLrI47S5r42uXhXnP2v6ly/wUZi0/uiwPveTA7qLNNLbibLsrweQi728sZmiHwP7QZrX6Ar7PuIAQPvGoBzQb0F42pVfGn48XHX3q+utdQsCpYDa9HleXs8sZN0xtHG6l5nMh8yukOtJ2IIzwG7O6ksSXEvuC2yDjYuDLusxHBhuU5NXB97yYvBLgej1JtpLIcrK2faQMP2zVdbzcGwqrXCgnH6uRKzxjOrTz3w1msqgNXcjgWDtZNbzF3+hOWsXQ/0jjw33o9Y/J6z4uk7Rix+j9mFakO6jNDvwOai99et5AK1z3O0md/zC9gZLvt25J+0qQBXktX2Yfus5zqHF0iO2QL36wjdub7xSWDff7eIg3fojDCyec5PBsniMj/mWFJs+0be8RNAVxfx86eyKUFXezJksy0j946B9r",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns list of caselists",
+    "permalink": "/docs/api/get-caselists"
+  },
+  "next": {
+    "title": "Downloads a file",
+    "permalink": "/docs/api/get-download"
+  }
+}

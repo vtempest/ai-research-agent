@@ -1,0 +1,35 @@
+{
+  "id": "api/put-status",
+  "title": "Responds with a 200 if up",
+  "description": "Responds with a 200 if up",
+  "source": "@site/docs/api/put-status.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/put-status",
+  "permalink": "/docs/api/put-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "put-status",
+    "title": "Responds with a 200 if up",
+    "description": "Responds with a 200 if up",
+    "sidebar_label": "Responds with a 200 if up",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNkk9v2zAMxb+KoGNhNGmPuRXFDsUuxbKeimBgHCZW40gqSaULDH/3krbbZStW1Bf9e3x8+smdTxkJJKR4t/ELn4ssBaSwrzwh5xQZ2S86fz2f27BBrilk06t6iXREcoFdyVpQpygYxXQXswsbuG7wADaTU0atYKEQd77Xr1KzLZRWPvp+I0r0NcO0fsJaVJvJbiJhjHtAZtjhf6zd23H1IZdd+7kEQqXx+G6zUmGQFkeDIb4qGetCQU6qNAHs2Gp45Leq/un8Y8C5YfcSpHHglKgL25FcBoIDChKPXjpv0vQew7E0upjx29PwAN7EnS/U2tnxyverP5mWBmpkUae0D3jGDHL4jie1CZZrOq581Ai2BsY2sPyStMc4IAlxm4b6icHtJHE393dOG1fe0ozXvLqcX869FuXEcoBodZPzZwT+YvWeVPC3zHILGlQdh5t2E41z0I22sp2uW2uyB2r73rafC9L0OEegAGsL/7hSpwZhgzTg2yuJhb+pa8yG+ghtsc72v/XnL3H/8FNZvAJJ+hFd",
+    "sidebar_class_name": "put api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Updates a round",
+    "permalink": "/docs/api/put-round"
+  },
+  "next": {
+    "title": "Caselist",
+    "permalink": "/docs/api/schemas/caselist"
+  }
+}

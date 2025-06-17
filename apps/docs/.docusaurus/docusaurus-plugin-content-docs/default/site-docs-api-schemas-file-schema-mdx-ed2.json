@@ -1,0 +1,44 @@
+{
+  "id": "api/schemas/file",
+  "title": "File",
+  "description": "",
+  "source": "@site/docs/api/schemas/file.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/file",
+  "permalink": "/docs/api/schemas/file",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "file",
+    "title": "File",
+    "description": "",
+    "sidebar_label": "File",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "openev_id": 0,
+      "title": "string",
+      "path": "string",
+      "year": 0,
+      "camp": "string",
+      "lab": "string",
+      "tags": {},
+      "file": "string",
+      "filename": "string"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Err",
+    "permalink": "/docs/api/schemas/err"
+  },
+  "next": {
+    "title": "History",
+    "permalink": "/docs/api/schemas/history"
+  }
+}

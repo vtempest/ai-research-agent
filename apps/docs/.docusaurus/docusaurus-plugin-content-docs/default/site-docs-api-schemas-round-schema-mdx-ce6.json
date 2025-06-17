@@ -1,0 +1,43 @@
+{
+  "id": "api/schemas/round",
+  "title": "Round",
+  "description": "",
+  "source": "@site/docs/api/schemas/round.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/round",
+  "permalink": "/docs/api/schemas/round",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "round",
+    "title": "Round",
+    "description": "",
+    "sidebar_label": "Round",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "tournament": "string",
+      "side": "string",
+      "round": "string",
+      "opponent": "string",
+      "judge": "string",
+      "report": "string",
+      "tourn_id": 0,
+      "external_id": 0
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Recent",
+    "permalink": "/docs/api/schemas/recent"
+  },
+  "next": {
+    "title": "School",
+    "permalink": "/docs/api/schemas/school"
+  }
+}

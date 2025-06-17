@@ -33,15 +33,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Generate documentation
-        run: |
-          cd apps/docs
-          npm install
-          DOCS_ON_SUBDOMAIN=true npm run docs:build
+      # - name: Generate documentation
+      #   run: |
+      #     cd apps/docs
+      #     npm install
+      #     DOCS_ON_SUBDOMAIN=true npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: './apps/docs/docs-dist/'
       - name: Deploy Docs to GitHub Pages
         id: deployment

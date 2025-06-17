@@ -1,0 +1,24 @@
+{
+  "id": "functions/agents/api2ai-1",
+  "title": "api2ai-1",
+  "description": "Documentation / agents/api2ai",
+  "source": "@site/docs/functions/agents/api2ai-1.md",
+  "sourceDirName": "functions/agents",
+  "slug": "/functions/agents/api2ai-1",
+  "permalink": "/docs/functions/agents/api2ai-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/api2ai-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "agent-tools",
+    "permalink": "/docs/functions/agents/agent-tools"
+  },
+  "next": {
+    "title": "api2ai",
+    "permalink": "/docs/functions/agents/api2ai"
+  }
+}

@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/LineItemBlock.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/LineItemBlock.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "LineItemBlock-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock-3"
+    "title": "LineItem",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem"
   },
   "next": {
-    "title": "Page-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/Page-1"
+    "title": "Metadata",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata"
   }
 }

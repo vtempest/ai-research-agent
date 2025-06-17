@@ -1,4 +1,4 @@
-import { splitSentences } from "../../index.js";
+import { splitSentences } from "../index.js";
 
 /**
  * Function to query phrase in Wikipedia Search API and return 

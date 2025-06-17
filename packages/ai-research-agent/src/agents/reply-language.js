@@ -1,31 +1,29 @@
+import { HumanMessage } from "@langchain/core/messages";
+import { createReactAgent } from "@langchain/langgraph/prebuilt";
+import { tool } from "@langchain/core/tools";
+import { pull } from "langchain/hub";
+import { z } from "zod";
+import { agentTools } from "./agent-tools";
+import {
+  AGENT_PROMPTS,
+  LANGUAGE_MODELS,
+  LANGUAGE_PROVIDERS,
+  convertMarkdownToHTML,
+  convertEscapedHTMLToHTML,
+} from "..";
+
+//providers
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatAnthropic } from "@langchain/anthropic";
 import { ChatGroq } from "@langchain/groq";
 import { ChatPerplexity } from "@langchain/community/chat_models/perplexity";
+import { ChatCloudflareWorkersAI } from "@langchain/cloudflare";
+import { ChatOllama } from "@langchain/ollama";
 import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 import { ChatXAI } from "@langchain/xai";
 import { ChatVertexAI } from "@langchain/google-vertexai-web";
-import { HumanMessage } from "@langchain/core/messages";
 
-import { AgentExecutor, createReactAgent } from "langchain/agents";
-import { pull } from "langchain/hub";
-// import type { PromptTemplate } from "@langchain/core/prompts";
-
-// import { MultiServerMCPClient } from "@langchain/mcp-adapters";
-// TODO not working in cloudflare workers due to child_process
-import { tool } from "@langchain/core/tools";
-import { z } from "zod";
-
-import {
-  AGENT_PROMPTS,
-  LANGUAGE_MODELS,
-  convertMarkdownToHTML,
-  convertHTMLToEscapedHTML,
-} from "../..";
 /**
- * <img src="https://i.imgur.com/bailW5n.gif" />
- * <img src="https://i.imgur.com/uW6E9VJ.gif" />
- *
  * ### Generate Language Response
  * Generates language response to language prompt with agent templates.
  *
@@ -43,6 +41,8 @@ import {
  * of all other words, using multiple attention head starting points, and generate human-like
  * responses based on learned patterns.
  *
+ * <img src="https://i.imgur.com/bailW5n.gif" />
+ * <img src="https://i.imgur.com/uW6E9VJ.gif" />
  * @see
  * - [Groq Docs](https://console.groq.com/docs/overview) [Groq Keys](https://console.groq.com/keys):
  *   Llama, Mixtral 8x7B, Gemma2 9B
@@ -70,7 +70,7 @@ import {
  *  value than 1.0, the relative distance between the tokens becomes smaller (less deterministic).
  * @category Generate
  * @author [Language Model Researchers](https://arc.net/folder/D0472A20-9C20-4D3F-B145-D2865C0A9FEE)
- * @returns {Promise<{content: string, data: object, error: string}>}
+ * @returns {Promise<{content: string, extract: object, error: string}>}
  * Language response with human-like understanding of the question and context.
  * "content" is HTML (or markdown if requested)
  * "data" is a JSON object from response extracted by some agents
@@ -91,26 +91,19 @@ export async function generateLanguageResponse(options = {}) {
     temperature = 1,
     html = true,
     applyContextLimit = true,
+    LANGCHAIN_API_KEY,
     ...context
   } = options;
 
   let response = { content: "" };
 
-  const availableProviders = [
-    "groq",
-    "togetherai",
-    "openai",
-    "anthropic",
-    "xai",
-    "google",
-    "perplexity",
-  ];
+  provider = provider?.toLowerCase();
 
-  if (!apiKey || !provider || !availableProviders.includes(provider))
+  if (!apiKey || !provider || !LANGUAGE_PROVIDERS.includes(provider))
     return {
       error:
         "API key and provider are required. Valid providers: " +
-        availableProviders.join(", "),
+        LANGUAGE_PROVIDERS.join(", "),
     };
 
   try {
@@ -125,14 +118,10 @@ export async function generateLanguageResponse(options = {}) {
       (m) => m.provider.toLowerCase() == provider.toLowerCase()
     )?.models.find((m) => m.id === model);
 
-    // if (!modelJSON)
-    //   return { error: "Invalid model selected" };
 
-    // add agentic prompt template
-    //use regex to detect any variables in brackets
-    //and replace them with values passed in options
-    // if value is an object, convert to stringified json
-    let agentObject = AGENT_PROMPTS.find((p) => p.name == agent);
+    let agentObject =
+      AGENT_PROMPTS.find((p) => p?.name == agent) ||
+      (await pull(agent, { api_key: LANGCHAIN_API_KEY }));
 
     if (!agentObject) return { error: "Agent " + agent + " not found" };
 
@@ -140,8 +129,10 @@ export async function generateLanguageResponse(options = {}) {
     if (agentObject?.before)
       agentObject.prompt = agentObject.before(agentObject.prompt, options);
 
+    options.input = context.query + " " + context.article;
+
     //replace variables in prompt with values passed in options, format JSON
-    let prompt = agentObject?.prompt.replace(/\{(.+?)\}/g, (match, key) =>
+    let prompt = agentObject?.template.replace(/\{(.+?)\}/g, (match, key) =>
       key in options
         ? typeof options[key] === "string"
           ? options[key]
@@ -177,53 +168,46 @@ export async function generateLanguageResponse(options = {}) {
                   ? new ChatVertexAI({ apiKey, model, temperature })
                   : provider === "perplexity"
                     ? new ChatPerplexity({ apiKey, model, temperature })
-                    : null;
+                    : provider === "cloudflare"
+                      ? new ChatCloudflareWorkersAI({
+                          apiKey,
+                          cloudflareApiToken: apiKey.split(":")[0],
+                          cloudflareAccountId: apiKey.split(":")[1],
+                          temperature,
+                        })
+                      : provider === "ollama"
+                        ? new ChatOllama({ model, temperature })
+                        : null;
 
     if (!LangModelProvider) return { error: "Invalid provider selected" };
 
+    let tools = agentTools
+      .filter((t) => agentObject.tools?.includes(t.name))
+      .map((t) => tool(t.func, t));
+
     // Generate response by calling the API provider
+    let languageReply = tools.length
+      ? (
+          await createReactAgent({ llm: LangModelProvider, tools }).invoke({
+            messages: [{ role: "user", content: prompt }],
+          })
+        ).messages.at(-1)?.content
+      : (await LangModelProvider.invoke(prompt))?.content;
 
-    const tools = [
-      tool(
-        (input) => {
-          if (["sf", "san francisco"].includes(input.location.toLowerCase())) {
-            return "It's 60 degrees and foggy.";
-          } else {
-            return "It's 90 degrees and sunny.";
-          }
-        },
-        {
-          name: "get_weather",
-          description: "Call to get the current weather.",
-          schema: z.object({
-            location: z.string().describe("Location to get the weather for."),
-          }),
-        }
-      ),
-    ];
-
-    // Invoke the agent
-    response.content = await new AgentExecutor({
-      agent: createReactAgent({
-        llm: LangModelProvider,
-        tools,
-        prompt,
-        verbose: true,
-      }),
-      tools,
-    }).invoke({
-      input: "What's the weather in San Francisco?",
-    })?.content;
-
-    console.log(JSON.stringify(messages, null, 2));
-    // let languageReply = await langchainAgent.invoke({
-    //   messages
-    // })?.content;
-
-    // console.log(JSON.stringify(languageReply, null, 2));
+    // var reply = result?.choices?.[0]?.message?.content || result?.content;
 
     //markdown or html output
-    // response.content = languageReply // html ? convertHTMLToEscapedHTML(convertMarkdownToHTML(languageReply)) : languageReply;
+    response.content = html
+      ? convertEscapedHTMLToHTML(convertMarkdownToHTML(languageReply))
+      : languageReply;
+
+    if (agentObject?.after)
+      response.extract = agentObject.after(languageReply, options);
+
+    //
+
+    //markdown or html output
+    // response.content = languageReply // html ? convertEscapedHTMLToHTML(convertMarkdownToHTML(languageReply)) : languageReply;
 
     // if (agentObject?.after)
     //   response.data = agentObject.after(response.content, options);

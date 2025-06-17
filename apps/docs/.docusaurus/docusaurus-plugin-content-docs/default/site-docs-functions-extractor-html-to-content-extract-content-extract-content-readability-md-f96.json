@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-content/extract-content/extract-content-readability.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-content/extract-content/extract-content-readability.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "extract-content-readability-3",
-    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability-3"
+    "title": "extract-content-mercury",
+    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury"
   },
   "next": {
-    "title": "html-to-basic-html-1",
-    "permalink": "/docs/functions/extractor/html-to-content/html-to-basic-html-1"
+    "title": "html-to-basic-html",
+    "permalink": "/docs/functions/extractor/html-to-content/html-to-basic-html"
   }
 }

@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/match/match-quasar",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/match/match-quasar.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/match/match-quasar.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "match-quasar-1",
-    "permalink": "/docs/functions/match/match-quasar-1"
+    "title": "compare-letters",
+    "permalink": "/docs/functions/match/compare-letters"
   },
   "next": {
-    "title": "weigh-relevance-frequency-1",
-    "permalink": "/docs/functions/match/weigh-relevance-frequency-1"
+    "title": "weigh-relevance-frequency",
+    "permalink": "/docs/functions/match/weigh-relevance-frequency"
   }
 }

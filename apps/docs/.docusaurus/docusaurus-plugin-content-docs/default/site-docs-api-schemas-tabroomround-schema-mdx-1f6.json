@@ -1,0 +1,43 @@
+{
+  "id": "api/schemas/tabroomround",
+  "title": "TabroomRound",
+  "description": "",
+  "source": "@site/docs/api/schemas/tabroomround.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/tabroomround",
+  "permalink": "/docs/api/schemas/tabroomround",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "tabroomround",
+    "title": "TabroomRound",
+    "description": "",
+    "sidebar_label": "TabroomRound",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "id": 0,
+      "tournament": "string",
+      "round": "string",
+      "side": "string",
+      "opponent": "string",
+      "judge": "string",
+      "start_time": "string",
+      "share": "string"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "TabroomLink",
+    "permalink": "/docs/api/schemas/tabroomlink"
+  },
+  "next": {
+    "title": "TabroomStudent",
+    "permalink": "/docs/api/schemas/tabroomstudent"
+  }
+}

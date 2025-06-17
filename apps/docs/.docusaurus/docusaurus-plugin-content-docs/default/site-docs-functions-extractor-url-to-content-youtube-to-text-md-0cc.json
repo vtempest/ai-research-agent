@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/url-to-content/youtube-to-text.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/url-to-content/youtube-to-text.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "youtube-to-text-2",
-    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text-2"
+    "title": "url-to-html",
+    "permalink": "/docs/functions/extractor/url-to-content/url-to-html"
   },
   "next": {
-    "title": "highlight-code-1",
-    "permalink": "/docs/functions/interface/highlight-code-1"
+    "title": "index",
+    "permalink": "/docs/functions/"
   }
 }

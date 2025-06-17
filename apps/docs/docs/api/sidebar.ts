@@ -18,20 +18,20 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/extract-structured-content-and-cite-from-any-url",
-          label: "Extract structured content and cite from any URL",
+          id: "api/extract-content",
+          label: "## Extract structured content and cite from any URL",
           className: "api-method get",
         },
         {
           type: "doc",
-          id: "api/generate-language-model-reply-using-agent-prompts",
-          label: "Generate language model reply using agent prompts",
+          id: "api/write-language",
+          label: "## Generate language model reply using agent prompts",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api/search-the-web",
-          label: "Search the web",
+          id: "api/search-web",
+          label: "## Search the web",
           className: "api-method get",
         },
       ],

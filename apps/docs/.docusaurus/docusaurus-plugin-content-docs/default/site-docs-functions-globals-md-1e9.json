@@ -1,0 +1,24 @@
+{
+  "id": "functions/globals",
+  "title": "globals",
+  "description": "Extract",
+  "source": "@site/docs/functions/globals.md",
+  "sourceDirName": "functions",
+  "slug": "/functions/globals",
+  "permalink": "/docs/functions/globals",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/globals.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "README",
+    "permalink": "/docs/functions/"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/web/"
+  }
+}

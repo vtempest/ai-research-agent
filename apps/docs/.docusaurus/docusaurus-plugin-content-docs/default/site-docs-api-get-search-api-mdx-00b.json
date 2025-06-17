@@ -1,0 +1,35 @@
+{
+  "id": "api/get-search",
+  "title": "Returns search results",
+  "description": "Returns search results",
+  "source": "@site/docs/api/get-search.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-search",
+  "permalink": "/docs/api/get-search",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-search",
+    "title": "Returns search results",
+    "description": "Returns search results",
+    "sidebar_label": "Returns search results",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVMtu2zAQ/BWBpzYQYrtH34IiCIJcAqc9GUZBS2uLtUQq5MqoIejfuyuSsh3JBdpe9OA+Zmc4ZCtMDVaiMvo5F0uxB3wDabNCpKKWVlaAYJ1YrluhNMXfG7AnimmK8C995uAyq2puQSu+Ool5Ft4bZYFao20gFS4roJJi2Qo81dzBoVV6L7ounUZwhbT5GIVXEzSJ83BU+TdYG052tdEOHMe/zOf8mmRCiU2J1D4zGkEjJ97N7vg1AjDbn5Bxbm1ZVlS+vcovchR12YOlpEppVTWVWC66NPAcz3qFO4rVEotJMQUqLGFgsfIkuo5DOewk/40YP1pr7H8xrcA5uYcbrZMYTicGPu/eemizOfOgBv34LBVkjVV46l2ZGXNQlLDe8K5eg64AG6tdNInfScfKAxYm2F1EFcXMRec7sMdo+8aWHDsuBANE7DcWxHOOEwzayFq9AFu493MID4bOpINSOfyB5gC6p670zvT1gevXkJI8vD4nBJwKnsZzWtzP7+f91huHldRcFzrfpHulyjAmwi+c1aWkKaldT7MNUqxFkIIYF4TDK227pbG+27LreNkfUxYoV05uS964nSwdjOAGN4lPq7DHn5MP18TkSAcS0V8xR1k2HBd8S/wb3tSF8QfUeO2ckTf8YxVD924jZUDmdJBZA1/0kGVQ40UVnx4uHPz29PiNwrK5OrXkl0Pvl/DBDWNIny7afbBOnJWfLMxkTdt6O9KuxXwfulkRaMVsVmVD5+43wCcUrw==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns list of schools in a caselist",
+    "permalink": "/docs/api/get-schools"
+  },
+  "next": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/get-status"
+  }
+}

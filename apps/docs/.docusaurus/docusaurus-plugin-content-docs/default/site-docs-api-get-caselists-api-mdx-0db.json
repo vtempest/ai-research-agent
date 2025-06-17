@@ -1,0 +1,35 @@
+{
+  "id": "api/get-caselists",
+  "title": "Returns list of caselists",
+  "description": "Returns list of caselists",
+  "source": "@site/docs/api/get-caselists.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-caselists",
+  "permalink": "/docs/api/get-caselists",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-caselists",
+    "title": "Returns list of caselists",
+    "description": "Returns list of caselists",
+    "sidebar_label": "Returns list of caselists",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNVMuO2zAM/BVDx4WxSXrMbVEsikUvRR/oIQgKxWZiNbLkpWijgeF/L+nXKq/FXuJYHJLD4cit8hWgJuPdS67W6gD0WQewJlBQqao06hIIMKj1plXGMeS1BjxxzHGEXzVmhWkg55McQoamkmIc+F0AFYAJ+QSBanTJBE2yqAXCa22Q89d7bQOkKmQFlFqtW0WnSjrsvLegneq6rcBD5V2AIIBPy6U8zvvG/DPvCBwJ6GHxII+r6hpRyziGoAzRud/9hYxEAxSJyAwtJ+p/TB6BDbc5ADK6NM6UdanWq45HsfUhQgVC4w6qm7S7EYBmpHsVOYHGGx05Mm/glmSpIkMWIl34sJPzHPa6tnQt4DOix4+Jd0ekEkLQB7hTOpnC6eWUXWyHzVxm+zYEF5j4B8hqNHTqnZl5fzQM2GzFJOdNv/fuC4kMn/j9mfvY3IUfjd/7nQp+WcSQANhMF6BGK+FmpaTNxOCHyDLaY+TxZq/KfIXeX0JlDM+XZ3YT+SMM6zJu7/v8i7UlT99eEm6cKmEzTLZ6XD4uxQKVD1TyvjlvrPze0GfyzEwJ/tGispqJcsV+0nYUZKPe0nnugrvJYdvu+PgX2q6T4+HDIDLlJuidje70RcfZWR/9SNykeGRdz74/jba1wPrlNBqNkOg9wZxB53xdhN2Q95RlUFGUJR6XxNkSX55/cljXokC8z2O/z/GPFJxC7hSVu1jtRFd+u/ROTtsOdmE9J/wQupsxjjWhRZgt347/mmn8tA==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns bulk downloads in a caselist",
+    "permalink": "/docs/api/get-bulk-downloads"
+  },
+  "next": {
+    "title": "Returns list of cites for a team",
+    "permalink": "/docs/api/get-cites"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/breadcrumb-4",
+  "title": "breadcrumb-4",
+  "description": "Documentation / lib/components/ui/breadcrumb",
+  "source": "@site/docs/web/lib/components/ui/breadcrumb-4.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/breadcrumb-4",
+  "permalink": "/docs/web/lib/components/ui/breadcrumb-4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/breadcrumb-4.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "breadcrumb-3",
+    "permalink": "/docs/web/lib/components/ui/breadcrumb-3"
+  },
+  "next": {
+    "title": "breadcrumb",
+    "permalink": "/docs/web/lib/components/ui/breadcrumb"
+  }
+}

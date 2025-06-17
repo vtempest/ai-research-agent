@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "ToTextBlocks-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-3"
+    "title": "ToLineItemTransformation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation"
   },
   "next": {
-    "title": "ToTextItemTransformation-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation-1"
+    "title": "ToTextItemTransformation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation"
   }
 }

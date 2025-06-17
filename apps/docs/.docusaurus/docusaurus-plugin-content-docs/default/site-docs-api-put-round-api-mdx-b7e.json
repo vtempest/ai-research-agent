@@ -1,0 +1,35 @@
+{
+  "id": "api/put-round",
+  "title": "Updates a round",
+  "description": "Updates a round",
+  "source": "@site/docs/api/put-round.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/put-round",
+  "permalink": "/docs/api/put-round",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "put-round",
+    "title": "Updates a round",
+    "description": "Updates a round",
+    "sidebar_label": "Updates a round",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVktv2zAM/iuGTluR1WmBXnLrih2K7VD0cQqCQrHZRI0taZKcNTD830fq4aaxhxXpZYddbEkUP1IfKVItUxoMd0LJ65LNmG7crWpkySZMc8NrcGAsm81bJiSJuVujSKIAZwW3UAnrcKUEWxihCQcFV68CAz8bYQCxnWlgwmyxhpqzWcvcThOIdUbIFeu6yagN3K9UNbBwl5Y/iu+A1wP0+7D4UWwTmXwLnvj9K7qQDlZgEH4RdoN1X1W5oy0H/q4h88Yyp7JGl9zBiIFCIaB0pH6Sn9BvYFItn6GgsGlDeeEEWC9VjaEzBeWDw6PnooRRQSBgTKK0VnIUD9lrqoovK0h+1/zlB8gVMjs7v7hA5eemXI0YfIemAa3MO4ziVn/mR1GOBGRkN7zgRZG8eqcC4QtH05gOXdd59yzSYgPp59PpMNIPPrhlllLrf0z/9ZiW8MSbyg1D+c0YZT4Uwhqs5YG1EegsiSfDcrVXG+Y9zOL1AAjg3adEgKIxwu18EyiU2gjcMF9QTRpLTZvxPjmxe6xV7Cq+oVDQWJ7ahs3bNOzyUOdxKQy6nAozTunX5R4RZ/7fMfLKbFNnakxFsNszRk4lf++IxMBT8rrnk2vxHXYI44t2FA/a2qNTG5CeLiGflNeP/KQGl13eXGdoeMLIm8DD2en0dEr3QSvrai5JLyIPKXpDYe+fw9TLdcXRPcTx52sjffPePYvqs70WHBmk1b5pehJpJba5wCMtBAeQrzV6SbBtu0SsB1N1HS1jtzEUcxxuuREhz5HsUlgaY1SfeGVhcII+m9mn25hjn7O998DoCVNYJMVky6uGZjjcYJD2nhnUZo+y378WjrAeuTzadnxLHGHZx+xou+mZcYThkBvdAjeugZdY7CjyQXYVbH25J4RXXapc5GrYdFkUoN2heLFXEW4e7lG8jK+ZWpX+vcR/UY7iF51B47yhjN+/tRt/a+OAnBo9yMEFTseiL/k4qtO2oSh0Xb8/iP6oEalJu4nYBVbM3w/A1x8=",
+    "sidebar_class_name": "put api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates a team",
+    "permalink": "/docs/api/post-team"
+  },
+  "next": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/put-status"
+  }
+}

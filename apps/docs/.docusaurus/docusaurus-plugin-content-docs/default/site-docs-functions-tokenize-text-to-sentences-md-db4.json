@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/tokenize/text-to-sentences",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/tokenize/text-to-sentences.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/tokenize/text-to-sentences.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "text-to-sentences-1",
-    "permalink": "/docs/functions/tokenize/text-to-sentences-1"
+    "title": "text-to-chunks",
+    "permalink": "/docs/functions/tokenize/text-to-chunks"
   },
   "next": {
-    "title": "text-to-topic-tokens-1",
-    "permalink": "/docs/functions/tokenize/text-to-topic-tokens-1"
+    "title": "text-to-topic-tokens",
+    "permalink": "/docs/functions/tokenize/text-to-topic-tokens"
   }
 }

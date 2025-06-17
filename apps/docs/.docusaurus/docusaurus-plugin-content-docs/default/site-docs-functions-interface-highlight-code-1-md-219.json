@@ -8,14 +8,14 @@
   "permalink": "/docs/functions/interface/highlight-code-1",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/interface/highlight-code-1.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/interface/highlight-code-1.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "youtube-to-text",
-    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text"
+    "title": "index",
+    "permalink": "/docs/functions/"
   },
   "next": {
     "title": "highlight-code",

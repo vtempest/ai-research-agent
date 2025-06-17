@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/agents/reply-language",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/agents/reply-language.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/reply-language.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "reply-language-1",
-    "permalink": "/docs/functions/agents/reply-language-1"
+    "title": "language-model-names",
+    "permalink": "/docs/functions/agents/language-model-names"
   },
   "next": {
-    "title": "extract-author-1",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-author-1"
+    "title": "extract-author",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-author"
   }
 }

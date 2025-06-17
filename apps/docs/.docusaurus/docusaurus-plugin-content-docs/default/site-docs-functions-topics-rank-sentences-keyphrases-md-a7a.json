@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/topics/rank-sentences-keyphrases",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/topics/rank-sentences-keyphrases.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/topics/rank-sentences-keyphrases.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "rank-sentences-keyphrases-1",
-    "permalink": "/docs/functions/topics/rank-sentences-keyphrases-1"
+    "title": "ngrams",
+    "permalink": "/docs/functions/topics/ngrams"
   },
   "next": {
-    "title": "seektopic-keyphrases-1",
-    "permalink": "/docs/functions/topics/seektopic-keyphrases-1"
+    "title": "seektopic-keyphrases",
+    "permalink": "/docs/functions/topics/seektopic-keyphrases"
   }
 }

@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/search/search-wikipedia",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/search/search-wikipedia.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/search/search-wikipedia.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "search-wikipedia-1",
-    "permalink": "/docs/functions/search/search-wikipedia-1"
+    "title": "search-web",
+    "permalink": "/docs/functions/search/search-web"
   },
   "next": {
-    "title": "similarity-remote-api-1",
-    "permalink": "/docs/functions/similarity/similarity-remote-api-1"
+    "title": "embeddings-to-graph",
+    "permalink": "/docs/functions/similarity/embeddings-to-graph"
   }
 }

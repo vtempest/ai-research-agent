@@ -122,12 +122,12 @@ export type WriteLanguageData = {
          */
         prompt?: string;
         /**
-         * Agent name - summarize-bullets, summarize, suggest-followups,
+         * Agent name - question, summarize-bullets, summarize, suggest-followups,
          * answer-cite-sources, query-resolution, knowledge-graph-nodes,
          * summary-longtext
          *
          */
-        agent?: 'summarize-bullets' | 'summarize' | 'suggest-followups' | 'answer-cite-sources' | 'query-resolution' | 'knowledge-graph-nodes' | 'summary-longtext';
+        agent?: 'question' | 'summarize-bullets' | 'summarize' | 'suggest-followups' | 'answer-cite-sources' | 'query-resolution' | 'knowledge-graph-nodes' | 'summary-longtext';
         /**
          * JSON Object of to insert into agent prompt
          */
@@ -174,13 +174,13 @@ export type WriteLanguageError = WriteLanguageErrors[keyof WriteLanguageErrors];
 
 export type WriteLanguageResponses = {
     /**
-     * Generated reply
+     * Generated language model response (in HTML or Markdown)
      */
     200: {
         /**
-         * Generated reply
+         * Generated language model response (in HTML or Markdown)
          */
-        reply?: string;
+        content?: string;
     };
 };
 

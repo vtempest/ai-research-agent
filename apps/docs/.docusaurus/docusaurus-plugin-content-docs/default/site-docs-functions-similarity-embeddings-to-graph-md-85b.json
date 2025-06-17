@@ -1,0 +1,24 @@
+{
+  "id": "functions/similarity/embeddings-to-graph",
+  "title": "embeddings-to-graph",
+  "description": "Documentation / similarity/embeddings-to-graph",
+  "source": "@site/docs/functions/similarity/embeddings-to-graph.md",
+  "sourceDirName": "functions/similarity",
+  "slug": "/functions/similarity/embeddings-to-graph",
+  "permalink": "/docs/functions/similarity/embeddings-to-graph",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/similarity/embeddings-to-graph.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "search-wikipedia",
+    "permalink": "/docs/functions/search/search-wikipedia"
+  },
+  "next": {
+    "title": "similarity-remote-api",
+    "permalink": "/docs/functions/similarity/similarity-remote-api"
+  }
+}

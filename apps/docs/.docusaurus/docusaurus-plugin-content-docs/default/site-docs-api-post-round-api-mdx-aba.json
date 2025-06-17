@@ -1,0 +1,35 @@
+{
+  "id": "api/post-round",
+  "title": "Creates a round",
+  "description": "Creates a round",
+  "source": "@site/docs/api/post-round.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-round",
+  "permalink": "/docs/api/post-round",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-round",
+    "title": "Creates a round",
+    "description": "Creates a round",
+    "sidebar_label": "Creates a round",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVk1v2zAM/SuGTluR1UmBXnLrih2KDVjRdqcgKBSbTdTYkifJWQPD/32kPhwv9oAgveywSyOL4uPTI0W2YaoCza1Q8i5nc1YpYx9ULXM2YRXXvAQL2rD5omFCkp3bDZokGvAr4wYKYSzu5GAyLSoCQsPtwaDhZy00ILjVNUyYyTZQcjZvmN1XBGKsFnLN2nYyGgPPK1UMIjzG7ffiW+DlAP3Jb56OvfSHwdjPKt/TiSPADSSadE2sSjIN3MIIfqakBWnJ/SK9oJ9BRLV6hYx0rTRlzgowzqpqTRfyzkfskLjIYdTgOI1aVFUpOYqH0tVFwVcFRN4lf/sGco2yzq+ur9H5tc7XIwFP8NRQKX1CUDzq7vws+vQF6rcGPXYa3rCSJS9OdCB8YemT+ffQtq2jZ1AW40W/ms6Gmb51yc19ttn/nP77Oc3hhdeFHabyi9ZKvyuFJRjDvWoj0Ek0T4a9qtcbFh3M8nABBHD0qRAgq7Wwe9elM6W2Ag8sltSTxkrTJLwrTmzvGxX7vmv5lDWWxsZu0iYu29R3Ytzyizal1omf9NOmDtIwoqN3cWbUuiC43YwRm0j0kdTzAkW6nZC8El9hjzCuVQfzYOA8W7UF6XQS8kU5/yBMHD3Jzf1dgoEnjNh4AWaX08spPQS6bskl+QXkoTZ/aNfxs1hzaVVwpIc47n5NkG3R0SMZ5r3hGJSj3W6cOfFoJwygoB/KtKFcIFrTrBDihy7alrZxumjKMS53XAtf16hxLgytMYsvvDAwIN5VL/vwEGrqY9Ib0KMXi9mQlIodL2r6wuUWc9Ob+zRTz4rfje8zogcJz44dhvsZkV2q2iWe2wDPscWQ/t506yN9eiKAgyv1CyLqD91kGVT22LzsvcP7749PaF+FfyJKRT2eaf6LKgT/IhmMzmuqt/6b2bo3ExbEavQiR88nXov+EslRn6bxTxKLMJ73pr96BG3iaRJ2iY3qN7rpiSM=",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Logs in",
+    "permalink": "/docs/api/post-login"
+  },
+  "next": {
+    "title": "Creates a school",
+    "permalink": "/docs/api/post-school"
+  }
+}

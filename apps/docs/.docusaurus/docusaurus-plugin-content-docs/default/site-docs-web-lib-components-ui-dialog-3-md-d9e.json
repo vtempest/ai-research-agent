@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/dialog-3",
+  "title": "dialog-3",
+  "description": "Documentation / lib/components/ui/dialog",
+  "source": "@site/docs/web/lib/components/ui/dialog-3.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/dialog-3",
+  "permalink": "/docs/web/lib/components/ui/dialog-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/dialog-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "dialog-2",
+    "permalink": "/docs/web/lib/components/ui/dialog-2"
+  },
+  "next": {
+    "title": "dialog-4",
+    "permalink": "/docs/web/lib/components/ui/dialog-4"
+  }
+}

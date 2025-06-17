@@ -1,0 +1,35 @@
+{
+  "id": "api/get-status",
+  "title": "Responds with a 200 if up",
+  "description": "Responds with a 200 if up",
+  "source": "@site/docs/api/get-status.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-status",
+  "permalink": "/docs/api/get-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-status",
+    "title": "Responds with a 200 if up",
+    "description": "Responds with a 200 if up",
+    "sidebar_label": "Responds with a 200 if up",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNkk9P40AMxb/KaI4oooVjbxVCK8RlRXdPVYXc1G1mm84MtlOoonz3tZPAFhArcpl/z89vfpPWp4wEElK82/iZ36EsBKRhX3hCzikysp+1/no6tWGDXFLIplf1AumI5AK7JmtBmaJgFNNdTC5s4LLCA9hMThm1goVC3PlOv0LNttDU8tn3lijR9wzT+g+WotpMdhMJQ9wDMsMOv7B2r8fFp1x27acmECqN5ZvNSoVBahwM+viqZCwbCnJSpQlgx1bDA79V8aHzQ49zw+45SOXAKVEXtgO5DAQHFCQevHRepfE9+mOpdDHh16fhHryJW99QbWfHK9+t/mVaGKiBRZnSPuAZM8jhHk9qEyzXeFz4qBFsDYx1YHmUtMfYIwlxm/r6kcHNKHHzn3dOGxfe0gzXvLqcXk69FuXEcoBodaPz/wi8Y/WWVPBFJrkGDaqO/U3bkcY56Epb2U7brjXZb6q7zrafGqTxcY5AAdYWfrlSpwphg9Tj2yuJmZ+XJWZDfYS6sc72v3XnL/Hj9pey+AvUVRES",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns search results",
+    "permalink": "/docs/api/get-search"
+  },
+  "next": {
+    "title": "Returns list of chapters linked to a user on Tabroom",
+    "permalink": "/docs/api/get-tabroom-chapters"
+  }
+}

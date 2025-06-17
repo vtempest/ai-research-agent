@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/server/schema",
+  "title": "schema",
+  "description": "Documentation / lib/server/schema",
+  "source": "@site/docs/web/lib/server/schema.md",
+  "sourceDirName": "web/lib/server",
+  "slug": "/web/lib/server/schema",
+  "permalink": "/docs/web/lib/server/schema",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/schema.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ratelimits",
+    "permalink": "/docs/web/lib/server/ratelimits"
+  },
+  "next": {
+    "title": "types",
+    "permalink": "/docs/web/lib/server/types"
+  }
+}

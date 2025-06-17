@@ -1,0 +1,35 @@
+{
+  "id": "api/delete-round",
+  "title": "Deletes a round",
+  "description": "Deletes a round",
+  "source": "@site/docs/api/delete-round.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-round",
+  "permalink": "/docs/api/delete-round",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-round",
+    "title": "Deletes a round",
+    "description": "Deletes a round",
+    "sidebar_label": "Deletes a round",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVUtPGzEQ/iuRTy2KugGJS26o5IDKoQJ6iiJkdofExLGN7Y1AK//3zvixBHaronDZtT0z34y/ebhj2oDlXmh11bA5a0CChxvdqoZNmeGW73BvHZsvOyYUahjuNyhSKMBdzR1I4TyeNOBqKwxBoeDnm8DCcyssILy3LUyZqzew42zeMf9qCMR5K9SahTAd9YH6WsuBh9ty/FV8D3w3QL9Lh1/FtpnJ9+CF3/+iC+VhDRbhV6TtjFYOHCmczWb0e497GbPXTIrXWqO98qR4Up3Qb+BBPzxBTVkylirBiwTvdWvpCsn4w10xUNHAqCB5HpNog8GP4iFZrZT8QULhYcdfrkGtkcj52fk5Gj+1zXrE4ScsLRhtP+EUVeOd70Uzwv+INrxgXyguP2lA+MLTNmc/BDpr4JG30g9TubBW2y+lcAfO8cTaCPSkiKfDSj6oy2UPs3q7AALE8KkQoG6t8K9xPtRabwUqLFdUrmOl6Sa8L04cLBv9NnPiuKG8saoMFVd1ZRmqNAXwKC1CRW2LW/qFKoLiLv4Do8Dsvsyt1kqC3Z8yiquEfEs8JqpK4D2l3Ihf8IowsaWzeDD07r3egoqMCfWoo32mqIy/ycXvqwk6njKKJlFx+mP2Y0YtYbTzO67ILiMPWXrHYh+fx+qrjOQYHuLE+3WZvmUfnkPz+cGAzgzSaT9SI4l0kodg4pEOUgDI1wajJNiue0CsP1aGQMfPLVhKOy733IpU6kh2IxytMbGPXDoY3KAvaPbtJpfZ98nBazF6w5IWRTnZc9nSDpdbTNLBI0RD+Cj//VtyhPfM5dG+80tzhOeYs6P9lkfoCMepNsIKFTfAG5x3lPkku6hrMP7AisYW9V3f75eL68XdAjV4SwV72HTb2HR5QZijcXzovxIVfYmNUZuuSz0dQq+fRP+0yDcr2sTLCmfeX7LfHTc=",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Deletes a file",
+    "permalink": "/docs/api/delete-file"
+  },
+  "next": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/delete-status"
+  }
+}

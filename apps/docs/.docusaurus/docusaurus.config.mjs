@@ -39,7 +39,7 @@ export default {
         "docs": {
           "routeBasePath": "/",
           "sidebarPath": "./sidebars.ts",
-          "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/",
+          "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
           "docItemComponent": "@theme/ApiItem"
         },
         "blog": false,
@@ -47,7 +47,7 @@ export default {
           "customCss": "./docs-theme.css"
         },
         "gtag": {
-          "trackingID": "/////G-E5TZ32BZD",
+          "trackingID": "G-E5TZ32BZD",
           "anonymizeIP": false
         }
       }
@@ -76,22 +76,23 @@ export default {
         }
       }
     ],
-    "/home/deck/Projects/ai-research-agent/node_modules/docusaurus-lunr-search/src/index.js",
+    "/home/deck/Projects/ai-research-agent/apps/docs/node_modules/.pnpm/docusaurus-lunr-search@3.6.0_@docusaurus+core@3.8.1_@docusaurus+faster@3.8.1_@docusauru_aa4f8e8ba20921631d695963b8e85eeb/node_modules/docusaurus-lunr-search/src/index.js",
     [
       "docusaurus-plugin-typedoc",
       {
-        "id": "web-app",
+        "id": "web",
         "entryPoints": [
-          "../web-app/src/**/*"
+          "../web/src/**/*"
         ],
         "exclude": [
           "**/node_modules/**/*",
           "**/src/wordlists/**",
           "src/wordlists"
         ],
-        "tsconfig": "../web-app/tsconfig.json",
-        "out": "./docs/web-app",
+        "tsconfig": "../web/tsconfig.json",
+        "out": "./docs/web",
         "readme": "../../readme.md",
+        "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
           "pretty": true
@@ -114,7 +115,7 @@ export default {
         "hideGroupHeadings": true,
         "hidePageHeader": true,
         "hidePageTitle": true,
-        "gitRemote": "https://github.com/vtempest/ai-research-agent/blob/main/",
+        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
@@ -124,16 +125,17 @@ export default {
       {
         "id": "functions",
         "entryPoints": [
-          "../../packages/ai-research-agent/src/**/*"
+          "../../packages/ai-research-agent/src/index.ts"
         ],
         "exclude": [
           "**/node_modules/**/*",
           "**/src/wordlists/**",
           "src/wordlists"
         ],
-        "tsconfig": "../web-app/tsconfig.json",
+        "tsconfig": "../../packages/ai-research-agent/tsconfig.json",
         "out": "./docs/functions",
         "readme": "../../readme.md",
+        "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
           "pretty": true
@@ -156,7 +158,7 @@ export default {
         "hideGroupHeadings": true,
         "hidePageHeader": true,
         "hidePageTitle": true,
-        "gitRemote": "https://github.com/vtempest/ai-research-agent/blob/main/",
+        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
@@ -179,8 +181,8 @@ export default {
       },
       "items": [
         {
-          "to": "/functions",
-          "label": "👋 Intro",
+          "to": "/web",
+          "label": "👋 Overview",
           "position": "left"
         },
         {
@@ -194,7 +196,7 @@ export default {
           "position": "left"
         },
         {
-          "to": "/web-app/modules",
+          "to": "/web/modules",
           "label": "💻 Web App",
           "position": "left"
         },

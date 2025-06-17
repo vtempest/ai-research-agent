@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/TabManager/find-in-tab-content",
+  "title": "find-in-tab-content",
+  "description": "Documentation / lib/components/TabManager/find-in-tab-content",
+  "source": "@site/docs/web/lib/components/TabManager/find-in-tab-content.md",
+  "sourceDirName": "web/lib/components/TabManager",
+  "slug": "/web/lib/components/TabManager/find-in-tab-content",
+  "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/TabManager/find-in-tab-content.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "shortcut-search",
+    "permalink": "/docs/web/lib/components/ShortcutSearch/shortcut-search"
+  },
+  "next": {
+    "title": "icons-1",
+    "permalink": "/docs/web/lib/components/icons-1"
+  }
+}

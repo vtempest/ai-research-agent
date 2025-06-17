@@ -1,15 +1,17 @@
 openapi: 3.0.0
 servers:
-  - url: https://qwksearch.com/api/
+  - url: https://qwksearch.com/api
     description: Production Server URL
 info:
   description: |
-    Search, extract, vectorize and outline a topic base with 
-    AI Research Agent.
-   
+    Search, extract, vectorize and outline a topic base with AI Research Agent.
   version: 1.0.0
   title: QwkSearch API
   termsOfService: "http://qwksearch.com/legal/terms/"
+  contact:
+    name: QwkSearch
+    url: https://qwksearch.com
+    email: support@qwksearch.com
   x-logo:
     url: "https://qwksearch.com/icons/qwksearch-logo.svg"
     altText: logo
@@ -209,6 +211,7 @@ paths:
                 agent:
                   type: string
                   enum:
+                    - question
                     - summarize-bullets
                     - summarize
                     - suggest-followups
@@ -217,7 +220,7 @@ paths:
                     - knowledge-graph-nodes
                     - summary-longtext
                   description: |
-                    Agent name - summarize-bullets, summarize, suggest-followups, 
+                    Agent name - question, summarize-bullets, summarize, suggest-followups, 
                     answer-cite-sources, query-resolution, knowledge-graph-nodes, 
                     summary-longtext
                 context:
@@ -335,15 +338,18 @@ paths:
 
       responses:
         '200':
-          description: Generated reply
+          description: Generated language model response (in HTML or Markdown)
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  reply:
+                  content:
                     type: string
-                    description: Generated reply
+                    description: Generated language model response (in HTML or Markdown)
+                  extact:
+                    type: object
+                    description: Structured JSON extract from response, in some agents
         '500':
           description: Server error or missing prompt parameter
           content:
@@ -494,7 +500,6 @@ components:
           description: User supplied username
           type: string
           minLength: 4
-          example: John78
         email:
           description: User email address
           type: string

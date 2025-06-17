@@ -1,0 +1,36 @@
+{
+  "id": "api/schemas/tabroomlink",
+  "title": "TabroomLink",
+  "description": "",
+  "source": "@site/docs/api/schemas/tabroomlink.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/tabroomlink",
+  "permalink": "/docs/api/schemas/tabroomlink",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "tabroomlink",
+    "title": "TabroomLink",
+    "description": "",
+    "sidebar_label": "TabroomLink",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "slug": "string"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "TabroomChapter",
+    "permalink": "/docs/api/schemas/tabroomchapter"
+  },
+  "next": {
+    "title": "TabroomRound",
+    "permalink": "/docs/api/schemas/tabroomround"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "api/get-files",
+  "title": "Returns files for an open evidence year",
+  "description": "Returns files for an open evidence year",
+  "source": "@site/docs/api/get-files.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-files",
+  "permalink": "/docs/api/get-files",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-files",
+    "title": "Returns files for an open evidence year",
+    "description": "Returns files for an open evidence year",
+    "sidebar_label": "Returns files for an open evidence year",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNVMlu20AM/RVhjoGQ2D36FhRpEfRSdEEPhhHQEm1PLc0oHEqoIejfS44kL7GM5KKF6+Obx2mNr5CArXfPuVmYLfIXW2AwqamAoERGCmaxbI114n6tkQ7ic+KR3wMCyV+OISNbaREx/tkBJ+pJ2CeEXJNLNlozkRKpIXytLaE020ARMDUh22EJZtEaPlRa1TrGLZLpupWGh8q7IIgk4NNspq/LfiPezEueYw24e7jT11VlIAKFbxnLcGb367+Ysc5MSgfbvp18O2xebD4BLjWldbasS7OYd6lhywWehQUm67amUxp5N+mI5E1MLZNAWU2mFLCetDNsJ8YRh/I+maGO/hCvnKdpIrVi6NSW4wbqgq/5fyLy9DH+b/BcYgiwxRulk9GdTiA9qWl5LLM6DSAFRvwBs5osH6KYM+/3VgKWK9XYZdMfUbJh0OxGAIBLVAoJNjZHl2Ey6F62Y+eHrTHjSZuHXjZGW1Izrk9NhfqaudGOI5ifylBPwgjpJNbKfsOoVkU1uI+rl0HAwgZ+Yb9HF7mwbuNj/jD85yEkefz+nEjj1Ciafsj5/ex+FuXpA5fgNG+o/PH5L3g74mb8xw9VAQJb6se524Gb5bBSekQ7aayWtl0Lzt9UdJ2a+xtGGcttgHVxdlG8aXfU23s3ziSuvVB7vMAaKGoNiWfTAFltHNUhOBFyWUtF1Oc8ZhlWfJalatfEoxy+Pv0SN9QXiy/HuY/HOXxowdHlDmfl3pzsCFWfXXojp217tQiHY3zvupkxjDVGKykr2ZP/184L5Q==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Downloads a file",
+    "permalink": "/docs/api/get-download"
+  },
+  "next": {
+    "title": "Returns recent modifications in a caselist",
+    "permalink": "/docs/api/get-recent"
+  }
+}

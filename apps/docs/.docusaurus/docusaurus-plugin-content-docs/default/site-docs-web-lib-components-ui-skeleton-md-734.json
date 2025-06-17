@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/skeleton",
+  "title": "skeleton",
+  "description": "Documentation / lib/components/ui/skeleton",
+  "source": "@site/docs/web/lib/components/ui/skeleton.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/skeleton",
+  "permalink": "/docs/web/lib/components/ui/skeleton",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/skeleton.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "skeleton-1",
+    "permalink": "/docs/web/lib/components/ui/skeleton-1"
+  },
+  "next": {
+    "title": "slider-1",
+    "permalink": "/docs/web/lib/components/ui/slider-1"
+  }
+}

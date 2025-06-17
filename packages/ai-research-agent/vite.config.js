@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineConfig({
   plugins: [
+    nodePolyfills({
+      include: ['os', 'path']
+    }),
     dts({
       insertTypesEntry: true,
       include: [
@@ -16,7 +20,7 @@ export default defineConfig({
   build: {
     lib: {
         entry: {
-          'research-agent': resolve(__dirname, 'index.ts'),
+          'research-agent': resolve(__dirname, 'src/index.ts'),
         },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`

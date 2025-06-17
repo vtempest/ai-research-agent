@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/SearchWeb/categories",
+  "title": "categories",
+  "description": "Documentation / lib/components/SearchWeb/categories",
+  "source": "@site/docs/web/lib/components/SearchWeb/categories.md",
+  "sourceDirName": "web/lib/components/SearchWeb",
+  "slug": "/web/lib/components/SearchWeb/categories",
+  "permalink": "/docs/web/lib/components/SearchWeb/categories",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/categories.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "read-mode-view",
+    "permalink": "/docs/web/lib/components/ReadMode/read-mode-view"
+  },
+  "next": {
+    "title": "QuantumSphere",
+    "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere"
+  }
+}

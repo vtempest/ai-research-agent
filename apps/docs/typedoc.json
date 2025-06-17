@@ -1,10 +1,9 @@
 {
-  "entryPoints": ["../../packages/ai-research-agent/index.ts", "../web-app/src"],
+  "entryPoints": ["../../packages/ai-research-agent/src/**/*", "../web/src/**/*"],
   "plugin": ["typedoc-plugin-markdown"],
 
   "outDir": "./docs",
-  "tsconfig": "../web-app/tsconfig.json",
-  "entryPointStrategy": "expand",
+  "entryPointStrategy": "module",
   "navigation": {
     "includeCategories": true,
     "includeGroups": false,
@@ -35,12 +34,10 @@
         "Property",
         "Variable",
         "Reference",
-        "Accessor",
+        "Accessor"
     ],
-  "cname": "airesearch.js.org",
   "hostedBaseUrl": "https://airesearch.js.org",
   "searchInDocuments": true,
   "searchInComments": true,
-  "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
   "excludePrivate": true
 }

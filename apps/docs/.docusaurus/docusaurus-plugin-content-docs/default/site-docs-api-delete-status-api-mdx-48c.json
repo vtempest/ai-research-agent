@@ -1,0 +1,35 @@
+{
+  "id": "api/delete-status",
+  "title": "Responds with a 200 if up",
+  "description": "Responds with a 200 if up",
+  "source": "@site/docs/api/delete-status.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-status",
+  "permalink": "/docs/api/delete-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-status",
+    "title": "Responds with a 200 if up",
+    "description": "Responds with a 200 if up",
+    "sidebar_label": "Responds with a 200 if up",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNkkFv2zAMhf+KoGNhNOmOuRVbDkV7KJb2VAQDYzOxFkdSSTpbYPi/j7TdNmuxYr7Ikh4fnz6p8ykjgYQUbyq/8BU2KLgSkJZ94Qk5p8jIftH5L/O5DRVySSFbiRaskI5ILrBrsxaUKQpGMd3F7MIGLms8gP3JKaNWsFCIO9/rV6jZFtpGPvouiRL9n2Ha/MRSVJvJDiNhjHtAZtjhP6zdy3bxIZcd+7kNhArk6dVmrcIgDY4GQ3xVMpYtBTmp0gSwY6vhkd+6eNf5+4CzYvcrSO3AKVEXtiO5DAQHZU88eul/nd6uZFBIrfMZv9wOD+xN3/mWGts7Xvl+/RZrZaxGHGVK+4Bn2CCHWzypTbBo03bho6awOTA2geWHpD3GgUqI2zTUTxi+ThJ3fX/jtHHhLc140qvL+eXca1FOLAeIVjc5fwbhL1yvSQV/yyw3oEHVcThpN9E4Z11rK1vpuo0me6Sm7235uUWa7ucIFGBj4Z/W6lQjVEgDvr2SWPjrssRsL+kITWud7cn155fxbXm3fFgqjj9xXBRL",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Deletes a round",
+    "permalink": "/docs/api/delete-round"
+  },
+  "next": {
+    "title": "Deletes a team",
+    "permalink": "/docs/api/delete-team"
+  }
+}

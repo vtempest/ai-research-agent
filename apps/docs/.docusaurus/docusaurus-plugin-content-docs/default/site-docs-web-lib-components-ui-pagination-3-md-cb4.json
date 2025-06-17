@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/pagination-3",
+  "title": "pagination-3",
+  "description": "Documentation / lib/components/ui/pagination",
+  "source": "@site/docs/web/lib/components/ui/pagination-3.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/pagination-3",
+  "permalink": "/docs/web/lib/components/ui/pagination-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/pagination-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "pagination-2",
+    "permalink": "/docs/web/lib/components/ui/pagination-2"
+  },
+  "next": {
+    "title": "pagination-4",
+    "permalink": "/docs/web/lib/components/ui/pagination-4"
+  }
+}

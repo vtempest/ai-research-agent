@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "DetectListItems-4",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-4"
+    "title": "DetectHeaders",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders"
   },
   "next": {
-    "title": "DetectTOC-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC-1"
+    "title": "DetectTOC",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC"
   }
 }

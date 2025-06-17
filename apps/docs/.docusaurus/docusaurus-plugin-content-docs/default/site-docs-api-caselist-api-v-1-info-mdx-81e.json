@@ -1,0 +1,33 @@
+{
+  "id": "api/caselist-api-v-1",
+  "title": "Caselist API v1",
+  "description": "",
+  "source": "@site/docs/api/caselist-api-v-1.info.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/caselist-api-v-1",
+  "permalink": "/docs/api/caselist-api-v-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "caselist-api-v-1",
+    "title": "Caselist API v1",
+    "description": "",
+    "sidebar_label": "Introduction",
+    "sidebar_position": 0,
+    "hide_title": true,
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "API Routes",
+    "permalink": "/docs/category/qwksearch-api"
+  },
+  "next": {
+    "title": "Deletes a cite",
+    "permalink": "/docs/api/delete-cite"
+  }
+}

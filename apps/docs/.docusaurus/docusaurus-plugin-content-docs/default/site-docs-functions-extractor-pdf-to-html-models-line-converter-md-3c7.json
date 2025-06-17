@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/LineConverter",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/LineConverter.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/LineConverter.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "LineConverter-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineConverter-3"
+    "title": "HeadlineFinder",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/HeadlineFinder"
   },
   "next": {
-    "title": "LineItem-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem-1"
+    "title": "LineItem",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem"
   }
 }

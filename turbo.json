@@ -18,6 +18,12 @@
       },
       "build:api": {
         "outputs": ["dist/**"]
+      },
+      "serve": {
+        "outputs": ["dist/**"]
+      },
+      "test:api": {
+        "outputs": ["test/**"]
       }
     }
   }

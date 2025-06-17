@@ -8,7 +8,7 @@
   "permalink": "/docs/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/index.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/index.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -16,6 +16,9 @@
     "sidebar_position": 1,
     "sidebar_label": "Introduction",
     "title": "Introduction",
+    "id": "index",
+    "displayed_sidebar": "functions",
     "slug": "/"
-  }
+  },
+  "sidebar": "functions"
 }

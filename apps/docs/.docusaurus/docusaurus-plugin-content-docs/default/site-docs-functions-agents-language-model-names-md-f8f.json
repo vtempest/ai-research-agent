@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/agents/language-model-names",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/agents/language-model-names.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/language-model-names.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "language-model-names-1",
-    "permalink": "/docs/functions/agents/language-model-names-1"
+    "title": "api2ai",
+    "permalink": "/docs/functions/agents/api2ai"
   },
   "next": {
-    "title": "reply-language-1",
-    "permalink": "/docs/functions/agents/reply-language-1"
+    "title": "reply-language",
+    "permalink": "/docs/functions/agents/reply-language"
   }
 }

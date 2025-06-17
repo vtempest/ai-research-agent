@@ -1,0 +1,35 @@
+{
+  "id": "api/get-tabroom-students",
+  "title": "Returns list of students linked to a user on Tabroom",
+  "description": "Returns list of students linked to a user on Tabroom",
+  "source": "@site/docs/api/get-tabroom-students.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-tabroom-students",
+  "permalink": "/docs/api/get-tabroom-students",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-tabroom-students",
+    "title": "Returns list of students linked to a user on Tabroom",
+    "description": "Returns list of students linked to a user on Tabroom",
+    "sidebar_label": "Returns list of students linked to a user on Tabroom",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJydU8Fu2zAM/RVBx8Jo0h5zK4ZiKHYZ2u4UBINiM4lmW3JJOlhg+N9H2nLidg0w7BLbeo/Ue49MZ2MD6NjH8FTYld0Dv7otxli/cFtAYLKZRaAmBgKyq87eL5f6KIBy9I0WStmMnMfA8qqcm8WNPig/QO30jU8NCNshupNQPUNNs/O4/QU5C9CgqmI/3uiLGcdL9z2g7TO780g8g4jRh70ilfsUEIQ9V3r03qRAvaIF7Fxb8d/+HhEj/pu5KyZqIHJ7uNLaTHD2iWaEt9YjSArrc5vNxYo0mPQT5C16PgmzE62x9EJYb/pN9uHSZ+AWA5nKE5u4M5TmJwehhMJwNM60BGhiMCkrteTQ1cCApG0zUcOHmNZmgPkgHwseCxZ02QppdRzLOttipazjnVVhk+YXDXLMalJ+WZjGf4NhY1R8gjMbRIx+OwI18pNjCWGIzIddHOpTRl8SxTx8fzJycWZVzZjF3e3ydqlb00Ti2gWtS53/M6Z3WZ9NMPzmRVM58SCXDSF0KbK15XPxOTTJ5hB1j9e267Zi4AdWfa/Hby3gaZzA0aF322ocsxSAK+TPoSmXEtjKPuQ5NDqbo6taVaFr289H9/XxVWDXqo554OUQeHrRhhMUTrN2H7LP0rX622dXarpunKeYmfgjdLUi2ZrYmuBGFv4PHXGb9w==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns list of rounds linked to a user or slug on Tabroom",
+    "permalink": "/docs/api/get-tabroom-rounds"
+  },
+  "next": {
+    "title": "Returns the history log for a team",
+    "permalink": "/docs/api/get-team-history"
+  }
+}

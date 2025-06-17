@@ -8,7 +8,7 @@
   "permalink": "/docs/functions/extractor/url-to-content/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/url-to-content/url-to-content.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/url-to-content/url-to-content.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
@@ -18,7 +18,7 @@
     "permalink": "/docs/functions/extractor/pdf-to-html/util/string-functions"
   },
   "next": {
-    "title": "docx-to-content-1",
-    "permalink": "/docs/functions/extractor/url-to-content/docx-to-content-1"
+    "title": "docx-to-content",
+    "permalink": "/docs/functions/extractor/url-to-content/docx-to-content"
   }
 }

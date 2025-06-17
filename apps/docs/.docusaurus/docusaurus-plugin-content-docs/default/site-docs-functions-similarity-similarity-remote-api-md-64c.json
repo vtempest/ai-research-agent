@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/similarity/similarity-remote-api",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/similarity/similarity-remote-api.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/similarity/similarity-remote-api.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "similarity-remote-api-1",
-    "permalink": "/docs/functions/similarity/similarity-remote-api-1"
+    "title": "embeddings-to-graph",
+    "permalink": "/docs/functions/similarity/embeddings-to-graph"
   },
   "next": {
-    "title": "stopwords-1",
-    "permalink": "/docs/functions/tokenize/stopwords-1"
+    "title": "stopwords",
+    "permalink": "/docs/functions/tokenize/stopwords"
   }
 }

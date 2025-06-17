@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/Metadata-3",
+  "title": "Metadata-3",
+  "description": "Documentation / extractor/pdf-to-html/models/Metadata",
+  "source": "@site/docs/functions/extractor/pdf-to-html/models/Metadata-3.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/Metadata-3",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/Metadata-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Metadata-2",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata-2"
+  },
+  "next": {
+    "title": "Metadata",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata"
+  }
+}

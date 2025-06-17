@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    },
+    "allowImportingTsExtensions": true,
+    "typeRoots": ["src/global.d.ts"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmitOnError": false,
+    "strict": false,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
+  },
+}

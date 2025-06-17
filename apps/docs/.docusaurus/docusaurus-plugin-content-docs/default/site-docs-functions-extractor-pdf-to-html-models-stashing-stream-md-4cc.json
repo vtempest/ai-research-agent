@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/StashingStream",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/StashingStream.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/StashingStream.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "StashingStream-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/StashingStream-3"
+    "title": "ParsedElements",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/ParsedElements"
   },
   "next": {
-    "title": "TextItem-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItem-1"
+    "title": "TextItem",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItem"
   }
 }

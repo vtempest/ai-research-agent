@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/match/compare-letters",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/match/compare-letters.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/match/compare-letters.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "compare-letters-1",
-    "permalink": "/docs/functions/match/compare-letters-1"
+    "title": "youtube-embed",
+    "permalink": "/docs/functions/interface/youtube-embed"
   },
   "next": {
-    "title": "match-quasar-1",
-    "permalink": "/docs/functions/match/match-quasar-1"
+    "title": "match-quasar",
+    "permalink": "/docs/functions/match/match-quasar"
   }
 }

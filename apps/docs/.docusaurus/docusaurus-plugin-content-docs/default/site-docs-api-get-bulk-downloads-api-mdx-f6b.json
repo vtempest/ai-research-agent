@@ -1,0 +1,35 @@
+{
+  "id": "api/get-bulk-downloads",
+  "title": "Returns bulk downloads in a caselist",
+  "description": "Returns bulk downloads in a caselist",
+  "source": "@site/docs/api/get-bulk-downloads.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-bulk-downloads",
+  "permalink": "/docs/api/get-bulk-downloads",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-bulk-downloads",
+    "title": "Returns bulk downloads in a caselist",
+    "description": "Returns bulk downloads in a caselist",
+    "sidebar_label": "Returns bulk downloads in a caselist",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVMFu2zAM/RVDp60w6nTH3NqtGIpdhm7DDkEwKDYTa3EklaKzBYb/faRtOU6TAN0lkUmKfHzv2Y1yHlCTcfapUHO1AXqoq+0n98dWThdBpcpr1DsgwKDmi0YZy2VeU8kpywl+ynWAygTiSAEhR+OlHyd+liYvk5hOyCXcP1nxgKSIE5K1Q76I8FIbBMZAWEOqQl7CTqt5o+jgZUggNHaj2nYpxcE7GyBI/sNsJn+nkx9OZnD/3FkCS1J5k93I39kEjagPXGoIdmESd6vfkMtyHoUsMv3cfvkzfKmqsbqEO1VkqJJQZJeDrcQLWOu6ovMtHhE7ct4A/grIHYSgN3CldRLT6QW0R0UWY5vlcQluEPEHyGs0dOj8kTu3NVywWIpSp0OfgWq04bUDjE10MjERu610gxs7A7LZ5iqLFSFr4rHNphoHwH20aSeCyvZ3SmBEhN+Etp6ZiPMovzdfoNNfoA7pM4//IrcF2xFk7Np19wdGPkaf3399SnhwqgRNv/nd7ex2JubwLtBO26OB3krKCZMjaIK/lPlKM+aj83rCFiNm4WY+bTVyxtSUDEiKm2bFFT+walsJv9SAIigf9xqNXsmKzGthgpxZnbWuApzhGq2q3j0PBnqf/Md34OJeUSEr8ux1VcsTH7es1+Tz0y65tgRdAHZY+/R9noOnyUV5hcQUo80+P37ntK6Ftakdtp0dhoM0vIjjlTMiKvlt0yt3mqZ3G3Md6/vU1RvDWrFaeFnyy/cPYjf1kA==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Deletes a team",
+    "permalink": "/docs/api/delete-team"
+  },
+  "next": {
+    "title": "Returns list of caselists",
+    "permalink": "/docs/api/get-caselists"
+  }
+}

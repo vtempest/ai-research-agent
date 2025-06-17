@@ -8,14 +8,14 @@
   "permalink": "/docs/functions/extractor/html-to-cite/extract-cite",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-cite.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-cite.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "extract-cite-2",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite-2"
+    "title": "extract-author",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-author"
   },
   "next": {
     "title": "extract-date",

@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/separator-3",
+  "title": "separator-3",
+  "description": "Documentation / lib/components/ui/separator",
+  "source": "@site/docs/web/lib/components/ui/separator-3.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/separator-3",
+  "permalink": "/docs/web/lib/components/ui/separator-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/separator-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "separator-2",
+    "permalink": "/docs/web/lib/components/ui/separator-2"
+  },
+  "next": {
+    "title": "separator-4",
+    "permalink": "/docs/web/lib/components/ui/separator-4"
+  }
+}

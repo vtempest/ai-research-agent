@@ -8,7 +8,7 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
@@ -18,7 +18,7 @@
     "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType/"
   },
   "next": {
-    "title": "BlockType-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType-1"
+    "title": "HeadlineFinder",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/HeadlineFinder"
   }
 }

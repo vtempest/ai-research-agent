@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/util/page-number-functions",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/util/page-number-functions.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/util/page-number-functions.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "page-number-functions-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/util/page-number-functions-3"
+    "title": "page-item-functions",
+    "permalink": "/docs/functions/extractor/pdf-to-html/util/page-item-functions"
   },
   "next": {
-    "title": "string-functions-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/util/string-functions-1"
+    "title": "string-functions",
+    "permalink": "/docs/functions/extractor/pdf-to-html/util/string-functions"
   }
 }

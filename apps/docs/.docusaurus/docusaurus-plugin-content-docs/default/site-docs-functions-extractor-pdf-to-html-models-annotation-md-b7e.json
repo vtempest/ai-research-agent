@@ -8,14 +8,14 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/models/Annotation",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/models/Annotation.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/Annotation.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "Annotation-3",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/Annotation-3"
+    "title": "pdf-to-html",
+    "permalink": "/docs/functions/extractor/pdf-to-html/"
   },
   "next": {
     "title": "README",

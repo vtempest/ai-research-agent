@@ -2,6 +2,8 @@
 sidebar_position: 1
 sidebar_label:  Introduction
 title:  Introduction    
+id: index
+displayed_sidebar: functions
 slug: /
 ---
 <p align="center">
@@ -34,7 +36,7 @@ slug: /
     <a href="https://github.com/vtempest/ai-research-agent/pulse" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/m/vtempest/ai-research-agent" />
     </a>
-    <img src="https://img.shields.io/github/last-commit/vtempest/ai-research-agent.svg?style=flat-square" alt="GitHub last commit" />
+    <img src="https://img.shields.io/github/last-commit/vtempest/ai-research-agent.svg" alt="GitHub last commit" />
 </p>
 <p align="center">
     <a href="https://npmjs.org/package/ai-research-agent">
@@ -43,8 +45,8 @@ slug: /
     <a href="https://github.com/vtempest/ai-research-agent/actions/workflows/docs.yml">
     <img src="https://github.com/vtempest/ai-research-agent/actions/workflows/docs.yml/badge.svg" alt="Build Status" />
     </a>
-    <a href="http://makeapullrequest.com">
-        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
+    <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
             alt="PRs Welcome" />
     </a>
     <a href="https://codespaces.new/vtempest/ai-research-agent">
@@ -206,5 +208,5 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 *   [Paper - Iterative Research Idea Generation](https://arxiv.org/abs/2404.07738)
 *   [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8&t=70s)
 
- <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
+ <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
             alt="PRs Welcome" /> Please star this repo for updates! 🌟

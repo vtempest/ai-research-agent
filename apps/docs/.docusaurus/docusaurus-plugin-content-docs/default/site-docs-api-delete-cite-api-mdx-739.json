@@ -1,0 +1,35 @@
+{
+  "id": "api/delete-cite",
+  "title": "Deletes a cite",
+  "description": "Deletes a cite",
+  "source": "@site/docs/api/delete-cite.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-cite",
+  "permalink": "/docs/api/delete-cite",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-cite",
+    "title": "Deletes a cite",
+    "description": "Deletes a cite",
+    "sidebar_label": "Deletes a cite",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVMlu2zAQ/RWBpzYQIqdH34LEh6A9FE16MoyAkcY2a5lUSMqoIfDfO8NFliMFQZ2LRM7yZvhm6ZhqQHMrlHyo2JxVUIOFO2GB5azhmu/xqg2bLzsmJBo03G5RJVGBt5IbqIWxKKnAlFo0hISKu5NCw2srNCC61S3kzJRb2HM275g9NgRirBZyw5zLJ2OgvVL1KMJjEn8W3wLfj9CfgvCz2GUg8g03QfghtpAWNqARfEXWplHSgCGDb7MZ/c5h733pqizGLBW6S0t2V8UV/UYB1MsfKM9LtGRatbJ6FhXDoI2m7rAiRCVgUkxkmJ/cJrVW2BomaMs9qJkkNDkFvpwjUQVr3tZ2/PiF1kr/56vPX7cHY/gG3oHOkjqfSHRIX7JbnfJHAJ8+WhooWy3s0c9TqdROoMFyRQWeKqbJeConzuFWnSbUTyd22pwVaQZN0aWjK8LQoCgcXEFdjlf6ucKTjub4c4yy0oc05K2uCfRwwyiplO8jkRi7IGbd88kb8R2OCOP7P6pHG+LZqh1IT5eQa+X9U32jSXb78yHDwDmjbAIPN9ez6xn1SaOM3XNJfhF5RNEZg316Fv7aoqk5Zocw/nld5G7ZZ2fQfT5YZpE+kvbrxzNIkrgwQueSH4VHsraYIoF23Qsi/da1cyR+bUFTwfF44FrwF3o0Ml0JQ2es6ZrXBkb5963MvvyKDfY1G+zVyfelmkgqyIHXLd3wuMMKDdY1rauL4vdb94LokcmLY8edfEFkX7GL48Z9fQnffnOt0G4LvMJVSHUPqtuyhMYOnGhd0cj1g36/+LF4WqAFb6lZh/O28/MWD4Q5mcab0UtJ0Ze4mPTpujDOzvX2QfWuR3xZsiZaVrjr/gHQ3s+j",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/docs/api/caselist-api-v-1"
+  },
+  "next": {
+    "title": "Deletes a file",
+    "permalink": "/docs/api/delete-file"
+  }
+}

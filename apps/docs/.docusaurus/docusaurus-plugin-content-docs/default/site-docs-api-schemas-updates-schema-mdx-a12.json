@@ -1,0 +1,36 @@
+{
+  "id": "api/schemas/updates",
+  "title": "Updates",
+  "description": "",
+  "source": "@site/docs/api/schemas/updates.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/updates",
+  "permalink": "/docs/api/schemas/updates",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "updates",
+    "title": "Updates",
+    "description": "",
+    "sidebar_label": "Updates",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": [
+      {}
+    ],
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Update",
+    "permalink": "/docs/api/schemas/update"
+  },
+  "next": {
+    "title": "README",
+    "permalink": "/docs/functions/"
+  }
+}

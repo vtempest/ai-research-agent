@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/html-to-cite/extract-author",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/html-to-cite/extract-author.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-author.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "extract-author-2",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-author-2"
+    "title": "reply-language",
+    "permalink": "/docs/functions/agents/reply-language"
   },
   "next": {
-    "title": "extract-cite-1",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite-1"
+    "title": "extract-cite",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite"
   }
 }

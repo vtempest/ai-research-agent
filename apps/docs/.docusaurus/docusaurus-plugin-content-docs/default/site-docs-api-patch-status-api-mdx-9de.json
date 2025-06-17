@@ -1,0 +1,35 @@
+{
+  "id": "api/patch-status",
+  "title": "Responds with a 200 if up",
+  "description": "Responds with a 200 if up",
+  "source": "@site/docs/api/patch-status.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/patch-status",
+  "permalink": "/docs/api/patch-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "patch-status",
+    "title": "Responds with a 200 if up",
+    "description": "Responds with a 200 if up",
+    "sidebar_label": "Responds with a 200 if up",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNkkFv2zAMhf+KoGNhNOmOuQXFgBW7FEt7KoKBUZhYiyOpJJ0tMPzfR9pulq3YMF9kSY+PT5/U+VyQQGJOD1u/8AUk1CsBadlXnpBLTozsF53/MJ/bsEUOFItVqH6FdEJykV1btCDkJJjEdDezGxs41HgE+5NzQa1goZj2vtevUrMdtI289/1IlOn/DPPmGwZRbSE7i8Qx7hGZYY9/sXZv29W7XHbs1zYSKo+Xi81ahVEaHA2G+KpkDC1FOavSBLBnq+GR37r6o/OXAeeW3fcotQOnRF3cjeQKEBxRkHj00v86X25kEEit0xm/XQ4P6E3e+ZYa2zvd+X79K9XKUI00Qs6HiFfUoMTPeFabaMmm7conDWFzYGwiy1fJB0wDlJh2eaifKNxPErd8fHDauPKWZjzo3e38du61qGSWIySrm5z/xeA3Wpekgj9kVhrQoOo4nLSbaFyjrrWVrXTdRpM9U9P3tvzaIk3XcwKKsLHwL2t1qhG2SAO+g5JY+GUIWOwhnaBprbO9uP76Lh6XT/eflMZP9FsTQg==",
+    "sidebar_class_name": "patch api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns list of teams in a school",
+    "permalink": "/docs/api/get-teams"
+  },
+  "next": {
+    "title": "Patches a team",
+    "permalink": "/docs/api/patch-team"
+  }
+}

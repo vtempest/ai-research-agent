@@ -34,11 +34,11 @@ import { render } from "docusaurus-plugin-openapi-docs/lib/markdown/utils";
  *  react-dom clsx typedoc typedoc-plugin-markdown typescript
  * https://github.com/vtempest/ai-research-agent/blob/master/docs/api.mustache
  * *Add to package.json*:
- * "docs": "docusaurus serve --dir web-app/static/docs",
+ * "docs": "docusaurus serve --dir web/static/docs",
  * "docs:build": "NODE_NO_WARNINGS=1 docusaurus clean-api-docs  all --all-versions ;
  *  NODE_NO_WARNINGS=1 docusaurus  gen-api-docs all  --all-versions ;
- *  rm -rf web-app/static/docs;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus 
- *  build --out-dir web-app/static/docs",
+ *  rm -rf web/static/docs;  DOCUSAURUS_IGNORE_SSG_WARNINGS=true docusaurus 
+ *  build --out-dir web/static/docs",
  * 
  * For homepage Add to docs/functions/index.md
  * 
@@ -66,20 +66,21 @@ export default async function createConfig(options: any = {}) {
     baseFolder = "./",
     typedocFolders = [
       {
-        id: "web-app",
-        entryPoints: ["../web-app/src/**/*"],
-
+        id: "web",
+        entryPoints: ["../web/src/**/*"],
+        tsconfig: "../web/tsconfig.json",
       },
       {
         id: "functions",
-        entryPoints: ["../../packages/ai-research-agent/src/**/*"],
+        entryPoints: ["../../packages/ai-research-agent/src/index.ts"],
+        tsconfig: "../../packages/ai-research-agent/tsconfig.json",
       },
     ],
     showEditsOnGitHub = true,
-    GOOGLE_ANALYTICS_ID = "/////G-E5TZ32BZD",
-    gitRepo = "https://github.com/vtempest/ai-research-agent/blob/main/",
+    GOOGLE_ANALYTICS_ID = "G-E5TZ32BZD",
+    gitRepoDocsPath = "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
+    sourceLinkTemplate = "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
     compileForSubdomain = !!process.env.DOCS_ON_SUBDOMAIN,
-    tsconfig = "../web-app/tsconfig.json",
     readme = "../../readme.md",
     sanitizeComments = false,
     appLogoURL = domain + "/icons/app-icon.svg",
@@ -111,7 +112,7 @@ export default async function createConfig(options: any = {}) {
           docs: {
             routeBasePath: "/",
             sidebarPath: "./sidebars.ts",
-            editUrl: gitRepo,
+            editUrl: gitRepoDocsPath,
             docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           },
           blog: false,
@@ -152,7 +153,7 @@ export default async function createConfig(options: any = {}) {
       ],
       require.resolve("docusaurus-lunr-search"),
 
-      ...(typedocFolders.map(({ id, entryPoints }) => [
+      ...(typedocFolders.map(({ id, entryPoints, tsconfig }) => [
         "docusaurus-plugin-typedoc",
         {
           id,
@@ -164,7 +165,10 @@ export default async function createConfig(options: any = {}) {
           ],
           tsconfig,
           out: baseFolder + "docs/" + id,
-          readme,
+          // readme,
+          readme: "none",
+          entryPointStrategy: "expand",
+          sourceLinkTemplate,
           disableSources: !showEditsOnGitHub,
           sidebar: { pretty: true },
           textContentMappings: {
@@ -185,7 +189,7 @@ export default async function createConfig(options: any = {}) {
           hideGroupHeadings: true,
           hidePageHeader: true,
           hidePageTitle: true,
-          gitRemote: showEditsOnGitHub ? gitRepo : undefined,
+          gitRemote: showEditsOnGitHub ? gitRepoDocsPath : undefined,
           outputFileStrategy: "modules",
           useCodeBlocks: true,
         },
@@ -220,8 +224,8 @@ export default async function createConfig(options: any = {}) {
         items: [
 
           {
-            to: "/functions",
-            label: "👋 Intro",
+            to: "/web",
+            label: "👋 Overview",
             position: "left",
           },
           {
@@ -236,7 +240,7 @@ export default async function createConfig(options: any = {}) {
             position: "left",
           },
           {
-            to: "/web-app/modules",
+            to: "/web/modules",
             label: "💻 Web App",
             position: "left",
           },

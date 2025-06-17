@@ -1,0 +1,35 @@
+{
+  "id": "api/post-file",
+  "title": "Creates an OpenEv file",
+  "description": "Creates an OpenEv file",
+  "source": "@site/docs/api/post-file.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-file",
+  "permalink": "/docs/api/post-file",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-file",
+    "title": "Creates an OpenEv file",
+    "description": "Creates an OpenEv file",
+    "sidebar_label": "Creates an OpenEv file",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVLFu2zAQ/RWBY6DGdkZvaZACQYcEiDsZRkBLZ5u1RDLHk1tB0L/3TpRsJ5anduxiC3zvjo/vHdko5wE1GWefcjVX3gX6ZgpQqUJ4ryDQV5fXat6oHEKGxguTeYsdJBvmJeSSyhdO532FQeA+hBWkKnOWwJJU30xu5C9kOyi1fFHtgfu49U/IiGs9ihAyEATlbwuHN5OfUQ032wIytzTWlFWp5rM2VWSI5Z5ogdDYrWLEa9qNAjVoHGnMSKZLP1pS6PXoOultuDwOA2LOaIUAVpdj4Ok0qsugbWUJIXhnQzTmbjq7DOMBQRPkXSDqv+3/xvYcNroq6NLtR0SHf2VzCSHoLVxpnQxwOiL0dMWWxzark35u0MlnZoCsQkN8d5cNa3V7w4Tlql2lo9MTEm2TZ87/8TDMkdfIhhFgkELOH2jnhkdCDUGrSZwaJVviIbIbVWEh2GGmZMdBzKs4FE0YJB3N0t58h5rbGFHVw6mKofGIBChMoDdye7CdF8ZuXFffH/6hpyT3L08Jb5wqURMPObud3k676WTtpbZS13e+ev4PNh1lEvymiS80q+R23TGb3oplf4EkkZ14xCtNs2ZZP7BoW1nmJxXraOdBo9HrIqbCBaBzvg3i3Z5tYF1xvr4sZF+hF5XsL7PWpgPpPsvA02f4PKyX59cF4+v+GS9dLjTUv+TB5t+5knPo6sOl5Sz2XRb9h6gaIFufbfcplrSXJb8icrSmaWLU7MjAj9DVit6bgS3Wr3jI/wADjUKH",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates a cite",
+    "permalink": "/docs/api/post-cite"
+  },
+  "next": {
+    "title": "Logs in",
+    "permalink": "/docs/api/post-login"
+  }
+}

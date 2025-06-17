@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/url-to-content/url-to-html",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/url-to-content/url-to-html.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/url-to-content/url-to-html.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "url-to-html-2",
-    "permalink": "/docs/functions/extractor/url-to-content/url-to-html-2"
+    "title": "docx-to-content",
+    "permalink": "/docs/functions/extractor/url-to-content/docx-to-content"
   },
   "next": {
-    "title": "youtube-to-text-1",
-    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text-1"
+    "title": "youtube-to-text",
+    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text"
   }
 }

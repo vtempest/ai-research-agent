@@ -1,0 +1,35 @@
+{
+  "id": "api/get-teams",
+  "title": "Returns list of teams in a school",
+  "description": "Returns list of teams in a school",
+  "source": "@site/docs/api/get-teams.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-teams",
+  "permalink": "/docs/api/get-teams",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-teams",
+    "title": "Returns list of teams in a school",
+    "description": "Returns list of teams in a school",
+    "sidebar_label": "Returns list of teams in a school",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJylVU1v2zAM/SuGTlsR1PnoKbdiKIZil6HrsEMQBIrDxFpsyZXoYIHh/z7SthxnTupsuySySPGRT+RTIUwGVqIy+nkj5mIH+AoydWIkMmllCgjWifmiEEqTOZMYk0mTgb4i6SBRDmlnAy6yKuM4ZPgRqygOvDlAE1jA3OrARbExiQso2EhYeMuVBYJFm8NIkBFSKeaFwGPG8R1apXeiLEcX4etgV8BrYwcauay/BV6ys8uMduDYPh2P+e8c0BMWGY2gkR3uwjv+6wWW1sojuSqE1HX2zfonRMxjZvk+UNVwdaG9tKhi5bJEHldXHbRBcJePwlrSpU5WW2Udvu+SyCEPh/mGal6pTcdPEQ87sB3H6TDadBBteivabBhtNog2uxXtYRjtYRDtYQCNPFFhAk270UZZVqe3Mk+w35NP1hp7W09e6b0UnJM7uBI68OZRf1g787VowyxPBVAAn7+DKLcKj5XCRMbsFTksljx356Av1RC7oNITs22nOZBBKwMkVrFpRKzSLxKLuQi9DLmw8MsybIQoLOpFGWIzxA7swUtebhMOcJgITsjn+o0JrDnyGZ/mO1NfoBpwTrox9/RyhWYPuqJK6a2pzjfcfPKa+fj1OSDgkeBsag4m9+P7MfdMZhymUp8U4iZ6zghtM0b4hSFpCSVMkauKi4a6RZswEzPvqH3DHu+24WsCiafYcKsvRFGs6cR3m5Qlb7/lYPmeaXmQVsk110skk5Txmu5tKxMHvTzbDhYfXpq++hjc9sBcLNHflOZrOsgk5y9a7uneOk8avzn/kdp7z88/pNWwXC7JMwa5IUlg7mrjYxRBhp1jPOncse1AfH56JbPM+Va7vbqverVZcMCLWfzRtj4n/mWWLp4pinoU6O69f226eqIpy3szK0vSiN8ASPUN",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns a single team",
+    "permalink": "/docs/api/get-team"
+  },
+  "next": {
+    "title": "Responds with a 200 if up",
+    "permalink": "/docs/api/patch-status"
+  }
+}

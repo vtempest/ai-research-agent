@@ -1,5 +1,5 @@
-import {searchWeb} from "../../index.js";
-import {extractContent} from "../../index.js";
+import {searchWeb} from "../index.js";
+import {extractContent} from "../index.js";
 
 /**
  * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 

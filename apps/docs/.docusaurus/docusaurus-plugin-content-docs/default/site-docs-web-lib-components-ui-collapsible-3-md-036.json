@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/collapsible-3",
+  "title": "collapsible-3",
+  "description": "Documentation / lib/components/ui/collapsible",
+  "source": "@site/docs/web/lib/components/ui/collapsible-3.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/collapsible-3",
+  "permalink": "/docs/web/lib/components/ui/collapsible-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/collapsible-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "collapsible-2",
+    "permalink": "/docs/web/lib/components/ui/collapsible-2"
+  },
+  "next": {
+    "title": "collapsible-4",
+    "permalink": "/docs/web/lib/components/ui/collapsible-4"
+  }
+}

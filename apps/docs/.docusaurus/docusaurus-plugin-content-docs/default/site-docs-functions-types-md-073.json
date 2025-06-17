@@ -8,7 +8,7 @@
   "permalink": "/docs/functions/types",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/types.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/types.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
@@ -19,6 +19,6 @@
   },
   "next": {
     "title": "README",
-    "permalink": "/docs/web-app/"
+    "permalink": "/docs/web/"
   }
 }

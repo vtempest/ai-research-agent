@@ -1,5 +1,5 @@
 
-import { splitSentences,  convertTextToTokens } from "../../index.js";
+import { splitSentences,  convertTextToTokens } from "../index.js";
 import { rankSentencesCentralToKeyphrase } from "./rank-sentences-keyphrases.js";
 import { extractNounEdgeGrams } from "./ngrams.js";
 

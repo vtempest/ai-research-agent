@@ -1,0 +1,35 @@
+{
+  "id": "api/post-status",
+  "title": "Responds with a 200 if up",
+  "description": "Responds with a 200 if up",
+  "source": "@site/docs/api/post-status.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-status",
+  "permalink": "/docs/api/post-status",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-status",
+    "title": "Responds with a 200 if up",
+    "description": "Responds with a 200 if up",
+    "sidebar_label": "Responds with a 200 if up",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyNkk9P40AMxb/KaI4oomWPvaEVB8SBarucUIXc1G1mm84MtlOoonz3tZMUuiBW5DL/nt88/yatTxkJJKR4u/YznxPLQkAa9oUn5JwiI/tZ639MpzaskUsK2QpUvkA6ILnArslaUKYoGMV0F5MLG7iscA82k2NGrWChELe+069Qsw00tXz2vSFK9D3DtPqDpag2k7UiYYi7R2bY4hfW7nRcfMplbT83gVBxPL7ZLFUYpMbBoI+vSsayoSBHVZoAtmw1PPBbFh9u/tXjXLN7CVI5cErUhc1ALgPBHgWJBy+dV+n0IP25VLqa8OltuCdv6tY3VNvZ4cp3y/dQCyM1wChT2gU8gwY53OFRbYIFG48LHzWDrYGxDixPknYYeyYhblJfP0L4OUrc9fzW6cWFtzRDn1eX08up1yLLvododaPz/xD8A+stqeCrTHINGlQd+07bkcY56cow6U7brjTZA9VdZ9vPDdL4OgegACsL/7hUpwphjdTj2ymJmb8uS8yG+gB1YzfbD9edP8X8fvFbYfwF8AMShA==",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates a school",
+    "permalink": "/docs/api/post-school"
+  },
+  "next": {
+    "title": "Creates a tabroom link",
+    "permalink": "/docs/api/post-tabroom-link"
+  }
+}

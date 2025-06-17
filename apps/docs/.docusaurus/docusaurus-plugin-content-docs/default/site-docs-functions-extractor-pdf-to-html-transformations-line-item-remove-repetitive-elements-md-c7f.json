@@ -8,17 +8,17 @@
   "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/blob/main/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "RemoveRepetitiveElements-4",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-4"
+    "title": "DetectTOC",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC"
   },
   "next": {
-    "title": "VerticalToHorizontal-1",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-1"
+    "title": "VerticalToHorizontal",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal"
   }
 }

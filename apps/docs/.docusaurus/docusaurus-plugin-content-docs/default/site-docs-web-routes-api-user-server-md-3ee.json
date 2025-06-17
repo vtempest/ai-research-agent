@@ -1,0 +1,24 @@
+{
+  "id": "web/routes/api/user/+server",
+  "title": "+server",
+  "description": "Documentation / routes/api/user/+server",
+  "source": "@site/docs/web/routes/api/user/+server.md",
+  "sourceDirName": "web/routes/api/user",
+  "slug": "/web/routes/api/user/+server",
+  "permalink": "/docs/web/routes/api/user/+server",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/api/user/+server.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+server",
+    "permalink": "/docs/web/routes/api/subscriptions/+server"
+  },
+  "next": {
+    "title": "+server",
+    "permalink": "/docs/web/routes/api/vectorize/+server"
+  }
+}

@@ -1,6 +1,6 @@
-/**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+/**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
             HERE BE DRAGONS! THOU ART FOREWARNED.
-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
                                                   .~))>>
                                                  .~)>>
                                                .~))))>>>
@@ -16,10 +16,10 @@
        ((  ((@@@.@@             |/))))) //)))))>>)))>>)>
       )) @@*. )@@ )   (\_(\-\b  |))>)) //)))>>)))))))>>)>
     (( @@@(.@(@ .    _/`-`  ~|b |>))) //)>>)))))))>>)>
-     )* @@@ )@*     (@_ (@_ /\b|))) //))))))>>))))>>
+     )* @@@ )@*      @_  @_ /\b|))) //))))))>>))))>>
    (( @. )@( @ .   _/  /    /  \b)) //))>>)))))>>>_._
     )@@ (@@*)@@.  (6///6)- / ^  \b)//))))))>>)))>>   ~~-.
- (@vtempest. @@@.* VvvvvV//  ^  \b/)>>))))>>      _.     `b
+ (@vtempest  @@@.* VvvvvV//  ^  \b/)>>))))>>      _.     `b
   ((@@ @@@*.(@@ . - | o |' \ (  ^   \b)))>>        .'       b`,
    ((@@).*@@ )@ )   \^^^/  ((   ^  ~)_        \  /           b `,
      (@@. (@@ ).     `-'   (((   ^    `\ \ \ \ \|             b  `.
@@ -35,43 +35,20 @@
                                               :bb ,' 
                                               ~~*/
 
-/**
- * Transformer Model Class Export
- * 
- * Exports the Transformer class for reuse in other modules
- * This allows the model architecture to be imported and used
- * for inference, transfer learning, or additional training
- */
-export { Transformer };
 
-/**
- * Example usage of the exported training function:
- * 
- * ```javascript
- * import { trainTransformer, Transformer } from './transformer-training.js';
- * 
- * // Train a new model
- * const results = await trainTransformer();
- * console.log('Training completed with final loss:', results.finalLoss);
- * 
- * // Use the trained model for inference
- * const model = results.model;
- * const predictions = model.forward(inputTokens);
- * ```
- * 
- * Advanced usage scenarios:
- * - Fine-tuning on domain-specific data
- * - Transfer learning from pre-trained weights
- * - Ensemble methods with multiple trained models
- * - Model compression and quantization
- */
 import { torch } from "./neural-net-gpu.js"
 
-/**
- * Comprehensive training function for a self-attention transformer model using custom torch.js library
- * 
+/**================================================================================
+ * ### Predict Next Word Based On Context and Learned Patterns in Training Examples
+ * ================================================================================
+ *
+ * Comprehensive training function for a self-attention transformer using custom torch.js.
  * This function implements a decoder-only transformer architecture similar to GPT models,
  * training it with synthetic data using the Adam optimizer and GPU.js for acceleration.
+ * In real applications, this would be:
+ * - Tokenized text data (e.g., using BPE, WordPiece, or SentencePiece)
+ * - Loaded from datasets like WikiText, BookCorpus, or Common Crawl
+ * - Preprocessed with appropriate padding and attention masks
  * 
  * Key architectural components:
  * - Token and positional embeddings
@@ -81,14 +58,32 @@ import { torch } from "./neural-net-gpu.js"
  * - Cross-entropy loss computation
  * - Adam optimization with backpropagation
  * 
- * References:
+ *
+ * Advanced usage scenarios:
+ * - Fine-tuning on domain-specific data
+ * - Transfer learning from pre-trained weights
+ * - Ensemble methods with multiple trained models
+ * - Model compression and quantization
+ * 
+ * @example
+ * ```javascript
+ * import { trainTransformer, Transformer } from './transformer-training.js';
+ *
+ * // Train a new model
+ * const results = await trainTransformer();
+ * console.log('Training completed with final loss:', results.finalLoss);
+ *
+ * // Generate a language response based using the trained model
+ * const model = results.model;
+ * const predictions = model.forward(inputTokens);
+ * ```
+ * @author [ai-research-agent](https://airesearch.js.org)
+ * @returns {Promise<Object>} Training results containing final loss and model
+ * @see
  * - Original Transformer paper: https://arxiv.org/abs/1706.03762 ("Attention Is All You Need")
  * - PyTorch Transformer tutorial: https://pytorch.org/tutorials/beginner/transformer_tutorial.html
  * - Annotated Transformer: https://nlp.seas.harvard.edu/2018/04/03/attention.html
  * - GPU.js documentation: https://gpu.rocks/
- * 
- * @author [ai-research-agent](https://airesearch.js.org)
- * @returns {Promise<Object>} Training results containing final loss and model
  */
 export async function trainTransformer() {
   // Import neural network modules and optimization utilities
@@ -601,3 +596,4 @@ export async function trainTransformer() {
     }
   };
 }
+export { Transformer };

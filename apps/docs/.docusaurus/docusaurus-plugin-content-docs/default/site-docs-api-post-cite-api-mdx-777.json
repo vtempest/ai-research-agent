@@ -1,0 +1,35 @@
+{
+  "id": "api/post-cite",
+  "title": "Creates a cite",
+  "description": "Creates a cite",
+  "source": "@site/docs/api/post-cite.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/post-cite",
+  "permalink": "/docs/api/post-cite",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "post-cite",
+    "title": "Creates a cite",
+    "description": "Creates a cite",
+    "sidebar_label": "Creates a cite",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJzdVU1v2zAM/SuGTlvh1cmOuXXBDsUOK5buFBiFYjOxFtvyJDlbYPi/j9SH82EX6LLbLoksko+PjxLVMdmA4kbI+jFnC9ZIbZbCAItZwxWvwIDSbLHumKjJzE2BphoN+JVxDaXQBndy0JkSDeGgYXkyKPjZCgWIbVQLMdNZARVni46ZY0Mg2ihR71jfx5M50F/KcpRhFbb/Fd8Ar0boz27z7dipcwZtPsn8SB5XgAVEGcoaGRllCrgV+Bo+k7WB2lD0XXJHf6OEcvMDsktZ10zJts5fRM6QRaOon0aApihKSYYTgMAUO1Csj09hk1YjTAkTpcYWVE8KHIKYPUF9T1sKdCNr7SI+zuZjbZZWj9zqw/5TFXLY8rY04+I/KyXVX1Z9WV0FWvMdvAIdBXM8QfRcvuCXnvgjgKWPnhqyVglztJMgk3Iv0GGd0rmfaqaOeGgnTpBChslipwrevgVLwuzQSReWfeIuO265RZ/Q7cRP+usTJzmRUYcwlVpVEtphzohLoLki7XzzPdlBRt6IL3BEGDsMvHk00l6M3ENtVRL1Vtr40FbvEj08PUaYOGbExpU/v5/dz+h4ULUVrynOI4+UuRBuoGfgt0makiM7hLHldV609cCOVFicTV+vG+0O89JKRzt+wjn1UKSCGoFgXbdBhO+q7HvaxumlqL+4PHAl+IaKRYVzoWmNLdzyUsOI93By2btv/jy9j84egMm6Qi9qasSBly194XKPnTl7V2hm35R/eB5uyO4VvDm3fzxuyGw71afoVwDPcQKR/s60dJk+PBPAKZRmBRF1Tg9ZBo25Nqdnl/Dp6+oZ7Rv/SFUyJzfFf9EwxV8kg9l5S8ft/Mbs7Y3xC2I1WcjV5Qll0S+RnIzpOnch8RAGf2d6NcJrE7xJ2BSH1B9f9va9",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/caselist-api-v-1",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Patches a team",
+    "permalink": "/docs/api/patch-team"
+  },
+  "next": {
+    "title": "Creates an OpenEv file",
+    "permalink": "/docs/api/post-file"
+  }
+}

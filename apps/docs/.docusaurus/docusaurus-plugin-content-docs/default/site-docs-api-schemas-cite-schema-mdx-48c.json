@@ -1,0 +1,39 @@
+{
+  "id": "api/schemas/cite",
+  "title": "Cite",
+  "description": "",
+  "source": "@site/docs/api/schemas/cite.schema.mdx",
+  "sourceDirName": "api/schemas",
+  "slug": "/api/schemas/cite",
+  "permalink": "/docs/api/schemas/cite",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "cite",
+    "title": "Cite",
+    "description": "",
+    "sidebar_label": "Cite",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "schema": true,
+    "sample": {
+      "cite_id": 0,
+      "round_id": 0,
+      "title": "string",
+      "cites": "string"
+    },
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Caselist",
+    "permalink": "/docs/api/schemas/caselist"
+  },
+  "next": {
+    "title": "Download",
+    "permalink": "/docs/api/schemas/download"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "web/lib/components/ui/popover",
+  "title": "popover",
+  "description": "Documentation / lib/components/ui/popover",
+  "source": "@site/docs/web/lib/components/ui/popover.md",
+  "sourceDirName": "web/lib/components/ui",
+  "slug": "/web/lib/components/ui/popover",
+  "permalink": "/docs/web/lib/components/ui/popover",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/popover.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "popover-1",
+    "permalink": "/docs/web/lib/components/ui/popover-1"
+  },
+  "next": {
+    "title": "progress-1",
+    "permalink": "/docs/web/lib/components/ui/progress-1"
+  }
+}

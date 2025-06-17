@@ -1,0 +1,24 @@
+{
+  "id": "web/routes/api/subscriptions/+server-3",
+  "title": "+server-3",
+  "description": "Documentation / routes/api/subscriptions/+server",
+  "source": "@site/docs/web/routes/api/subscriptions/+server-3.md",
+  "sourceDirName": "web/routes/api/subscriptions",
+  "slug": "/web/routes/api/subscriptions/+server-3",
+  "permalink": "/docs/web/routes/api/subscriptions/+server-3",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/api/subscriptions/+server-3.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "+server-2",
+    "permalink": "/docs/web/routes/api/subscriptions/+server-2"
+  },
+  "next": {
+    "title": "+server",
+    "permalink": "/docs/web/routes/api/subscriptions/+server"
+  }
+}
