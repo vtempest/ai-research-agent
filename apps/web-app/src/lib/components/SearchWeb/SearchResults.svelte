@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import iconLoading from "$lib/components/icons/icon-loading-floatingsearch.svg";
+  import { iconLoadingFloatingsearch } from "$lib/components/icons";
 
   let {
     searchResults,
@@ -101,12 +101,6 @@
   {#if searchResults?.isLoading}
   <div class="text-center py-4">
     <div class="loader"></div>
-    <img
-      src={iconLoading}
-      alt="Loading"
-      width="200px"
-      class="bg-transparent"
-
-    />
+    {@html iconLoadingFloatingsearch()}
   </div>
   {/if}

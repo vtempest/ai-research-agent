@@ -1,38 +1,37 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { Root, InlineMenu, BubbleMenu} from "reason-editor/svelte";
+  import  { virtualRendering, smartEntry, smartQuotes, Editor } from "reason-editor";
 
   let { viewMode, content } = $props();
 
   let editor = $state(null);
-  let Root;
-  let InlineMenu;
-  let BubbleMenu;
 
   $effect(() => {
     if (content && editor) editor.setHTML(content);
   });
 
   onMount(async () => {
-    // if (typeof window == "undefined") return;
-    // // @ts-ignore
+    if (typeof window == "undefined") return;
+    // @ts-ignore
     // const typewriterModule = await import("ai-research-agent/src/editor");
     // const { virtualRendering, smartEntry, smartQuotes } = typewriterModule;
 
-    // let Editor = typewriterModule.Editor;
+    // let Editor = typewriterModule.;
     // BubbleMenu = typewriterModule.BubbleMenu;
     // Root = typewriterModule.Root;
     // InlineMenu = typewriterModule.InlineMenu;
 
-    // editor = new Editor({
-    //   modules: {
-    //     smartEntry: smartEntry(),
-    //     smartQuotes,
-    //     rendering: virtualRendering,
-    //   },
-    // });
+    editor = new Editor({
+      modules: {
+        smartEntry: smartEntry(),
+        smartQuotes,
+        rendering: virtualRendering,
+      },
+    });
 
-    // // @ts-ignore
-    // window.editor = editor;
+    // @ts-ignore
+    window.editor = editor;
   });
 
   export function setHTML(html) {

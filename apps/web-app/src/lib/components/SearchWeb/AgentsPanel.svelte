@@ -6,7 +6,7 @@
     MessageCircleQuestion,
   } from "lucide-svelte";
   import "highlight.js/styles/github.css"; // Choose your preferred style
-  import iconLoadingRipple from "$lib/components/icons/icon-loading-ripple.svg";
+  import { iconLoadingRipple } from "$lib/components/icons";
   // @ts-ignore
   import { highlightCodeSyntax, copyHTMLToClipboard } from "ai-research-agent";
   import {grab} from "grab-api.js";
@@ -234,7 +234,7 @@
           {/each}
         {:else if AIResponseFollowUps.isLoading}
           <div class="flex justify-center">
-            <img src={iconLoadingRipple} alt="Loading" width="40px" />
+            {@html iconLoadingRipple()}
           </div>
         {:else if AIResponseFollowUps.error}
           <div class="bg-red-500 text-white p-2 rounded-md">
@@ -245,8 +245,7 @@
 
       {#if AIResponse.isLoading}
       <div class="flex justify-center">
-
-        <img src={iconLoadingRipple} alt="Loading" width="40px" />
+        {@html iconLoadingRipple()}
       </div>  
       {:else if AIResponse.content}
         <div

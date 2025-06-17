@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition";
   import { quintOut } from "svelte/easing";
   import { suggestNextWordCompletions } from "ai-research-agent";
-  import iconSearch from "$lib/components/icons/icon-qwksearch.svg";
+  import { iconQwksearch } from "$lib/components/icons";
 
   import {categories} from "./categories";
 
@@ -154,11 +154,7 @@
       bind:value={searchText}
     />
     <button class="search-button" onclick={handleIconClick}>
-      <img
-        src={iconSearch}
-        alt="Search"
-        class="w-7 h-7 mb-0 transition-opacity duration-200"
-      />
+      {@html iconQwksearch()}
     </button>
 
     {#if showSuggestions && !isSearchOpen}

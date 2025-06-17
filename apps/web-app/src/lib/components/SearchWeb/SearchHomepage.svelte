@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GoogleIcon from "$lib/components/icons/icon-google.svg";
+  import { iconGoogle } from "$lib/components/icons";
   import QuantumWaveOrbital from "./extras/QuantumWaveOrbital.svelte";
   import { Bot, Globe, SwatchBook, Pencil, BadgePercent } from "lucide-svelte";
   import { onMount } from "svelte";
@@ -196,7 +196,7 @@
                     onclick={() => (window.location.href = "/signin")}
                     class=" text-gray-700 relative px-4 py-2 rounded-lg m-[2px] flex items-center justify-center gap-2 hover:bg-gray-100"
                   >
-                    <img src={GoogleIcon} class="h-8 w-10" alt="Login" />
+                    {@html iconGoogle()}
                     Login
                   </button>
                 </div>

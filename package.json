@@ -1,15 +1,39 @@
 {
-    "name": "qwksearch",
-    "private": true,
+    "name": "ai-research-agent",
+    "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
     "author": "vtempest <grokthiscontact@gmail.com>",
     "license": "AGPL-3.0",
-    "version": "1.2.0",
+    "version": "1.1.0",
     "workspaces": [
         "packages/*",
         "apps/*"
     ],
     "packageManager": "bun@1.2.13",
+    "type": "module",
+    "exports": {
+        "./": {
+            "types": "./packages/ai-research-agent/dist/types.d.ts",
+            "import": "./packages/ai-research-agent/dist/research-agent.es.js",
+            "require": "./packages/ai-research-agent/dist/research-agent.cjs.js"
+        },
+        "./api-client": {
+            "types": "./packages/qwksearch-api-client/dist/index.d.ts",
+            "import": "./packages/qwksearch-api-client/dist/index.js",
+            "require": "./packages/qwksearch-api-client/dist/index.cjs"
+        },
+        "./editor": {
+            "types": "./packages/reason-editor/dist/types.d.ts",
+            "import": "./packages/reason-editor/dist/index.js",
+            "require": "./packages/reason-editor/dist/index.cjs"
+        },
+        "./neural-net": {
+            "types": "./packages/neural-net/dist/index.d.ts",
+            "import": "./packages/neural-net/dist/index.js",
+            "require": "./packages/neural-net/dist/index.cjs"
+        }
+    },
     "scripts": {
+        "build:packages": "turbo build --filter=./packages/*",
         "build:api": "turbo build:api --filter=qwksearch-api-client",
         "docs": "turbo docs:build --filter=docusaurus-openapi-typedoc;",
         "docs:serve": "turbo docs",

@@ -398,7 +398,3 @@ export default class Delta {
   }
 }
 
-if (typeof module === 'object') {
-  module.exports = Delta;
-  module.exports.default = Delta;
-}

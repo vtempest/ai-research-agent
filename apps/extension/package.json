@@ -22,7 +22,7 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "ai-research-agent": "workspace:*",
+    "@ai-research-agent/core": "workspace:*",
     "@auth/core": "^0.39.1",
     "@auth/sveltekit": "^1.9.2",
     "@crxjs/vite-plugin": "2.0.0-beta.33",

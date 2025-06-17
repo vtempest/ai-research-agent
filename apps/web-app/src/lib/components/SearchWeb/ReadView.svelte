@@ -3,8 +3,7 @@
   // import "./icons-download.css";
   import { highlightCodeSyntax } from "ai-research-agent";
   import "highlight.js/styles/monokai.css"; // Choose your preferred style
-  import iconQwkLogo from "$lib/components/icons/icon-qwksearchlogo.svg";
-  import iconLoadingInfinity from "$lib/components/icons/icon-loading-infinity.svg";
+  import { iconQwksearchlogo } from "$lib/components/icons";
   import QuantumWaveOrbital from "$lib/components/SearchWeb/extras/QuantumWaveOrbital.svelte";
   import EditorComponent from "$lib/components/Editor/EditorComponent.svelte";
   import { FOOTER_LINKS, APP_NAME, APP_SLOGAN } from "$lib/customize-site";
@@ -212,12 +211,7 @@
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <h3 class="text-xl text-gray-500 text-center">
-        <img
-          src={iconQwkLogo}
-          alt="Qwk Logo"
-          width="200px"
-          class="text-lg text-gray-500 mx-auto block mb-0"
-        />
+          {@html iconQwksearchlogo()}
         {APP_SLOGAN}
       </h3>
 

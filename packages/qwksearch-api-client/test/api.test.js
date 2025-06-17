@@ -3,7 +3,6 @@ import * as QwkSearch from '..';
 
 describe('QwkSearch API Client', () => {
 
-
   describe('writeLanguage', () => {
     it('generates language model reply', async () => {
       const result = await QwkSearch.writeLanguage({
@@ -61,7 +60,7 @@ describe('QwkSearch API Client', () => {
       const result = await QwkSearch.extractContent({
         query: {
           url: 'https://builtin.com/data-science/beginners-guide-language-models',
-          timeout: 10 // Increased timeout to avoid test timing out
+          timeout: 10 
         }
       });
 

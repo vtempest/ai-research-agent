@@ -30,7 +30,7 @@
     listDockApps: {
       id: string;
       title: string;
-      icon: string;
+      icon: () => string;
     }[];
     handleAppDockClick: (id: string) => void;
     shouldAutoClickOnHover?: boolean;
@@ -180,11 +180,9 @@
                       ? 'opacity-100'
                       : 'opacity-60'}"
                   >
-                    <img
-                      src={dockItem.icon}
-                      class="h-8 w-10"
-                      alt={dockItem.id}
-                    />
+                    <div class="h-8 w-10">
+                      {@html dockItem.icon()}
+                    </div>
                   </div>
                 {/if}
               </div>
