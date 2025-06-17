@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/topics/topic-distribution",
+  "title": "topic-distribution",
+  "description": "Documentation / src/topics/topic-distribution",
+  "source": "@site/docs/functions/src/topics/topic-distribution.md",
+  "sourceDirName": "functions/src/topics",
+  "slug": "/functions/src/topics/topic-distribution",
+  "permalink": "/functions/src/topics/topic-distribution",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/topics/topic-distribution.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "seektopic-keyphrases",
+    "permalink": "/functions/src/topics/seektopic-keyphrases"
+  },
+  "next": {
+    "title": "types",
+    "permalink": "/functions/src/types"
+  }
+}

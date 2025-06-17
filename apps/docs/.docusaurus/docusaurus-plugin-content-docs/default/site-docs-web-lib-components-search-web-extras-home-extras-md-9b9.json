@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "home-extras-4",
-    "permalink": "/web/lib/components/SearchWeb/extras/home-extras-4"
+    "title": "get-weather",
+    "permalink": "/web/lib/components/SearchWeb/extras/get-weather"
   },
   "next": {
-    "title": "shortcut-search-1",
-    "permalink": "/web/lib/components/ShortcutSearch/shortcut-search-1"
+    "title": "shortcut-search-web",
+    "permalink": "/web/lib/components/ShortcutSearch/shortcut-search-web"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/models/LineItemBlock.md",
   "sourceDirName": "functions/extractor/pdf-to-html/models",
   "slug": "/functions/extractor/pdf-to-html/models/LineItemBlock",
-  "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock",
+  "permalink": "/functions/extractor/pdf-to-html/models/LineItemBlock",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/LineItemBlock.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "LineItem",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem"
+    "permalink": "/functions/extractor/pdf-to-html/models/LineItem"
   },
   "next": {
-    "title": "Metadata",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/Metadata"
+    "title": "Page",
+    "permalink": "/functions/extractor/pdf-to-html/models/Page"
   }
 }

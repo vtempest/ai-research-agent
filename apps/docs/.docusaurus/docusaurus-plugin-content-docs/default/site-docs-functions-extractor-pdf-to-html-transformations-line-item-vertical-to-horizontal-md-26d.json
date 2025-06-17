@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal.md",
   "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
   "slug": "/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
-  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
+  "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "RemoveRepetitiveElements",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements"
   },
   "next": {
     "title": "DetectCodeQuoteBlocks",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks"
   }
 }

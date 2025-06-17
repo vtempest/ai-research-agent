@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/interface/youtube-embed.md",
   "sourceDirName": "functions/interface",
   "slug": "/functions/interface/youtube-embed",
-  "permalink": "/docs/functions/interface/youtube-embed",
+  "permalink": "/functions/interface/youtube-embed",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/interface/youtube-embed.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "ip-to-lang",
-    "permalink": "/docs/functions/interface/ip-to-lang"
+    "title": "highlight-code",
+    "permalink": "/functions/interface/highlight-code"
   },
   "next": {
     "title": "compare-letters",
-    "permalink": "/docs/functions/match/compare-letters"
+    "permalink": "/functions/match/compare-letters"
   }
 }

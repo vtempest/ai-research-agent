@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "parse-cards-4",
-    "permalink": "/web/lib/components/Editor/docx/parse-cards-4"
+    "title": "docx-tokens",
+    "permalink": "/web/lib/components/Editor/docx/docx-tokens"
   },
   "next": {
-    "title": "parse-debate-docx-1",
-    "permalink": "/web/lib/components/Editor/docx/parse-debate-docx-1"
+    "title": "parse-debate-docx",
+    "permalink": "/web/lib/components/Editor/docx/parse-debate-docx"
   }
 }

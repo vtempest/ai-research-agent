@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "customize-site-1",
-    "permalink": "/web/lib/customize-site-1"
+    "title": "tooltip",
+    "permalink": "/web/lib/components/ui/tooltip"
   },
   "next": {
-    "title": "auth-1",
-    "permalink": "/web/lib/server/auth-1"
+    "title": "auth",
+    "permalink": "/web/lib/server/auth"
   }
 }

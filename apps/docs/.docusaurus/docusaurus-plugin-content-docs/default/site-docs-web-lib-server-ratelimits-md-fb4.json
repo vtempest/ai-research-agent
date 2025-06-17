@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "ratelimits-2",
-    "permalink": "/web/lib/server/ratelimits-2"
+    "title": "email",
+    "permalink": "/web/lib/server/email"
   },
   "next": {
-    "title": "schema-1",
-    "permalink": "/web/lib/server/schema-1"
+    "title": "schema",
+    "permalink": "/web/lib/server/schema"
   }
 }

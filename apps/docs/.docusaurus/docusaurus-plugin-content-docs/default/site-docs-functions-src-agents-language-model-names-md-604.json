@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/agents/language-model-names",
+  "title": "language-model-names",
+  "description": "Documentation / src/agents/language-model-names",
+  "source": "@site/docs/functions/src/agents/language-model-names.md",
+  "sourceDirName": "functions/src/agents",
+  "slug": "/functions/src/agents/language-model-names",
+  "permalink": "/functions/src/agents/language-model-names",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/agents/language-model-names.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "api2ai",
+    "permalink": "/functions/src/agents/api2ai"
+  },
+  "next": {
+    "title": "reply-language",
+    "permalink": "/functions/src/agents/reply-language"
+  }
+}

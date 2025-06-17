@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/html-to-cite/extract-date/extract-date.md",
   "sourceDirName": "functions/extractor/html-to-cite/extract-date",
   "slug": "/functions/extractor/html-to-cite/extract-date/",
-  "permalink": "/docs/functions/extractor/html-to-cite/extract-date/",
+  "permalink": "/functions/extractor/html-to-cite/extract-date/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-date/extract-date.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "extract-cite",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite"
+    "permalink": "/functions/extractor/html-to-cite/extract-cite"
   },
   "next": {
     "title": "date-extractors",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors"
+    "permalink": "/functions/extractor/html-to-cite/extract-date/date-extractors"
   }
 }

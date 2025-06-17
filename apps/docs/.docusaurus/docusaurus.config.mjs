@@ -92,7 +92,6 @@ export default {
         "tsconfig": "../web/tsconfig.json",
         "out": "./docs/web",
         "readme": "none",
-        "entryPointStrategy": "expand",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
@@ -126,7 +125,7 @@ export default {
       {
         "id": "functions",
         "entryPoints": [
-          "../../packages/ai-research-agent/src/index.ts"
+          "../../packages/ai-research-agent/src/**/*"
         ],
         "exclude": [
           "**/node_modules/**/*",
@@ -136,7 +135,6 @@ export default {
         "tsconfig": "../../packages/ai-research-agent/tsconfig.json",
         "out": "./docs/functions",
         "readme": "none",
-        "entryPointStrategy": "expand",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {

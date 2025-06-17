@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.md",
   "sourceDirName": "functions/extractor/pdf-to-html/transformations",
   "slug": "/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
-  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
+  "permalink": "/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "ToHTML",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToHTML"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/ToHTML"
   },
   "next": {
     "title": "ToLineItemTransformation",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation"
   }
 }

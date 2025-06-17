@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/tokenize/text-to-chunks.md",
   "sourceDirName": "functions/tokenize",
   "slug": "/functions/tokenize/text-to-chunks",
-  "permalink": "/docs/functions/tokenize/text-to-chunks",
+  "permalink": "/functions/tokenize/text-to-chunks",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/tokenize/text-to-chunks.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "suggest-complete-word",
-    "permalink": "/docs/functions/tokenize/suggest-complete-word"
+    "permalink": "/functions/tokenize/suggest-complete-word"
   },
   "next": {
     "title": "text-to-sentences",
-    "permalink": "/docs/functions/tokenize/text-to-sentences"
+    "permalink": "/functions/tokenize/text-to-sentences"
   }
 }

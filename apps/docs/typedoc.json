@@ -1,5 +1,4 @@
 {
-  "entryPoints": ["../../packages/ai-research-agent/src/**/*", "../web/src/**/*"],
   "plugin": ["typedoc-plugin-markdown"],
 
   "outDir": "./docs",

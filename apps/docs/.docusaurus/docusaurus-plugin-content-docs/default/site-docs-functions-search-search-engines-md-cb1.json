@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/search/search-engines.md",
   "sourceDirName": "functions/search",
   "slug": "/functions/search/search-engines",
-  "permalink": "/docs/functions/search/search-engines",
+  "permalink": "/functions/search/search-engines",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/search/search-engines.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "modules",
-    "permalink": "/docs/functions/modules"
+    "title": "weigh-relevance-frequency",
+    "permalink": "/functions/match/weigh-relevance-frequency"
   },
   "next": {
     "title": "search-stream",
-    "permalink": "/docs/functions/search/search-stream"
+    "permalink": "/functions/search/search-stream"
   }
 }

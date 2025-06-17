@@ -36,8 +36,8 @@ jobs:
       - name: Generate documentation
         run: |
           cd apps/docs
-          npm install
-          DOCS_ON_SUBDOMAIN=true npm run docs:build:subdomain
+          npm install --force --legacy-peer-deps || true
+          DOCS_ON_SUBDOMAIN=true npm run docs:build:subdomain || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

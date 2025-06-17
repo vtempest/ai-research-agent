@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "auto-highlight-3",
-    "permalink": "/web/lib/components/ReadMode/auto-highlight-3"
+    "title": "seed-test-data",
+    "permalink": "/web/lib/components/Editor/storage/seed-test-data"
   },
   "next": {
-    "title": "read-mode-view-1",
-    "permalink": "/web/lib/components/ReadMode/read-mode-view-1"
+    "title": "read-mode-view",
+    "permalink": "/web/lib/components/ReadMode/read-mode-view"
   }
 }

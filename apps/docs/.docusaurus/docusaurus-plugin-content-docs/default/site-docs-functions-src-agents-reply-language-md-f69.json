@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/agents/reply-language",
+  "title": "reply-language",
+  "description": "Documentation / src/agents/reply-language",
+  "source": "@site/docs/functions/src/agents/reply-language.md",
+  "sourceDirName": "functions/src/agents",
+  "slug": "/functions/src/agents/reply-language",
+  "permalink": "/functions/src/agents/reply-language",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/agents/reply-language.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "language-model-names",
+    "permalink": "/functions/src/agents/language-model-names"
+  },
+  "next": {
+    "title": "extract-author",
+    "permalink": "/functions/src/extractor/html-to-cite/extract-author"
+  }
+}

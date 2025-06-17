@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "+server-3",
-    "permalink": "/web/routes/api/agents/+server-3"
+    "title": "+layout",
+    "permalink": "/web/routes/+layout"
   },
   "next": {
-    "title": "+server-1",
-    "permalink": "/web/routes/api/chats/+server-1"
+    "title": "+server",
+    "permalink": "/web/routes/api/chats/+server"
   }
 }

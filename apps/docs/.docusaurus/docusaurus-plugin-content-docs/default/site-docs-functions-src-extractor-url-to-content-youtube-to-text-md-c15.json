@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/url-to-content/youtube-to-text",
+  "title": "youtube-to-text",
+  "description": "Documentation / src/extractor/url-to-content/youtube-to-text",
+  "source": "@site/docs/functions/src/extractor/url-to-content/youtube-to-text.md",
+  "sourceDirName": "functions/src/extractor/url-to-content",
+  "slug": "/functions/src/extractor/url-to-content/youtube-to-text",
+  "permalink": "/functions/src/extractor/url-to-content/youtube-to-text",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/url-to-content/youtube-to-text.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "url-to-html",
+    "permalink": "/functions/src/extractor/url-to-content/url-to-html"
+  },
+  "next": {
+    "title": "highlight-code",
+    "permalink": "/functions/src/interface/highlight-code"
+  }
+}

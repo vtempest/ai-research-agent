@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/pdf-to-html/models/Word",
+  "title": "Word",
+  "description": "Documentation / src/extractor/pdf-to-html/models/Word",
+  "source": "@site/docs/functions/src/extractor/pdf-to-html/models/Word.md",
+  "sourceDirName": "functions/src/extractor/pdf-to-html/models",
+  "slug": "/functions/src/extractor/pdf-to-html/models/Word",
+  "permalink": "/functions/src/extractor/pdf-to-html/models/Word",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/pdf-to-html/models/Word.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "TextItemLineGrouper",
+    "permalink": "/functions/src/extractor/pdf-to-html/models/TextItemLineGrouper"
+  },
+  "next": {
+    "title": "CalculateGlobalStats",
+    "permalink": "/functions/src/extractor/pdf-to-html/transformations/CalculateGlobalStats"
+  }
+}

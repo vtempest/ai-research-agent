@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "+layout-1",
-    "permalink": "/web/routes/+layout-1"
+    "title": "utils",
+    "permalink": "/web/lib/utils"
   },
   "next": {
-    "title": "+server-1",
-    "permalink": "/web/routes/api/agents/+server-1"
+    "title": "+server",
+    "permalink": "/web/routes/api/agents/+server"
   }
 }

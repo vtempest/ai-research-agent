@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+  "title": "DetectCodeQuoteBlocks",
+  "description": "Documentation / src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+  "source": "@site/docs/functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks.md",
+  "sourceDirName": "functions/src/extractor/pdf-to-html/transformations/line-item-block",
+  "slug": "/functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+  "permalink": "/functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "VerticalToHorizontal",
+    "permalink": "/functions/src/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal"
+  },
+  "next": {
+    "title": "DetectListLevels",
+    "permalink": "/functions/src/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels"
+  }
+}

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/util/string-functions.md",
   "sourceDirName": "functions/extractor/pdf-to-html/util",
   "slug": "/functions/extractor/pdf-to-html/util/string-functions",
-  "permalink": "/docs/functions/extractor/pdf-to-html/util/string-functions",
+  "permalink": "/functions/extractor/pdf-to-html/util/string-functions",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/util/string-functions.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "page-number-functions",
-    "permalink": "/docs/functions/extractor/pdf-to-html/util/page-number-functions"
+    "permalink": "/functions/extractor/pdf-to-html/util/page-number-functions"
   },
   "next": {
     "title": "url-to-content",
-    "permalink": "/docs/functions/extractor/url-to-content/"
+    "permalink": "/functions/extractor/url-to-content/"
   }
 }

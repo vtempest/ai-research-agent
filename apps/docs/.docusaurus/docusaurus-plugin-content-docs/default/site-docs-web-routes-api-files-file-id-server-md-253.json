@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "+server-4",
-    "permalink": "/web/routes/api/files/[fileId]/+server-4"
+    "title": "+server",
+    "permalink": "/web/routes/api/files/+server"
   },
   "next": {
-    "title": "+server-1",
-    "permalink": "/web/routes/api/model/+server-1"
+    "title": "+server",
+    "permalink": "/web/routes/api/model/+server"
   }
 }

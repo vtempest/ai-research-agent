@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/tokenize/text-to-topic-tokens.md",
   "sourceDirName": "functions/tokenize",
   "slug": "/functions/tokenize/text-to-topic-tokens",
-  "permalink": "/docs/functions/tokenize/text-to-topic-tokens",
+  "permalink": "/functions/tokenize/text-to-topic-tokens",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/tokenize/text-to-topic-tokens.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "text-to-sentences",
-    "permalink": "/docs/functions/tokenize/text-to-sentences"
+    "permalink": "/functions/tokenize/text-to-sentences"
   },
   "next": {
     "title": "word-to-root-stem",
-    "permalink": "/docs/functions/tokenize/word-to-root-stem"
+    "permalink": "/functions/tokenize/word-to-root-stem"
   }
 }

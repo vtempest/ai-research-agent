@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/agents/agent-tools.md",
   "sourceDirName": "functions/agents",
   "slug": "/functions/agents/agent-tools",
-  "permalink": "/docs/functions/agents/agent-tools",
+  "permalink": "/functions/agents/agent-tools",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/agent-tools.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "agent-prompts",
-    "permalink": "/docs/functions/agents/agent-prompts"
+    "permalink": "/functions/agents/agent-prompts"
   },
   "next": {
     "title": "api2ai",
-    "permalink": "/docs/functions/agents/api2ai"
+    "permalink": "/functions/agents/api2ai"
   }
 }

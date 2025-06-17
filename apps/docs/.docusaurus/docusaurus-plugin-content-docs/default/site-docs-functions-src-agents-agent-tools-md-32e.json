@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/agents/agent-tools",
+  "title": "agent-tools",
+  "description": "Documentation / src/agents/agent-tools",
+  "source": "@site/docs/functions/src/agents/agent-tools.md",
+  "sourceDirName": "functions/src/agents",
+  "slug": "/functions/src/agents/agent-tools",
+  "permalink": "/functions/src/agents/agent-tools",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/agents/agent-tools.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "agent-prompts",
+    "permalink": "/functions/src/agents/agent-prompts"
+  },
+  "next": {
+    "title": "api2ai",
+    "permalink": "/functions/src/agents/api2ai"
+  }
+}

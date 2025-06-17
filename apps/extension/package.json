@@ -39,7 +39,6 @@
     "lucide-svelte": "^0.511.0",
     "postcss": "^8.5.4",
     "svelte-lightbox": "^1.1.7",
-    "svelte-markdown": "^0.4.1",
     "svelte-routing": "^2.13.0",
     "svelte-sonner": "^1.0.4",
     "svelte-spa-router": "^4.0.1",

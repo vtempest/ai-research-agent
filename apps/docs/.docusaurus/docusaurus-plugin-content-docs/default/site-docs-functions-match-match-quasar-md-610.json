@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/match/match-quasar.md",
   "sourceDirName": "functions/match",
   "slug": "/functions/match/match-quasar",
-  "permalink": "/docs/functions/match/match-quasar",
+  "permalink": "/functions/match/match-quasar",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/match/match-quasar.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "compare-letters",
-    "permalink": "/docs/functions/match/compare-letters"
+    "permalink": "/functions/match/compare-letters"
   },
   "next": {
     "title": "weigh-relevance-frequency",
-    "permalink": "/docs/functions/match/weigh-relevance-frequency"
+    "permalink": "/functions/match/weigh-relevance-frequency"
   }
 }

@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "drizzle.config-2",
-    "permalink": "/web/lib/server/drizzle.config-2"
+    "title": "auth",
+    "permalink": "/web/lib/server/auth"
   },
   "next": {
-    "title": "email-1",
-    "permalink": "/web/lib/server/email-1"
+    "title": "email",
+    "permalink": "/web/lib/server/email"
   }
 }

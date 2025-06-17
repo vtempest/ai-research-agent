@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks.md",
   "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item-block",
   "slug": "/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
-  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
+  "permalink": "/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "DetectListLevels",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels"
   },
   "next": {
     "title": "is-url-pdf",
-    "permalink": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf"
+    "permalink": "/functions/extractor/pdf-to-html/util/is-url-pdf"
   }
 }

@@ -72,7 +72,7 @@ export default async function createConfig(options: any = {}) {
       },
       {
         id: "functions",
-        entryPoints: ["../../packages/ai-research-agent/src/index.ts"],
+        entryPoints: ["../../packages/ai-research-agent/src/**/*"],
         tsconfig: "../../packages/ai-research-agent/tsconfig.json",
       },
     ],
@@ -167,7 +167,6 @@ export default async function createConfig(options: any = {}) {
           out: baseFolder + "docs/" + id,
           // readme,
           readme: "none",
-          entryPointStrategy: "expand",
           sourceLinkTemplate,
           disableSources: !showEditsOnGitHub,
           sidebar: { pretty: true },

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/models/ParsedElements.md",
   "sourceDirName": "functions/extractor/pdf-to-html/models",
   "slug": "/functions/extractor/pdf-to-html/models/ParsedElements",
-  "permalink": "/docs/functions/extractor/pdf-to-html/models/ParsedElements",
+  "permalink": "/functions/extractor/pdf-to-html/models/ParsedElements",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/ParsedElements.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "ParseResult",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/ParseResult"
+    "permalink": "/functions/extractor/pdf-to-html/models/ParseResult"
   },
   "next": {
     "title": "StashingStream",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/StashingStream"
+    "permalink": "/functions/extractor/pdf-to-html/models/StashingStream"
   }
 }

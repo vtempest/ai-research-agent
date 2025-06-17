@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/html-to-cite/extract-cite.md",
   "sourceDirName": "functions/extractor/html-to-cite",
   "slug": "/functions/extractor/html-to-cite/extract-cite",
-  "permalink": "/docs/functions/extractor/html-to-cite/extract-cite",
+  "permalink": "/functions/extractor/html-to-cite/extract-cite",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/html-to-cite/extract-cite.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "extract-author",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-author"
+    "permalink": "/functions/extractor/html-to-cite/extract-author"
   },
   "next": {
     "title": "extract-date",
-    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/"
+    "permalink": "/functions/extractor/html-to-cite/extract-date/"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/search/search-wikipedia.md",
   "sourceDirName": "functions/search",
   "slug": "/functions/search/search-wikipedia",
-  "permalink": "/docs/functions/search/search-wikipedia",
+  "permalink": "/functions/search/search-wikipedia",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/search/search-wikipedia.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "search-web",
-    "permalink": "/docs/functions/search/search-web"
+    "permalink": "/functions/search/search-web"
   },
   "next": {
-    "title": "embeddings-to-graph",
-    "permalink": "/docs/functions/similarity/embeddings-to-graph"
+    "title": "similarity-remote-api",
+    "permalink": "/functions/similarity/similarity-remote-api"
   }
 }

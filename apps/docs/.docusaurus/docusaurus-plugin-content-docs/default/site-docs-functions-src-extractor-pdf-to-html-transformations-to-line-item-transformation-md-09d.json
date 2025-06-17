@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+  "title": "ToLineItemTransformation",
+  "description": "Documentation / src/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+  "source": "@site/docs/functions/src/extractor/pdf-to-html/transformations/ToLineItemTransformation.md",
+  "sourceDirName": "functions/src/extractor/pdf-to-html/transformations",
+  "slug": "/functions/src/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+  "permalink": "/functions/src/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/pdf-to-html/transformations/ToLineItemTransformation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ToLineItemBlockTransformation",
+    "permalink": "/functions/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation"
+  },
+  "next": {
+    "title": "ToTextBlocks",
+    "permalink": "/functions/src/extractor/pdf-to-html/transformations/ToTextBlocks"
+  }
+}

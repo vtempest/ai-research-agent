@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/html-to-content/html-utils",
+  "title": "html-utils",
+  "description": "Documentation / src/extractor/html-to-content/html-utils",
+  "source": "@site/docs/functions/src/extractor/html-to-content/html-utils.md",
+  "sourceDirName": "functions/src/extractor/html-to-content",
+  "slug": "/functions/src/extractor/html-to-content/html-utils",
+  "permalink": "/functions/src/extractor/html-to-content/html-utils",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/html-to-content/html-utils.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "html-to-basic-html",
+    "permalink": "/functions/src/extractor/html-to-content/html-to-basic-html"
+  },
+  "next": {
+    "title": "pdf-to-html",
+    "permalink": "/functions/src/extractor/pdf-to-html/"
+  }
+}

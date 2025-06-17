@@ -1,7 +1,7 @@
 {
   "id": "functions/README",
   "title": "README",
-  "description": "Extract",
+  "description": "Modules",
   "source": "@site/docs/functions/README.md",
   "sourceDirName": "functions",
   "slug": "/functions/",
@@ -18,7 +18,7 @@
     "permalink": "/api/write-language"
   },
   "next": {
-    "title": "README",
-    "permalink": "/web/"
+    "title": "agent-prompts",
+    "permalink": "/functions/agents/agent-prompts"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/tokenize/word-to-root-stem.md",
   "sourceDirName": "functions/tokenize",
   "slug": "/functions/tokenize/word-to-root-stem",
-  "permalink": "/docs/functions/tokenize/word-to-root-stem",
+  "permalink": "/functions/tokenize/word-to-root-stem",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/tokenize/word-to-root-stem.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "text-to-topic-tokens",
-    "permalink": "/docs/functions/tokenize/text-to-topic-tokens"
+    "permalink": "/functions/tokenize/text-to-topic-tokens"
   },
   "next": {
     "title": "ngrams",
-    "permalink": "/docs/functions/topics/ngrams"
+    "permalink": "/functions/topics/ngrams"
   }
 }

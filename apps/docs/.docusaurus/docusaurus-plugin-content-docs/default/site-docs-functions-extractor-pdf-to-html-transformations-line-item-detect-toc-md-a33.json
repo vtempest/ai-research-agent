@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC.md",
   "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
   "slug": "/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
-  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
+  "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "DetectListItems",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems"
   },
   "next": {
     "title": "RemoveRepetitiveElements",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements"
   }
 }

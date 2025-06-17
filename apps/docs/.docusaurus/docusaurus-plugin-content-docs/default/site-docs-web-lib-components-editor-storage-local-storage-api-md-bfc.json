@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "local-storage-api-4",
-    "permalink": "/web/lib/components/Editor/storage/local-storage-api-4"
+    "title": "files-api-frontend",
+    "permalink": "/web/lib/components/Editor/storage/files-api-frontend"
   },
   "next": {
-    "title": "seed-test-data-1",
-    "permalink": "/web/lib/components/Editor/storage/seed-test-data-1"
+    "title": "seed-test-data",
+    "permalink": "/web/lib/components/Editor/storage/seed-test-data"
   }
 }

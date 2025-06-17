@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "parse-zip-folder-4",
-    "permalink": "/web/lib/components/Editor/docx/parse-zip-folder-4"
+    "title": "parse-debate-docx",
+    "permalink": "/web/lib/components/Editor/docx/parse-debate-docx"
   },
   "next": {
-    "title": "files-api-frontend-1",
-    "permalink": "/web/lib/components/Editor/storage/files-api-frontend-1"
+    "title": "files-api-frontend",
+    "permalink": "/web/lib/components/Editor/storage/files-api-frontend"
   }
 }

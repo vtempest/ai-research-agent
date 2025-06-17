@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default",
+  "title": "default",
+  "description": "Documentation / src/extractor/pdf-to-html/models/BlockType / default",
+  "source": "@site/docs/functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default.md",
+  "sourceDirName": "functions/src/extractor/pdf-to-html/models/BlockType/namespaces",
+  "slug": "/functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default",
+  "permalink": "/functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "README",
+    "permalink": "/functions/src/extractor/pdf-to-html/models/BlockType/"
+  },
+  "next": {
+    "title": "HeadlineFinder",
+    "permalink": "/functions/src/extractor/pdf-to-html/models/HeadlineFinder"
+  }
+}

@@ -14,7 +14,7 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "+page.server-2",
-    "permalink": "/web/routes/settings/+page.server-2"
+    "title": "+layout.server",
+    "permalink": "/web/routes/settings/+layout.server"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/search/search-stream.md",
   "sourceDirName": "functions/search",
   "slug": "/functions/search/search-stream",
-  "permalink": "/docs/functions/search/search-stream",
+  "permalink": "/functions/search/search-stream",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/search/search-stream.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "search-engines",
-    "permalink": "/docs/functions/search/search-engines"
+    "permalink": "/functions/search/search-engines"
   },
   "next": {
     "title": "search-web",
-    "permalink": "/docs/functions/search/search-web"
+    "permalink": "/functions/search/search-web"
   }
 }

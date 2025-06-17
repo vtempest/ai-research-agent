@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/index.md",
   "sourceDirName": "functions",
   "slug": "/functions/",
-  "permalink": "/docs/functions/",
+  "permalink": "/functions/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/index.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "youtube-to-text",
-    "permalink": "/docs/functions/extractor/url-to-content/youtube-to-text"
+    "permalink": "/functions/extractor/url-to-content/youtube-to-text"
   },
   "next": {
     "title": "highlight-code",
-    "permalink": "/docs/functions/interface/highlight-code"
+    "permalink": "/functions/interface/highlight-code"
   }
 }

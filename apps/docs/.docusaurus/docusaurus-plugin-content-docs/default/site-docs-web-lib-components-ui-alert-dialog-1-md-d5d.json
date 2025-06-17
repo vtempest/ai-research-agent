@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "alert-4",
-    "permalink": "/web/lib/components/ui/alert-4"
+    "title": "alert-1",
+    "permalink": "/web/lib/components/ui/alert-1"
   },
   "next": {
-    "title": "alert-dialog-2",
-    "permalink": "/web/lib/components/ui/alert-dialog-2"
+    "title": "alert-dialog",
+    "permalink": "/web/lib/components/ui/alert-dialog"
   }
 }

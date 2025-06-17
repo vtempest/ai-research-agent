@@ -1,0 +1,24 @@
+{
+  "id": "functions/src-1",
+  "title": "src-1",
+  "description": "Documentation / src",
+  "source": "@site/docs/functions/src-1.md",
+  "sourceDirName": "functions",
+  "slug": "/functions/src-1",
+  "permalink": "/functions/src-1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src-1.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "types",
+    "permalink": "/functions/src/types"
+  },
+  "next": {
+    "title": "src",
+    "permalink": "/functions/src"
+  }
+}

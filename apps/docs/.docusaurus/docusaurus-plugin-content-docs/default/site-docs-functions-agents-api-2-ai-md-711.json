@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/agents/api2ai.md",
   "sourceDirName": "functions/agents",
   "slug": "/functions/agents/api2ai",
-  "permalink": "/docs/functions/agents/api2ai",
+  "permalink": "/functions/agents/api2ai",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/api2ai.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "agent-tools",
-    "permalink": "/docs/functions/agents/agent-tools"
+    "permalink": "/functions/agents/agent-tools"
   },
   "next": {
     "title": "language-model-names",
-    "permalink": "/docs/functions/agents/language-model-names"
+    "permalink": "/functions/agents/language-model-names"
   }
 }

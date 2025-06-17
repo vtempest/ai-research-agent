@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/html-to-cite/metadata-to-cite",
+  "title": "metadata-to-cite",
+  "description": "Documentation / src/extractor/html-to-cite/metadata-to-cite",
+  "source": "@site/docs/functions/src/extractor/html-to-cite/metadata-to-cite.md",
+  "sourceDirName": "functions/src/extractor/html-to-cite",
+  "slug": "/functions/src/extractor/html-to-cite/metadata-to-cite",
+  "permalink": "/functions/src/extractor/html-to-cite/metadata-to-cite",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/html-to-cite/metadata-to-cite.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "human-names-recognize",
+    "permalink": "/functions/src/extractor/html-to-cite/human-names-recognize"
+  },
+  "next": {
+    "title": "url-to-domain",
+    "permalink": "/functions/src/extractor/html-to-cite/url-to-domain"
+  }
+}

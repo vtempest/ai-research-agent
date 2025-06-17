@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "sheet-4",
-    "permalink": "/web/lib/components/ui/sheet-4"
+    "title": "sheet-1",
+    "permalink": "/web/lib/components/ui/sheet-1"
   },
   "next": {
-    "title": "constants-1",
-    "permalink": "/web/lib/components/ui/sidebar/constants-1"
+    "title": "constants",
+    "permalink": "/web/lib/components/ui/sidebar/constants"
   }
 }

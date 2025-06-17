@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/models/LineItem.md",
   "sourceDirName": "functions/extractor/pdf-to-html/models",
   "slug": "/functions/extractor/pdf-to-html/models/LineItem",
-  "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItem",
+  "permalink": "/functions/extractor/pdf-to-html/models/LineItem",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/models/LineItem.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "LineConverter",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineConverter"
+    "permalink": "/functions/extractor/pdf-to-html/models/LineConverter"
   },
   "next": {
     "title": "LineItemBlock",
-    "permalink": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock"
+    "permalink": "/functions/extractor/pdf-to-html/models/LineItemBlock"
   }
 }

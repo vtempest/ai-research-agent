@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/tokenize/word-to-root-stem",
+  "title": "word-to-root-stem",
+  "description": "Documentation / src/tokenize/word-to-root-stem",
+  "source": "@site/docs/functions/src/tokenize/word-to-root-stem.md",
+  "sourceDirName": "functions/src/tokenize",
+  "slug": "/functions/src/tokenize/word-to-root-stem",
+  "permalink": "/functions/src/tokenize/word-to-root-stem",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/tokenize/word-to-root-stem.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "text-to-topic-tokens",
+    "permalink": "/functions/src/tokenize/text-to-topic-tokens"
+  },
+  "next": {
+    "title": "ngrams",
+    "permalink": "/functions/src/topics/ngrams"
+  }
+}

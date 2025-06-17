@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "server-2",
-    "permalink": "/web/lib/server-2"
+    "title": "server-1",
+    "permalink": "/web/lib/server-1"
   },
   "next": {
-    "title": "utils-1",
-    "permalink": "/web/lib/utils-1"
+    "title": "utils",
+    "permalink": "/web/lib/utils"
   }
 }

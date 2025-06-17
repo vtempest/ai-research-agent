@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "QuantumSphere-4",
-    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere-4"
+    "title": "categories",
+    "permalink": "/web/lib/components/SearchWeb/categories"
   },
   "next": {
-    "title": "get-weather-1",
-    "permalink": "/web/lib/components/SearchWeb/extras/get-weather-1"
+    "title": "get-weather",
+    "permalink": "/web/lib/components/SearchWeb/extras/get-weather"
   }
 }

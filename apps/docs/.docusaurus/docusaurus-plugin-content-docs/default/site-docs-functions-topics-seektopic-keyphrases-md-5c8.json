@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/topics/seektopic-keyphrases.md",
   "sourceDirName": "functions/topics",
   "slug": "/functions/topics/seektopic-keyphrases",
-  "permalink": "/docs/functions/topics/seektopic-keyphrases",
+  "permalink": "/functions/topics/seektopic-keyphrases",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/topics/seektopic-keyphrases.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "rank-sentences-keyphrases",
-    "permalink": "/docs/functions/topics/rank-sentences-keyphrases"
+    "permalink": "/functions/topics/rank-sentences-keyphrases"
   },
   "next": {
     "title": "topic-distribution",
-    "permalink": "/docs/functions/topics/topic-distribution"
+    "permalink": "/functions/topics/topic-distribution"
   }
 }

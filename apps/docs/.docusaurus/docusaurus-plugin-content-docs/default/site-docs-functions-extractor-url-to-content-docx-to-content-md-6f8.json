@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/url-to-content/docx-to-content.md",
   "sourceDirName": "functions/extractor/url-to-content",
   "slug": "/functions/extractor/url-to-content/docx-to-content",
-  "permalink": "/docs/functions/extractor/url-to-content/docx-to-content",
+  "permalink": "/functions/extractor/url-to-content/docx-to-content",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/url-to-content/docx-to-content.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "url-to-content",
-    "permalink": "/docs/functions/extractor/url-to-content/"
+    "permalink": "/functions/extractor/url-to-content/"
   },
   "next": {
     "title": "url-to-html",
-    "permalink": "/docs/functions/extractor/url-to-content/url-to-html"
+    "permalink": "/functions/extractor/url-to-content/url-to-html"
   }
 }

@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "files-api-frontend-4",
-    "permalink": "/web/lib/components/Editor/storage/files-api-frontend-4"
+    "title": "parse-zip-folder",
+    "permalink": "/web/lib/components/Editor/docx/parse-zip-folder"
   },
   "next": {
-    "title": "local-storage-api-1",
-    "permalink": "/web/lib/components/Editor/storage/local-storage-api-1"
+    "title": "local-storage-api",
+    "permalink": "/web/lib/components/Editor/storage/local-storage-api"
   }
 }

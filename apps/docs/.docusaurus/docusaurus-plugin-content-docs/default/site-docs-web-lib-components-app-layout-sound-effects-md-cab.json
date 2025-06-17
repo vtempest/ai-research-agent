@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "sound-effects-3",
-    "permalink": "/web/lib/components/AppLayout/sound-effects-3"
+    "title": "auth-google-one-tap",
+    "permalink": "/web/lib/components/AppLayout/auth-google-one-tap"
   },
   "next": {
-    "title": "docx-to-html-1",
-    "permalink": "/web/lib/components/Editor/docx/docx-to-html-1"
+    "title": "docx-to-html",
+    "permalink": "/web/lib/components/Editor/docx/docx-to-html"
   }
 }

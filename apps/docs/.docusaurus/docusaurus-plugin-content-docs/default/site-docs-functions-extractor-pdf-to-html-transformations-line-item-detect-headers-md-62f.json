@@ -5,7 +5,7 @@
   "source": "@site/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders.md",
   "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item",
   "slug": "/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
-  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
+  "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "CompactLines",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/CompactLines"
   },
   "next": {
     "title": "DetectListItems",
-    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems"
+    "permalink": "/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems"
   }
 }

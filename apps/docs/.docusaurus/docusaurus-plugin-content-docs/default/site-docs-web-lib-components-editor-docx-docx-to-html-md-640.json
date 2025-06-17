@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "docx-to-html-4",
-    "permalink": "/web/lib/components/Editor/docx/docx-to-html-4"
+    "title": "sound-effects",
+    "permalink": "/web/lib/components/AppLayout/sound-effects"
   },
   "next": {
-    "title": "docx-tokens-1",
-    "permalink": "/web/lib/components/Editor/docx/docx-tokens-1"
+    "title": "docx-tokens",
+    "permalink": "/web/lib/components/Editor/docx/docx-tokens"
   }
 }

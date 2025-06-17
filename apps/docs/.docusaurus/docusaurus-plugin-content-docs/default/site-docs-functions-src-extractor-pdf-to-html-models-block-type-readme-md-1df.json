@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/extractor/pdf-to-html/models/BlockType/README",
+  "title": "README",
+  "description": "Documentation / src/extractor/pdf-to-html/models/BlockType",
+  "source": "@site/docs/functions/src/extractor/pdf-to-html/models/BlockType/README.md",
+  "sourceDirName": "functions/src/extractor/pdf-to-html/models/BlockType",
+  "slug": "/functions/src/extractor/pdf-to-html/models/BlockType/",
+  "permalink": "/functions/src/extractor/pdf-to-html/models/BlockType/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/extractor/pdf-to-html/models/BlockType/README.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Annotation",
+    "permalink": "/functions/src/extractor/pdf-to-html/models/Annotation"
+  },
+  "next": {
+    "title": "default",
+    "permalink": "/functions/src/extractor/pdf-to-html/models/BlockType/namespaces/default"
+  }
+}

@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "users-2",
-    "permalink": "/web/lib/server/users-2"
+    "title": "types",
+    "permalink": "/web/lib/server/types"
   },
   "next": {
-    "title": "validations-1",
-    "permalink": "/web/lib/server/validations-1"
+    "title": "validations",
+    "permalink": "/web/lib/server/validations"
   }
 }

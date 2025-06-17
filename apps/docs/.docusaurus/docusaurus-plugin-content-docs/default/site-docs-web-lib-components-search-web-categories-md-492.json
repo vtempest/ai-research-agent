@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "categories-3",
-    "permalink": "/web/lib/components/SearchWeb/categories-3"
+    "title": "read-mode-view",
+    "permalink": "/web/lib/components/ReadMode/read-mode-view"
   },
   "next": {
-    "title": "QuantumSphere-1",
-    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere-1"
+    "title": "QuantumSphere",
+    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "id": "functions/src/match/compare-letters",
+  "title": "compare-letters",
+  "description": "Documentation / src/match/compare-letters",
+  "source": "@site/docs/functions/src/match/compare-letters.md",
+  "sourceDirName": "functions/src/match",
+  "slug": "/functions/src/match/compare-letters",
+  "permalink": "/functions/src/match/compare-letters",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/src/match/compare-letters.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "youtube-embed",
+    "permalink": "/functions/src/interface/youtube-embed"
+  },
+  "next": {
+    "title": "match-quasar",
+    "permalink": "/functions/src/match/match-quasar"
+  }
+}
