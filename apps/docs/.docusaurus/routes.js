@@ -4,15 +4,15 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/',
-    component: ComponentCreator('/', 'fa7'),
+    component: ComponentCreator('/', '3fa'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '476'),
+        component: ComponentCreator('/', '6fa'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '337'),
+            component: ComponentCreator('/', '61e'),
             routes: [
               {
                 path: '/api/extract-content',
@@ -575,6 +575,60 @@ export default [
               {
                 path: '/functions/types',
                 component: ComponentCreator('/functions/types', 'd0b'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/',
+                component: ComponentCreator('/neural-net/', 'a2d'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/',
+                component: ComponentCreator('/neural-net/', 'ec8'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/statistics/predict-statistics',
+                component: ComponentCreator('/neural-net/statistics/predict-statistics', '55e'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/train/neural-net-gpu',
+                component: ComponentCreator('/neural-net/train/neural-net-gpu', 'f93'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/train/neural-net-tf',
+                component: ComponentCreator('/neural-net/train/neural-net-tf', 'e73'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/train/predict-next-word',
+                component: ComponentCreator('/neural-net/train/predict-next-word', '13f'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/vectorize/similarity-remote-api',
+                component: ComponentCreator('/neural-net/vectorize/similarity-remote-api', '0e0'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/vectorize/similarity-vector',
+                component: ComponentCreator('/neural-net/vectorize/similarity-vector', '30c'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/neural-net/vectorize/usearch',
+                component: ComponentCreator('/neural-net/vectorize/usearch', '1bf'),
                 exact: true,
                 sidebar: "default"
               },
@@ -1270,7 +1324,7 @@ export default [
               },
               {
                 path: '/',
-                component: ComponentCreator('/', 'b49'),
+                component: ComponentCreator('/', 'a98'),
                 exact: true,
                 sidebar: "functions"
               }

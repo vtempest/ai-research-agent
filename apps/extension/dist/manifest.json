@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "QwkSearch Tab Manager AI",
+  "version": "6.0.0",
+  "version_name": "6.0.0",
+  "description": "QwkSearch Tab Manager AI",
+  "permissions": [
+    "sidePanel",
+    "scripting",
+    "contextMenus",
+    "tabs",
+    "favicon",
+    "activeTab",
+    "webRequest",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "src/pages/sidepanel/index.html"
+  },
+  "action": {
+    "default_title": "Search Tools"
+  },
+  "icons": {
+    "48": "src/icons/icon-48.png",
+    "128": "src/icons/icon-128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Q",
+        "mac": "Command+B"
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/index.js-loader-DFbmiRxx.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "src/*",
+        "*.svg",
+        "_favicon/*",
+        "assets/search-engines-oLmTS5w1.js",
+        "assets/Icon-DIu92qC6.js",
+        "assets/index.js-B2HTGXzs.js"
+      ],
+      "use_dynamic_url": false
+    }
+  ]
+}

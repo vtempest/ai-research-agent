@@ -461,6 +461,51 @@
               "sidebar": "functions"
             },
             {
+              "id": "neural-net/index",
+              "path": "/neural-net/",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/README",
+              "path": "/neural-net/",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/statistics/predict-statistics",
+              "path": "/neural-net/statistics/predict-statistics",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/train/neural-net-gpu",
+              "path": "/neural-net/train/neural-net-gpu",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/train/neural-net-tf",
+              "path": "/neural-net/train/neural-net-tf",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/train/predict-next-word",
+              "path": "/neural-net/train/predict-next-word",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/similarity-remote-api",
+              "path": "/neural-net/vectorize/similarity-remote-api",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/similarity-vector",
+              "path": "/neural-net/vectorize/similarity-vector",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/usearch",
+              "path": "/neural-net/vectorize/usearch",
+              "sidebar": "default"
+            },
+            {
               "id": "web/global",
               "path": "/web/global",
               "sidebar": "default"
@@ -1111,8 +1156,8 @@
   "docusaurus-lunr-search": {
     "default": {
       "fileNames": {
-        "searchDoc": "search-doc-1750126984702.json",
-        "lunrIndex": "lunr-index-1750126984702.json"
+        "searchDoc": "search-doc-1750134637061.json",
+        "lunrIndex": "lunr-index-1750134637061.json"
       }
     }
   }

@@ -1,0 +1,52 @@
+{
+  "../../../../../../@crx/manifest": {
+    "file": "assets/crx-manifest.js-BklPz5fO.js",
+    "name": "crx-manifest.js",
+    "src": "../../../../../../@crx/manifest",
+    "isEntry": true
+  },
+  "_Icon-DIu92qC6.js": {
+    "file": "assets/Icon-DIu92qC6.js",
+    "name": "Icon"
+  },
+  "_index.js-loader-DFbmiRxx.js": {
+    "file": "assets/index.js-loader-DFbmiRxx.js",
+    "src": "_index.js-loader-DFbmiRxx.js"
+  },
+  "_search-engines-oLmTS5w1.js": {
+    "file": "assets/search-engines-oLmTS5w1.js",
+    "name": "search-engines"
+  },
+  "src/pages/background/service-worker.js": {
+    "file": "assets/service-worker.js-BZb3mI9H.js",
+    "name": "service-worker.js",
+    "src": "src/pages/background/service-worker.js",
+    "isEntry": true,
+    "imports": [
+      "_search-engines-oLmTS5w1.js"
+    ]
+  },
+  "src/pages/content/index.js": {
+    "file": "assets/index.js-B2HTGXzs.js",
+    "name": "index.js",
+    "src": "src/pages/content/index.js",
+    "isEntry": true,
+    "imports": [
+      "_search-engines-oLmTS5w1.js",
+      "_Icon-DIu92qC6.js"
+    ]
+  },
+  "src/pages/sidepanel/index.html": {
+    "file": "assets/sidepanel-DqiU4H0v.js",
+    "name": "sidepanel",
+    "src": "src/pages/sidepanel/index.html",
+    "isEntry": true,
+    "imports": [
+      "_Icon-DIu92qC6.js",
+      "_search-engines-oLmTS5w1.js"
+    ],
+    "css": [
+      "assets/sidepanel-CiQDcbpd.css"
+    ]
+  }
+}

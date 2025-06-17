@@ -1,0 +1,24 @@
+{
+  "id": "index",
+  "title": "Introduction",
+  "description": "Being is Becoming",
+  "source": "@site/docs/readme.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/readme.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "sidebar_label": "Introduction",
+    "title": "Introduction",
+    "id": "index",
+    "displayed_sidebar": "functions",
+    "slug": "/"
+  },
+  "sidebar": "functions"
+}

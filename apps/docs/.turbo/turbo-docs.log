@@ -1,5 +1,42 @@
 
 [0m[2m[35m$[0m [2m[1mconcurrently "bun x docusaurus serve --dir ./docs-dist" "wait-on http://localhost:3000 && opener http://localhost:3000"[0m
 [0m[0][0m [32m[1m[SUCCESS][22m[39m Serving [36m[4m"./docs-dist"[24m[39m directory at: [36m[4mhttp://localhost:3000/docs/[24m[39m
-[0m[1][0m [0mwait-on http://localhost:3000 && opener http://localhost:3000 exited with code SIGINT[0m
+[0m[1][0m /home/deck/Projects/ai-research-agent/apps/docs/node_modules/.pnpm/opener@1.5.2/node_modules/opener/bin/opener-bin.js:8
+[0m[1][0m         throw error;
+[0m[1][0m         ^
+[0m[1][0m 
+[0m[1][0m Error: Command failed: xdg-open http://localhost:3000
+[0m[1][0m /usr/bin/xdg-open: line 1045: x-www-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: firefox: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: iceweasel: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: seamonkey: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: mozilla: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: epiphany: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: konqueror: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: chromium: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: chromium-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: google-chrome: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: www-browser: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: links2: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: elinks: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: links: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: lynx: command not found
+[0m[1][0m /usr/bin/xdg-open: line 1045: w3m: command not found
+[0m[1][0m xdg-open: no method available for opening 'http://localhost:3000'
+[0m[1][0m 
+[0m[1][0m [90m    at genericNodeError (node:internal/errors:983:15)[39m
+[0m[1][0m [90m    at wrappedFn (node:internal/errors:537:14)[39m
+[0m[1][0m [90m    at ChildProcess.exithandler (node:child_process:414:12)[39m
+[0m[1][0m [90m    at ChildProcess.emit (node:events:518:28)[39m
+[0m[1][0m [90m    at maybeClose (node:internal/child_process:1101:16)[39m
+[0m[1][0m [90m    at ChildProcess._handle.onexit (node:internal/child_process:304:5)[39m {
+[0m[1][0m   code: [33m3[39m,
+[0m[1][0m   killed: [33mfalse[39m,
+[0m[1][0m   signal: [1mnull[22m,
+[0m[1][0m   cmd: [32m'xdg-open http://localhost:3000'[39m
+[0m[1][0m }
+[0m[1][0m 
+[0m[1][0m Node.js v22.16.0
+[0m[1][0m [0mwait-on http://localhost:3000 && opener http://localhost:3000 exited with code 1[0m
 [0m[0][0m [0mbun x docusaurus serve --dir ./docs-dist exited with code SIGINT[0m
+[0m[31merror[0m[2m:[0m script [1m"docs"[0m exited with code 1[0m

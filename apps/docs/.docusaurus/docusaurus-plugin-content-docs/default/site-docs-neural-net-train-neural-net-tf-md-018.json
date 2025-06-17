@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/train/neural-net-tf",
+  "title": "neural-net-tf",
+  "description": "Documentation / train/neural-net-tf",
+  "source": "@site/docs/neural-net/train/neural-net-tf.md",
+  "sourceDirName": "neural-net/train",
+  "slug": "/neural-net/train/neural-net-tf",
+  "permalink": "/neural-net/train/neural-net-tf",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/neural-net/train/neural-net-tf.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "neural-net-gpu",
+    "permalink": "/neural-net/train/neural-net-gpu"
+  },
+  "next": {
+    "title": "predict-next-word",
+    "permalink": "/neural-net/train/predict-next-word"
+  }
+}

@@ -75,6 +75,11 @@ export default async function createConfig(options: any = {}) {
         entryPoints: ["../../packages/ai-research-agent/src/**/*"],
         tsconfig: "../../packages/ai-research-agent/tsconfig.json",
       },
+      {
+        id: "neural-net",
+        entryPoints: ["../../packages/neural-net/src/**/*"],
+        tsconfig: "../../packages/neural-net/tsconfig.json",
+      },
     ],
     showEditsOnGitHub = true,
     GOOGLE_ANALYTICS_ID = "G-E5TZ32BZD",
@@ -218,7 +223,7 @@ export default async function createConfig(options: any = {}) {
         logo: {
           alt: "logo",
           src: appLogoURL,
-          href: "/docs/functions",
+          href: "/",
         },
         items: [
 

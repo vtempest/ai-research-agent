@@ -1,0 +1,905 @@
+"use strict";
+exports.ids = ["7385"];
+exports.modules = {
+39429: (function (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+__webpack_require__.r(__webpack_exports__);
+__webpack_require__.d(__webpack_exports__, {
+  assets: () => (assets),
+  contentTitle: () => (contentTitle),
+  "default": () => (MDXContent),
+  frontMatter: () => (frontMatter),
+  metadata: () => (/* reexport default export from named module */ _site_docusaurus_docusaurus_plugin_content_docs_default_site_docs_web_lib_server_validations_md_b27_json__WEBPACK_IMPORTED_MODULE_0__),
+  toc: () => (toc)
+});
+/* ESM import */var _site_docusaurus_docusaurus_plugin_content_docs_default_site_docs_web_lib_server_validations_md_b27_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(57821);
+/* ESM import */var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(74132);
+/* ESM import */var _mdx_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22840);
+
+
+const frontMatter = {};
+const contentTitle = undefined;
+
+const assets = {
+
+};
+
+
+
+const toc = [{
+  "value": "USERNAME_MIN_LEN",
+  "id": "username_min_len",
+  "level": 2
+}, {
+  "value": "See",
+  "id": "see",
+  "level": 3
+}, {
+  "value": "USERNAME_MAX_LEN",
+  "id": "username_max_len",
+  "level": 2
+}, {
+  "value": "PASSWORD_MIN_LEN",
+  "id": "password_min_len",
+  "level": 2
+}, {
+  "value": "PASSWORD_MAX_LEN",
+  "id": "password_max_len",
+  "level": 2
+}, {
+  "value": "NAME_MIN_LEN",
+  "id": "name_min_len",
+  "level": 2
+}, {
+  "value": "NAME_MAX_LEN",
+  "id": "name_max_len",
+  "level": 2
+}, {
+  "value": "EMAIL_MIN_LEN",
+  "id": "email_min_len",
+  "level": 2
+}, {
+  "value": "EMAIL_MAX_LEN",
+  "id": "email_max_len",
+  "level": 2
+}, {
+  "value": "MESSAGE_MIN_LEN",
+  "id": "message_min_len",
+  "level": 2
+}, {
+  "value": "MESSAGE_MAX_LEN",
+  "id": "message_max_len",
+  "level": 2
+}, {
+  "value": "USER_ID_LEN",
+  "id": "user_id_len",
+  "level": 2
+}, {
+  "value": "SESSION_ID_LEN",
+  "id": "session_id_len",
+  "level": 2
+}, {
+  "value": "TOKEN_LEN",
+  "id": "token_len",
+  "level": 2
+}, {
+  "value": "TOKEN_EXPIRATION_TIME",
+  "id": "token_expiration_time",
+  "level": 2
+}, {
+  "value": "emailField",
+  "id": "emailfield",
+  "level": 2
+}, {
+  "value": "isAdminField",
+  "id": "isadminfield",
+  "level": 2
+}, {
+  "value": "isVerifiedField",
+  "id": "isverifiedfield",
+  "level": 2
+}, {
+  "value": "nameField",
+  "id": "namefield",
+  "level": 2
+}, {
+  "value": "passwordConfirmField",
+  "id": "passwordconfirmfield",
+  "level": 2
+}, {
+  "value": "passwordField",
+  "id": "passwordfield",
+  "level": 2
+}, {
+  "value": "tokenField",
+  "id": "tokenfield",
+  "level": 2
+}, {
+  "value": "userIdField",
+  "id": "useridfield",
+  "level": 2
+}, {
+  "value": "usernameField",
+  "id": "usernamefield",
+  "level": 2
+}, {
+  "value": "loginFormSchema",
+  "id": "loginformschema",
+  "level": 2
+}, {
+  "value": "registerFormSchema",
+  "id": "registerformschema",
+  "level": 2
+}, {
+  "value": "verifyEmailFormSchema",
+  "id": "verifyemailformschema",
+  "level": 2
+}, {
+  "value": "changeEmailFormSchemaFirstStep",
+  "id": "changeemailformschemafirststep",
+  "level": 2
+}, {
+  "value": "changeEmailFormSchemaSecondStep",
+  "id": "changeemailformschemasecondstep",
+  "level": 2
+}, {
+  "value": "resetPasswordFormSchemaFirstStep",
+  "id": "resetpasswordformschemafirststep",
+  "level": 2
+}, {
+  "value": "resetPasswordFormSchemaSecondStep",
+  "id": "resetpasswordformschemasecondstep",
+  "level": 2
+}, {
+  "value": "resetPasswordFormSchemaThirdStep",
+  "id": "resetpasswordformschemathirdstep",
+  "level": 2
+}, {
+  "value": "settingsAccountFormSchema",
+  "id": "settingsaccountformschema",
+  "level": 2
+}, {
+  "value": "settingsNotificationsFormSchema",
+  "id": "settingsnotificationsformschema",
+  "level": 2
+}, {
+  "value": "settingsProfileFormSchema",
+  "id": "settingsprofileformschema",
+  "level": 2
+}, {
+  "value": "tokenSchema",
+  "id": "tokenschema",
+  "level": 2
+}, {
+  "value": "userIdSchema",
+  "id": "useridschema",
+  "level": 2
+}, {
+  "value": "updateUserFormSchema",
+  "id": "updateuserformschema",
+  "level": 2
+}, {
+  "value": "passwordConfirmMustBeEqualToPassword()",
+  "id": "passwordconfirmmustbeequaltopassword",
+  "level": 2
+}, {
+  "value": "Parameters",
+  "id": "parameters",
+  "level": 3
+}, {
+  "value": "Returns",
+  "id": "returns",
+  "level": 3
+}];
+function _createMdxContent(props) {
+  const _components = {
+    a: "a",
+    code: "code",
+    h2: "h2",
+    h3: "h3",
+    hr: "hr",
+    li: "li",
+    p: "p",
+    pre: "pre",
+    ul: "ul",
+    ...(0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__/* .useMDXComponents */.a)(),
+    ...props.components
+  };
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "/web/",
+        children: "Documentation"
+      }), " / lib/server/validations"]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "username_min_len",
+      children: "USERNAME_MIN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const USERNAME_MIN_LEN: 3 = 3;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L10",
+        children: "apps/web/src/lib/server/validations.ts:10"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Validations module uses the Zod library to define\nand validate different types of user inputs."
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+      id: "see",
+      children: "See"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.ul, {
+      children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.li, {
+        children: ["Zod ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+          href: "https://zod.dev/?id=basic-usage",
+          children: "Zod Docs"
+        })]
+      }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.li, {
+        children: ["flash-messages ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+          href: "https://github.com/ciscoheat/sveltekit-flash-messages#how-to-use",
+          children: "sveltekit-flash-messages"
+        })]
+      }), "\n"]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "username_max_len",
+      children: "USERNAME_MAX_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const USERNAME_MAX_LEN: 20 = 20;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L11",
+        children: "apps/web/src/lib/server/validations.ts:11"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "password_min_len",
+      children: "PASSWORD_MIN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const PASSWORD_MIN_LEN: 6 = 6;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L13",
+        children: "apps/web/src/lib/server/validations.ts:13"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "password_max_len",
+      children: "PASSWORD_MAX_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const PASSWORD_MAX_LEN: 50 = 50;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L14",
+        children: "apps/web/src/lib/server/validations.ts:14"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "name_min_len",
+      children: "NAME_MIN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const NAME_MIN_LEN: 3 = 3;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L16",
+        children: "apps/web/src/lib/server/validations.ts:16"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "name_max_len",
+      children: "NAME_MAX_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const NAME_MAX_LEN: 50 = 50;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L17",
+        children: "apps/web/src/lib/server/validations.ts:17"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "email_min_len",
+      children: "EMAIL_MIN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const EMAIL_MIN_LEN: 6 = 6;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L19",
+        children: "apps/web/src/lib/server/validations.ts:19"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "email_max_len",
+      children: "EMAIL_MAX_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const EMAIL_MAX_LEN: 50 = 50;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L20",
+        children: "apps/web/src/lib/server/validations.ts:20"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "message_min_len",
+      children: "MESSAGE_MIN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const MESSAGE_MIN_LEN: 4 = 4;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L22",
+        children: "apps/web/src/lib/server/validations.ts:22"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "message_max_len",
+      children: "MESSAGE_MAX_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const MESSAGE_MAX_LEN: 1000 = 1000;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L23",
+        children: "apps/web/src/lib/server/validations.ts:23"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "user_id_len",
+      children: "USER_ID_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const USER_ID_LEN: 15 = 15;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L25",
+        children: "apps/web/src/lib/server/validations.ts:25"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "session_id_len",
+      children: "SESSION_ID_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const SESSION_ID_LEN: 40 = 40;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L27",
+        children: "apps/web/src/lib/server/validations.ts:27"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "token_len",
+      children: "TOKEN_LEN"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const TOKEN_LEN: 15 = 15;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L29",
+        children: "apps/web/src/lib/server/validations.ts:29"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "token_expiration_time",
+      children: "TOKEN_EXPIRATION_TIME"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const TOKEN_EXPIRATION_TIME: 30 = 30;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L30",
+        children: "apps/web/src/lib/server/validations.ts:30"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "emailfield",
+      children: "emailField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const emailField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L33",
+        children: "apps/web/src/lib/server/validations.ts:33"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Core Field Validations"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "isadminfield",
+      children: "isAdminField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const isAdminField: ZodDefault<ZodBoolean>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L44",
+        children: "apps/web/src/lib/server/validations.ts:44"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "isverifiedfield",
+      children: "isVerifiedField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const isVerifiedField: ZodDefault<ZodBoolean>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L46",
+        children: "apps/web/src/lib/server/validations.ts:46"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "namefield",
+      children: "nameField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const nameField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L48",
+        children: "apps/web/src/lib/server/validations.ts:48"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "passwordconfirmfield",
+      children: "passwordConfirmField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const passwordConfirmField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L58",
+        children: "apps/web/src/lib/server/validations.ts:58"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "passwordfield",
+      children: "passwordField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const passwordField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L86",
+        children: "apps/web/src/lib/server/validations.ts:86"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "tokenfield",
+      children: "tokenField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const tokenField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L96",
+        children: "apps/web/src/lib/server/validations.ts:96"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "useridfield",
+      children: "userIdField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const userIdField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L101",
+        children: "apps/web/src/lib/server/validations.ts:101"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "usernamefield",
+      children: "usernameField"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const usernameField: ZodString;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L108",
+        children: "apps/web/src/lib/server/validations.ts:108"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "loginformschema",
+      children: "loginFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const loginFormSchema: ZodObject<{\n  email: ZodString;\n  password: ZodString;\n}, \"strip\", ZodTypeAny, {\n  email?: string;\n  password?: string;\n}, {\n  email?: string;\n  password?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L119",
+        children: "apps/web/src/lib/server/validations.ts:119"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Auth Form Schemas"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "registerformschema",
+      children: "registerFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const registerFormSchema: ZodEffects<ZodObject<{\n  name: ZodString;\n  email: ZodString;\n  password: ZodString;\n  passwordConfirm: ZodString;\n}, \"strip\", ZodTypeAny, {\n  name?: string;\n  email?: string;\n  password?: string;\n  passwordConfirm?: string;\n}, {\n  name?: string;\n  email?: string;\n  password?: string;\n  passwordConfirm?: string;\n}>, {\n  name?: string;\n  email?: string;\n  password?: string;\n  passwordConfirm?: string;\n}, {\n  name?: string;\n  email?: string;\n  password?: string;\n  passwordConfirm?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L124",
+        children: "apps/web/src/lib/server/validations.ts:124"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "verifyemailformschema",
+      children: "verifyEmailFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const verifyEmailFormSchema: ZodObject<{\n  token: ZodString;\n}, \"strip\", ZodTypeAny, {\n  token?: string;\n}, {\n  token?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L133",
+        children: "apps/web/src/lib/server/validations.ts:133"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "changeemailformschemafirststep",
+      children: "changeEmailFormSchemaFirstStep"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const changeEmailFormSchemaFirstStep: ZodObject<{\n  email: ZodString;\n}, \"strip\", ZodTypeAny, {\n  email?: string;\n}, {\n  email?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L138",
+        children: "apps/web/src/lib/server/validations.ts:138"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Change Email Form Schemas"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "changeemailformschemasecondstep",
+      children: "changeEmailFormSchemaSecondStep"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const changeEmailFormSchemaSecondStep: ZodObject<{\n  token: ZodString;\n}, \"strip\", ZodTypeAny, {\n  token?: string;\n}, {\n  token?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L142",
+        children: "apps/web/src/lib/server/validations.ts:142"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "resetpasswordformschemafirststep",
+      children: "resetPasswordFormSchemaFirstStep"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const resetPasswordFormSchemaFirstStep: ZodObject<{\n  email: ZodString;\n}, \"strip\", ZodTypeAny, {\n  email?: string;\n}, {\n  email?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L147",
+        children: "apps/web/src/lib/server/validations.ts:147"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Reset Password Form Schemas"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "resetpasswordformschemasecondstep",
+      children: "resetPasswordFormSchemaSecondStep"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const resetPasswordFormSchemaSecondStep: ZodObject<{\n  token: ZodString;\n}, \"strip\", ZodTypeAny, {\n  token?: string;\n}, {\n  token?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L151",
+        children: "apps/web/src/lib/server/validations.ts:151"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "resetpasswordformschemathirdstep",
+      children: "resetPasswordFormSchemaThirdStep"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const resetPasswordFormSchemaThirdStep: ZodEffects<ZodObject<{\n  password: ZodString;\n  passwordConfirm: ZodString;\n}, \"strip\", ZodTypeAny, {\n  password?: string;\n  passwordConfirm?: string;\n}, {\n  password?: string;\n  passwordConfirm?: string;\n}>, {\n  password?: string;\n  passwordConfirm?: string;\n}, {\n  password?: string;\n  passwordConfirm?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L155",
+        children: "apps/web/src/lib/server/validations.ts:155"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "settingsaccountformschema",
+      children: "settingsAccountFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const settingsAccountFormSchema: ZodObject<{\n  name: ZodString;\n}, \"strip\", ZodTypeAny, {\n  name?: string;\n}, {\n  name?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L163",
+        children: "apps/web/src/lib/server/validations.ts:163"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Settings Schemas"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "settingsnotificationsformschema",
+      children: "settingsNotificationsFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const settingsNotificationsFormSchema: ZodObject<{\n  name: ZodString;\n}, \"strip\", ZodTypeAny, {\n  name?: string;\n}, {\n  name?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L167",
+        children: "apps/web/src/lib/server/validations.ts:167"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "settingsprofileformschema",
+      children: "settingsProfileFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const settingsProfileFormSchema: ZodObject<{\n  username: ZodString;\n}, \"strip\", ZodTypeAny, {\n  username?: string;\n}, {\n  username?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L171",
+        children: "apps/web/src/lib/server/validations.ts:171"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "tokenschema",
+      children: "tokenSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const tokenSchema: ZodObject<{\n  token: ZodString;\n}, \"strip\", ZodTypeAny, {\n  token?: string;\n}, {\n  token?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L176",
+        children: "apps/web/src/lib/server/validations.ts:176"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Parameter Schemas"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "useridschema",
+      children: "userIdSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const userIdSchema: ZodObject<{\n  userId: ZodString;\n}, \"strip\", ZodTypeAny, {\n  userId?: string;\n}, {\n  userId?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L180",
+        children: "apps/web/src/lib/server/validations.ts:180"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "updateuserformschema",
+      children: "updateUserFormSchema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "const updateUserFormSchema: ZodObject<{\n  name: ZodString;\n}, \"strip\", ZodTypeAny, {\n  name?: string;\n}, {\n  name?: string;\n}>;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L185",
+        children: "apps/web/src/lib/server/validations.ts:185"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: "Update User Schema"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+      id: "passwordconfirmmustbeequaltopassword",
+      children: "passwordConfirmMustBeEqualToPassword()"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        className: "language-ts",
+        children: "function passwordConfirmMustBeEqualToPassword(__namedParameters: EqualPasswords, ctx: RefinementCtx): void;\n"
+      })
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
+      children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
+        href: "https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L64",
+        children: "apps/web/src/lib/server/validations.ts:64"
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+      id: "parameters",
+      children: "Parameters"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            children: "Parameter"
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+            children: "Type"
+          })]
+        })
+      }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tbody", {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+              children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+                children: "__namedParameters"
+              })
+            })
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+              children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+                children: "EqualPasswords"
+              })
+            })
+          })]
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+              children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+                children: "ctx"
+              })
+            })
+          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+              children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+                children: "RefinementCtx"
+              })
+            })
+          })]
+        })]
+      })]
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+      id: "returns",
+      children: "Returns"
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
+      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
+        children: "void"
+      })
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = {
+    ...(0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__/* .useMDXComponents */.a)(),
+    ...props.components
+  };
+  return MDXLayout ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(MDXLayout, {
+    ...props,
+    children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+
+
+
+}),
+22840: (function (__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+__webpack_require__.d(__webpack_exports__, {
+  Z: () => (MDXProvider),
+  a: () => (useMDXComponents)
+});
+/* ESM import */var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39546);
+/**
+ * @import {MDXComponents} from 'mdx/types.js'
+ * @import {Component, ReactElement, ReactNode} from 'react'
+ */
+
+/**
+ * @callback MergeComponents
+ *   Custom merge function.
+ * @param {Readonly<MDXComponents>} currentComponents
+ *   Current components from the context.
+ * @returns {MDXComponents}
+ *   Additional components.
+ *
+ * @typedef Props
+ *   Configuration for `MDXProvider`.
+ * @property {ReactNode | null | undefined} [children]
+ *   Children (optional).
+ * @property {Readonly<MDXComponents> | MergeComponents | null | undefined} [components]
+ *   Additional components to use or a function that creates them (optional).
+ * @property {boolean | null | undefined} [disableParentContext=false]
+ *   Turn off outer component context (default: `false`).
+ */
+
+
+
+/** @type {Readonly<MDXComponents>} */
+const emptyComponents = {}
+
+const MDXContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(emptyComponents)
+
+/**
+ * Get current components from the MDX Context.
+ *
+ * @param {Readonly<MDXComponents> | MergeComponents | null | undefined} [components]
+ *   Additional components to use or a function that creates them (optional).
+ * @returns {MDXComponents}
+ *   Current components.
+ */
+function useMDXComponents(components) {
+  const contextComponents = react__WEBPACK_IMPORTED_MODULE_0__.useContext(MDXContext)
+
+  // Memoize to avoid unnecessary top-level context changes
+  return react__WEBPACK_IMPORTED_MODULE_0__.useMemo(
+    function () {
+      // Custom merge via a function prop
+      if (typeof components === 'function') {
+        return components(contextComponents)
+      }
+
+      return {...contextComponents, ...components}
+    },
+    [contextComponents, components]
+  )
+}
+
+/**
+ * Provider for MDX context.
+ *
+ * @param {Readonly<Props>} properties
+ *   Properties.
+ * @returns {ReactElement}
+ *   Element.
+ * @satisfies {Component}
+ */
+function MDXProvider(properties) {
+  /** @type {Readonly<MDXComponents>} */
+  let allComponents
+
+  if (properties.disableParentContext) {
+    allComponents =
+      typeof properties.components === 'function'
+        ? properties.components(emptyComponents)
+        : properties.components || emptyComponents
+  } else {
+    allComponents = useMDXComponents(properties.components)
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0__.createElement(
+    MDXContext.Provider,
+    {value: allComponents},
+    properties.children
+  )
+}
+
+
+}),
+57821: (function (module) {
+module.exports = JSON.parse('{"id":"web/lib/server/validations","title":"validations","description":"Documentation / lib/server/validations","source":"@site/docs/web/lib/server/validations.md","sourceDirName":"web/lib/server","slug":"/web/lib/server/validations","permalink":"/web/lib/server/validations","draft":false,"unlisted":false,"editUrl":"https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/validations.md","tags":[],"version":"current","frontMatter":{},"sidebar":"default","previous":{"title":"users","permalink":"/web/lib/server/users"},"next":{"title":"server-1","permalink":"/web/lib/server-1"}}')
+
+}),
+
+};
+;

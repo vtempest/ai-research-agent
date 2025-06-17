@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/train/predict-next-word",
+  "title": "predict-next-word",
+  "description": "Documentation / train/predict-next-word",
+  "source": "@site/docs/neural-net/train/predict-next-word.md",
+  "sourceDirName": "neural-net/train",
+  "slug": "/neural-net/train/predict-next-word",
+  "permalink": "/neural-net/train/predict-next-word",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/neural-net/train/predict-next-word.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "neural-net-tf",
+    "permalink": "/neural-net/train/neural-net-tf"
+  },
+  "next": {
+    "title": "similarity-remote-api",
+    "permalink": "/neural-net/vectorize/similarity-remote-api"
+  }
+}

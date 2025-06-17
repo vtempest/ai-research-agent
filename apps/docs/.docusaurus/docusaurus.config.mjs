@@ -162,6 +162,49 @@ export default {
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
+    ],
+    [
+      "docusaurus-plugin-typedoc",
+      {
+        "id": "neural-net",
+        "entryPoints": [
+          "../../packages/neural-net/src/**/*"
+        ],
+        "exclude": [
+          "**/node_modules/**/*",
+          "**/src/wordlists/**",
+          "src/wordlists"
+        ],
+        "tsconfig": "../../packages/neural-net/tsconfig.json",
+        "out": "./docs/neural-net",
+        "readme": "none",
+        "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
+        "disableSources": false,
+        "sidebar": {
+          "pretty": true
+        },
+        "textContentMappings": {
+          "title.indexPage": "QwkSearch API",
+          "title.memberPage": "{name}"
+        },
+        "parametersFormat": "htmlTable",
+        "indexFormat": "list",
+        "expandParameters": true,
+        "interfacePropertiesFormat": "htmlTable",
+        "propertyMembersFormat": "htmlTable",
+        "enumMembersFormat": "htmlTable",
+        "typeDeclarationFormat": "htmlTable",
+        "typeDeclarationVisibility": "compact",
+        "sanitizeComments": false,
+        "useHTMLEncodedBrackets": true,
+        "hideBreadcrumbs": false,
+        "hideGroupHeadings": true,
+        "hidePageHeader": true,
+        "hidePageTitle": true,
+        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
+        "outputFileStrategy": "modules",
+        "useCodeBlocks": true
+      }
     ]
   ],
   "themeConfig": {
@@ -177,7 +220,7 @@ export default {
       "logo": {
         "alt": "logo",
         "src": "https://qwksearch.com/icons/app-icon.svg",
-        "href": "/docs/functions"
+        "href": "/"
       },
       "items": [
         {

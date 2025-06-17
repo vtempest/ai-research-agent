@@ -1,15 +1,15 @@
 {
-  "/-fa7": {
+  "/-3fa": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/-476": {
+  "/-6fa": {
     "__comp": "a7bd4aaa",
     "__props": "22dd74f7"
   },
-  "/-337": {
+  "/-61e": {
     "__comp": "a94703ab"
   },
   "/api/extract-content-592": {
@@ -387,6 +387,42 @@
   "/functions/types-d0b": {
     "__comp": "4c5e977b",
     "content": "07322d09"
+  },
+  "/neural-net/-a2d": {
+    "__comp": "4c5e977b",
+    "content": "ffe97281"
+  },
+  "/neural-net/-ec8": {
+    "__comp": "4c5e977b",
+    "content": "194ef0ed"
+  },
+  "/neural-net/statistics/predict-statistics-55e": {
+    "__comp": "4c5e977b",
+    "content": "3f41f914"
+  },
+  "/neural-net/train/neural-net-gpu-f93": {
+    "__comp": "4c5e977b",
+    "content": "01e4ea7d"
+  },
+  "/neural-net/train/neural-net-tf-e73": {
+    "__comp": "4c5e977b",
+    "content": "018efc99"
+  },
+  "/neural-net/train/predict-next-word-13f": {
+    "__comp": "4c5e977b",
+    "content": "d27578d0"
+  },
+  "/neural-net/vectorize/similarity-remote-api-0e0": {
+    "__comp": "4c5e977b",
+    "content": "adc294a3"
+  },
+  "/neural-net/vectorize/similarity-vector-30c": {
+    "__comp": "4c5e977b",
+    "content": "c1eac58f"
+  },
+  "/neural-net/vectorize/usearch-1bf": {
+    "__comp": "4c5e977b",
+    "content": "2da333a7"
   },
   "/web/-7fc": {
     "__comp": "4c5e977b",
@@ -848,8 +884,8 @@
     "__comp": "4c5e977b",
     "content": "ec405dbe"
   },
-  "/-b49": {
+  "/-a98": {
     "__comp": "4c5e977b",
-    "content": "c377a04b"
+    "content": "52e2a80b"
   }
 }
