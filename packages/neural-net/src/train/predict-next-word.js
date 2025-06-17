@@ -38,9 +38,9 @@
 
 import { torch } from "./neural-net-gpu.js"
 
-/**================================================================================
- * ### Predict Next Word Based On Context and Learned Patterns in Training Examples
- * ================================================================================
+/**=======================================================================================
+ * ### Predict Next Word Based On Vectors of Learned Context Patterns in Training Examples
+ * =======================================================================================
  *
  * Comprehensive training function for a self-attention transformer using custom torch.js.
  * This function implements a decoder-only transformer architecture similar to GPT models,
@@ -67,17 +67,17 @@ import { torch } from "./neural-net-gpu.js"
  * 
  * @example
  * ```javascript
- * import { trainTransformer, Transformer } from './transformer-training.js';
+ * import { trainNextWordPrediction, Transformer } from './transformer-training.js';
  *
  * // Train a new model
- * const results = await trainTransformer();
+ * const results = await trainNextWordPrediction();
  * console.log('Training completed with final loss:', results.finalLoss);
  *
  * // Generate a language response based using the trained model
  * const model = results.model;
  * const predictions = model.forward(inputTokens);
  * ```
- * @author [ai-research-agent](https://airesearch.js.org)
+ * @author [vtempest](https://github.com/vtempest)
  * @returns {Promise<Object>} Training results containing final loss and model
  * @see
  * - Original Transformer paper: https://arxiv.org/abs/1706.03762 ("Attention Is All You Need")
@@ -85,7 +85,7 @@ import { torch } from "./neural-net-gpu.js"
  * - Annotated Transformer: https://nlp.seas.harvard.edu/2018/04/03/attention.html
  * - GPU.js documentation: https://gpu.rocks/
  */
-export async function trainTransformer() {
+export async function trainNextWordPrediction() {
   // Import neural network modules and optimization utilities
   const nn = torch.nn;
   const optim = torch.optim;

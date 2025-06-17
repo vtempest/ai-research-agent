@@ -27,17 +27,17 @@
  *
  * @example
  * ```javascript
- * import { trainTransformer, Transformer } from './transformer-training.js';
+ * import { trainNextWordPrediction, Transformer } from './transformer-training.js';
  *
  * // Train a new model
- * const results = await trainTransformer();
+ * const results = await trainNextWordPrediction();
  * console.log('Training completed with final loss:', results.finalLoss);
  *
  * // Generate a language response based using the trained model
  * const model = results.model;
  * const predictions = model.forward(inputTokens);
  * ```
- * @author [ai-research-agent](https://airesearch.js.org)
+ * @author [vtempest](https://github.com/vtempest)
  * @returns {Promise<Object>} Training results containing final loss and model
  * @see
  * - Original Transformer paper: https://arxiv.org/abs/1706.03762 ("Attention Is All You Need")
@@ -45,4 +45,4 @@
  * - Annotated Transformer: https://nlp.seas.harvard.edu/2018/04/03/attention.html
  * - GPU.js documentation: https://gpu.rocks/
  */
-export function trainTransformer(): Promise<Object>;
+export function trainNextWordPrediction(): Promise<Object>;

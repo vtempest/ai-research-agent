@@ -30,8 +30,8 @@ const toc = [{
   "id": "transformer",
   "level": 2
 }, {
-  "value": "trainTransformer()",
-  "id": "traintransformer",
+  "value": "trainNextWordPrediction()",
+  "id": "trainNextWordPrediction",
   "level": 2
 }, {
   "value": "Predict Next Word Based On Context and Learned Patterns in Training Examples",
@@ -83,12 +83,12 @@ function _createMdxContent(props) {
         children: "Transformer: any;\n"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
-      id: "traintransformer",
-      children: "trainTransformer()"
+      id: "trainNextWordPrediction",
+      children: "trainNextWordPrediction()"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         className: "language-ts",
-        children: "function trainTransformer(): Promise<Object>;\n"
+        children: "function trainNextWordPrediction(): Promise<Object>;\n"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: ["Defined in: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.a, {
@@ -157,7 +157,7 @@ function _createMdxContent(props) {
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         className: "language-javascript",
-        children: "import { trainTransformer, Transformer } from './transformer-training.js';\n\n// Train a new model\nconst results = await trainTransformer();\nconsole.log('Training completed with final loss:', results.finalLoss);\n\n// Generate a language response based using the trained model\nconst model = results.model;\nconst predictions = model.forward(inputTokens);\n"
+        children: "import { trainNextWordPrediction, Transformer } from './transformer-training.js';\n\n// Train a new model\nconst results = await trainNextWordPrediction();\nconsole.log('Training completed with final loss:', results.finalLoss);\n\n// Generate a language response based using the trained model\nconst model = results.model;\nconst predictions = model.forward(inputTokens);\n"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "author",

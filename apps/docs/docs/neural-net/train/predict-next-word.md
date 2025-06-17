@@ -8,10 +8,10 @@ Transformer: any;
 
 ***
 
-## trainTransformer()
+## trainNextWordPrediction()
 
 ```ts
-function trainTransformer(): Promise<Object>;
+function trainNextWordPrediction(): Promise<Object>;
 ```
 
 Defined in: [train/predict-next-word.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/neural-net/src/train/predict-next-word.js#L88)
@@ -51,10 +51,10 @@ Training results containing final loss and model
 ### Example
 
 ```javascript
-import { trainTransformer, Transformer } from './transformer-training.js';
+import { trainNextWordPrediction, Transformer } from './transformer-training.js';
 
 // Train a new model
-const results = await trainTransformer();
+const results = await trainNextWordPrediction();
 console.log('Training completed with final loss:', results.finalLoss);
 
 // Generate a language response based using the trained model
