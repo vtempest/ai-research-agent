@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/dropdown-menu
+[Documentation](../../../README.md) / lib/components/ui/dropdown-menu
 
 ## DropdownMenu
 
@@ -7,7 +7,7 @@ const DropdownMenu: Component<$$ComponentProps, {
 }, "open"> = DropdownMenuPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dropdown-menu/index.ts:16
+Defined in: [apps/web/src/lib/components/ui/dropdown-menu/index.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dropdown-menu/index.ts#L16)
 
 ***
 
@@ -18,7 +18,7 @@ const DropdownMenuSub: Component<MenuSubPropsWithoutHTML, {
 }, "open"> = DropdownMenuPrimitive.Sub;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dropdown-menu/index.ts:15
+Defined in: [apps/web/src/lib/components/ui/dropdown-menu/index.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dropdown-menu/index.ts#L15)
 
 ***
 

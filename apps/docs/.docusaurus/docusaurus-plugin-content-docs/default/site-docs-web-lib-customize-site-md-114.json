@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/customize-site.md",
   "sourceDirName": "web/lib",
   "slug": "/web/lib/customize-site",
-  "permalink": "/docs/web/lib/customize-site",
+  "permalink": "/web/lib/customize-site",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/customize-site.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "tooltip",
-    "permalink": "/docs/web/lib/components/ui/tooltip"
+    "title": "customize-site-1",
+    "permalink": "/web/lib/customize-site-1"
   },
   "next": {
-    "title": "auth",
-    "permalink": "/docs/web/lib/server/auth"
+    "title": "auth-1",
+    "permalink": "/web/lib/server/auth-1"
   }
 }

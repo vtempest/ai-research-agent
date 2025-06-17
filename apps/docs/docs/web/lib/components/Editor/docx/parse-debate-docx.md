@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/docx/parse-debate-docx
+[Documentation](../../../../README.md) / lib/components/Editor/docx/parse-debate-docx
 
 ## parseDebateDocx()
 
@@ -6,7 +6,7 @@
 function parseDebateDocx(docxPath: string, options: object): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-debate-docx.js:9
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-debate-docx.js:9](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-debate-docx.js#L9)
 
 Convert Debate docx to .args format: Annotated Research Graph Summaries
 

@@ -1,12 +1,12 @@
-[Documentation](../modules.md) / lib/auth-client
+[Documentation](../README.md) / lib/auth-client
 
 ## authClient
 
 ```ts
-const authClient: object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object;
+const authClient: object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object & object;
 ```
 
-Defined in: apps/web/src/lib/auth-client.ts:13
+Defined in: [apps/web/src/lib/auth-client.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/auth-client.ts#L13)
 
 ### Create Better Auth Client with One Tap
 
@@ -413,6 +413,69 @@ localhost in chrome://settings/content/federatedIdentityApi
 <tr>
 <td>
 
+`requestPasswordReset()`
+
+</td>
+<td>
+
+&lt;`FetchOptions`&gt;(...`data`: \[`Prettify`&lt;`object` & `object`&gt;, `FetchOptions`?\]) => `Promise`&lt;`BetterFetchResponse`&lt;\{
+\}, \{
+\}, `FetchOptions`\[`"throw"`\] *extends* `true` ? `true` : `false`&gt;&gt;
+
+</td>
+<td>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`resetPassword`
+
+</td>
+<td>
+
+\{
+  `:token`: &lt;`FetchOptions`&gt;(...`data`: \[`Prettify`&lt;`undefined`&gt;?, `FetchOptions`?\]) => `Promise`&lt;`BetterFetchResponse`&lt;`never`, \{
+  \}, `FetchOptions`\[`"throw"`\] *extends* `true` ? `true` : `false`&gt;&gt;;
+\}
+
+</td>
+<td>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
 `revokeSession()`
 
 </td>
@@ -662,6 +725,37 @@ localhost in chrome://settings/content/federatedIdentityApi
 <td>
 
 `getAccessToken()`
+
+</td>
+<td>
+
+&lt;`FetchOptions`&gt;(...`data`: \[`Prettify`&lt;`object` & `object`&gt;, `FetchOptions`?\]) => `Promise`&lt;`BetterFetchResponse`&lt;\{
+\}, \{
+\}, `FetchOptions`\[`"throw"`\] *extends* `true` ? `true` : `false`&gt;&gt;
+
+</td>
+<td>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Type declaration
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+`accountInfo()`
 
 </td>
 <td>

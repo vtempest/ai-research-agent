@@ -1,8 +1,8 @@
-[Documentation](../../modules.md) / lib/server/types
+[Documentation](../../README.md) / lib/server/types
 
 ## OAuthUserInfoType
 
-Defined in: apps/web/src/lib/server/types.d.ts:42
+Defined in: [apps/web/src/lib/server/types.d.ts:42](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L42)
 
 ### Extends
 
@@ -47,7 +47,7 @@ Partial.email
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:44
+[apps/web/src/lib/server/types.d.ts:44](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L44)
 
 </td>
 </tr>
@@ -71,7 +71,7 @@ Partial.name
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:45
+[apps/web/src/lib/server/types.d.ts:45](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L45)
 
 </td>
 </tr>
@@ -95,7 +95,7 @@ Partial.picture
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:46
+[apps/web/src/lib/server/types.d.ts:46](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L46)
 
 </td>
 </tr>
@@ -119,7 +119,7 @@ Partial.providerUserId
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:47
+[apps/web/src/lib/server/types.d.ts:47](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L47)
 
 </td>
 </tr>
@@ -143,7 +143,7 @@ Partial.sub
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:48
+[apps/web/src/lib/server/types.d.ts:48](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L48)
 
 </td>
 </tr>
@@ -167,7 +167,7 @@ Partial.email_verified
 </td>
 <td>
 
-apps/web/src/lib/server/types.d.ts:49
+[apps/web/src/lib/server/types.d.ts:49](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L49)
 
 </td>
 </tr>
@@ -214,4 +214,4 @@ type UserType = Partial<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/types.d.ts:1
+Defined in: [apps/web/src/lib/server/types.d.ts:1](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/types.d.ts#L1)

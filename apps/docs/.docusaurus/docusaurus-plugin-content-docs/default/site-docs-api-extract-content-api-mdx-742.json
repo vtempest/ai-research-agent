@@ -5,7 +5,7 @@
   "source": "@site/docs/api/extract-content.api.mdx",
   "sourceDirName": "api",
   "slug": "/api/extract-content",
-  "permalink": "/docs/api/extract-content",
+  "permalink": "/api/extract-content",
   "draft": false,
   "unlisted": false,
   "editUrl": null,
@@ -26,10 +26,10 @@
   "sidebar": "default",
   "previous": {
     "title": "Introduction",
-    "permalink": "/docs/api/qwksearch-api"
+    "permalink": "/api/qwksearch-api"
   },
   "next": {
     "title": "## Search the web",
-    "permalink": "/docs/api/search-web"
+    "permalink": "/api/search-web"
   }
 }

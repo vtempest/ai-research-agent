@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / routes/+layout
+[Documentation](../README.md) / routes/+layout
 
 ## ssr
 
@@ -6,4 +6,4 @@
 const ssr: false = false;
 ```
 
-Defined in: apps/web/src/routes/+layout.js:1
+Defined in: [apps/web/src/routes/+layout.js:1](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/+layout.js#L1)

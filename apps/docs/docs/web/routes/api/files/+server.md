@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/files/+server
+[Documentation](../../../README.md) / routes/api/files/+server
 
 ## POST()
 
@@ -6,7 +6,7 @@
 function POST(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/files/+server.ts:16
+Defined in: [apps/web/src/routes/api/files/+server.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/files/+server.ts#L16)
 
 ### Parameters
 
@@ -69,7 +69,7 @@ Defined in: apps/web/src/routes/api/files/+server.ts:16
 function GET(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/files/+server.ts:6
+Defined in: [apps/web/src/routes/api/files/+server.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/files/+server.ts#L6)
 
 ### Parameters
 

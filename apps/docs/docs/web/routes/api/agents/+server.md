@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/agents/+server
+[Documentation](../../../README.md) / routes/api/agents/+server
 
 ## POST()
 
@@ -6,7 +6,7 @@
 function POST(event: any): Promise<any>;
 ```
 
-Defined in: apps/web/src/routes/api/agents/+server.ts:8
+Defined in: [apps/web/src/routes/api/agents/+server.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/agents/+server.ts#L8)
 
 ### Parameters
 

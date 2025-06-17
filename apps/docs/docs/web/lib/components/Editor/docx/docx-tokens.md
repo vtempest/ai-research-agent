@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/docx/docx-tokens
+[Documentation](../../../../README.md) / lib/components/Editor/docx/docx-tokens
 
 ## styleMap
 
@@ -6,7 +6,7 @@
 const styleMap: object;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:102
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:102](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L102)
 
 ### Type declaration
 
@@ -42,7 +42,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:102
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:103
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:103](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L103)
 
 </td>
 </tr>
@@ -69,7 +69,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:103
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:114
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:114](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L114)
 
 </td>
 </tr>
@@ -96,7 +96,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:114
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:125
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:125](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L125)
 
 </td>
 </tr>
@@ -123,7 +123,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:125
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:136
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:136](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L136)
 
 </td>
 </tr>
@@ -145,7 +145,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:136
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:147
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:147](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L147)
 
 </td>
 </tr>
@@ -171,7 +171,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:147
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:153
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:153](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L153)
 
 </td>
 </tr>
@@ -196,7 +196,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:153
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:162
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:162](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L162)
 
 </td>
 </tr>
@@ -221,7 +221,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:162
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:171
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:171](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L171)
 
 </td>
 </tr>
@@ -236,7 +236,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:171
 function getStyleNameByXml(elXmlName: any): string;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:1
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:1](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L1)
 
 ### Parameters
 
@@ -275,7 +275,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:1
 function getOutlineLvlName(outlineLvl: any): string;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:6
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L6)
 
 ### Parameters
 
@@ -314,7 +314,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:6
 function getStyles(): string[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:11
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L11)
 
 ### Returns
 
@@ -328,7 +328,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:11
 function getHeadingStyles(): string[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:15
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L15)
 
 ### Returns
 
@@ -342,7 +342,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:15
 function getDocxStyles(styles: any): any;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:21
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L21)
 
 ### Parameters
 
@@ -381,7 +381,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:21
 function tokensToMarkup(textBlocks: any, plainTextOnly: boolean): string;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:31
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:31](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L31)
 
 ### Parameters
 
@@ -443,7 +443,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:31
 function simplifyTokens(block: any): object;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:69
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-tokens.js:69](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L69)
 
 ### Parameters
 
@@ -502,7 +502,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-tokens.js:69
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:80
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:80](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L80)
 
 </td>
 </tr>
@@ -524,7 +524,7 @@ apps/web/src/lib/components/Editor/docx/docx-tokens.js:80
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/docx-tokens.js:80
+[apps/web/src/lib/components/Editor/docx/docx-tokens.js:80](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-tokens.js#L80)
 
 </td>
 </tr>

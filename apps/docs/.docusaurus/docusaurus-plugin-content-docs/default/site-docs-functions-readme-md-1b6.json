@@ -1,11 +1,11 @@
 {
   "id": "functions/README",
   "title": "README",
-  "description": "Being is Becoming",
+  "description": "Extract",
   "source": "@site/docs/functions/README.md",
   "sourceDirName": "functions",
   "slug": "/functions/",
-  "permalink": "/docs/functions/",
+  "permalink": "/functions/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/README.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "## Generate language model reply using agent prompts",
-    "permalink": "/docs/api/write-language"
+    "permalink": "/api/write-language"
   },
   "next": {
-    "title": "globals",
-    "permalink": "/docs/functions/globals"
+    "title": "README",
+    "permalink": "/web/"
   }
 }

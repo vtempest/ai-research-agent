@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/SearchWeb/extras/get-weather-3.md",
   "sourceDirName": "web/lib/components/SearchWeb/extras",
   "slug": "/web/lib/components/SearchWeb/extras/get-weather-3",
-  "permalink": "/docs/web/lib/components/SearchWeb/extras/get-weather-3",
+  "permalink": "/web/lib/components/SearchWeb/extras/get-weather-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/extras/get-weather-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "get-weather-2",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/get-weather-2"
+    "permalink": "/web/lib/components/SearchWeb/extras/get-weather-2"
   },
   "next": {
     "title": "get-weather-4",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/get-weather-4"
+    "permalink": "/web/lib/components/SearchWeb/extras/get-weather-4"
   }
 }

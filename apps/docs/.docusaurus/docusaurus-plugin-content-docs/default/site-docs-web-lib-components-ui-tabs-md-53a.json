@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/tabs.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/tabs",
-  "permalink": "/docs/web/lib/components/ui/tabs",
+  "permalink": "/web/lib/components/ui/tabs",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/tabs.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "tabs-1",
-    "permalink": "/docs/web/lib/components/ui/tabs-1"
+    "title": "tabs-4",
+    "permalink": "/web/lib/components/ui/tabs-4"
   },
   "next": {
     "title": "textarea-1",
-    "permalink": "/docs/web/lib/components/ui/textarea-1"
+    "permalink": "/web/lib/components/ui/textarea-1"
   }
 }

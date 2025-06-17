@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/badge
+[Documentation](../../../README.md) / lib/components/ui/badge
 
 ## badgeVariants
 

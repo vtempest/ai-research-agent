@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/switch-3.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/switch-3",
-  "permalink": "/docs/web/lib/components/ui/switch-3",
+  "permalink": "/web/lib/components/ui/switch-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/switch-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "switch-2",
-    "permalink": "/docs/web/lib/components/ui/switch-2"
+    "permalink": "/web/lib/components/ui/switch-2"
   },
   "next": {
     "title": "switch-4",
-    "permalink": "/docs/web/lib/components/ui/switch-4"
+    "permalink": "/web/lib/components/ui/switch-4"
   }
 }

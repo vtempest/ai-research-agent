@@ -27,7 +27,7 @@ export default {
   },
   "title": "QwkSearch API Routes Docs",
   "url": "https://qwksearch.com",
-  "baseUrl": "/docs/",
+  "baseUrl": "/",
   "onBrokenLinks": "ignore",
   "onBrokenMarkdownLinks": "ignore",
   "favicon": "https://qwksearch.com/favicon.ico",
@@ -91,7 +91,8 @@ export default {
         ],
         "tsconfig": "../web/tsconfig.json",
         "out": "./docs/web",
-        "readme": "../../readme.md",
+        "readme": "none",
+        "entryPointStrategy": "expand",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
@@ -134,7 +135,8 @@ export default {
         ],
         "tsconfig": "../../packages/ai-research-agent/tsconfig.json",
         "out": "./docs/functions",
-        "readme": "../../readme.md",
+        "readme": "none",
+        "entryPointStrategy": "expand",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {

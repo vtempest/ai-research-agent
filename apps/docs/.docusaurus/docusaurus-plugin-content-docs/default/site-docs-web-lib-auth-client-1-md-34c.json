@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/auth-client-1.md",
   "sourceDirName": "web/lib",
   "slug": "/web/lib/auth-client-1",
-  "permalink": "/docs/web/lib/auth-client-1",
+  "permalink": "/web/lib/auth-client-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/auth-client-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "hooks.server",
-    "permalink": "/docs/web/hooks.server"
+    "permalink": "/web/hooks.server"
   },
   "next": {
     "title": "auth-client",
-    "permalink": "/docs/web/lib/auth-client"
+    "permalink": "/web/lib/auth-client"
   }
 }

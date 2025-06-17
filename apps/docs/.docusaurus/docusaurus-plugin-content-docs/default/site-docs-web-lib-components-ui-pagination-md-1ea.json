@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/pagination.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/pagination",
-  "permalink": "/docs/web/lib/components/ui/pagination",
+  "permalink": "/web/lib/components/ui/pagination",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/pagination.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "pagination-1",
-    "permalink": "/docs/web/lib/components/ui/pagination-1"
+    "title": "pagination-4",
+    "permalink": "/web/lib/components/ui/pagination-4"
   },
   "next": {
     "title": "popover-1",
-    "permalink": "/docs/web/lib/components/ui/popover-1"
+    "permalink": "/web/lib/components/ui/popover-1"
   }
 }

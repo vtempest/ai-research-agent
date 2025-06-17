@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / routes/api/files/\[fileId\]/+server
+[Documentation](../../../../README.md) / routes/api/files/\[fileId\]/+server
 
 ## GET()
 
@@ -6,7 +6,7 @@
 function GET(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/files/\[fileId\]/+server.ts:7
+Defined in: [apps/web/src/routes/api/files/\[fileId\]/+server.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/files/[fileId]/+server.ts#L7)
 
 ### Parameters
 
@@ -81,7 +81,7 @@ Defined in: apps/web/src/routes/api/files/\[fileId\]/+server.ts:7
 function POST(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/files/\[fileId\]/+server.ts:19
+Defined in: [apps/web/src/routes/api/files/\[fileId\]/+server.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/files/[fileId]/+server.ts#L19)
 
 ### Parameters
 
@@ -168,7 +168,7 @@ Defined in: apps/web/src/routes/api/files/\[fileId\]/+server.ts:19
 function DELETE(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/files/\[fileId\]/+server.ts:28
+Defined in: [apps/web/src/routes/api/files/\[fileId\]/+server.ts:28](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/files/[fileId]/+server.ts#L28)
 
 ### Parameters
 

@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/auth
+[Documentation](../../README.md) / lib/server/auth
 
 ## auth
 
@@ -6,7 +6,7 @@
 auth: any;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:39
+Defined in: [apps/web/src/lib/server/auth.ts:39](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L39)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: apps/web/src/lib/server/auth.ts:39
 const permissions: object;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:115
+Defined in: [apps/web/src/lib/server/auth.ts:115](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L115)
 
 ### Type declaration
 
@@ -42,7 +42,7 @@ Defined in: apps/web/src/lib/server/auth.ts:115
 </td>
 <td>
 
-apps/web/src/lib/server/auth.ts:116
+[apps/web/src/lib/server/auth.ts:116](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L116)
 
 </td>
 </tr>
@@ -59,7 +59,7 @@ apps/web/src/lib/server/auth.ts:116
 </td>
 <td>
 
-apps/web/src/lib/server/auth.ts:117
+[apps/web/src/lib/server/auth.ts:117](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L117)
 
 </td>
 </tr>
@@ -74,7 +74,7 @@ apps/web/src/lib/server/auth.ts:117
 function initializeUser(locals: any, request: any): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:144
+Defined in: [apps/web/src/lib/server/auth.ts:144](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L144)
 
 Get user object from locals of the request
 
@@ -127,7 +127,7 @@ Get user object from locals of the request
 function initAuthRouteHandler(__namedParameters: object): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:13
+Defined in: [apps/web/src/lib/server/auth.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L13)
 
 Updated route handler that creates auth instance per request
 
@@ -192,7 +192,7 @@ Updated route handler that creates auth instance per request
 function createAuth(env: any): any;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:41
+Defined in: [apps/web/src/lib/server/auth.ts:41](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L41)
 
 Factory function to create auth instance with platform env
 
@@ -233,7 +233,7 @@ Factory function to create auth instance with platform env
 function initDatabase(__namedParameters: object): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:109
+Defined in: [apps/web/src/lib/server/auth.ts:109](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L109)
 
 Add drizzle DB to locals.db
 
@@ -298,7 +298,7 @@ Add drizzle DB to locals.db
 function checkAuthorization(__namedParameters: object): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/server/auth.ts:124
+Defined in: [apps/web/src/lib/server/auth.ts:124](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/auth.ts#L124)
 
 SvelteKit hook for checking user authorization and handling route protection
 

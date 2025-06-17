@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/card.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/card",
-  "permalink": "/docs/web/lib/components/ui/card",
+  "permalink": "/web/lib/components/ui/card",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/card.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "card-1",
-    "permalink": "/docs/web/lib/components/ui/card-1"
+    "title": "card-4",
+    "permalink": "/web/lib/components/ui/card-4"
   },
   "next": {
     "title": "checkbox-1",
-    "permalink": "/docs/web/lib/components/ui/checkbox-1"
+    "permalink": "/web/lib/components/ui/checkbox-1"
   }
 }

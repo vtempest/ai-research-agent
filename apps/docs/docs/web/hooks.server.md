@@ -1,4 +1,4 @@
-[Documentation](modules.md) / hooks.server
+[Documentation](README.md) / hooks.server
 
 ## allowCORSAccessAPI
 
@@ -6,7 +6,7 @@
 const allowCORSAccessAPI: Handle;
 ```
 
-Defined in: apps/web/src/hooks.server.ts:47
+Defined in: [apps/web/src/hooks.server.ts:47](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/hooks.server.ts#L47)
 
 Enable API access for users with valid API keys and allow CORS.
 
@@ -26,7 +26,7 @@ RequestEvent, resolve: Function
 const handle: Handle;
 ```
 
-Defined in: apps/web/src/hooks.server.ts:98
+Defined in: [apps/web/src/hooks.server.ts:98](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/hooks.server.ts#L98)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: apps/web/src/hooks.server.ts:98
 function handleAuth(__namedParameters: object): Promise<any>;
 ```
 
-Defined in: apps/web/src/hooks.server.ts:24
+Defined in: [apps/web/src/hooks.server.ts:24](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/hooks.server.ts#L24)
 
 handle better Auth
 Create auth instance with the current request's environment

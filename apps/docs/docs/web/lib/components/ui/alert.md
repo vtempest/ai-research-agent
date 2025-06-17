@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/alert
+[Documentation](../../../README.md) / lib/components/ui/alert
 
 ## alertVariants
 

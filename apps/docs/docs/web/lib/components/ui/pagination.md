@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/pagination
+[Documentation](../../../README.md) / lib/components/ui/pagination

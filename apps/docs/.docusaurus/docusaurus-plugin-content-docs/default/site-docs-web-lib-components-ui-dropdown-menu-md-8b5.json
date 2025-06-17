@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/dropdown-menu.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/dropdown-menu",
-  "permalink": "/docs/web/lib/components/ui/dropdown-menu",
+  "permalink": "/web/lib/components/ui/dropdown-menu",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/dropdown-menu.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "dropdown-menu-1",
-    "permalink": "/docs/web/lib/components/ui/dropdown-menu-1"
+    "title": "dropdown-menu-4",
+    "permalink": "/web/lib/components/ui/dropdown-menu-4"
   },
   "next": {
     "title": "form-1",
-    "permalink": "/docs/web/lib/components/ui/form-1"
+    "permalink": "/web/lib/components/ui/form-1"
   }
 }

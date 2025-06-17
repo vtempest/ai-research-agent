@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/dialog
+[Documentation](../../../README.md) / lib/components/ui/dialog
 
 ## Root
 
@@ -6,7 +6,7 @@
 const Root: typeof DialogPrimitive.Root = DialogPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dialog/index.ts:10
+Defined in: [apps/web/src/lib/components/ui/dialog/index.ts:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dialog/index.ts#L10)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: apps/web/src/lib/components/ui/dialog/index.ts:10
 const Portal: typeof DialogPrimitive.Portal = DialogPrimitive.Portal;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dialog/index.ts:13
+Defined in: [apps/web/src/lib/components/ui/dialog/index.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dialog/index.ts#L13)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: apps/web/src/lib/components/ui/dialog/index.ts:13
 const Trigger: typeof DialogPrimitive.Trigger = DialogPrimitive.Trigger;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dialog/index.ts:11
+Defined in: [apps/web/src/lib/components/ui/dialog/index.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dialog/index.ts#L11)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: apps/web/src/lib/components/ui/dialog/index.ts:11
 const Close: typeof DialogPrimitive.Close = DialogPrimitive.Close;
 ```
 
-Defined in: apps/web/src/lib/components/ui/dialog/index.ts:12
+Defined in: [apps/web/src/lib/components/ui/dialog/index.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/dialog/index.ts#L12)
 
 ***
 

@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/progress
+[Documentation](../../../README.md) / lib/components/ui/progress

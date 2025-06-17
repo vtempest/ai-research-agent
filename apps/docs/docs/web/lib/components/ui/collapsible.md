@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/collapsible
+[Documentation](../../../README.md) / lib/components/ui/collapsible
 
 ## Root
 
@@ -7,18 +7,18 @@ const Root: Component<CollapsibleRootProps, {
 }, "ref" | "open"> = CollapsiblePrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/collapsible/index.ts:3
+Defined in: [apps/web/src/lib/components/ui/collapsible/index.ts:3](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/collapsible/index.ts#L3)
 
 ***
 
 ## Content
 
 ```ts
-const Content: Component<$$ComponentProps, {
+const Content: Component<CollapsibleContentProps, {
 }, "ref"> = CollapsiblePrimitive.Content;
 ```
 
-Defined in: apps/web/src/lib/components/ui/collapsible/index.ts:5
+Defined in: [apps/web/src/lib/components/ui/collapsible/index.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/collapsible/index.ts#L5)
 
 ***
 
@@ -29,7 +29,7 @@ const Trigger: Component<CollapsibleTriggerProps, {
 }, "ref"> = CollapsiblePrimitive.Trigger;
 ```
 
-Defined in: apps/web/src/lib/components/ui/collapsible/index.ts:4
+Defined in: [apps/web/src/lib/components/ui/collapsible/index.ts:4](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/collapsible/index.ts#L4)
 
 ***
 

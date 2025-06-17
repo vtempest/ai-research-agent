@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/ratelimits
+[Documentation](../../README.md) / lib/server/ratelimits
 
 ## changeEmailLimiter
 
@@ -6,7 +6,7 @@
 const changeEmailLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:23
+Defined in: [apps/web/src/lib/server/ratelimits.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L23)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:23
 const loginLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:28
+Defined in: [apps/web/src/lib/server/ratelimits.ts:28](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L28)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:28
 const registerLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:33
+Defined in: [apps/web/src/lib/server/ratelimits.ts:33](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L33)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:33
 const resendChangeEmailLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:38
+Defined in: [apps/web/src/lib/server/ratelimits.ts:38](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L38)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:38
 const resendResetPasswordLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:43
+Defined in: [apps/web/src/lib/server/ratelimits.ts:43](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L43)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:43
 const resendVerifyEmailLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:48
+Defined in: [apps/web/src/lib/server/ratelimits.ts:48](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L48)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:48
 const resetPasswordLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:53
+Defined in: [apps/web/src/lib/server/ratelimits.ts:53](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L53)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:53
 const verifyEmailLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:58
+Defined in: [apps/web/src/lib/server/ratelimits.ts:58](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L58)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:58
 const accountSettingsLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:63
+Defined in: [apps/web/src/lib/server/ratelimits.ts:63](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L63)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:63
 const notificationsSettingsLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:68
+Defined in: [apps/web/src/lib/server/ratelimits.ts:68](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L68)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:68
 const profileSettingsLimiter: RetryAfterRateLimiter<never>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:73
+Defined in: [apps/web/src/lib/server/ratelimits.ts:73](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L73)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: apps/web/src/lib/server/ratelimits.ts:73
 function verifyRateLimiter(event: any, limiter: any): Promise<string>;
 ```
 
-Defined in: apps/web/src/lib/server/ratelimits.ts:11
+Defined in: [apps/web/src/lib/server/ratelimits.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/ratelimits.ts#L11)
 
 Verifies the rate limiter for a given request event.
 

@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/SearchWeb/extras/QuantumSphere-4.md",
   "sourceDirName": "web/lib/components/SearchWeb/extras",
   "slug": "/web/lib/components/SearchWeb/extras/QuantumSphere-4",
-  "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere-4",
+  "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere-4",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/extras/QuantumSphere-4.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "QuantumSphere-3",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere-3"
+    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere-3"
   },
   "next": {
     "title": "QuantumSphere",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere"
+    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere"
   }
 }

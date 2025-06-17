@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/storage/seed-test-data.md",
   "sourceDirName": "web/lib/components/Editor/storage",
   "slug": "/web/lib/components/Editor/storage/seed-test-data",
-  "permalink": "/docs/web/lib/components/Editor/storage/seed-test-data",
+  "permalink": "/web/lib/components/Editor/storage/seed-test-data",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/storage/seed-test-data.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "local-storage-api",
-    "permalink": "/docs/web/lib/components/Editor/storage/local-storage-api"
+    "title": "seed-test-data-4",
+    "permalink": "/web/lib/components/Editor/storage/seed-test-data-4"
   },
   "next": {
-    "title": "auto-highlight",
-    "permalink": "/docs/web/lib/components/ReadMode/auto-highlight"
+    "title": "auto-highlight-1",
+    "permalink": "/web/lib/components/ReadMode/auto-highlight-1"
   }
 }

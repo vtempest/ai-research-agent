@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/menubar
+[Documentation](../../../README.md) / lib/components/ui/menubar
 
 ## Menu
 
@@ -7,7 +7,7 @@ const Menu: Component<MenubarMenuPropsWithoutHTML, {
 }, ""> = MenubarPrimitive.Menu;
 ```
 
-Defined in: apps/web/src/lib/components/ui/menubar/index.ts:14
+Defined in: [apps/web/src/lib/components/ui/menubar/index.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/menubar/index.ts#L14)
 
 ***
 
@@ -18,7 +18,7 @@ const Group: Component<MenuGroupProps, {
 }, "ref"> = MenubarPrimitive.Group;
 ```
 
-Defined in: apps/web/src/lib/components/ui/menubar/index.ts:15
+Defined in: [apps/web/src/lib/components/ui/menubar/index.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/menubar/index.ts#L15)
 
 ***
 
@@ -29,7 +29,7 @@ const Sub: Component<MenuSubPropsWithoutHTML, {
 }, "open"> = MenubarPrimitive.Sub;
 ```
 
-Defined in: apps/web/src/lib/components/ui/menubar/index.ts:16
+Defined in: [apps/web/src/lib/components/ui/menubar/index.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/menubar/index.ts#L16)
 
 ***
 
@@ -40,7 +40,7 @@ const RadioGroup: Component<MenuRadioGroupProps, {
 }, "ref" | "value"> = MenubarPrimitive.RadioGroup;
 ```
 
-Defined in: apps/web/src/lib/components/ui/menubar/index.ts:17
+Defined in: [apps/web/src/lib/components/ui/menubar/index.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/menubar/index.ts#L17)
 
 ***
 

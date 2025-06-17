@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/tooltip
+[Documentation](../../../README.md) / lib/components/ui/tooltip
 
 ## Root
 
@@ -7,7 +7,7 @@ const Root: Component<TooltipRootPropsWithoutHTML, {
 }, "open"> = TooltipPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/tooltip/index.ts:5
+Defined in: [apps/web/src/lib/components/ui/tooltip/index.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/tooltip/index.ts#L5)
 
 ***
 
@@ -18,7 +18,7 @@ const Provider: Component<TooltipProviderPropsWithoutHTML, {
 }, ""> = TooltipPrimitive.Provider;
 ```
 
-Defined in: apps/web/src/lib/components/ui/tooltip/index.ts:6
+Defined in: [apps/web/src/lib/components/ui/tooltip/index.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/tooltip/index.ts#L6)
 
 ***
 
@@ -29,7 +29,7 @@ const Portal: Component<PortalProps, {
 }, ""> = TooltipPrimitive.Portal;
 ```
 
-Defined in: apps/web/src/lib/components/ui/tooltip/index.ts:7
+Defined in: [apps/web/src/lib/components/ui/tooltip/index.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/tooltip/index.ts#L7)
 
 ***
 

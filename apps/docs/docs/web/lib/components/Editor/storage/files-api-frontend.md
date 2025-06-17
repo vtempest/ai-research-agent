@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/storage/files-api-frontend
+[Documentation](../../../../README.md) / lib/components/Editor/storage/files-api-frontend
 
 ## updateFile()
 
@@ -9,7 +9,7 @@ function updateFile(
    useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:26
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:26](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L26)
 
 New functions for file operations
 
@@ -90,7 +90,7 @@ New functions for file operations
 function getUserSettings(userId: any, useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:48
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:48](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L48)
 
 ### Parameters
 
@@ -155,7 +155,7 @@ function updateUserSettings(
    useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:57
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:57](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L57)
 
 ### Parameters
 
@@ -234,7 +234,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:57
 function getUserFileIndex(userId: any, useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:74
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:74](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L74)
 
 User File Index functions
 
@@ -302,7 +302,7 @@ function updateUserFileIndex(
    useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:83
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:83](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L83)
 
 ### Parameters
 
@@ -401,7 +401,7 @@ function createFile(
    useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:109
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:109](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L109)
 
 Updated file functions to maintain user file index
 
@@ -487,7 +487,7 @@ function deleteFile(
 }>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:132
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:132](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L132)
 
 ### Parameters
 
@@ -568,7 +568,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:132
 function fetchData(endpoint: any, useLocalStorage: boolean): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:153
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:153](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L153)
 
 * BASE API FUNCTIONS
 
@@ -632,7 +632,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:153
 function saveToLocalStorage(key: any, data: any): void;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:222
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:222](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L222)
 
 ### Parameters
 
@@ -683,7 +683,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:222
 function removeFromLocalStorage(key: any): void;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:230
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:230](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L230)
 
 ### Parameters
 
@@ -722,7 +722,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:230
 function clearLocalStorage(): void;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:234
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:234](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L234)
 
 ### Returns
 
@@ -736,7 +736,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:234
 function fetchFromAPI(endpoint: any): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/files-api-frontend.js:162
+Defined in: [apps/web/src/lib/components/Editor/storage/files-api-frontend.js:162](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/files-api-frontend.js#L162)
 
 ### Parameters
 

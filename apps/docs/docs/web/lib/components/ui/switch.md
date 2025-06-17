@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/switch
+[Documentation](../../../README.md) / lib/components/ui/switch

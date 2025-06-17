@@ -5,7 +5,7 @@
   "source": "@site/docs/web/routes/api/agents/+server-2.md",
   "sourceDirName": "web/routes/api/agents",
   "slug": "/web/routes/api/agents/+server-2",
-  "permalink": "/docs/web/routes/api/agents/+server-2",
+  "permalink": "/web/routes/api/agents/+server-2",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/api/agents/+server-2.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "+server-1",
-    "permalink": "/docs/web/routes/api/agents/+server-1"
+    "permalink": "/web/routes/api/agents/+server-1"
   },
   "next": {
     "title": "+server-3",
-    "permalink": "/docs/web/routes/api/agents/+server-3"
+    "permalink": "/web/routes/api/agents/+server-3"
   }
 }

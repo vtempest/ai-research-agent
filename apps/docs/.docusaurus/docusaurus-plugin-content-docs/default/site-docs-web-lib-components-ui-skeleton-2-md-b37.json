@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/skeleton-2.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/skeleton-2",
-  "permalink": "/docs/web/lib/components/ui/skeleton-2",
+  "permalink": "/web/lib/components/ui/skeleton-2",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/skeleton-2.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "skeleton-1",
-    "permalink": "/docs/web/lib/components/ui/skeleton-1"
+    "permalink": "/web/lib/components/ui/skeleton-1"
   },
   "next": {
     "title": "skeleton-3",
-    "permalink": "/docs/web/lib/components/ui/skeleton-3"
+    "permalink": "/web/lib/components/ui/skeleton-3"
   }
 }

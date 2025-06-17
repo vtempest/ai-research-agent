@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/docx/parse-debate-docx.md",
   "sourceDirName": "web/lib/components/Editor/docx",
   "slug": "/web/lib/components/Editor/docx/parse-debate-docx",
-  "permalink": "/docs/web/lib/components/Editor/docx/parse-debate-docx",
+  "permalink": "/web/lib/components/Editor/docx/parse-debate-docx",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/docx/parse-debate-docx.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "parse-cards",
-    "permalink": "/docs/web/lib/components/Editor/docx/parse-cards"
+    "title": "parse-debate-docx-4",
+    "permalink": "/web/lib/components/Editor/docx/parse-debate-docx-4"
   },
   "next": {
-    "title": "parse-zip-folder",
-    "permalink": "/docs/web/lib/components/Editor/docx/parse-zip-folder"
+    "title": "parse-zip-folder-1",
+    "permalink": "/web/lib/components/Editor/docx/parse-zip-folder-1"
   }
 }

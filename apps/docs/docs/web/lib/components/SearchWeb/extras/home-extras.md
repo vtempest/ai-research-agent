@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/SearchWeb/extras/home-extras
+[Documentation](../../../../README.md) / lib/components/SearchWeb/extras/home-extras
 
 ## getBackgroundArtwork()
 
@@ -6,7 +6,7 @@
 function getBackgroundArtwork(): string;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/home-extras.js:6
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/home-extras.js:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/home-extras.js#L6)
 
 Gets a random artistic background about graph theory 
 and collective consciousness, 50+ artworks from Anthony Alcaraz
@@ -25,7 +25,7 @@ The URL of random artistic background
 function getGreeting(): string;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/home-extras.js:65
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/home-extras.js:65](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/home-extras.js#L65)
 
 Get a greeting based on the time of day
 

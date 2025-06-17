@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/button
+[Documentation](../../../README.md) / lib/components/ui/button
 
 ## Props
 

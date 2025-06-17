@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/model/+server
+[Documentation](../../../README.md) / routes/api/model/+server
 
 ## GET()
 
@@ -6,7 +6,7 @@
 function GET(request: any): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/model/+server.ts:11
+Defined in: [apps/web/src/routes/api/model/+server.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/model/+server.ts#L11)
 
 Return the topic model from GitHub storage as JSON 
 cached for 100 hours

@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/icons-1.md",
   "sourceDirName": "web/lib/components",
   "slug": "/web/lib/components/icons-1",
-  "permalink": "/docs/web/lib/components/icons-1",
+  "permalink": "/web/lib/components/icons-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/icons-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "find-in-tab-content",
-    "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content"
+    "permalink": "/web/lib/components/TabManager/find-in-tab-content"
   },
   "next": {
-    "title": "icons",
-    "permalink": "/docs/web/lib/components/icons"
+    "title": "icons-2",
+    "permalink": "/web/lib/components/icons-2"
   }
 }

@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / lib/customize-site
+[Documentation](../README.md) / lib/customize-site
 
 ## DEV
 
@@ -6,7 +6,7 @@
 const DEV: boolean;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:4
+Defined in: [apps/web/src/lib/customize-site.ts:4](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L4)
 
 Domain Specific Customizations
 
@@ -18,7 +18,7 @@ Domain Specific Customizations
 const PUBLIC_DOMAIN: "http://localhost:5173" | "https://qwksearch.com";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:5
+Defined in: [apps/web/src/lib/customize-site.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L5)
 
 Domain Specific Customizations
 
@@ -30,7 +30,7 @@ Domain Specific Customizations
 const PUBLIC_GOOGLE_CLIENT_ID: "644604561446-niuns88krqdrs260kptpf1ti10ecrfls.apps.googleusercontent.com" = "644604561446-niuns88krqdrs260kptpf1ti10ecrfls.apps.googleusercontent.com";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:6
+Defined in: [apps/web/src/lib/customize-site.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L6)
 
 Domain Specific Customizations
 
@@ -42,7 +42,7 @@ Domain Specific Customizations
 const APP_NAME: "QwkSearch" = "QwkSearch";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:7
+Defined in: [apps/web/src/lib/customize-site.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L7)
 
 Domain Specific Customizations
 
@@ -54,7 +54,7 @@ Domain Specific Customizations
 const APP_SLOGAN: "Reimagine the Internet as Self-Organizing Mind Map" = "Reimagine the Internet as Self-Organizing Mind Map";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:8
+Defined in: [apps/web/src/lib/customize-site.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L8)
 
 Domain Specific Customizations
 
@@ -66,7 +66,7 @@ Domain Specific Customizations
 const APP_EMAIL: string;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:9
+Defined in: [apps/web/src/lib/customize-site.ts:9](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L9)
 
 Domain Specific Customizations
 
@@ -78,7 +78,7 @@ Domain Specific Customizations
 const APP_ICON: string;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:10
+Defined in: [apps/web/src/lib/customize-site.ts:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L10)
 
 Domain Specific Customizations
 
@@ -90,7 +90,7 @@ Domain Specific Customizations
 const GOOGLE_ANALYTICS: "G-E5TZ32BZDF" = "G-E5TZ32BZDF";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:11
+Defined in: [apps/web/src/lib/customize-site.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L11)
 
 Domain Specific Customizations
 
@@ -102,7 +102,7 @@ Domain Specific Customizations
 const API_ACCESS_ALLOW_GUEST: true = true;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:12
+Defined in: [apps/web/src/lib/customize-site.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L12)
 
 Domain Specific Customizations
 
@@ -114,7 +114,7 @@ Domain Specific Customizations
 const SERVER_API_URL: "/api/" = "/api/";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:13
+Defined in: [apps/web/src/lib/customize-site.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L13)
 
 Domain Specific Customizations
 
@@ -126,7 +126,7 @@ Domain Specific Customizations
 const LAST_REVISED_DATE: "May 1, 2025" = "May 1, 2025";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:14
+Defined in: [apps/web/src/lib/customize-site.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L14)
 
 Domain Specific Customizations
 
@@ -138,7 +138,7 @@ Domain Specific Customizations
 const DOWNLOAD_WINDOWS_URL: "https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&hl=en-us&gl=US" = "https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&hl=en-us&gl=US";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:15
+Defined in: [apps/web/src/lib/customize-site.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L15)
 
 Domain Specific Customizations
 
@@ -150,7 +150,7 @@ Domain Specific Customizations
 const DOWNLOAD_WINDOWS_URL_NATIVE: "ms-windows-store://pdp/?productid=9PCGF9GNK460" = "ms-windows-store://pdp/?productid=9PCGF9GNK460";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:16
+Defined in: [apps/web/src/lib/customize-site.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L16)
 
 Domain Specific Customizations
 
@@ -162,7 +162,7 @@ Domain Specific Customizations
 const DOWNLOAD_CHROME_URL: "https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko" = "https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko";
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:17
+Defined in: [apps/web/src/lib/customize-site.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L17)
 
 Domain Specific Customizations
 
@@ -174,7 +174,7 @@ Domain Specific Customizations
 const searxngDomain: string;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:18
+Defined in: [apps/web/src/lib/customize-site.ts:18](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L18)
 
 Domain Specific Customizations
 
@@ -186,7 +186,7 @@ Domain Specific Customizations
 const proxyDomain: string;
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:19
+Defined in: [apps/web/src/lib/customize-site.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L19)
 
 Domain Specific Customizations
 
@@ -198,7 +198,7 @@ Domain Specific Customizations
 const listFooterLinks: object[];
 ```
 
-Defined in: apps/web/src/lib/customize-site.ts:20
+Defined in: [apps/web/src/lib/customize-site.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L20)
 
 Domain Specific Customizations
 
@@ -232,7 +232,7 @@ Domain Specific Customizations
 </td>
 <td>
 
-apps/web/src/lib/customize-site.ts:21
+[apps/web/src/lib/customize-site.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L21)
 
 </td>
 </tr>
@@ -254,7 +254,7 @@ apps/web/src/lib/customize-site.ts:21
 </td>
 <td>
 
-apps/web/src/lib/customize-site.ts:21
+[apps/web/src/lib/customize-site.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L21)
 
 </td>
 </tr>
@@ -276,7 +276,7 @@ apps/web/src/lib/customize-site.ts:21
 </td>
 <td>
 
-apps/web/src/lib/customize-site.ts:21
+[apps/web/src/lib/customize-site.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/customize-site.ts#L21)
 
 </td>
 </tr>

@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/dialog-1.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/dialog-1",
-  "permalink": "/docs/web/lib/components/ui/dialog-1",
+  "permalink": "/web/lib/components/ui/dialog-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/dialog-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "command",
-    "permalink": "/docs/web/lib/components/ui/command"
+    "permalink": "/web/lib/components/ui/command"
   },
   "next": {
-    "title": "dialog",
-    "permalink": "/docs/web/lib/components/ui/dialog"
+    "title": "dialog-2",
+    "permalink": "/web/lib/components/ui/dialog-2"
   }
 }

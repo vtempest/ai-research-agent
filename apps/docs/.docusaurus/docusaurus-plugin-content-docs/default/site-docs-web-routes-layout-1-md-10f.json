@@ -5,7 +5,7 @@
   "source": "@site/docs/web/routes/+layout-1.md",
   "sourceDirName": "web/routes",
   "slug": "/web/routes/+layout-1",
-  "permalink": "/docs/web/routes/+layout-1",
+  "permalink": "/web/routes/+layout-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/+layout-1.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "modules",
-    "permalink": "/docs/web/modules"
+    "title": "utils",
+    "permalink": "/web/lib/utils"
   },
   "next": {
     "title": "+layout",
-    "permalink": "/docs/web/routes/+layout"
+    "permalink": "/web/routes/+layout"
   }
 }

@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/SearchWeb/categories
+[Documentation](../../../README.md) / lib/components/SearchWeb/categories
 
 ## categories
 
@@ -6,7 +6,7 @@
 const categories: object[];
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/categories.ts:15
+Defined in: [apps/web/src/lib/components/SearchWeb/categories.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/categories.ts#L15)
 
 ### Type declaration
 
@@ -38,7 +38,7 @@ Defined in: apps/web/src/lib/components/SearchWeb/categories.ts:15
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/categories.ts:16
+[apps/web/src/lib/components/SearchWeb/categories.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/categories.ts#L16)
 
 </td>
 </tr>
@@ -60,7 +60,7 @@ apps/web/src/lib/components/SearchWeb/categories.ts:16
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/categories.ts:16
+[apps/web/src/lib/components/SearchWeb/categories.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/categories.ts#L16)
 
 </td>
 </tr>
@@ -82,7 +82,7 @@ apps/web/src/lib/components/SearchWeb/categories.ts:16
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/categories.ts:16
+[apps/web/src/lib/components/SearchWeb/categories.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/categories.ts#L16)
 
 </td>
 </tr>

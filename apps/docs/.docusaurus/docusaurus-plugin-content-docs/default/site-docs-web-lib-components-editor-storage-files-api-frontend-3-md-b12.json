@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/storage/files-api-frontend-3.md",
   "sourceDirName": "web/lib/components/Editor/storage",
   "slug": "/web/lib/components/Editor/storage/files-api-frontend-3",
-  "permalink": "/docs/web/lib/components/Editor/storage/files-api-frontend-3",
+  "permalink": "/web/lib/components/Editor/storage/files-api-frontend-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/storage/files-api-frontend-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "files-api-frontend-2",
-    "permalink": "/docs/web/lib/components/Editor/storage/files-api-frontend-2"
+    "permalink": "/web/lib/components/Editor/storage/files-api-frontend-2"
   },
   "next": {
     "title": "files-api-frontend-4",
-    "permalink": "/docs/web/lib/components/Editor/storage/files-api-frontend-4"
+    "permalink": "/web/lib/components/Editor/storage/files-api-frontend-4"
   }
 }

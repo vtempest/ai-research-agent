@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/components/icons
+[Documentation](../../README.md) / lib/components/icons
 
 ## iconBuildingBlocks()
 
@@ -6,7 +6,7 @@
 function iconBuildingBlocks(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:15
+Defined in: [apps/web/src/lib/components/icons/index.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L15)
 
 Returns a customized SVG string for icon building-blocks
 
@@ -63,7 +63,7 @@ iconBuildingBlocks({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconChat(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:30
+Defined in: [apps/web/src/lib/components/icons/index.ts:30](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L30)
 
 Returns a customized SVG string for icon chat
 
@@ -120,7 +120,7 @@ iconChat({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconConfigure(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:45
+Defined in: [apps/web/src/lib/components/icons/index.ts:45](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L45)
 
 Returns a customized SVG string for icon configure
 
@@ -177,7 +177,7 @@ iconConfigure({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconDownloadAndroid(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:60
+Defined in: [apps/web/src/lib/components/icons/index.ts:60](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L60)
 
 Returns a customized SVG string for icon download-android
 
@@ -234,7 +234,7 @@ iconDownloadAndroid({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconDownloadIos(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:75
+Defined in: [apps/web/src/lib/components/icons/index.ts:75](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L75)
 
 Returns a customized SVG string for icon download-ios
 
@@ -291,7 +291,7 @@ iconDownloadIos({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconDownloadWindows(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:90
+Defined in: [apps/web/src/lib/components/icons/index.ts:90](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L90)
 
 Returns a customized SVG string for icon download-windows
 
@@ -348,7 +348,7 @@ iconDownloadWindows({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconFiles(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:105
+Defined in: [apps/web/src/lib/components/icons/index.ts:105](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L105)
 
 Returns a customized SVG string for icon files
 
@@ -405,7 +405,7 @@ iconFiles({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconFlow(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:120
+Defined in: [apps/web/src/lib/components/icons/index.ts:120](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L120)
 
 Returns a customized SVG string for icon flow
 
@@ -462,7 +462,7 @@ iconFlow({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconGoogle(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:135
+Defined in: [apps/web/src/lib/components/icons/index.ts:135](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L135)
 
 Returns a customized SVG string for icon google
 
@@ -519,7 +519,7 @@ iconGoogle({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconGraph(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:150
+Defined in: [apps/web/src/lib/components/icons/index.ts:150](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L150)
 
 Returns a customized SVG string for icon graph
 
@@ -576,7 +576,7 @@ iconGraph({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLectures(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:165
+Defined in: [apps/web/src/lib/components/icons/index.ts:165](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L165)
 
 Returns a customized SVG string for icon lectures
 
@@ -633,7 +633,7 @@ iconLectures({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingEclipse(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:180
+Defined in: [apps/web/src/lib/components/icons/index.ts:180](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L180)
 
 Returns a customized SVG string for icon loading-eclipse
 
@@ -690,7 +690,7 @@ iconLoadingEclipse({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingEllipsis(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:195
+Defined in: [apps/web/src/lib/components/icons/index.ts:195](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L195)
 
 Returns a customized SVG string for icon loading-ellipsis
 
@@ -747,7 +747,7 @@ iconLoadingEllipsis({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingFloatingSearch(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:210
+Defined in: [apps/web/src/lib/components/icons/index.ts:210](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L210)
 
 Returns a customized SVG string for icon loading-floating-search
 
@@ -804,7 +804,7 @@ iconLoadingFloatingSearch({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingHexDots(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:225
+Defined in: [apps/web/src/lib/components/icons/index.ts:225](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L225)
 
 Returns a customized SVG string for icon loading-hex-dots
 
@@ -861,7 +861,7 @@ iconLoadingHexDots({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingInfinity(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:240
+Defined in: [apps/web/src/lib/components/icons/index.ts:240](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L240)
 
 Returns a customized SVG string for icon loading-infinity
 
@@ -918,7 +918,7 @@ iconLoadingInfinity({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingRedBlueBall(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:255
+Defined in: [apps/web/src/lib/components/icons/index.ts:255](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L255)
 
 Returns a customized SVG string for icon loading-red-blue-ball
 
@@ -975,7 +975,7 @@ iconLoadingRedBlueBall({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLoadingRipple(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:270
+Defined in: [apps/web/src/lib/components/icons/index.ts:270](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L270)
 
 Returns a customized SVG string for icon loading-ripple
 
@@ -1032,7 +1032,7 @@ iconLoadingRipple({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLogoDebate(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:285
+Defined in: [apps/web/src/lib/components/icons/index.ts:285](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L285)
 
 Returns a customized SVG string for icon logo-debate
 
@@ -1089,7 +1089,7 @@ iconLogoDebate({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconLogoQwksearchFull(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:300
+Defined in: [apps/web/src/lib/components/icons/index.ts:300](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L300)
 
 Returns a customized SVG string for icon logo-qwksearch-full
 
@@ -1146,7 +1146,7 @@ iconLogoQwksearchFull({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconNewsTitle(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:315
+Defined in: [apps/web/src/lib/components/icons/index.ts:315](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L315)
 
 Returns a customized SVG string for icon news-title
 
@@ -1203,7 +1203,7 @@ iconNewsTitle({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconOrganize(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:330
+Defined in: [apps/web/src/lib/components/icons/index.ts:330](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L330)
 
 Returns a customized SVG string for icon organize
 
@@ -1260,7 +1260,7 @@ iconOrganize({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconPause(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:345
+Defined in: [apps/web/src/lib/components/icons/index.ts:345](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L345)
 
 Returns a customized SVG string for icon pause
 
@@ -1317,7 +1317,7 @@ iconPause({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconPencilRedblue(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:360
+Defined in: [apps/web/src/lib/components/icons/index.ts:360](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L360)
 
 Returns a customized SVG string for icon pencil-redblue
 
@@ -1374,7 +1374,7 @@ iconPencilRedblue({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconPlay(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:375
+Defined in: [apps/web/src/lib/components/icons/index.ts:375](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L375)
 
 Returns a customized SVG string for icon play
 
@@ -1431,7 +1431,7 @@ iconPlay({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconQuotes(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:390
+Defined in: [apps/web/src/lib/components/icons/index.ts:390](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L390)
 
 Returns a customized SVG string for icon quotes
 
@@ -1488,7 +1488,7 @@ iconQuotes({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconQwksearch(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:405
+Defined in: [apps/web/src/lib/components/icons/index.ts:405](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L405)
 
 Returns a customized SVG string for icon qwksearch
 
@@ -1545,7 +1545,7 @@ iconQwksearch({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconRead(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:420
+Defined in: [apps/web/src/lib/components/icons/index.ts:420](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L420)
 
 Returns a customized SVG string for icon read
 
@@ -1602,7 +1602,7 @@ iconRead({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconRounds(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:435
+Defined in: [apps/web/src/lib/components/icons/index.ts:435](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L435)
 
 Returns a customized SVG string for icon rounds
 
@@ -1659,7 +1659,7 @@ iconRounds({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconSearchresults(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:450
+Defined in: [apps/web/src/lib/components/icons/index.ts:450](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L450)
 
 Returns a customized SVG string for icon searchresults
 
@@ -1716,7 +1716,7 @@ iconSearchresults({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconSpeech(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:465
+Defined in: [apps/web/src/lib/components/icons/index.ts:465](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L465)
 
 Returns a customized SVG string for icon speech
 
@@ -1773,7 +1773,7 @@ iconSpeech({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconTopRounds(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:480
+Defined in: [apps/web/src/lib/components/icons/index.ts:480](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L480)
 
 Returns a customized SVG string for icon top-rounds
 
@@ -1830,7 +1830,7 @@ iconTopRounds({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconTrophy(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:495
+Defined in: [apps/web/src/lib/components/icons/index.ts:495](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L495)
 
 Returns a customized SVG string for icon trophy
 
@@ -1887,7 +1887,7 @@ iconTrophy({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconUserGuide(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:510
+Defined in: [apps/web/src/lib/components/icons/index.ts:510](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L510)
 
 Returns a customized SVG string for icon user-guide
 
@@ -1944,7 +1944,7 @@ iconUserGuide({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconYoutubeDebate(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:525
+Defined in: [apps/web/src/lib/components/icons/index.ts:525](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L525)
 
 Returns a customized SVG string for icon youtube-debate
 
@@ -2001,7 +2001,7 @@ iconYoutubeDebate({ colors: ['#0099e5', '#ff4c4c'], size: 100 });
 function iconYoutube(options: LoadingOptions): string;
 ```
 
-Defined in: apps/web/src/lib/components/icons/index.ts:540
+Defined in: [apps/web/src/lib/components/icons/index.ts:540](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/icons/index.ts#L540)
 
 Returns a customized SVG string for icon youtube
 

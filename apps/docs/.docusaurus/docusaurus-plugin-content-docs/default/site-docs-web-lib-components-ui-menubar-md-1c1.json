@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/menubar.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/menubar",
-  "permalink": "/docs/web/lib/components/ui/menubar",
+  "permalink": "/web/lib/components/ui/menubar",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/menubar.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "menubar-1",
-    "permalink": "/docs/web/lib/components/ui/menubar-1"
+    "title": "menubar-4",
+    "permalink": "/web/lib/components/ui/menubar-4"
   },
   "next": {
     "title": "pagination-1",
-    "permalink": "/docs/web/lib/components/ui/pagination-1"
+    "permalink": "/web/lib/components/ui/pagination-1"
   }
 }

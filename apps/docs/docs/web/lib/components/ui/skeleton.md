@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/skeleton
+[Documentation](../../../README.md) / lib/components/ui/skeleton

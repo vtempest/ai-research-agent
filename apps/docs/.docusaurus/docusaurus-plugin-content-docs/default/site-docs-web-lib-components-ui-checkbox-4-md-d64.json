@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/checkbox-4.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/checkbox-4",
-  "permalink": "/docs/web/lib/components/ui/checkbox-4",
+  "permalink": "/web/lib/components/ui/checkbox-4",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/checkbox-4.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "checkbox-3",
-    "permalink": "/docs/web/lib/components/ui/checkbox-3"
+    "permalink": "/web/lib/components/ui/checkbox-3"
   },
   "next": {
     "title": "checkbox",
-    "permalink": "/docs/web/lib/components/ui/checkbox"
+    "permalink": "/web/lib/components/ui/checkbox"
   }
 }

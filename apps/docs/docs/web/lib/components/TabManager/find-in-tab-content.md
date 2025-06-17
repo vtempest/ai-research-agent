@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/TabManager/find-in-tab-content
+[Documentation](../../../README.md) / lib/components/TabManager/find-in-tab-content
 
 ## default()
 
@@ -9,7 +9,7 @@ function default(
    snippetTextSize?: number): object;
 ```
 
-Defined in: apps/web/src/lib/components/TabManager/find-in-tab-content.js:15
+Defined in: [apps/web/src/lib/components/TabManager/find-in-tab-content.js:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L15)
 
 Find query words in tab content and if found return object
 
@@ -202,7 +202,7 @@ Find query words in tab content and if found return object
 </td>
 <td>
 
-apps/web/src/lib/components/TabManager/find-in-tab-content.js:8
+[apps/web/src/lib/components/TabManager/find-in-tab-content.js:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L8)
 
 </td>
 </tr>
@@ -219,7 +219,7 @@ apps/web/src/lib/components/TabManager/find-in-tab-content.js:8
 </td>
 <td>
 
-apps/web/src/lib/components/TabManager/find-in-tab-content.js:9
+[apps/web/src/lib/components/TabManager/find-in-tab-content.js:9](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L9)
 
 </td>
 </tr>
@@ -236,7 +236,7 @@ apps/web/src/lib/components/TabManager/find-in-tab-content.js:9
 </td>
 <td>
 
-apps/web/src/lib/components/TabManager/find-in-tab-content.js:10
+[apps/web/src/lib/components/TabManager/find-in-tab-content.js:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L10)
 
 </td>
 </tr>
@@ -253,7 +253,7 @@ apps/web/src/lib/components/TabManager/find-in-tab-content.js:10
 </td>
 <td>
 
-apps/web/src/lib/components/TabManager/find-in-tab-content.js:11
+[apps/web/src/lib/components/TabManager/find-in-tab-content.js:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L11)
 
 </td>
 </tr>
@@ -270,7 +270,7 @@ apps/web/src/lib/components/TabManager/find-in-tab-content.js:11
 </td>
 <td>
 
-apps/web/src/lib/components/TabManager/find-in-tab-content.js:12
+[apps/web/src/lib/components/TabManager/find-in-tab-content.js:12](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/TabManager/find-in-tab-content.js#L12)
 
 </td>
 </tr>

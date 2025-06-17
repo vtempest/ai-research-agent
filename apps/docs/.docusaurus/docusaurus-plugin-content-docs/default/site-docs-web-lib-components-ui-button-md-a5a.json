@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/button.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/button",
-  "permalink": "/docs/web/lib/components/ui/button",
+  "permalink": "/web/lib/components/ui/button",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/button.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "button-1",
-    "permalink": "/docs/web/lib/components/ui/button-1"
+    "title": "button-4",
+    "permalink": "/web/lib/components/ui/button-4"
   },
   "next": {
     "title": "card-1",
-    "permalink": "/docs/web/lib/components/ui/card-1"
+    "permalink": "/web/lib/components/ui/card-1"
   }
 }

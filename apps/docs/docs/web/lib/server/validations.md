@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/validations
+[Documentation](../../README.md) / lib/server/validations
 
 ## USERNAME\_MIN\_LEN
 
@@ -6,7 +6,7 @@
 const USERNAME_MIN_LEN: 3 = 3;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:10
+Defined in: [apps/web/src/lib/server/validations.ts:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L10)
 
 Validations module uses the Zod library to define 
 and validate different types of user inputs.
@@ -24,7 +24,7 @@ and validate different types of user inputs.
 const USERNAME_MAX_LEN: 20 = 20;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:11
+Defined in: [apps/web/src/lib/server/validations.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L11)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: apps/web/src/lib/server/validations.ts:11
 const PASSWORD_MIN_LEN: 6 = 6;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:13
+Defined in: [apps/web/src/lib/server/validations.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L13)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: apps/web/src/lib/server/validations.ts:13
 const PASSWORD_MAX_LEN: 50 = 50;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:14
+Defined in: [apps/web/src/lib/server/validations.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L14)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: apps/web/src/lib/server/validations.ts:14
 const NAME_MIN_LEN: 3 = 3;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:16
+Defined in: [apps/web/src/lib/server/validations.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L16)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: apps/web/src/lib/server/validations.ts:16
 const NAME_MAX_LEN: 50 = 50;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:17
+Defined in: [apps/web/src/lib/server/validations.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L17)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: apps/web/src/lib/server/validations.ts:17
 const EMAIL_MIN_LEN: 6 = 6;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:19
+Defined in: [apps/web/src/lib/server/validations.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L19)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: apps/web/src/lib/server/validations.ts:19
 const EMAIL_MAX_LEN: 50 = 50;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:20
+Defined in: [apps/web/src/lib/server/validations.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L20)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: apps/web/src/lib/server/validations.ts:20
 const MESSAGE_MIN_LEN: 4 = 4;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:22
+Defined in: [apps/web/src/lib/server/validations.ts:22](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L22)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: apps/web/src/lib/server/validations.ts:22
 const MESSAGE_MAX_LEN: 1000 = 1000;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:23
+Defined in: [apps/web/src/lib/server/validations.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L23)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: apps/web/src/lib/server/validations.ts:23
 const USER_ID_LEN: 15 = 15;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:25
+Defined in: [apps/web/src/lib/server/validations.ts:25](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L25)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: apps/web/src/lib/server/validations.ts:25
 const SESSION_ID_LEN: 40 = 40;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:27
+Defined in: [apps/web/src/lib/server/validations.ts:27](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L27)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: apps/web/src/lib/server/validations.ts:27
 const TOKEN_LEN: 15 = 15;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:29
+Defined in: [apps/web/src/lib/server/validations.ts:29](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L29)
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: apps/web/src/lib/server/validations.ts:29
 const TOKEN_EXPIRATION_TIME: 30 = 30;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:30
+Defined in: [apps/web/src/lib/server/validations.ts:30](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L30)
 
 ***
 
@@ -154,7 +154,7 @@ Defined in: apps/web/src/lib/server/validations.ts:30
 const emailField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:33
+Defined in: [apps/web/src/lib/server/validations.ts:33](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L33)
 
 Core Field Validations
 
@@ -166,7 +166,7 @@ Core Field Validations
 const isAdminField: ZodDefault<ZodBoolean>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:44
+Defined in: [apps/web/src/lib/server/validations.ts:44](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L44)
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: apps/web/src/lib/server/validations.ts:44
 const isVerifiedField: ZodDefault<ZodBoolean>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:46
+Defined in: [apps/web/src/lib/server/validations.ts:46](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L46)
 
 ***
 
@@ -186,7 +186,7 @@ Defined in: apps/web/src/lib/server/validations.ts:46
 const nameField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:48
+Defined in: [apps/web/src/lib/server/validations.ts:48](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L48)
 
 ***
 
@@ -196,7 +196,7 @@ Defined in: apps/web/src/lib/server/validations.ts:48
 const passwordConfirmField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:58
+Defined in: [apps/web/src/lib/server/validations.ts:58](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L58)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: apps/web/src/lib/server/validations.ts:58
 const passwordField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:86
+Defined in: [apps/web/src/lib/server/validations.ts:86](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L86)
 
 ***
 
@@ -216,7 +216,7 @@ Defined in: apps/web/src/lib/server/validations.ts:86
 const tokenField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:96
+Defined in: [apps/web/src/lib/server/validations.ts:96](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L96)
 
 ***
 
@@ -226,7 +226,7 @@ Defined in: apps/web/src/lib/server/validations.ts:96
 const userIdField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:101
+Defined in: [apps/web/src/lib/server/validations.ts:101](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L101)
 
 ***
 
@@ -236,7 +236,7 @@ Defined in: apps/web/src/lib/server/validations.ts:101
 const usernameField: ZodString;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:108
+Defined in: [apps/web/src/lib/server/validations.ts:108](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L108)
 
 ***
 
@@ -255,7 +255,7 @@ const loginFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:119
+Defined in: [apps/web/src/lib/server/validations.ts:119](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L119)
 
 Auth Form Schemas
 
@@ -292,7 +292,7 @@ const registerFormSchema: ZodEffects<ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:124
+Defined in: [apps/web/src/lib/server/validations.ts:124](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L124)
 
 ***
 
@@ -308,7 +308,7 @@ const verifyEmailFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:133
+Defined in: [apps/web/src/lib/server/validations.ts:133](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L133)
 
 ***
 
@@ -324,7 +324,7 @@ const changeEmailFormSchemaFirstStep: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:138
+Defined in: [apps/web/src/lib/server/validations.ts:138](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L138)
 
 Change Email Form Schemas
 
@@ -342,7 +342,7 @@ const changeEmailFormSchemaSecondStep: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:142
+Defined in: [apps/web/src/lib/server/validations.ts:142](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L142)
 
 ***
 
@@ -358,7 +358,7 @@ const resetPasswordFormSchemaFirstStep: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:147
+Defined in: [apps/web/src/lib/server/validations.ts:147](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L147)
 
 Reset Password Form Schemas
 
@@ -376,7 +376,7 @@ const resetPasswordFormSchemaSecondStep: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:151
+Defined in: [apps/web/src/lib/server/validations.ts:151](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L151)
 
 ***
 
@@ -401,7 +401,7 @@ const resetPasswordFormSchemaThirdStep: ZodEffects<ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:155
+Defined in: [apps/web/src/lib/server/validations.ts:155](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L155)
 
 ***
 
@@ -417,7 +417,7 @@ const settingsAccountFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:163
+Defined in: [apps/web/src/lib/server/validations.ts:163](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L163)
 
 Settings Schemas
 
@@ -435,7 +435,7 @@ const settingsNotificationsFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:167
+Defined in: [apps/web/src/lib/server/validations.ts:167](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L167)
 
 ***
 
@@ -451,7 +451,7 @@ const settingsProfileFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:171
+Defined in: [apps/web/src/lib/server/validations.ts:171](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L171)
 
 ***
 
@@ -467,7 +467,7 @@ const tokenSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:176
+Defined in: [apps/web/src/lib/server/validations.ts:176](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L176)
 
 Parameter Schemas
 
@@ -485,7 +485,7 @@ const userIdSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:180
+Defined in: [apps/web/src/lib/server/validations.ts:180](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L180)
 
 ***
 
@@ -501,7 +501,7 @@ const updateUserFormSchema: ZodObject<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:185
+Defined in: [apps/web/src/lib/server/validations.ts:185](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L185)
 
 Update User Schema
 
@@ -513,7 +513,7 @@ Update User Schema
 function passwordConfirmMustBeEqualToPassword(__namedParameters: EqualPasswords, ctx: RefinementCtx): void;
 ```
 
-Defined in: apps/web/src/lib/server/validations.ts:64
+Defined in: [apps/web/src/lib/server/validations.ts:64](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/validations.ts#L64)
 
 ### Parameters
 

@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/drizzle.config
+[Documentation](../../README.md) / lib/server/drizzle.config
 
 ## default
 
@@ -6,7 +6,7 @@
 default: object;
 ```
 
-Defined in: apps/web/src/lib/server/drizzle.config.ts:46
+Defined in: [apps/web/src/lib/server/drizzle.config.ts:46](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L46)
 
 ### Type declaration
 
@@ -38,7 +38,7 @@ Defined in: apps/web/src/lib/server/drizzle.config.ts:46
 </td>
 <td>
 
-apps/web/src/lib/server/drizzle.config.ts:47
+[apps/web/src/lib/server/drizzle.config.ts:47](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L47)
 
 </td>
 </tr>
@@ -60,7 +60,7 @@ apps/web/src/lib/server/drizzle.config.ts:47
 </td>
 <td>
 
-apps/web/src/lib/server/drizzle.config.ts:48
+[apps/web/src/lib/server/drizzle.config.ts:48](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L48)
 
 </td>
 </tr>
@@ -82,7 +82,7 @@ apps/web/src/lib/server/drizzle.config.ts:48
 </td>
 <td>
 
-apps/web/src/lib/server/drizzle.config.ts:49
+[apps/web/src/lib/server/drizzle.config.ts:49](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L49)
 
 </td>
 </tr>
@@ -104,7 +104,7 @@ apps/web/src/lib/server/drizzle.config.ts:49
 </td>
 <td>
 
-apps/web/src/lib/server/drizzle.config.ts:50
+[apps/web/src/lib/server/drizzle.config.ts:50](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L50)
 
 </td>
 </tr>
@@ -119,7 +119,7 @@ apps/web/src/lib/server/drizzle.config.ts:50
 function getLocalDb(): string;
 ```
 
-Defined in: apps/web/src/lib/server/drizzle.config.ts:8
+Defined in: [apps/web/src/lib/server/drizzle.config.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/drizzle.config.ts#L8)
 
 ### Returns
 

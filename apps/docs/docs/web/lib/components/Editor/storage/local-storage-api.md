@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/storage/local-storage-api
+[Documentation](../../../../README.md) / lib/components/Editor/storage/local-storage-api
 
 ## savedDocuments
 
@@ -7,7 +7,7 @@ const savedDocuments: Readable<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:24
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:24](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L24)
 
 Export read-only versions of the stores
 
@@ -19,7 +19,7 @@ Export read-only versions of the stores
 const documentIndex: Readable<any[]>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:25
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:25](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L25)
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:25
 function saveDocument(document: any, parentId: any): Promise<string>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:83
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:83](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L83)
 
 Function to save a document and update the index
 
@@ -93,7 +93,7 @@ Function to save a document and update the index
 function getDocument(key: any): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:131
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:131](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L131)
 
 Function to retrieve a document
 
@@ -134,7 +134,7 @@ Function to retrieve a document
 function updateDocument(key: any, updates: any): Promise<void>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:137
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:137](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L137)
 
 Function to update a document and its index entry
 
@@ -187,7 +187,7 @@ Function to update a document and its index entry
 function deleteDocument(key: any): Promise<void>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:172
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:172](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L172)
 
 Function to delete a document and its index entry
 
@@ -228,7 +228,7 @@ Function to delete a document and its index entry
 function listDocuments(): object;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:191
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:191](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L191)
 
 Function to list all documents
 
@@ -244,7 +244,7 @@ Function to list all documents
 function getDocumentIndex(): any[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:196
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:196](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L196)
 
 Function to get the document index
 
@@ -260,7 +260,7 @@ Function to get the document index
 function addFolder(name: any, parentId: any): Promise<string>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:201
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:201](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L201)
 
 Function to add a folder to the index
 
@@ -324,7 +324,7 @@ Function to add a folder to the index
 function updateFolder(id: any, updates: any): Promise<void>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:219
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:219](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L219)
 
 Function to update a folder in the index
 
@@ -377,7 +377,7 @@ Function to update a folder in the index
 function deleteFolder(id: any): Promise<void>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/local-storage-api.js:230
+Defined in: [apps/web/src/lib/components/Editor/storage/local-storage-api.js:230](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/local-storage-api.js#L230)
 
 Function to delete a folder and its contents from the index
 

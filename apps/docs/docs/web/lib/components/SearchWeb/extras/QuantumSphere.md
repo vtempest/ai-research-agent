@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/SearchWeb/extras/QuantumSphere
+[Documentation](../../../../README.md) / lib/components/SearchWeb/extras/QuantumSphere
 
 ## Author
 
@@ -6,7 +6,7 @@
 
 ## OrbitalSphereConfig
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:11
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L11)
 
 Configuration object for the Quantum Wave Orbital component
 Controls all aspects of the orbital sphere's appearance and behavior
@@ -41,7 +41,7 @@ Minimum number of orbital lines to generate (default: 6)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:13
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L13)
 
 </td>
 </tr>
@@ -63,7 +63,7 @@ Maximum number of orbital lines to generate (default: 12)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:16
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L16)
 
 </td>
 </tr>
@@ -85,7 +85,7 @@ Minimum sphere diameter in pixels (default: 120)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:19
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L19)
 
 </td>
 </tr>
@@ -107,7 +107,7 @@ Maximum sphere diameter in pixels (default: 180)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:22
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:22](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L22)
 
 </td>
 </tr>
@@ -129,7 +129,7 @@ Minimum border width for orbital lines in pixels (default: 0.8)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:25
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:25](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L25)
 
 </td>
 </tr>
@@ -151,7 +151,7 @@ Maximum border width for orbital lines in pixels (default: 1.6)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:28
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:28](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L28)
 
 </td>
 </tr>
@@ -173,7 +173,7 @@ Minimum glow intensity for box-shadow effect in pixels (default: 6)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:31
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:31](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L31)
 
 </td>
 </tr>
@@ -195,7 +195,7 @@ Maximum glow intensity for box-shadow effect in pixels (default: 12)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:34
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:34](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L34)
 
 </td>
 </tr>
@@ -217,7 +217,7 @@ Minimum rotation speed in seconds per full rotation (default: 0.5)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:37
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:37](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L37)
 
 </td>
 </tr>
@@ -239,7 +239,7 @@ Maximum rotation speed in seconds per full rotation (default: 2)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:40
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:40](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L40)
 
 </td>
 </tr>
@@ -261,7 +261,7 @@ Minimum HSL saturation percentage (0-100) for colors (default: 70)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:43
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:43](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L43)
 
 </td>
 </tr>
@@ -283,7 +283,7 @@ Maximum HSL saturation percentage (0-100) for colors (default: 90)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:46
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:46](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L46)
 
 </td>
 </tr>
@@ -305,7 +305,7 @@ Minimum HSL lightness percentage (0-100) for colors (default: 50)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:49
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:49](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L49)
 
 </td>
 </tr>
@@ -327,7 +327,7 @@ Maximum HSL lightness percentage (0-100) for colors (default: 70)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:52
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:52](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L52)
 
 </td>
 </tr>
@@ -349,7 +349,7 @@ Minimum time in milliseconds before auto-randomizing sphere (default: 5000)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:55
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:55](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L55)
 
 </td>
 </tr>
@@ -371,7 +371,7 @@ Maximum time in milliseconds before auto-randomizing sphere (default: 12000)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:58
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:58](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L58)
 
 </td>
 </tr>
@@ -393,7 +393,7 @@ Overall opacity for all orbital lines (0-1) (default: 0.75)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:61
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:61](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L61)
 
 </td>
 </tr>
@@ -404,7 +404,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:61
 
 ## OrbitalLine
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:68
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:68](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L68)
 
 Individual orbital line data structure
 Each line represents one orbital ring in the sphere
@@ -439,7 +439,7 @@ Unique identifier for the orbital line
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:70
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:70](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L70)
 
 </td>
 </tr>
@@ -461,7 +461,7 @@ Initial X-axis rotation angle in degrees (0-360)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:73
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:73](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L73)
 
 </td>
 </tr>
@@ -483,7 +483,7 @@ Initial Y-axis rotation angle in degrees (0-360)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:76
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:76](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L76)
 
 </td>
 </tr>
@@ -505,7 +505,7 @@ Initial Z-axis rotation angle in degrees (0-360)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:79
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:79](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L79)
 
 </td>
 </tr>
@@ -527,7 +527,7 @@ HSL hue value for this line's color (0-360)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:82
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:82](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L82)
 
 </td>
 </tr>
@@ -549,7 +549,7 @@ Speed multiplier for this line's rotation (0.5-1.5)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:85
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:85](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L85)
 
 </td>
 </tr>
@@ -571,7 +571,7 @@ Lightness in monochrome scheme
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:88
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:88](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L88)
 
 </td>
 </tr>
@@ -582,7 +582,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:88
 
 ## SphereData
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:95
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:95](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L95)
 
 Generated sphere configuration containing all computed values
 Created by generateSphereConfig() function
@@ -617,7 +617,7 @@ Array of orbital line configurations
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:97
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:97](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L97)
 
 </td>
 </tr>
@@ -639,7 +639,7 @@ Computed sphere size in pixels
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:100
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:100](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L100)
 
 </td>
 </tr>
@@ -661,7 +661,7 @@ Computed line width in pixels
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:103
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:103](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L103)
 
 </td>
 </tr>
@@ -683,7 +683,7 @@ Computed glow intensity in pixels
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:106
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:106](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L106)
 
 </td>
 </tr>
@@ -705,7 +705,7 @@ Computed base rotation speed in seconds
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:109
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:109](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L109)
 
 </td>
 </tr>
@@ -727,7 +727,7 @@ Computed HSL saturation percentage
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:112
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:112](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L112)
 
 </td>
 </tr>
@@ -749,7 +749,7 @@ Computed HSL lightness percentage
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:115
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:115](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L115)
 
 </td>
 </tr>
@@ -771,7 +771,7 @@ Name of the color scheme being used
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:118
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:118](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L118)
 
 </td>
 </tr>
@@ -782,7 +782,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:118
 
 ## HoverEffects
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:125
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:125](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L125)
 
 Hover effects applied when mouse hovers over orbital lines
 Generated randomly on each hover interaction
@@ -817,7 +817,7 @@ Hue shift amount in degrees (-90 to 90)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:127
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:127](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L127)
 
 </td>
 </tr>
@@ -839,7 +839,7 @@ Saturation boost percentage (10-30)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:130
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:130](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L130)
 
 </td>
 </tr>
@@ -861,7 +861,7 @@ Lightness shift percentage (-20 to 20)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:133
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:133](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L133)
 
 </td>
 </tr>
@@ -883,7 +883,7 @@ Glow intensity multiplier (1.5-3)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:136
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:136](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L136)
 
 </td>
 </tr>
@@ -905,7 +905,7 @@ Rotation speed multiplier (0.3-2.5)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:139
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:139](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L139)
 
 </td>
 </tr>
@@ -927,7 +927,7 @@ Scale transformation multiplier (1.1-1.4)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:142
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:142](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L142)
 
 </td>
 </tr>
@@ -938,7 +938,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:142
 
 ## LineStyle
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:149
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:149](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L149)
 
 Computed CSS styles for individual orbital lines
 Generated by the effect and applied to each line element
@@ -973,7 +973,7 @@ CSS transform string with rotation and scale
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:151
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:151](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L151)
 
 </td>
 </tr>
@@ -995,7 +995,7 @@ Border color as HSLA string
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:154
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:154](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L154)
 
 </td>
 </tr>
@@ -1017,7 +1017,7 @@ Border width in pixels
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:157
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:157](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L157)
 
 </td>
 </tr>
@@ -1039,7 +1039,7 @@ Box shadow for glow effect
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:160
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:160](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L160)
 
 </td>
 </tr>
@@ -1061,7 +1061,7 @@ Animation duration in seconds
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:163
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:163](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L163)
 
 </td>
 </tr>
@@ -1083,7 +1083,7 @@ Z-index for layering (higher for hovered lines)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:166
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:166](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L166)
 
 </td>
 </tr>
@@ -1094,7 +1094,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:166
 
 ## OrbitalSphereProps
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:173
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:173](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L173)
 
 Props interface for the OrbitalSphere Svelte component
 Defines all possible props that can be passed to the component
@@ -1129,7 +1129,7 @@ Configuration object controlling sphere behavior and appearance
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:175
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:175](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L175)
 
 </td>
 </tr>
@@ -1151,7 +1151,7 @@ Whether to automatically randomize the sphere periodically
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:178
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:178](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L178)
 
 </td>
 </tr>
@@ -1173,7 +1173,7 @@ Additional CSS classes to apply to the container
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:181
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:181](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L181)
 
 </td>
 </tr>
@@ -1195,7 +1195,7 @@ Callback function triggered when the sphere is clicked
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:184
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:184](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L184)
 
 </td>
 </tr>
@@ -1206,7 +1206,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:184
 
 ## OrbitalSphereState
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:238
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:238](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L238)
 
 Complete type definition for the component's internal state
 Includes all reactive variables and computed values
@@ -1241,7 +1241,7 @@ Current sphere configuration and line data
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:240
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:240](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L240)
 
 </td>
 </tr>
@@ -1263,7 +1263,7 @@ Current hue shift amount for color animation
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:243
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:243](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L243)
 
 </td>
 </tr>
@@ -1285,7 +1285,7 @@ ID of currently hovered orbital line (null if none)
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:246
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:246](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L246)
 
 </td>
 </tr>
@@ -1307,7 +1307,7 @@ Current hover effects configuration
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:249
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:249](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L249)
 
 </td>
 </tr>
@@ -1329,7 +1329,7 @@ Reference to the sphere DOM element
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:252
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:252](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L252)
 
 </td>
 </tr>
@@ -1351,7 +1351,7 @@ Timeout ID for auto-randomization
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:255
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:255](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L255)
 
 </td>
 </tr>
@@ -1373,7 +1373,7 @@ Timeout ID for hue shift animation
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:258
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:258](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L258)
 
 </td>
 </tr>
@@ -1395,7 +1395,7 @@ Computed styles for each orbital line
 </td>
 <td>
 
-apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:261
+[apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:261](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L261)
 
 </td>
 </tr>
@@ -1410,7 +1410,7 @@ apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:261
 type RandomFunction = () => number;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:191
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:191](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L191)
 
 Type for the random number generator function
 Uses a seeded linear congruential generator for consistent randomness
@@ -1427,7 +1427,7 @@ Uses a seeded linear congruential generator for consistent randomness
 type RandomRangeFunction = (min: number, max: number) => number;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:197
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:197](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L197)
 
 Type for the random range utility function
 Generates a random number between min and max (inclusive)
@@ -1481,7 +1481,7 @@ Generates a random number between min and max (inclusive)
 type RandomIntFunction = (min: number, max: number) => number;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:203
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:203](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L203)
 
 Type for the random integer utility function  
 Generates a random integer between min and max (inclusive)
@@ -1559,7 +1559,7 @@ type ColorScheme =
   | "Electric";
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:209
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts:209](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/QuantumSphere.d.ts#L209)
 
 Color scheme types supported by the orbital sphere
 Determines how colors are distributed across orbital lines
