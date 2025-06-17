@@ -1,5 +1,5 @@
 {
-  "name": "@ai-research-agent/core",
+  "name": "ai-research-agent",
   "version": "1.0.0",
   "module": "index.ts",
   "description": "Search, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",

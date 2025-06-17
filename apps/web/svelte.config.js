@@ -29,8 +29,7 @@ const config = {
     alias: {
       $lib: "./src/lib",
       $components: "./src/lib/components",
-      $utils: "./src/lib/utils",
-      "ai-research-agent": "../../packages/ai-research-agent/src/index.ts"
+      $utils: "./src/lib/utils"
     }
   }
 };

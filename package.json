@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
     "name": "qwksearch",
-=======
-    "name": "ai-research-agent",
->>>>>>> 6f00cb6434f89c1b52844313762e642b9c931074
     "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
     "author": "vtempest <grokthiscontact@gmail.com>",
     "license": "AGPL-3.0",
@@ -12,17 +8,10 @@
         "packages/*",
         "apps/*"
     ],
-<<<<<<< HEAD
     "packageManager": "bun@1.2.16",
     "type": "module",
     "exports": {
         ".": {
-=======
-    "packageManager": "bun@1.2.13",
-    "type": "module",
-    "exports": {
-        "./": {
->>>>>>> 6f00cb6434f89c1b52844313762e642b9c931074
             "types": "./packages/ai-research-agent/dist/types.d.ts",
             "import": "./packages/ai-research-agent/dist/research-agent.es.js",
             "require": "./packages/ai-research-agent/dist/research-agent.cjs.js"

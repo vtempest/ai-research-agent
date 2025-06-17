@@ -35,7 +35,7 @@
   };
   let AIResponseFollowUps = $state({}) as Response & {
     content?: string;
-    data?: string[];
+    extract?: string[];
   };
 
   export async function callLanguageAPI(agent: WriteLanguageData["body"]["agent"], options = {}) {
@@ -203,11 +203,7 @@
           {/each}
         {:else if AIResponseFollowUps.isLoading}
           <div class="flex justify-center">
-<<<<<<< HEAD:apps/web/src/lib/components/SearchWeb/AgentsPanel.svelte
             {@html iconLoadingRipple({size: 100})}
-=======
-            {@html iconLoadingRipple()}
->>>>>>> 6f00cb6434f89c1b52844313762e642b9c931074:apps/web-app/src/lib/components/SearchWeb/AgentsPanel.svelte
           </div>
         {:else if AIResponseFollowUps.error}
           <div class="bg-red-500 text-white p-2 rounded-md">

@@ -39,11 +39,7 @@
     "drizzle-kit": "^0.31.1",
     "eslint": "^9.28.0",
     "eslint-plugin-svelte": "3.9.1",
-<<<<<<< HEAD:apps/web/package.json
     "export-svg-typescript": "0.1.11",
-=======
-    "export-svg-typescript": "^0.1.6",
->>>>>>> 6f00cb6434f89c1b52844313762e642b9c931074:apps/web-app/package.json
     "import-meta-resolve": "^4.1.0",
     "open-cli": "^8.0.0",
     "opener": "^1.5.2",
