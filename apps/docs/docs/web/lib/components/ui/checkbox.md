@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/checkbox
+[Documentation](../../../README.md) / lib/components/ui/checkbox

@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/docx/parse-cards-3.md",
   "sourceDirName": "web/lib/components/Editor/docx",
   "slug": "/web/lib/components/Editor/docx/parse-cards-3",
-  "permalink": "/docs/web/lib/components/Editor/docx/parse-cards-3",
+  "permalink": "/web/lib/components/Editor/docx/parse-cards-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/docx/parse-cards-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "parse-cards-2",
-    "permalink": "/docs/web/lib/components/Editor/docx/parse-cards-2"
+    "permalink": "/web/lib/components/Editor/docx/parse-cards-2"
   },
   "next": {
     "title": "parse-cards-4",
-    "permalink": "/docs/web/lib/components/Editor/docx/parse-cards-4"
+    "permalink": "/web/lib/components/Editor/docx/parse-cards-4"
   }
 }

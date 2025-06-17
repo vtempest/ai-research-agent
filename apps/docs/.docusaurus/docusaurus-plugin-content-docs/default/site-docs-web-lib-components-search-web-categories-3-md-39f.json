@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/SearchWeb/categories-3.md",
   "sourceDirName": "web/lib/components/SearchWeb",
   "slug": "/web/lib/components/SearchWeb/categories-3",
-  "permalink": "/docs/web/lib/components/SearchWeb/categories-3",
+  "permalink": "/web/lib/components/SearchWeb/categories-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/categories-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "categories-2",
-    "permalink": "/docs/web/lib/components/SearchWeb/categories-2"
+    "permalink": "/web/lib/components/SearchWeb/categories-2"
   },
   "next": {
     "title": "categories",
-    "permalink": "/docs/web/lib/components/SearchWeb/categories"
+    "permalink": "/web/lib/components/SearchWeb/categories"
   }
 }

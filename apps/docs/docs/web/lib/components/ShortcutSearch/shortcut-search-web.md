@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ShortcutSearch/shortcut-search-web
+[Documentation](../../../README.md) / lib/components/ShortcutSearch/shortcut-search-web
 
 ## openTabSearchWeb()
 
@@ -6,7 +6,7 @@
 function openTabSearchWeb(query: string, shouldOpenInBackground: boolean): void;
 ```
 
-Defined in: apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js:8
+Defined in: [apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js#L8)
 
 Searches Google in background tab and opens first result if on that page
 
@@ -79,7 +79,7 @@ text to search
 function extractGoogleResultsPage(document: Document): object[];
 ```
 
-Defined in: apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js:53
+Defined in: [apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js:53](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ShortcutSearch/shortcut-search-web.js#L53)
 
 Extract resuls JSON object from Google results html page
 The results html page keeps changing so this minimizes 

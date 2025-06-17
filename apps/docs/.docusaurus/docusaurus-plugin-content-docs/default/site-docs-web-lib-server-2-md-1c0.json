@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server-2.md",
   "sourceDirName": "web/lib",
   "slug": "/web/lib/server-2",
-  "permalink": "/docs/web/lib/server-2",
+  "permalink": "/web/lib/server-2",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server-2.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "server-1",
-    "permalink": "/docs/web/lib/server-1"
+    "permalink": "/web/lib/server-1"
   },
   "next": {
     "title": "server",
-    "permalink": "/docs/web/lib/server"
+    "permalink": "/web/lib/server"
   }
 }

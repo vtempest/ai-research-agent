@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/tabs
+[Documentation](../../../README.md) / lib/components/ui/tabs
 
 ## Root
 
@@ -7,7 +7,7 @@ const Root: Component<TabsRootProps, {
 }, "ref" | "value"> = TabsPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/tabs/index.ts:6
+Defined in: [apps/web/src/lib/components/ui/tabs/index.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/tabs/index.ts#L6)
 
 ***
 

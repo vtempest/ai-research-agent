@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/SearchWeb/extras/get-weather
+[Documentation](../../../../README.md) / lib/components/SearchWeb/extras/get-weather
 
 ## getWeatherForecast()
 
@@ -6,7 +6,7 @@
 function getWeatherForecast(latitude: number, longitude: number): Promise<WeatherForecast[]>;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/get-weather.js:9
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/get-weather.js:9](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/get-weather.js#L9)
 
 Fetches open-meteo API weather forecast for latitude 
 and longitude and code symbol.
@@ -67,7 +67,7 @@ and longitude and code symbol.
 function getWeatherForClientIP(): Promise<WeatherForecast[]>;
 ```
 
-Defined in: apps/web/src/lib/components/SearchWeb/extras/get-weather.js:84
+Defined in: [apps/web/src/lib/components/SearchWeb/extras/get-weather.js:84](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/SearchWeb/extras/get-weather.js#L84)
 
 Fetches the weather forecast for the client's current IP address.
 

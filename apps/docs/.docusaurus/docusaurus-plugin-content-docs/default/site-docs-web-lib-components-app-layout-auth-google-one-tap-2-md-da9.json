@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/AppLayout/auth-google-one-tap-2.md",
   "sourceDirName": "web/lib/components/AppLayout",
   "slug": "/web/lib/components/AppLayout/auth-google-one-tap-2",
-  "permalink": "/docs/web/lib/components/AppLayout/auth-google-one-tap-2",
+  "permalink": "/web/lib/components/AppLayout/auth-google-one-tap-2",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/AppLayout/auth-google-one-tap-2.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "auth-google-one-tap-1",
-    "permalink": "/docs/web/lib/components/AppLayout/auth-google-one-tap-1"
+    "permalink": "/web/lib/components/AppLayout/auth-google-one-tap-1"
   },
   "next": {
     "title": "auth-google-one-tap-3",
-    "permalink": "/docs/web/lib/components/AppLayout/auth-google-one-tap-3"
+    "permalink": "/web/lib/components/AppLayout/auth-google-one-tap-3"
   }
 }

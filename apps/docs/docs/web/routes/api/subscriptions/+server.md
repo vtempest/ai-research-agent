@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/subscriptions/+server
+[Documentation](../../../README.md) / routes/api/subscriptions/+server
 
 ## POST()
 
@@ -6,7 +6,7 @@
 function POST(event: RequestEvent): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/subscriptions/+server.ts:21
+Defined in: [apps/web/src/routes/api/subscriptions/+server.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/subscriptions/+server.ts#L21)
 
 Webhook listens to Stripe Subscription change
 and updates subscription status in db.
@@ -56,7 +56,7 @@ and updates subscription status in db.
 function GET(event: RequestEvent): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/subscriptions/+server.ts:82
+Defined in: [apps/web/src/routes/api/subscriptions/+server.ts:82](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/subscriptions/+server.ts#L82)
 
 Redirects to Stripe's Manage Subscription page.
 

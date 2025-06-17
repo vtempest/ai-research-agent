@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/badge.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/badge",
-  "permalink": "/docs/web/lib/components/ui/badge",
+  "permalink": "/web/lib/components/ui/badge",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/badge.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "badge-1",
-    "permalink": "/docs/web/lib/components/ui/badge-1"
+    "title": "badge-4",
+    "permalink": "/web/lib/components/ui/badge-4"
   },
   "next": {
     "title": "breadcrumb-1",
-    "permalink": "/docs/web/lib/components/ui/breadcrumb-1"
+    "permalink": "/web/lib/components/ui/breadcrumb-1"
   }
 }

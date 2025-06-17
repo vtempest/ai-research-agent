@@ -1,4 +1,4 @@
-[Documentation](modules.md) / global
+[Documentation](README.md) / global
 
 ## SearchResult
 
@@ -6,7 +6,7 @@
 type SearchResult = alertVariants;
 ```
 
-Defined in: apps/web/src/global.d.ts:8
+Defined in: [apps/web/src/global.d.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L8)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: apps/web/src/global.d.ts:8
 type AgentPrompt = alertVariants;
 ```
 
-Defined in: apps/web/src/global.d.ts:9
+Defined in: [apps/web/src/global.d.ts:9](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L9)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: apps/web/src/global.d.ts:9
 type Article = typeof schema.articles.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:11
+Defined in: [apps/web/src/global.d.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L11)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: apps/web/src/global.d.ts:11
 type Message = typeof schema.messages.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:12
+Defined in: [apps/web/src/global.d.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: apps/web/src/global.d.ts:12
 type Chat = typeof schema.chats.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:13
+Defined in: [apps/web/src/global.d.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L13)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: apps/web/src/global.d.ts:13
 type File = typeof schema.files.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:14
+Defined in: [apps/web/src/global.d.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L14)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: apps/web/src/global.d.ts:14
 type Team = typeof schema.teams.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:15
+Defined in: [apps/web/src/global.d.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L15)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: apps/web/src/global.d.ts:15
 type User = typeof schema.users.$inferSelect & object;
 ```
 
-Defined in: apps/web/src/global.d.ts:16
+Defined in: [apps/web/src/global.d.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L16)
 
 ### Type declaration
 
@@ -102,7 +102,7 @@ Defined in: apps/web/src/global.d.ts:16
 </td>
 <td>
 
-apps/web/src/global.d.ts:17
+[apps/web/src/global.d.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L17)
 
 </td>
 </tr>
@@ -117,7 +117,7 @@ apps/web/src/global.d.ts:17
 type Session = typeof schema.sessions.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:19
+Defined in: [apps/web/src/global.d.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L19)
 
 ***
 
@@ -127,7 +127,7 @@ Defined in: apps/web/src/global.d.ts:19
 type Account = typeof schema.accounts.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:20
+Defined in: [apps/web/src/global.d.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L20)
 
 ***
 
@@ -137,7 +137,7 @@ Defined in: apps/web/src/global.d.ts:20
 type VerificationToken = typeof schema.verificationTokens.$inferSelect;
 ```
 
-Defined in: apps/web/src/global.d.ts:21
+Defined in: [apps/web/src/global.d.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L21)
 
 ***
 
@@ -167,4 +167,4 @@ type UserSettings = Partial<{
 }>;
 ```
 
-Defined in: apps/web/src/global.d.ts:23
+Defined in: [apps/web/src/global.d.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/global.d.ts#L23)

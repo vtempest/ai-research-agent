@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/user/+server
+[Documentation](../../../README.md) / routes/api/user/+server
 
 ## GET()
 
@@ -6,7 +6,7 @@
 function GET(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/user/+server.ts:7
+Defined in: [apps/web/src/routes/api/user/+server.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/user/+server.ts#L7)
 
 Serve user object
 
@@ -71,7 +71,7 @@ Serve user object
 function POST(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/user/+server.ts:13
+Defined in: [apps/web/src/routes/api/user/+server.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/user/+server.ts#L13)
 
 Update user object
 

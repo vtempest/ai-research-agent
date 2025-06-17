@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / routes/api/extract/+server
+[Documentation](../../../README.md) / routes/api/extract/+server
 
 ## GET()
 
@@ -6,7 +6,7 @@
 function GET(__namedParameters: object): Promise<Response>;
 ```
 
-Defined in: apps/web/src/routes/api/extract/+server.js:10
+Defined in: [apps/web/src/routes/api/extract/+server.js:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/api/extract/+server.js#L10)
 
 ### Parameters
 

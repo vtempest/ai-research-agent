@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/SearchWeb/extras/get-weather.md",
   "sourceDirName": "web/lib/components/SearchWeb/extras",
   "slug": "/web/lib/components/SearchWeb/extras/get-weather",
-  "permalink": "/docs/web/lib/components/SearchWeb/extras/get-weather",
+  "permalink": "/web/lib/components/SearchWeb/extras/get-weather",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/extras/get-weather.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "QuantumSphere",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere"
+    "title": "get-weather-4",
+    "permalink": "/web/lib/components/SearchWeb/extras/get-weather-4"
   },
   "next": {
-    "title": "home-extras",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/home-extras"
+    "title": "home-extras-1",
+    "permalink": "/web/lib/components/SearchWeb/extras/home-extras-1"
   }
 }

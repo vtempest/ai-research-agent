@@ -5,7 +5,7 @@
   "source": "@site/docs/web/routes/api/chats/+server.md",
   "sourceDirName": "web/routes/api/chats",
   "slug": "/web/routes/api/chats/+server",
-  "permalink": "/docs/web/routes/api/chats/+server",
+  "permalink": "/web/routes/api/chats/+server",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/api/chats/+server.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "+server",
-    "permalink": "/docs/web/routes/api/agents/+server"
+    "title": "+server-3",
+    "permalink": "/web/routes/api/chats/+server-3"
   },
   "next": {
-    "title": "+server",
-    "permalink": "/docs/web/routes/api/extract/+server"
+    "title": "+server-1",
+    "permalink": "/web/routes/api/extract/+server-1"
   }
 }

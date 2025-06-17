@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/avatar.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/avatar",
-  "permalink": "/docs/web/lib/components/ui/avatar",
+  "permalink": "/web/lib/components/ui/avatar",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/avatar.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "avatar-1",
-    "permalink": "/docs/web/lib/components/ui/avatar-1"
+    "title": "avatar-4",
+    "permalink": "/web/lib/components/ui/avatar-4"
   },
   "next": {
     "title": "badge-1",
-    "permalink": "/docs/web/lib/components/ui/badge-1"
+    "permalink": "/web/lib/components/ui/badge-1"
   }
 }

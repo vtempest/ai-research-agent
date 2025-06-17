@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/separator
+[Documentation](../../../README.md) / lib/components/ui/separator

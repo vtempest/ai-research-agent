@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/popover
+[Documentation](../../../README.md) / lib/components/ui/popover
 
 ## Root
 
@@ -7,7 +7,7 @@ const Root: Component<PopoverRootPropsWithoutHTML, {
 }, "open"> = PopoverPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/popover/index.ts:3
+Defined in: [apps/web/src/lib/components/ui/popover/index.ts:3](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/popover/index.ts#L3)
 
 ***
 
@@ -18,7 +18,7 @@ const Trigger: Component<PopoverTriggerProps, {
 }, "ref"> = PopoverPrimitive.Trigger;
 ```
 
-Defined in: apps/web/src/lib/components/ui/popover/index.ts:4
+Defined in: [apps/web/src/lib/components/ui/popover/index.ts:4](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/popover/index.ts#L4)
 
 ***
 
@@ -29,7 +29,7 @@ const Close: Component<PopoverCloseProps, {
 }, "ref"> = PopoverPrimitive.Close;
 ```
 
-Defined in: apps/web/src/lib/components/ui/popover/index.ts:5
+Defined in: [apps/web/src/lib/components/ui/popover/index.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/popover/index.ts#L5)
 
 ***
 

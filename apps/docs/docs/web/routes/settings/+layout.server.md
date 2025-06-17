@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / routes/settings/+layout.server
+[Documentation](../../README.md) / routes/settings/+layout.server
 
 ## load()
 
@@ -8,7 +8,7 @@ function load(__namedParameters: object): Promise<{
 }>;
 ```
 
-Defined in: apps/web/src/routes/settings/+layout.server.ts:2
+Defined in: [apps/web/src/routes/settings/+layout.server.ts:2](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/routes/settings/+layout.server.ts#L2)
 
 pass the user object into $props
 

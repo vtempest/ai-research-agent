@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/table-1.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/table-1",
-  "permalink": "/docs/web/lib/components/ui/table-1",
+  "permalink": "/web/lib/components/ui/table-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/table-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "switch",
-    "permalink": "/docs/web/lib/components/ui/switch"
+    "permalink": "/web/lib/components/ui/switch"
   },
   "next": {
-    "title": "table",
-    "permalink": "/docs/web/lib/components/ui/table"
+    "title": "table-2",
+    "permalink": "/web/lib/components/ui/table-2"
   }
 }

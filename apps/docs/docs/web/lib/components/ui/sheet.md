@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/sheet
+[Documentation](../../../README.md) / lib/components/ui/sheet
 
 ## Root
 
@@ -7,7 +7,7 @@ const Root: Component<DialogRootPropsWithoutHTML, {
 }, "open"> = SheetPrimitive.Root;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sheet/index.ts:11
+Defined in: [apps/web/src/lib/components/ui/sheet/index.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sheet/index.ts#L11)
 
 ***
 
@@ -18,7 +18,7 @@ const Portal: Component<PortalProps, {
 }, ""> = SheetPrimitive.Portal;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sheet/index.ts:12
+Defined in: [apps/web/src/lib/components/ui/sheet/index.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sheet/index.ts#L12)
 
 ***
 

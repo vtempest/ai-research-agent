@@ -5,7 +5,7 @@
   "source": "@site/docs/api/qwksearch-api.info.mdx",
   "sourceDirName": "api",
   "slug": "/api/qwksearch-api",
-  "permalink": "/docs/api/qwksearch-api",
+  "permalink": "/api/qwksearch-api",
   "draft": false,
   "unlisted": false,
   "editUrl": null,
@@ -24,10 +24,10 @@
   "sidebar": "default",
   "previous": {
     "title": "API Routes",
-    "permalink": "/docs/category/qwksearch-api"
+    "permalink": "/category/qwksearch-api"
   },
   "next": {
     "title": "## Extract structured content and cite from any URL",
-    "permalink": "/docs/api/extract-content"
+    "permalink": "/api/extract-content"
   }
 }

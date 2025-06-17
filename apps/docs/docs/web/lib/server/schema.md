@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/schema
+[Documentation](../../README.md) / lib/server/schema
 
 ## articles
 
@@ -7,7 +7,7 @@ const articles: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:6
+Defined in: [apps/web/src/lib/server/schema.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L6)
 
 **************** INDEX & CHATS ******************
 
@@ -20,7 +20,7 @@ const messages: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:23
+Defined in: [apps/web/src/lib/server/schema.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L23)
 
 ***
 
@@ -31,7 +31,7 @@ const chats: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:34
+Defined in: [apps/web/src/lib/server/schema.ts:34](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L34)
 
 ***
 
@@ -42,7 +42,7 @@ const userFavorites: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:41
+Defined in: [apps/web/src/lib/server/schema.ts:41](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L41)
 
 ***
 
@@ -53,7 +53,7 @@ const files: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:53
+Defined in: [apps/web/src/lib/server/schema.ts:53](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L53)
 
 ************  FILES & TEAMS  ***************
 
@@ -66,7 +66,7 @@ const teams: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:69
+Defined in: [apps/web/src/lib/server/schema.ts:69](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L69)
 
 ***
 
@@ -77,7 +77,7 @@ const userFileIndex: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:80
+Defined in: [apps/web/src/lib/server/schema.ts:80](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L80)
 
 ***
 
@@ -88,7 +88,7 @@ const user: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:89
+Defined in: [apps/web/src/lib/server/schema.ts:89](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L89)
 
 ************  USER & AUTH MODELS  ***************
 
@@ -101,7 +101,7 @@ const session: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:108
+Defined in: [apps/web/src/lib/server/schema.ts:108](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L108)
 
 ***
 
@@ -112,7 +112,7 @@ const account: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:121
+Defined in: [apps/web/src/lib/server/schema.ts:121](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L121)
 
 ***
 
@@ -123,4 +123,4 @@ const verification: SQLiteTableWithColumns<{
 }>;
 ```
 
-Defined in: apps/web/src/lib/server/schema.ts:143
+Defined in: [apps/web/src/lib/server/schema.ts:143](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/schema.ts#L143)

@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/docx/docx-to-html
+[Documentation](../../../../README.md) / lib/components/Editor/docx/docx-to-html
 
 ## documentToTokens()
 
@@ -6,7 +6,7 @@
 function documentToTokens(docxInput: string | File | Blob | ArrayBuffer, options: any): Promise<any[]>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:14
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-to-html.js:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-to-html.js#L14)
 
 Converts docx file to array or token objects with text and formatting
  1 - open document.xml and styles.xml by unzipping .docx file
@@ -74,7 +74,7 @@ Array of token objects with text and formatting
 function documentToMarkup(filepath: any): Promise<string>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:62
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-to-html.js:62](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-to-html.js#L62)
 
 1 - open document.xml
 2 - tokenize xml
@@ -117,7 +117,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:62
 function createStyleParser(styleXML: any): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:68
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-to-html.js:68](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-to-html.js#L68)
 
 ### Parameters
 
@@ -156,7 +156,7 @@ Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:68
 function createTokenizer(docXML: string, styleData: any): any[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/docx-to-html.js:118
+Defined in: [apps/web/src/lib/components/Editor/docx/docx-to-html.js:118](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/docx-to-html.js#L118)
 
 Parses doc xml to tokenize each text range into obj:
 text: "", format underline, strong, mark

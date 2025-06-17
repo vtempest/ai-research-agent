@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/docx/parse-zip-folder
+[Documentation](../../../../README.md) / lib/components/Editor/docx/parse-zip-folder
 
 ## handleZipOfDocx()
 
@@ -6,7 +6,7 @@
 function handleZipOfDocx(zipPath: any, outputFolder: any): string[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-zip-folder.js:10
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-zip-folder.js:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-zip-folder.js#L10)
 
 Get all docx in zip as file paths array and process data
 
@@ -61,7 +61,7 @@ files array of file paths
 function getFilesInFolder(dir: string, files: string[]): string[];
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-zip-folder.js:43
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-zip-folder.js:43](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-zip-folder.js#L43)
 
 Get all files in folder and subfolders as file paths array
 

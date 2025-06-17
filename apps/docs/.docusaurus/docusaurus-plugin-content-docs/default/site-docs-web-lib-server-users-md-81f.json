@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server/users.md",
   "sourceDirName": "web/lib/server",
   "slug": "/web/lib/server/users",
-  "permalink": "/docs/web/lib/server/users",
+  "permalink": "/web/lib/server/users",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/users.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "types",
-    "permalink": "/docs/web/lib/server/types"
+    "title": "users-2",
+    "permalink": "/web/lib/server/users-2"
   },
   "next": {
-    "title": "validations",
-    "permalink": "/docs/web/lib/server/validations"
+    "title": "validations-1",
+    "permalink": "/web/lib/server/validations-1"
   }
 }

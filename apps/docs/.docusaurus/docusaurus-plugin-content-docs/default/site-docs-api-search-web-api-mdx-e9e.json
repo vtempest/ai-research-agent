@@ -5,7 +5,7 @@
   "source": "@site/docs/api/search-web.api.mdx",
   "sourceDirName": "api",
   "slug": "/api/search-web",
-  "permalink": "/docs/api/search-web",
+  "permalink": "/api/search-web",
   "draft": false,
   "unlisted": false,
   "editUrl": null,
@@ -26,10 +26,10 @@
   "sidebar": "default",
   "previous": {
     "title": "## Extract structured content and cite from any URL",
-    "permalink": "/docs/api/extract-content"
+    "permalink": "/api/extract-content"
   },
   "next": {
     "title": "## Generate language model reply using agent prompts",
-    "permalink": "/docs/api/write-language"
+    "permalink": "/api/write-language"
   }
 }

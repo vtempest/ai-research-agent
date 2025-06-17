@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ShortcutSearch/shortcut-search.md",
   "sourceDirName": "web/lib/components/ShortcutSearch",
   "slug": "/web/lib/components/ShortcutSearch/shortcut-search",
-  "permalink": "/docs/web/lib/components/ShortcutSearch/shortcut-search",
+  "permalink": "/web/lib/components/ShortcutSearch/shortcut-search",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ShortcutSearch/shortcut-search.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "shortcut-search-web",
-    "permalink": "/docs/web/lib/components/ShortcutSearch/shortcut-search-web"
+    "permalink": "/web/lib/components/ShortcutSearch/shortcut-search-web"
   },
   "next": {
-    "title": "find-in-tab-content",
-    "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content"
+    "title": "find-in-tab-content-1",
+    "permalink": "/web/lib/components/TabManager/find-in-tab-content-1"
   }
 }

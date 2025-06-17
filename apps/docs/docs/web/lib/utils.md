@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / lib/utils
+[Documentation](../README.md) / lib/utils
 
 ## DeviceInfo
 
@@ -6,7 +6,7 @@
 type DeviceInfo = object;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:52
+Defined in: [apps/web/src/lib/utils.ts:52](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L52)
 
 Device information object
 
@@ -18,7 +18,7 @@ Device information object
 optional isMobile: boolean;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:54
+Defined in: [apps/web/src/lib/utils.ts:54](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L54)
 
 True if the screen is small size like on mobile web, updated on resize
 
@@ -28,7 +28,7 @@ True if the screen is small size like on mobile web, updated on resize
 optional os: "Windows" | "Mac" | "Linux" | "Android" | "iOS" | "Other";
 ```
 
-Defined in: apps/web/src/lib/utils.ts:56
+Defined in: [apps/web/src/lib/utils.ts:56](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L56)
 
 The user's device OS
 
@@ -40,7 +40,7 @@ The user's device OS
 type WithoutChild<T> = T extends object ? Omit<T, "child"> : T;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:88
+Defined in: [apps/web/src/lib/utils.ts:88](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L88)
 
 eslint-disable-next-line @typescript-eslint/no-explicit-any
 
@@ -71,7 +71,7 @@ eslint-disable-next-line @typescript-eslint/no-explicit-any
 type WithoutChildren<T> = T extends object ? Omit<T, "children"> : T;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:90
+Defined in: [apps/web/src/lib/utils.ts:90](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L90)
 
 eslint-disable-next-line @typescript-eslint/no-explicit-any
 
@@ -102,7 +102,7 @@ eslint-disable-next-line @typescript-eslint/no-explicit-any
 type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:93
+Defined in: [apps/web/src/lib/utils.ts:93](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L93)
 
 ### Type Parameters
 
@@ -131,7 +131,7 @@ Defined in: apps/web/src/lib/utils.ts:93
 type WithElementRef<T, U> = T & object;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:94
+Defined in: [apps/web/src/lib/utils.ts:94](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L94)
 
 ### Type declaration
 
@@ -157,7 +157,7 @@ Defined in: apps/web/src/lib/utils.ts:94
 </td>
 <td>
 
-apps/web/src/lib/utils.ts:95
+[apps/web/src/lib/utils.ts:95](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L95)
 
 </td>
 </tr>
@@ -209,7 +209,7 @@ apps/web/src/lib/utils.ts:95
 function setStateInURL(stateObject: Record<string, string>, addToBrowserHistory: boolean): object;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:20
+Defined in: [apps/web/src/lib/utils.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L20)
 
 Adds variable state (like query, active tab. etc) to 
 the URL so that the state is preserved in a sharable URL 
@@ -298,7 +298,7 @@ let {view, q} = setStateInURL();
 function cn(...inputs: ClassValue[]): string;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:45
+Defined in: [apps/web/src/lib/utils.ts:45](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L45)
 
 Utility function for merging Tailwind classes, needed for
 [shadcn-svelte.](https://next.shadcn-svelte.com/docs/migration/svelte-5#update-utils)
@@ -346,7 +346,7 @@ class name
 function setupMobileView(deviceInfo: DeviceInfo): void;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:65
+Defined in: [apps/web/src/lib/utils.ts:65](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L65)
 
 Checks if the current view is a mobile view
 Updates deviceInfo.isMobile state based on the window width
@@ -395,7 +395,7 @@ The device information object
 function loadHeadTags(options: LoadHeadTagsOptions): string;
 ```
 
-Defined in: apps/web/src/lib/utils.ts:115
+Defined in: [apps/web/src/lib/utils.ts:115](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/utils.ts#L115)
 
 Generates HTML head tags including fonts, analytics, and meta tags
 

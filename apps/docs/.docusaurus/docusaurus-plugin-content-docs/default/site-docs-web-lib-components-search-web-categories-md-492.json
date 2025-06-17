@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/SearchWeb/categories.md",
   "sourceDirName": "web/lib/components/SearchWeb",
   "slug": "/web/lib/components/SearchWeb/categories",
-  "permalink": "/docs/web/lib/components/SearchWeb/categories",
+  "permalink": "/web/lib/components/SearchWeb/categories",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/SearchWeb/categories.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "read-mode-view",
-    "permalink": "/docs/web/lib/components/ReadMode/read-mode-view"
+    "title": "categories-3",
+    "permalink": "/web/lib/components/SearchWeb/categories-3"
   },
   "next": {
-    "title": "QuantumSphere",
-    "permalink": "/docs/web/lib/components/SearchWeb/extras/QuantumSphere"
+    "title": "QuantumSphere-1",
+    "permalink": "/web/lib/components/SearchWeb/extras/QuantumSphere-1"
   }
 }

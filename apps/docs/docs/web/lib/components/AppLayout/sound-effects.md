@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/AppLayout/sound-effects
+[Documentation](../../../README.md) / lib/components/AppLayout/sound-effects
 
 ## playSoundEffect()
 
@@ -6,7 +6,7 @@
 function playSoundEffect(effectName: "bloop" | "boop" | "buzz" | "bounce" | "shutter"): object;
 ```
 
-Defined in: apps/web/src/lib/components/AppLayout/sound-effects.ts:5
+Defined in: [apps/web/src/lib/components/AppLayout/sound-effects.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/AppLayout/sound-effects.ts#L5)
 
 Play sound effect to enhance UI interactions
 
@@ -73,7 +73,7 @@ name of sound effect
 </td>
 <td>
 
-apps/web/src/lib/components/AppLayout/sound-effects.ts:13
+[apps/web/src/lib/components/AppLayout/sound-effects.ts:13](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/AppLayout/sound-effects.ts#L13)
 
 </td>
 </tr>

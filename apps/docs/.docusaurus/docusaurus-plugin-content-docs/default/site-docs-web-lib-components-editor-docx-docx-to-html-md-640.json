@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/docx/docx-to-html.md",
   "sourceDirName": "web/lib/components/Editor/docx",
   "slug": "/web/lib/components/Editor/docx/docx-to-html",
-  "permalink": "/docs/web/lib/components/Editor/docx/docx-to-html",
+  "permalink": "/web/lib/components/Editor/docx/docx-to-html",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/docx/docx-to-html.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "sound-effects",
-    "permalink": "/docs/web/lib/components/AppLayout/sound-effects"
+    "title": "docx-to-html-4",
+    "permalink": "/web/lib/components/Editor/docx/docx-to-html-4"
   },
   "next": {
-    "title": "docx-tokens",
-    "permalink": "/docs/web/lib/components/Editor/docx/docx-tokens"
+    "title": "docx-tokens-1",
+    "permalink": "/web/lib/components/Editor/docx/docx-tokens-1"
   }
 }

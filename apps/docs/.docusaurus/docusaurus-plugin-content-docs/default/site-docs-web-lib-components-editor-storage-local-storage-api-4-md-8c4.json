@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/Editor/storage/local-storage-api-4.md",
   "sourceDirName": "web/lib/components/Editor/storage",
   "slug": "/web/lib/components/Editor/storage/local-storage-api-4",
-  "permalink": "/docs/web/lib/components/Editor/storage/local-storage-api-4",
+  "permalink": "/web/lib/components/Editor/storage/local-storage-api-4",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/Editor/storage/local-storage-api-4.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "local-storage-api-3",
-    "permalink": "/docs/web/lib/components/Editor/storage/local-storage-api-3"
+    "permalink": "/web/lib/components/Editor/storage/local-storage-api-3"
   },
   "next": {
     "title": "local-storage-api",
-    "permalink": "/docs/web/lib/components/Editor/storage/local-storage-api"
+    "permalink": "/web/lib/components/Editor/storage/local-storage-api"
   }
 }

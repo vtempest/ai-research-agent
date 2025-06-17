@@ -5,7 +5,7 @@
   "source": "@site/docs/web/global.md",
   "sourceDirName": "web",
   "slug": "/web/global",
-  "permalink": "/docs/web/global",
+  "permalink": "/web/global",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/global.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "README",
-    "permalink": "/docs/web/"
+    "permalink": "/web/"
   },
   "next": {
     "title": "hooks.server",
-    "permalink": "/docs/web/hooks.server"
+    "permalink": "/web/hooks.server"
   }
 }

@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / lib/server/email
+[Documentation](../../README.md) / lib/server/email
 
 ## sendEmail()
 
@@ -10,7 +10,7 @@ function sendEmail(
    authResendKey: string): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/server/email.ts:58
+Defined in: [apps/web/src/lib/server/email.ts:58](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/email.ts#L58)
 
 Sends an email to the specified email address.
 
@@ -118,7 +118,7 @@ function sendEmailVerificationEmail(
    authResendKey: string): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/server/email.ts:89
+Defined in: [apps/web/src/lib/server/email.ts:89](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/email.ts#L89)
 
 Sends a verification email to the specified email address.
 
@@ -221,7 +221,7 @@ function sendWelcomeEmail(
    authResendKey: string): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/server/email.ts:106
+Defined in: [apps/web/src/lib/server/email.ts:106](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/email.ts#L106)
 
 ### Parameters
 
@@ -287,7 +287,7 @@ function sendPasswordResetEmail(
    authResendKey: string): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/server/email.ts:122
+Defined in: [apps/web/src/lib/server/email.ts:122](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/email.ts#L122)
 
 TODO insert welcome user in this email
 
@@ -356,7 +356,7 @@ function sendEmailChangeEmail(
    authResendKey: string): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/server/email.ts:137
+Defined in: [apps/web/src/lib/server/email.ts:137](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/server/email.ts#L137)
 
 ### Parameters
 

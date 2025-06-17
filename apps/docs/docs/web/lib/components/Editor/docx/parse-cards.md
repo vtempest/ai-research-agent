@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/docx/parse-cards
+[Documentation](../../../../README.md) / lib/components/Editor/docx/parse-cards
 
 ## extractCards()
 
@@ -6,7 +6,7 @@
 function extractCards(doc: any): any;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-cards.js:4
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-cards.js:4](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L4)
 
 import  parseDate  from "chrono-node";
 
@@ -47,7 +47,7 @@ import  parseDate  from "chrono-node";
 function parseCard(doc: Document, anchor: number): object;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-cards.js:19
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-cards.js:19](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L19)
 
 Parses card objects from the docx document, 
 returns an array of objects with summary, author, 
@@ -134,7 +134,7 @@ returns an array of objects with summary, author,
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:16
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L16)
 
 </td>
 </tr>
@@ -151,7 +151,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:16
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:16
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L16)
 
 </td>
 </tr>
@@ -168,7 +168,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:16
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:17
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L17)
 
 </td>
 </tr>
@@ -185,7 +185,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:17
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:17
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L17)
 
 </td>
 </tr>
@@ -202,7 +202,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:17
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:17
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L17)
 
 </td>
 </tr>
@@ -219,7 +219,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:17
 </td>
 <td>
 
-apps/web/src/lib/components/Editor/docx/parse-cards.js:17
+[apps/web/src/lib/components/Editor/docx/parse-cards.js:17](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L17)
 
 </td>
 </tr>
@@ -234,7 +234,7 @@ apps/web/src/lib/components/Editor/docx/parse-cards.js:17
 function extractURL(textWithURL: any): any;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-cards.js:201
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-cards.js:201](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L201)
 
 extract url and remove ending char
 
@@ -275,7 +275,7 @@ extract url and remove ending char
 function getIndexesWith(blocks: any, styles: any): any;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-cards.js:244
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-cards.js:244](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L244)
 
 ### Parameters
 
@@ -329,7 +329,7 @@ function getBlocksUntil(
    styles: any): any;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/docx/parse-cards.js:255
+Defined in: [apps/web/src/lib/components/Editor/docx/parse-cards.js:255](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/docx/parse-cards.js#L255)
 
 ### Parameters
 

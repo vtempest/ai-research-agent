@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/TabManager/find-in-tab-content-3.md",
   "sourceDirName": "web/lib/components/TabManager",
   "slug": "/web/lib/components/TabManager/find-in-tab-content-3",
-  "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content-3",
+  "permalink": "/web/lib/components/TabManager/find-in-tab-content-3",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/TabManager/find-in-tab-content-3.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "find-in-tab-content-2",
-    "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content-2"
+    "permalink": "/web/lib/components/TabManager/find-in-tab-content-2"
   },
   "next": {
     "title": "find-in-tab-content",
-    "permalink": "/docs/web/lib/components/TabManager/find-in-tab-content"
+    "permalink": "/web/lib/components/TabManager/find-in-tab-content"
   }
 }

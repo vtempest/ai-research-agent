@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/tooltip.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/tooltip",
-  "permalink": "/docs/web/lib/components/ui/tooltip",
+  "permalink": "/web/lib/components/ui/tooltip",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/tooltip.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "tooltip-1",
-    "permalink": "/docs/web/lib/components/ui/tooltip-1"
+    "title": "tooltip-4",
+    "permalink": "/web/lib/components/ui/tooltip-4"
   },
   "next": {
-    "title": "customize-site",
-    "permalink": "/docs/web/lib/customize-site"
+    "title": "customize-site-1",
+    "permalink": "/web/lib/customize-site-1"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/progress.md",
   "sourceDirName": "web/lib/components/ui",
   "slug": "/web/lib/components/ui/progress",
-  "permalink": "/docs/web/lib/components/ui/progress",
+  "permalink": "/web/lib/components/ui/progress",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/progress.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "progress-1",
-    "permalink": "/docs/web/lib/components/ui/progress-1"
+    "title": "progress-4",
+    "permalink": "/web/lib/components/ui/progress-4"
   },
   "next": {
     "title": "select-1",
-    "permalink": "/docs/web/lib/components/ui/select-1"
+    "permalink": "/web/lib/components/ui/select-1"
   }
 }

@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / lib/components/Editor/storage/seed-test-data
+[Documentation](../../../../README.md) / lib/components/Editor/storage/seed-test-data
 
 ## seedMockExample()
 
@@ -6,7 +6,7 @@
 function seedMockExample(): void;
 ```
 
-Defined in: apps/web/src/lib/components/Editor/storage/seed-test-data.js:76
+Defined in: [apps/web/src/lib/components/Editor/storage/seed-test-data.js:76](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/Editor/storage/seed-test-data.js#L76)
 
 Example of how to use these functions in your application
 

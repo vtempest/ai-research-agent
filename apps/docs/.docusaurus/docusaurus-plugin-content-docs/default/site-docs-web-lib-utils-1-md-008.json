@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/utils-1.md",
   "sourceDirName": "web/lib",
   "slug": "/web/lib/utils-1",
-  "permalink": "/docs/web/lib/utils-1",
+  "permalink": "/web/lib/utils-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/utils-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "server",
-    "permalink": "/docs/web/lib/server"
+    "permalink": "/web/lib/server"
   },
   "next": {
     "title": "utils",
-    "permalink": "/docs/web/lib/utils"
+    "permalink": "/web/lib/utils"
   }
 }

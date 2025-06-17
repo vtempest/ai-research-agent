@@ -5,7 +5,7 @@
   "source": "@site/docs/web/routes/settings/+page.server-1.md",
   "sourceDirName": "web/routes/settings",
   "slug": "/web/routes/settings/+page.server-1",
-  "permalink": "/docs/web/routes/settings/+page.server-1",
+  "permalink": "/web/routes/settings/+page.server-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/routes/settings/+page.server-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "+layout.server",
-    "permalink": "/docs/web/routes/settings/+layout.server"
+    "permalink": "/web/routes/settings/+layout.server"
   },
   "next": {
     "title": "+page.server-2",
-    "permalink": "/docs/web/routes/settings/+page.server-2"
+    "permalink": "/web/routes/settings/+page.server-2"
   }
 }

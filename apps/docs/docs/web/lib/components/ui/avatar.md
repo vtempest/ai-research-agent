@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/avatar
+[Documentation](../../../README.md) / lib/components/ui/avatar

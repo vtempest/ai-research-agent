@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/components/ui/sidebar/constants-1.md",
   "sourceDirName": "web/lib/components/ui/sidebar",
   "slug": "/web/lib/components/ui/sidebar/constants-1",
-  "permalink": "/docs/web/lib/components/ui/sidebar/constants-1",
+  "permalink": "/web/lib/components/ui/sidebar/constants-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/components/ui/sidebar/constants-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "sheet",
-    "permalink": "/docs/web/lib/components/ui/sheet"
+    "permalink": "/web/lib/components/ui/sheet"
   },
   "next": {
     "title": "constants-2",
-    "permalink": "/docs/web/lib/components/ui/sidebar/constants-2"
+    "permalink": "/web/lib/components/ui/sidebar/constants-2"
   }
 }

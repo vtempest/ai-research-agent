@@ -19,6 +19,7 @@ export default defineConfig({
       $lib: path.resolve("./src/lib"),
       $assets: path.resolve("./src/assets"),
       $components: path.resolve("./src/lib/components"),
+      "reason-editor":  path.resolve("../../packages/reason-editor/dist/index.js"),
       "ai-research-agent":  path.resolve("../../packages/ai-research-agent/src/index.ts"),
       "grab-api.js": path.resolve("../../../grab-api.js/src/grab-api.ts")
     },

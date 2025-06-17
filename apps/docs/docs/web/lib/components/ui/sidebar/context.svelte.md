@@ -1,8 +1,8 @@
-[Documentation](../../../../modules.md) / lib/components/ui/sidebar/context.svelte
+[Documentation](../../../../README.md) / lib/components/ui/sidebar/context.svelte
 
 ## IsMobile
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:10
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:10](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L10)
 
 ### Extends
 
@@ -16,7 +16,7 @@ Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:10
 new IsMobile(breakpoint: number): IsMobile;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:11
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:11](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L11)
 
 ##### Parameters
 
@@ -67,7 +67,7 @@ MediaQuery.constructor
 type SidebarStateProps = object;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:16
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L16)
 
 ### Properties
 
@@ -77,7 +77,7 @@ Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:16
 open: Getter<boolean>;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:22
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:22](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L22)
 
 A getter function that returns the current open state of the sidebar.
 We use a getter function here to support `bind:open` on the `Sidebar.Provider`
@@ -89,7 +89,7 @@ component.
 setOpen: (open: boolean) => void;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:29
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:29](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L29)
 
 A function that sets the open state of the sidebar. To support `bind:open`, we need
 a source of truth for changing the open state to ensure it will be synced throughout
@@ -132,7 +132,7 @@ the sub-components and any `bind:` references.
 function setSidebar(props: SidebarStateProps): SidebarState;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:79
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:79](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L79)
 
 Instantiates a new `SidebarState` instance and sets it in the context.
 
@@ -181,7 +181,7 @@ The `SidebarState` instance.
 function useSidebar(): SidebarState;
 ```
 
-Defined in: apps/web/src/lib/components/ui/sidebar/context.svelte.ts:88
+Defined in: [apps/web/src/lib/components/ui/sidebar/context.svelte.ts:88](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/sidebar/context.svelte.ts#L88)
 
 Retrieves the `SidebarState` instance from the context. This is a class instance,
 so you cannot destructure it.

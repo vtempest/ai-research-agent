@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server/email.md",
   "sourceDirName": "web/lib/server",
   "slug": "/web/lib/server/email",
-  "permalink": "/docs/web/lib/server/email",
+  "permalink": "/web/lib/server/email",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/email.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "drizzle.config",
-    "permalink": "/docs/web/lib/server/drizzle.config"
+    "title": "email-2",
+    "permalink": "/web/lib/server/email-2"
   },
   "next": {
-    "title": "ratelimits",
-    "permalink": "/docs/web/lib/server/ratelimits"
+    "title": "ratelimits-1",
+    "permalink": "/web/lib/server/ratelimits-1"
   }
 }

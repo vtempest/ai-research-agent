@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/auth-client.md",
   "sourceDirName": "web/lib",
   "slug": "/web/lib/auth-client",
-  "permalink": "/docs/web/lib/auth-client",
+  "permalink": "/web/lib/auth-client",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/auth-client.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "hooks.server",
-    "permalink": "/docs/web/hooks.server"
+    "title": "auth-client-1",
+    "permalink": "/web/lib/auth-client-1"
   },
   "next": {
-    "title": "auth-google-one-tap",
-    "permalink": "/docs/web/lib/components/AppLayout/auth-google-one-tap"
+    "title": "auth-google-one-tap-1",
+    "permalink": "/web/lib/components/AppLayout/auth-google-one-tap-1"
   }
 }

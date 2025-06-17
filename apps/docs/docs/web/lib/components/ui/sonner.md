@@ -1,1 +1,1 @@
-[Documentation](../../../modules.md) / lib/components/ui/sonner
+[Documentation](../../../README.md) / lib/components/ui/sonner

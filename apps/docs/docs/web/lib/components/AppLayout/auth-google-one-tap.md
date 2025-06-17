@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/AppLayout/auth-google-one-tap
+[Documentation](../../../README.md) / lib/components/AppLayout/auth-google-one-tap
 
 ## displayGoogleOneTapLogin()
 
@@ -6,7 +6,7 @@
 function displayGoogleOneTapLogin(client_id: string, options: object): Promise<boolean>;
 ```
 
-Defined in: apps/web/src/lib/components/AppLayout/auth-google-one-tap.js:50
+Defined in: [apps/web/src/lib/components/AppLayout/auth-google-one-tap.js:50](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/AppLayout/auth-google-one-tap.js#L50)
 
 Show Google One Tap menu and send JWT userinfo to callback.
 
@@ -196,7 +196,7 @@ if (!user) {
 function loadScript(url: string): Promise<any>;
 ```
 
-Defined in: apps/web/src/lib/components/AppLayout/auth-google-one-tap.js:106
+Defined in: [apps/web/src/lib/components/AppLayout/auth-google-one-tap.js:106](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/AppLayout/auth-google-one-tap.js#L106)
 
 Loads a script from the given URL.
 

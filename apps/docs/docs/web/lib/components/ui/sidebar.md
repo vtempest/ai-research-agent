@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/sidebar
+[Documentation](../../../README.md) / lib/components/ui/sidebar
 
 ## useSidebar
 

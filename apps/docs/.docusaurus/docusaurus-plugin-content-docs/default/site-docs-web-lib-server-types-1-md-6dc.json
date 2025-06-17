@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server/types-1.md",
   "sourceDirName": "web/lib/server",
   "slug": "/web/lib/server/types-1",
-  "permalink": "/docs/web/lib/server/types-1",
+  "permalink": "/web/lib/server/types-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/types-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "schema",
-    "permalink": "/docs/web/lib/server/schema"
+    "permalink": "/web/lib/server/schema"
   },
   "next": {
     "title": "types-2",
-    "permalink": "/docs/web/lib/server/types-2"
+    "permalink": "/web/lib/server/types-2"
   }
 }

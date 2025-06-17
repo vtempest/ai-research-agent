@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ui/command
+[Documentation](../../../README.md) / lib/components/ui/command
 
 ## Loading
 
@@ -6,7 +6,7 @@
 const Loading: typeof CommandPrimitive.Loading = CommandPrimitive.Loading;
 ```
 
-Defined in: apps/web/src/lib/components/ui/command/index.ts:14
+Defined in: [apps/web/src/lib/components/ui/command/index.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ui/command/index.ts#L14)
 
 ***
 

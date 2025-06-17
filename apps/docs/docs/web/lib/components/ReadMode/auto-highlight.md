@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / lib/components/ReadMode/auto-highlight
+[Documentation](../../../README.md) / lib/components/ReadMode/auto-highlight
 
 ## toggleHighlight()
 
@@ -6,7 +6,7 @@
 function toggleHighlight(color: string): void;
 ```
 
-Defined in: apps/web/src/lib/components/ReadMode/auto-highlight.js:1
+Defined in: [apps/web/src/lib/components/ReadMode/auto-highlight.js:1](https://github.com/vtempest/ai-research-agent/tree/master/apps/web/src/lib/components/ReadMode/auto-highlight.js#L1)
 
 ### Parameters
 

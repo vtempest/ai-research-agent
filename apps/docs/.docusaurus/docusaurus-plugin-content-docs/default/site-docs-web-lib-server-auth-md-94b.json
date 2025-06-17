@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server/auth.md",
   "sourceDirName": "web/lib/server",
   "slug": "/web/lib/server/auth",
-  "permalink": "/docs/web/lib/server/auth",
+  "permalink": "/web/lib/server/auth",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/auth.md",
@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "customize-site",
-    "permalink": "/docs/web/lib/customize-site"
+    "title": "auth-2",
+    "permalink": "/web/lib/server/auth-2"
   },
   "next": {
-    "title": "drizzle.config",
-    "permalink": "/docs/web/lib/server/drizzle.config"
+    "title": "drizzle.config-1",
+    "permalink": "/web/lib/server/drizzle.config-1"
   }
 }

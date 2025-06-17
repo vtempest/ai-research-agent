@@ -5,7 +5,7 @@
   "source": "@site/docs/web/lib/server/validations-1.md",
   "sourceDirName": "web/lib/server",
   "slug": "/web/lib/server/validations-1",
-  "permalink": "/docs/web/lib/server/validations-1",
+  "permalink": "/web/lib/server/validations-1",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/web/lib/server/validations-1.md",
@@ -15,10 +15,10 @@
   "sidebar": "default",
   "previous": {
     "title": "users",
-    "permalink": "/docs/web/lib/server/users"
+    "permalink": "/web/lib/server/users"
   },
   "next": {
     "title": "validations-2",
-    "permalink": "/docs/web/lib/server/validations-2"
+    "permalink": "/web/lib/server/validations-2"
   }
 }
