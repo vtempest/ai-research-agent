@@ -52,16 +52,15 @@ html with SVG of equations
 
 ***
 
-### convertEscapedHTMLToHTML()
+### convertURLSafeHTMLToHTML()
 
 ```ts
-function convertEscapedHTMLToHTML(str: string, unescape: boolean): string;
+function convertURLSafeHTMLToHTML(str: string, toStandardHTML: boolean): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L63)
+Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:61](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L61)
 
-Converts HTML special characters like &"'`&rsquo; to & escaped codes or vice versa.
-It handles named entities and hexadecimal numeric character references.
+Converts URL-safe escaped HTML codes like &"'`&rsquo; & to standard HTML or in reverse.
 
 #### Parameters
 
@@ -100,7 +99,7 @@ The string to process.
 <tr>
 <td>
 
-`unescape`
+`toStandardHTML`
 
 </td>
 <td>
@@ -115,8 +114,8 @@ The string to process.
 </td>
 <td>
 
-default=true - If true, converts & codes to characters.
-                                    If false, converts characters to codes.
+default=true - If true, converts url-safe codes 
+to standard HTML. If false, converts standard HTML to url-safe codes.
 
 </td>
 </tr>
@@ -132,9 +131,9 @@ The processed string.
 #### Example
 
 ```ts
-var normalHTML = convertEscapedHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
+var normalHTML = convertURLSafeHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
 '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
-console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
+console.log(normalHTML) // "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
 ```
 
 ***
@@ -145,7 +144,7 @@ console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophe
 function convertURLToAbsoluteURL(base: string, relative: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:138](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L138)
+Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:136](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L136)
 
 Convert relative URL to absolute URL using base URL.
 
@@ -224,7 +223,7 @@ console.log(absoluteURL) // Returns: "https:images/image.jpg"
 function convertMarkdownToHTML(content: string, toHtml: boolean): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:216](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L216)
+Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:214](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L214)
 
 Converts Markdown text to HTML. It handles the following Markdown elements:
 - Headers (h1 to h6)
@@ -323,7 +322,7 @@ console.log(html);
 function copyHTMLToClipboard(html: string, options: object): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:422](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L422)
+Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:420](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L420)
 
 Copy HTML to clipboard. When pasting into rich text field,
 pastes rich text. When pasting into plain text field, pastes:
@@ -416,7 +415,7 @@ the HTML is copied to the clipboard.
 function convertHTMLToMarkdown(html: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:360](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L360)
+Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:358](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L358)
 
 #### Parameters
 

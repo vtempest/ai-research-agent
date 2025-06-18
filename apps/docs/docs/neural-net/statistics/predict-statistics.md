@@ -454,7 +454,7 @@ function predictFuture(futureData: Object[], options: object): Promise<Object[]>
 
 Defined in: [statistics/predict-statistics.js:243](https://github.com/vtempest/ai-research-agent/tree/master/packages/neural-net/src/statistics/predict-statistics.js#L243)
 
-Predicts energy output for future data using the trained XGBoost model
+Predicts target variable for future data using the trained XGBoost model
 
 ### Parameters
 

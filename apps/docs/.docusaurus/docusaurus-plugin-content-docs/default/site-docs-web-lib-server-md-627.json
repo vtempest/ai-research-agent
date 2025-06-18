@@ -18,7 +18,7 @@
     "permalink": "/web/lib/server-1"
   },
   "next": {
-    "title": "utils",
-    "permalink": "/web/lib/utils"
+    "title": "+layout",
+    "permalink": "/web/routes/+layout"
   }
 }

@@ -16,9 +16,9 @@ function trainNextWordPrediction(): Promise<Object>;
 
 Defined in: [train/predict-next-word.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/neural-net/src/train/predict-next-word.js#L88)
 
-================================================================================
-### Predict Next Word Based On Context and Learned Patterns in Training Examples
-================================================================================
+=======================================================================================
+### Predict Next Word Based On Vectors of Learned Context Patterns in Training Examples
+=======================================================================================
 
 Comprehensive training function for a self-attention transformer using custom torch.js.
 This function implements a decoder-only transformer architecture similar to GPT models,
@@ -64,7 +64,7 @@ const predictions = model.forward(inputTokens);
 
 ### Author
 
-[ai-research-agent](https://airesearch.js.org)
+[vtempest](https://github.com/vtempest)
 
 ### See
 

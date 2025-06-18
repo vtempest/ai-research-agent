@@ -1,4 +1,4 @@
-import { convertEscapedHTMLToHTML } from "../html-to-content/html-utils.js";
+import { convertURLSafeHTMLToHTML } from "../html-to-content/html-utils.js";
 import { scrapeURL } from "./url-to-html.js";
 
 /**
@@ -61,7 +61,7 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
 
   var word_count = content.split(" ").length;
 
-  content = convertEscapedHTMLToHTML(content);
+  content = convertURLSafeHTMLToHTML(content);
 
 
   //timestamp to track characters per second speed at each interval

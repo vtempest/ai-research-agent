@@ -49,6 +49,19 @@ export const userFavorites = sqliteTable("user_favorites", {
   createdAt: integer("created_at", { mode: "timestamp" }),
 });
 
+
+export const userMemories = sqliteTable('user_memories', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: text("userId")
+  .notNull()
+  .references(() => user.id, { onDelete: "cascade" }),
+  memoryType: text('memory_type').notNull(),
+  content: text('content').notNull(),
+  importance: integer('importance').notNull().default(1),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(new Date()),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(new Date()),
+});
+
 /**************  FILES & TEAMS  ****************/
 export const files = sqliteTable("files", {
   id: text("id").primaryKey(),

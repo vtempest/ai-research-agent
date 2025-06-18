@@ -14,8 +14,8 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "auth-client",
-    "permalink": "/web/lib/auth-client"
+    "title": "hooks.server",
+    "permalink": "/web/hooks.server"
   },
   "next": {
     "title": "sound-effects",

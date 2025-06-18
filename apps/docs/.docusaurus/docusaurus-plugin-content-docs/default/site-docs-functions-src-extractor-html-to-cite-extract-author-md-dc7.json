@@ -14,8 +14,8 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "reply-language",
-    "permalink": "/functions/src/agents/reply-language"
+    "title": "generate-language",
+    "permalink": "/functions/src/agents/generate-language"
   },
   "next": {
     "title": "extract-cite",

@@ -46,13 +46,18 @@
               "sidebar": "default"
             },
             {
+              "id": "functions/agents/generate-language",
+              "path": "/functions/agents/generate-language",
+              "sidebar": "default"
+            },
+            {
               "id": "functions/agents/language-model-names",
               "path": "/functions/agents/language-model-names",
               "sidebar": "default"
             },
             {
-              "id": "functions/agents/reply-language",
-              "path": "/functions/agents/reply-language",
+              "id": "functions/agents/memory",
+              "path": "/functions/agents/memory",
               "sidebar": "default"
             },
             {
@@ -516,11 +521,6 @@
               "sidebar": "default"
             },
             {
-              "id": "web/lib/auth-client",
-              "path": "/web/lib/auth-client",
-              "sidebar": "default"
-            },
-            {
               "id": "web/lib/components/AppLayout/auth-google-one-tap",
               "path": "/web/lib/components/AppLayout/auth-google-one-tap",
               "sidebar": "default"
@@ -946,6 +946,16 @@
               "sidebar": "default"
             },
             {
+              "id": "web/lib/components/utils/auth-client",
+              "path": "/web/lib/components/utils/auth-client",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/lib/components/utils/utils",
+              "path": "/web/lib/components/utils/",
+              "sidebar": "default"
+            },
+            {
               "id": "web/lib/customize-site",
               "path": "/web/lib/customize-site",
               "sidebar": "default"
@@ -998,11 +1008,6 @@
             {
               "id": "web/lib/server/validations",
               "path": "/web/lib/server/validations",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/utils",
-              "path": "/web/lib/utils",
               "sidebar": "default"
             },
             {
@@ -1156,8 +1161,8 @@
   "docusaurus-lunr-search": {
     "default": {
       "fileNames": {
-        "searchDoc": "search-doc-1750134812442.json",
-        "lunrIndex": "lunr-index-1750134812442.json"
+        "searchDoc": "search-doc-1750227054366.json",
+        "lunrIndex": "lunr-index-1750227054366.json"
       }
     }
   }

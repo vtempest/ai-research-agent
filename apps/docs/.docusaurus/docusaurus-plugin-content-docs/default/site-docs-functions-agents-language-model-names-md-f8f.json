@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "api2ai",
-    "permalink": "/functions/agents/api2ai"
+    "title": "generate-language",
+    "permalink": "/functions/agents/generate-language"
   },
   "next": {
-    "title": "reply-language",
-    "permalink": "/functions/agents/reply-language"
+    "title": "memory",
+    "permalink": "/functions/agents/memory"
   }
 }

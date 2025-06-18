@@ -3,11 +3,12 @@
  * @license AGPL-3.0 Organizations should email grokthiscontact@gmail.com 
  * to get a dual-use commercial license to remove the GPL requirements.
  */
-export * from "./agents/reply-language.js";
+export * from "./agents/generate-language.js";
 export * from "./agents/language-model-names.js"
 export * from "./agents/agent-prompts.js"
 export * from "./agents/agent-tools.js"
 export * from "./agents/api2ai.js"
+export * from "./agents/memory.js"
 export * from "./search/search-web.js";
 export * from "./search/search-stream.js";
 export * from "./extractor/url-to-content/url-to-content.js";

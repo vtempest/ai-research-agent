@@ -4,15 +4,15 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/',
-    component: ComponentCreator('/', '3fa'),
+    component: ComponentCreator('/', 'b74'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '6fa'),
+        component: ComponentCreator('/', '070'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '61e'),
+            component: ComponentCreator('/', '6de'),
             routes: [
               {
                 path: '/api/extract-content',
@@ -99,14 +99,20 @@ export default [
                 sidebar: "default"
               },
               {
+                path: '/functions/agents/generate-language',
+                component: ComponentCreator('/functions/agents/generate-language', '450'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
                 path: '/functions/agents/language-model-names',
                 component: ComponentCreator('/functions/agents/language-model-names', 'dc4'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/agents/reply-language',
-                component: ComponentCreator('/functions/agents/reply-language', '97d'),
+                path: '/functions/agents/memory',
+                component: ComponentCreator('/functions/agents/memory', '1ed'),
                 exact: true,
                 sidebar: "default"
               },
@@ -651,12 +657,6 @@ export default [
                 sidebar: "default"
               },
               {
-                path: '/web/lib/auth-client',
-                component: ComponentCreator('/web/lib/auth-client', '934'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
                 path: '/web/lib/components/AppLayout/auth-google-one-tap',
                 component: ComponentCreator('/web/lib/components/AppLayout/auth-google-one-tap', '141'),
                 exact: true,
@@ -1167,6 +1167,18 @@ export default [
                 sidebar: "default"
               },
               {
+                path: '/web/lib/components/utils/',
+                component: ComponentCreator('/web/lib/components/utils/', '4bf'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
+                path: '/web/lib/components/utils/auth-client',
+                component: ComponentCreator('/web/lib/components/utils/auth-client', '397'),
+                exact: true,
+                sidebar: "default"
+              },
+              {
                 path: '/web/lib/customize-site',
                 component: ComponentCreator('/web/lib/customize-site', '7ae'),
                 exact: true,
@@ -1229,12 +1241,6 @@ export default [
               {
                 path: '/web/lib/server/validations',
                 component: ComponentCreator('/web/lib/server/validations', '7dc'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/utils',
-                component: ComponentCreator('/web/lib/utils', 'b10'),
                 exact: true,
                 sidebar: "default"
               },

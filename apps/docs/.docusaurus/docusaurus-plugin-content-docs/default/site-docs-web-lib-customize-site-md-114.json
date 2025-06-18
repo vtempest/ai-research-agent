@@ -14,8 +14,8 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "tooltip",
-    "permalink": "/web/lib/components/ui/tooltip"
+    "title": "auth-client",
+    "permalink": "/web/lib/components/utils/auth-client"
   },
   "next": {
     "title": "auth",

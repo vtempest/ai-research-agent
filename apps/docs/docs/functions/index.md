@@ -2,7 +2,7 @@
 
 ## generateLanguageResponse
 
-Re-exports [generateLanguageResponse](agents/reply-language.md#generatelanguageresponse)
+Re-exports [generateLanguageResponse](agents/generate-language.md#generatelanguageresponse)
 
 ***
 
@@ -30,9 +30,9 @@ Re-exports [AGENT_PROMPTS](agents/agent-prompts.md#agent_prompts)
 
 ***
 
-## agentTools
+## AGENT\_TOOLS
 
-Re-exports [agentTools](agents/agent-tools.md#agenttools)
+Re-exports [AGENT_TOOLS](agents/agent-tools.md#agent_tools)
 
 ***
 
@@ -114,9 +114,9 @@ Re-exports [convertMathLaTexToImage](extractor/html-to-content/html-utils.md#con
 
 ***
 
-## convertEscapedHTMLToHTML
+## convertURLSafeHTMLToHTML
 
-Re-exports [convertEscapedHTMLToHTML](extractor/html-to-content/html-utils.md#convertescapedhtmltohtml)
+Re-exports [convertURLSafeHTMLToHTML](extractor/html-to-content/html-utils.md#converturlsafehtmltohtml)
 
 ***
 
@@ -351,3 +351,39 @@ Re-exports [ArticleType](types.md#articletype)
 ## AgentPromptType
 
 Re-exports [AgentPromptType](types.md#agentprompttype)
+
+***
+
+## SimpleMemory
+
+Re-exports [SimpleMemory](agents/memory.md#simplememory)
+
+***
+
+## MemoryAgent
+
+Re-exports [MemoryAgent](agents/memory.md#memoryagent)
+
+***
+
+## createMemorySchema
+
+Re-exports [createMemorySchema](agents/memory.md#creatememoryschema)
+
+***
+
+## exampleUsage
+
+Re-exports [exampleUsage](agents/memory.md#exampleusage)
+
+***
+
+## MEMORY\_CONFIG
+
+Re-exports [MEMORY_CONFIG](agents/memory.md#memory_config)
+
+***
+
+## MEMORY\_TYPES
+
+Re-exports [MEMORY_TYPES](agents/memory.md#memory_types)

@@ -8,10 +8,10 @@
 function weighRelevanceConceptVectorAPI(
    source_sentence: string, 
    sentences: string[], 
-   options?: object): Promise<any>;
+   options?: object): object[];
 ```
 
-Defined in: [packages/ai-research-agent/src/similarity/similarity-remote-api.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L18)
+Defined in: [packages/ai-research-agent/src/similarity/similarity-remote-api.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L19)
 
 Calculate the semantic similarity between one text and a list of
 other sentences by comparing their embeddings.
@@ -123,7 +123,7 @@ Required https://huggingface.co/settings/tokens
 
 #### Returns
 
-`Promise`&lt;`any`&gt;
+`object`[]
 
-array of 0-1 similarity scores for each sentence
+sentences with relevance scores sorted by relevance
  *

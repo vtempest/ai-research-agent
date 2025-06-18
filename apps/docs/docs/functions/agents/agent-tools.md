@@ -1,9 +1,9 @@
 [Documentation](../README.md) / agents/agent-tools
 
-## agentTools
+## AGENT\_TOOLS
 
 ```ts
-const agentTools: (
+const AGENT_TOOLS: (
   | {
   name: string;
   description: string;

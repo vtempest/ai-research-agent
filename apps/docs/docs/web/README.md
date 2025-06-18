@@ -2,9 +2,7 @@
 
 - [global](global.md)
 - [hooks.server](hooks.server.md)
-- [lib/auth-client](lib/auth-client.md)
 - [lib/customize-site](lib/customize-site.md)
-- [lib/utils](lib/utils.md)
 - [routes/+layout](routes/+layout.md)
 - [lib/server](lib/server.md)
 - [lib/server/auth](lib/server/auth.md)
@@ -29,6 +27,8 @@
 - [lib/components/TabManager/find-in-tab-content](lib/components/TabManager/find-in-tab-content.md)
 - [lib/components/icons](lib/components/icons.md)
 - [lib/components/icons](lib/components/icons-1.md)
+- [lib/components/utils/auth-client](lib/components/utils/auth-client.md)
+- [lib/components/utils/utils](lib/components/utils/utils.md)
 - [routes/api/agents/+server](routes/api/agents/+server.md)
 - [routes/api/chats/+server](routes/api/chats/+server.md)
 - [routes/api/extract/+server](routes/api/extract/+server.md)

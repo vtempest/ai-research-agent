@@ -8,7 +8,7 @@
 function extractJSONFromLanguageReply(text: string, key?: string): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/agent-prompts.js:244](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L244)
+Defined in: [packages/ai-research-agent/src/agents/agent-prompts.js:331](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L331)
 
 Extracts and cleans content between XML-style tags and returns a JSON object.
 

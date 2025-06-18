@@ -1,5 +1,5 @@
 import {
-  convertEscapedHTMLToHTML,
+  convertURLSafeHTMLToHTML,
   convertURLToAbsoluteURL,
   convertMathLaTexToImage,
   convertMarkdownToHTML
@@ -116,7 +116,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     .replace(/[\r\n\t]+/g, " ") //remove linebreaks
     .replace(/ \s+/g, " ")
 
-  basicHtml = convertEscapedHTMLToHTML(basicHtml).replace(/&nbsp;/g, " ");
+  basicHtml = convertURLSafeHTMLToHTML(basicHtml).replace(/&nbsp;/g, " ");
 
   // // CNN news edge case of data=attr <> inside of attr
   // const reHTMLInsideDataAttr =

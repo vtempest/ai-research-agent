@@ -18,7 +18,7 @@
     "permalink": "/functions/agents/agent-tools"
   },
   "next": {
-    "title": "language-model-names",
-    "permalink": "/functions/agents/language-model-names"
+    "title": "generate-language",
+    "permalink": "/functions/agents/generate-language"
   }
 }

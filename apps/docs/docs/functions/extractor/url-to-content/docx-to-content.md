@@ -5,7 +5,7 @@
 ### convertDOCXToHTML()
 
 ```ts
-function convertDOCXToHTML(input: string | Blob | ArrayBuffer | File, options?: DocxOptions): Promise<string>;
+function convertDOCXToHTML(input: string | File | Blob | ArrayBuffer, options?: DocxOptions): Promise<string>;
 ```
 
 Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:54](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L54)
@@ -31,7 +31,7 @@ Converts a DOCX document to HTML
 </td>
 <td>
 
-`string` \| `Blob` \| `ArrayBuffer` \| `File`
+`string` \| `File` \| `Blob` \| `ArrayBuffer`
 
 </td>
 <td>

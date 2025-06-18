@@ -14,8 +14,8 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "reply-language",
-    "permalink": "/docs/functions/agents/reply-language"
+    "title": "generate-language",
+    "permalink": "/docs/functions/agents/generate-language"
   },
   "next": {
     "title": "extract-author-2",

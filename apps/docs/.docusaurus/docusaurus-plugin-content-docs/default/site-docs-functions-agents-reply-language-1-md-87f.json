@@ -1,14 +1,14 @@
 {
-  "id": "functions/agents/reply-language-1",
-  "title": "reply-language-1",
-  "description": "Documentation / agents/reply-language",
-  "source": "@site/docs/functions/agents/reply-language-1.md",
+  "id": "functions/agents/generate-language-1",
+  "title": "generate-language-1",
+  "description": "Documentation / agents/generate-language",
+  "source": "@site/docs/functions/agents/generate-language-1.md",
   "sourceDirName": "functions/agents",
-  "slug": "/functions/agents/reply-language-1",
-  "permalink": "/docs/functions/agents/reply-language-1",
+  "slug": "/functions/agents/generate-language-1",
+  "permalink": "/docs/functions/agents/generate-language-1",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/reply-language-1.md",
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/docs/functions/agents/generate-language-1.md",
   "tags": [],
   "version": "current",
   "frontMatter": {},
@@ -18,7 +18,7 @@
     "permalink": "/docs/functions/agents/language-model-names"
   },
   "next": {
-    "title": "reply-language",
-    "permalink": "/docs/functions/agents/reply-language"
+    "title": "generate-language",
+    "permalink": "/docs/functions/agents/generate-language"
   }
 }

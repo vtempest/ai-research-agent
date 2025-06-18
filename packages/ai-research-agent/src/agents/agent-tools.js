@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agentTools = [
+export const AGENT_TOOLS = [
   {
     name: "add_to_input",
     description: "adds 2 to an input.",

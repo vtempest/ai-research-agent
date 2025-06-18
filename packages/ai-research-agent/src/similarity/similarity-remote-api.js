@@ -12,7 +12,8 @@
  * @param {Object} [options]
   * @param {string} options.model default="sentence-transformers/all-MiniLM-L6-v2"
  * @param {string} options.HF_API_KEY Required https://huggingface.co/settings/tokens
- * @returns array of 0-1 similarity scores for each sentence
+ * @returns {Array<{sentence: string, relevance: number}>} 
+ * sentences with relevance scores sorted by relevance
   * @category Similarity
   */
 export async function weighRelevanceConceptVectorAPI(
@@ -47,5 +48,13 @@ export async function weighRelevanceConceptVectorAPI(
 
   var jsonSimilarityScores =  await response.json();
 
-  return jsonSimilarityScores;
+  var sentencesByRelevance = sentences.map((s, i) => {
+    return {
+      sentence: s,
+      relevance: jsonSimilarityScores[i]
+    };
+  });
+  sentencesByRelevance.sort((a, b) => b.relevance - a.relevance);
+  
+  return sentencesByRelevance;
 }

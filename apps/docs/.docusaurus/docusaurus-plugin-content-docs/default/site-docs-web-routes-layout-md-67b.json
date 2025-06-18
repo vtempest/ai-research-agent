@@ -14,8 +14,8 @@
   "frontMatter": {},
   "sidebar": "default",
   "previous": {
-    "title": "utils",
-    "permalink": "/web/lib/utils"
+    "title": "server",
+    "permalink": "/web/lib/server"
   },
   "next": {
     "title": "+server",

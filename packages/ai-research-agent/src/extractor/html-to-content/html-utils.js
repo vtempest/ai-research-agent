@@ -47,20 +47,18 @@ catch(e){
 }
 
 /**
- * Converts HTML special characters like &"'`&rsquo; to & escaped codes or vice versa.
- * It handles named entities and hexadecimal numeric character references.
- *
+ * Converts URL-safe escaped HTML codes like &"'`&rsquo; & to standard HTML or in reverse.
  * @param {string} str - The string to process.
- * @param {boolean} unescape  default=true - If true, converts & codes to characters.
- *                                     If false, converts characters to codes.
+ * @param {boolean} toStandardHTML  default=true - If true, converts url-safe codes 
+ * to standard HTML. If false, converts standard HTML to url-safe codes.
  * @return {string} The processed string.
  * @category HTML Utilities
  * @example
- * var normalHTML = convertEscapedHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
+ * var normalHTML = convertURLSafeHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
  * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
- * console.log(normalHTML) // Returns: "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
+ * console.log(normalHTML) // "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
  */
-export function convertEscapedHTMLToHTML(str, unescape = true) {
+export function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
   const entityMap = {
     "&": "&amp;",
     "<": "&lt;",
@@ -83,7 +81,7 @@ export function convertEscapedHTMLToHTML(str, unescape = true) {
     entityMap[String.fromCharCode(i)] = `&#${i};`;
   }
 
-  if (unescape) {
+  if (toStandardHTML) {
     // Create a reverse mapping for unescaping
     const reverseEntityMap = Object.fromEntries(
       Object.entries(entityMap).map(([k, v]) => [v, k])

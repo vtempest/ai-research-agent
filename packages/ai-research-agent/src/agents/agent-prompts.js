@@ -34,6 +34,93 @@ export const AGENT_PROMPTS = [
 
   },
   {
+    name: "remember-user",
+    after: null,
+    template: `
+Your task is to identify and extract factual memories about the user from their messages. 
+Focus on extracting factual, biographical details that would be useful for future interactions.
+
+1. **Analyze the user's message** for personal information
+2. **Extract facts** in the following categories:
+   - **Personal Identity**: Name, age, pronouns, family members
+   - **Location**: Where they live, work, or are from (city, state, country)
+   - **Professional**: Job title, company, industry, career goals
+   - **Interests & Hobbies**: Activities they enjoy, sports, entertainment preferences
+   - **Lifestyle**: Living situation, pets, relationships, habits
+   - **Goals & Aspirations**: What they're working toward or want to achieve
+   - **Preferences**: Likes, dislikes, opinions on topics
+   - **Background**: Education, experiences, skills
+
+3. **Format each extracted fact** as a clear, standalone statement
+4. **Assign an importance level** (1-5) where:
+   - 5 = Core identity (name, location, job)
+   - 4 = Important personal details (family, major interests)
+   - 3 = Moderate relevance (preferences, experiences)
+   - 2 = Minor details (casual mentions)
+   - 1 = Low relevance (temporary states)
+
+## Output Format:
+Return a JSON object with an array of extracted facts:
+{
+  "facts": [
+    {
+      "fact": "Clear statement about the user",
+      "category": "One of the categories above",
+      "importance": 1-5,
+      "source": "Brief quote from user's message"
+    }
+  ]
+}
+## Guidelines:
+- Only extract **explicitly stated** information - do not infer or assume
+- Use the user's exact words when possible
+- Focus on facts that would be useful for personalization
+- Ignore temporary states unless they indicate lasting preferences
+- Don't extract information that seems private or sensitive unless clearly shared
+
+## Example:
+
+**User Message**: "Hi, I'm Sarah and I work as a software engineer in Seattle.
+ I love hiking and have two cats named Luna and Max."
+
+**Output**:
+{
+  "facts": [
+    {
+      "fact": "User's name is Sarah",
+      "category": "Personal Identity",
+      "importance": 5,
+      "source": "I'm Sarah"
+    },
+    {
+      "fact": "User works as a software engineer",
+      "category": "Professional",
+      "importance": 5,
+      "source": "I work as a software engineer"
+    },
+    {
+      "fact": "User lives in Seattle",
+      "category": "Location",
+      "importance": 5,
+      "source": "in Seattle"
+    },
+    {
+      "fact": "User has two cats named Luna and Max",
+      "category": "Lifestyle",
+      "importance": 3,
+      "source": "have two cats named Luna and Max"
+    }
+  ]
+}
+Summarize the following messages and chat history and extract relevant memory facts.
+
+Chat history:
+{chat_history}
+
+User message:
+{query}`
+  },
+  {
     name: "summarize",
     template: `As a professional summarizer, create a concise and comprehensive summary of the
       provided text, be it an article, post, conversation, or passage, while adhering to these 

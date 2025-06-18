@@ -18,7 +18,7 @@
     "permalink": "/web/global"
   },
   "next": {
-    "title": "auth-client",
-    "permalink": "/web/lib/auth-client"
+    "title": "auth-google-one-tap",
+    "permalink": "/web/lib/components/AppLayout/auth-google-one-tap"
   }
 }
