@@ -1,0 +1,29 @@
+{
+  "id": "api/pet",
+  "title": "pet",
+  "description": "pet",
+  "source": "@site/src/api/pet.tag.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/pet",
+  "permalink": "/api/pet",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "pet",
+    "title": "pet",
+    "description": "pet",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Logs out current logged in user session",
+    "permalink": "/api/logout-user"
+  },
+  "next": {
+    "title": "Place an order for a pet",
+    "permalink": "/api/place-order"
+  }
+}

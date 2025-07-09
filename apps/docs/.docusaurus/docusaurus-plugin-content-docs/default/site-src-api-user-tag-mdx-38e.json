@@ -1,0 +1,29 @@
+{
+  "id": "api/user",
+  "title": "user",
+  "description": "user",
+  "source": "@site/src/api/user.tag.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/user",
+  "permalink": "/api/user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "user",
+    "title": "user",
+    "description": "user",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "uploads an image",
+    "permalink": "/api/upload-file"
+  },
+  "next": {
+    "title": "agent-prompts",
+    "permalink": "/functions/agents/agent-prompts"
+  }
+}

@@ -1,0 +1,1 @@
+(self.webpackChunkqwksearch_api_docs=self.webpackChunkqwksearch_api_docs||[]).push([[7902],{79815:(s,c,a)=>{"use strict";a.d(c,{A:()=>k});var e=a(61998);const k=e},99056:()=>{}}]);

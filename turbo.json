@@ -4,6 +4,10 @@
       "build": {
         "outputs": ["dist/**"]
       },
+      "build:docs:slashdocs": {
+        "outputs": ["docs/**"]
+      },
+      
       "docs:build": {
         "outputs": ["docs/**"]
       },

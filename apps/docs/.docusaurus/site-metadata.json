@@ -35,7 +35,7 @@
     "docusaurus-plugin-openapi-docs": {
       "type": "package",
       "name": "docusaurus-plugin-openapi-docs",
-      "version": "4.4.0"
+      "version": "4.5.1"
     },
     "docusaurus-lunr-search": {
       "type": "package",
@@ -50,7 +50,7 @@
     "docusaurus-theme-openapi": {
       "type": "package",
       "name": "docusaurus-theme-openapi-docs",
-      "version": "4.4.0"
+      "version": "4.5.1"
     }
   }
 }

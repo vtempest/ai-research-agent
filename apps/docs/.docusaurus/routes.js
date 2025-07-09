@@ -3,1336 +3,850 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/',
-    component: ComponentCreator('/', 'b74'),
+    path: '/docs/',
+    component: ComponentCreator('/docs/', 'e54'),
     routes: [
       {
-        path: '/',
-        component: ComponentCreator('/', '070'),
+        path: '/docs/',
+        component: ComponentCreator('/docs/', '7d3'),
         routes: [
           {
-            path: '/',
-            component: ComponentCreator('/', '6de'),
+            path: '/docs/',
+            component: ComponentCreator('/docs/', '23b'),
             routes: [
               {
-                path: '/api/extract-content',
-                component: ComponentCreator('/api/extract-content', '592'),
+                path: '/docs/api/extract-content',
+                component: ComponentCreator('/docs/api/extract-content', '784'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/api/qwksearch-api',
-                component: ComponentCreator('/api/qwksearch-api', '4c1'),
+                path: '/docs/api/qwksearch-api',
+                component: ComponentCreator('/docs/api/qwksearch-api', '572'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/api/search-web',
-                component: ComponentCreator('/api/search-web', 'fb6'),
+                path: '/docs/api/search-web',
+                component: ComponentCreator('/docs/api/search-web', '4a3'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/api/write-language',
-                component: ComponentCreator('/api/write-language', 'c87'),
+                path: '/docs/api/write-language',
+                component: ComponentCreator('/docs/api/write-language', '2f8'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/category/qwksearch-api',
-                component: ComponentCreator('/category/qwksearch-api', 'b43'),
+                path: '/docs/functions/',
+                component: ComponentCreator('/docs/functions/', 'c68'),
                 exact: true,
-                sidebar: "api"
-              },
-              {
-                path: '/category/qwksearch-api',
-                component: ComponentCreator('/category/qwksearch-api', '1c3'),
-                exact: true,
-                sidebar: "api"
-              },
-              {
-                path: '/category/qwksearch-api',
-                component: ComponentCreator('/category/qwksearch-api', '19c'),
-                exact: true,
-                sidebar: "api"
-              },
-              {
-                path: '/category/qwksearch-api',
-                component: ComponentCreator('/category/qwksearch-api', 'a5b'),
-                exact: true,
-                sidebar: "api"
-              },
-              {
-                path: '/category/qwksearch-api',
-                component: ComponentCreator('/category/qwksearch-api', 'a57'),
-                exact: true,
-                sidebar: "api"
-              },
-              {
-                path: '/functions/',
-                component: ComponentCreator('/functions/', '989'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/',
-                component: ComponentCreator('/functions/', '2c4'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/agent-prompts',
-                component: ComponentCreator('/functions/agents/agent-prompts', '51c'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/agent-tools',
-                component: ComponentCreator('/functions/agents/agent-tools', 'd66'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/api2ai',
-                component: ComponentCreator('/functions/agents/api2ai', 'c84'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/generate-language',
-                component: ComponentCreator('/functions/agents/generate-language', '450'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/language-model-names',
-                component: ComponentCreator('/functions/agents/language-model-names', 'dc4'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/agents/memory',
-                component: ComponentCreator('/functions/agents/memory', '1ed'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-author',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-author', '813'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-cite',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-cite', '1f0'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-date/',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-date/', '6fd'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-date/date-extractors',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-date/date-extractors', 'dd5'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-date/date-validators',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-date/date-validators', '1ec'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-date/extract-date-quick',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-date/extract-date-quick', 'b2d'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-source',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-source', '001'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/extract-title',
-                component: ComponentCreator('/functions/extractor/html-to-cite/extract-title', 'd0a'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/human-names-recognize',
-                component: ComponentCreator('/functions/extractor/html-to-cite/human-names-recognize', 'ff6'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/metadata-to-cite',
-                component: ComponentCreator('/functions/extractor/html-to-cite/metadata-to-cite', '410'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-cite/url-to-domain',
-                component: ComponentCreator('/functions/extractor/html-to-cite/url-to-domain', 'e74'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/',
-                component: ComponentCreator('/functions/extractor/html-to-content/', '7ba'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/extract-content/extract-content-mercury',
-                component: ComponentCreator('/functions/extractor/html-to-content/extract-content/extract-content-mercury', '503'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils',
-                component: ComponentCreator('/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils', 'd97'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/extract-content/extract-content-readability',
-                component: ComponentCreator('/functions/extractor/html-to-content/extract-content/extract-content-readability', 'ac1'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/html-to-basic-html',
-                component: ComponentCreator('/functions/extractor/html-to-content/html-to-basic-html', 'aaa'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/html-to-content/html-utils',
-                component: ComponentCreator('/functions/extractor/html-to-content/html-utils', 'a4a'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/', '35a'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/Annotation',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/Annotation', '455'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/BlockType/',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/BlockType/', '463'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/BlockType/namespaces/default',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/BlockType/namespaces/default', '9f1'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/HeadlineFinder',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/HeadlineFinder', '359'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/LineConverter',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/LineConverter', '158'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/LineItem',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/LineItem', '01c'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/LineItemBlock',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/LineItemBlock', 'd47'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/Page',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/Page', '2f7'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/PageItem',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/PageItem', 'd66'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/ParsedElements',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/ParsedElements', 'a0f'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/functions/extractor/pdf-to-html/models/ParseResult',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/ParseResult', 'fd7'),
-                exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/models/StashingStream',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/StashingStream', '6ec'),
+                path: '/docs/functions/agents/agent-prompts',
+                component: ComponentCreator('/docs/functions/agents/agent-prompts', '00d'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/models/TextItem',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/TextItem', 'ca3'),
+                path: '/docs/functions/agents/agent-tools',
+                component: ComponentCreator('/docs/functions/agents/agent-tools', '5ab'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/models/TextItemLineGrouper',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/TextItemLineGrouper', 'c7d'),
+                path: '/docs/functions/agents/api2ai',
+                component: ComponentCreator('/docs/functions/agents/api2ai', 'a9c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/models/Word',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/models/Word', 'ee7'),
+                path: '/docs/functions/agents/generate-language',
+                component: ComponentCreator('/docs/functions/agents/generate-language', '4eb'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats', '1cc'),
+                path: '/docs/functions/agents/language-model-names',
+                component: ComponentCreator('/docs/functions/agents/language-model-names', '83e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks', '785'),
+                path: '/docs/functions/agents/memory',
+                component: ComponentCreator('/docs/functions/agents/memory', '864'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels', 'd34'),
+                path: '/docs/functions/extractor/html-to-cite/extract-author',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-author', '30c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks', 'b36'),
+                path: '/docs/functions/extractor/html-to-cite/extract-cite',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-cite', '0a0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/CompactLines',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/CompactLines', '310'),
+                path: '/docs/functions/extractor/html-to-cite/extract-date/',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-date/', 'f38'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders', 'b59'),
+                path: '/docs/functions/extractor/html-to-cite/extract-date/date-extractors',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-date/date-extractors', '0ec'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems', '73b'),
+                path: '/docs/functions/extractor/html-to-cite/extract-date/date-validators',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-date/date-validators', 'bdb'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC', '618'),
+                path: '/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick', '848'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements', '48a'),
+                path: '/docs/functions/extractor/html-to-cite/extract-source',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-source', 'fa6'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal', 'c28'),
+                path: '/docs/functions/extractor/html-to-cite/extract-title',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/extract-title', 'd39'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/ToHTML',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/ToHTML', '86e'),
+                path: '/docs/functions/extractor/html-to-cite/human-names-recognize',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/human-names-recognize', '4e2'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation', '693'),
+                path: '/docs/functions/extractor/html-to-cite/metadata-to-cite',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/metadata-to-cite', 'a01'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation', '686'),
+                path: '/docs/functions/extractor/html-to-cite/url-to-domain',
+                component: ComponentCreator('/docs/functions/extractor/html-to-cite/url-to-domain', 'ce5'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/ToTextBlocks',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/ToTextBlocks', '40d'),
+                path: '/docs/functions/extractor/html-to-content/',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/', 'a54'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation', '733'),
+                path: '/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury', '610'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/transformations/Transformation',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/transformations/Transformation', 'c88'),
+                path: '/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils', '16a'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/util/is-url-pdf',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/util/is-url-pdf', 'c47'),
+                path: '/docs/functions/extractor/html-to-content/extract-content/extract-content-readability',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/extract-content/extract-content-readability', '3fd'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/util/page-item-functions',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/util/page-item-functions', '0b5'),
+                path: '/docs/functions/extractor/html-to-content/html-to-basic-html',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/html-to-basic-html', '805'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/util/page-number-functions',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/util/page-number-functions', '309'),
+                path: '/docs/functions/extractor/html-to-content/html-utils',
+                component: ComponentCreator('/docs/functions/extractor/html-to-content/html-utils', '4a7'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/pdf-to-html/util/string-functions',
-                component: ComponentCreator('/functions/extractor/pdf-to-html/util/string-functions', '73f'),
+                path: '/docs/functions/extractor/pdf-to-html/',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/', 'ad7'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/url-to-content/',
-                component: ComponentCreator('/functions/extractor/url-to-content/', 'c2d'),
+                path: '/docs/functions/extractor/pdf-to-html/models/Annotation',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/Annotation', '1fb'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/url-to-content/docx-to-content',
-                component: ComponentCreator('/functions/extractor/url-to-content/docx-to-content', 'f2a'),
+                path: '/docs/functions/extractor/pdf-to-html/models/BlockType/',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/BlockType/', '986'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/url-to-content/url-to-html',
-                component: ComponentCreator('/functions/extractor/url-to-content/url-to-html', '82d'),
+                path: '/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default', 'a30'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/extractor/url-to-content/youtube-to-text',
-                component: ComponentCreator('/functions/extractor/url-to-content/youtube-to-text', '8d2'),
+                path: '/docs/functions/extractor/pdf-to-html/models/HeadlineFinder',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/HeadlineFinder', '599'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/interface/highlight-code',
-                component: ComponentCreator('/functions/interface/highlight-code', '432'),
+                path: '/docs/functions/extractor/pdf-to-html/models/LineConverter',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/LineConverter', '882'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/interface/youtube-embed',
-                component: ComponentCreator('/functions/interface/youtube-embed', '612'),
+                path: '/docs/functions/extractor/pdf-to-html/models/LineItem',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/LineItem', '1b8'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/match/compare-letters',
-                component: ComponentCreator('/functions/match/compare-letters', '1a0'),
+                path: '/docs/functions/extractor/pdf-to-html/models/LineItemBlock',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/LineItemBlock', 'de3'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/match/match-quasar',
-                component: ComponentCreator('/functions/match/match-quasar', 'e3e'),
+                path: '/docs/functions/extractor/pdf-to-html/models/Page',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/Page', '444'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/match/weigh-relevance-frequency',
-                component: ComponentCreator('/functions/match/weigh-relevance-frequency', '4bc'),
+                path: '/docs/functions/extractor/pdf-to-html/models/PageItem',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/PageItem', 'dc1'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/search/search-engines',
-                component: ComponentCreator('/functions/search/search-engines', '040'),
+                path: '/docs/functions/extractor/pdf-to-html/models/ParsedElements',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/ParsedElements', 'fb0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/search/search-stream',
-                component: ComponentCreator('/functions/search/search-stream', '8be'),
+                path: '/docs/functions/extractor/pdf-to-html/models/ParseResult',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/ParseResult', 'acf'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/search/search-web',
-                component: ComponentCreator('/functions/search/search-web', '892'),
+                path: '/docs/functions/extractor/pdf-to-html/models/StashingStream',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/StashingStream', 'd66'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/search/search-wikipedia',
-                component: ComponentCreator('/functions/search/search-wikipedia', 'acd'),
+                path: '/docs/functions/extractor/pdf-to-html/models/TextItem',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/TextItem', '6a2'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/similarity/similarity-remote-api',
-                component: ComponentCreator('/functions/similarity/similarity-remote-api', 'd05'),
+                path: '/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper', 'c8e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/stopwords',
-                component: ComponentCreator('/functions/tokenize/stopwords', '00a'),
+                path: '/docs/functions/extractor/pdf-to-html/models/Word',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/models/Word', '1e0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/suggest-complete-word',
-                component: ComponentCreator('/functions/tokenize/suggest-complete-word', 'f71'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats', '0d5'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/text-to-chunks',
-                component: ComponentCreator('/functions/tokenize/text-to-chunks', 'f78'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks', '9a0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/text-to-sentences',
-                component: ComponentCreator('/functions/tokenize/text-to-sentences', '4c0'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels', '8a6'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/text-to-topic-tokens',
-                component: ComponentCreator('/functions/tokenize/text-to-topic-tokens', '28b'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks', '262'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/tokenize/word-to-root-stem',
-                component: ComponentCreator('/functions/tokenize/word-to-root-stem', 'c12'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines', 'f92'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/topics/ngrams',
-                component: ComponentCreator('/functions/topics/ngrams', '2d3'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders', 'da5'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/topics/rank-sentences-keyphrases',
-                component: ComponentCreator('/functions/topics/rank-sentences-keyphrases', 'd74'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems', 'ee6'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/topics/seektopic-keyphrases',
-                component: ComponentCreator('/functions/topics/seektopic-keyphrases', 'b7a'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC', '139'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/topics/topic-distribution',
-                component: ComponentCreator('/functions/topics/topic-distribution', 'd03'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements', 'd06'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/functions/types',
-                component: ComponentCreator('/functions/types', 'd0b'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal', '7d9'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/',
-                component: ComponentCreator('/neural-net/', 'a2d'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/ToHTML',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/ToHTML', '93a'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/',
-                component: ComponentCreator('/neural-net/', 'ec8'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation', 'e5c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/statistics/predict-statistics',
-                component: ComponentCreator('/neural-net/statistics/predict-statistics', '55e'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation', 'fc7'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/train/neural-net-gpu',
-                component: ComponentCreator('/neural-net/train/neural-net-gpu', 'f93'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks', 'afe'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/train/neural-net-tf',
-                component: ComponentCreator('/neural-net/train/neural-net-tf', 'e73'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation', '5ee'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/train/predict-next-word',
-                component: ComponentCreator('/neural-net/train/predict-next-word', '13f'),
+                path: '/docs/functions/extractor/pdf-to-html/transformations/Transformation',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/transformations/Transformation', 'b56'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/vectorize/similarity-remote-api',
-                component: ComponentCreator('/neural-net/vectorize/similarity-remote-api', '0e0'),
+                path: '/docs/functions/extractor/pdf-to-html/util/is-url-pdf',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/util/is-url-pdf', '84c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/vectorize/similarity-vector',
-                component: ComponentCreator('/neural-net/vectorize/similarity-vector', '30c'),
+                path: '/docs/functions/extractor/pdf-to-html/util/page-item-functions',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/util/page-item-functions', '463'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/neural-net/vectorize/usearch',
-                component: ComponentCreator('/neural-net/vectorize/usearch', '1bf'),
+                path: '/docs/functions/extractor/pdf-to-html/util/page-number-functions',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/util/page-number-functions', 'e52'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/',
-                component: ComponentCreator('/web/', '7fc'),
+                path: '/docs/functions/extractor/pdf-to-html/util/string-functions',
+                component: ComponentCreator('/docs/functions/extractor/pdf-to-html/util/string-functions', 'daa'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/global',
-                component: ComponentCreator('/web/global', 'fac'),
+                path: '/docs/functions/extractor/url-to-content/',
+                component: ComponentCreator('/docs/functions/extractor/url-to-content/', 'dcb'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/hooks.server',
-                component: ComponentCreator('/web/hooks.server', 'cec'),
+                path: '/docs/functions/extractor/url-to-content/docx-to-content',
+                component: ComponentCreator('/docs/functions/extractor/url-to-content/docx-to-content', 'b56'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/AppLayout/auth-google-one-tap',
-                component: ComponentCreator('/web/lib/components/AppLayout/auth-google-one-tap', '141'),
+                path: '/docs/functions/extractor/url-to-content/url-to-html',
+                component: ComponentCreator('/docs/functions/extractor/url-to-content/url-to-html', '7c0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/AppLayout/sound-effects',
-                component: ComponentCreator('/web/lib/components/AppLayout/sound-effects', 'ed2'),
+                path: '/docs/functions/extractor/url-to-content/youtube-to-text',
+                component: ComponentCreator('/docs/functions/extractor/url-to-content/youtube-to-text', 'd8c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/docx/docx-to-html',
-                component: ComponentCreator('/web/lib/components/Editor/docx/docx-to-html', '295'),
+                path: '/docs/functions/index-1',
+                component: ComponentCreator('/docs/functions/index-1', '0c1'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/docx/docx-tokens',
-                component: ComponentCreator('/web/lib/components/Editor/docx/docx-tokens', '2d3'),
+                path: '/docs/functions/interface/highlight-code',
+                component: ComponentCreator('/docs/functions/interface/highlight-code', '30e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/docx/parse-cards',
-                component: ComponentCreator('/web/lib/components/Editor/docx/parse-cards', 'b57'),
+                path: '/docs/functions/interface/youtube-embed',
+                component: ComponentCreator('/docs/functions/interface/youtube-embed', '350'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/docx/parse-debate-docx',
-                component: ComponentCreator('/web/lib/components/Editor/docx/parse-debate-docx', '047'),
+                path: '/docs/functions/match/compare-letters',
+                component: ComponentCreator('/docs/functions/match/compare-letters', 'b68'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/docx/parse-zip-folder',
-                component: ComponentCreator('/web/lib/components/Editor/docx/parse-zip-folder', 'fc3'),
+                path: '/docs/functions/match/match-quasar',
+                component: ComponentCreator('/docs/functions/match/match-quasar', '17c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/storage/files-api-frontend',
-                component: ComponentCreator('/web/lib/components/Editor/storage/files-api-frontend', 'e6d'),
+                path: '/docs/functions/match/weigh-relevance-frequency',
+                component: ComponentCreator('/docs/functions/match/weigh-relevance-frequency', 'f68'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/storage/local-storage-api',
-                component: ComponentCreator('/web/lib/components/Editor/storage/local-storage-api', '711'),
+                path: '/docs/functions/modules',
+                component: ComponentCreator('/docs/functions/modules', 'cc9'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/Editor/storage/seed-test-data',
-                component: ComponentCreator('/web/lib/components/Editor/storage/seed-test-data', '350'),
+                path: '/docs/functions/search/search-engines',
+                component: ComponentCreator('/docs/functions/search/search-engines', '233'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/icons',
-                component: ComponentCreator('/web/lib/components/icons', '154'),
+                path: '/docs/functions/search/search-stream',
+                component: ComponentCreator('/docs/functions/search/search-stream', 'db1'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/icons-1',
-                component: ComponentCreator('/web/lib/components/icons-1', '3bb'),
+                path: '/docs/functions/search/search-web',
+                component: ComponentCreator('/docs/functions/search/search-web', '0c9'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ReadMode/auto-highlight',
-                component: ComponentCreator('/web/lib/components/ReadMode/auto-highlight', 'f65'),
+                path: '/docs/functions/search/search-wikipedia',
+                component: ComponentCreator('/docs/functions/search/search-wikipedia', '4cb'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ReadMode/read-mode-view',
-                component: ComponentCreator('/web/lib/components/ReadMode/read-mode-view', '1ba'),
+                path: '/docs/functions/similarity/similarity-remote-api',
+                component: ComponentCreator('/docs/functions/similarity/similarity-remote-api', '7f4'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/SearchWeb/categories',
-                component: ComponentCreator('/web/lib/components/SearchWeb/categories', '449'),
+                path: '/docs/functions/tokenize/stopwords',
+                component: ComponentCreator('/docs/functions/tokenize/stopwords', '4e9'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/SearchWeb/extras/get-weather',
-                component: ComponentCreator('/web/lib/components/SearchWeb/extras/get-weather', '82f'),
+                path: '/docs/functions/tokenize/suggest-complete-word',
+                component: ComponentCreator('/docs/functions/tokenize/suggest-complete-word', 'e6f'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/SearchWeb/extras/home-extras',
-                component: ComponentCreator('/web/lib/components/SearchWeb/extras/home-extras', 'e6d'),
+                path: '/docs/functions/tokenize/text-to-chunks',
+                component: ComponentCreator('/docs/functions/tokenize/text-to-chunks', 'bf6'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/SearchWeb/extras/QuantumSphere',
-                component: ComponentCreator('/web/lib/components/SearchWeb/extras/QuantumSphere', '043'),
+                path: '/docs/functions/tokenize/text-to-sentences',
+                component: ComponentCreator('/docs/functions/tokenize/text-to-sentences', '70b'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ShortcutSearch/shortcut-search',
-                component: ComponentCreator('/web/lib/components/ShortcutSearch/shortcut-search', '70d'),
+                path: '/docs/functions/tokenize/text-to-topic-tokens',
+                component: ComponentCreator('/docs/functions/tokenize/text-to-topic-tokens', '75c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ShortcutSearch/shortcut-search-web',
-                component: ComponentCreator('/web/lib/components/ShortcutSearch/shortcut-search-web', '315'),
+                path: '/docs/functions/tokenize/word-to-root-stem',
+                component: ComponentCreator('/docs/functions/tokenize/word-to-root-stem', 'ae9'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/TabManager/find-in-tab-content',
-                component: ComponentCreator('/web/lib/components/TabManager/find-in-tab-content', 'b84'),
+                path: '/docs/functions/topics/ngrams',
+                component: ComponentCreator('/docs/functions/topics/ngrams', '38b'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/alert',
-                component: ComponentCreator('/web/lib/components/ui/alert', '509'),
+                path: '/docs/functions/topics/rank-sentences-keyphrases',
+                component: ComponentCreator('/docs/functions/topics/rank-sentences-keyphrases', '19f'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/alert-1',
-                component: ComponentCreator('/web/lib/components/ui/alert-1', '574'),
+                path: '/docs/functions/topics/seektopic-keyphrases',
+                component: ComponentCreator('/docs/functions/topics/seektopic-keyphrases', '5be'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/alert-dialog',
-                component: ComponentCreator('/web/lib/components/ui/alert-dialog', 'ca4'),
+                path: '/docs/functions/topics/topic-distribution',
+                component: ComponentCreator('/docs/functions/topics/topic-distribution', 'bbc'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/alert-dialog-1',
-                component: ComponentCreator('/web/lib/components/ui/alert-dialog-1', '687'),
+                path: '/docs/functions/types',
+                component: ComponentCreator('/docs/functions/types', '421'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/avatar',
-                component: ComponentCreator('/web/lib/components/ui/avatar', '11a'),
+                path: '/docs/neural-net/',
+                component: ComponentCreator('/docs/neural-net/', 'f95'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/avatar-1',
-                component: ComponentCreator('/web/lib/components/ui/avatar-1', '9a7'),
+                path: '/docs/neural-net/index-1',
+                component: ComponentCreator('/docs/neural-net/index-1', 'f19'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/badge',
-                component: ComponentCreator('/web/lib/components/ui/badge', 'e0e'),
+                path: '/docs/neural-net/modules',
+                component: ComponentCreator('/docs/neural-net/modules', '93e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/badge-1',
-                component: ComponentCreator('/web/lib/components/ui/badge-1', '3d8'),
+                path: '/docs/neural-net/statistics/predict-statistics',
+                component: ComponentCreator('/docs/neural-net/statistics/predict-statistics', 'af0'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/breadcrumb',
-                component: ComponentCreator('/web/lib/components/ui/breadcrumb', 'ea0'),
+                path: '/docs/neural-net/train/neural-net-gpu',
+                component: ComponentCreator('/docs/neural-net/train/neural-net-gpu', '105'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/breadcrumb-1',
-                component: ComponentCreator('/web/lib/components/ui/breadcrumb-1', '076'),
+                path: '/docs/neural-net/train/neural-net-tf',
+                component: ComponentCreator('/docs/neural-net/train/neural-net-tf', 'c33'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/button',
-                component: ComponentCreator('/web/lib/components/ui/button', 'ddf'),
+                path: '/docs/neural-net/train/predict-next-word',
+                component: ComponentCreator('/docs/neural-net/train/predict-next-word', 'db7'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/button-1',
-                component: ComponentCreator('/web/lib/components/ui/button-1', '5af'),
+                path: '/docs/neural-net/vectorize/similarity-remote-api',
+                component: ComponentCreator('/docs/neural-net/vectorize/similarity-remote-api', 'c80'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/card',
-                component: ComponentCreator('/web/lib/components/ui/card', 'a6f'),
+                path: '/docs/neural-net/vectorize/similarity-vector',
+                component: ComponentCreator('/docs/neural-net/vectorize/similarity-vector', '530'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/card-1',
-                component: ComponentCreator('/web/lib/components/ui/card-1', '0eb'),
+                path: '/docs/neural-net/vectorize/usearch',
+                component: ComponentCreator('/docs/neural-net/vectorize/usearch', '683'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/checkbox',
-                component: ComponentCreator('/web/lib/components/ui/checkbox', 'd64'),
+                path: '/docs/web/',
+                component: ComponentCreator('/docs/web/', 'cd2'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/checkbox-1',
-                component: ComponentCreator('/web/lib/components/ui/checkbox-1', '9f6'),
+                path: '/docs/web/components/AppLayout/auth-google-one-tap',
+                component: ComponentCreator('/docs/web/components/AppLayout/auth-google-one-tap', 'b50'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/collapsible',
-                component: ComponentCreator('/web/lib/components/ui/collapsible', 'bd8'),
+                path: '/docs/web/components/AppLayout/sound-effects',
+                component: ComponentCreator('/docs/web/components/AppLayout/sound-effects', '2b4'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/collapsible-1',
-                component: ComponentCreator('/web/lib/components/ui/collapsible-1', '1dd'),
+                path: '/docs/web/components/Editor/docx/docx-to-html',
+                component: ComponentCreator('/docs/web/components/Editor/docx/docx-to-html', 'b8d'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/command',
-                component: ComponentCreator('/web/lib/components/ui/command', '220'),
+                path: '/docs/web/components/Editor/docx/docx-tokens',
+                component: ComponentCreator('/docs/web/components/Editor/docx/docx-tokens', 'c02'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/command-1',
-                component: ComponentCreator('/web/lib/components/ui/command-1', '38d'),
+                path: '/docs/web/components/Editor/docx/parse-cards',
+                component: ComponentCreator('/docs/web/components/Editor/docx/parse-cards', 'f77'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/dialog',
-                component: ComponentCreator('/web/lib/components/ui/dialog', '4f2'),
+                path: '/docs/web/components/Editor/docx/parse-debate-docx',
+                component: ComponentCreator('/docs/web/components/Editor/docx/parse-debate-docx', '6d4'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/dialog-1',
-                component: ComponentCreator('/web/lib/components/ui/dialog-1', '82c'),
+                path: '/docs/web/components/Editor/docx/parse-zip-folder',
+                component: ComponentCreator('/docs/web/components/Editor/docx/parse-zip-folder', 'fc1'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/dropdown-menu',
-                component: ComponentCreator('/web/lib/components/ui/dropdown-menu', 'f25'),
+                path: '/docs/web/components/Editor/storage/files-api-frontend',
+                component: ComponentCreator('/docs/web/components/Editor/storage/files-api-frontend', 'ed3'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/dropdown-menu-1',
-                component: ComponentCreator('/web/lib/components/ui/dropdown-menu-1', '79a'),
+                path: '/docs/web/components/Editor/storage/local-storage-api',
+                component: ComponentCreator('/docs/web/components/Editor/storage/local-storage-api', '741'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/form',
-                component: ComponentCreator('/web/lib/components/ui/form', 'f91'),
+                path: '/docs/web/components/Editor/storage/seed-test-data',
+                component: ComponentCreator('/docs/web/components/Editor/storage/seed-test-data', 'cb7'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/form-1',
-                component: ComponentCreator('/web/lib/components/ui/form-1', '8be'),
+                path: '/docs/web/components/icons',
+                component: ComponentCreator('/docs/web/components/icons', '80e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/input',
-                component: ComponentCreator('/web/lib/components/ui/input', '5f0'),
+                path: '/docs/web/components/icons-1',
+                component: ComponentCreator('/docs/web/components/icons-1', '137'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/input-1',
-                component: ComponentCreator('/web/lib/components/ui/input-1', '7c7'),
+                path: '/docs/web/components/ReadMode/auto-highlight',
+                component: ComponentCreator('/docs/web/components/ReadMode/auto-highlight', 'd32'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/label',
-                component: ComponentCreator('/web/lib/components/ui/label', '8f6'),
+                path: '/docs/web/components/ReadMode/read-mode-view',
+                component: ComponentCreator('/docs/web/components/ReadMode/read-mode-view', '190'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/label-1',
-                component: ComponentCreator('/web/lib/components/ui/label-1', '62e'),
+                path: '/docs/web/components/SearchWeb/categories',
+                component: ComponentCreator('/docs/web/components/SearchWeb/categories', '18f'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/menubar',
-                component: ComponentCreator('/web/lib/components/ui/menubar', '895'),
+                path: '/docs/web/components/SearchWeb/extras/get-weather',
+                component: ComponentCreator('/docs/web/components/SearchWeb/extras/get-weather', 'ba2'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/menubar-1',
-                component: ComponentCreator('/web/lib/components/ui/menubar-1', 'c22'),
+                path: '/docs/web/components/SearchWeb/extras/home-extras',
+                component: ComponentCreator('/docs/web/components/SearchWeb/extras/home-extras', '05a'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/pagination',
-                component: ComponentCreator('/web/lib/components/ui/pagination', '30e'),
+                path: '/docs/web/components/SearchWeb/extras/QuantumSphere',
+                component: ComponentCreator('/docs/web/components/SearchWeb/extras/QuantumSphere', 'eb3'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/pagination-1',
-                component: ComponentCreator('/web/lib/components/ui/pagination-1', '535'),
+                path: '/docs/web/components/ShortcutSearch/shortcut-search',
+                component: ComponentCreator('/docs/web/components/ShortcutSearch/shortcut-search', '68c'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/popover',
-                component: ComponentCreator('/web/lib/components/ui/popover', '4ca'),
+                path: '/docs/web/components/ShortcutSearch/shortcut-search-web',
+                component: ComponentCreator('/docs/web/components/ShortcutSearch/shortcut-search-web', 'd1e'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/popover-1',
-                component: ComponentCreator('/web/lib/components/ui/popover-1', 'dd9'),
+                path: '/docs/web/components/TabManager/find-in-tab-content',
+                component: ComponentCreator('/docs/web/components/TabManager/find-in-tab-content', '893'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/progress',
-                component: ComponentCreator('/web/lib/components/ui/progress', '1cb'),
+                path: '/docs/web/components/utils',
+                component: ComponentCreator('/docs/web/components/utils', 'a2b'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/progress-1',
-                component: ComponentCreator('/web/lib/components/ui/progress-1', '606'),
+                path: '/docs/web/components/utils-1',
+                component: ComponentCreator('/docs/web/components/utils-1', 'c4b'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/select',
-                component: ComponentCreator('/web/lib/components/ui/select', '8c0'),
+                path: '/docs/web/components/utils/auth-client',
+                component: ComponentCreator('/docs/web/components/utils/auth-client', '270'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/select-1',
-                component: ComponentCreator('/web/lib/components/ui/select-1', '10f'),
+                path: '/docs/web/customize-site',
+                component: ComponentCreator('/docs/web/customize-site', 'a53'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/separator',
-                component: ComponentCreator('/web/lib/components/ui/separator', '090'),
+                path: '/docs/web/modules',
+                component: ComponentCreator('/docs/web/modules', '078'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/separator-1',
-                component: ComponentCreator('/web/lib/components/ui/separator-1', 'af0'),
+                path: '/docs/web/server',
+                component: ComponentCreator('/docs/web/server', 'b37'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sheet',
-                component: ComponentCreator('/web/lib/components/ui/sheet', '040'),
+                path: '/docs/web/server-1',
+                component: ComponentCreator('/docs/web/server-1', '503'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sheet-1',
-                component: ComponentCreator('/web/lib/components/ui/sheet-1', '1b7'),
+                path: '/docs/web/server/auth',
+                component: ComponentCreator('/docs/web/server/auth', 'e64'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sidebar',
-                component: ComponentCreator('/web/lib/components/ui/sidebar', '2ea'),
+                path: '/docs/web/server/drizzle.config',
+                component: ComponentCreator('/docs/web/server/drizzle.config', '175'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sidebar-1',
-                component: ComponentCreator('/web/lib/components/ui/sidebar-1', '35e'),
+                path: '/docs/web/server/email',
+                component: ComponentCreator('/docs/web/server/email', '771'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sidebar/constants',
-                component: ComponentCreator('/web/lib/components/ui/sidebar/constants', '84e'),
+                path: '/docs/web/server/ratelimits',
+                component: ComponentCreator('/docs/web/server/ratelimits', '4f5'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/sidebar/context.svelte',
-                component: ComponentCreator('/web/lib/components/ui/sidebar/context.svelte', '098'),
+                path: '/docs/web/server/schema',
+                component: ComponentCreator('/docs/web/server/schema', '0bd'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/skeleton',
-                component: ComponentCreator('/web/lib/components/ui/skeleton', '7d5'),
+                path: '/docs/web/server/types',
+                component: ComponentCreator('/docs/web/server/types', 'b3d'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/skeleton-1',
-                component: ComponentCreator('/web/lib/components/ui/skeleton-1', 'a5e'),
+                path: '/docs/web/server/users',
+                component: ComponentCreator('/docs/web/server/users', 'ff6'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/slider',
-                component: ComponentCreator('/web/lib/components/ui/slider', '8cb'),
+                path: '/docs/web/server/validations',
+                component: ComponentCreator('/docs/web/server/validations', '388'),
                 exact: true,
                 sidebar: "default"
               },
               {
-                path: '/web/lib/components/ui/slider-1',
-                component: ComponentCreator('/web/lib/components/ui/slider-1', 'a6f'),
+                path: '/docs/',
+                component: ComponentCreator('/docs/', '6b3'),
                 exact: true,
                 sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/sonner',
-                component: ComponentCreator('/web/lib/components/ui/sonner', '96f'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/sonner-1',
-                component: ComponentCreator('/web/lib/components/ui/sonner-1', '6cd'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/switch',
-                component: ComponentCreator('/web/lib/components/ui/switch', '175'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/switch-1',
-                component: ComponentCreator('/web/lib/components/ui/switch-1', 'c59'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/table',
-                component: ComponentCreator('/web/lib/components/ui/table', 'd2b'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/table-1',
-                component: ComponentCreator('/web/lib/components/ui/table-1', '159'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/tabs',
-                component: ComponentCreator('/web/lib/components/ui/tabs', '57a'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/tabs-1',
-                component: ComponentCreator('/web/lib/components/ui/tabs-1', '6e9'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/textarea',
-                component: ComponentCreator('/web/lib/components/ui/textarea', '9a1'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/textarea-1',
-                component: ComponentCreator('/web/lib/components/ui/textarea-1', '9a6'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/tooltip',
-                component: ComponentCreator('/web/lib/components/ui/tooltip', '6b3'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/ui/tooltip-1',
-                component: ComponentCreator('/web/lib/components/ui/tooltip-1', '1fc'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/utils/',
-                component: ComponentCreator('/web/lib/components/utils/', '4bf'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/components/utils/auth-client',
-                component: ComponentCreator('/web/lib/components/utils/auth-client', '397'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/customize-site',
-                component: ComponentCreator('/web/lib/customize-site', '7ae'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server',
-                component: ComponentCreator('/web/lib/server', 'c99'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server-1',
-                component: ComponentCreator('/web/lib/server-1', 'eda'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/auth',
-                component: ComponentCreator('/web/lib/server/auth', '567'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/drizzle.config',
-                component: ComponentCreator('/web/lib/server/drizzle.config', 'ac7'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/email',
-                component: ComponentCreator('/web/lib/server/email', '784'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/ratelimits',
-                component: ComponentCreator('/web/lib/server/ratelimits', '382'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/schema',
-                component: ComponentCreator('/web/lib/server/schema', '821'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/types',
-                component: ComponentCreator('/web/lib/server/types', '924'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/users',
-                component: ComponentCreator('/web/lib/server/users', '056'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/lib/server/validations',
-                component: ComponentCreator('/web/lib/server/validations', '7dc'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/+layout',
-                component: ComponentCreator('/web/routes/+layout', 'a70'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/agents/+server',
-                component: ComponentCreator('/web/routes/api/agents/+server', 'c76'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/chats/+server',
-                component: ComponentCreator('/web/routes/api/chats/+server', '44e'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/extract/+server',
-                component: ComponentCreator('/web/routes/api/extract/+server', 'ee2'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/files/[fileId]/+server',
-                component: ComponentCreator('/web/routes/api/files/[fileId]/+server', 'b20'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/files/+server',
-                component: ComponentCreator('/web/routes/api/files/+server', '060'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/model/+server',
-                component: ComponentCreator('/web/routes/api/model/+server', 'a13'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/search/+server',
-                component: ComponentCreator('/web/routes/api/search/+server', '1d8'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/subscriptions/+server',
-                component: ComponentCreator('/web/routes/api/subscriptions/+server', '10a'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/user/+server',
-                component: ComponentCreator('/web/routes/api/user/+server', '739'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/api/vectorize/+server',
-                component: ComponentCreator('/web/routes/api/vectorize/+server', '1ad'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/settings/+layout',
-                component: ComponentCreator('/web/routes/settings/+layout', '86d'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/settings/+layout.server',
-                component: ComponentCreator('/web/routes/settings/+layout.server', 'add'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/web/routes/settings/+page.server',
-                component: ComponentCreator('/web/routes/settings/+page.server', 'bba'),
-                exact: true,
-                sidebar: "default"
-              },
-              {
-                path: '/',
-                component: ComponentCreator('/', 'a98'),
-                exact: true,
-                sidebar: "functions"
               }
             ]
           }

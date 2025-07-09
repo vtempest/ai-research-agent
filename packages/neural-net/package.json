@@ -1,7 +1,9 @@
 {
-  "name": "neural-net",
+  "name": "neural-net-training",
   "module": "index.ts",
   "type": "module",
+  "license": "PROSPER-1.0",
+  "description": "Neural network research for AI Research Agent.",
   "scripts": {
     "build": "vite build",
     "build:bun": "BUN_JSC_forceRAMSize=8192 vite build",

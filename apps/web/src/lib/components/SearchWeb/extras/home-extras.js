@@ -5,6 +5,8 @@
  */
 export function getBackgroundArtwork() {
   const backgrounds = [
+    "Bv0PBY8.jpeg", // determinism to autonomy
+    "DQNbjIZ.jpeg", // hald grid half circe wires
     "LuKUsLE.png", // AI mind in library
     "w7X11Dd.png", // knowledge graph in space
     "MHmVtCr.png", // vector search in space
@@ -14,11 +16,7 @@ export function getBackgroundArtwork() {
     "KUEXtwm.png", // robot making a graph on table
     "vvKFPmY.png", // hacker with graph on screen
     "mnJzEQ9.jpeg", // US lady liberty painting 
-    "zTJuYq7.jpeg", // chart navi compass graph
-    "wOLYPxE.jpeg", // greek philosophers and cubes
-    "j3JKSYx.png", // glass cube with lines
     "5p8eaEf.png", // arrows and circles emerging
-    "X8XopuF.png", // info highway intersections
     "VAKuJcG.png", // microcity blue with orange
     "sTMPtQW.png", // nebula waves with graph
     "m0gHbZZ.png", // moon phases ass circle ring
@@ -29,7 +27,7 @@ export function getBackgroundArtwork() {
     "kjKN60y.png", // flying balloons in sky
     "twuLrvk.png", // work office flow graph
     "ELILiYt.png", // blue cpu nodes and city
-    "9el5qpP.png", // abstract colorful lines
+    "9el5qpP.png", // abstract lines on white
     "Up6xTkk.png", // blue head in graph cloud
     "W1XKBo0.png", // people sitting on desks
     "1Y6xvW0.png", // clock and basic shapes
@@ -50,6 +48,7 @@ export function getBackgroundArtwork() {
     "MhlYZmh.jpeg", // pencil making graph on paper
     "ylL1ToB.jpeg", // blonde girl in graph wires
     "AWWsCv8.jpeg", // blue head in graph center
+    "Tk9Tzzj.jpeg", // multi-verse spiral of universes
   ];
   return (
     "https://i.imgur.com/" +

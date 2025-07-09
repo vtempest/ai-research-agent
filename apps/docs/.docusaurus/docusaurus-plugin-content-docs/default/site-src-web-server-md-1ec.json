@@ -1,0 +1,20 @@
+{
+  "id": "web/server",
+  "title": "server",
+  "description": "Documentation / server",
+  "source": "@site/src/web/server.md",
+  "sourceDirName": "web",
+  "slug": "/web/server",
+  "permalink": "/docs/web/server",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/web/server.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "server-1",
+    "permalink": "/docs/web/server-1"
+  }
+}

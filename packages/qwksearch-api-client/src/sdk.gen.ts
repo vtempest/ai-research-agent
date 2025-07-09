@@ -20,7 +20,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 
 /**
  * ## Extract structured content and cite from any URL
- * ![Extractor](https://i.imgur.com/NUcvBaY.png)
+ * ![Extractor](https://i.imgur.com/nNfHmct.png)
  *
  * ### 🚜📜 Tractor the Text Extractor
  * 1. Main Content Detection: Extract the main content from a URL by combining
@@ -85,7 +85,7 @@ export const extractContent = <ThrowOnError extends boolean = false>(options: Op
  * - [Google Vertex Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models)
  * [Google Vertex Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
  * - [Perplexity Docs](https://docs.perplexity.ai/models/model-cards)
- * [Perplexity Keys](https://www.perplexity.ai/settings/keys): Sonar, Sonar Deep Research
+ * [Perplexity Keys](https://www.perplexity.ai/account/api/keys): Sonar, Sonar Deep Research
  *
  * ![Language Model Response](https://i.imgur.com/bailW5n.gif)
  *

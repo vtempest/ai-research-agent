@@ -1,0 +1,29 @@
+{
+  "id": "api/services",
+  "title": "Services",
+  "description": "Services",
+  "source": "@site/src/api/services.tag.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/services",
+  "permalink": "/api/services",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "services",
+    "title": "Services",
+    "description": "Services",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "## Search the web",
+    "permalink": "/api/search-web"
+  },
+  "next": {
+    "title": "## Generate language model reply using agent prompts",
+    "permalink": "/api/write-language"
+  }
+}

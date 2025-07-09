@@ -7,6 +7,10 @@
 </svelte:head>
   
 <main>
+    <div class="back-button-container">
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+    
     <h1>{APP_NAME} Terms of Service</h1>
     <p><strong>Revised Date: {LAST_REVISED_DATE}</strong></p>
     
@@ -116,22 +120,26 @@
   h1, h2 {
       margin-top: 1.5rem;
       color: #2c3e50;
+      font-variant: small-caps;
   }
   
   h1 {
         margin: 1rem 0;
         font-size: 2rem;
         color: #2c3e50;
+        font-variant: small-caps;
     }
     h2 {
         margin: 1rem 0;
         font-size: 1.5rem;
         color: #34495e;
+        font-variant: small-caps;
     }
     h3 {
         margin: 1rem 0;
         font-size: 1.2rem;
         color: #7f8c8d;
+        font-variant: small-caps;
     }
     p {
         margin: 1rem 0;
@@ -160,5 +168,31 @@
   }
   .font-bold {
       font-weight: bold;
+  }
+  
+  .back-button-container {
+      margin-bottom: 2rem;
+      padding-top: 1rem;
+  }
+  
+  .back-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: #f8f9fa;
+      color: #495057;
+      text-decoration: none;
+      border: 1px solid #dee2e6;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s ease-in-out;
+  }
+  
+  .back-button:hover {
+      background-color: #e9ecef;
+      border-color: #adb5bd;
+      color: #212529;
+      text-decoration: none;
   }
 </style>

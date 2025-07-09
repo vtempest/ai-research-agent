@@ -2,7 +2,7 @@
     "name": "qwksearch",
     "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
     "author": "vtempest <grokthiscontact@gmail.com>",
-    "license": "AGPL-3.0",
+    "license": "rights.institute/PROSPER",
     "version": "1.1.0",
     "workspaces": [
         "packages/*",
@@ -33,9 +33,10 @@
         }
     },
     "scripts": {
+        "ship": "npx standard-version --release-as patch; npm publish",
         "build:packages": "turbo build --filter=./packages/*",
         "build:api": "turbo build:api --filter=qwksearch-api-client",
-        "docs": "turbo docs:build --filter=docusaurus-openapi-typedoc;",
+        "docs": "turbo build:docs:slashdocs --filter=qwksearch-api-docs;",
         "docs:serve": "turbo docs",
         "dev": "turbo dev --filter=qwksearch-web-app",
         "build": "turbo build --filter=ai-research-agent",

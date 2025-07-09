@@ -1,0 +1,36 @@
+{
+  "id": "api/update-user",
+  "title": "Updated user",
+  "description": "This can only be done by the logged in user.",
+  "source": "@site/src/api/update-user.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/update-user",
+  "permalink": "/api/update-user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "update-user",
+    "title": "Updated user",
+    "description": "This can only be done by the logged in user.",
+    "sidebar_label": "Updated user",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVk1v3DYQ/SvE9BIDirR1jR50ahq4gNEiDWL7UBiLZFYcSYwlkiGpXasL/fdgKMmSvW6M7mWl+SAfZ9486ggBKw/5HXSeHGwTkOQLp2xQRkMON7XyokAtjG56sSMhjSax60WoSTSmqkgKpQUnp5CAseSQU68k5NBZiYFueeEELDpsKZDj3Y6gsSUO8eTiYwKK97MYangOggNEqDEITSRFMBEINRRIQgKOvnXKkYQ8uI4S8EVNLUJ+hNBb3sQHp3QFw7Adg8mH343sOaIwOpAO/IjWNqqI6LOvnjc+rpdSoeG1UEzneQrxXTSLQ22E8sJ2rqjRK12J0pk2FstSED4Yx0edcJndVyoC18Zx4YIiz1spucKudKAqblga12IYTb9ewJAsxTs9agKlcj58+C9vgz9wUouqedFj0fuDcfJlZ230ywsy0OuAofOvnuyX85PaxspO6cOQwEMbwU0Miu0YBnY8S4vsk5Gb4rHUT8kysMFbo/1Y+ovNhv+eLnSl99ioaSHfMU1I8rEuNhen0RGtNkGUptMyAm4p1IYHwnax28zxHDJeLzvOTRwgAU9uPw9I5xrIoQ7B5llmKUTupP6AVUUuVSbbnwMT2lPRORX6a6bqeIo5+jN2vNNjxQ2/c33LxhxGqrXMeTXyvwu1cerfOAG3r+2OVmVxvUwqbEzF6AtjRwAHpwLlnAY5tEaqsmf+e5aK3nROYFGYTo/9QDlH8vPoj4axqWjV53vqV8dAq/6kHpKZAXPEJCE1oYyUSIDH+NMy8JcP2NqG5hnbrCdoZuuTwVmMy7wstmlMFsMyHSvbOBSLYT0Lm4Exl+aURVF3lRcofMQsRmqIj1MrpvdUiH9MFwW6VFoK0wXRsht3/Hg99ktgEHdTL5cWbt+cmM6EccJocadckZaOSBtJqaaQiJ+mqBeyMuWK7CwV4g/jRGDgI+aEexmxdZ6iBqJV4p568cVbKhQ2b++p/8J6HsiHMWJNQlGqhi8Mvll4LsbS/Jxu0g2L6KTI8yHn0rCLXOv/Lq/J7VVBC5FXmGNIBkm8AbCIEzA3FK0KhO1vS3iUTFWQ9rSSnncWi5renkc4T+b1cDikGL2pcVU2pfrsr6v3lx+uLzklrUPbRJZa40OLeq1pK+l6LoerO+v/3s7T/AR6CJltUOmozS6q6ShK02dAAvnjZGwTqI0P7Dsed+jp1jXDwOZvHbke8rttAnt0CnfcjrsjSOX5WUJeYuPpB/jffJrU+Ey8cse/CH3WA82zv8em4zdIIMrFMtvDdkhmVWB8o/v9iOLtDS+ypJ98BbDGPgr4x9sbSGA3fTy0RnKKwwMLGR7G3U08aNTBaDtCg7rqsOLYcUn+fQcZj0OZ",
+    "sidebar_class_name": "put api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Update an existing pet",
+    "permalink": "/api/update-pet"
+  },
+  "next": {
+    "title": "uploads an image",
+    "permalink": "/api/upload-file"
+  }
+}

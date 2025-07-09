@@ -18,9 +18,6 @@
 			],
 			"$utils/*": [
 				"../src/lib/utils/*"
-			],
-			"ai-research-agent": [
-				"../../../packages/ai-research-agent/src/index.ts"
 			]
 		},
 		"rootDirs": [

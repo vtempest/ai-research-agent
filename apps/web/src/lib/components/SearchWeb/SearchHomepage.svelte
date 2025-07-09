@@ -4,9 +4,9 @@
   import { onMount } from "svelte";
   import { getGreeting, getBackgroundArtwork } from "./extras/home-extras.js";
   import Footer from "$lib/components/AppLayout/Footer.svelte";
-  import { setupMobileView } from "$lib/utils";
+  import { setupMobileView } from "$lib/components/utils";
   import "./extras/icons-download.css";
-  import { authClient } from "$lib/auth-client";
+  import { authClient } from "$lib/components/utils/auth-client";
 
   import {
     listFooterLinks,

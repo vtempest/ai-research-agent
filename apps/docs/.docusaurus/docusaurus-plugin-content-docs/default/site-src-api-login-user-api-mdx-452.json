@@ -1,0 +1,36 @@
+{
+  "id": "api/login-user",
+  "title": "Logs user into the system",
+  "description": "",
+  "source": "@site/src/api/login-user.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/login-user",
+  "permalink": "/api/login-user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "login-user",
+    "title": "Logs user into the system",
+    "description": "",
+    "sidebar_label": "Logs user into the system",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJydVU1v5DYM/SsEe9kAHjtNe/KpwSItggZtsUmALYLBriLTYzWypJXoTKaD+e8Lyp6PJNNs25Mt6ZF8eiTFNbJaJKzvcEgUcV5gQ0lHE9h4hzVigT5QVLK8bLBG6xfG3Qq2wKCi6okpioM1OtUT1tlR/i3QiIsvA8UVvnR80xEIEgQKrY+QPWOBkb4MJlKDNceBCky6o15hvUZeBQmQOBq3wM2m2MUMKqWlj823Y26R+5BgHGhLKgLTE/8nAnMBp+BdoiTnZ6en8nkeNQ1aU0rtYGEnJRbYkWqycmv8OPugmGZXpjf82l4raxMEitD5IYKy1i+pgfsV8KQhHuFoHNMiH7U+9orHrR/ORDb8OLt4CiZSmp23TPF1zEYxiS63N+9h2ZED9vTggEarY/EmTQ7CiY8Zm55wIzG1d0wu30+FYI3OQlRPvZWtN5L8DP5XEn5v4cXix2N5uHSPypoGtvVZ7UohDRKBmhytJ+68VPqCONc4d1hjJVbVtkQTxcdt1Q/RYo0dc6irKhAn9pHKtFSLBcXS+OrxDKVQEukhGl5dC/OxXLboT2qQILu7eFmfiZbWLzPS9CLBWB1y6KP5Owty+63oKpgq+6sao6xf5Nz5MBJYRsNUixnW2PvGtCuQlaR+lYtNaz+4sSlUs0XK/3ieN0bNVTCfHmh1cA0VzK8kXTg16RYx9ejYAFlz41r/OmE3nUlgEihIqg+WYJQd/piuOa1LgD/9AFo5aI1rwA8MvRyre/m9HrUAxXA36bSXZ/7u1dYJ+AjewZ2JumwjkfMNlY64gO8m1BGrykRdnZQAP/sILMRHzoXolLkNiXLDqmDggVbwOQXSRtnZA60+A3tgSjwiDhMMrbHywpZYoNTcKM335Wl5igWyYSvSbi+5lUaOKPbp9/aa4qPRtC+SA84ZUuHYm0rn6qJeGTsmi0n1P+3huCnQGk0ukQCnpJ4HpTuanWU6z3phuVyWKp+WPi6qyTRVV5fvL367vhCTsuPe5goIPnGv3IHjK79I44QwTtTpCNIqMfUvn/X1/mmRcTUVn7zlVbDKOOGdia2nZp5mXTHOMpl5nU8s++v1vUp0G+1mI9vjFJEmb0xS91ZGQqtsojcYvPswTY8T+OcRd5Rjbp7D6fmo7CAwlEH3vxn8i4H3Bp2DwbqnM5dFNMIH67v5ZjvMslSj3bnWFPjA6uWbL052T+0vFze42XwFtJT1Jg==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Get user by user name",
+    "permalink": "/api/get-user-by-name"
+  },
+  "next": {
+    "title": "Logs out current logged in user session",
+    "permalink": "/api/logout-user"
+  }
+}

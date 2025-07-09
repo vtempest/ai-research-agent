@@ -1,0 +1,29 @@
+{
+  "id": "api/store",
+  "title": "store",
+  "description": "store",
+  "source": "@site/src/api/store.tag.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/store",
+  "permalink": "/api/store",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "store",
+    "title": "store",
+    "description": "store",
+    "custom_edit_url": null
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Place an order for a pet",
+    "permalink": "/api/place-order"
+  },
+  "next": {
+    "title": "Updates a pet in the store with form data",
+    "permalink": "/api/update-pet-with-form"
+  }
+}

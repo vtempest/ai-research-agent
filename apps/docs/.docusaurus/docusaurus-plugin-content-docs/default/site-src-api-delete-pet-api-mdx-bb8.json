@@ -1,0 +1,36 @@
+{
+  "id": "api/delete-pet",
+  "title": "Deletes a pet",
+  "description": "",
+  "source": "@site/src/api/delete-pet.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-pet",
+  "permalink": "/api/delete-pet",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-pet",
+    "title": "Deletes a pet",
+    "description": "",
+    "sidebar_label": "Deletes a pet",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVU1v20YQ/SuL6SUGGNI1gh54atGogNGgNerkUBiCMyZH4sDk7mZ3KFUV+N+DWZKmlcgJctJydj7evJ15OoLgNkJ5B54E1hnUFKvAXthZKAEycJ4C6ud1DSXU1JLQDQlk4DFgR0JB449gsSMoAT3fP9IBMmDN0BDWFCCDQJ96DlRDucE2UgaxaqhDKI8gB6+RUQLbLQxD9pTMk1zXcyqP0sCXCG9IDNdGnBmhnVSS0J8rxFZom0BtXOhQRtMvb2AY1hoevbORoka8ubzUn9Oa13aHLdfGk5gdtj0pZohU9YHlkMjwJFFcoHvspVF694GFSjUnhFiP57VW7Egat7CbqNUoKDxJcUwkDKAVwm5muw+tsiviy6KYq+Vxj9sthZxdsbsCzT2julUSxp6+wPZEi9PvK2WldfvkyZ1vuWLRs166wP+nWfjwverouUj5ipqxdVtFXzk/AnjGRQmdq3lzUC6jYWsOrg8Gq8r1Vk6YKtN5vE+GYVDW53Fb2kDPf6b5++ZAaizbjfv6dd83HA1HgyZi51syI+3mZmpz+s6N+df1pkJrNmxr43oxnV7jgx5vRy4MirmbeFroWb/6ynRhXDDOmjsOVb4JRNbVlFuSzPw0eZ2JKjhUxUVuzB8uGFHgI+ZMeUrY+khGGjLo2TzSwXyMnirG9vUjHT7q2ghFGT2eP7DZcKubnUMGOnMjNT/nl/klZCAsrVI7NzlTo1cUuvj35pbCjitahuQZ5uRSQAaVs4JVmi7qkNvxsYSw+3VxhyGDliuykdRxetTfPFYNvb5KcE52Yb/f55hucxe2xRQai3fXv6/+ul1pSN5I16YJ8C5Kh/ZZ4rdpBfX1fRK5k9k4JshkZZTGaeCE/pPCt8hWsSYwx2mDR1nNoByFbJ1B46Ko/Xh8wEgfQjsMav7UU1DlWGeww8D4oPzeHaHmqOdFNV/E8+qfSfYuzBlNPAt1XhiryzEKWeor7dOkvcN6yOad+TFAL1Udsy9b+VT4RArfrt6t3q8gg5dEajooprN9LCJjFhGZqyctAv2jORv7Y8I2NdRLo7L4YtInMZ0jtgGt3CffYT0Mw2cZy5Pa",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Delete purchase order by ID",
+    "permalink": "/api/delete-order"
+  },
+  "next": {
+    "title": "Delete user",
+    "permalink": "/api/delete-user"
+  }
+}

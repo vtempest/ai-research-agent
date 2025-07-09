@@ -6,18 +6,18 @@
 export default {
   "future": {
     "v4": {
-      "removeLegacyPostBuildHeadAttribute": true,
+      "removeLegacyPostBuildHeadAttribute": false,
       "useCssCascadeLayers": false
     },
     "experimental_faster": {
-      "swcJsLoader": true,
-      "swcJsMinimizer": true,
-      "swcHtmlMinimizer": true,
-      "lightningCssMinimizer": true,
-      "mdxCrossCompilerCache": true,
-      "rspackBundler": true,
-      "rspackPersistentCache": true,
-      "ssgWorkerThreads": true
+      "swcJsLoader": false,
+      "swcJsMinimizer": false,
+      "swcHtmlMinimizer": false,
+      "lightningCssMinimizer": false,
+      "mdxCrossCompilerCache": false,
+      "rspackBundler": false,
+      "rspackPersistentCache": false,
+      "ssgWorkerThreads": false
     },
     "experimental_storage": {
       "type": "localStorage",
@@ -25,26 +25,27 @@ export default {
     },
     "experimental_router": "browser"
   },
-  "title": "QwkSearch API Routes Docs",
+  "title": "QwkSearch",
   "url": "https://qwksearch.com",
-  "baseUrl": "/",
+  "baseUrl": "/docs/",
   "onBrokenLinks": "ignore",
   "onBrokenMarkdownLinks": "ignore",
   "favicon": "https://qwksearch.com/favicon.ico",
-  "projectName": "qwksearch",
+  "projectName": "QwkSearch",
   "presets": [
     [
       "classic",
       {
         "docs": {
+          "path": "src",
           "routeBasePath": "/",
-          "sidebarPath": "./sidebars.ts",
           "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
+          "sidebarPath": "./config/sidebars.ts",
           "docItemComponent": "@theme/ApiItem"
         },
         "blog": false,
         "theme": {
-          "customCss": "./docs-theme.css"
+          "customCss": "./config/docs-theme-beige.css"
         },
         "gtag": {
           "trackingID": "G-E5TZ32BZD",
@@ -60,38 +61,41 @@ export default {
         "id": "openapi",
         "docsPluginId": "classic",
         "config": {
-          "qwksearch": {
-            "specPath": "openapi-docs.yml",
-            "outputDir": "./docs/api",
+          "apispec": {
+            "specPath": "./openapi-docs.yml",
+            "outputDir": "./src/api",
             "sidebarOptions": {
               "groupPathsBy": "tag",
-              "categoryLinkSource": "auto",
+              "categoryLinkSource": "info",
               "sidebarCollapsed": false
             },
-            "template": "openapi.mustache",
-            "hideSendButton": false,
+            "infoTemplate": "config/info.mustache",
+            "tagTemplate": "config/tag.mustache",
+            "schemaTemplate": "config/schema.mustache",
+            "template": "./config/openapi.mustache",
+            "hideSendButton": true,
             "markdownGenerators": {},
             "showSchemas": false
           }
         }
       }
     ],
-    "/home/deck/Projects/ai-research-agent/apps/docs/node_modules/.pnpm/docusaurus-lunr-search@3.6.0_@docusaurus+core@3.8.1_@docusaurus+faster@3.8.1_@docusauru_aa4f8e8ba20921631d695963b8e85eeb/node_modules/docusaurus-lunr-search/src/index.js",
+    "/home/deck/Projects/ai-research-agent/apps/docs/node_modules/.pnpm/docusaurus-lunr-search@3.6.0_@docusaurus+core@3.8.1_@docusaurus+faster@3.8.1_@docusauru_802a20290628006332219e5336bfd70e/node_modules/docusaurus-lunr-search/src/index.js",
     [
       "docusaurus-plugin-typedoc",
       {
         "id": "web",
         "entryPoints": [
-          "../web/src/**/*"
+          "../web/src/lib/**/*"
         ],
         "exclude": [
           "**/node_modules/**/*",
-          "**/src/wordlists/**",
-          "src/wordlists"
+          "**/components/ui/**/*",
+          "pages/**/*"
         ],
         "tsconfig": "../web/tsconfig.json",
-        "out": "./docs/web",
-        "readme": "none",
+        "out": "./src/web",
+        "readme": "../../readme.md",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
@@ -115,7 +119,6 @@ export default {
         "hideGroupHeadings": true,
         "hidePageHeader": true,
         "hidePageTitle": true,
-        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
@@ -129,12 +132,12 @@ export default {
         ],
         "exclude": [
           "**/node_modules/**/*",
-          "**/src/wordlists/**",
-          "src/wordlists"
+          "**/components/ui/**/*",
+          "pages/**/*"
         ],
         "tsconfig": "../../packages/ai-research-agent/tsconfig.json",
-        "out": "./docs/functions",
-        "readme": "none",
+        "out": "./src/functions",
+        "readme": "../../readme.md",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
@@ -158,7 +161,6 @@ export default {
         "hideGroupHeadings": true,
         "hidePageHeader": true,
         "hidePageTitle": true,
-        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
@@ -172,12 +174,12 @@ export default {
         ],
         "exclude": [
           "**/node_modules/**/*",
-          "**/src/wordlists/**",
-          "src/wordlists"
+          "**/components/ui/**/*",
+          "pages/**/*"
         ],
         "tsconfig": "../../packages/neural-net/tsconfig.json",
-        "out": "./docs/neural-net",
-        "readme": "none",
+        "out": "./src/neural-net",
+        "readme": "../../readme.md",
         "sourceLinkTemplate": "https://github.com/vtempest/ai-research-agent/tree/master/{path}#L{line}",
         "disableSources": false,
         "sidebar": {
@@ -201,19 +203,16 @@ export default {
         "hideGroupHeadings": true,
         "hidePageHeader": true,
         "hidePageTitle": true,
-        "gitRemote": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/",
         "outputFileStrategy": "modules",
         "useCodeBlocks": true
       }
     ]
   ],
   "themeConfig": {
-    "docs": {
+    "src": {
       "sidebar": {
-        "hideable": true,
-        "autoCollapseCategories": false
-      },
-      "versionPersistence": "localStorage"
+        "hideable": true
+      }
     },
     "navbar": {
       "title": "QwkSearch Docs",
@@ -244,7 +243,7 @@ export default {
           "position": "left"
         },
         {
-          "href": "https://qwksearch.com/",
+          "to": "https://qwksearch.com/",
           "label": "🚀 Demo",
           "position": "right"
         }
@@ -312,6 +311,13 @@ export default {
       "defaultMode": "light",
       "disableSwitch": false,
       "respectPrefersColorScheme": false
+    },
+    "docs": {
+      "versionPersistence": "localStorage",
+      "sidebar": {
+        "hideable": false,
+        "autoCollapseCategories": false
+      }
     },
     "blog": {
       "sidebar": {

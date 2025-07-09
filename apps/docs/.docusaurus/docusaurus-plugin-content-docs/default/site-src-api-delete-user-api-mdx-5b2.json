@@ -1,0 +1,36 @@
+{
+  "id": "api/delete-user",
+  "title": "Delete user",
+  "description": "This can only be done by the logged in user.",
+  "source": "@site/src/api/delete-user.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-user",
+  "permalink": "/api/delete-user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-user",
+    "title": "Delete user",
+    "description": "This can only be done by the logged in user.",
+    "sidebar_label": "Delete user",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVFGP2zYM/isE99IDVDs73JOfNqwZcFixDbvewxAErc5iYuFkSZXoZF7g/z5QsZt0V6zdkyWTFD9+5McTst5nbDY4ZEq4VWgot8lGtsFjg+86m6HVHoJ3IzwRmOAJnkbgjsCF/Z4MWA8SXKHCEClpCb032KAhR0yP8rDCqJPuiSlJthN63RM2JWs5KrSSL2ru8CUIAnEC7jSDJzIZOBQ0JYNBhYk+DjaRwYbTQApz21GvsTkhj1EyZU7W73GatuKcY/CZstjvViv5fJ7y3h+0swYWfJCHGJ0lg5PCu9XdywgpE3xg2IXBG5wmhT1xFy5EFBK4wwZrebY+LY9PqDBTOizcDMlhgx1zbOo6EmcOiap81Ps9pcqG+nCLUkamdkiWxwep9VzM4v1eD5LpU/VB7reocOfCsXjaPjrbWpazGEOyf5fWPX4tu462Lu/VxmoX9oK+DfEM4JgsUyNh2GAfjN2NIDeZkjEMCXTbhsFzaZk2i6ecz/byY5qEPx3t+2car8rQ0f5CI6plfBaPeXo60oZS4d76XXjZpDLONoOGrPvoCM60w+9zmfO9AvgzDGXud9YbCANDL2b9JMeHMxegGTYzTxd6tq9e/LqBkCB42NjUVrtE5IOhyhMr+G72+kJUbVNb31QAP4cELMDPmJXwVLANmYoOdbTwTCN8yJFaq93rZxo/iEKYMp89rhsMO+tEhyJYmbkzNd9Xq2qFCtmyE2qXIhdqxESpz7/tHigdbEuXIbnCXFxqVNgGz7ot00W9tu7cLCbd/3BxFzE525LPJI5zU3+Muu3o9W2B85kWjsdjpYu1Cmlfz6G5fnv/0/rXh7WEVB33rkxADJl77a8eflNkWDT97x1zKoDJ8//fefNoMv3FdXTaeqmqwD7Nep+Xq8Lm07rbKuxCZrGdTk8602Ny0yS/Pw6URmw2W4UHnax+km5sTmhslrPBZqddpv/A/+qPeRfewLdszi/iX/TmRVsH7Qa5ocIix8vWnrbXa+7N+u363Rqn6R+bOC93",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Deletes a pet",
+    "permalink": "/api/delete-pet"
+  },
+  "next": {
+    "title": "Finds Pets by status",
+    "permalink": "/api/find-pets-by-status"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/statistics/predict-statistics",
+  "title": "predict-statistics",
+  "description": "Documentation / statistics/predict-statistics",
+  "source": "@site/src/neural-net/statistics/predict-statistics.md",
+  "sourceDirName": "neural-net/statistics",
+  "slug": "/neural-net/statistics/predict-statistics",
+  "permalink": "/docs/neural-net/statistics/predict-statistics",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/neural-net/statistics/predict-statistics.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "modules",
+    "permalink": "/docs/neural-net/modules"
+  },
+  "next": {
+    "title": "neural-net-gpu",
+    "permalink": "/docs/neural-net/train/neural-net-gpu"
+  }
+}

@@ -3,7 +3,7 @@ import { convertMarkdownToHTML } from "../html-to-content/html-utils.js";
 
 /**
  * ### Tardigrade the Web Crawler 
- * <img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
+ * <img src="https://i.imgur.com/iuzpcvD.png" width="350px" /> 
  * 
  * 1. **Use Fetch API, check for bot detection.** Scrape  any domain's URL to get its HTML, JSON, or arraybuffer.<br />
  * Scraping internet pages is a [free speech right 

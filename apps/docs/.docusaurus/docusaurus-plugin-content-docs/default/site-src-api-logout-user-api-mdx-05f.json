@@ -1,0 +1,36 @@
+{
+  "id": "api/logout-user",
+  "title": "Logs out current logged in user session",
+  "description": "",
+  "source": "@site/src/api/logout-user.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/logout-user",
+  "permalink": "/api/logout-user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "logout-user",
+    "title": "Logs out current logged in user session",
+    "description": "",
+    "sidebar_label": "Logs out current logged in user session",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyFVFFv1DAM/iuWeWFS1o499gmEBpqYAOm2B3Q6bVnqttHSJCTuHaXqf0dJe+xgSLzF8Wfn82fHE7JsI1ZbHCIF3AmsKaqgPWtnsUIU6DwFmczrGis0rnUD3yWwwEDROxspYjVhTY0cDC/H0xxxUIpibAYDv3PhPAvsiTuXkrbEKNBL7rDCMjEpl3dQYKSwp5AoTjgEgxV2zL4qS08c2QUq4kG2LYVCu3J/ifMuxaghaB43qqN+YXdE38shvTIhj56wQpfsSxTYGHfISN17o5XOhSSnC/pn5nz3v9el12XOV9ZaGtcm9sr5hcAhaKYqhWGFvat1M0KyQFsY3RBAKuUGy1lWWR+R6bz488U8J+Gk1/dPNJ6UIb3+RCMKtLJf7YwQqFMLOpI1hSy6to172aPbTkfQESRE2XtDsMgOX9cyV7sA+OYGUNJCo20NbmDok1s+puNm0QIkw3bV6Vme3esXV2fgAjgLWx1U0QQi62oqLLGAVyvqH1GlDqo8KwA+uACciC+cRdIpcxsiAXcE0mt4ohEeoielpTl/ovEB2AFT5AVx2mBotGEKsUCBaeYWad4UF8UFCmTNJkl7LPIoTXJR6OOXZkNhrxU9D8kJ5wwpUaBylqXK00W91GZpFpPs3z7DcRZotCIbKQHXpr7zUnV0fpnp/PEXDodDIbO3cKEt19BY3ly/v/q8uUohRce9yRPgXeRe2pPEN66NuZdqCIEsg3FtS3UazfQZIVLMYvy1HaZcDFleFsU6ikw/uPRGapuqyDSn9W+vW0asWyStm85FTo5pepSR7oKZ53T9faAwYrXdCdzLoOVjkn67O10aH69ucZ5/AZscprQ=",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Logs user into the system",
+    "permalink": "/api/login-user"
+  },
+  "next": {
+    "title": "pet",
+    "permalink": "/api/pet"
+  }
+}

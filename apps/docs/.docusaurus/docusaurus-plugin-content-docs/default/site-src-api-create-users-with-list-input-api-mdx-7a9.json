@@ -1,0 +1,36 @@
+{
+  "id": "api/create-users-with-list-input",
+  "title": "Creates list of users with given input array",
+  "description": "",
+  "source": "@site/src/api/create-users-with-list-input.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/create-users-with-list-input",
+  "permalink": "/api/create-users-with-list-input",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create-users-with-list-input",
+    "title": "Creates list of users with given input array",
+    "description": "",
+    "sidebar_label": "Creates list of users with given input array",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyFVdtu3DYQ/RVi+tIAsuS6RR/01NRwAaNBEnRtFMVikcxKI4mxRDLkyOvNYv+9GFLyypc2eqLmQh7OnDM8AGMboFzDGMjDJoOaQuW1Y20NlAAZWEce5fe6hhIqT8h0G8iHvzV373Tga+NGhgw8fR0p8O+23kN5gMoaJsOyROd6XcVNii9BNj5AqDoaUFa8dwQloPe4hww00xCiXXMfHUqOg+fQ3kaz2nVW6aDc6KsOgzatarwdFHekHLEKbD1BNh9it1+oErDOy71YUzxK1wsg2jC18cDG+gE5mX79BY5ZrJLBgRbhgb02rTgb7QO//y9vj//jpAF1/6rHYQg76+vXnZ01r28oQFeMPIbv3uznixe1jZWd0o/HDB6GCC7dPHrhKN/zPKGDso2S09VjrYUY2lMNJfuRjmIIzpqQal9Tg2PPabncLIxVRSE0Y68eORjRDMSdFTI6G2IvkTsooZBTi0TQmZuQQSB/T144foDR91BCx+zKonDEkR152GHbks+1Le4v4LiRnGr0mvcrIWmCOUd/wlFOe6yplX+pYNPbXSLTIGzXifkjd9brbxH87fdOR6eLuF9Ra+xtK+gr6xKAnddMpaRBCYOtdbMXhgeljdrb0SusKjuaVHCs50hZJ380pK6h05/uaL9Un9N/kshv6vEckYGWXnSEdWx6BiLgv05Sv3rAwYlO10lG50uRzIR8oo2T8SSJk21SwslwEsDClnh/Mizpfi4d1KaxLyl10+kg0wJViKhVIof6ODVj+s+V+seOqkKjGm1qZUdWg7hxK8tV6phCVuupm6cmbn58YXqjrFfWqLX2Vd54ImNryg1xpn6Yol7JKrSvije5Un9Yr1iAJ8yZdDNiGwPFOYdOqzvaq8/BUaWxP7uj/WfFVjEFThFLGqpG90w+5JCBKCOV5qf8PD+XQTlN3fmSc2nERX4IH5oV+Xtd0YnKC8wxpIAsTn+sogbmjqLTTDj8dgqPY1FXZAItxstbh1VHZxcRzhPF7na7HKM3t74tptRQvLu+vHq/upKUvOOhjzyV4TCgWWx8GUdDUP1iSgW109ypVt+TUVpeMjU/RE+os3jP4PScMD1w4XrUJs5cH6dkGkfTi5rBs4G0yaCTsVWu4XDYYqBb3x+PYv46kt9Dud5kcI9e4zaqanPMZvWJxKJq4TJhObsRGBLej0m0z95ZUcLjtPz4YXUDGWyn93mwteR43MnEwN382kt2HDjRdoAeTTtiK7FpT/n+Basx2I8=",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates list of users with given input array",
+    "permalink": "/api/create-users-with-array-input"
+  },
+  "next": {
+    "title": "Delete purchase order by ID",
+    "permalink": "/api/delete-order"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "api/search-web",
+  "title": "## Search the web",
+  "description": "![AILogo](https://i.imgur.com/yYMTcTX.png)",
+  "source": "@site/src/api/search-web.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/search-web",
+  "permalink": "/docs/api/search-web",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "search-web",
+    "title": "## Search the web",
+    "description": "![AILogo](https://i.imgur.com/yYMTcTX.png)",
+    "sidebar_label": "## Search the web",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "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",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/qwksearch-api",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "QwkSearch API",
+    "permalink": "/docs/api/qwksearch-api"
+  },
+  "next": {
+    "title": "## Generate language model reply using agent prompts",
+    "permalink": "/docs/api/write-language"
+  }
+}

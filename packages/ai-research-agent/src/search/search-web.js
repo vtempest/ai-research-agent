@@ -14,6 +14,8 @@ import { scrapeURL } from "../index.js";
  * 
  * [Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
  * [Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
+ * 
+ * ![google_dead](https://i.imgur.com/6rRpaY1.png)
  * @param {string} query - The search query string.
  * @param {Object} [options]
  * @param {string} options.category default=general - ["general", "news", "videos", "images",

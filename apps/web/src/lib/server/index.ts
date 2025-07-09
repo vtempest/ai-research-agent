@@ -12,6 +12,5 @@ export * from "./validations";
 
 export * from "./types.d";
 
-export * from "../utils";
 
 export * from "../customize-site";

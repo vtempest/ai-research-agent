@@ -1,0 +1,40 @@
+{
+  "tsconfig": "../tsconfig.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "entryPointStrategy": "expand",
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": false,
+    "includeFolders": false
+  },
+  "commentStyle":"all",
+  "skipErrorChecking": true,
+  "hideGenerator": true,
+  "jsDocCompatibility": {
+    "exampleTag": true,
+    "defaultTag": true,
+    "inheritDocTag": true,
+    "ignoreUnescapedBraces": true
+  },
+  "sort": ["kind"],
+  "kindSortOrder": [
+        "Function",
+        "Method",
+        "Project",
+        "Module",
+        "Namespace",
+        "Enum",
+        "EnumMember",
+        "Class",
+        "Interface",
+        "TypeAlias",
+        "Constructor",
+        "Property",
+        "Variable",
+        "Reference",
+        "Accessor"
+    ],
+  "searchInDocuments": true,
+  "searchInComments": true,
+  "excludePrivate": true
+}

@@ -2,12 +2,6 @@ import { z } from "zod";
 
 export const AGENT_TOOLS = [
   {
-    name: "add_to_input",
-    description: "adds 2 to an input.",
-    schema: z.object({ input: z.number() }),
-    func: async ({ input }) => input + 2,
-  },
-  {
     
     name: "get_weather",
     description:

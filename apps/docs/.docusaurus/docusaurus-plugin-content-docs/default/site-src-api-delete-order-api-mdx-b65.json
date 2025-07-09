@@ -1,0 +1,36 @@
+{
+  "id": "api/delete-order",
+  "title": "Delete purchase order by ID",
+  "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors",
+  "source": "@site/src/api/delete-order.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/delete-order",
+  "permalink": "/api/delete-order",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "delete-order",
+    "title": "Delete purchase order by ID",
+    "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors",
+    "sidebar_label": "Delete purchase order by ID",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJzFVU2P2zYQ/SuD6SULMJKz2JPQQxe1CxgNmqCbHArDSGhpZBErkQw5sqsa+u/BUFLW3Q1a9NSTSM4bct6bD12Q9TFiscPILhDuFVYUy2A8G2exwF9cgJNuTQWBonc2EnAYwFimIwXYriOcDTeC6Ql+hDer1SqDeztwY+wR9MGdKB2CC2CdnR3Fq23hSJaCZoL791ugEFyIqNB5OTTObisssKKWmN6FigIq9DrojpiCBH1BqzvCAp1YtxUqNBK019zgcybbNbgauCFIaOBGM1iiKgI7OBBMD8klgb70JlCFBYeeFMayoU5jcUEevLwXORh7xHHcC3jSJYr9brWSz7OX7aTgdg2x9741VOGo8G519xKbeIJ1DLXrbYXjqLAjbtyTFEkFbrDAPCUtT3zyyyzCiAojhdMiUR9aLLBh9kWee+Lkk8WzPh4pZMblp1sUHpHKPhgeHoTsxGZBf9K9vPeNvpP9LSqsW3dOSNP51pSGZS1GF8xfKYUf/+117U2e7ssro1t3lOhL56cAzsEwFeKGBXauMvUAsgNjYXB9AF2WrreccqarBSnryZ4OxlFU1N58eqThiob25lcaUC1VtCDmKmpIS82Jr7G1e5mrD42JYCJoiLrzLcEkO7yfac77DOAP10OpLdTGVuB6hk7M+iDLh0kL0Ay7WacnefavXhzdSCc5CzsTyqwORNZVlFliBT/MqO945SaU+U0GIA3NEvgUsxKdUmy9tHZDoL2BRxrgc/RUGt2+fqThs7QIU+QJcZ1gqE0r7ZihQqm5SZo32SpboUI23Iq0C8lFGjFR6OK7+oHCyZT0VCRXMSdIjgpLZ1mXqbqo06adksWku5+e4NJTrSnJRhLgnNR7r8uGXt+mcP7WC+fzOdPJmrlwzGfXmL/d/rz57WEjLlnDXZsqwLvInbZXF69TM4LvQ9nouEyVwwDb9fPZc0kEyPL/NFDnemf6k3PfamNFqqTFZR4ly/xX0yhFhcUyU/cKGxdZMJfLQUf6GNpxlOMvPYUBi91e4UkHow+S6t0FKxNlXWFR6zbSP4jx6vd50t7AfxjP36Wz9LSV/k3iYYGoMLX8tx/EuL+ep+vN282HDY7jVx7+auM=",
+    "sidebar_class_name": "delete api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Creates list of users with given input array",
+    "permalink": "/api/create-users-with-list-input"
+  },
+  "next": {
+    "title": "Deletes a pet",
+    "permalink": "/api/delete-pet"
+  }
+}

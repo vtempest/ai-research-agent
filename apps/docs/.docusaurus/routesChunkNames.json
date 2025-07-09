@@ -1,895 +1,571 @@
 {
-  "/-b74": {
+  "/docs/-e54": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/-070": {
+  "/docs/-7d3": {
     "__comp": "a7bd4aaa",
-    "__props": "22dd74f7"
+    "__props": "11b43341"
   },
-  "/-6de": {
+  "/docs/-23b": {
     "__comp": "a94703ab"
   },
-  "/api/extract-content-592": {
+  "/docs/api/extract-content-784": {
     "__comp": "4c5e977b",
-    "content": "742380e5"
+    "content": "b8cb6a5e"
   },
-  "/api/qwksearch-api-4c1": {
+  "/docs/api/qwksearch-api-572": {
     "__comp": "4c5e977b",
-    "content": "92f98195"
+    "content": "30a93404"
   },
-  "/api/search-web-fb6": {
+  "/docs/api/search-web-4a3": {
     "__comp": "4c5e977b",
-    "content": "e9e9d274"
+    "content": "829f5ea6"
   },
-  "/api/write-language-c87": {
+  "/docs/api/write-language-2f8": {
     "__comp": "4c5e977b",
-    "content": "7a84677c"
+    "content": "4ffe6457"
   },
-  "/category/qwksearch-api-b43": {
-    "__comp": "14eb3368",
-    "__props": "e0aa03cc"
-  },
-  "/category/qwksearch-api-1c3": {
-    "__comp": "14eb3368",
-    "__props": "e0aa03cc"
-  },
-  "/category/qwksearch-api-19c": {
-    "__comp": "14eb3368",
-    "__props": "e0aa03cc"
-  },
-  "/category/qwksearch-api-a5b": {
-    "__comp": "14eb3368",
-    "__props": "e0aa03cc"
-  },
-  "/category/qwksearch-api-a57": {
-    "__comp": "14eb3368",
-    "__props": "e0aa03cc"
-  },
-  "/functions/-989": {
-    "__comp": "4c5e977b",
-    "content": "a96c9e36"
-  },
-  "/functions/-2c4": {
-    "__comp": "4c5e977b",
-    "content": "1b684a56"
-  },
-  "/functions/agents/agent-prompts-51c": {
-    "__comp": "4c5e977b",
-    "content": "fb3ed33b"
-  },
-  "/functions/agents/agent-tools-d66": {
-    "__comp": "4c5e977b",
-    "content": "fae2e203"
-  },
-  "/functions/agents/api2ai-c84": {
-    "__comp": "4c5e977b",
-    "content": "711cb517"
-  },
-  "/functions/agents/generate-language-450": {
-    "__comp": "4c5e977b",
-    "content": "f6c8c04e"
-  },
-  "/functions/agents/language-model-names-dc4": {
-    "__comp": "4c5e977b",
-    "content": "f8f4b226"
-  },
-  "/functions/agents/memory-1ed": {
-    "__comp": "4c5e977b",
-    "content": "9bd6f46f"
-  },
-  "/functions/extractor/html-to-cite/extract-author-813": {
-    "__comp": "4c5e977b",
-    "content": "c46bba01"
-  },
-  "/functions/extractor/html-to-cite/extract-cite-1f0": {
-    "__comp": "4c5e977b",
-    "content": "50925160"
-  },
-  "/functions/extractor/html-to-cite/extract-date/-6fd": {
-    "__comp": "4c5e977b",
-    "content": "491c15e7"
-  },
-  "/functions/extractor/html-to-cite/extract-date/date-extractors-dd5": {
-    "__comp": "4c5e977b",
-    "content": "e028f253"
-  },
-  "/functions/extractor/html-to-cite/extract-date/date-validators-1ec": {
-    "__comp": "4c5e977b",
-    "content": "b0a51db4"
-  },
-  "/functions/extractor/html-to-cite/extract-date/extract-date-quick-b2d": {
-    "__comp": "4c5e977b",
-    "content": "82510bc3"
-  },
-  "/functions/extractor/html-to-cite/extract-source-001": {
-    "__comp": "4c5e977b",
-    "content": "630825eb"
-  },
-  "/functions/extractor/html-to-cite/extract-title-d0a": {
-    "__comp": "4c5e977b",
-    "content": "8931d603"
-  },
-  "/functions/extractor/html-to-cite/human-names-recognize-ff6": {
-    "__comp": "4c5e977b",
-    "content": "2668b968"
-  },
-  "/functions/extractor/html-to-cite/metadata-to-cite-410": {
-    "__comp": "4c5e977b",
-    "content": "6b4db537"
-  },
-  "/functions/extractor/html-to-cite/url-to-domain-e74": {
-    "__comp": "4c5e977b",
-    "content": "d9a7ddfb"
-  },
-  "/functions/extractor/html-to-content/-7ba": {
-    "__comp": "4c5e977b",
-    "content": "6f01f5b4"
-  },
-  "/functions/extractor/html-to-content/extract-content/extract-content-mercury-503": {
-    "__comp": "4c5e977b",
-    "content": "84e7198d"
-  },
-  "/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils-d97": {
-    "__comp": "4c5e977b",
-    "content": "75d51d36"
-  },
-  "/functions/extractor/html-to-content/extract-content/extract-content-readability-ac1": {
-    "__comp": "4c5e977b",
-    "content": "f960bfac"
-  },
-  "/functions/extractor/html-to-content/html-to-basic-html-aaa": {
-    "__comp": "4c5e977b",
-    "content": "279020ee"
-  },
-  "/functions/extractor/html-to-content/html-utils-a4a": {
-    "__comp": "4c5e977b",
-    "content": "9b690dfd"
-  },
-  "/functions/extractor/pdf-to-html/-35a": {
-    "__comp": "4c5e977b",
-    "content": "c80d469f"
-  },
-  "/functions/extractor/pdf-to-html/models/Annotation-455": {
-    "__comp": "4c5e977b",
-    "content": "b7e8845d"
-  },
-  "/functions/extractor/pdf-to-html/models/BlockType/-463": {
-    "__comp": "4c5e977b",
-    "content": "28ef1923"
-  },
-  "/functions/extractor/pdf-to-html/models/BlockType/namespaces/default-9f1": {
-    "__comp": "4c5e977b",
-    "content": "5bb51a2e"
-  },
-  "/functions/extractor/pdf-to-html/models/HeadlineFinder-359": {
-    "__comp": "4c5e977b",
-    "content": "57e1bce9"
-  },
-  "/functions/extractor/pdf-to-html/models/LineConverter-158": {
-    "__comp": "4c5e977b",
-    "content": "3c7d3776"
-  },
-  "/functions/extractor/pdf-to-html/models/LineItem-01c": {
-    "__comp": "4c5e977b",
-    "content": "d66ea5dd"
-  },
-  "/functions/extractor/pdf-to-html/models/LineItemBlock-d47": {
-    "__comp": "4c5e977b",
-    "content": "b13a5ad2"
-  },
-  "/functions/extractor/pdf-to-html/models/Page-2f7": {
-    "__comp": "4c5e977b",
-    "content": "232609e1"
-  },
-  "/functions/extractor/pdf-to-html/models/PageItem-d66": {
-    "__comp": "4c5e977b",
-    "content": "a04b1d2f"
-  },
-  "/functions/extractor/pdf-to-html/models/ParsedElements-a0f": {
-    "__comp": "4c5e977b",
-    "content": "842b4ef4"
-  },
-  "/functions/extractor/pdf-to-html/models/ParseResult-fd7": {
-    "__comp": "4c5e977b",
-    "content": "753a09ff"
-  },
-  "/functions/extractor/pdf-to-html/models/StashingStream-6ec": {
-    "__comp": "4c5e977b",
-    "content": "4cc3d7be"
-  },
-  "/functions/extractor/pdf-to-html/models/TextItem-ca3": {
-    "__comp": "4c5e977b",
-    "content": "7e128f78"
-  },
-  "/functions/extractor/pdf-to-html/models/TextItemLineGrouper-c7d": {
-    "__comp": "4c5e977b",
-    "content": "f6977e43"
-  },
-  "/functions/extractor/pdf-to-html/models/Word-ee7": {
-    "__comp": "4c5e977b",
-    "content": "3e474ac3"
-  },
-  "/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats-1cc": {
-    "__comp": "4c5e977b",
-    "content": "59003f00"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-785": {
-    "__comp": "4c5e977b",
-    "content": "d067f224"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels-d34": {
-    "__comp": "4c5e977b",
-    "content": "85b21678"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-b36": {
-    "__comp": "4c5e977b",
-    "content": "57ad8db7"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-310": {
-    "__comp": "4c5e977b",
-    "content": "1848dae9"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-b59": {
-    "__comp": "4c5e977b",
-    "content": "62f6042c"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-73b": {
-    "__comp": "4c5e977b",
-    "content": "6e447b4f"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC-618": {
-    "__comp": "4c5e977b",
-    "content": "a33c9fe2"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-48a": {
-    "__comp": "4c5e977b",
-    "content": "c7f3c6ae"
-  },
-  "/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-c28": {
-    "__comp": "4c5e977b",
-    "content": "26dcf5a2"
-  },
-  "/functions/extractor/pdf-to-html/transformations/ToHTML-86e": {
-    "__comp": "4c5e977b",
-    "content": "d3a72793"
-  },
-  "/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation-693": {
-    "__comp": "4c5e977b",
-    "content": "efc41123"
-  },
-  "/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation-686": {
-    "__comp": "4c5e977b",
-    "content": "8f152809"
-  },
-  "/functions/extractor/pdf-to-html/transformations/ToTextBlocks-40d": {
-    "__comp": "4c5e977b",
-    "content": "e24330e2"
-  },
-  "/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation-733": {
-    "__comp": "4c5e977b",
-    "content": "e044d482"
-  },
-  "/functions/extractor/pdf-to-html/transformations/Transformation-c88": {
-    "__comp": "4c5e977b",
-    "content": "318e962f"
-  },
-  "/functions/extractor/pdf-to-html/util/is-url-pdf-c47": {
-    "__comp": "4c5e977b",
-    "content": "0d96fccf"
-  },
-  "/functions/extractor/pdf-to-html/util/page-item-functions-0b5": {
-    "__comp": "4c5e977b",
-    "content": "59762e3a"
-  },
-  "/functions/extractor/pdf-to-html/util/page-number-functions-309": {
-    "__comp": "4c5e977b",
-    "content": "941b5216"
-  },
-  "/functions/extractor/pdf-to-html/util/string-functions-73f": {
-    "__comp": "4c5e977b",
-    "content": "c4fa391a"
-  },
-  "/functions/extractor/url-to-content/-c2d": {
-    "__comp": "4c5e977b",
-    "content": "8d9fd2d1"
-  },
-  "/functions/extractor/url-to-content/docx-to-content-f2a": {
-    "__comp": "4c5e977b",
-    "content": "6f83b525"
-  },
-  "/functions/extractor/url-to-content/url-to-html-82d": {
-    "__comp": "4c5e977b",
-    "content": "cbdea3f7"
-  },
-  "/functions/extractor/url-to-content/youtube-to-text-8d2": {
-    "__comp": "4c5e977b",
-    "content": "0cc67d54"
-  },
-  "/functions/interface/highlight-code-432": {
-    "__comp": "4c5e977b",
-    "content": "8f1ce257"
-  },
-  "/functions/interface/youtube-embed-612": {
-    "__comp": "4c5e977b",
-    "content": "b199be7a"
-  },
-  "/functions/match/compare-letters-1a0": {
-    "__comp": "4c5e977b",
-    "content": "0f6bfc5a"
-  },
-  "/functions/match/match-quasar-e3e": {
-    "__comp": "4c5e977b",
-    "content": "610604e5"
-  },
-  "/functions/match/weigh-relevance-frequency-4bc": {
-    "__comp": "4c5e977b",
-    "content": "afd263b8"
-  },
-  "/functions/search/search-engines-040": {
-    "__comp": "4c5e977b",
-    "content": "cb11fb17"
-  },
-  "/functions/search/search-stream-8be": {
-    "__comp": "4c5e977b",
-    "content": "0a3b63b9"
-  },
-  "/functions/search/search-web-892": {
-    "__comp": "4c5e977b",
-    "content": "ceaeed53"
-  },
-  "/functions/search/search-wikipedia-acd": {
-    "__comp": "4c5e977b",
-    "content": "938b7d08"
-  },
-  "/functions/similarity/similarity-remote-api-d05": {
-    "__comp": "4c5e977b",
-    "content": "64ce1686"
-  },
-  "/functions/tokenize/stopwords-00a": {
-    "__comp": "4c5e977b",
-    "content": "688a9bca"
-  },
-  "/functions/tokenize/suggest-complete-word-f71": {
+  "/docs/functions/-c68": {
     "__comp": "4c5e977b",
-    "content": "f6b1f387"
+    "content": "c3a618e1"
   },
-  "/functions/tokenize/text-to-chunks-f78": {
+  "/docs/functions/agents/agent-prompts-00d": {
     "__comp": "4c5e977b",
-    "content": "56b8e638"
+    "content": "d12afbc2"
   },
-  "/functions/tokenize/text-to-sentences-4c0": {
+  "/docs/functions/agents/agent-tools-5ab": {
     "__comp": "4c5e977b",
-    "content": "db4afdb3"
+    "content": "bc7fac30"
   },
-  "/functions/tokenize/text-to-topic-tokens-28b": {
+  "/docs/functions/agents/api2ai-a9c": {
     "__comp": "4c5e977b",
-    "content": "4a212c46"
+    "content": "6d5c6a02"
   },
-  "/functions/tokenize/word-to-root-stem-c12": {
+  "/docs/functions/agents/generate-language-4eb": {
     "__comp": "4c5e977b",
-    "content": "38858058"
+    "content": "ae54b596"
   },
-  "/functions/topics/ngrams-2d3": {
+  "/docs/functions/agents/language-model-names-83e": {
     "__comp": "4c5e977b",
-    "content": "28f1fd30"
+    "content": "232c8d4c"
   },
-  "/functions/topics/rank-sentences-keyphrases-d74": {
+  "/docs/functions/agents/memory-864": {
     "__comp": "4c5e977b",
-    "content": "a7a0f79b"
+    "content": "4556475d"
   },
-  "/functions/topics/seektopic-keyphrases-b7a": {
+  "/docs/functions/extractor/html-to-cite/extract-author-30c": {
     "__comp": "4c5e977b",
-    "content": "5c8b034f"
+    "content": "219f853b"
   },
-  "/functions/topics/topic-distribution-d03": {
+  "/docs/functions/extractor/html-to-cite/extract-cite-0a0": {
     "__comp": "4c5e977b",
-    "content": "99fd9caf"
+    "content": "71c382ce"
   },
-  "/functions/types-d0b": {
+  "/docs/functions/extractor/html-to-cite/extract-date/-f38": {
     "__comp": "4c5e977b",
-    "content": "07322d09"
+    "content": "ac35354c"
   },
-  "/neural-net/-a2d": {
+  "/docs/functions/extractor/html-to-cite/extract-date/date-extractors-0ec": {
     "__comp": "4c5e977b",
-    "content": "ffe97281"
+    "content": "3bac0174"
   },
-  "/neural-net/-ec8": {
+  "/docs/functions/extractor/html-to-cite/extract-date/date-validators-bdb": {
     "__comp": "4c5e977b",
-    "content": "194ef0ed"
+    "content": "9c3c28f7"
   },
-  "/neural-net/statistics/predict-statistics-55e": {
+  "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick-848": {
     "__comp": "4c5e977b",
-    "content": "3f41f914"
+    "content": "f0f961fe"
   },
-  "/neural-net/train/neural-net-gpu-f93": {
+  "/docs/functions/extractor/html-to-cite/extract-source-fa6": {
     "__comp": "4c5e977b",
-    "content": "01e4ea7d"
+    "content": "8e6edbab"
   },
-  "/neural-net/train/neural-net-tf-e73": {
+  "/docs/functions/extractor/html-to-cite/extract-title-d39": {
     "__comp": "4c5e977b",
-    "content": "018efc99"
+    "content": "eef76247"
   },
-  "/neural-net/train/predict-next-word-13f": {
+  "/docs/functions/extractor/html-to-cite/human-names-recognize-4e2": {
     "__comp": "4c5e977b",
-    "content": "d27578d0"
+    "content": "10303084"
   },
-  "/neural-net/vectorize/similarity-remote-api-0e0": {
+  "/docs/functions/extractor/html-to-cite/metadata-to-cite-a01": {
     "__comp": "4c5e977b",
-    "content": "adc294a3"
+    "content": "455f2f6b"
   },
-  "/neural-net/vectorize/similarity-vector-30c": {
+  "/docs/functions/extractor/html-to-cite/url-to-domain-ce5": {
     "__comp": "4c5e977b",
-    "content": "c1eac58f"
+    "content": "272ad44e"
   },
-  "/neural-net/vectorize/usearch-1bf": {
+  "/docs/functions/extractor/html-to-content/-a54": {
     "__comp": "4c5e977b",
-    "content": "2da333a7"
+    "content": "e7e7eaab"
   },
-  "/web/-7fc": {
+  "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-610": {
     "__comp": "4c5e977b",
-    "content": "a6f0ee73"
+    "content": "1380b9cc"
   },
-  "/web/global-fac": {
+  "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils-16a": {
     "__comp": "4c5e977b",
-    "content": "7cebcd25"
+    "content": "fe4e322b"
   },
-  "/web/hooks.server-cec": {
+  "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability-3fd": {
     "__comp": "4c5e977b",
-    "content": "636208c0"
+    "content": "167ab116"
   },
-  "/web/lib/components/AppLayout/auth-google-one-tap-141": {
+  "/docs/functions/extractor/html-to-content/html-to-basic-html-805": {
     "__comp": "4c5e977b",
-    "content": "af73bd7d"
+    "content": "456d56ea"
   },
-  "/web/lib/components/AppLayout/sound-effects-ed2": {
+  "/docs/functions/extractor/html-to-content/html-utils-4a7": {
     "__comp": "4c5e977b",
-    "content": "cab12b0f"
+    "content": "48932a53"
   },
-  "/web/lib/components/Editor/docx/docx-to-html-295": {
+  "/docs/functions/extractor/pdf-to-html/-ad7": {
     "__comp": "4c5e977b",
-    "content": "6402f2a9"
+    "content": "33d165df"
   },
-  "/web/lib/components/Editor/docx/docx-tokens-2d3": {
+  "/docs/functions/extractor/pdf-to-html/models/Annotation-1fb": {
     "__comp": "4c5e977b",
-    "content": "fae250e9"
+    "content": "d1ca103b"
   },
-  "/web/lib/components/Editor/docx/parse-cards-b57": {
+  "/docs/functions/extractor/pdf-to-html/models/BlockType/-986": {
     "__comp": "4c5e977b",
-    "content": "8493d6e9"
+    "content": "58aaeab4"
   },
-  "/web/lib/components/Editor/docx/parse-debate-docx-047": {
+  "/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default-a30": {
     "__comp": "4c5e977b",
-    "content": "98a08bf0"
+    "content": "b9a23546"
   },
-  "/web/lib/components/Editor/docx/parse-zip-folder-fc3": {
+  "/docs/functions/extractor/pdf-to-html/models/HeadlineFinder-599": {
     "__comp": "4c5e977b",
-    "content": "0f28c9e5"
+    "content": "66ad4f5d"
   },
-  "/web/lib/components/Editor/storage/files-api-frontend-e6d": {
+  "/docs/functions/extractor/pdf-to-html/models/LineConverter-882": {
     "__comp": "4c5e977b",
-    "content": "8f42ceed"
+    "content": "c7f97a07"
   },
-  "/web/lib/components/Editor/storage/local-storage-api-711": {
+  "/docs/functions/extractor/pdf-to-html/models/LineItem-1b8": {
     "__comp": "4c5e977b",
-    "content": "bfc8b191"
+    "content": "9a7bcdb5"
   },
-  "/web/lib/components/Editor/storage/seed-test-data-350": {
+  "/docs/functions/extractor/pdf-to-html/models/LineItemBlock-de3": {
     "__comp": "4c5e977b",
-    "content": "a2162ab8"
+    "content": "0226b8d6"
   },
-  "/web/lib/components/icons-154": {
+  "/docs/functions/extractor/pdf-to-html/models/Page-444": {
     "__comp": "4c5e977b",
-    "content": "0bd04558"
+    "content": "a10ab531"
   },
-  "/web/lib/components/icons-1-3bb": {
+  "/docs/functions/extractor/pdf-to-html/models/PageItem-dc1": {
     "__comp": "4c5e977b",
-    "content": "f9b16f6f"
+    "content": "58b2ae61"
   },
-  "/web/lib/components/ReadMode/auto-highlight-f65": {
+  "/docs/functions/extractor/pdf-to-html/models/ParsedElements-fb0": {
     "__comp": "4c5e977b",
-    "content": "36de96da"
+    "content": "43004b84"
   },
-  "/web/lib/components/ReadMode/read-mode-view-1ba": {
+  "/docs/functions/extractor/pdf-to-html/models/ParseResult-acf": {
     "__comp": "4c5e977b",
-    "content": "05babdd3"
+    "content": "124632b3"
   },
-  "/web/lib/components/SearchWeb/categories-449": {
+  "/docs/functions/extractor/pdf-to-html/models/StashingStream-d66": {
     "__comp": "4c5e977b",
-    "content": "492963cf"
+    "content": "7eb4392e"
   },
-  "/web/lib/components/SearchWeb/extras/get-weather-82f": {
+  "/docs/functions/extractor/pdf-to-html/models/TextItem-6a2": {
     "__comp": "4c5e977b",
-    "content": "00a14451"
+    "content": "703f2c3a"
   },
-  "/web/lib/components/SearchWeb/extras/home-extras-e6d": {
+  "/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper-c8e": {
     "__comp": "4c5e977b",
-    "content": "9b909093"
+    "content": "e501d24a"
   },
-  "/web/lib/components/SearchWeb/extras/QuantumSphere-043": {
+  "/docs/functions/extractor/pdf-to-html/models/Word-1e0": {
     "__comp": "4c5e977b",
-    "content": "6879a6ab"
+    "content": "537d3db8"
   },
-  "/web/lib/components/ShortcutSearch/shortcut-search-70d": {
+  "/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats-0d5": {
     "__comp": "4c5e977b",
-    "content": "def27aa6"
+    "content": "a4627afd"
   },
-  "/web/lib/components/ShortcutSearch/shortcut-search-web-315": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks-9a0": {
     "__comp": "4c5e977b",
-    "content": "6ce8237e"
+    "content": "b3f262d3"
   },
-  "/web/lib/components/TabManager/find-in-tab-content-b84": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels-8a6": {
     "__comp": "4c5e977b",
-    "content": "cf138019"
+    "content": "1fe2fcca"
   },
-  "/web/lib/components/ui/alert-509": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks-262": {
     "__comp": "4c5e977b",
-    "content": "089ca4a2"
+    "content": "75a8c361"
   },
-  "/web/lib/components/ui/alert-1-574": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines-f92": {
     "__comp": "4c5e977b",
-    "content": "7a1c0b51"
+    "content": "fc2fe93a"
   },
-  "/web/lib/components/ui/alert-dialog-ca4": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders-da5": {
     "__comp": "4c5e977b",
-    "content": "d89ed24e"
+    "content": "39c64ad4"
   },
-  "/web/lib/components/ui/alert-dialog-1-687": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems-ee6": {
     "__comp": "4c5e977b",
-    "content": "d5d4f5c2"
+    "content": "a1f4d191"
   },
-  "/web/lib/components/ui/avatar-11a": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC-139": {
     "__comp": "4c5e977b",
-    "content": "69e4716b"
+    "content": "e6d64d9d"
   },
-  "/web/lib/components/ui/avatar-1-9a7": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements-d06": {
     "__comp": "4c5e977b",
-    "content": "f2595567"
+    "content": "b2d57078"
   },
-  "/web/lib/components/ui/badge-e0e": {
+  "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal-7d9": {
     "__comp": "4c5e977b",
-    "content": "b7aaa8d2"
+    "content": "9aa78f53"
   },
-  "/web/lib/components/ui/badge-1-3d8": {
+  "/docs/functions/extractor/pdf-to-html/transformations/ToHTML-93a": {
     "__comp": "4c5e977b",
-    "content": "8a9f5ece"
+    "content": "9e1c1874"
   },
-  "/web/lib/components/ui/breadcrumb-ea0": {
+  "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation-e5c": {
     "__comp": "4c5e977b",
-    "content": "d6a3f8db"
+    "content": "59968a87"
   },
-  "/web/lib/components/ui/breadcrumb-1-076": {
+  "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation-fc7": {
     "__comp": "4c5e977b",
-    "content": "954e169c"
+    "content": "d623b84b"
   },
-  "/web/lib/components/ui/button-ddf": {
+  "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks-afe": {
     "__comp": "4c5e977b",
-    "content": "a5aaa2ce"
+    "content": "fa36fcd0"
   },
-  "/web/lib/components/ui/button-1-5af": {
+  "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation-5ee": {
     "__comp": "4c5e977b",
-    "content": "bbe68e12"
+    "content": "d102e477"
   },
-  "/web/lib/components/ui/card-a6f": {
+  "/docs/functions/extractor/pdf-to-html/transformations/Transformation-b56": {
     "__comp": "4c5e977b",
-    "content": "55c26303"
+    "content": "1d25e9b4"
   },
-  "/web/lib/components/ui/card-1-0eb": {
+  "/docs/functions/extractor/pdf-to-html/util/is-url-pdf-84c": {
     "__comp": "4c5e977b",
-    "content": "641f84f5"
+    "content": "75f34c85"
   },
-  "/web/lib/components/ui/checkbox-d64": {
+  "/docs/functions/extractor/pdf-to-html/util/page-item-functions-463": {
     "__comp": "4c5e977b",
-    "content": "7ea04210"
+    "content": "c39a0fab"
   },
-  "/web/lib/components/ui/checkbox-1-9f6": {
+  "/docs/functions/extractor/pdf-to-html/util/page-number-functions-e52": {
     "__comp": "4c5e977b",
-    "content": "654ee222"
+    "content": "7ede7ee3"
   },
-  "/web/lib/components/ui/collapsible-bd8": {
+  "/docs/functions/extractor/pdf-to-html/util/string-functions-daa": {
     "__comp": "4c5e977b",
-    "content": "9adeea98"
+    "content": "ee51a4e3"
   },
-  "/web/lib/components/ui/collapsible-1-1dd": {
+  "/docs/functions/extractor/url-to-content/-dcb": {
     "__comp": "4c5e977b",
-    "content": "23274723"
+    "content": "756df125"
   },
-  "/web/lib/components/ui/command-220": {
+  "/docs/functions/extractor/url-to-content/docx-to-content-b56": {
     "__comp": "4c5e977b",
-    "content": "db09284c"
+    "content": "ffbc03b1"
   },
-  "/web/lib/components/ui/command-1-38d": {
+  "/docs/functions/extractor/url-to-content/url-to-html-7c0": {
     "__comp": "4c5e977b",
-    "content": "e2f8ed53"
+    "content": "84aae010"
   },
-  "/web/lib/components/ui/dialog-4f2": {
+  "/docs/functions/extractor/url-to-content/youtube-to-text-d8c": {
     "__comp": "4c5e977b",
-    "content": "473e163c"
+    "content": "1b83188c"
   },
-  "/web/lib/components/ui/dialog-1-82c": {
+  "/docs/functions/index-1-0c1": {
     "__comp": "4c5e977b",
-    "content": "135ad66d"
+    "content": "6e779b8f"
   },
-  "/web/lib/components/ui/dropdown-menu-f25": {
+  "/docs/functions/interface/highlight-code-30e": {
     "__comp": "4c5e977b",
-    "content": "8b51903b"
+    "content": "5ed95a81"
   },
-  "/web/lib/components/ui/dropdown-menu-1-79a": {
+  "/docs/functions/interface/youtube-embed-350": {
     "__comp": "4c5e977b",
-    "content": "ab124683"
+    "content": "9b0681bb"
   },
-  "/web/lib/components/ui/form-f91": {
+  "/docs/functions/match/compare-letters-b68": {
     "__comp": "4c5e977b",
-    "content": "bf363cac"
+    "content": "135da086"
   },
-  "/web/lib/components/ui/form-1-8be": {
+  "/docs/functions/match/match-quasar-17c": {
     "__comp": "4c5e977b",
-    "content": "30140591"
+    "content": "897c021d"
   },
-  "/web/lib/components/ui/input-5f0": {
+  "/docs/functions/match/weigh-relevance-frequency-f68": {
     "__comp": "4c5e977b",
-    "content": "a2f67690"
+    "content": "12745c50"
   },
-  "/web/lib/components/ui/input-1-7c7": {
+  "/docs/functions/modules-cc9": {
     "__comp": "4c5e977b",
-    "content": "5c0f4642"
+    "content": "68cef36b"
   },
-  "/web/lib/components/ui/label-8f6": {
+  "/docs/functions/search/search-engines-233": {
     "__comp": "4c5e977b",
-    "content": "1357376e"
+    "content": "c845d74e"
   },
-  "/web/lib/components/ui/label-1-62e": {
+  "/docs/functions/search/search-stream-db1": {
     "__comp": "4c5e977b",
-    "content": "4d8eb591"
+    "content": "42977fec"
   },
-  "/web/lib/components/ui/menubar-895": {
+  "/docs/functions/search/search-web-0c9": {
     "__comp": "4c5e977b",
-    "content": "1c179341"
+    "content": "015ad3b0"
   },
-  "/web/lib/components/ui/menubar-1-c22": {
+  "/docs/functions/search/search-wikipedia-4cb": {
     "__comp": "4c5e977b",
-    "content": "7526ef3d"
+    "content": "a684db05"
   },
-  "/web/lib/components/ui/pagination-30e": {
+  "/docs/functions/similarity/similarity-remote-api-7f4": {
     "__comp": "4c5e977b",
-    "content": "1ea6ee17"
+    "content": "b34205df"
   },
-  "/web/lib/components/ui/pagination-1-535": {
+  "/docs/functions/tokenize/stopwords-4e9": {
     "__comp": "4c5e977b",
-    "content": "ad7abc7a"
+    "content": "7326c854"
   },
-  "/web/lib/components/ui/popover-4ca": {
+  "/docs/functions/tokenize/suggest-complete-word-e6f": {
     "__comp": "4c5e977b",
-    "content": "72032ba4"
+    "content": "1e43271f"
   },
-  "/web/lib/components/ui/popover-1-dd9": {
+  "/docs/functions/tokenize/text-to-chunks-bf6": {
     "__comp": "4c5e977b",
-    "content": "b032f5e2"
+    "content": "12ad540e"
   },
-  "/web/lib/components/ui/progress-1cb": {
+  "/docs/functions/tokenize/text-to-sentences-70b": {
     "__comp": "4c5e977b",
-    "content": "9ba7e8ae"
+    "content": "6ea4ccb3"
   },
-  "/web/lib/components/ui/progress-1-606": {
+  "/docs/functions/tokenize/text-to-topic-tokens-75c": {
     "__comp": "4c5e977b",
-    "content": "2041a855"
+    "content": "22363add"
   },
-  "/web/lib/components/ui/select-8c0": {
+  "/docs/functions/tokenize/word-to-root-stem-ae9": {
     "__comp": "4c5e977b",
-    "content": "38d60f1c"
+    "content": "ebf272eb"
   },
-  "/web/lib/components/ui/select-1-10f": {
+  "/docs/functions/topics/ngrams-38b": {
     "__comp": "4c5e977b",
-    "content": "838625a6"
+    "content": "215f0004"
   },
-  "/web/lib/components/ui/separator-090": {
+  "/docs/functions/topics/rank-sentences-keyphrases-19f": {
     "__comp": "4c5e977b",
-    "content": "c84eca14"
+    "content": "8564e826"
   },
-  "/web/lib/components/ui/separator-1-af0": {
+  "/docs/functions/topics/seektopic-keyphrases-5be": {
     "__comp": "4c5e977b",
-    "content": "b96f9cbf"
+    "content": "82317477"
   },
-  "/web/lib/components/ui/sheet-040": {
+  "/docs/functions/topics/topic-distribution-bbc": {
     "__comp": "4c5e977b",
-    "content": "1004ec48"
+    "content": "aa9bba97"
   },
-  "/web/lib/components/ui/sheet-1-1b7": {
+  "/docs/functions/types-421": {
     "__comp": "4c5e977b",
-    "content": "b83fdf01"
+    "content": "4b3b4fae"
   },
-  "/web/lib/components/ui/sidebar-2ea": {
+  "/docs/neural-net/-f95": {
     "__comp": "4c5e977b",
-    "content": "52cb601c"
+    "content": "ee652e20"
   },
-  "/web/lib/components/ui/sidebar-1-35e": {
+  "/docs/neural-net/index-1-f19": {
     "__comp": "4c5e977b",
-    "content": "40fb1689"
+    "content": "cdc1d4f2"
   },
-  "/web/lib/components/ui/sidebar/constants-84e": {
+  "/docs/neural-net/modules-93e": {
     "__comp": "4c5e977b",
-    "content": "f52434c1"
+    "content": "c2be4804"
   },
-  "/web/lib/components/ui/sidebar/context.svelte-098": {
+  "/docs/neural-net/statistics/predict-statistics-af0": {
     "__comp": "4c5e977b",
-    "content": "11a1c685"
+    "content": "9ca78735"
   },
-  "/web/lib/components/ui/skeleton-7d5": {
+  "/docs/neural-net/train/neural-net-gpu-105": {
     "__comp": "4c5e977b",
-    "content": "734ac530"
+    "content": "42c12a85"
   },
-  "/web/lib/components/ui/skeleton-1-a5e": {
+  "/docs/neural-net/train/neural-net-tf-c33": {
     "__comp": "4c5e977b",
-    "content": "804db32b"
+    "content": "0e1e0e1f"
   },
-  "/web/lib/components/ui/slider-8cb": {
+  "/docs/neural-net/train/predict-next-word-db7": {
     "__comp": "4c5e977b",
-    "content": "9b8d464e"
+    "content": "d909221d"
   },
-  "/web/lib/components/ui/slider-1-a6f": {
+  "/docs/neural-net/vectorize/similarity-remote-api-c80": {
     "__comp": "4c5e977b",
-    "content": "8458136c"
+    "content": "bd023c0d"
   },
-  "/web/lib/components/ui/sonner-96f": {
+  "/docs/neural-net/vectorize/similarity-vector-530": {
     "__comp": "4c5e977b",
-    "content": "5d711f33"
+    "content": "63773a93"
   },
-  "/web/lib/components/ui/sonner-1-6cd": {
+  "/docs/neural-net/vectorize/usearch-683": {
     "__comp": "4c5e977b",
-    "content": "5afc53d2"
+    "content": "7bec3e22"
   },
-  "/web/lib/components/ui/switch-175": {
+  "/docs/web/-cd2": {
     "__comp": "4c5e977b",
-    "content": "ad40497c"
+    "content": "83d6c587"
   },
-  "/web/lib/components/ui/switch-1-c59": {
+  "/docs/web/components/AppLayout/auth-google-one-tap-b50": {
     "__comp": "4c5e977b",
-    "content": "742e026a"
+    "content": "ca7e190d"
   },
-  "/web/lib/components/ui/table-d2b": {
+  "/docs/web/components/AppLayout/sound-effects-2b4": {
     "__comp": "4c5e977b",
-    "content": "6d53b262"
+    "content": "56848a96"
   },
-  "/web/lib/components/ui/table-1-159": {
+  "/docs/web/components/Editor/docx/docx-to-html-b8d": {
     "__comp": "4c5e977b",
-    "content": "5ffb6189"
+    "content": "c7e884c3"
   },
-  "/web/lib/components/ui/tabs-57a": {
+  "/docs/web/components/Editor/docx/docx-tokens-c02": {
     "__comp": "4c5e977b",
-    "content": "53a40740"
+    "content": "22404b95"
   },
-  "/web/lib/components/ui/tabs-1-6e9": {
+  "/docs/web/components/Editor/docx/parse-cards-f77": {
     "__comp": "4c5e977b",
-    "content": "f3919c43"
+    "content": "7b642801"
   },
-  "/web/lib/components/ui/textarea-9a1": {
+  "/docs/web/components/Editor/docx/parse-debate-docx-6d4": {
     "__comp": "4c5e977b",
-    "content": "a9df5291"
+    "content": "23f3d67e"
   },
-  "/web/lib/components/ui/textarea-1-9a6": {
+  "/docs/web/components/Editor/docx/parse-zip-folder-fc1": {
     "__comp": "4c5e977b",
-    "content": "d9587d54"
+    "content": "041d34f6"
   },
-  "/web/lib/components/ui/tooltip-6b3": {
+  "/docs/web/components/Editor/storage/files-api-frontend-ed3": {
     "__comp": "4c5e977b",
-    "content": "435e1c0f"
+    "content": "22bb8eb6"
   },
-  "/web/lib/components/ui/tooltip-1-1fc": {
+  "/docs/web/components/Editor/storage/local-storage-api-741": {
     "__comp": "4c5e977b",
-    "content": "888bca27"
+    "content": "e0417430"
   },
-  "/web/lib/components/utils/-4bf": {
+  "/docs/web/components/Editor/storage/seed-test-data-cb7": {
     "__comp": "4c5e977b",
-    "content": "d588a59f"
+    "content": "caefd9e3"
   },
-  "/web/lib/components/utils/auth-client-397": {
+  "/docs/web/components/icons-80e": {
     "__comp": "4c5e977b",
-    "content": "2150bf9e"
+    "content": "dea5d568"
   },
-  "/web/lib/customize-site-7ae": {
+  "/docs/web/components/icons-1-137": {
     "__comp": "4c5e977b",
-    "content": "1143d8c5"
+    "content": "1de5b9db"
   },
-  "/web/lib/server-c99": {
+  "/docs/web/components/ReadMode/auto-highlight-d32": {
     "__comp": "4c5e977b",
-    "content": "62717ee7"
+    "content": "526d8fa3"
   },
-  "/web/lib/server-1-eda": {
+  "/docs/web/components/ReadMode/read-mode-view-190": {
     "__comp": "4c5e977b",
-    "content": "363688e1"
+    "content": "2921a2ad"
   },
-  "/web/lib/server/auth-567": {
+  "/docs/web/components/SearchWeb/categories-18f": {
     "__comp": "4c5e977b",
-    "content": "94b520f5"
+    "content": "09e37e50"
   },
-  "/web/lib/server/drizzle.config-ac7": {
+  "/docs/web/components/SearchWeb/extras/get-weather-ba2": {
     "__comp": "4c5e977b",
-    "content": "5553aa9c"
+    "content": "b46dd0f3"
   },
-  "/web/lib/server/email-784": {
+  "/docs/web/components/SearchWeb/extras/home-extras-05a": {
     "__comp": "4c5e977b",
-    "content": "ccec9261"
+    "content": "5a558013"
   },
-  "/web/lib/server/ratelimits-382": {
+  "/docs/web/components/SearchWeb/extras/QuantumSphere-eb3": {
     "__comp": "4c5e977b",
-    "content": "fb43d20c"
+    "content": "89741174"
   },
-  "/web/lib/server/schema-821": {
+  "/docs/web/components/ShortcutSearch/shortcut-search-68c": {
     "__comp": "4c5e977b",
-    "content": "d9dca4c7"
+    "content": "42f701c4"
   },
-  "/web/lib/server/types-924": {
+  "/docs/web/components/ShortcutSearch/shortcut-search-web-d1e": {
     "__comp": "4c5e977b",
-    "content": "09c2537d"
+    "content": "3d7866da"
   },
-  "/web/lib/server/users-056": {
+  "/docs/web/components/TabManager/find-in-tab-content-893": {
     "__comp": "4c5e977b",
-    "content": "81facb5c"
+    "content": "b64476c4"
   },
-  "/web/lib/server/validations-7dc": {
+  "/docs/web/components/utils-a2b": {
     "__comp": "4c5e977b",
-    "content": "b27dd3c8"
+    "content": "76a1e971"
   },
-  "/web/routes/+layout-a70": {
+  "/docs/web/components/utils-1-c4b": {
     "__comp": "4c5e977b",
-    "content": "67b89c21"
+    "content": "6df5b617"
   },
-  "/web/routes/api/agents/+server-c76": {
+  "/docs/web/components/utils/auth-client-270": {
     "__comp": "4c5e977b",
-    "content": "36bfbda2"
+    "content": "c0d8298e"
   },
-  "/web/routes/api/chats/+server-44e": {
+  "/docs/web/customize-site-a53": {
     "__comp": "4c5e977b",
-    "content": "8769d88f"
+    "content": "f3da3036"
   },
-  "/web/routes/api/extract/+server-ee2": {
+  "/docs/web/modules-078": {
     "__comp": "4c5e977b",
-    "content": "baff2be7"
+    "content": "97bb5267"
   },
-  "/web/routes/api/files/[fileId]/+server-b20": {
+  "/docs/web/server-b37": {
     "__comp": "4c5e977b",
-    "content": "253dfcca"
+    "content": "1ec7016d"
   },
-  "/web/routes/api/files/+server-060": {
+  "/docs/web/server-1-503": {
     "__comp": "4c5e977b",
-    "content": "88409b9b"
+    "content": "6a49fe0f"
   },
-  "/web/routes/api/model/+server-a13": {
+  "/docs/web/server/auth-e64": {
     "__comp": "4c5e977b",
-    "content": "9609aee6"
+    "content": "9cc1a6e6"
   },
-  "/web/routes/api/search/+server-1d8": {
+  "/docs/web/server/drizzle.config-175": {
     "__comp": "4c5e977b",
-    "content": "99d6409c"
+    "content": "15417bd9"
   },
-  "/web/routes/api/subscriptions/+server-10a": {
+  "/docs/web/server/email-771": {
     "__comp": "4c5e977b",
-    "content": "688370a0"
+    "content": "dbb2678a"
   },
-  "/web/routes/api/user/+server-739": {
+  "/docs/web/server/ratelimits-4f5": {
     "__comp": "4c5e977b",
-    "content": "3ee76911"
+    "content": "1becefcd"
   },
-  "/web/routes/api/vectorize/+server-1ad": {
+  "/docs/web/server/schema-0bd": {
     "__comp": "4c5e977b",
-    "content": "c45f5fd8"
+    "content": "6a97b77a"
   },
-  "/web/routes/settings/+layout-86d": {
+  "/docs/web/server/types-b3d": {
     "__comp": "4c5e977b",
-    "content": "044d5ae3"
+    "content": "2976beb9"
   },
-  "/web/routes/settings/+layout.server-add": {
+  "/docs/web/server/users-ff6": {
     "__comp": "4c5e977b",
-    "content": "736f5481"
+    "content": "5c5f6ea1"
   },
-  "/web/routes/settings/+page.server-bba": {
+  "/docs/web/server/validations-388": {
     "__comp": "4c5e977b",
-    "content": "ec405dbe"
+    "content": "5969f2e0"
   },
-  "/-a98": {
+  "/docs/-6b3": {
     "__comp": "4c5e977b",
-    "content": "52e2a80b"
+    "content": "d140250a"
   }
 }

@@ -1,0 +1,36 @@
+{
+  "id": "api/upload-file",
+  "title": "uploads an image",
+  "description": "",
+  "source": "@site/src/api/upload-file.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/upload-file",
+  "permalink": "/api/upload-file",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "upload-file",
+    "title": "uploads an image",
+    "description": "",
+    "sidebar_label": "uploads an image",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVU1v4zYQ/SvE9LIBFClNix50arofQNCPXTTZQ2EY2TE1trgrkVxylNQ19N+LIaXYiZ0u6ospcmb45nHmzQ4YNxHqBXhiWBbQUNTBeDbOQg1QgPMUUD6vG6hh8J3D5p3pCArwGLAnpiABdmCxJ6gl0HUDBRgJ4JFbeB71+o1ya+WJFTs1+AZZogX6OphADdQcBiog6pZ6hHoHvPUS2FimDQUoYO1Cj5y3fvoRxnGZ3SnyL67Zio92lsmyLPuhY+MxcCV+5w1yinoU360+k2bJK0jSbCjKKTaNEeDY/U6Ms/fTjK4ebZQYSF4eY5T/SOE+gZ5uiRyM3cBYwFpYPAolu5kXYfrI7yD5lbEYtjCmnxAQvbMxg768uDgOHQetKcb10KnHV4XikCr0vjM6HVSfozg94cmwIIYrO6GjRs23Hj3ym/S1oqi4JTEbOpZnz57GbhRaZXrcpEM3BE37ZF94Cu0a+mZB/HAp5GaT3THrPcWIm1NnM5GR9BAMb1NRe+LILtAdDtxKnzwEw1TLdqpZbPJ6KTXYE7dO2sS7mNBL9ddQeeJql/pirHL+15I4yF1SHbl/htBBDS2zr6tqvreMD7jZUCiNq+4vQW6Z8d3Iw2RinqHcl7R8XwpBnXtIlqaXFzb5tQduXTD/pPf++K3b0Zsqxasag52TUoza+QzggJUaeteY9VYaPCpj1dYNQaHWbrD8hLM6rfN52sj8ozd3X2h7kAZ68yttoZglZraYRKYlbCiA+Bq7dseFf9uaqExUqCL2vqOpKdWHKc3pu1TqLzcojVatjW2UG1j1cowrWd5kLhSyWkw87elZvjraOlMuKGfVwgRdrgORdQ2VlrhQ301WJ7wqE3R1Vir1zgXFAjxjLoSnhG2IlHoKvVFfaKs+RU/aYHf+hbafRDqYImeLwwdWa9OJVpdQgNRcpub78qK8kMabentOcqZGjij08f36hsK90bQvkgPMyaSatAR1qi7q0XT5sZiw/3lvLm3YGU0iG/Xj3LjyqFs6v0xwnvTCw8NDiem0dGFTTa6x+u369ds/bt6KS9ly36UKkNbr0R4Ezh0XH/XmuVQdDAvYSxDT31z5Do0VuAnPbmroPCwLqOdRd9jTywJa6f56AbvdCiN9DN04yvbXgYKIyrKAewwGV0L4YgeNibJuoF5jF+k/0L36c5qRZ+r0DD2JfW4iKw1zj91AOdHUY9O4HpdjMfeRYMpnr/PN57cSYe97aqCOxex0pTV5PjA/GipPpPLD+5tbKGA1ze0+SXwS9BS32C/rhYB8SeGmhYA/mfBeodRegWYSkpClHE76/j9VzCFlTzT1xaCPSjx7bAJavku243Icx38BqLVRDg==",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Updated user",
+    "permalink": "/api/update-user"
+  },
+  "next": {
+    "title": "user",
+    "permalink": "/api/user"
+  }
+}

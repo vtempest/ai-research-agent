@@ -1,0 +1,36 @@
+{
+  "id": "api/get-pet-by-id",
+  "title": "Find pet by ID",
+  "description": "Returns a single pet",
+  "source": "@site/src/api/get-pet-by-id.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-pet-by-id",
+  "permalink": "/api/get-pet-by-id",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-pet-by-id",
+    "title": "Find pet by ID",
+    "description": "Returns a single pet",
+    "sidebar_label": "Find pet by ID",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztV0tv20YQ/iuL6SUGGNE1jB54appHIbRojdg5FIaQjMkRuTG5u9kdSlYE/vdidklLluWk6KG9+CKRuzOz3zy+4ewWGOsAxTU4YlhkUFEovXasrYEC3hP33gSFKmhTt6REKgPryKOIzCsooCa+IP5lM68gA4ceO2LyYnQLBjuCQozHXS1GHXIDhyfN3yi7FPOKrfLxWMjA05dee6qgYN9TBqFsqEMotsAbJ4a1YarJQwZL6zvktPTTOQzDQtSDsyZQEI2z01P5e3hs6MuSQlj2rbp3CjIorWEyLPLoXKvLuJHfda0s7aHQ3AoMVBcxMA+Nv4r+LK1XAVtS2ihuYghVYOsJsskLe/OZSn7g73UKXQausWw/+DZIdpwXlKyTR7r6R5HIoESm2vrNPuQLYnW//hj5tBXh45j3Q7j/Ek4qinvRwF6bGoYhgzHAY9W8nuANTyplQHfYuehRZetakxywi9lOAb1HcfThEZMkZLD26NxUakMGmqkLx2EmznzHNGP9Tat7ebiKoocpYKz/z+gLqEGWAyP3RyJxiDgVtshOpT6VOZm+k5LGFeoWb9pY12SqZCXYtoLFYwBCqQhgn4Kfg5z1zMFnDj5z8L/joGycH/t+zs0KW12p+RsVeqEpVRBlzx/LSpSNFTL2porOBip7r3kTRwV0+uMtyfNCvt0dcWPH8SLOFdxAAbkjzrdxnBgENvnVNGr0voUCGmZX5CIWHZ+FNdY1+Zm2+eoMxPB06KV0kJS3Sfoj9nLKfZCtvJ9JBlu7ThnupBXpNBn03Fivv8bG9OF7p6PTebSXVxpbG4NeWpcArL1mKkQNCuhspZcbKbiYxI3tvcKytL1J7QmrSVKe035cGMZuOcZxxw2nfyMhx5jUSWKcxxrCinxMiDZL+zhxV40OSscpMPJcpbBLv41uju8zpf6yvSrRqKU2lbI9q0628UYeL1MsFLK6HuO0C8/ixaOlE2W9skZda1/Olp7I2IpmhjhTP4xSR7Ry7cv8ZKbUO+sVC/CEOZM4RWx9oEgMdFrd0kZ9Co5Kje3LW9p8kumTKXCS2E+wWupWxtoZZCA1l0Lz4+x0dip9Yewkk5NTaGSLfBf+XF6SX+mSdkWyhzmK5OPciWWsLupQtylZTNj9vBMXgrW6JBNoj6mvHJYNvTyLcB5wYb1ezzDuzqyv81E15L/PX7/94/KtqMwa7tpYAc4G7tDsGX4nuZS+crNR8zeHHWe7m5Wfui2MVch0x7lrURtxICLcjrROt48MinRPWGTQ2MCyvt3eYKAPvh0GWf7Sk48dIoMVeh3bmHC/0kGeKyiW2Ab6BsYX78fP+4k6fuU4inYikhHSrLDt5Q0yiDwbbzfDYsgmLgmmtPeqLMnxntbhfeJBr/v17RVkcNCF0OnE1vFBjB8FtON1Olt+h+wJ4e02tYVhuJdPW09qjL5N0hKZxTAMfwMOQtRL",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Find purchase order by ID",
+    "permalink": "/api/get-order-by-id"
+  },
+  "next": {
+    "title": "Get user by user name",
+    "permalink": "/api/get-user-by-name"
+  }
+}

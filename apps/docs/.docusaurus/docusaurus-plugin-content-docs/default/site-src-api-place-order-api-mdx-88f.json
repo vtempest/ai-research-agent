@@ -1,0 +1,36 @@
+{
+  "id": "api/place-order",
+  "title": "Place an order for a pet",
+  "description": "",
+  "source": "@site/src/api/place-order.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/place-order",
+  "permalink": "/api/place-order",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "place-order",
+    "title": "Place an order for a pet",
+    "description": "",
+    "sidebar_label": "Place an order for a pet",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVlFv2zYQ/ivE7WUFZMnx0nbT07IuA4INSzCnD5sRtGfqZLGhSJWk7HiG//twpBTbTYrueWteQpHf8c78vvvIHQRceSgX4IN1BHcZVOSlU11Q1kAJkIHtyCF/XlVQQqdR0rWryEEGjj725MNPttpCuQNpTSATeIhdp5WMYcUHz1vtwMuGWuRRUEETlHBDQYx7nea9MMLygqitEyg6Cl7UzrYiNMRfItWbQdh2vJNdfiAZIIPOcb1BkedEqorpEkaZQKuYq7auxZCmXp3DPoOOwtW/xX7s0QQVtl+EfzdjuG9U9zMGOoL74JRZHaMrDDQJqqUYETD0/jn86SHFoxPzhM6ATN8ylZGiCjImwdl1HFak1ZocVXC3z0DattN0UtLSWk1oIrTGXgcoa9Se9vsMHlrNSIMtjVlhv+eV03oSYyl9JK7rnWzQK7MaeRtEo7iSMrie9jzhO2t8Ymw2nfK/0419LyV5X/daPKoRss/pbSj3q9z+W3LLvprK/4BlXjp/zgOuzBq1qsSIzKCl0Nh4J1kfWcLQQAlFZLGwgwQ8uTU5vuN20DsNJTQhdGVRMP2MzP0GVytyubLFegb7O46RvVNhO2dxJdJH9DvsOcvjT7T8PeNT13aT5NGySlWypT401qm/o2bffik7dqqI+xWVQm2ZGy9tlwrYOBWo5DAoobWVqrdJwcqIre2dQCltb5LDYjUieZzW48R+aCT17p6OtYad+pW2kI18jIgMFB9+QzieOjfeH4d7//IBmfaxL6aPqp8ea3p6rFiYTWfnk+nryeyH27OX5cuzcvZ9Pn199hccVHrQ20FWSTpcUW2f6uO2UV4oL1D4WJFIxIub4aCH71yIP20vJBpRK1MJ2wfR8jIueThPbAgMYjEwdSDo7tsnUy+EdcIasVBO5rUjMrai3FDIxDcD6pmoQjlZvMiF+MU6EbjwVHPGTMXaek/RlbBT4p624r3vSCrUk3vavhfBikA+JMSxxEStdCDnc8iAVZ+O5iyf5lO2tcEhxx85Hg0vkWv9dT0nt1aSDjI9qjlCiuHaRRn1TS0qneQSCNsfD3C2HK0kGU9HbX7RoWxoMovlnHTjZrPJMa7m1q2KIdQXv129ufx9fskheRNaHTXIDd+iOdr4huUi8InBf2pvR49UOBh9oIdQdBqV4bJjXbvBTsaXcZZeN/xCbthuygXsdkv09Nbp/Z6nP/bktlAu7jJYo1O45LNesDMO3cMOFLsO3qQaJrecnuG6T033yf22z8aICympC5/BspWybT0a4s31/BYyWA7v8tZWHOJww+aAm/Fdz8HRW+LcDjSaVY8rxqb0/PcPrm8jbw==",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "pet",
+    "permalink": "/api/pet"
+  },
+  "next": {
+    "title": "store",
+    "permalink": "/api/store"
+  }
+}

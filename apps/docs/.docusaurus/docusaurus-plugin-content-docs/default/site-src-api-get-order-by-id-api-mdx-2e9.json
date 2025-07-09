@@ -1,0 +1,36 @@
+{
+  "id": "api/get-order-by-id",
+  "title": "Find purchase order by ID",
+  "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions",
+  "source": "@site/src/api/get-order-by-id.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-order-by-id",
+  "permalink": "/api/get-order-by-id",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-order-by-id",
+    "title": "Find purchase order by ID",
+    "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions",
+    "sidebar_label": "Find purchase order by ID",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVk1v3DYQ/SuD6SUGFMl2nR6EtqhbO8WiRRzUyaEwFglXGq0YSyRNjna9Xei/F0Nq7fUHGp96KHpaLueRmnnz+MgtsloGLK8wsPWE8wxrCpXXjrU1WOJb62GlOl2Dp+CsCQTsN6AN05I8zM4CrDW3ghkIvv8B3oD18CMcHeZwwS35FBFU18GSDHnFVAPdVhS/ETBD62RWWzOrscQl8YWvyf+8mdWYoVNe9cTkJc0tGtUTlmgFEeNa0nSKW3yc++wMbAOOGLhVDIaoDsAWFgQNcdWSLPd0M2hPNZbsB8owVC31Csst8sbJl6ZSMcPG+l5xmvruBDPstdH90GN5lGGvbtP4zTjOZdvEVpCdjg8P5edhdmGoKgqhGTq4qx8zrKxhMix45VynqxgobvtOpvay09xJeu+JIdL1pPxTA5ElaKwHJTwEaLztgVuKrKSWZ7tC7eILVSyMe0mIdUpe1y8hY8zQEc9eir0ZlGHNm6/Cvz0WeGi1O1NMe/DAXpvlPrpWTK9Z9xRXsOIhPId/SFKkDi4TOkMy0sIrdJ2qojyUc96u4rCmTq9IpDIfpU+96+hBSgtrO1ImQhs1dIxlo7pA45jh1L9JvalhowT2m/wlSE7/d/m/1mUJnTznATOTvHV2BmEQIVCNEXvyFJtqMJahsYOpUTbtiVs7eWa0Sm6xxCK2vIiyKLaTU46YYSC/2vno4DsssWV2ZVGIamRNHtZquSSfa1usjlGMLFA1eM2bS9Fk0soO/UkN8r07Zqz8P5ZmdXadVNWLuHVys4Fb6/VfUeofv/Z15XQR9ytqrTorLQ2VdSmBtddMpSzDEntb62aThK8NbOzgQVWVHQxHe1f1DinjFI8T43T+9Kdr2peocvo32mC2a+MOMV01LanUVvnf2KeN+tDqADqAgqBEPZBoh/dTmdP/HOBPO0ClDDTa1GAHhl7CaiHDy8QFKIariad7euavnkwdyL1rDVxpX+WNJzK2ptwQZ/DNhHpmVaF9VRzkAHLPsySecs6Ep5jbIDd+S6CchmvawOfgqNKqe31Nm89ymzIFToj9BkOjO7mzc8xQNJeoOcoP80PxosnWdkXuqJEQ+T5cNJfkV7qie5Hs5RwhxXRXqiqqi3qlu9QsJtX/dA+XA9XpikygvbN56lTV0uvjmM6Ds7Ber3MVo7n1y2JaGorfZ7+cv7s8lyV5y30XFeBs4F6ZvY3fSi/d4KtWBZqsebGB2dljU9reX/X/zitrkjfTLReuU9oIM7H07eQcu1dglp5XmGG5e2fNM2xtYMFstwsV6KPvxlGmbwbyGyyv5hmulNdqIZ292mKtg4zryR7/ofpXf0xvsAN40ZPt2UJ2h9fIQY1sYImYYTzbd8/FUUx9OsGSZIqeVkLT3rrHLy8xwjuv/fX8A47j38XF1wI=",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Returns pet inventories by status",
+    "permalink": "/api/get-inventory"
+  },
+  "next": {
+    "title": "Find pet by ID",
+    "permalink": "/api/get-pet-by-id"
+  }
+}

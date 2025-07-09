@@ -1,0 +1,24 @@
+{
+  "id": "web/components/ReadMode/read-mode-view",
+  "title": "read-mode-view",
+  "description": "Documentation / components/ReadMode/read-mode-view",
+  "source": "@site/src/web/components/ReadMode/read-mode-view.md",
+  "sourceDirName": "web/components/ReadMode",
+  "slug": "/web/components/ReadMode/read-mode-view",
+  "permalink": "/docs/web/components/ReadMode/read-mode-view",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/web/components/ReadMode/read-mode-view.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "auto-highlight",
+    "permalink": "/docs/web/components/ReadMode/auto-highlight"
+  },
+  "next": {
+    "title": "categories",
+    "permalink": "/docs/web/components/SearchWeb/categories"
+  }
+}

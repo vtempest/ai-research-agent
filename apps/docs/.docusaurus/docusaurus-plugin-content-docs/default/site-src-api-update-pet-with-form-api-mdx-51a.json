@@ -1,0 +1,36 @@
+{
+  "id": "api/update-pet-with-form",
+  "title": "Updates a pet in the store with form data",
+  "description": "",
+  "source": "@site/src/api/update-pet-with-form.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/update-pet-with-form",
+  "permalink": "/api/update-pet-with-form",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "update-pet-with-form",
+    "title": "Updates a pet in the store with form data",
+    "description": "",
+    "sidebar_label": "Updates a pet in the store with form data",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVduO2zYQ/RVi+pIFZGm7SPugp7RpAhgtmkW9i6IwjM1YGlvsSiRDjuy4hv69GFKKvbek1RPF4QzPmcvhERi3AcolOGJYZVBTqLx2rK2BEiAD68ij/M5rKKF3NTJdE/+puXlvfQcZOPTYEZOXOEcw2BGUEm9eQwZa4jjkBh4Hn/+i7EY5YsUNsjJEdVBs1ZpUukbcPX3qtacaSvY9ZRCqhjqE8gh8cHKPNkxb8pDBxvoOOW39+BqGYZXcKfDPtj6IT2UNk2FZonOtriKz4vNsv9/PxH/W+5ZMZWu58fj0Nrv+myoW0l4Sw5qCWBPn4yOCt4mFEqtQ5YaELmRTtMBemy0MGQRG7sPLIZL9q0HiJ4yDsyYkXK8vf3gac2522OpaaeN6BvEJVPVe8yHWzxEHtp7usOdGOmPvNVMp27EeWKf1SvLbETdWGsPZENMihS6hcMTFMbbAABLf76b26H0LJTTMriyK6a487HG7JZ9rW+yuQCJPmBZSgsTmEbJTUeT/Sjqgtft4UndSXJ0K3XNjvf4nlvr2W7ej00WMV9QaW7sV9JV1CcBZJkrobK03B6lFUNqog+29wqqyveEHeSrjOtnjRqoTOn13T4czGuj0r3SAbJqg6cQ4Qw1hTT7WS5uNfVrXm0YHpYNCFbBzLamUdnU90hz/c6X+sr2q0KiNNrWyPatOzLiW5SLlQiGr5ZinU3pWr55sXSjrlTVqqX2VbzyRsTXlhjhT342nnvEqtK+Ki1yp99YrFuAJcyZ5itj6QLHX0Wl1Twf1MTiqNLazezp8FJlgCpxOnBdYbXQrUpRDBtJzKTXf55f5pYyM5lZSO5GcUiMm8l34sFmQ3+mKTk1yhjkeKSCLMoJV7C7qULepWEzYvTkdl7FudUUm0Eki4CeHVUOzqwjnwSzs9/scozW3fluMrqH4bf723e+Ld+KSN9y1sQNk3Do0Z4GTUkj1RVG1ialJdd9rbpSom6qR8bEOn6kinFSF6TMXrkVthEcEehynO70VGZRJ4lcZNDL85RKOxzUGuvXtMMj2p568aMoqgx16jWvJ/fIItQ6yrqHcYBvoK3he/THK/4X6T6/Fs+Cn8TIySjtse0pM4/SN79SwGrJpwgRisr1NQGY3EuHk++2n44E0Xn9Y3EAG6/EN6mwtQc5OZ+c/5VKgvKRw40IgPkvrpFDqpEAT1ShkMGQv+P4/VUwhZU809cWgX5R48th6NHwXzw6rYRj+Bdqx7w8=",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "store",
+    "permalink": "/api/store"
+  },
+  "next": {
+    "title": "Update an existing pet",
+    "permalink": "/api/update-pet"
+  }
+}

@@ -3,7 +3,7 @@ import {extractContent} from "../index.js";
 
 /**
  * ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
- *  <img width="350px"  src="https://i.imgur.com/l5AFrS0.png"  /> 
+ *  <img width="350px"  src="https://i.imgur.com/s8gsYt1.png"  /> 
  * 
  * 1. Searches the Web for the query via metasearch of major engines or custom data.<br />
  * 2. Extracts text of top results using Tractor the Text Extractor.<br />

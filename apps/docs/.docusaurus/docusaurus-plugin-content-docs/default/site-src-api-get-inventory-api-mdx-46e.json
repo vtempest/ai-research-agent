@@ -1,0 +1,36 @@
+{
+  "id": "api/get-inventory",
+  "title": "Returns pet inventories by status",
+  "description": "Returns a map of status codes to quantities",
+  "source": "@site/src/api/get-inventory.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-inventory",
+  "permalink": "/api/get-inventory",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-inventory",
+    "title": "Returns pet inventories by status",
+    "description": "Returns a map of status codes to quantities",
+    "sidebar_label": "Returns pet inventories by status",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVFGP2zYM/isC99ICrn3N3vy0YrgWhw1dsWsfhiBoGZmJ2bMlVaKTZYH/+0DZvlzaFUPz4EjiR4r8RH5nENwnqNeQxEeCTQENJRs5CHsHNfxJMkSXDJoeg/E7kwRlSMb6hpIRb74M6ISFKUEBPlBE9bxroIY9yZ07kBMfT1BApBS8S5SgPsPq5kb/ri9Lg7WU0m7ozGMkKMB6J+RE8RhCxzYbqs9Jnc6QbEs96kpOgaAGv/1MVqAAbBpWKHbvogbMWV5w7IT2FKGAnY89ynT08wrG/CsgkR0iywnqtV7NHx9I15txU0BP0vq5SiggoLRQQ5VprPhJ2YnigWLKMYbYQQ2tSKirKpBkdJmOuN9TLNlXhxVo8OXiey1tynlBf8RBb7oUq/uV1tD5Y0ZyrxzxxNcgrY/8T2bsw//djoGrHK9qGDu/1+ytD1MCx8hCtbpBDb1veHcyujPszMkP0aC1fnCSXxqbBanryZ4PJmIfuXwsAwP/RkqXw37eZ0QBrJ3REjYUQX3Z7fy3rfO+5WRY+zRhHzoyE+3m3VzmvC+N+csPxqIzO3aN8YOYXs241eX9xIVBMeuZpws9m2ffHD03PhrvzJqjLXeRyPmGSkdSmJ9m1H94VRxt9bw05rWPRjTxKedCecq5DYmMtGQwsHmgk/mUAlnG7sUDnT7p1AklmRBPH9jsuBOKqYQCtOcmal6WN+UNFCAsnVK7FLlQoyaKffpjd0/xwJYuTfIk5wyp5mlEm7uLeuRueiwh7H+5wGEsoGNLLpEC50d9FdC29GKV07mahePxWGK2lj7uq9k1Vb/f/Xr79v5WXcpW+i53QPBJenRPAi8qFUjMMntMyWxPs17BV7p2vojKD0rc3K9Cf0sVOmSnpeZazrMILFqqrbrIwKaA1idR4/m8xUQfYjeOevxloJhFpYADRsatvtF6MxZLz6tu5FmBV9ZS0Pk6YDdMQ/KVGl4J05vb96qB13KBgaexmhcafTG501XsZQCny/U7Ft8Bn8/T/I7jI34yfddjLm5BK42bcRz/BWuZRro=",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Finds Pets by tags",
+    "permalink": "/api/find-pets-by-tags"
+  },
+  "next": {
+    "title": "Find purchase order by ID",
+    "permalink": "/api/get-order-by-id"
+  }
+}

@@ -37,26 +37,41 @@ import { ChatVertexAI } from "@langchain/google-vertexai-web";
  * and nuances in language. Using neural network architectures like transformers, these models
  * analyze input text, apply attention mechanisms to understand context by multiplying scores
  * of all other words, using multiple attention head starting points, and generate human-like
- * responses based on learned patterns. [How LangChain ReactAgent Tools 
- * Works](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4)
+ * responses based on learned patterns. 
  * 
+ * @see
+ * [LangChain ReactAgent Tools](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4)
+ * [Hugging Face Tutorials](https://huggingface.co/learn)
+ * [Transformer Overview](https://jalammar.github.io/illustrated-transformer/)
+ * [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch)
+ * [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
+ * [LLM Training Example](https://github.com/vtempest/ai-research-agent/blob/master/packages/neural-net/src/train/predict-next-word.js)
+          
  * <img src="https://i.imgur.com/bailW5n.gif" />
  * <img src="https://i.imgur.com/uW6E9VJ.gif" />
  * @see
- * - [Groq Docs](https://console.groq.com/docs/overview) [Groq Keys](https://console.groq.com/keys):
- *   Llama, Mixtral 8x7B, Gemma2 9B
- * - [OpenAI Docs](https://platform.openai.com/docs/overview) [OpenAI Keys](https://platform.openai.com/api-keys):
- *   GPT-3.5 Turbo, GPT-4, GPT-4 Turbo, GPT-4 Omni, GPT-4 Omni Mini
- * - [Anthropic Docs](https://docs.anthropic.com/en/docs/welcome) [Anthropic Keys](https://console.anthropic.com/settings/keys):
- *   Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
- * - [TogetherAI Docs](https://docs.together.ai/docs/quickstart) [TogetherAI Keys](https://api.together.xyz/settings/api-keys):
- *  Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena.
- * - [XAI Docs](https://docs.x.ai/docs#models) [XAI Keys](https://console.x.ai/): Grok, Grok Vision
- * - [Google Vertex Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models)
- *   [Google Vertex Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
- * - [Perplexity Docs](https://docs.perplexity.ai/models/model-cards)
- *    [Perplexity Keys](https://www.perplexity.ai/settings/keys): Sonar, Sonar Deep Research
- * @param {object} options - Configuration parameters for language model generation
+  ### 👄 LIPs: Language Intelligence Providers
+  **IDs**: groq, togetherai, openai, anthropic, xai, google, perplexity, ollama, cloudflare
+  
+  - **XAI** 📚 [Docs](https://docs.x.ai/docs#models) 🔑 [Keys](https://console.x.ai/) 💰 80B ($ valuation) 💸 100M ($ 2024 revenue):
+    Grok, Grok Vision
+  - **Groq** 📚 [Docs](https://console.groq.com/docs/overview) 🔑 [Keys](https://console.groq.com/keys) 💰 2.8B:
+    Llama, DeepSeek, Gemini, Mistral
+  - **Ollama** 📚 [Docs](https://ollama.com/docs)  💸 3.2M: llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, 
+    openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon
+  - **OpenAI** 📚 [Docs](https://platform.openai.com/docs/overview) 🔑 [Keys](https://platform.openai.com/api-keys) 💰 300B 💸 3.7B:
+    o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni
+  - **Anthropic** 📚 [Docs](https://docs.anthropic.com/en/docs/welcome) 🔑 [Keys](https://console.anthropic.com/settings/keys) 💰 61.5B 💸 1B:
+    Claude Sonnet, Claude Opus, Claude Haiku
+  - **TogetherAI** 📚 [Docs](https://docs.together.ai/docs/quickstart) 🔑 [Keys](https://api.together.xyz/settings/api-keys) 💰 3.3B 💸 50M:
+    Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena
+  - **Perplexity** 📚 [Docs](https://docs.perplexity.ai/models/model-cards) 🔑 [Keys](https://www.perplexity.ai/account/api/keys) 💰 18B 💸 20M :
+    Sonar, Sonar Deep Research
+  - **Cloudflare** 📚 [Docs](https://developers.cloudflare.com/workers-ai/) 🔑 [Keys](https://dash.cloudflare.com/profile/api-tokens) 💰 62.3B 💸 1.67B:
+    Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama
+  - **Google Vertex** 📚 [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) 
+    🔑 [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
+* @param {object} options - Configuration parameters for language model generation
  * @param {string} options.provider - Language model provider to use. Supported providers:
  *   - groq, togetherai, openai, anthropic, xai, google, perplexity, ollama, cloudflare
  * @param {string} [options.apiKey] - API key for the specified provider. Not required for ollama.
@@ -92,7 +107,7 @@ export async function generateLanguageResponse(options = {}) {
   let {
     provider,
     apiKey,
-    model = LANGUAGE_MODELS.find(m => m.provider == options.provider)?.default,
+    model = LANGUAGE_MODELS.find(m => m.provider.toLowerCase() == provider)?.default,
     agent = "question",
     temperature = 1,
     html = true,
@@ -118,7 +133,7 @@ export async function generateLanguageResponse(options = {}) {
 
     // Get default model for provider if not specified
     if (!model)
-      model = LANGUAGE_MODELS.find(m => m.provider == provider)?.default;
+      model = LANGUAGE_MODELS.find(m => m.provider.toLowerCase() == provider)?.default;
 
     // Get agent template from local cache or LangChain hub
     let agentObject =
@@ -150,7 +165,7 @@ export async function generateLanguageResponse(options = {}) {
       // Get model configuration including context length limits
       let modelJSON = LANGUAGE_MODELS.find(m => m.provider == provider)
         ?.models.find(m => m.id === model);
-
+      if (modelJSON) 
       prompt = prompt.slice(0, modelJSON.contextLength);
     }
 

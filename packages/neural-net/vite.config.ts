@@ -33,7 +33,6 @@ export default defineConfig({
       rollupTypes: false,  // Disable type rolling to avoid symbol resolution issues
       include: ['src'],
       exclude: ['**/*.test.*', '**/*.spec.*'],
-      skipDiagnostics: true,
       staticImport: true,
       clearPureImport: true,
       insertTypesEntry: true

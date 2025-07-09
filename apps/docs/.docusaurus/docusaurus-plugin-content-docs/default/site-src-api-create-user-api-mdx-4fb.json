@@ -1,0 +1,36 @@
+{
+  "id": "api/create-user",
+  "title": "Create user",
+  "description": "This can only be done by the logged in user.",
+  "source": "@site/src/api/create-user.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/create-user",
+  "permalink": "/api/create-user",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create-user",
+    "title": "Create user",
+    "description": "This can only be done by the logged in user.",
+    "sidebar_label": "Create user",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJyVVU1v3DYQ/SvE9JIAsuS6RQ86NTFcIGiRBF37UCwWyaw0khhLJMMPr9WF/nswpNaS622D7ok7X3yaefN4BI+tg3ILwZGFXQY1ucpK46VWUMJtJ52oUAmt+lHsSdRakdiPwncket22VAupBCfnkIE2ZJFT39VQQmUJPd1x4QwsfQ3k/Ftdj1AeodLKk/J8RGN6WcW04ovja4/gqo4G5JOXvicoAcVc6DnAN9EsDp0W0gkTbNWhk6oVjdVDRGnIC+e1JcjAj4Zr6f0XqjxkYCwj9pIcXyXreGGKkcpTGy9stB3QJ9MvP8OUxV4pHGgV7ryVqmVnI63z7//N2+N/OGlA2Z/1GHTuoG193tlpdb4gA9149MF998t+unrR29jZOX2aMngcIrj05dEL08SO52nXcex1JIV4ajXPX1qqofQ20MQGZ7RyqfU1NRh6n47rYi5UFTnXhF48kSuCGch3mllmtIujRN9BCUVILHFkH8gys48QbA8ldN6bsigM+ciG3B2wbcnmUhcPVzDtOKcKVvpxw+RLuE7RnzBw+aceav7PHWt6fUjkGZjFMjE6+E5b+XdEe/e929HIItYraom9bhl9pU0CcLDSU8lpUMKga9mMzGjHWzfqYAVWlQ4qdRjrUySfkz8a0pjQyE/3NK4+A438nUbITjM9RWQgufkdYR2HnAEv5p/LCt884mB6Om3N5XonTvx7tgqLcdmAxTYTfzEsfF/ZEs0Xw5rdlxNjbvRLBkUJk06gcBGzSNQQH+dRzP9zIf7SIWpdI1UtdPBiYDfu+bhJ8xLoxXae5TLC3asXptdCW6GV2Epb5Y0lUrqmXJHPxA9z1JmsQtqqeJ0L8Zu2wjPwhDnjWUZswVFUNTRS3NMoPjtDlcT+4p7Gz8Jr4cn5FLEmoWhk78k6Fmnei9SaH/PL/JJlcdbY00eeWsMusoP70GzIPsiKFiKvMMeQArKo6VjFDTgNFI30hMOvS3gUQVmRcrQSkzcGq44uriKcZ/t6OBxyjN5c27aYU13xx7vrm/ebG07JOz/0kaWsBQOqVeEkRiKceTtWj9D/fefm9fH06AvTo1RRbG2UxyREy4PasT6VWzge9+jozvbTxOavgewI5XaXwQNaiXuewHY3ZaetY+WK2wrXCebFLd/K4X1Iy/qPd5M17EkWP37Y3EIG+/m9HXTNORYPrBR4gBLie83ZUWii7Qg9qjZgy7GpJv++AVlz0GA=",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Add a new pet to the store",
+    "permalink": "/api/add-pet"
+  },
+  "next": {
+    "title": "Creates list of users with given input array",
+    "permalink": "/api/create-users-with-array-input"
+  }
+}

@@ -171,41 +171,7 @@ async function fetchFromAPI(endpoint) {
     throw error;
   }
 }
-/**
 
-async function getFromChromeStorage(key) {
-  try {
-    const result = await storage.local.get(key);
-    return result[key] || null;
-  } catch (error) {
-    console.error('Chrome storage get error:', error);
-    return null;
-  }
-}
-
-async function saveToChromeStorage(key, data) {
-  try {
-    await storage.local.set({ [key]: data });
-  } catch (error) {
-    console.error('Chrome storage set error:', error);
-  }
-}
-
-async function removeFromChromeStorage(key) {
-  try {
-    await storage.local.remove(key);  
-  } catch (error) {
-    console.error('Chrome storage remove error:', error);
-  }
-}
-
-async function clearChromeStorage() {
-  try {
-    await storage.local.clear();
-  } catch (error) {
-    console.error('Chrome storage clear error:', error);
-  }
-} */
 
 export {
   fetchFromAPI

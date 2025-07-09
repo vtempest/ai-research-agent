@@ -23,7 +23,7 @@
     setStateInURL,
     loadHeadTags,
     type DeviceInfo,
-  } from "$lib/utils";
+  } from "$components/utils";
   import { log, grab } from "grab-api.js";
   import {
     APP_NAME,
@@ -32,7 +32,7 @@
     SERVER_API_URL,
   } from "$lib/customize-site";
 
-  import { authClient } from "$lib/auth-client";
+  import { authClient } from "$lib/components/utils/auth-client";
 
   import { playSoundEffect } from "$lib/components/AppLayout/sound-effects";
   // import { displayGoogleOneTapLogin } from "$lib/components/AppLayout/auth-google-one-tap";

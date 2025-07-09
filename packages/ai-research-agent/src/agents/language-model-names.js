@@ -379,7 +379,7 @@ export const LANGUAGE_MODELS = [
   {
     provider: "Perplexity",
     docs: "https://docs.perplexity.ai/models/model-cards",
-    api_key: "https://www.perplexity.ai/settings/keys",
+    api_key: "https://www.perplexity.ai/account/api/keys",
     default: "sonar",
     models: [
       {

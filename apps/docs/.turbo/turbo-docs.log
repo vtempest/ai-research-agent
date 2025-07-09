@@ -1,5 +1,5 @@
 
-[0m[2m[35m$[0m [2m[1mconcurrently "bun x docusaurus serve --dir ./docs-dist" "wait-on http://localhost:3000 && opener http://localhost:3000"[0m
-[0m[0][0m [32m[1m[SUCCESS][22m[39m Serving [36m[4m"./docs-dist"[24m[39m directory at: [36m[4mhttp://localhost:3000/docs/[24m[39m
-[0m[1][0m [0mwait-on http://localhost:3000 && opener http://localhost:3000 exited with code SIGINT[0m
-[0m[0][0m [0mbun x docusaurus serve --dir ./docs-dist exited with code SIGINT[0m
+[0m[2m[35m$[0m [2m[1mconcurrently "bun x docusaurus serve --dir ../web/static/docs" "wait-on http://localhost:3000; opener http://localhost:3000"[0m
+[0m[1][0m [0mwait-on http://localhost:3000; opener http://localhost:3000 exited with code 0[0m
+[0m[0][0m [31m[1m[ERROR][22m Something is already running on port 3000.[39m
+[0m[0][0m [0mbun x docusaurus serve --dir ../web/static/docs exited with code 0[0m

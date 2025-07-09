@@ -8,8 +8,7 @@
  * - Caching and performance optimization
  * - Rate limiting and error handling
  * 
- * @author vtempest <grokthiscontact@gmail.com>
- * @version 2.0.0
+ * @author vtempest
  */
 
 import { weighRelevanceConceptVectorAPI, generateLanguageResponse } from '..'

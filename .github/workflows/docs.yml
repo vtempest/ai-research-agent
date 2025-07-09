@@ -37,7 +37,7 @@ jobs:
         run: |
           cd apps/docs
           npm install --force --legacy-peer-deps || true
-          DOCS_ON_SUBDOMAIN=true npm run docs:build:subdomain || true
+          PATH_ON_SLASH_DOCS=true npm run docs:build:subdomain || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

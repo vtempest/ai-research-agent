@@ -1,0 +1,24 @@
+{
+  "id": "web/modules",
+  "title": "modules",
+  "description": "Modules",
+  "source": "@site/src/web/modules.md",
+  "sourceDirName": "web",
+  "slug": "/web/modules",
+  "permalink": "/docs/web/modules",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/web/modules.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "index",
+    "permalink": "/docs/web/"
+  },
+  "next": {
+    "title": "auth",
+    "permalink": "/docs/web/server/auth"
+  }
+}

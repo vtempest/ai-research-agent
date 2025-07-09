@@ -1,0 +1,36 @@
+{
+  "id": "api/add-pet",
+  "title": "Add a new pet to the store",
+  "description": "",
+  "source": "@site/src/api/add-pet.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/add-pet",
+  "permalink": "/api/add-pet",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "add-pet",
+    "title": "Add a new pet to the store",
+    "description": "",
+    "sidebar_label": "Add a new pet to the store",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztV0tv4zYQ/ivE9NIFFCkNtj3o1G2QAkGLbtAkh8IwsmNpLHEjkVpyFMc19N+LIaVYdpIu2kN7ycn0cB7fvD5JO2CsPOQL6IhhmUBJvnC6Y20N5AAJ2I4cyt/LEnLAsrwihgQcfenJ80+23EK+g8IaJsNyxK5rdBFMss9e3OzAFzW1KCfW3JA4UtHPYbwPqiNWa+uUx4aUNoprCjLP1hEkwNtOzO3qMxUTDu2olBQMtqLS1ZbtrWu85NM5SYA1eYmuy4Ah+tCGqSIHCayta5Gj6If3MCRQIFNl3XYO+YpYPcmfI5+uAnwU0C/A/ZdwQmZ7Vc9OmwqGIYHHtpGLqADnE7zhVaME6BHbLmRU2qrSJAH2NdsboHMoiR6GmDQhgY3DrpPSs+tpSEAztf5lmHHKvuKasfpbr7M+3ATV4xYwVv9n9QXUIGLPyP0LlThGHAdbdKdRn8acTN/KSOMD6gZXTZhrMmX04m1TwvI5AFmpAGC+g6PK2wq+reDbCv5XKzgcx5GKxSIorpGVISq9YqtWpLAsqZTzPPx+q8YmOPKdNT4W7v3p9/JzGOPSPGCjS6VN13Mojqeid5q3kC92kmpwfoc915LZxmmmXMQhHpbxvByWCbTEtZUnfmd96BuKDWSxq57cAzkf3PaugRxq5i7PsilG6jdYVeRSbbOHMxCPE5ZrIaKYxRGip15Z+X8mg9DYTRyUVghNxxeMnmvr9J+B3m6/Fh07nQV/WamxsaF3he0igFkFcmhtqddbmdswC1vbO4VFYXvDB/XJwzneB8Ewcq6+u6ftfMU6/QvJjo2zMWkkoKVdNWFJLvRJ3pN+379RXUz0EDfk9JAMR9HodFqFJ8HIKAeEspjUlhMPLF7zs9zvzmz0hQTM2j6fuZtae6W9QuUDZhVHQx4toRXj/1SpP2yvCjRqrU2pbM+qlWtcyfE69kshq8XYy30Ll98+E71T1ilr1EK7Il07ImNLSg1xor4ZtV6wyrQrsnepUj9bp1iAR8yJ9DJg6z2FJcROq3vaqk++o0Jjc3JP209hQ8lz1JgPoVrrhsn5FBKQvYil+S49TU+FAkfSnJKcSiNX5Fr/cX1N7kEXtB/kGeagkkESXrGxCBtALeomDhQTtj/u1aVRjS7IeJqR0ocOi5pOzgKcg33dbDYphtvUuiobTX326+X5xW/XF2KS1tw2YUqFClo0c8dlqVAZ2oQXhCMGOxiU2ScC7B8LTI+cdQ1qI8ADst1INU9fJLUQUL6A3W6Fnm5dMwwi/tKTrMNimcADOh2mNF8sh2TaKxnxsI9wHiOf3EhQUW/6uI5HHyoHvHf18foGEliNHzitLcXG4Ua4ADfTx5FYByoJsh00aKoeK9GNPgM1vEJv40GQTpRhtjOEe3pSe/pJxqwCi8GQvGL7zygxuhSZEOqrTp9oeLKoHBq+C7rDchiGvwByytxq",
+    "sidebar_class_name": "post api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/api/swagger-petstore"
+  },
+  "next": {
+    "title": "Create user",
+    "permalink": "/api/create-user"
+  }
+}

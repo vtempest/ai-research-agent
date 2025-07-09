@@ -1,0 +1,24 @@
+{
+  "id": "web/components/utils/auth-client",
+  "title": "auth-client",
+  "description": "Documentation / components/utils/auth-client",
+  "source": "@site/src/web/components/utils/auth-client.md",
+  "sourceDirName": "web/components/utils",
+  "slug": "/web/components/utils/auth-client",
+  "permalink": "/docs/web/components/utils/auth-client",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/web/components/utils/auth-client.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "icons",
+    "permalink": "/docs/web/components/icons"
+  },
+  "next": {
+    "title": "utils-1",
+    "permalink": "/docs/web/components/utils-1"
+  }
+}

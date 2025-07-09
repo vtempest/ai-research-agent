@@ -3,6 +3,7 @@
  */
 export const DEV = typeof window !== "undefined" && window.location.hostname.includes('localhost'),
   PUBLIC_DOMAIN = DEV ? "http://localhost:5173" : "https://qwksearch.com",
+  DEV_TESTING_PORT = 5173,
   PUBLIC_GOOGLE_CLIENT_ID = "644604561446-niuns88krqdrs260kptpf1ti10ecrfls.apps.googleusercontent.com",
   APP_NAME = "QwkSearch",
   APP_SLOGAN = "Reimagine the Internet as Self-Organizing Mind Map",
@@ -23,6 +24,7 @@ export const DEV = typeof window !== "undefined" && window.location.hostname.inc
     { url: "https://www.linkedin.com/company/qwksearch/posts/", text: "Blog", icon: "Newspaper" },
     { url: "https://discord.gg/SJdBqBz3tV", text: "Support", icon: "MessageCircle" },
     { url: "/legal/privacy", text: "Privacy", icon: "Lock" },
-    { url: "/legal/terms", text: "Terms", icon: "FileText" },
+    // { url: "/legal/terms", text: "Terms", icon: "FileText" },
+    { url: "https://rights.institute", text: "Ethics", icon: "Bot" },
   ];
   

@@ -1,6 +1,6 @@
 import { redirect } from "sveltekit-flash-message/server";
-import type { PageServerLoad } from "./$types";
+import type { ServerLoad } from "@sveltejs/kit";
 
 export const load = (async () => {
   redirect(303, ("/app/settings/profile"));
-}) satisfies PageServerLoad;
+}) satisfies ServerLoad;

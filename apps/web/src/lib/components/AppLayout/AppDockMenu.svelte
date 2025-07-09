@@ -6,7 +6,7 @@
     useTransform,
   } from "svelte-motion";
   import { writable } from "svelte/store";
-  import { cn } from "$lib/utils";
+  import { cn } from "$components/utils";
   /**
    * @module AppDockMenu
    * App Dock Menu with zoom animation on hover, and

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Search, extract, vectorize, outline graph, and monitor web research",
   "author": "vtempest <grokthiscontact@gmail.com>",
-  "license": "AGPL-3.0",
+  "license": "PROSPER-1.0",
   "private": true,
   "scripts": {
     "dev": "concurrently \"NODE_NO_WARNINGS=1 vite dev\" \"wait-on http://localhost:5173 && opener http://localhost:5173\"",

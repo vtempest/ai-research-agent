@@ -71,7 +71,7 @@ Language Models can distill the essence of collective thought into a vector spac
 ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/l5AFrS0.png" /> 
+<img width="350px"  src="https://i.imgur.com/s8gsYt1.png" /> 
 </p>
 
 [searchSTREAM Docs](https://airesearch.js.org/functions/search/search-stream)
@@ -85,7 +85,7 @@ Language Models can distill the essence of collective thought into a vector spac
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/NUcvBaY.png" /> 
+<img width="350px"  src="https://i.imgur.com/nNfHmct.png" /> 
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
@@ -123,7 +123,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 
 ### 🕸️🖥️ Tardigrade the Web Crawler
 <p align="center">
-<img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
+<img src="https://i.imgur.com/iuzpcvD.png" width="350px" /> 
 </p>
 
 [scrapeURL Docs](https://airesearch.js.org/functions/extractor/url-to-content/scrape-url)

@@ -1,0 +1,1 @@
+import{k as c,E as s,m as i,B as p,p as r,v as h,z as m}from"./Ddr_2JoP.js";function u(t,f,o){r&&h();var n=t,a,e;c(()=>{a!==(a=f())&&(e&&(p(e),e=null),a&&(e=i(()=>o(n,a))))},s),r&&(n=m)}export{u as c};

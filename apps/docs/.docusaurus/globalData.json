@@ -1,1146 +1,717 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/",
+      "path": "/docs/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/",
+          "path": "/docs/",
           "mainDocId": "index",
           "docs": [
             {
               "id": "api/extract-content",
-              "path": "/api/extract-content",
+              "path": "/docs/api/extract-content",
               "sidebar": "default"
             },
             {
               "id": "api/qwksearch-api",
-              "path": "/api/qwksearch-api",
+              "path": "/docs/api/qwksearch-api",
               "sidebar": "default"
             },
             {
               "id": "api/search-web",
-              "path": "/api/search-web",
+              "path": "/docs/api/search-web",
               "sidebar": "default"
             },
             {
               "id": "api/write-language",
-              "path": "/api/write-language",
+              "path": "/docs/api/write-language",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/agent-prompts",
-              "path": "/functions/agents/agent-prompts",
+              "path": "/docs/functions/agents/agent-prompts",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/agent-tools",
-              "path": "/functions/agents/agent-tools",
+              "path": "/docs/functions/agents/agent-tools",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/api2ai",
-              "path": "/functions/agents/api2ai",
+              "path": "/docs/functions/agents/api2ai",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/generate-language",
-              "path": "/functions/agents/generate-language",
+              "path": "/docs/functions/agents/generate-language",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/language-model-names",
-              "path": "/functions/agents/language-model-names",
+              "path": "/docs/functions/agents/language-model-names",
               "sidebar": "default"
             },
             {
               "id": "functions/agents/memory",
-              "path": "/functions/agents/memory",
+              "path": "/docs/functions/agents/memory",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-author",
-              "path": "/functions/extractor/html-to-cite/extract-author",
+              "path": "/docs/functions/extractor/html-to-cite/extract-author",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-cite",
-              "path": "/functions/extractor/html-to-cite/extract-cite",
+              "path": "/docs/functions/extractor/html-to-cite/extract-cite",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-date/date-extractors",
-              "path": "/functions/extractor/html-to-cite/extract-date/date-extractors",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-date/date-validators",
-              "path": "/functions/extractor/html-to-cite/extract-date/date-validators",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/date-validators",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-date/extract-date",
-              "path": "/functions/extractor/html-to-cite/extract-date/",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-date/extract-date-quick",
-              "path": "/functions/extractor/html-to-cite/extract-date/extract-date-quick",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-source",
-              "path": "/functions/extractor/html-to-cite/extract-source",
+              "path": "/docs/functions/extractor/html-to-cite/extract-source",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/extract-title",
-              "path": "/functions/extractor/html-to-cite/extract-title",
+              "path": "/docs/functions/extractor/html-to-cite/extract-title",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/human-names-recognize",
-              "path": "/functions/extractor/html-to-cite/human-names-recognize",
+              "path": "/docs/functions/extractor/html-to-cite/human-names-recognize",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/metadata-to-cite",
-              "path": "/functions/extractor/html-to-cite/metadata-to-cite",
+              "path": "/docs/functions/extractor/html-to-cite/metadata-to-cite",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-cite/url-to-domain",
-              "path": "/functions/extractor/html-to-cite/url-to-domain",
+              "path": "/docs/functions/extractor/html-to-cite/url-to-domain",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/extract-content/extract-content-mercury",
-              "path": "/functions/extractor/html-to-content/extract-content/extract-content-mercury",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
-              "path": "/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/extract-content/extract-content-readability",
-              "path": "/functions/extractor/html-to-content/extract-content/extract-content-readability",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/html-to-basic-html",
-              "path": "/functions/extractor/html-to-content/html-to-basic-html",
+              "path": "/docs/functions/extractor/html-to-content/html-to-basic-html",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/html-to-content",
-              "path": "/functions/extractor/html-to-content/",
+              "path": "/docs/functions/extractor/html-to-content/",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/html-to-content/html-utils",
-              "path": "/functions/extractor/html-to-content/html-utils",
+              "path": "/docs/functions/extractor/html-to-content/html-utils",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/Annotation",
-              "path": "/functions/extractor/pdf-to-html/models/Annotation",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Annotation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/BlockType/index",
+              "path": "/docs/functions/extractor/pdf-to-html/models/BlockType/",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
-              "path": "/functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
-              "sidebar": "default"
-            },
-            {
-              "id": "functions/extractor/pdf-to-html/models/BlockType/README",
-              "path": "/functions/extractor/pdf-to-html/models/BlockType/",
+              "path": "/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/HeadlineFinder",
-              "path": "/functions/extractor/pdf-to-html/models/HeadlineFinder",
+              "path": "/docs/functions/extractor/pdf-to-html/models/HeadlineFinder",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/LineConverter",
-              "path": "/functions/extractor/pdf-to-html/models/LineConverter",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineConverter",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/LineItem",
-              "path": "/functions/extractor/pdf-to-html/models/LineItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineItem",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/LineItemBlock",
-              "path": "/functions/extractor/pdf-to-html/models/LineItemBlock",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/Page",
-              "path": "/functions/extractor/pdf-to-html/models/Page",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Page",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/PageItem",
-              "path": "/functions/extractor/pdf-to-html/models/PageItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/PageItem",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/ParsedElements",
-              "path": "/functions/extractor/pdf-to-html/models/ParsedElements",
+              "path": "/docs/functions/extractor/pdf-to-html/models/ParsedElements",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/ParseResult",
-              "path": "/functions/extractor/pdf-to-html/models/ParseResult",
+              "path": "/docs/functions/extractor/pdf-to-html/models/ParseResult",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/StashingStream",
-              "path": "/functions/extractor/pdf-to-html/models/StashingStream",
+              "path": "/docs/functions/extractor/pdf-to-html/models/StashingStream",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/TextItem",
-              "path": "/functions/extractor/pdf-to-html/models/TextItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/TextItem",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/TextItemLineGrouper",
-              "path": "/functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+              "path": "/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/models/Word",
-              "path": "/functions/extractor/pdf-to-html/models/Word",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Word",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/pdf-to-html",
-              "path": "/functions/extractor/pdf-to-html/",
+              "path": "/docs/functions/extractor/pdf-to-html/",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
-              "path": "/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
-              "path": "/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/ToHTML",
-              "path": "/functions/extractor/pdf-to-html/transformations/ToHTML",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToHTML",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
-              "path": "/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/ToLineItemTransformation",
-              "path": "/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/ToTextBlocks",
-              "path": "/functions/extractor/pdf-to-html/transformations/ToTextBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
-              "path": "/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/transformations/Transformation",
-              "path": "/functions/extractor/pdf-to-html/transformations/Transformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/Transformation",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/util/is-url-pdf",
-              "path": "/functions/extractor/pdf-to-html/util/is-url-pdf",
+              "path": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/util/page-item-functions",
-              "path": "/functions/extractor/pdf-to-html/util/page-item-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/page-item-functions",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/util/page-number-functions",
-              "path": "/functions/extractor/pdf-to-html/util/page-number-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/page-number-functions",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/pdf-to-html/util/string-functions",
-              "path": "/functions/extractor/pdf-to-html/util/string-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/string-functions",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/url-to-content/docx-to-content",
-              "path": "/functions/extractor/url-to-content/docx-to-content",
+              "path": "/docs/functions/extractor/url-to-content/docx-to-content",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/url-to-content/url-to-content",
-              "path": "/functions/extractor/url-to-content/",
+              "path": "/docs/functions/extractor/url-to-content/",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/url-to-content/url-to-html",
-              "path": "/functions/extractor/url-to-content/url-to-html",
+              "path": "/docs/functions/extractor/url-to-content/url-to-html",
               "sidebar": "default"
             },
             {
               "id": "functions/extractor/url-to-content/youtube-to-text",
-              "path": "/functions/extractor/url-to-content/youtube-to-text",
+              "path": "/docs/functions/extractor/url-to-content/youtube-to-text",
               "sidebar": "default"
             },
             {
               "id": "functions/index",
-              "path": "/functions/",
+              "path": "/docs/functions/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/index-1",
+              "path": "/docs/functions/index-1",
               "sidebar": "default"
             },
             {
               "id": "functions/interface/highlight-code",
-              "path": "/functions/interface/highlight-code",
+              "path": "/docs/functions/interface/highlight-code",
               "sidebar": "default"
             },
             {
               "id": "functions/interface/youtube-embed",
-              "path": "/functions/interface/youtube-embed",
+              "path": "/docs/functions/interface/youtube-embed",
               "sidebar": "default"
             },
             {
               "id": "functions/match/compare-letters",
-              "path": "/functions/match/compare-letters",
+              "path": "/docs/functions/match/compare-letters",
               "sidebar": "default"
             },
             {
               "id": "functions/match/match-quasar",
-              "path": "/functions/match/match-quasar",
+              "path": "/docs/functions/match/match-quasar",
               "sidebar": "default"
             },
             {
               "id": "functions/match/weigh-relevance-frequency",
-              "path": "/functions/match/weigh-relevance-frequency",
+              "path": "/docs/functions/match/weigh-relevance-frequency",
               "sidebar": "default"
             },
             {
-              "id": "functions/README",
-              "path": "/functions/",
+              "id": "functions/modules",
+              "path": "/docs/functions/modules",
               "sidebar": "default"
             },
             {
               "id": "functions/search/search-engines",
-              "path": "/functions/search/search-engines",
+              "path": "/docs/functions/search/search-engines",
               "sidebar": "default"
             },
             {
               "id": "functions/search/search-stream",
-              "path": "/functions/search/search-stream",
+              "path": "/docs/functions/search/search-stream",
               "sidebar": "default"
             },
             {
               "id": "functions/search/search-web",
-              "path": "/functions/search/search-web",
+              "path": "/docs/functions/search/search-web",
               "sidebar": "default"
             },
             {
               "id": "functions/search/search-wikipedia",
-              "path": "/functions/search/search-wikipedia",
+              "path": "/docs/functions/search/search-wikipedia",
               "sidebar": "default"
             },
             {
               "id": "functions/similarity/similarity-remote-api",
-              "path": "/functions/similarity/similarity-remote-api",
+              "path": "/docs/functions/similarity/similarity-remote-api",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/stopwords",
-              "path": "/functions/tokenize/stopwords",
+              "path": "/docs/functions/tokenize/stopwords",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/suggest-complete-word",
-              "path": "/functions/tokenize/suggest-complete-word",
+              "path": "/docs/functions/tokenize/suggest-complete-word",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/text-to-chunks",
-              "path": "/functions/tokenize/text-to-chunks",
+              "path": "/docs/functions/tokenize/text-to-chunks",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/text-to-sentences",
-              "path": "/functions/tokenize/text-to-sentences",
+              "path": "/docs/functions/tokenize/text-to-sentences",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/text-to-topic-tokens",
-              "path": "/functions/tokenize/text-to-topic-tokens",
+              "path": "/docs/functions/tokenize/text-to-topic-tokens",
               "sidebar": "default"
             },
             {
               "id": "functions/tokenize/word-to-root-stem",
-              "path": "/functions/tokenize/word-to-root-stem",
+              "path": "/docs/functions/tokenize/word-to-root-stem",
               "sidebar": "default"
             },
             {
               "id": "functions/topics/ngrams",
-              "path": "/functions/topics/ngrams",
+              "path": "/docs/functions/topics/ngrams",
               "sidebar": "default"
             },
             {
               "id": "functions/topics/rank-sentences-keyphrases",
-              "path": "/functions/topics/rank-sentences-keyphrases",
+              "path": "/docs/functions/topics/rank-sentences-keyphrases",
               "sidebar": "default"
             },
             {
               "id": "functions/topics/seektopic-keyphrases",
-              "path": "/functions/topics/seektopic-keyphrases",
+              "path": "/docs/functions/topics/seektopic-keyphrases",
               "sidebar": "default"
             },
             {
               "id": "functions/topics/topic-distribution",
-              "path": "/functions/topics/topic-distribution",
+              "path": "/docs/functions/topics/topic-distribution",
               "sidebar": "default"
             },
             {
               "id": "functions/types",
-              "path": "/functions/types",
+              "path": "/docs/functions/types",
               "sidebar": "default"
             },
             {
               "id": "index",
-              "path": "/",
-              "sidebar": "functions"
-            },
-            {
-              "id": "neural-net/index",
-              "path": "/neural-net/",
+              "path": "/docs/",
               "sidebar": "default"
             },
             {
-              "id": "neural-net/README",
-              "path": "/neural-net/",
+              "id": "neural-net/index",
+              "path": "/docs/neural-net/",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/index-1",
+              "path": "/docs/neural-net/index-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/modules",
+              "path": "/docs/neural-net/modules",
               "sidebar": "default"
             },
             {
               "id": "neural-net/statistics/predict-statistics",
-              "path": "/neural-net/statistics/predict-statistics",
+              "path": "/docs/neural-net/statistics/predict-statistics",
               "sidebar": "default"
             },
             {
               "id": "neural-net/train/neural-net-gpu",
-              "path": "/neural-net/train/neural-net-gpu",
+              "path": "/docs/neural-net/train/neural-net-gpu",
               "sidebar": "default"
             },
             {
               "id": "neural-net/train/neural-net-tf",
-              "path": "/neural-net/train/neural-net-tf",
+              "path": "/docs/neural-net/train/neural-net-tf",
               "sidebar": "default"
             },
             {
               "id": "neural-net/train/predict-next-word",
-              "path": "/neural-net/train/predict-next-word",
+              "path": "/docs/neural-net/train/predict-next-word",
               "sidebar": "default"
             },
             {
               "id": "neural-net/vectorize/similarity-remote-api",
-              "path": "/neural-net/vectorize/similarity-remote-api",
+              "path": "/docs/neural-net/vectorize/similarity-remote-api",
               "sidebar": "default"
             },
             {
               "id": "neural-net/vectorize/similarity-vector",
-              "path": "/neural-net/vectorize/similarity-vector",
+              "path": "/docs/neural-net/vectorize/similarity-vector",
               "sidebar": "default"
             },
             {
               "id": "neural-net/vectorize/usearch",
-              "path": "/neural-net/vectorize/usearch",
+              "path": "/docs/neural-net/vectorize/usearch",
               "sidebar": "default"
             },
             {
-              "id": "web/global",
-              "path": "/web/global",
+              "id": "web/components/AppLayout/auth-google-one-tap",
+              "path": "/docs/web/components/AppLayout/auth-google-one-tap",
               "sidebar": "default"
             },
             {
-              "id": "web/hooks.server",
-              "path": "/web/hooks.server",
+              "id": "web/components/AppLayout/sound-effects",
+              "path": "/docs/web/components/AppLayout/sound-effects",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/AppLayout/auth-google-one-tap",
-              "path": "/web/lib/components/AppLayout/auth-google-one-tap",
+              "id": "web/components/Editor/docx/docx-to-html",
+              "path": "/docs/web/components/Editor/docx/docx-to-html",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/AppLayout/sound-effects",
-              "path": "/web/lib/components/AppLayout/sound-effects",
+              "id": "web/components/Editor/docx/docx-tokens",
+              "path": "/docs/web/components/Editor/docx/docx-tokens",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/docx/docx-to-html",
-              "path": "/web/lib/components/Editor/docx/docx-to-html",
+              "id": "web/components/Editor/docx/parse-cards",
+              "path": "/docs/web/components/Editor/docx/parse-cards",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/docx/docx-tokens",
-              "path": "/web/lib/components/Editor/docx/docx-tokens",
+              "id": "web/components/Editor/docx/parse-debate-docx",
+              "path": "/docs/web/components/Editor/docx/parse-debate-docx",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/docx/parse-cards",
-              "path": "/web/lib/components/Editor/docx/parse-cards",
+              "id": "web/components/Editor/docx/parse-zip-folder",
+              "path": "/docs/web/components/Editor/docx/parse-zip-folder",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/docx/parse-debate-docx",
-              "path": "/web/lib/components/Editor/docx/parse-debate-docx",
+              "id": "web/components/Editor/storage/files-api-frontend",
+              "path": "/docs/web/components/Editor/storage/files-api-frontend",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/docx/parse-zip-folder",
-              "path": "/web/lib/components/Editor/docx/parse-zip-folder",
+              "id": "web/components/Editor/storage/local-storage-api",
+              "path": "/docs/web/components/Editor/storage/local-storage-api",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/storage/files-api-frontend",
-              "path": "/web/lib/components/Editor/storage/files-api-frontend",
+              "id": "web/components/Editor/storage/seed-test-data",
+              "path": "/docs/web/components/Editor/storage/seed-test-data",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/storage/local-storage-api",
-              "path": "/web/lib/components/Editor/storage/local-storage-api",
+              "id": "web/components/icons",
+              "path": "/docs/web/components/icons",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/Editor/storage/seed-test-data",
-              "path": "/web/lib/components/Editor/storage/seed-test-data",
+              "id": "web/components/icons-1",
+              "path": "/docs/web/components/icons-1",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/icons",
-              "path": "/web/lib/components/icons",
+              "id": "web/components/ReadMode/auto-highlight",
+              "path": "/docs/web/components/ReadMode/auto-highlight",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/icons-1",
-              "path": "/web/lib/components/icons-1",
+              "id": "web/components/ReadMode/read-mode-view",
+              "path": "/docs/web/components/ReadMode/read-mode-view",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ReadMode/auto-highlight",
-              "path": "/web/lib/components/ReadMode/auto-highlight",
+              "id": "web/components/SearchWeb/categories",
+              "path": "/docs/web/components/SearchWeb/categories",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ReadMode/read-mode-view",
-              "path": "/web/lib/components/ReadMode/read-mode-view",
+              "id": "web/components/SearchWeb/extras/get-weather",
+              "path": "/docs/web/components/SearchWeb/extras/get-weather",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/SearchWeb/categories",
-              "path": "/web/lib/components/SearchWeb/categories",
+              "id": "web/components/SearchWeb/extras/home-extras",
+              "path": "/docs/web/components/SearchWeb/extras/home-extras",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/SearchWeb/extras/get-weather",
-              "path": "/web/lib/components/SearchWeb/extras/get-weather",
+              "id": "web/components/SearchWeb/extras/QuantumSphere",
+              "path": "/docs/web/components/SearchWeb/extras/QuantumSphere",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/SearchWeb/extras/home-extras",
-              "path": "/web/lib/components/SearchWeb/extras/home-extras",
+              "id": "web/components/ShortcutSearch/shortcut-search",
+              "path": "/docs/web/components/ShortcutSearch/shortcut-search",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/SearchWeb/extras/QuantumSphere",
-              "path": "/web/lib/components/SearchWeb/extras/QuantumSphere",
+              "id": "web/components/ShortcutSearch/shortcut-search-web",
+              "path": "/docs/web/components/ShortcutSearch/shortcut-search-web",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ShortcutSearch/shortcut-search",
-              "path": "/web/lib/components/ShortcutSearch/shortcut-search",
+              "id": "web/components/TabManager/find-in-tab-content",
+              "path": "/docs/web/components/TabManager/find-in-tab-content",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ShortcutSearch/shortcut-search-web",
-              "path": "/web/lib/components/ShortcutSearch/shortcut-search-web",
+              "id": "web/components/utils",
+              "path": "/docs/web/components/utils",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/TabManager/find-in-tab-content",
-              "path": "/web/lib/components/TabManager/find-in-tab-content",
+              "id": "web/components/utils-1",
+              "path": "/docs/web/components/utils-1",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/alert",
-              "path": "/web/lib/components/ui/alert",
+              "id": "web/components/utils/auth-client",
+              "path": "/docs/web/components/utils/auth-client",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/alert-1",
-              "path": "/web/lib/components/ui/alert-1",
+              "id": "web/customize-site",
+              "path": "/docs/web/customize-site",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/alert-dialog",
-              "path": "/web/lib/components/ui/alert-dialog",
+              "id": "web/index",
+              "path": "/docs/web/",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/alert-dialog-1",
-              "path": "/web/lib/components/ui/alert-dialog-1",
+              "id": "web/modules",
+              "path": "/docs/web/modules",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/avatar",
-              "path": "/web/lib/components/ui/avatar",
+              "id": "web/server",
+              "path": "/docs/web/server",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/avatar-1",
-              "path": "/web/lib/components/ui/avatar-1",
+              "id": "web/server-1",
+              "path": "/docs/web/server-1",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/badge",
-              "path": "/web/lib/components/ui/badge",
+              "id": "web/server/auth",
+              "path": "/docs/web/server/auth",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/badge-1",
-              "path": "/web/lib/components/ui/badge-1",
+              "id": "web/server/drizzle.config",
+              "path": "/docs/web/server/drizzle.config",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/breadcrumb",
-              "path": "/web/lib/components/ui/breadcrumb",
+              "id": "web/server/email",
+              "path": "/docs/web/server/email",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/breadcrumb-1",
-              "path": "/web/lib/components/ui/breadcrumb-1",
+              "id": "web/server/ratelimits",
+              "path": "/docs/web/server/ratelimits",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/button",
-              "path": "/web/lib/components/ui/button",
+              "id": "web/server/schema",
+              "path": "/docs/web/server/schema",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/button-1",
-              "path": "/web/lib/components/ui/button-1",
+              "id": "web/server/types",
+              "path": "/docs/web/server/types",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/card",
-              "path": "/web/lib/components/ui/card",
+              "id": "web/server/users",
+              "path": "/docs/web/server/users",
               "sidebar": "default"
             },
             {
-              "id": "web/lib/components/ui/card-1",
-              "path": "/web/lib/components/ui/card-1",
+              "id": "web/server/validations",
+              "path": "/docs/web/server/validations",
               "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/checkbox",
-              "path": "/web/lib/components/ui/checkbox",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/checkbox-1",
-              "path": "/web/lib/components/ui/checkbox-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/collapsible",
-              "path": "/web/lib/components/ui/collapsible",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/collapsible-1",
-              "path": "/web/lib/components/ui/collapsible-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/command",
-              "path": "/web/lib/components/ui/command",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/command-1",
-              "path": "/web/lib/components/ui/command-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/dialog",
-              "path": "/web/lib/components/ui/dialog",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/dialog-1",
-              "path": "/web/lib/components/ui/dialog-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/dropdown-menu",
-              "path": "/web/lib/components/ui/dropdown-menu",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/dropdown-menu-1",
-              "path": "/web/lib/components/ui/dropdown-menu-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/form",
-              "path": "/web/lib/components/ui/form",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/form-1",
-              "path": "/web/lib/components/ui/form-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/input",
-              "path": "/web/lib/components/ui/input",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/input-1",
-              "path": "/web/lib/components/ui/input-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/label",
-              "path": "/web/lib/components/ui/label",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/label-1",
-              "path": "/web/lib/components/ui/label-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/menubar",
-              "path": "/web/lib/components/ui/menubar",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/menubar-1",
-              "path": "/web/lib/components/ui/menubar-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/pagination",
-              "path": "/web/lib/components/ui/pagination",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/pagination-1",
-              "path": "/web/lib/components/ui/pagination-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/popover",
-              "path": "/web/lib/components/ui/popover",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/popover-1",
-              "path": "/web/lib/components/ui/popover-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/progress",
-              "path": "/web/lib/components/ui/progress",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/progress-1",
-              "path": "/web/lib/components/ui/progress-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/select",
-              "path": "/web/lib/components/ui/select",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/select-1",
-              "path": "/web/lib/components/ui/select-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/separator",
-              "path": "/web/lib/components/ui/separator",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/separator-1",
-              "path": "/web/lib/components/ui/separator-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sheet",
-              "path": "/web/lib/components/ui/sheet",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sheet-1",
-              "path": "/web/lib/components/ui/sheet-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sidebar",
-              "path": "/web/lib/components/ui/sidebar",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sidebar-1",
-              "path": "/web/lib/components/ui/sidebar-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sidebar/constants",
-              "path": "/web/lib/components/ui/sidebar/constants",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sidebar/context.svelte",
-              "path": "/web/lib/components/ui/sidebar/context.svelte",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/skeleton",
-              "path": "/web/lib/components/ui/skeleton",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/skeleton-1",
-              "path": "/web/lib/components/ui/skeleton-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/slider",
-              "path": "/web/lib/components/ui/slider",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/slider-1",
-              "path": "/web/lib/components/ui/slider-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sonner",
-              "path": "/web/lib/components/ui/sonner",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/sonner-1",
-              "path": "/web/lib/components/ui/sonner-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/switch",
-              "path": "/web/lib/components/ui/switch",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/switch-1",
-              "path": "/web/lib/components/ui/switch-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/table",
-              "path": "/web/lib/components/ui/table",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/table-1",
-              "path": "/web/lib/components/ui/table-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/tabs",
-              "path": "/web/lib/components/ui/tabs",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/tabs-1",
-              "path": "/web/lib/components/ui/tabs-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/textarea",
-              "path": "/web/lib/components/ui/textarea",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/textarea-1",
-              "path": "/web/lib/components/ui/textarea-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/tooltip",
-              "path": "/web/lib/components/ui/tooltip",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/ui/tooltip-1",
-              "path": "/web/lib/components/ui/tooltip-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/utils/auth-client",
-              "path": "/web/lib/components/utils/auth-client",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/components/utils/utils",
-              "path": "/web/lib/components/utils/",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/customize-site",
-              "path": "/web/lib/customize-site",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server",
-              "path": "/web/lib/server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server-1",
-              "path": "/web/lib/server-1",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/auth",
-              "path": "/web/lib/server/auth",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/drizzle.config",
-              "path": "/web/lib/server/drizzle.config",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/email",
-              "path": "/web/lib/server/email",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/ratelimits",
-              "path": "/web/lib/server/ratelimits",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/schema",
-              "path": "/web/lib/server/schema",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/types",
-              "path": "/web/lib/server/types",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/users",
-              "path": "/web/lib/server/users",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/lib/server/validations",
-              "path": "/web/lib/server/validations",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/README",
-              "path": "/web/",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/+layout",
-              "path": "/web/routes/+layout",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/agents/+server",
-              "path": "/web/routes/api/agents/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/chats/+server",
-              "path": "/web/routes/api/chats/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/extract/+server",
-              "path": "/web/routes/api/extract/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/files/[fileId]/+server",
-              "path": "/web/routes/api/files/[fileId]/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/files/+server",
-              "path": "/web/routes/api/files/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/model/+server",
-              "path": "/web/routes/api/model/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/search/+server",
-              "path": "/web/routes/api/search/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/subscriptions/+server",
-              "path": "/web/routes/api/subscriptions/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/user/+server",
-              "path": "/web/routes/api/user/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/api/vectorize/+server",
-              "path": "/web/routes/api/vectorize/+server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/settings/+layout",
-              "path": "/web/routes/settings/+layout",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/settings/+layout.server",
-              "path": "/web/routes/settings/+layout.server",
-              "sidebar": "default"
-            },
-            {
-              "id": "web/routes/settings/+page.server",
-              "path": "/web/routes/settings/+page.server",
-              "sidebar": "default"
-            },
-            {
-              "id": "/category/qwksearch-api",
-              "path": "/category/qwksearch-api",
-              "sidebar": "api"
-            },
-            {
-              "id": "/category/qwksearch-api",
-              "path": "/category/qwksearch-api",
-              "sidebar": "api"
-            },
-            {
-              "id": "/category/qwksearch-api",
-              "path": "/category/qwksearch-api",
-              "sidebar": "api"
-            },
-            {
-              "id": "/category/qwksearch-api",
-              "path": "/category/qwksearch-api",
-              "sidebar": "api"
-            },
-            {
-              "id": "/category/qwksearch-api",
-              "path": "/category/qwksearch-api",
-              "sidebar": "api"
             }
           ],
           "draftIds": [],
           "sidebars": {
-            "api": {
-              "link": {
-                "path": "/category/qwksearch-api",
-                "label": "API Routes"
-              }
-            },
-            "functions": {
-              "link": {
-                "path": "/category/qwksearch-api",
-                "label": "API Routes"
-              }
-            },
-            "web": {
-              "link": {
-                "path": "/category/qwksearch-api",
-                "label": "API Routes"
-              }
-            },
-            "qwksearch": {
-              "link": {
-                "path": "/category/qwksearch-api",
-                "label": "API Routes"
-              }
-            },
             "default": {
               "link": {
-                "path": "/category/qwksearch-api",
-                "label": "API Routes"
+                "path": "/docs/api/extract-content",
+                "label": "## Extract structured content and cite from any URL"
               }
             }
           }
@@ -1161,8 +732,8 @@
   "docusaurus-lunr-search": {
     "default": {
       "fileNames": {
-        "searchDoc": "search-doc-1750227054366.json",
-        "lunrIndex": "lunr-index-1750227054366.json"
+        "searchDoc": "search-doc-1751788542307.json",
+        "lunrIndex": "lunr-index-1751788542307.json"
       }
     }
   }

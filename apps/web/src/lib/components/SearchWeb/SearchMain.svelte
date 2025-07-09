@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   // import "grab-api.js/global";
   import { grab } from "grab-api.js";
-  import { setStateInURL } from "$lib/utils";
+  import { setStateInURL } from "$components/utils";
   import { Splitpanes, Pane } from "svelte-splitpanes";
   import SearchInput from "./MainInputBox.svelte";
   import SearchResults from "./SearchResults.svelte";

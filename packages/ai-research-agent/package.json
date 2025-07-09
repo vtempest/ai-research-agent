@@ -4,7 +4,7 @@
   "module": "index.ts",
   "description": "Search, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",
   "author": "vtempest <grokthiscontact@gmail.com>",
-  "license": "AGPL-3.0",
+  "license": "PROSPER-1.0",
   "main": "./src/index.ts",
   "types": "./src/types.d.ts",
   "exports": {
@@ -28,6 +28,7 @@
   },
   "scripts": {
     "test": "vitest",
+    "ship": "npx standard-version --release-as patch; npm publish",
     "test-ui": "vitest --ui --watch",
     "make": "rm dist/*; NODE_OPTIONS=--max-old-space-size=15192 BUN_JSC_forceRAMSize=15192  vite build "
   },

@@ -1,0 +1,36 @@
+{
+  "id": "api/get-user-by-name",
+  "title": "Get user by user name",
+  "description": "",
+  "source": "@site/src/api/get-user-by-name.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/get-user-by-name",
+  "permalink": "/api/get-user-by-name",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "get-user-by-name",
+    "title": "Get user by user name",
+    "description": "",
+    "sidebar_label": "Get user by user name",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztVktv3DYQ/iuD6SUGFMlxjR50qlu4gdHCLWr7UBiLhEuNVowlkiFHu9ks9N+LoSTvOrtNDj0V6EnivDjPb7hDVquI5SP2kQIuMqwo6mA8G2exRMzQeQpKjjcVlrgifogUftreqo4wQ6+C6ogpiJEdWqGWyZgdBYyY8Yob/NL2fUMgQsCNYrBEVQR2sCSoiXVDVQ4PkUBsvYHaBWCKbOwqxwwDfexNoApLDj1lGHVDncJyh7z14kHkYOwKh2EhwtE7GykK/+L8XD4vXYm91hRj3bfwHC5mqJ1lsizyyvvW6MQoPnWtkA7uNNzKpUocDkeBXiUybBoHJoLvg25UNHYFdXAdcEPgiSGyC5KwKQC3/ECaJcNBXGIzum+qgyCNZVqlC2sXOsUj6YdLHLJ9CY5zkmFtQuTbf+K26itM6pRpT3K8inHjQnWa2Th72qA4eseK+/jNyL6/OMptyuykPgwZTrWZ+jCVYxD6Yf0+RFH9v4D/oQIK5/LU5N7YtWpNBXO2IPZSaaowaVwea6QLrWOoXW+rdGdH3LgJ3RKmcYMlFmKz2M2WB8wwUljPUNeHFktsmH1ZFJ44lT+PG7VaUciNK9YXKOgTSffB8PZOum3sgVn6nerlpuekOTlLiurWbcZu6aRtzQhBPTcumM+piR++dbvypkj2isqo1q3Ee+386MAmGKZS1LDEzlWm3koLRzAWtq4PoLR2veWEtKqaJeV/5CfCME2WefdE24MwlDe/0hazuYizxLQMGlJVqqqca3dcofvGRBk0BVF1viUY0w5/TGFO5xzgL9eDVhZqYytwPUMnbLWU37sxF6AYHqc87dOzeHVEOgMXwFl4NEHndSCyrqLcEmfw3SR1QqswQRdnOcAvsqDE8dHnTPKUfOsjJYhQ3sATbeF99KSNal8/0fa9LDxZa6PEYYGhNq2sVdl20nNjat7k5/m5YMwEWHOQc2qERaGLv9d3FNZG075JDnxOIsW04JRO3TXBghSLSXU/7sUTohhNNtLBZF55pRt6fZHceTELm80mV4mbu7AqJtVY/Hbz8/Xt3bWo5A13beoA7yJ3yh4YfkucphmW2/E7PSRe9Mhuv5txD7lMn7jwrTI24VJISDJO8/TAybB8xtVFho2LLLzdbqkiPYR2GIT8saewxfJxkeFaBaOWkuvHHVYmyn+FZa3aSF/x6dWf0wPlDP7NM+dkXPOUWZmotWp7GpOQhnC/NobFkM2zJs6P7CutyfOB4pcPG4GsZzx8e32Pw/A3F9F9KQ==",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Find pet by ID",
+    "permalink": "/api/get-pet-by-id"
+  },
+  "next": {
+    "title": "Logs user into the system",
+    "permalink": "/api/login-user"
+  }
+}

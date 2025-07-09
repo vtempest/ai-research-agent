@@ -1,0 +1,36 @@
+{
+  "id": "api/update-pet",
+  "title": "Update an existing pet",
+  "description": "",
+  "source": "@site/src/api/update-pet.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/update-pet",
+  "permalink": "/api/update-pet",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "update-pet",
+    "title": "Update an existing pet",
+    "description": "",
+    "sidebar_label": "Update an existing pet",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "eJztV8Fu4zYQ/RVieukCiuUGaQ8+dZumQNCiDZqkQGEY2bE0lriRSC05iuM19O/FkFIkx0kX7aG95GRqODN8HM57JvfAWHhYLKEhhlUCOfnM6Ya1NbAASMA25FA+L3NYQNvkyHRFDAk4+tSS5x9svoPFHjJrmAzLEJum0lmISj96ybQHn5VUo4xYc0WwAFQxz+GS71VDrDbWKY8VKW0UlxRsnq0jSIB3jYTb9UfKBhzaUS67MFiLS1Natreu8rKlxskeWJOX1XUeMMQc2jAV5CCBjXU1cjR9dwZdAhkyFdbtppCviNWT/Rj5MBXgo4B+Ae6/hBN2Nrp6dtoU0HUJPNaVTEQHOB/gda8GJUCPWDdhR7ktCk2ywFizMQCdQ9no4RKDJySwddg0Unp2LXUJaKbavwwzNtoXUjMWf5t1cg43wfX5ETAW/2f1BVQnZs/I7QuVeI44Nrb4Dq0+tDmZtpaWxgfUFa6r0Ndk8pjF2yqH1TEAoVQAMOVg7/JGwTcKvlHwv6Jg93wdqVgsguISWRmi3Cu2ak0K85xyGU+XH1nVH4Ij31jjY+HO5nP5OVzj0jxgpXN1+aPyrSgA5VK7s/nZsa/gMVaI3pre69tjrz8kX5ARRY8ZRXMoL2Wt07yDxXIvNQyo77DlUkq2dZppIeawEczjeNWtEqiJSyu3iaYN/YASAmnsFk/ugZwPWVtXwQJK5maRpsMSM7/FoiA30zZ9OAVJOEC5FoGL1XkG6KkHrHyfSoNVdhsbsBah1PHi0nJpnf4c9nv7pdWx0WnIl+YaKxt6IrNNBDApwAJqm+vNTvgQemxnW6cwy2xr+KA8izCO88HQ9Vqu7+5pN6Vuo38m4W7fc4NHAloOrSTMyYVjkvvX7+NN7WKQnci8+aHI9qY+6UCxJ0OvVAdCtRzcVoO+LF/Lsxo5OaGUiIvZ2OPOuym1V9orVD5gVrE15C8rHEX/PVPqT9uqDI3aaJMr27KqZRrXMryO56WQ1bI/y/EIV18fmd4p65Q1aqldNts4ImNzmhniRH3Ve70QlWqXpe9mSv1knWIBHjEncpYBW+spkBsbre5ppz74hjKN1ck97T4E5pPn6DFtQrXRFZPzM0hAeBFL881sPpuLtPZiPGxyKI1Mkav9b5trcg86o7GRJ5iDSwpJuLpjFhhANeoqNhQT1t+P7nJQlc7IeJqI3fsGs5JOTgOcA75ut9sZhtmZdUXah/r0l8vzi1+vLyRkVnJdhS5trOcazSTxbXhpKBTZ0Z61Kfq/k4MmmTw7YPyrYXrktKlQGwEdUO17mXl66JTWs3zu92v0dOuqrhPzp5aECstVAg/odOjQxXLVJQOnpL0DF+E8rnxyI4uKe9VGKj57/BxI3tXtDSSw7t9Mtc0lxOFWZAC3w5NLgoOKBNseKjRFi4X4xpRBFV5Rtn4gQAe1MLsJwFGZ1Kg8Sb+pIGDQJa/E/jM1jCnFJlr6atInBR4iCoeG74Jvt+q67i8qVfox",
+    "sidebar_class_name": "put api-method",
+    "info_path": "api/swagger-petstore",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "previous": {
+    "title": "Updates a pet in the store with form data",
+    "permalink": "/api/update-pet-with-form"
+  },
+  "next": {
+    "title": "Updated user",
+    "permalink": "/api/update-user"
+  }
+}
