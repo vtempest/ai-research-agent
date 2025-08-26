@@ -1,63 +1,49 @@
 {
-  "name": "ai-research-agent",
-  "version": "1.0.0",
-  "module": "index.ts",
-  "description": "Search, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",
-  "author": "vtempest <grokthiscontact@gmail.com>",
-  "license": "AGPL-3.0",
-  "workspaces": [
-    ".",
-    "web-app"
-  ],
-  "exports": {
-    ".": "./index.ts"
-  },
-  "scripts": {
-    "dev": "cd web-app; bun dev",
-    "serve": "cd web-app; bun serve;",
-    "docs": "cd docs; bun docs",
-    "test": "vitest",
-    "test-ui": "vitest --ui --watch"
-  },
-  "devDependencies": {
-    "@tsconfig/svelte": "^5.0.4",
-    "@vitest/ui": "^3.1.4",
-    "adm-zip": "^0.5.16",
-    "axios": "^1.9.0",
-    "clsx": "^2.1.1",
-    "typedoc": "^0.28.4",
-    "typedoc-plugin-markdown": "^4.6.3",
-    "typescript": "^5.8.3",
-    "vitest": "^3.1.4"
-  },
-  "dependencies": {
-    "@huggingface/transformers": "^3.5.1",
-    "@langchain/anthropic": "^0.3.21",
-    "@langchain/community": "^0.3.44",
-    "@langchain/core": "^0.3.57",
-    "@langchain/google-vertexai-web": "^0.2.9",
-    "@langchain/groq": "^0.2.2",
-    "@langchain/langgraph": "^0.2.73",
-    "@langchain/mcp-adapters": "^0.4.5",
-    "@langchain/openai": "^0.5.11",
-    "@langchain/xai": "^0.0.2",
-    "@popperjs/core": "^2.11.8",
-    "ajv": "^8.17.1",
-    "chrono-node": "^2.8.0",
-    "grab-api.js": "^0.9.4",
-    "highlight.js": "^11.11.1",
-    "js-yaml": "^4.1.0",
-    "jszip": "^3.10.1",
-    "katex": "^0.16.22",
-    "linkedom": "^0.18.10",
-    "markdown-it": "^14.1.0",
-    "markdown-it-highlightjs": "^4.2.0",
-    "marked": "^15.0.12",
-    "pdfjs-serverless": "^1.0.0",
-    "sanitize-html": "^2.17.0",
-    "stream-browserify": "^3.0.0",
-    "tldts": "^7.0.7",
-    "umap-js": "^1.4.0",
-    "usearch": "^2.17.1"
-  }
+    "name": "qwksearch",
+    "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
+    "author": "vtempest <grokthiscontact@gmail.com>",
+    "license": "rights.institute/PROSPER",
+    "version": "1.1.0",
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "packageManager": "bun@1.2.16",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./packages/ai-research-agent/dist/types.d.ts",
+            "import": "./packages/ai-research-agent/dist/research-agent.es.js",
+            "require": "./packages/ai-research-agent/dist/research-agent.cjs.js"
+        },
+        "./api-client": {
+            "types": "./packages/qwksearch-api-client/dist/index.d.ts",
+            "import": "./packages/qwksearch-api-client/dist/index.js",
+            "require": "./packages/qwksearch-api-client/dist/index.cjs"
+        },
+        "./editor": {
+            "types": "./packages/reason-editor/dist/types.d.ts",
+            "import": "./packages/reason-editor/dist/index.js",
+            "require": "./packages/reason-editor/dist/index.cjs"
+        },
+        "./neural-net": {
+            "types": "./packages/neural-net/dist/index.d.ts",
+            "import": "./packages/neural-net/dist/index.js",
+            "require": "./packages/neural-net/dist/index.cjs"
+        }
+    },
+    "scripts": {
+        "ship": "npx standard-version --release-as patch; npm publish",
+        "build:packages": "turbo build --filter=./packages/*",
+        "build:api": "turbo build:api --filter=qwksearch-api-client",
+        "docs": "turbo build:docs:slashdocs --filter=qwksearch-api-docs;",
+        "docs:serve": "turbo docs",
+        "dev": "turbo dev --filter=qwksearch-web-app",
+        "build": "turbo build --filter=ai-research-agent",
+        "serve": "turbo serve",
+        "test": "turbo test"
+    },
+    "dependencies": {
+        "turbo": "^2.5.4"
+    }
 }

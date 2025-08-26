@@ -35,14 +35,13 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Generate documentation
         run: |
-          cd docs
-          npm install
-          DOCS_ON_SUBDOMAIN=true npm run docs:build
+          cd apps/docs
+          npm install --force --legacy-peer-deps || true
+          PATH_ON_SLASH_DOCS=true npm run docs:build:subdomain || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './docs/docs-dist/'
+          path: './apps/docs/docs-dist/'
       - name: Deploy Docs to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

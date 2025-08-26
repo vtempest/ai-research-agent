@@ -1,0 +1,92 @@
+{
+  "name": "ai-research-agent",
+  "version": "1.2.1",
+  "module": "index.ts",
+  "description": "Search, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",
+  "author": "vtempest <grokthiscontact@gmail.com>",
+  "license": "PROSPER-1.0",
+  "main": "./src/index.ts",
+  "types": "./src/types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/research-agent.es.js",
+      "require": "./dist/research-agent.cjs.js"
+    },
+    "./model": "./src/wordlists/wiki-phrases-model-240k.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "vitest",
+    "ship": "npx standard-version --release-as patch; npm publish",
+    "test-ui": "vitest --ui --watch",
+    "make": "rm dist/*; NODE_OPTIONS=--max-old-space-size=15192 BUN_JSC_forceRAMSize=15192  vite build "
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^5.0.4",
+    "@vitest/ui": "^3.2.2",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.9.0",
+    "buffer": "^6.0.3",
+    "clsx": "^2.1.1",
+    "http-browserify": "^1.7.0",
+    "memfs": "^4.17.2",
+    "stream-http": "^3.2.0",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-node-polyfills": "^0.23.0",
+    "vitest": "^3.2.2"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.21",
+    "@langchain/aws": "^0.1.11",
+    "@langchain/cloudflare": "^0.1.0",
+    "@langchain/community": "^0.3.46",
+    "@langchain/core": "^0.3.58",
+    "@langchain/google-vertexai-web": "^0.2.10",
+    "@langchain/groq": "^0.2.2",
+    "@langchain/langgraph": "^0.3.0",
+    "@langchain/mcp-adapters": "^0.5.2",
+    "@langchain/ollama": "^0.2.2",
+    "@langchain/openai": "^0.5.12",
+    "@langchain/xai": "^0.0.2",
+    "ajv": "^8.17.1",
+    "chrono-node": "^2.8.2",
+    "grab-api.js": "^0.9.109",
+    "highlight.js": "^11.11.1",
+    "js-yaml": "^4.1.0",
+    "jszip": "^3.10.1",
+    "katex": "^0.16.22",
+    "linkedom": "^0.18.11",
+    "markdown-it": "^14.1.0",
+    "markdown-it-highlightjs": "^4.2.0",
+    "marked": "^15.0.12",
+    "pdfjs-serverless": "^1.0.0",
+    "sanitize-html": "^2.17.0",
+    "tldts": "^7.0.8"
+  },
+  "keywords": [
+    "nlp",
+    "autocomplete",
+    "wikipedia",
+    "knowledge-graph",
+    "keywords",
+    "search-algorithm",
+    "hacktoberfest",
+    "mind-map",
+    "ai-search"
+  ]
+}

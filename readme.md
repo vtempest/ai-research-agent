@@ -26,10 +26,11 @@
     <img alt="GitHub Discussions"
         src="https://img.shields.io/github/discussions/vtempest/ai-research-agent" />
     </a>
+    <a href="https://npmjs.org/package/ai-research-agent"><img src="https://img.shields.io/npm/v/ai-research-agent"/></a>   
     <a href="https://github.com/vtempest/ai-research-agent/pulse" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/m/vtempest/ai-research-agent" />
     </a>
-    <img src="https://img.shields.io/github/last-commit/vtempest/ai-research-agent.svg?style=flat-square" alt="GitHub last commit" />
+    <img src="https://img.shields.io/github/last-commit/vtempest/ai-research-agent.svg" alt="GitHub last commit" />
 </p>
 <p align="center">
     <a href="https://npmjs.org/package/ai-research-agent">
@@ -38,8 +39,8 @@
     <a href="https://github.com/vtempest/ai-research-agent/actions/workflows/docs.yml">
     <img src="https://github.com/vtempest/ai-research-agent/actions/workflows/docs.yml/badge.svg" alt="Build Status" />
     </a>
-    <a href="http://makeapullrequest.com">
-        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
+    <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
             alt="PRs Welcome" />
     </a>
     <a href="https://codespaces.new/vtempest/ai-research-agent">
@@ -52,7 +53,7 @@
 ## 🧠💻 Reimagine the Internet as Self-Organizing Mind Map
 
 <p align="center">
-    <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768" width="550px" controls     />
+ <img  src="https://i.imgur.com/Z9OJMwd.gif" />
 </p>
 
 📜 [Research Paper](https://drive.google.com/file/d/1EuV4fTKsBiBIyDDuc4ss47oFFUVjCsXX/view)
@@ -68,9 +69,8 @@ Language Models can distill the essence of collective thought into a vector spac
 
 
 ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
-
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/l5AFrS0.png" /> 
+    <img width="350px" src="https://i.imgur.com/s8gsYt1.png" /> 
 </p>
 
 [searchSTREAM Docs](https://airesearch.js.org/functions/search/search-stream)
@@ -80,6 +80,20 @@ Language Models can distill the essence of collective thought into a vector spac
 3.  SEEKTOPIC: Extract Keyphrase Topics and Top Sentences that centralize those topics
 4.  Rerank documents's chunks based on relevance to query, using embeddings by convert text to concept vector, get cosine similarity of query to topic, returning the sentences central to key relevant parts of the article.
 5.  Research Agent prompt with key sentences from relevant sources to answer via Groq Llama, OpenAI, or other LLMs and suggest follow-ups
+
+### 🚜📜 Tractor the Text Extractor
+
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/nNfHmct.png" /> 
+</p>
+
+[extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
+
+1.  Main Content Detection: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
+3.  YouTube Transcript Processing: When a YouTube video URL is detected, retrieve the complete video transcript including both manual captions and auto-generated subtitles, maintaining proper timestamp synchronization.
+4. PDF to HTML: Extracts formatted text from PDF with parsing of linebreaks , page headers, footnotes, and section headings. Supports fonts, links, bold, italics, lists, headings, headers, footnotes, and Table of Contents, Quotes, and Code Blocks. Removes repeated headers, links footnote anchors to the footnote, and preserves number of the PDF page with invisible I element. This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless) to work in more environments than PDF.js-based tools: Cloudflare workers, serverless, node.js, and front-end only.
+2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
+5.  Cite: Identify and extract citation metadata including author names, publication dates, sources, and titles using HTML meta tags and common class name patterns. The system validates author names against a comprehensive database of 90,000 first and last names, distinguishing between personal and organizational authors to properly format citations.
 
 ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context
 
@@ -106,23 +120,9 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 10.  Output Generation: Return top sentences (with associated key phrases) and top key phrases (with associated sentences).
 11.  Dynamic Reranking: If a user interacts with a key phrase or if there's a search query leading to the document, compare query similarity to key phrases, heavily weight the most similar key phrase, and reapply TextRank from step 8.
 
-### 🚜📜 Tractor the Text Extractor
-
-<p align="center">
-<img width="350px"  src="https://i.imgur.com/cRewT07.png" /> 
-</p>
-
-[extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
-
-1.  Main Content Detection: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
-3.  YouTube Transcript Processing: When a YouTube video URL is detected, retrieve the complete video transcript including both manual captions and auto-generated subtitles, maintaining proper timestamp synchronization.
-4. PDF to HTML: Extracts formatted text from PDF with parsing of linebreaks , page headers, footnotes, and section headings. Supports fonts, links, bold, italics, lists, headings, headers, footnotes, and Table of Contents, Quotes, and Code Blocks. Removes repeated headers, links footnote anchors to the footnote, and preserves number of the PDF page with invisible I element. This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless) to work in more environments than PDF.js-based tools: Cloudflare workers, serverless, node.js, and front-end only.
-2.  Basic HTML Standardization: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
-5.  Cite: Identify and extract citation metadata including author names, publication dates, sources, and titles using HTML meta tags and common class name patterns. The system validates author names against a comprehensive database of 90,000 first and last names, distinguishing between personal and organizational authors to properly format citations.
-
 ### 🕸️🖥️ Tardigrade the Web Crawler
 <p align="center">
-<img src="https://i.imgur.com/XXXTprT.png" width="350px" /> 
+<img src="https://i.imgur.com/iuzpcvD.png" width="350px" /> 
 </p>
 
 [scrapeURL Docs](https://airesearch.js.org/functions/extractor/url-to-content/scrape-url)
@@ -132,7 +132,7 @@ SEEKTOPIC extracts unique, domain-specific key phrases from a document using nou
 2.  Features: timeout, redirects, default UA, referer as google, and bot  
     detection checking.
 3.  If fetch method does not get needed HTML, use Docker container wih proxy as backup.
-4.  [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/src/crawler)  
+4.  [Setup Docker](https://github.com/vtempest/ai-research-agent/tree/master/packages/crawler)  
     container with NodeJS server API renders with puppeteer DOM to get all HTML loaded by  
     secondary in-page API requests after the initial page request, including user login and cookie storage.
 5.  Bypass Cloudflare bot check: A webpage proxy that request through Chromium (puppeteer) - can be used  
@@ -207,5 +207,5 @@ Search-on-keystroke and load this JSON index for word and phrase completion, sor
 *   [LangChain Hub](https://smith.langchain.com/hub) - A collection of reusable prompts, chains, and agents for building LLM applications
 *   [LangChain Documentation](https://js.langchain.com/docs) - Comprehensive documentation for LangChain.js
 
- <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
-            alt="PRs Welcome" /> Please star this repo for updates! 🌟
+ <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
+            alt="PRs Welcome" /> 🌟 Please star this repo so it will grow and get updates! 

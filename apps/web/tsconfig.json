@@ -1,0 +1,27 @@
+{
+  "extends": "./.svelte-kit/tsconfig.json",
+  "exclude": ["./src/lib/components/ui",
+  "**/src/wordlists/**",
+  "src/wordlists"],
+  "compilerOptions": {
+    "paths": {
+      "$lib/*": ["./src/lib/*"]
+    },
+    "typeRoots": ["./src/global.d.ts"],
+   "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmitOnError": false,
+    "strict": false,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src/**/*"
+   ]
+}
