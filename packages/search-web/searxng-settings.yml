@@ -12,8 +12,8 @@ server:
 
 ui:
   static_use_hash: true
-redis:
-  url: redis://valkey:6379/0
+# redis:
+#   url: redis://valkey:6379/0
 
 engines:
   - name: annas archive
