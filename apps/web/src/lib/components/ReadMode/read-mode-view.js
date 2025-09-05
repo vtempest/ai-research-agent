@@ -118,34 +118,93 @@ overlay.style.overflow = 'auto';
 
 // 2. Insert your content into the overlay
 overlay.innerHTML = `
-  <div class="flex flex-row h-screen overflow-hidden">
-    <div id="reading-mode-controls" class="w-[100px] overflow-y-auto text-black bg-gray-100 p-4">
+  <div class="flex flex-row h-screen overflow-hidden" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+    <div id="reading-mode-controls" class="w-[80px] min-w-[70px] max-w-[100px] overflow-y-auto text-black bg-gradient-to-b from-slate-50 to-slate-100 p-3 shadow-sm border-r border-slate-200/80">
       <!-- Sidebar content goes here -->
     </div>
-    <div id="readability-content" class="bg-slate-200 flex-1 overflow-y-auto py-[100px]">
-      <div class="max-w-3xl mx-auto p-6 font-serif text-lg leading-relaxed">
-        <div contenteditable class="text-gray-600 mb-4">
+    <div id="readability-content" class="flex-1 overflow-y-auto" style="padding: 40px 0; background: transparent;">
+      <div class="w-full mx-auto font-serif text-lg leading-relaxed bg-white/95 shadow-lg px-8 py-8 border border-slate-150"
+        style="
+          margin-left: 20%; 
+          margin-right: 20%; 
+          width: 60%; 
+          max-width: 60%;
+          border-radius: 8px;
+          box-shadow: 0 4px 20px 0 rgba(60,72,88,0.08);
+          backdrop-filter: blur(10px);
+        ">
+        <div contenteditable class="text-gray-500 mb-3 text-sm tracking-wide italic font-sans">
           ${author_short ? author_short + " " + year : ""}    
         </div>
-        <div class="border-b border-gray-300 text-sm text-gray-600">
-          <p class="mt-2" contenteditable>${article.cite}</p>
+        <div class="border-b border-gray-200 text-xs text-gray-500 pb-2 mb-4 font-sans">
+          <p class="mt-1" contenteditable>${article.cite}</p>
         </div>
-        <div class="text-md text-slate-600">
+        <div class="text-xl font-bold text-slate-800 mb-5 tracking-tight leading-tight">
           ${article.title}    
         </div>
-        <div id="article-text" class="bg-slate-200 prose prose-lg">${article.html}</div>
+        <div id="article-text" class="prose prose-base max-w-none text-slate-700 leading-relaxed" style="
+          background: transparent; 
+          padding: 0; 
+          margin: 0;
+          line-height: 1.7;
+        ">
+          ${article.html}
+        </div>
       </div>
     </div>
   </div>
   <button id="close-reading-overlay" style="
-    position: fixed; top: 20px; right: 20px; z-index: 1000000;
-    background: #333; color: #fff; border: none; border-radius: 4px;
-    padding: 10px 16px; font-size: 18px; cursor: pointer;
-  ">✕</button>
+    position: fixed; top: 20px; right: 30px; z-index: 1000000;
+    background: #475569; color: #fff; border: none; border-radius: 4px;
+    padding: 8px 12px; font-size: 16px; cursor: pointer; 
+    box-shadow: 0 2px 8px 0 rgba(30,41,59,0.12);
+    transition: all 0.2s ease;
+  " onmouseover="this.style.background='#64748b'; this.style.transform='scale(1.05)'" 
+     onmouseout="this.style.background='#475569'; this.style.transform='scale(1)'">✕</button>
 `;
 
 // 3. Append the overlay to the body
 document.body.appendChild(overlay);
+
+// Add CSS to constrain images within margins
+const imageConstraintStyle = document.createElement('style');
+imageConstraintStyle.textContent = `
+  #readability-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  #readability-content figure {
+    max-width: 100% !important;
+    margin: 1.5rem auto;
+    text-align: center;
+  }
+  
+  #readability-content figure img {
+    margin: 0 auto 0.5rem auto;
+  }
+  
+  #readability-content video {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+  }
+  
+  #readability-content iframe {
+    max-width: 100% !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+  }
+`;
+document.head.appendChild(imageConstraintStyle);
 
 
 
@@ -154,6 +213,10 @@ document.body.appendChild(overlay);
 // 4. Add a close button handler
 document.getElementById('close-reading-overlay').onclick = () => {
   overlay.remove();
+  // Clean up the added styles when closing
+  if (imageConstraintStyle && imageConstraintStyle.parentNode) {
+    imageConstraintStyle.parentNode.removeChild(imageConstraintStyle);
+  }
 };
 
 
