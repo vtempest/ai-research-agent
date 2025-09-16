@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/ParsedElements
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/ParsedElements
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L1)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L1)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L2)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 containLinks: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L5)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L5)
 
 #### footnoteLinks
 
@@ -59,7 +59,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 footnoteLinks: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L3)
 
 #### footnotes
 
@@ -67,7 +67,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 footnotes: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L4)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L4)
 
 #### formattedWords
 
@@ -75,7 +75,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 formattedWords: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L6)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L6)
 
 ### Methods
 
@@ -85,7 +85,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedE
 add(parsedElements: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/ParsedElements.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/ParsedElements.js#L9)
 
 ##### Parameters
 

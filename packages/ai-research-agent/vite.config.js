@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import path from "path";
 
 export default defineConfig({
   plugins: [
@@ -20,6 +21,7 @@ export default defineConfig({
   build: {
     lib: {
         entry: {
+          "qwksearch-api-client":  path.resolve("../qwksearch-api-client"),
           'research-agent': resolve(__dirname, 'src/index.ts'),
         },
       formats: ['es', 'cjs'],

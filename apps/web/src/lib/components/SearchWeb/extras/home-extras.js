@@ -3,8 +3,13 @@
  * and collective consciousness, 50+ artworks from Anthony Alcaraz
  * @returns {string} The URL of random artistic background
  */
+
+
 export function getBackgroundArtwork() {
   const backgrounds = [
+    "81xLiVI.jpeg", // 8 shapes around a cpu board
+    "6kod2Em.jpeg", // radial blue to graph of docs
+    "eU0C8zt.jpeg", // data insights big screen
     "Bv0PBY8.jpeg", // determinism to autonomy
     "DQNbjIZ.jpeg", // hald grid half circe wires
     "LuKUsLE.png", // AI mind in library

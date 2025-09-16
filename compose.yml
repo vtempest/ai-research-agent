@@ -35,8 +35,8 @@ services:
     container_name: scraper
     restart: unless-stopped
     volumes:
-      - ./packages/ai-research-agent/src/crawler:/app
-    build: ./packages/ai-research-agent/src/crawler/Dockerfile.scraper
+      - ./packages/ai-research-agent/src/scraper:/app
+    build: ./packages/ai-research-agent/src/scraper/Dockerfile.scraper
     ports:
       - 3000:3000
     networks:
@@ -56,10 +56,8 @@ services:
     ports:
       - 8088:8080
     volumes:
-      # - ./src/crawler/searxng-engines.yml:/etc/searxng/engines.yml:rw
-      - ./packages/ai-research-agent/src/crawler/searxng-settings.yml:/etc/searxng/settings.yml:rw
-      # - ./src/crawler/uwsgi.ini:/etc/searxng/uwsgi.ini:rw
-      - ./packages/ai-research-agent/src/crawler:/etc/searxng:rw
+      - ./packages/ai-research-agent/src/scraper/searxng-settings.yml:/etc/searxng/settings.yml:rw
+      - ./packages/ai-research-agent/src/scraper:/etc/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://search.${DOMAIN:-localhost}
       - UWSGI_WORKERS=4

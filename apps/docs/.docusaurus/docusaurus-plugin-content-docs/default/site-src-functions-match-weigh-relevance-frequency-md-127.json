@@ -1,0 +1,24 @@
+{
+  "id": "functions/match/weigh-relevance-frequency",
+  "title": "weigh-relevance-frequency",
+  "description": "ai-research-agent / match/weigh-relevance-frequency",
+  "source": "@site/src/functions/match/weigh-relevance-frequency.md",
+  "sourceDirName": "functions/match",
+  "slug": "/functions/match/weigh-relevance-frequency",
+  "permalink": "/docs/functions/match/weigh-relevance-frequency",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/match/weigh-relevance-frequency.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "match-quasar",
+    "permalink": "/docs/functions/match/match-quasar"
+  },
+  "next": {
+    "title": "modules",
+    "permalink": "/docs/functions/modules"
+  }
+}

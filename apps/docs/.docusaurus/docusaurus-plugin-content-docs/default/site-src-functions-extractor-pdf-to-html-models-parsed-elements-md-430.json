@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/ParsedElements",
+  "title": "ParsedElements",
+  "description": "ai-research-agent / extractor/pdf-to-html/models/ParsedElements",
+  "source": "@site/src/functions/extractor/pdf-to-html/models/ParsedElements.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/ParsedElements",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/ParsedElements",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/models/ParsedElements.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ParseResult",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/ParseResult"
+  },
+  "next": {
+    "title": "StashingStream",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/StashingStream"
+  }
+}

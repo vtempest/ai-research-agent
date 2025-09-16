@@ -48,5 +48,5 @@ export async function GET({ url }) {
   
 
   let elapsedTime = Date.now() - startTime;
-  return json({ results, elapsedTime });
+  return json({ ...results, elapsedTime });
 }

@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/metadata-to-cite
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/metadata-to-cite
 
 ## extractCiteFromMetadata()
 
@@ -6,7 +6,7 @@
 function extractCiteFromMetadata(doc: Document): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/metadata-to-cite.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/metadata-to-cite.js#L6)
+Defined in: [src/extractor/html-to-cite/metadata-to-cite.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/metadata-to-cite.js#L6)
 
 Extract cite info from common property names in webpage's metadata
 

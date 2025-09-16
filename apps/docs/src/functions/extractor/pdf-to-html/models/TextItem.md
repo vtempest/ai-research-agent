@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/TextItem
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/TextItem
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L15)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L15)
 
 ### Extends
 
@@ -16,7 +16,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L16)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L16)
 
 ##### Parameters
 
@@ -61,7 +61,7 @@ PageItem.constructor
 annotation: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L8)
 
 ##### Inherited from
 
@@ -75,7 +75,7 @@ PageItem.annotation
 font: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L23)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L23)
 
 #### height
 
@@ -83,7 +83,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 height: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L21)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L21)
 
 #### lineFormat
 
@@ -91,7 +91,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 lineFormat: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L25)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L25)
 
 #### parsedElements
 
@@ -99,7 +99,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 parsedElements: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L9)
 
 ##### Inherited from
 
@@ -113,7 +113,7 @@ PageItem.parsedElements
 text: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L22)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L22)
 
 #### type
 
@@ -121,7 +121,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 type: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L7)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L7)
 
 ##### Inherited from
 
@@ -135,7 +135,7 @@ PageItem.type
 unclosedFormat: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L27)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L27)
 
 #### unopenedFormat
 
@@ -143,7 +143,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 unopenedFormat: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:26](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L26)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:26](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L26)
 
 #### width
 
@@ -151,7 +151,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 width: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L20)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L20)
 
 #### x
 
@@ -159,7 +159,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 x: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L18)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L18)
 
 #### y
 
@@ -167,4 +167,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 y: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L19)
+Defined in: [src/extractor/pdf-to-html/models/TextItem.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItem.js#L19)

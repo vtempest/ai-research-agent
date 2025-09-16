@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/human-names-recognize
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/human-names-recognize
 
 ## extractHumanName()
 
@@ -6,7 +6,7 @@
 function extractHumanName(author: string, options: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/human-names-recognize.js:143](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/human-names-recognize.js#L143)
+Defined in: [src/extractor/html-to-cite/human-names-recognize.js:143](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/human-names-recognize.js#L143)
 
 Validates and formats author names properly handling multiple authors and multi-word names
 

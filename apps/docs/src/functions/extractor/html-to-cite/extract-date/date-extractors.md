@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/date-extractors
+[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/date-extractors
 
 ## COPYRIGHT\_PATTERN
 
@@ -6,7 +6,7 @@
 const COPYRIGHT_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L89)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L89)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const DATE_EXPRESSIONS: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:40](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L40)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:40](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L40)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const DATESTRINGS_CATCH: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L98)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L98)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const DATESTRINGS_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L97)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L97)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const FAST_PREPEND: "" = '';
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L30)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L30)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const FREE_TEXT_EXPRESSIONS: ".//*[self::div or self::h2 or self::h3 or self::h4 or self::li or self::p or self::span or self::time or self::ul]/text()" = ".//*[self::div or self::h2 or self::h3 or self::h4 or self::li or self::p or self::span or self::time or self::ul]/text()";
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:80](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L80)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:80](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L80)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const MAX_SEGMENT_LEN: 52 = 52;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L34)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L34)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const MIN_SEGMENT_LEN: 6 = 6;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L33)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L33)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const MMYYYY_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:103](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L103)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:103](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L103)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const MMYYYY_YEAR: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:104](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L104)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:104](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L104)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SELECT_YMD_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L94)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L94)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SELECT_YMD_YEAR: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L95)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L95)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SIMPLE_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L105)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L105)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SLASHES_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:99](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L99)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:99](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L99)
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SLASHES_YEAR: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:100](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L100)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:100](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L100)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const SLOW_PREPEND: "" = "";
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L74)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L74)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_CATCH: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:91](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L91)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:91](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L91)
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_COMP_REGEX_A: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L83)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L83)
 
 ***
 
@@ -186,7 +186,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_COMP_REGEX_B: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L84)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L84)
 
 ***
 
@@ -196,7 +196,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_LOOSE_CATCH: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:93](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L93)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:93](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L93)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_LOOSE_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:92](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L92)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:92](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L92)
 
 ***
 
@@ -216,7 +216,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const THREE_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L90)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L90)
 
 ***
 
@@ -226,7 +226,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const TIMESTAMP_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:140](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L140)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:140](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L140)
 
 ***
 
@@ -236,7 +236,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const TWO_COMP_REGEX: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L85)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L85)
 
 ***
 
@@ -246,7 +246,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const YEAR_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L88)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L88)
 
 ***
 
@@ -256,7 +256,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const YMD_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:109](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L109)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:109](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L109)
 
 ***
 
@@ -266,7 +266,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const YMD_YEAR: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L96)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L96)
 
 ***
 
@@ -276,7 +276,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const YYYYMM_CATCH: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:102](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L102)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:102](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L102)
 
 ***
 
@@ -286,7 +286,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 const YYYYMM_PATTERN: RegExp;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:101](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L101)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:101](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L101)
 
 ***
 
@@ -300,7 +300,7 @@ function custom_parse(
    max_date: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:247](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L247)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:247](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L247)
 
 ### Parameters
 
@@ -375,7 +375,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function discard_unwanted(tree: any): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:186](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L186)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:186](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L186)
 
 ### Parameters
 
@@ -414,7 +414,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function external_date_parser(string: any, outputformat: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:342](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L342)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:342](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L342)
 
 ### Parameters
 
@@ -465,7 +465,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function extract_url_date(testurl: any, options: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:196](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L196)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:196](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L196)
 
 ### Parameters
 
@@ -516,7 +516,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function idiosyncrasies_search(htmlstring: any, options: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:416](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L416)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:416](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L416)
 
 ### Parameters
 
@@ -567,7 +567,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function img_search(tree: any, options: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:386](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L386)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:386](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L386)
 
 ### Parameters
 
@@ -618,7 +618,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function json_search(tree: any, options: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:403](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L403)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:403](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L403)
 
 ### Parameters
 
@@ -672,7 +672,7 @@ function pattern_search(
    options: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:394](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L394)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:394](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L394)
 
 ### Parameters
 
@@ -735,7 +735,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function regex_parse(string: any): Date;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:225](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L225)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:225](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L225)
 
 ### Parameters
 
@@ -779,7 +779,7 @@ function try_date_expr(
    max_date: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js:356](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L356)
+Defined in: [src/extractor/html-to-cite/extract-date/date-extractors.js:356](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-extractors.js#L356)
 
 ### Parameters
 

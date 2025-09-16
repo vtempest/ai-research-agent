@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / tokenize/word-to-root-stem
+[ai-research-agent](../modules.md) / tokenize/word-to-root-stem
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function stemWordToRoot(word: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/word-to-root-stem.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/word-to-root-stem.js#L12)
+Defined in: [src/tokenize/word-to-root-stem.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/word-to-root-stem.js#L12)
 
 Stems a word using the <a
 href="https://snowballstem.org/algorithms/porter/stemmer.html">Porter

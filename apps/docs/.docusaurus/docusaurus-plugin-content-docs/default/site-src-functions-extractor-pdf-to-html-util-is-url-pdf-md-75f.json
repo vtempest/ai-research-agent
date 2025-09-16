@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/util/is-url-pdf",
+  "title": "is-url-pdf",
+  "description": "ai-research-agent / extractor/pdf-to-html/util/is-url-pdf",
+  "source": "@site/src/functions/extractor/pdf-to-html/util/is-url-pdf.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/util",
+  "slug": "/functions/extractor/pdf-to-html/util/is-url-pdf",
+  "permalink": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/util/is-url-pdf.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "GatherBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks"
+  },
+  "next": {
+    "title": "page-item-functions",
+    "permalink": "/docs/functions/extractor/pdf-to-html/util/page-item-functions"
+  }
+}

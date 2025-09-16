@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-content/html-to-basic-html",
+  "title": "html-to-basic-html",
+  "description": "ai-research-agent / extractor/html-to-content/html-to-basic-html",
+  "source": "@site/src/functions/extractor/html-to-content/html-to-basic-html.md",
+  "sourceDirName": "functions/extractor/html-to-content",
+  "slug": "/functions/extractor/html-to-content/html-to-basic-html",
+  "permalink": "/docs/functions/extractor/html-to-content/html-to-basic-html",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/html-to-content/html-to-basic-html.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "extract-content-readability",
+    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability"
+  },
+  "next": {
+    "title": "html-utils",
+    "permalink": "/docs/functions/extractor/html-to-content/html-utils"
+  }
+}

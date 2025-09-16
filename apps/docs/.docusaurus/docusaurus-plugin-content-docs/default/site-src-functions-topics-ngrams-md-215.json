@@ -1,0 +1,24 @@
+{
+  "id": "functions/topics/ngrams",
+  "title": "ngrams",
+  "description": "ai-research-agent / topics/ngrams",
+  "source": "@site/src/functions/topics/ngrams.md",
+  "sourceDirName": "functions/topics",
+  "slug": "/functions/topics/ngrams",
+  "permalink": "/docs/functions/topics/ngrams",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/topics/ngrams.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "word-to-root-stem",
+    "permalink": "/docs/functions/tokenize/word-to-root-stem"
+  },
+  "next": {
+    "title": "rank-sentences-keyphrases",
+    "permalink": "/docs/functions/topics/rank-sentences-keyphrases"
+  }
+}

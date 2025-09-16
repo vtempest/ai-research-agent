@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/util/string-functions
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/string-functions
 
 ## charCodeArray()
 
@@ -6,7 +6,7 @@
 function charCodeArray(string: any): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:68](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L68)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:68](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L68)
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function hasOnly(string: any, char: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:35](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L35)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:35](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L35)
 
 ### Parameters
 
@@ -96,7 +96,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function hasUpperCaseCharacterInMiddleOfWord(text: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L46)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L46)
 
 ### Parameters
 
@@ -135,7 +135,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function isDigit(charCode: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L21)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L21)
 
 ### Parameters
 
@@ -174,7 +174,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function isListItem(string: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:102](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L102)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:102](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L102)
 
 ### Parameters
 
@@ -213,7 +213,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function isListItemCharacter(string: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L94)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L94)
 
 ### Parameters
 
@@ -252,7 +252,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function isNumber(string: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L25)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L25)
 
 ### Parameters
 
@@ -291,7 +291,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function isNumberedListItem(string: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:106](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L106)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:106](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L106)
 
 ### Parameters
 
@@ -330,7 +330,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function normalizedCharCodeArray(string: any): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L63)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L63)
 
 ### Parameters
 
@@ -369,7 +369,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function prefixAfterWhitespace(prefix: any, string: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L76)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L76)
 
 ### Parameters
 
@@ -420,7 +420,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function removeLeadingWhitespaces(string: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L7)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L7)
 
 ### Parameters
 
@@ -459,7 +459,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function removeTrailingWhitespaces(string: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L14)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L14)
 
 ### Parameters
 
@@ -498,7 +498,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function suffixBeforeWhitespace(string: any, suffix: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L85)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L85)
 
 ### Parameters
 
@@ -549,7 +549,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-fu
 function wordMatch(string1: any, string2: any): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js:110](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L110)
+Defined in: [src/extractor/pdf-to-html/util/string-functions.js:110](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/string-functions.js#L110)
 
 ### Parameters
 

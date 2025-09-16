@@ -1,0 +1,24 @@
+{
+  "id": "functions/search/search-wikipedia",
+  "title": "search-wikipedia",
+  "description": "ai-research-agent / search/search-wikipedia",
+  "source": "@site/src/functions/search/search-wikipedia.md",
+  "sourceDirName": "functions/search",
+  "slug": "/functions/search/search-wikipedia",
+  "permalink": "/docs/functions/search/search-wikipedia",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/search/search-wikipedia.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "search-web",
+    "permalink": "/docs/functions/search/search-web"
+  },
+  "next": {
+    "title": "similarity-remote-api",
+    "permalink": "/docs/functions/similarity/similarity-remote-api"
+  }
+}

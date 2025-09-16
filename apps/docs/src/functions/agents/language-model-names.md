@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / agents/language-model-names
+[ai-research-agent](../modules.md) / agents/language-model-names
 
 ## Generate
 
@@ -55,7 +55,7 @@ const LANGUAGE_MODELS: (
 })[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/language-model-names.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/language-model-names.js#L10)
+Defined in: [src/agents/language-model-names.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/language-model-names.js#L10)
 
 List of default models for the chat providers and a list of models
 
@@ -67,6 +67,6 @@ List of default models for the chat providers and a list of models
 const LANGUAGE_PROVIDERS: string[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/language-model-names.js:1512](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/language-model-names.js#L1512)
+Defined in: [src/agents/language-model-names.js:1512](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/language-model-names.js#L1512)
 
 List of available LLM provider services

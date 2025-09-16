@@ -1,0 +1,25 @@
+{
+  "name": "smoldocling-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js implementation of SmolDocling using Transformers.js",
+  "main": "smoldocling.js",
+  "type": "module",
+  "scripts": {
+    "start": "node smoldocling.js",
+    "dev": "node --watch smoldocling.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "transformers",
+    "vision",
+    "language",
+    "ai",
+    "machine-learning",
+    "image-text"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@huggingface/transformers": "^3.7.2"
+  }
+}

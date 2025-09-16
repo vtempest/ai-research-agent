@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/url-to-content/url-to-html
+[ai-research-agent](../../modules.md) / extractor/url-to-content/url-to-html
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function scrapeURL(url: string, options?: object): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js:44](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L44)
+Defined in: [src/extractor/url-to-content/url-to-html.js:44](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L44)
 
 ### Tardigrade the Web Crawler 
 <img src="https://i.imgur.com/iuzpcvD.png" width="350px" /> 
@@ -224,7 +224,7 @@ await scrapeURL("https://hckrnews.com", {timeout: 5, userAgentIndex: 1})
 function fetchScrapingRules(url: string): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js:211](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L211)
+Defined in: [src/extractor/url-to-content/url-to-html.js:211](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L211)
 
 Fetches and parses the robots.txt file for a given URL.
 
@@ -273,7 +273,7 @@ A JSON object representing the parsed robots.txt.
 function scrapeJINA(url: string): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js:132](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L132)
+Defined in: [src/extractor/url-to-content/url-to-html.js:132](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-html.js#L132)
 
 As backup, scrape with JINA to get html
 

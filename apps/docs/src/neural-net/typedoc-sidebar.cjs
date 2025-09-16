@@ -9,33 +9,45 @@ const typedocSidebar = {
     },
     {
       type: "category",
+      label: "neural-net-tensors",
+      items: [
+        {
+          type: "doc",
+          id: "neural-net/neural-net-tensors/neural-net-gpu",
+          label: "neural-net-gpu"
+        },
+        {
+          type: "doc",
+          id: "neural-net/neural-net-tensors/neural-net-tf",
+          label: "neural-net-tf"
+        }
+      ]
+    },
+    {
+      type: "category",
+      label: "next-word-prediction",
+      items: [
+        {
+          type: "category",
+          label: "scripts",
+          items: [
+            {
+              type: "doc",
+              id: "neural-net/next-word-prediction/scripts/predict-next-word",
+              label: "predict-next-word"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: "category",
       label: "statistics",
       items: [
         {
           type: "doc",
           id: "neural-net/statistics/predict-statistics",
           label: "predict-statistics"
-        }
-      ]
-    },
-    {
-      type: "category",
-      label: "train",
-      items: [
-        {
-          type: "doc",
-          id: "neural-net/train/neural-net-gpu",
-          label: "neural-net-gpu"
-        },
-        {
-          type: "doc",
-          id: "neural-net/train/neural-net-tf",
-          label: "neural-net-tf"
-        },
-        {
-          type: "doc",
-          id: "neural-net/train/predict-next-word",
-          label: "predict-next-word"
         }
       ]
     },

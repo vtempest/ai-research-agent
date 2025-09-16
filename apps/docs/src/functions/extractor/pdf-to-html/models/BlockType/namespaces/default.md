@@ -1,4 +1,4 @@
-[Documentation](../../../../../modules.md) / [extractor/pdf-to-html/models/BlockType](../index.md) / default
+[ai-research-agent](../../../../../modules.md) / [extractor/pdf-to-html/models/BlockType](../index.md) / default
 
 ## blockToText()
 
@@ -6,7 +6,7 @@
 function blockToText(block: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:155](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L155)
+Defined in: [src/extractor/pdf-to-html/models/BlockType.js:155](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L155)
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 function headlineByLevel(level: any): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:162](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L162)
+Defined in: [src/extractor/pdf-to-html/models/BlockType.js:162](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L162)
 
 ### Parameters
 
@@ -104,7 +104,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L6)
+[src/extractor/pdf-to-html/models/BlockType.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L6)
 
 </td>
 </tr>
@@ -126,7 +126,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L7)
+[src/extractor/pdf-to-html/models/BlockType.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L7)
 
 </td>
 </tr>
@@ -148,7 +148,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L5)
+[src/extractor/pdf-to-html/models/BlockType.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L5)
 
 </td>
 </tr>
@@ -170,7 +170,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L8)
+[src/extractor/pdf-to-html/models/BlockType.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L8)
 
 </td>
 </tr>
@@ -185,7 +185,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 function isHeadline(type: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:151](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L151)
+Defined in: [src/extractor/pdf-to-html/models/BlockType.js:151](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L151)
 
 ### Parameters
 

@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Annotation
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Annotation
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L1)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L1)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L2)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 category: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L3)
 
 #### color
 
@@ -59,7 +59,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 color: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L4)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L4)
 
 ***
 
@@ -69,7 +69,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 const ADDED_ANNOTATION: default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L8)
 
 ***
 
@@ -79,7 +79,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 const DETECTED_ANNOTATION: default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L23)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L23)
 
 ***
 
@@ -89,7 +89,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 const MODIFIED_ANNOTATION: default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L28)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L28)
 
 ***
 
@@ -99,7 +99,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 const REMOVED_ANNOTATION: default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L13)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L13)
 
 ***
 
@@ -109,4 +109,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotat
 const UNCHANGED_ANNOTATION: default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L18)
+Defined in: [src/extractor/pdf-to-html/models/Annotation.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Annotation.js#L18)

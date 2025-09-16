@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/Transformation
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/Transformation
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L3)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L3)
 
 ### Extended by
 
@@ -20,7 +20,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 new default(name: any, itemType: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L4)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L4)
 
 ##### Parameters
 
@@ -71,7 +71,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 itemType: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
 
 #### name
 
@@ -79,7 +79,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 name: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
 
 ### Methods
 
@@ -89,7 +89,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 completeTransform(parseResult: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L21)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L21)
 
 ##### Parameters
 
@@ -126,7 +126,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 transform(parseResult: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L16)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L16)
 
 ##### Parameters
 

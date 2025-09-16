@@ -1,9 +1,8 @@
-import { getDomainWithoutSuffix } from 'tldts';
+import { getDomainWithoutSuffix } from "tldts";
 
 import { convertURLSafeHTMLToHTML } from "../extractor/html-to-content/html-utils.js";
 import { scrapeURL } from "../index.js";
-
-
+import { parseDate } from "chrono-node";
 
 /**
  * Search Web via SearXNG metasearch of all major search engines.
@@ -11,10 +10,10 @@ import { scrapeURL } from "../index.js";
  * times to retry other domains if first time fails.
  * SearXNG is a free internet metasearch engine which aggregates results from
  *  more than [180+ search sources](https://docs.searxng.org/user/configured_engines.html).
- * 
+ *
  * [Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
  * [Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
- * 
+ *
  * ![google_dead](https://i.imgur.com/6rRpaY1.png)
  * @param {string} query - The search query string.
  * @param {Object} [options]
@@ -35,7 +34,7 @@ import { scrapeURL } from "../index.js";
  * @category Search
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
  * [Heiser, M., Tauber, A., Flament, A., et al. (2014-)](https://github.com/searxng/searxng/graphs/contributors)
-*/
+ */
 export async function searchWeb(query, options = {}) {
   const {
     category = "general",
@@ -44,7 +43,7 @@ export async function searchWeb(query, options = {}) {
     maxRetries = 3,
     page = 1,
     lang = "en-US",
-    proxy = null
+    proxy = null,
   } = options;
 
   const CATEGORY_LIST = [
@@ -125,106 +124,116 @@ export async function searchWeb(query, options = {}) {
     "xo.wtf",
   ];
 
-  //select a random domain if none is provided 
-  const searchDomain = privateSearxng || "https://" +
+  //select a random domain if none is provided
+  const searchDomain =
+    privateSearxng ||
+    "https://" +
       SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
-  const categoryName = typeof category === "number" ?
-     CATEGORY_LIST[category]  : category; // Using the first category as default
-  
+  const categoryName =
+    typeof category === "number" ? CATEGORY_LIST[category] : category; // Using the first category as default
+
   const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
 
-  var url = `${searchDomain}/search?q=${encodeURIComponent(query)}` +
+  var url =
+    `${searchDomain}/search?q=${encodeURIComponent(query)}` +
     `&category_${categoryName}=1&language=${lang}&time_range=` +
     `${timeRangeName}&safesearch=0&pageno=${page}`;
 
-  if(privateSearxng)
-    url+="&format=json"
+  if (privateSearxng) url += "&format=json";
 
   //on cloudflare to avoid "Too many redirects" change SSL mode to Full
 
-  if (proxy && !privateSearxng) 
-    url = proxy + url;
+  if (proxy && !privateSearxng) url = proxy + url;
 
-  
-  const resultHTML = await (await fetch(url, {
-    headers: {
-      "accept-language": lang+",en;q=0.9",
-    }
-  })).text();
+  const resultHTML = await (
+    await fetch(url, {
+      headers: {
+        "accept-language": lang + ",en;q=0.9",
+      },
+    })
+  ).text();
 
-  if (privateSearxng){
-
-    if (!resultHTML.startsWith("{")) 
-      return {error:1}
+  if (privateSearxng) {
+    if (!resultHTML.startsWith("{")) return { error: "Private SearXNG instance did not return valid JSON" };
     //todo use public
 
-    var {results, suggestions, infoboxes} = JSON.parse(resultHTML);
-    
+    var { results, suggestions, infoboxes } = JSON.parse(resultHTML);
+
     results = results.map((result) => {
       var title = result.title.replace(/<\/?[^>]+(>|$)/g, "");
 
-        // Clean and normalize the title
-        const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
+      // Clean and normalize the title
+      const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
 
-        // Handle split titles
-        if (TITLE_SPLITTERS_RE.test(title)) {
-          const splitTitle = title.split(TITLE_SPLITTERS_RE);
-          
-          // Handle breadcrumbed titles
-          if (splitTitle.length >= 2) {
-            const longestPart = splitTitle.reduce((acc, part) => part?.length > acc?.length ? part : acc, '');
-            if (longestPart.length > 10) {
-              title = longestPart;
-            }
+      // Handle split titles
+      if (TITLE_SPLITTERS_RE.test(title)) {
+        const splitTitle = title.split(TITLE_SPLITTERS_RE);
+
+        // Handle breadcrumbed titles
+        if (splitTitle.length >= 2) {
+          const longestPart = splitTitle.reduce(
+            (acc, part) => (part?.length > acc?.length ? part : acc),
+            ""
+          );
+          if (longestPart.length > 10) {
+            title = longestPart;
           }
         }
+      }
 
       title = convertURLSafeHTMLToHTML(title);
       var url = result.url.replace(/&amp;/g, "&");
       var snippet = result.content?.replace(/<\/?[^>]+(>|$)/g, "");
       var score = Math.round(result.score * 100) / 100;
+      // Parse metadata into date and source
 
-      return {title, url, snippet, score};
-
-    });
-
-    
-    return results.map((result) => {
-
-      var favicon = "https://www.google.com/s2/favicons?domain=" 
-        + result.url.match(/^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i)?.[0] 
-        + "&sz=16"
-  
       var domain = result.url
-        ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "").split("/")[0]
-      
-      var source = getDomainWithoutSuffix(domain).replace(/\b\w/g, l => l.toUpperCase())
-      // for small source names like CNN
-      if (source.length < 5)
-        source = source.toUpperCase();
+        ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
+        .split("/")[0];
 
-      var path = result.url
-                  ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
-                  .split("/")
-                  .slice(1)
-                  .join("/")
-                  .replace(/^/, "/")
+      let date = null,
+        source = null;
+      if (typeof result.metadata === "string") {
+        const [datePart, sourcePart] = result.metadata
+          .split("|")
+          .map((s) => s.trim());
+        date =
+          parseDate(result.metadata)?.toISOString().split("T")[0] ||
+          undefined;
+        source = sourcePart || null;
+      }
+
+      if (!source) {
+        source = getDomainWithoutSuffix(domain).replace(/\b\w/g, (l) =>
+          l.toUpperCase()
+        );
+        // for small source names like CNN
+        if (source.length < 5) source = source.toUpperCase();
+      }
+
+      var favicon =
+        "https://www.google.com/s2/favicons?domain=" +
+        result.url.match(
+          /^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i
+        )?.[0] +
+        "&sz=16";
+
       return {
-        ...result,
+        title,
+        url,
+        snippet,
+        score,
+        ...(date ? { date } : {}),
+        ...(source ? { source } : {}),
         domain,
-        source,
         favicon,
-        path
       };
-    })
-    // return {results, suggestions};
-
-
+    });
+    return {results, suggestions, infoboxes};
   }
 
-
-   results = [];
+  results = [];
   const resultRegex = /<article class="result[^>]*>[\s\S]*?<\/article>/g;
   const titleUrlRegex = /<h3><a href="([^"]*)"[^>]*>(.*?)<\/a><\/h3>/;
   const snippetRegex = /<p class="content">\s*(.*?)\s*<\/p>/;
@@ -259,44 +268,39 @@ export async function searchWeb(query, options = {}) {
 
       title = convertURLSafeHTMLToHTML(title);
       snippet = convertURLSafeHTMLToHTML(snippet);
-      // if (!url.includes(".de/")) 
-        results.push({ title, url, snippet });
+      // if (!url.includes(".de/"))
+      results.push({ title, url, snippet });
     }
   }
 
   if (results.length === 0 && maxRetries > 0) {
-    results = await searchWeb(query, 
-      {...options,
-         maxRetries: maxRetries - 1,
-         useProxy: true
-        });
+    results = await searchWeb(query, {
+      ...options,
+      maxRetries: maxRetries - 1,
+      useProxy: true,
+    });
   }
 
   //filter out url that end with .de
   // results = results.filter((result) => !result.url.includes(".de/"));
 
   results = results.map((result) => {
-
-    var favicon = "https://www.google.com/s2/favicons?domain=" 
-      + result.url.match(/^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i)?.[0] 
+    var favicon =
+      "https://www.google.com/s2/favicons?domain=" +
+      result.url.match(
+        /^(?:https?:\/\/)?(?:www\.)?([^/:?\s]+)(?:[/:?]|$)/i
+      )?.[0];
 
     var domain = result.url
-      ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "").split("/")[0]
-    
+      ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
+      .split("/")[0];
 
-    var path = result.url
-                ?.replace(/(http:\/\/|https:\/\/|www.)/gi, "")
-                .split("/")
-                .slice(1)
-                .join("/")
-                .replace(/^/, "/")
     return {
       ...result,
       domain,
       favicon,
-      path
     };
-  })
+  });
   return results;
   // } catch (error) {
   //   console.error(`Error fetching search results: ${error.message}`);
@@ -304,26 +308,52 @@ export async function searchWeb(query, options = {}) {
   // }
 }
 
-
-
 var sources = [
   ["google", "go", "The world's most popular search engine."],
   ["bing", "bi", "Microsoft's web search engine."],
-  ["brave", "br", "Privacy-focused web browser with built-in search functionality."],
-  ["duckduckgo", "ddg", "Privacy-oriented search engine that doesn't track users."],
+  [
+    "brave",
+    "br",
+    "Privacy-focused web browser with built-in search functionality.",
+  ],
+  [
+    "duckduckgo",
+    "ddg",
+    "Privacy-oriented search engine that doesn't track users.",
+  ],
   ["mojeek", "mjk", "Independent search engine that builds its own index."],
-  ["presearch", "ps", "Decentralized search engine using blockchain technology."],
+  [
+    "presearch",
+    "ps",
+    "Decentralized search engine using blockchain technology.",
+  ],
   ["presearch videos", "psvid", "Video search feature of Presearch."],
   ["qwant", "qw", "European privacy-focused search engine."],
-  ["startpage", "sp", "Search engine that provides Google results with enhanced privacy."],
+  [
+    "startpage",
+    "sp",
+    "Search engine that provides Google results with enhanced privacy.",
+  ],
   ["wiby", "wib", "Search engine for older-style, minimal HTML websites."],
-  ["yahoo", "yh", "Web services provider known for its search engine and email service."],
-  ["naver (KO)", "nvr", "Major South Korean search engine and online platform."],
+  [
+    "yahoo",
+    "yh",
+    "Web services provider known for its search engine and email service.",
+  ],
+  [
+    "naver (KO)",
+    "nvr",
+    "Major South Korean search engine and online platform.",
+  ],
   ["wikibooks", "wb", "Wikimedia project for free textbooks and manuals."],
   ["wikiquote", "wq", "Wikimedia project collecting quotations."],
   ["wikisource", "ws", "Wikimedia library of source texts."],
   ["wikispecies", "wsp", "Wikimedia project cataloging species."],
-  ["wikiversity", "wv", "Wikimedia project dedicated to learning resources and activities."],
+  [
+    "wikiversity",
+    "wv",
+    "Wikimedia project dedicated to learning resources and activities.",
+  ],
   ["wikivoyage", "wy", "Wikimedia project for travel guides."],
   ["ask", "ask", "Question-answering search engine."],
   ["cloudflareai", "cfai", "AI services provided by Cloudflare."],
@@ -331,7 +361,11 @@ var sources = [
   ["curlie", "cl", "Web directory maintained by volunteer editors."],
   ["dictzone", "dc", "Online dictionary and translation service."],
   ["libretranslate", "lt", "Open-source machine translation tool."],
-  ["mymemory translated", "tl", "Translation memory service combining human and machine translations."],
+  [
+    "mymemory translated",
+    "tl",
+    "Translation memory service combining human and machine translations.",
+  ],
   ["currency", "cc", "Currency conversion tool."],
   ["ddg definitions", "ddd", "Definition search using DuckDuckGo."],
   ["encyclosearch", "es", "Specialized search for encyclopedic content."],
@@ -378,7 +412,11 @@ var sources = [
   ["google play movies", "gpm", "Google's movie and TV show service."],
   ["invidious", "iv", "Alternative front-end for YouTube."],
   ["livespace", "ls", "Likely a live streaming platform."],
-  ["media.ccc.de", "c3tv", "Video platform for Chaos Computer Club conferences."],
+  [
+    "media.ccc.de",
+    "c3tv",
+    "Video platform for Chaos Computer Club conferences.",
+  ],
   ["odysee", "od", "Blockchain-based video platform."],
   ["peertube", "ptb", "Decentralized video hosting network."],
   ["piped", "ppd", "Alternative privacy-friendly YouTube frontend."],
@@ -409,9 +447,17 @@ var sources = [
   ["radio browser", "rb", "Search engine for radio stations."],
   ["bandcamp", "bc", "Music platform for independent artists."],
   ["deezer", "dz", "Music streaming service."],
-  ["invidious", "iv", "Alternative front-end for YouTube, including music videos."],
+  [
+    "invidious",
+    "iv",
+    "Alternative front-end for YouTube, including music videos.",
+  ],
   ["mixcloud", "mc", "Audio streaming platform for DJs and radio shows."],
-  ["piped.music", "ppdm", "Music-focused feature of Piped (YouTube alternative)."],
+  [
+    "piped.music",
+    "ppdm",
+    "Music-focused feature of Piped (YouTube alternative).",
+  ],
   ["soundcloud", "sc", "Audio distribution and music sharing platform."],
   ["wikicommons.audio", "wca", "Wikimedia Commons audio search."],
   ["youtube", "yt", "Video sharing platform, often used for music."],
@@ -432,7 +478,11 @@ var sources = [
   ["askubuntu", "ubuntu", "Q&A site for Ubuntu users."],
   ["caddy.community", "caddy", "Community forum for Caddy web server."],
   ["discuss.python", "dpy", "Official Python community discussion forum."],
-  ["pi-hole.community", "pi", "Community forum for Pi-hole ad-blocking software."],
+  [
+    "pi-hole.community",
+    "pi",
+    "Community forum for Pi-hole ad-blocking software.",
+  ],
   ["stackoverflow", "st", "Q&A site for programmers."],
   ["superuser", "su", "Q&A site for computer enthusiasts and power users."],
   ["bitbucket", "bb", "Web-based version control repository hosting service."],
@@ -446,18 +496,38 @@ var sources = [
   ["gentoo", "ge", "Wiki for Gentoo Linux distribution."],
   ["anaconda", "conda", "Package manager for scientific computing."],
   ["cppreference", "cpp", "Reference for the C++ programming language."],
-  ["habrahabr", "habr", "Russian collaborative blog about IT and computer science."],
-  ["hackernews", "hn", "Social news website focusing on computer science and entrepreneurship."],
+  [
+    "habrahabr",
+    "habr",
+    "Russian collaborative blog about IT and computer science.",
+  ],
+  [
+    "hackernews",
+    "hn",
+    "Social news website focusing on computer science and entrepreneurship.",
+  ],
   ["lobste.rs", "lo", "Technology-focused link-aggregation site."],
   ["mankier", "man", "Web-based man page viewer."],
   ["mdn", "mdn", "Mozilla Developer Network documentation."],
   ["searchcode code", "scc", "Source code search engine."],
   ["arxiv", "arx", "Repository of electronic preprints for scientific papers."],
   ["crossref", "cr", "Official Digital Object Identifier Registration Agency."],
-  ["google scholar", "gos", "Google\'s search engine for scholarly literature."],
-  ["internetarchivescholar", "ias", "Search engine for scholarly works in Internet Archive."],
+  [
+    "google scholar",
+    "gos",
+    "Google\'s search engine for scholarly literature.",
+  ],
+  [
+    "internetarchivescholar",
+    "ias",
+    "Search engine for scholarly works in Internet Archive.",
+  ],
   ["pubmed", "pub", "Search engine for biomedical literature."],
-  ["semantic scholar", "se", "AI-powered research tool for scientific literature."],
+  [
+    "semantic scholar",
+    "se",
+    "AI-powered research tool for scientific literature.",
+  ],
   ["wikispecies", "wsp", "Wikimedia project cataloging species."],
   ["openairedatasets", "oad", "Search for open access datasets."],
   ["openairepublications", "oap", "Search for open access publications."],
@@ -468,24 +538,35 @@ var sources = [
   ["google play apps", "gpa", "Official app store for Android devices."],
   ["9gag", "9g", "Social media platform for sharing humor content."],
   ["lemmy posts", "lepo", "Post search for Lemmy."],
-  ["mastodon hashtags", "mah", "Hashtag search for the Mastodon social network."],
+  [
+    "mastodon hashtags",
+    "mah",
+    "Hashtag search for the Mastodon social network.",
+  ],
   ["reddit", "re", "Social news and discussion website."],
-  ["tootfinder", "toot", "Search engine for Mastodon and other federated networks."]
-]
-  
+  [
+    "tootfinder",
+    "toot",
+    "Search engine for Mastodon and other federated networks.",
+  ],
+];
 
-var sources_copyleft =[
+var sources_copyleft = [
   ["1337x", "1337x", "Torrent search engine."],
-["annas archive", "aa", "Search engine for shadow libraries."],
-["bt4g", "bt4g", "Torrent search engine."],
-["btdigg", "bt", "BitTorrent DHT search engine."],
-["kickass", "kc", "Torrent search engine."],
-["library genesis", "lg", "File-sharing site for scholarly journal articles and books."],
-["nyaa", "nt", "BitTorrent site focused on East Asian media."],
-["openrepos", "or", "Repository for mobile apps."],
-["piratebay", "tpb", "Well-known torrent site."],
-["solidtorrents", "solid", "Decentralized torrent search engine."],
-["tokyotoshokan", "tt", "BitTorrent site focused on Asian media."],
-["wikicommons.files", "wcf", "File search on Wikimedia Commons."],
-["z-library", "zlib", "Shadow library for books and articles."],
-]
+  ["annas archive", "aa", "Search engine for shadow libraries."],
+  ["bt4g", "bt4g", "Torrent search engine."],
+  ["btdigg", "bt", "BitTorrent DHT search engine."],
+  ["kickass", "kc", "Torrent search engine."],
+  [
+    "library genesis",
+    "lg",
+    "File-sharing site for scholarly journal articles and books.",
+  ],
+  ["nyaa", "nt", "BitTorrent site focused on East Asian media."],
+  ["openrepos", "or", "Repository for mobile apps."],
+  ["piratebay", "tpb", "Well-known torrent site."],
+  ["solidtorrents", "solid", "Decentralized torrent search engine."],
+  ["tokyotoshokan", "tt", "BitTorrent site focused on Asian media."],
+  ["wikicommons.files", "wcf", "File search on Wikimedia Commons."],
+  ["z-library", "zlib", "Shadow library for books and articles."],
+];

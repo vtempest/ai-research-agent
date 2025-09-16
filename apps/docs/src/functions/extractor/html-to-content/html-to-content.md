@@ -1,8 +1,8 @@
-[Documentation](../../modules.md) / extractor/html-to-content/html-to-content
+[ai-research-agent](../../modules.md) / extractor/html-to-content/html-to-content
 
 ## ExtractedContent
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L83)
+Defined in: [src/extractor/html-to-content/html-to-content.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L83)
 
 ### Properties
 
@@ -34,7 +34,7 @@ The author's name
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:87](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L87)
+[src/extractor/html-to-content/html-to-content.js:87](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L87)
 
 </td>
 </tr>
@@ -56,7 +56,7 @@ The full citation for the author
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L85)
+[src/extractor/html-to-content/html-to-content.js:85](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L85)
 
 </td>
 </tr>
@@ -78,7 +78,7 @@ A shortened version of the author's name
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:86](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L86)
+[src/extractor/html-to-content/html-to-content.js:86](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L86)
 
 </td>
 </tr>
@@ -100,7 +100,7 @@ The publication date
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L88)
+[src/extractor/html-to-content/html-to-content.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L88)
 
 </td>
 </tr>
@@ -122,7 +122,7 @@ The extracted main content in HTML format
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L90)
+[src/extractor/html-to-content/html-to-content.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L90)
 
 </td>
 </tr>
@@ -144,7 +144,7 @@ The source of the content
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L89)
+[src/extractor/html-to-content/html-to-content.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L89)
 
 </td>
 </tr>
@@ -166,7 +166,7 @@ The title of the content
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L84)
+[src/extractor/html-to-content/html-to-content.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L84)
 
 </td>
 </tr>
@@ -181,7 +181,7 @@ The title of the content
 function extractContentAndCite(documentOrHTML: any, options: object): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L30)
+Defined in: [src/extractor/html-to-content/html-to-content.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js#L30)
 
 Extracts the main content and citation information from a document or HTML string
 

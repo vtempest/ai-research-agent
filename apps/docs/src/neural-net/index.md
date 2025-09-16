@@ -60,15 +60,27 @@
 Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, to evolve crowdsourced chain-of-thought reasoning, to unlock faster ways to read long articles, to monitor developments by topic modeling a knowledge base graph, and to provide a public service of answers to research.
 
 Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests. Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Imagine uploading a research paper, then the app extracts full text of reference cites and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective and interests in a self-organizing mind map. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need an emergence of this "self-organizing mind map" approach to manage the complexity of information flow.
+
+```bash
+# Download Source
+bunx git0 vtempest/ai-research-agent
+```
+```bash
+# Import Self-Hosted API
+bun i ai-research-agent
+```
+```bash
+# Import API Client 
+bun i qwksearch-api-client
+```
     
 ![image](https://i.imgur.com/R2ARMyq.png)
 
 <img src="https://github.com/TutteInstitute/datamapplot/raw/main/examples/ArXiv_example.gif" width="800px"/>
 
 ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
-
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/s8gsYt1.png" /> 
+    <img width="350px" src="https://i.imgur.com/s8gsYt1.png" /> 
 </p>
 
 [searchSTREAM Docs](https://airesearch.js.org/functions/search/search-stream)

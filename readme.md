@@ -9,13 +9,6 @@
     Then Vector Space is the Final Frontier.<br />
 </p>
 <p align="center">
-    <br />
-    <a href="https://npmjs.org/package/ai-research-agent">
-        <img src="https://i.imgur.com/HZUZUP0.png"
-            alt="NPM badge for ai-research-agent" />
-    </a>
-</p>
-<p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
         <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat"
             alt="Join Discord" />

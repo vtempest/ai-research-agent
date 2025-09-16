@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/statistics/predict-statistics",
+  "title": "predict-statistics",
+  "description": "neural-net-training / statistics/predict-statistics",
+  "source": "@site/src/neural-net/statistics/predict-statistics.md",
+  "sourceDirName": "neural-net/statistics",
+  "slug": "/neural-net/statistics/predict-statistics",
+  "permalink": "/docs/neural-net/statistics/predict-statistics",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/neural-net/statistics/predict-statistics.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "predict-next-word",
+    "permalink": "/docs/neural-net/next-word-prediction/scripts/predict-next-word"
+  },
+  "next": {
+    "title": "similarity-remote-api",
+    "permalink": "/docs/neural-net/vectorize/similarity-remote-api"
+  }
+}

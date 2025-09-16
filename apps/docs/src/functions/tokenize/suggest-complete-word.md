@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / tokenize/suggest-complete-word
+[ai-research-agent](../modules.md) / tokenize/suggest-complete-word
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function suggestNextWordCompletions(query: string, options?: object): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/suggest-complete-word.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/suggest-complete-word.js#L33)
+Defined in: [src/tokenize/suggest-complete-word.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/suggest-complete-word.js#L33)
 
 ### Autocomplete Topic Phrase Completions
 <img width="350px"  src="https://i.imgur.com/0k5mO76.png" /> 

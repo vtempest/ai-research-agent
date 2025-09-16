@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-cite/url-to-domain",
+  "title": "url-to-domain",
+  "description": "ai-research-agent / extractor/html-to-cite/url-to-domain",
+  "source": "@site/src/functions/extractor/html-to-cite/url-to-domain.md",
+  "sourceDirName": "functions/extractor/html-to-cite",
+  "slug": "/functions/extractor/html-to-cite/url-to-domain",
+  "permalink": "/docs/functions/extractor/html-to-cite/url-to-domain",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/html-to-cite/url-to-domain.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "metadata-to-cite",
+    "permalink": "/docs/functions/extractor/html-to-cite/metadata-to-cite"
+  },
+  "next": {
+    "title": "html-to-content",
+    "permalink": "/docs/functions/extractor/html-to-content/"
+  }
+}

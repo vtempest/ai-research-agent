@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/extract-author
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-author
 
 ## extractAuthor()
 
@@ -6,7 +6,7 @@
 function extractAuthor(document: Document): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-author.js:53](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-author.js#L53)
+Defined in: [src/extractor/html-to-cite/extract-author.js:53](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-author.js#L53)
 
 Extracts the author from the document and validates it as a human name
 

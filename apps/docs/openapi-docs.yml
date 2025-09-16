@@ -221,7 +221,6 @@ paths:
               type: object
               required:
                 - provider
-                - key
               properties:
                 agent:
                   type: string

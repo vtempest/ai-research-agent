@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-content/html-to-basic-html
+[ai-research-agent](../../modules.md) / extractor/html-to-content/html-to-basic-html
 
 ## HTML Utilities
 
@@ -8,7 +8,7 @@
 function convertHTMLToBasicHTML(html: string, options?: object): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js#L33)
+Defined in: [src/extractor/html-to-content/html-to-basic-html.js:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js#L33)
 
 Strip HTML to ~30 basic markup HTML tags, lists, tables, images.
 Convert anchors and relative urls to absolute urls. Basic HTML supports the same
@@ -204,7 +204,7 @@ basic text formatting html
 function addDOMFunctions(domObject: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js:228](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js#L228)
+Defined in: [src/extractor/html-to-content/html-to-basic-html.js:228](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-to-basic-html.js#L228)
 
 #### Parameters
 

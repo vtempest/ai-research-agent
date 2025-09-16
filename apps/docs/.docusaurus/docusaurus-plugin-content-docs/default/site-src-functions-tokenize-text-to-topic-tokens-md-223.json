@@ -1,0 +1,24 @@
+{
+  "id": "functions/tokenize/text-to-topic-tokens",
+  "title": "text-to-topic-tokens",
+  "description": "ai-research-agent / tokenize/text-to-topic-tokens",
+  "source": "@site/src/functions/tokenize/text-to-topic-tokens.md",
+  "sourceDirName": "functions/tokenize",
+  "slug": "/functions/tokenize/text-to-topic-tokens",
+  "permalink": "/docs/functions/tokenize/text-to-topic-tokens",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/tokenize/text-to-topic-tokens.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "text-to-sentences",
+    "permalink": "/docs/functions/tokenize/text-to-sentences"
+  },
+  "next": {
+    "title": "word-to-root-stem",
+    "permalink": "/docs/functions/tokenize/word-to-root-stem"
+  }
+}

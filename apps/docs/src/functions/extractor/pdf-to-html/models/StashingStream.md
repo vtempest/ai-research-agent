@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/StashingStream
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/StashingStream
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L2)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 new default(): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L3)
 
 ##### Returns
 
@@ -26,7 +26,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 results: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L7)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L7)
 
 #### stash
 
@@ -34,7 +34,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 stash: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L8)
 
 ### Methods
 
@@ -44,7 +44,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 complete(): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L34)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L34)
 
 ##### Returns
 
@@ -56,7 +56,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 consume(item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L15)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L15)
 
 ##### Parameters
 
@@ -93,7 +93,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 consumeAll(items: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L11)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L11)
 
 ##### Parameters
 
@@ -130,7 +130,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 doFlushStash(stash: any, results: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L69)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L69)
 
 ##### Parameters
 
@@ -179,7 +179,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 doMatchesStash(lastItem: any, item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L65)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L65)
 
 ##### Parameters
 
@@ -228,7 +228,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 flushStash(): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:50](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L50)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:50](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L50)
 
 ##### Returns
 
@@ -240,7 +240,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 matchesStash(item: any): true | void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:42](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L42)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:42](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L42)
 
 ##### Parameters
 
@@ -277,7 +277,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 onPushOnStash(item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:57](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L57)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:57](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L57)
 
 ##### Parameters
 
@@ -314,7 +314,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 pushOnStash(item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L29)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L29)
 
 ##### Parameters
 
@@ -351,7 +351,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Stashin
 shouldStash(item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js:61](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L61)
+Defined in: [src/extractor/pdf-to-html/models/StashingStream.js:61](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/StashingStream.js#L61)
 
 ##### Parameters
 

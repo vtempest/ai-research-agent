@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/url-to-content/youtube-to-text
+[ai-research-agent](../../modules.md) / extractor/url-to-content/youtube-to-text
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function convertYoutubeToText(videoUrl: string, options?: object): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L19)
+Defined in: [src/extractor/url-to-content/youtube-to-text.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L19)
 
 Fetch youtube.com video's webpage HTML for embedded transcript.
 If blocked, use scraper of alternative sites providing transcripts.
@@ -122,7 +122,7 @@ and word_count is the number of words in the transcript.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
+[src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
 
 </td>
 </tr>
@@ -139,7 +139,7 @@ and word_count is the number of words in the transcript.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
+[src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
 
 </td>
 </tr>
@@ -156,7 +156,7 @@ and word_count is the number of words in the transcript.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
+[src/extractor/url-to-content/youtube-to-text.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L12)
 
 </td>
 </tr>
@@ -175,7 +175,7 @@ and word_count is the number of words in the transcript.
 function fetchViaYoutubeToTranscriptCom(videoId: any, options: object): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js:153](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L153)
+Defined in: [src/extractor/url-to-content/youtube-to-text.js:153](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/youtube-to-text.js#L153)
 
 Fetch-based scraper of youtubetotranscript.com
 

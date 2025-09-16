@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+  "title": "CalculateGlobalStats",
+  "description": "ai-research-agent / extractor/pdf-to-html/transformations/CalculateGlobalStats",
+  "source": "@site/src/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations",
+  "slug": "/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Word",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Word"
+  },
+  "next": {
+    "title": "ToHTML",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToHTML"
+  }
+}

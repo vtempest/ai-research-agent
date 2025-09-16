@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/url-to-content/url-to-content
+[ai-research-agent](../../modules.md) / extractor/url-to-content/url-to-content
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function extractContent(urlOrDoc: string | Document, options?: object): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L88)
+Defined in: [src/extractor/url-to-content/url-to-content.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L88)
 
 ### 🚜📜 Tractor the Text Extractor 
 <img width="350px"  src="https://i.imgur.com/nNfHmct.png" />
@@ -211,7 +211,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:68](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L68)
+[src/extractor/url-to-content/url-to-content.js:68](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L68)
 
 </td>
 </tr>
@@ -228,7 +228,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:66](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L66)
+[src/extractor/url-to-content/url-to-content.js:66](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L66)
 
 </td>
 </tr>
@@ -245,7 +245,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:67](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L67)
+[src/extractor/url-to-content/url-to-content.js:67](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L67)
 
 </td>
 </tr>
@@ -262,7 +262,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L69)
+[src/extractor/url-to-content/url-to-content.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L69)
 
 </td>
 </tr>
@@ -279,7 +279,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:71](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L71)
+[src/extractor/url-to-content/url-to-content.js:71](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L71)
 
 </td>
 </tr>
@@ -296,7 +296,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:70](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L70)
+[src/extractor/url-to-content/url-to-content.js:70](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L70)
 
 </td>
 </tr>
@@ -313,7 +313,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L65)
+[src/extractor/url-to-content/url-to-content.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L65)
 
 </td>
 </tr>
@@ -330,7 +330,7 @@ default=5 - http request timeout
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:72](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L72)
+[src/extractor/url-to-content/url-to-content.js:72](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L72)
 
 </td>
 </tr>
@@ -345,7 +345,7 @@ default=5 - http request timeout
 
 ### Article
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L9)
+Defined in: [src/extractor/url-to-content/url-to-content.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L9)
 
 #### Properties
 
@@ -377,7 +377,7 @@ The full name of the author of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L13)
+[src/extractor/url-to-content/url-to-content.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L13)
 
 </td>
 </tr>
@@ -399,7 +399,7 @@ Author name in Last, First Initial format
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L14)
+[src/extractor/url-to-content/url-to-content.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L14)
 
 </td>
 </tr>
@@ -421,7 +421,7 @@ Author name in Last format
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L15)
+[src/extractor/url-to-content/url-to-content.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L15)
 
 </td>
 </tr>
@@ -443,7 +443,7 @@ Author type ["single", "two-author", "more-than-two", "organization"]
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L16)
+[src/extractor/url-to-content/url-to-content.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L16)
 
 </td>
 </tr>
@@ -465,7 +465,7 @@ Cite in APA Format with Author name in Last, First Initial format
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L10)
+[src/extractor/url-to-content/url-to-content.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L10)
 
 </td>
 </tr>
@@ -487,7 +487,7 @@ The publication date of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L17)
+[src/extractor/url-to-content/url-to-content.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L17)
 
 </td>
 </tr>
@@ -509,7 +509,7 @@ The Basic HTML content of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L11)
+[src/extractor/url-to-content/url-to-content.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L11)
 
 </td>
 </tr>
@@ -531,7 +531,7 @@ The source or publisher of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L19)
+[src/extractor/url-to-content/url-to-content.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L19)
 
 </td>
 </tr>
@@ -553,7 +553,7 @@ The title of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L18)
+[src/extractor/url-to-content/url-to-content.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L18)
 
 </td>
 </tr>
@@ -575,7 +575,7 @@ The URL of the article
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L12)
+[src/extractor/url-to-content/url-to-content.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L12)
 
 </td>
 </tr>
@@ -597,7 +597,7 @@ The word count of the full text (without HTML tags)
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L20)
+[src/extractor/url-to-content/url-to-content.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/url-to-content.js#L20)
 
 </td>
 </tr>

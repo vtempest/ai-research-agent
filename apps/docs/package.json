@@ -9,16 +9,17 @@
     "build:docs:openapi": " NODE_NO_WARNINGS=1 npx docusaurus clean-api-docs  all   ; NODE_NO_WARNINGS=1 npx docusaurus  gen-api-docs all",
     "docs:copy": "TARGET=../public; rm -rf $TARGET/docs; cp -r ../docs $TARGET; mv $TARGET/dist $TARGET/docs"
   },
- 
   "dependencies": {
-    "docusaurus-plugin-openapi-docs": "^4.5.1",
-    "docusaurus-theme-openapi-docs": "^4.5.1",
+    "@apidevtools/openapi-schemas": "^2.1.0",
+    "@apidevtools/swagger-parser": "^12.0.0",
     "@docusaurus/core": "^3.8.1",
     "@docusaurus/faster": "^3.8.1",
     "@docusaurus/plugin-google-gtag": "^3.8.1",
     "@docusaurus/preset-classic": "^3.8.1",
     "docusaurus-lunr-search": "^3.6.0",
+    "docusaurus-plugin-openapi-docs": "^4.5.1",
     "docusaurus-plugin-typedoc": "^1.4.0",
+    "docusaurus-theme-openapi-docs": "^4.5.1",
     "eslint-plugin-prettier": "^5.5.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",

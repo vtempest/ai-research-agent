@@ -1,8 +1,8 @@
-[Documentation](modules.md) / types
+[ai-research-agent](modules.md) / types
 
 ## AgentPromptType
 
-Defined in: [packages/ai-research-agent/src/types.d.ts:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L27)
+Defined in: [src/types.d.ts:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L27)
 
 ### Extends
 
@@ -46,7 +46,7 @@ Partial.context
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L30)
+[src/types.d.ts:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L30)
 
 </td>
 </tr>
@@ -70,7 +70,7 @@ Partial.error
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L33)
+[src/types.d.ts:33](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L33)
 
 </td>
 </tr>
@@ -94,7 +94,7 @@ Partial.prompt
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L29)
+[src/types.d.ts:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L29)
 
 </td>
 </tr>
@@ -118,7 +118,7 @@ Partial.tools
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L31)
+[src/types.d.ts:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L31)
 
 </td>
 </tr>
@@ -142,7 +142,7 @@ Partial.variablesNotProvided
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:32](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L32)
+[src/types.d.ts:32](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L32)
 
 </td>
 </tr>
@@ -153,7 +153,7 @@ Partial.variablesNotProvided
 
 ## ArticleType
 
-Defined in: [packages/ai-research-agent/src/types.d.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L12)
+Defined in: [src/types.d.ts:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L12)
 
 ### Extends
 
@@ -203,7 +203,7 @@ Partial.author
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L18)
+[src/types.d.ts:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L18)
 
 </td>
 </tr>
@@ -227,7 +227,7 @@ Partial.author_cite
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L19)
+[src/types.d.ts:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L19)
 
 </td>
 </tr>
@@ -251,7 +251,7 @@ Partial.author_type
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L20)
+[src/types.d.ts:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L20)
 
 </td>
 </tr>
@@ -275,7 +275,7 @@ Partial.cite
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L17)
+[src/types.d.ts:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L17)
 
 </td>
 </tr>
@@ -299,7 +299,7 @@ Partial.date
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L21)
+[src/types.d.ts:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L21)
 
 </td>
 </tr>
@@ -323,7 +323,7 @@ Partial.error
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:24](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L24)
+[src/types.d.ts:24](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L24)
 
 </td>
 </tr>
@@ -347,7 +347,7 @@ Partial.html
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L16)
+[src/types.d.ts:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L16)
 
 </td>
 </tr>
@@ -371,7 +371,7 @@ Partial.source
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L22)
+[src/types.d.ts:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L22)
 
 </td>
 </tr>
@@ -395,7 +395,7 @@ Partial.title
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L15)
+[src/types.d.ts:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L15)
 
 </td>
 </tr>
@@ -419,7 +419,7 @@ Partial.url
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L14)
+[src/types.d.ts:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L14)
 
 </td>
 </tr>
@@ -443,7 +443,7 @@ Partial.word_count
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L23)
+[src/types.d.ts:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L23)
 
 </td>
 </tr>
@@ -454,7 +454,7 @@ Partial.word_count
 
 ## SearchResultType
 
-Defined in: [packages/ai-research-agent/src/types.d.ts:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L1)
+Defined in: [src/types.d.ts:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L1)
 
 ### Extends
 
@@ -500,7 +500,7 @@ Partial.domain
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L7)
+[src/types.d.ts:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L7)
 
 </td>
 </tr>
@@ -524,7 +524,7 @@ Partial.favicon
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L8)
+[src/types.d.ts:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L8)
 
 </td>
 </tr>
@@ -548,7 +548,7 @@ Partial.score
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L6)
+[src/types.d.ts:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L6)
 
 </td>
 </tr>
@@ -572,7 +572,7 @@ Partial.snippet
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L5)
+[src/types.d.ts:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L5)
 
 </td>
 </tr>
@@ -596,7 +596,7 @@ Partial.source
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L9)
+[src/types.d.ts:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L9)
 
 </td>
 </tr>
@@ -620,7 +620,7 @@ Partial.title
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L4)
+[src/types.d.ts:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L4)
 
 </td>
 </tr>
@@ -644,7 +644,7 @@ Partial.url
 </td>
 <td>
 
-[packages/ai-research-agent/src/types.d.ts:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L3)
+[src/types.d.ts:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/types.d.ts#L3)
 
 </td>
 </tr>

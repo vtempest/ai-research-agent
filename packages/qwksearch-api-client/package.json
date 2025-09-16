@@ -1,14 +1,13 @@
 {
   "name": "qwksearch-api-client",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/api-client.js",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
+  "module": "./dist/api-client.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/api-client.js"
     }
   },
   "scripts": {

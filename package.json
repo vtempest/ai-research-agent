@@ -44,6 +44,7 @@
         "test": "turbo test"
     },
     "dependencies": {
+        "cross-env": "^10.0.0",
         "turbo": "^2.5.4"
     }
 }

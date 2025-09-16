@@ -1,0 +1,740 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs/",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "api/extract-content",
+              "path": "/docs/api/extract-content",
+              "sidebar": "default"
+            },
+            {
+              "id": "api/qwksearch-api",
+              "path": "/docs/api/qwksearch-api",
+              "sidebar": "default"
+            },
+            {
+              "id": "api/search-web",
+              "path": "/docs/api/search-web",
+              "sidebar": "default"
+            },
+            {
+              "id": "api/write-language",
+              "path": "/docs/api/write-language",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/agent-prompts",
+              "path": "/docs/functions/agents/agent-prompts",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/agent-tools",
+              "path": "/docs/functions/agents/agent-tools",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/api2ai",
+              "path": "/docs/functions/agents/api2ai",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/generate-language",
+              "path": "/docs/functions/agents/generate-language",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/language-model-names",
+              "path": "/docs/functions/agents/language-model-names",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/agents/memory",
+              "path": "/docs/functions/agents/memory",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-author",
+              "path": "/docs/functions/extractor/html-to-cite/extract-author",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-cite",
+              "path": "/docs/functions/extractor/html-to-cite/extract-cite",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-date/date-extractors",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-date/date-validators",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/date-validators",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-date/extract-date",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-date/extract-date-quick",
+              "path": "/docs/functions/extractor/html-to-cite/extract-date/extract-date-quick",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-source",
+              "path": "/docs/functions/extractor/html-to-cite/extract-source",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/extract-title",
+              "path": "/docs/functions/extractor/html-to-cite/extract-title",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/human-names-recognize",
+              "path": "/docs/functions/extractor/html-to-cite/human-names-recognize",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/metadata-to-cite",
+              "path": "/docs/functions/extractor/html-to-cite/metadata-to-cite",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-cite/url-to-domain",
+              "path": "/docs/functions/extractor/html-to-cite/url-to-domain",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/extract-content/extract-content-mercury",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/extract-content/extract-content-readability",
+              "path": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/html-to-basic-html",
+              "path": "/docs/functions/extractor/html-to-content/html-to-basic-html",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/html-to-content",
+              "path": "/docs/functions/extractor/html-to-content/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/html-to-content/html-utils",
+              "path": "/docs/functions/extractor/html-to-content/html-utils",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/Annotation",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Annotation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/BlockType/index",
+              "path": "/docs/functions/extractor/pdf-to-html/models/BlockType/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
+              "path": "/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/HeadlineFinder",
+              "path": "/docs/functions/extractor/pdf-to-html/models/HeadlineFinder",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/LineConverter",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineConverter",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/LineItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineItem",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/LineItemBlock",
+              "path": "/docs/functions/extractor/pdf-to-html/models/LineItemBlock",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/Page",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Page",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/PageItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/PageItem",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/ParsedElements",
+              "path": "/docs/functions/extractor/pdf-to-html/models/ParsedElements",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/ParseResult",
+              "path": "/docs/functions/extractor/pdf-to-html/models/ParseResult",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/StashingStream",
+              "path": "/docs/functions/extractor/pdf-to-html/models/StashingStream",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/TextItem",
+              "path": "/docs/functions/extractor/pdf-to-html/models/TextItem",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+              "path": "/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/models/Word",
+              "path": "/docs/functions/extractor/pdf-to-html/models/Word",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/pdf-to-html",
+              "path": "/docs/functions/extractor/pdf-to-html/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/CompactLines",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectHeaders",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectListItems",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/DetectTOC",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/RemoveRepetitiveElements",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/line-item/VerticalToHorizontal",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/ToHTML",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToHTML",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemTransformation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/ToTextBlocks",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/transformations/Transformation",
+              "path": "/docs/functions/extractor/pdf-to-html/transformations/Transformation",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/util/is-url-pdf",
+              "path": "/docs/functions/extractor/pdf-to-html/util/is-url-pdf",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/util/page-item-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/page-item-functions",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/util/page-number-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/page-number-functions",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/pdf-to-html/util/string-functions",
+              "path": "/docs/functions/extractor/pdf-to-html/util/string-functions",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/url-to-content/docx-to-content",
+              "path": "/docs/functions/extractor/url-to-content/docx-to-content",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/url-to-content/url-to-content",
+              "path": "/docs/functions/extractor/url-to-content/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/url-to-content/url-to-html",
+              "path": "/docs/functions/extractor/url-to-content/url-to-html",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/extractor/url-to-content/youtube-to-text",
+              "path": "/docs/functions/extractor/url-to-content/youtube-to-text",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/index",
+              "path": "/docs/functions/",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/index-1",
+              "path": "/docs/functions/index-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/interface/highlight-code",
+              "path": "/docs/functions/interface/highlight-code",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/interface/youtube-embed",
+              "path": "/docs/functions/interface/youtube-embed",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/match/compare-letters",
+              "path": "/docs/functions/match/compare-letters",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/match/match-quasar",
+              "path": "/docs/functions/match/match-quasar",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/match/weigh-relevance-frequency",
+              "path": "/docs/functions/match/weigh-relevance-frequency",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/modules",
+              "path": "/docs/functions/modules",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/search/search-engines",
+              "path": "/docs/functions/search/search-engines",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/search/search-stream",
+              "path": "/docs/functions/search/search-stream",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/search/search-web",
+              "path": "/docs/functions/search/search-web",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/search/search-wikipedia",
+              "path": "/docs/functions/search/search-wikipedia",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/similarity/similarity-remote-api",
+              "path": "/docs/functions/similarity/similarity-remote-api",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/stopwords",
+              "path": "/docs/functions/tokenize/stopwords",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/suggest-complete-word",
+              "path": "/docs/functions/tokenize/suggest-complete-word",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/text-to-chunks",
+              "path": "/docs/functions/tokenize/text-to-chunks",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/text-to-sentences",
+              "path": "/docs/functions/tokenize/text-to-sentences",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/text-to-topic-tokens",
+              "path": "/docs/functions/tokenize/text-to-topic-tokens",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/tokenize/word-to-root-stem",
+              "path": "/docs/functions/tokenize/word-to-root-stem",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/topics/ngrams",
+              "path": "/docs/functions/topics/ngrams",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/topics/rank-sentences-keyphrases",
+              "path": "/docs/functions/topics/rank-sentences-keyphrases",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/topics/seektopic-keyphrases",
+              "path": "/docs/functions/topics/seektopic-keyphrases",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/topics/topic-distribution",
+              "path": "/docs/functions/topics/topic-distribution",
+              "sidebar": "default"
+            },
+            {
+              "id": "functions/types",
+              "path": "/docs/functions/types",
+              "sidebar": "default"
+            },
+            {
+              "id": "index",
+              "path": "/docs/",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/index",
+              "path": "/docs/neural-net/",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/index-1",
+              "path": "/docs/neural-net/index-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/modules",
+              "path": "/docs/neural-net/modules",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/neural-net-tensors/neural-net-gpu",
+              "path": "/docs/neural-net/neural-net-tensors/neural-net-gpu",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/neural-net-tensors/neural-net-tf",
+              "path": "/docs/neural-net/neural-net-tensors/neural-net-tf",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/next-word-prediction/scripts/predict-next-word",
+              "path": "/docs/neural-net/next-word-prediction/scripts/predict-next-word",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/statistics/predict-statistics",
+              "path": "/docs/neural-net/statistics/predict-statistics",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/similarity-remote-api",
+              "path": "/docs/neural-net/vectorize/similarity-remote-api",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/similarity-vector",
+              "path": "/docs/neural-net/vectorize/similarity-vector",
+              "sidebar": "default"
+            },
+            {
+              "id": "neural-net/vectorize/usearch",
+              "path": "/docs/neural-net/vectorize/usearch",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/AppLayout/auth-google-one-tap",
+              "path": "/docs/web/components/AppLayout/auth-google-one-tap",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/AppLayout/sound-effects",
+              "path": "/docs/web/components/AppLayout/sound-effects",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/docx/docx-to-html",
+              "path": "/docs/web/components/Editor/docx/docx-to-html",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/docx/docx-tokens",
+              "path": "/docs/web/components/Editor/docx/docx-tokens",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/docx/parse-cards",
+              "path": "/docs/web/components/Editor/docx/parse-cards",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/docx/parse-debate-docx",
+              "path": "/docs/web/components/Editor/docx/parse-debate-docx",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/docx/parse-zip-folder",
+              "path": "/docs/web/components/Editor/docx/parse-zip-folder",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/storage/files-api-frontend",
+              "path": "/docs/web/components/Editor/storage/files-api-frontend",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/storage/local-storage-api",
+              "path": "/docs/web/components/Editor/storage/local-storage-api",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/Editor/storage/seed-test-data",
+              "path": "/docs/web/components/Editor/storage/seed-test-data",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/icons",
+              "path": "/docs/web/components/icons",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/icons-1",
+              "path": "/docs/web/components/icons-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/ReadMode/auto-highlight",
+              "path": "/docs/web/components/ReadMode/auto-highlight",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/ReadMode/read-mode-view",
+              "path": "/docs/web/components/ReadMode/read-mode-view",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/SearchWeb/categories",
+              "path": "/docs/web/components/SearchWeb/categories",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/SearchWeb/extras/get-weather",
+              "path": "/docs/web/components/SearchWeb/extras/get-weather",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/SearchWeb/extras/home-extras",
+              "path": "/docs/web/components/SearchWeb/extras/home-extras",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/SearchWeb/extras/QuantumSphere",
+              "path": "/docs/web/components/SearchWeb/extras/QuantumSphere",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/ShortcutSearch/shortcut-search",
+              "path": "/docs/web/components/ShortcutSearch/shortcut-search",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/ShortcutSearch/shortcut-search-web",
+              "path": "/docs/web/components/ShortcutSearch/shortcut-search-web",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/TabManager/find-in-tab-content",
+              "path": "/docs/web/components/TabManager/find-in-tab-content",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/utils",
+              "path": "/docs/web/components/utils",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/utils-1",
+              "path": "/docs/web/components/utils-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/components/utils/auth-client",
+              "path": "/docs/web/components/utils/auth-client",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/customize-site",
+              "path": "/docs/web/customize-site",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/index",
+              "path": "/docs/web/",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/modules",
+              "path": "/docs/web/modules",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server",
+              "path": "/docs/web/server",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server-1",
+              "path": "/docs/web/server-1",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/auth",
+              "path": "/docs/web/server/auth",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/drizzle.config",
+              "path": "/docs/web/server/drizzle.config",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/email",
+              "path": "/docs/web/server/email",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/ratelimits",
+              "path": "/docs/web/server/ratelimits",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/schema",
+              "path": "/docs/web/server/schema",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/types",
+              "path": "/docs/web/server/types",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/users",
+              "path": "/docs/web/server/users",
+              "sidebar": "default"
+            },
+            {
+              "id": "web/server/validations",
+              "path": "/docs/web/server/validations",
+              "sidebar": "default"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "default": {
+              "link": {
+                "path": "/docs/api/extract-content",
+                "label": "## Extract structured content and cite from any URL"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  },
+  "docusaurus-plugin-google-gtag": {
+    "default": {
+      "trackingID": [
+        "G-E5TZ32BZD"
+      ],
+      "anonymizeIP": false,
+      "id": "default"
+    }
+  },
+  "docusaurus-lunr-search": {
+    "default": {
+      "fileNames": {
+        "searchDoc": "search-doc-1756257554189.json",
+        "lunrIndex": "lunr-index-1756257554189.json"
+      }
+    }
+  }
+}

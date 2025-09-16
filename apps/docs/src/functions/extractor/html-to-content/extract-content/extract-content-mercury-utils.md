@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
 
 ## brsToPs()
 
@@ -6,7 +6,7 @@
 function brsToPs(document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:349](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L349)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:349](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L349)
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function cleanAttributes(article: any, document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:464](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L464)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:464](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L464)
 
 ### Parameters
 
@@ -96,7 +96,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function cleanHOnes(article: any, document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:449](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L449)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:449](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L449)
 
 ### Parameters
 
@@ -147,7 +147,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function cleanImages(article: any, document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:424](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L424)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:424](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L424)
 
 ### Parameters
 
@@ -201,7 +201,7 @@ function convertNodeTo(
    tag: string): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:326](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L326)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:326](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L326)
 
 ### Parameters
 
@@ -280,7 +280,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function convertToParagraphs(document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:392](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L392)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:392](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L392)
 
 ### Parameters
 
@@ -319,7 +319,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function getAttrs(node: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:316](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L316)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:316](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L316)
 
 ### Parameters
 
@@ -358,7 +358,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function isWordpress(document: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:645](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L645)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:645](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L645)
 
 ### Parameters
 
@@ -397,7 +397,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function linkDensity(node: any): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:578](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L578)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:578](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L578)
 
 ### Parameters
 
@@ -436,7 +436,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function nodeIsSufficient(node: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:640](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L640)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:640](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L640)
 
 ### Parameters
 
@@ -475,7 +475,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function normalizeSpaces(text: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:288](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L288)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:288](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L288)
 
 ### Parameters
 
@@ -517,7 +517,7 @@ function paragraphize(
    br: boolean): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:293](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L293)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:293](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L293)
 
 ### Parameters
 
@@ -596,7 +596,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function removeEmpty(article: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:495](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L495)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:495](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L495)
 
 ### Parameters
 
@@ -635,7 +635,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function removeUnlessContent(node: any, weight: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:508](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L508)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:508](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L508)
 
 ### Parameters
 
@@ -686,7 +686,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function rewriteTopLevel(article: any, document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:565](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L565)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:565](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L565)
 
 ### Parameters
 
@@ -740,7 +740,7 @@ function setAttr(
    val: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L650)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L650)
 
 ### Parameters
 
@@ -803,7 +803,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function setAttrs(node: any, attrs: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L656)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L656)
 
 ### Parameters
 
@@ -857,7 +857,7 @@ function stripJunkTags(
    tags: any[]): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:434](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L434)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:434](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L434)
 
 ### Parameters
 
@@ -936,7 +936,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function stripTags(text: any, document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:597](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L597)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:597](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L597)
 
 ### Parameters
 
@@ -987,7 +987,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function stripUnlikelyCandidates(document: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:605](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L605)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:605](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L605)
 
 ### Parameters
 
@@ -1026,7 +1026,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function textLength(text: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:573](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L573)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:573](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L573)
 
 ### Parameters
 
@@ -1065,7 +1065,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-co
 function withinComment(node: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:624](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L624)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:624](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L624)
 
 ### Parameters
 

@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / tokenize/text-to-sentences
+[ai-research-agent](../modules.md) / tokenize/text-to-sentences
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function splitSentences(inputText: string, options?: object): string[];
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/text-to-sentences.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-sentences.js#L14)
+Defined in: [src/tokenize/text-to-sentences.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-sentences.js#L14)
 
 Splits text into sentences, handling 220+ common abbreviations,
 and infering acronyms, numbers, URLs, times, names, etc.

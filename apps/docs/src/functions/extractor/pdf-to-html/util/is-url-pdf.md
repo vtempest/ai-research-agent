@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/util/is-url-pdf
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/is-url-pdf
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function isUrlPDF(url: string): Promise<boolean>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/is-url-pdf.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/is-url-pdf.js#L12)
+Defined in: [src/extractor/pdf-to-html/util/is-url-pdf.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/is-url-pdf.js#L12)
 
 Detects if a given URL points to a PDF file by checking
 the stream's first bytes for %PDF-  then ends  the request.

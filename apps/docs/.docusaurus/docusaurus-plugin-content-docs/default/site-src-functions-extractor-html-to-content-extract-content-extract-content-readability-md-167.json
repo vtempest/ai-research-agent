@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-content/extract-content/extract-content-readability",
+  "title": "extract-content-readability",
+  "description": "ai-research-agent / extractor/html-to-content/extract-content/extract-content-readability",
+  "source": "@site/src/functions/extractor/html-to-content/extract-content/extract-content-readability.md",
+  "sourceDirName": "functions/extractor/html-to-content/extract-content",
+  "slug": "/functions/extractor/html-to-content/extract-content/extract-content-readability",
+  "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-readability",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/html-to-content/extract-content/extract-content-readability.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "extract-content-mercury",
+    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury"
+  },
+  "next": {
+    "title": "html-to-basic-html",
+    "permalink": "/docs/functions/extractor/html-to-content/html-to-basic-html"
+  }
+}

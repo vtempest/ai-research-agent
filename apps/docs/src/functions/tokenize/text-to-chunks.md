@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / tokenize/text-to-chunks
+[ai-research-agent](../modules.md) / tokenize/text-to-chunks
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function splitTextSemanticChars(text: string, options?: any): string[];
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/text-to-chunks.js:45](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-chunks.js#L45)
+Defined in: [src/tokenize/text-to-chunks.js:45](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-chunks.js#L45)
 
 ### Split Text by Semantic Characters 
 <img width="350px"  src="https://i.imgur.com/RpXf5as.png" /> 

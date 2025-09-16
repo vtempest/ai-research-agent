@@ -17,7 +17,7 @@ import { ChatGroq } from "@langchain/groq";
 import { ChatPerplexity } from "@langchain/community/chat_models/perplexity";
 import { ChatCloudflareWorkersAI } from "@langchain/cloudflare";
 import { ChatOllama } from "@langchain/ollama";
-import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
+import { TogetherAI } from "@langchain/community/llms/togetherai";
 import { ChatXAI } from "@langchain/xai";
 import { ChatVertexAI } from "@langchain/google-vertexai-web";
 
@@ -174,7 +174,7 @@ export async function generateLanguageResponse(options = {}) {
       provider === "groq"
         ? new ChatGroq({ apiKey, model, temperature })
         : provider === "togetherai"
-          ? new ChatTogetherAI({ apiKey, model, temperature })
+          ? new TogetherAI({ apiKey, model, temperature })
           : provider === "openai"
             ? new ChatOpenAI({ openAIApiKey: apiKey, model, temperature })
             : provider === "anthropic"

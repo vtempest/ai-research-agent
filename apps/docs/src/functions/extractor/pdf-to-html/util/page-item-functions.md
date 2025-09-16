@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/util/page-item-functions
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/page-item-functions
 
 ## minXFromBlocks()
 
@@ -6,7 +6,7 @@
 function minXFromBlocks(blocks: any): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L6)
+Defined in: [src/extractor/pdf-to-html/util/page-item-functions.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L6)
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item
 function minXFromPageItems(items: any): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L19)
+Defined in: [src/extractor/pdf-to-html/util/page-item-functions.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L19)
 
 ### Parameters
 
@@ -84,7 +84,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item
 function sortByX(items: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L30)
+Defined in: [src/extractor/pdf-to-html/util/page-item-functions.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-item-functions.js#L30)
 
 ### Parameters
 

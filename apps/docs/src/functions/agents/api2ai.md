@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / agents/api2ai
+[ai-research-agent](../modules.md) / agents/api2ai
 
 ## Generate
 
@@ -8,7 +8,7 @@
 function convertOpenAPIToLangChainTools(fileContents: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/api2ai.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/api2ai.js#L22)
+Defined in: [src/agents/api2ai.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/api2ai.js#L22)
 
 ### API2AI 
 

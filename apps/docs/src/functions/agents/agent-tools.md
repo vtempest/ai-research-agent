@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / agents/agent-tools
+[ai-research-agent](../modules.md) / agents/agent-tools
 
 ## AGENT\_TOOLS
 
@@ -6,9 +6,9 @@
 const AGENT_TOOLS: object[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/agent-tools.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L3)
+Defined in: [src/agents/agent-tools.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L3)
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -38,7 +38,7 @@ Defined in: [packages/ai-research-agent/src/agents/agent-tools.js:3](https://git
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/agent-tools.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L7)
+[src/agents/agent-tools.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L7)
 
 </td>
 </tr>
@@ -60,7 +60,7 @@ Defined in: [packages/ai-research-agent/src/agents/agent-tools.js:3](https://git
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/agent-tools.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L10)
+[src/agents/agent-tools.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L10)
 
 </td>
 </tr>
@@ -82,7 +82,7 @@ Defined in: [packages/ai-research-agent/src/agents/agent-tools.js:3](https://git
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/agent-tools.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L6)
+[src/agents/agent-tools.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L6)
 
 </td>
 </tr>
@@ -110,7 +110,7 @@ Defined in: [packages/ai-research-agent/src/agents/agent-tools.js:3](https://git
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/agent-tools.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L9)
+[src/agents/agent-tools.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-tools.js#L9)
 
 </td>
 </tr>

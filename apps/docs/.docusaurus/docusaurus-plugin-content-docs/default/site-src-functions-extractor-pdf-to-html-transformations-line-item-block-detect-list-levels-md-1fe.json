@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+  "title": "DetectListLevels",
+  "description": "ai-research-agent / extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+  "source": "@site/src/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations/line-item-block",
+  "slug": "/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/transformations/line-item-block/DetectListLevels.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "DetectCodeQuoteBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/DetectCodeQuoteBlocks"
+  },
+  "next": {
+    "title": "GatherBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/line-item-block/GatherBlocks"
+  }
+}

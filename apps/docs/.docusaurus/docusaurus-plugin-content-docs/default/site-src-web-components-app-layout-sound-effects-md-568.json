@@ -1,0 +1,24 @@
+{
+  "id": "web/components/AppLayout/sound-effects",
+  "title": "sound-effects",
+  "description": "Documentation / components/AppLayout/sound-effects",
+  "source": "@site/src/web/components/AppLayout/sound-effects.md",
+  "sourceDirName": "web/components/AppLayout",
+  "slug": "/web/components/AppLayout/sound-effects",
+  "permalink": "/docs/web/components/AppLayout/sound-effects",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/web/components/AppLayout/sound-effects.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "auth-google-one-tap",
+    "permalink": "/docs/web/components/AppLayout/auth-google-one-tap"
+  },
+  "next": {
+    "title": "docx-to-html",
+    "permalink": "/docs/web/components/Editor/docx/docx-to-html"
+  }
+}

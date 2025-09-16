@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / topics/rank-sentences-keyphrases
+[ai-research-agent](../modules.md) / topics/rank-sentences-keyphrases
 
 ## rankSentencesCentralToKeyphrase()
 
@@ -6,7 +6,7 @@
 function rankSentencesCentralToKeyphrase(sentencesWithKeyphrases: any[], options: object): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/topics/rank-sentences-keyphrases.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/rank-sentences-keyphrases.js#L20)
+Defined in: [src/topics/rank-sentences-keyphrases.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/rank-sentences-keyphrases.js#L20)
 
 Rank sentences based on their centrality to key phrases.
 This function implements the TextRank algorithm to weight each sentence

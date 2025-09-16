@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / topics/ngrams
+[ai-research-agent](../modules.md) / topics/ngrams
 
 ## extractNounEdgeGrams()
 
@@ -12,7 +12,7 @@ function extractNounEdgeGrams(
    sentenceNumber: number): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/topics/ngrams.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/ngrams.js#L27)
+Defined in: [src/topics/ngrams.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/ngrams.js#L27)
 
 Extracts noun-based edge grams from a given set of terms. This function is crucial
 for identifying important multi-word concepts in the text.

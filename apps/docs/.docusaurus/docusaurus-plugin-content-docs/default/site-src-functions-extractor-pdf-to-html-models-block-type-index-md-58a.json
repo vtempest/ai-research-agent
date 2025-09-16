@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/BlockType/index",
+  "title": "index",
+  "description": "ai-research-agent / extractor/pdf-to-html/models/BlockType",
+  "source": "@site/src/functions/extractor/pdf-to-html/models/BlockType/index.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models/BlockType",
+  "slug": "/functions/extractor/pdf-to-html/models/BlockType/",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/models/BlockType/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Annotation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Annotation"
+  },
+  "next": {
+    "title": "default",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/BlockType/namespaces/default"
+  }
+}

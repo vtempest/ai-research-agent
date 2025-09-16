@@ -1,0 +1,54 @@
+{
+	"/": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/api/agents": [
+		"src/routes/api/agents/+server.ts"
+	],
+	"/api/chats": [
+		"src/routes/api/chats/+server.ts"
+	],
+	"/api/extract": [
+		"src/routes/api/extract/+server.js"
+	],
+	"/api/files": [
+		"src/routes/api/files/+server.ts"
+	],
+	"/api/files/[fileId]": [
+		"src/routes/api/files/[fileId]/+server.ts"
+	],
+	"/api/model": [
+		"src/routes/api/model/+server.ts"
+	],
+	"/api/search": [
+		"src/routes/api/search/+server.ts"
+	],
+	"/api/subscriptions": [
+		"src/routes/api/subscriptions/+server.ts"
+	],
+	"/api/user": [
+		"src/routes/api/user/+server.ts"
+	],
+	"/api/vectorize": [
+		"src/routes/api/vectorize/+server.js"
+	],
+	"/legal/privacy": [
+		"src/routes/+layout.js"
+	],
+	"/legal/terms": [
+		"src/routes/+layout.js"
+	],
+	"/pricing": [
+		"src/routes/+layout.js"
+	],
+	"/settings": [
+		"src/routes/settings/+page.server.ts",
+		"src/routes/settings/+layout.js",
+		"src/routes/settings/+layout.server.ts",
+		"src/routes/+layout.js",
+		"src/routes/settings/+layout.js",
+		"src/routes/settings/+layout.server.ts",
+		"src/routes/+layout.js"
+	]
+}

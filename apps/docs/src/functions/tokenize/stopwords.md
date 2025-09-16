@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / tokenize/stopwords
+[ai-research-agent](../modules.md) / tokenize/stopwords
 
 ## isWordCommonIgnored()
 
@@ -6,7 +6,7 @@
 function isWordCommonIgnored(word: string): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/stopwords.js:47](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/stopwords.js#L47)
+Defined in: [src/tokenize/stopwords.js:47](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/stopwords.js#L47)
 
 Checks word is in [320 commonly ignored "stop words 
 "](https://raw.githubusercontent.com/igorbrigadir/stopwords/master/en/spacy.txt) 

@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/next-word-prediction/scripts/predict-next-word",
+  "title": "predict-next-word",
+  "description": "neural-net-training / next-word-prediction/scripts/predict-next-word",
+  "source": "@site/src/neural-net/next-word-prediction/scripts/predict-next-word.md",
+  "sourceDirName": "neural-net/next-word-prediction/scripts",
+  "slug": "/neural-net/next-word-prediction/scripts/predict-next-word",
+  "permalink": "/docs/neural-net/next-word-prediction/scripts/predict-next-word",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/neural-net/next-word-prediction/scripts/predict-next-word.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "neural-net-tf",
+    "permalink": "/docs/neural-net/neural-net-tensors/neural-net-tf"
+  },
+  "next": {
+    "title": "predict-statistics",
+    "permalink": "/docs/neural-net/statistics/predict-statistics"
+  }
+}

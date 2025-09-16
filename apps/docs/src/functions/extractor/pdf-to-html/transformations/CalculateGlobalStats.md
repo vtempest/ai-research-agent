@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/CalculateGlobalStats
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L5)
+Defined in: [src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L5)
 
 ### Extends
 
@@ -16,7 +16,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 new default(fontMap: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L6)
+Defined in: [src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L6)
 
 ##### Parameters
 
@@ -49,7 +49,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](ToTextItemTransformation.md#default).[`constructor`](ToTextItemTransformation.md#default#constructor)
+[`default`](ToTextItemTransformation.md#default).[`constructor`](ToTextItemTransformation.md#constructor)
 
 ### Properties
 
@@ -59,7 +59,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 fontMap: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L8)
+Defined in: [src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L8)
 
 #### itemType
 
@@ -67,11 +67,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 itemType: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
 
 ##### Inherited from
 
-[`default`](ToTextItemTransformation.md#default).[`itemType`](ToTextItemTransformation.md#default#itemtype)
+[`default`](Transformation.md#default).[`itemType`](Transformation.md#itemtype)
 
 #### name
 
@@ -79,11 +79,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 name: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
 
 ##### Inherited from
 
-[`default`](ToTextItemTransformation.md#default).[`name`](ToTextItemTransformation.md#default#name)
+[`default`](Transformation.md#default).[`name`](Transformation.md#name)
 
 ### Methods
 
@@ -93,7 +93,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 completeTransform(parseResult: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToTextItemTransformation.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToTextItemTransformation.js#L13)
+Defined in: [src/extractor/pdf-to-html/transformations/ToTextItemTransformation.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToTextItemTransformation.js#L13)
 
 ##### Parameters
 
@@ -126,7 +126,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Inherited from
 
-[`default`](ToTextItemTransformation.md#default).[`completeTransform`](ToTextItemTransformation.md#default#completetransform)
+[`default`](ToTextItemTransformation.md#default).[`completeTransform`](ToTextItemTransformation.md#completetransform)
 
 #### transform()
 
@@ -134,7 +134,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 transform(parseResult: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/CalculateGlobalStats.js#L11)
 
 ##### Parameters
 
@@ -167,4 +167,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](ToTextItemTransformation.md#default).[`transform`](ToTextItemTransformation.md#default#transform)
+[`default`](ToTextItemTransformation.md#default).[`transform`](ToTextItemTransformation.md#transform)

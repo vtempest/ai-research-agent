@@ -29,9 +29,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      $lib: path.resolve("../web-app/src/lib"),
-      $utils: path.resolve("../web-app/src/lib/utils"),
-      $components: path.resolve("../web-app/src/lib/components"),
+      $lib: path.resolve("../web/src/lib"),
+      $utils: path.resolve("../web/src/lib/utils"),
+      $components: path.resolve("../web/src/lib/components"),
     },
   },
 });

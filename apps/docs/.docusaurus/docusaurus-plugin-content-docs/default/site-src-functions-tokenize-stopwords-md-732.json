@@ -1,0 +1,24 @@
+{
+  "id": "functions/tokenize/stopwords",
+  "title": "stopwords",
+  "description": "ai-research-agent / tokenize/stopwords",
+  "source": "@site/src/functions/tokenize/stopwords.md",
+  "sourceDirName": "functions/tokenize",
+  "slug": "/functions/tokenize/stopwords",
+  "permalink": "/docs/functions/tokenize/stopwords",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/tokenize/stopwords.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "similarity-remote-api",
+    "permalink": "/docs/functions/similarity/similarity-remote-api"
+  },
+  "next": {
+    "title": "suggest-complete-word",
+    "permalink": "/docs/functions/tokenize/suggest-complete-word"
+  }
+}

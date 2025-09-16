@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / search/search-wikipedia
+[ai-research-agent](../modules.md) / search/search-wikipedia
 
 ## Search
 
@@ -8,7 +8,7 @@
 function searchWikipedia(query: string, options?: object): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/search/search-wikipedia.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L23)
+Defined in: [src/search/search-wikipedia.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L23)
 
 Function to query phrase in Wikipedia Search API and return 
 page titles, images and first few sentences of each result. 
@@ -206,7 +206,7 @@ default=3 Limit summary to this many sentences
 </td>
 <td>
 
-[packages/ai-research-agent/src/search/search-wikipedia.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L19)
+[src/search/search-wikipedia.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L19)
 
 </td>
 </tr>

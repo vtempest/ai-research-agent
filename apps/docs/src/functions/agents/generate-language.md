@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / agents/generate-language
+[ai-research-agent](../modules.md) / agents/generate-language
 
 ## Generate
 
@@ -12,7 +12,7 @@ function generateLanguageResponse(options: object): Promise<{
 }>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/generate-language.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/generate-language.js#L105)
+Defined in: [src/agents/generate-language.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/generate-language.js#L105)
 
 ### Generate Language Response
 Writes language response showing human-like understanding of the question and context.

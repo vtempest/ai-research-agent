@@ -2,7 +2,7 @@ import { extractContentAndCite } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
 import { convertPDFToHTML } from "../pdf-to-html/pdf-to-html.js";
 import {  isUrlPDF } from "../pdf-to-html/util/is-url-pdf.js";
-import { convertDOCXToHTML } from "./docx-to-content.js";
+import { convertDOCXToHTML, isBufferDOCX } from "./docx-to-content.js";
 import { scrapeURL } from "./url-to-html.js";
 
 /**
@@ -41,20 +41,23 @@ import { scrapeURL } from "./url-to-html.js";
  *  footnotes. The system analyzes text height statistics to automatically
  *  infer heading levels, creating a properly structured document hierarchy
  *  based on standard deviation from mean text size.
- * 5. Citation Information Extraction: Identify and extract citation metadata
+ * 5. DOCX Binary Buffer Processing: Accept DOCX files as binary buffers 
+ * (ArrayBuffer, Buffer, or Uint8Array) and automatically detect and convert 
+ * them to HTML while preserving formatting, styles, and document structure.
+ * 6. Citation Information Extraction: Identify and extract citation metadata
  *  including author names, publication dates, sources, and titles using HTML
  *  meta tags and common class name patterns. The system validates author names
  *  against a comprehensive database of 90,000 first and last names, 
  * distinguishing between personal and organizational authors to properly 
  * format citations.
- * 6. Author Name Formatting: Process author names by checking against 
+ * 7. Author Name Formatting: Process author names by checking against 
  * known name databases, handling affixes and titles correctly, and determining
  *  whether to reverse the name order based on whether it's a personal or 
  * organizational author, ensuring proper citation formatting.
- * 7. Content Validation: Verify the extracted content's accuracy by comparing
+ * 8. Content Validation: Verify the extracted content's accuracy by comparing
  *  results from multiple extraction methods, ensuring all essential elements 
  * are preserved and properly formatted for the intended use case.
- * @param {document|string} urlOrDoc - url or dom object with article content
+ * @param {document|string|ArrayBuffer|Buffer|Uint8Array} urlOrDoc - url, dom object with article content, or binary buffer (DOCX)
  * @param {Object} [options]
  * @param {boolean} options.images default=true - include images
  * @param {boolean} options.links default=true - include links
@@ -84,6 +87,16 @@ import { scrapeURL } from "./url-to-html.js";
   *  word_count - The word count of the full text (without HTML tags)
  * @category Extract
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
+ * @example
+ * // Extract from URL
+ * const result1 = await extractContent('https://example.com/article');
+ * 
+ * // Extract from DOCX binary buffer
+ * const docxBuffer = new Uint8Array([...]); // DOCX file bytes
+ * const result2 = await extractContent(docxBuffer);
+ * 
+ * // Extract from DOM object
+ * const result3 = await extractContent(document);
  */
 export async function extractContent(urlOrDoc, options = {}) {
   var {
@@ -98,10 +111,33 @@ export async function extractContent(urlOrDoc, options = {}) {
   } = options;
   var response = {};
 
-  let url, isPdf;
+  let url, isPdf, isDocxBuffer;
 
-  //url  to fetch
-  if (typeof urlOrDoc === "string") {
+  // Check if input is a binary buffer (DOCX)
+  if (urlOrDoc instanceof ArrayBuffer || 
+      urlOrDoc instanceof Uint8Array || 
+      (typeof Buffer !== 'undefined' && Buffer.isBuffer(urlOrDoc))) {
+    
+    isDocxBuffer = isBufferDOCX(urlOrDoc);
+    
+    if (isDocxBuffer) {
+      // Handle DOCX binary buffer
+      response.html = await convertDOCXToHTML(urlOrDoc, options);
+      url = "buffer://docx"; // Placeholder URL for buffer input
+    } else {
+      return { error: "Binary buffer is not a valid DOCX file" };
+    }
+
+  } else if (typeof urlOrDoc === "string" && /<\/[^>]+>/.test(urlOrDoc.trim())) {
+    // If urlOrDoc is an HTML string, treat as HTML content
+    options.url = options.url || "";
+
+    response =  extractContentAndCite(urlOrDoc, options);
+    
+    return response;
+    // if URL
+  } else if (typeof urlOrDoc === "string" && /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+      .test(urlOrDoc)) {
 
     url = urlOrDoc;
 
@@ -138,7 +174,7 @@ export async function extractContent(urlOrDoc, options = {}) {
       response = extractContentAndCite(html, options);
 
     }
-  } else if (typeof urlOrDoc == "object") {
+  } else if (typeof urlOrDoc == "object" && urlOrDoc.location) {
     //if passing in dom object document from front end
 
     url = urlOrDoc.location.href;
@@ -161,6 +197,9 @@ export async function extractContent(urlOrDoc, options = {}) {
 
     } //pass doc to extract
     else response = extractContentAndCite(urlOrDoc, options);
+  } else {
+    // Handle other object types or invalid input
+    return { error: "Invalid input type. Expected URL string, DOM object, or DOCX binary buffer." };
   }
 
   //if no text
@@ -183,8 +222,8 @@ export async function extractContent(urlOrDoc, options = {}) {
   var cite = `${author_cite || source || " "}${apa_cite_date}. <b>${title 
     || ''}</b>. <i>${source || ''}</i>. <a href="${url}" target="_blank">${url}</a>`;
 
-  //shoten long urls by removing ?params=get used as state tracking
-  if (url.includes("?") && url.length > 150) 
+  //shorten long urls by removing ?params=get used as state tracking
+  if (url && url.includes("?") && url.length > 150) 
     response.url = url.split("?")[0]
   
   //put url on top

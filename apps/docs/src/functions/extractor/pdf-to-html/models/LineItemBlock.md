@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/LineItemBlock
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineItemBlock
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L5)
+Defined in: [src/extractor/pdf-to-html/models/LineItemBlock.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L5)
 
 ### Extends
 
@@ -16,7 +16,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineIte
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L6)
+Defined in: [src/extractor/pdf-to-html/models/LineItemBlock.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L6)
 
 ##### Parameters
 
@@ -49,7 +49,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineIte
 
 ##### Overrides
 
-[`default`](PageItem.md#default).[`constructor`](PageItem.md#default#constructor)
+[`default`](PageItem.md#default).[`constructor`](PageItem.md#constructor)
 
 ### Properties
 
@@ -59,11 +59,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineIte
 annotation: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L8)
 
 ##### Inherited from
 
-[`default`](PageItem.md#default).[`annotation`](PageItem.md#default#annotation)
+[`default`](PageItem.md#default).[`annotation`](PageItem.md#annotation)
 
 #### items
 
@@ -71,7 +71,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 items: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/LineItemBlock.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L8)
 
 #### parsedElements
 
@@ -79,11 +79,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineIte
 parsedElements: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L9)
 
 ##### Inherited from
 
-[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#default#parsedelements)
+[`default`](PageItem.md#default).[`parsedElements`](PageItem.md#parsedelements)
 
 #### type
 
@@ -91,11 +91,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 type: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L7)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L7)
 
 ##### Inherited from
 
-[`default`](PageItem.md#default).[`type`](PageItem.md#default#type)
+[`default`](PageItem.md#default).[`type`](PageItem.md#type)
 
 ### Methods
 
@@ -105,7 +105,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 addItem(item: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L14)
+Defined in: [src/extractor/pdf-to-html/models/LineItemBlock.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineItemBlock.js#L14)
 
 ##### Parameters
 

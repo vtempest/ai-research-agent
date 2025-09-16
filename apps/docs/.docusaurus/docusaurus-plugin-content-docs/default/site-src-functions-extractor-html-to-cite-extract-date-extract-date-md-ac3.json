@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-cite/extract-date/extract-date",
+  "title": "extract-date",
+  "description": "ai-research-agent / extractor/html-to-cite/extract-date/extract-date",
+  "source": "@site/src/functions/extractor/html-to-cite/extract-date/extract-date.md",
+  "sourceDirName": "functions/extractor/html-to-cite/extract-date",
+  "slug": "/functions/extractor/html-to-cite/extract-date/",
+  "permalink": "/docs/functions/extractor/html-to-cite/extract-date/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/html-to-cite/extract-date/extract-date.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "extract-cite",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-cite"
+  },
+  "next": {
+    "title": "date-extractors",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-date/date-extractors"
+  }
+}

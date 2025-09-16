@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / search/search-stream
+[ai-research-agent](../modules.md) / search/search-stream
 
 ## Search
 
@@ -8,7 +8,7 @@
 function searchSTREAM(query: string, options?: object): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/search/search-stream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-stream.js#L34)
+Defined in: [src/search/search-stream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-stream.js#L34)
 
 ### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model 
  <img width="350px"  src="https://i.imgur.com/s8gsYt1.png"  /> 

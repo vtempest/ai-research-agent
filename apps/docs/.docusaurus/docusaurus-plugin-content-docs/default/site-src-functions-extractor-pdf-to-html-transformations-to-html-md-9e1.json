@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/ToHTML",
+  "title": "ToHTML",
+  "description": "ai-research-agent / extractor/pdf-to-html/transformations/ToHTML",
+  "source": "@site/src/functions/extractor/pdf-to-html/transformations/ToHTML.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations",
+  "slug": "/functions/extractor/pdf-to-html/transformations/ToHTML",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToHTML",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/transformations/ToHTML.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "CalculateGlobalStats",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/CalculateGlobalStats"
+  },
+  "next": {
+    "title": "ToLineItemBlockTransformation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation"
+  }
+}

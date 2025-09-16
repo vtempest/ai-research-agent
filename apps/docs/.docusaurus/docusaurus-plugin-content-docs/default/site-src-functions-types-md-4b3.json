@@ -1,0 +1,24 @@
+{
+  "id": "functions/types",
+  "title": "types",
+  "description": "ai-research-agent / types",
+  "source": "@site/src/functions/types.md",
+  "sourceDirName": "functions",
+  "slug": "/functions/types",
+  "permalink": "/docs/functions/types",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/types.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "topic-distribution",
+    "permalink": "/docs/functions/topics/topic-distribution"
+  },
+  "next": {
+    "title": "index-1",
+    "permalink": "/docs/neural-net/index-1"
+  }
+}

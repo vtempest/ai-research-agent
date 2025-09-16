@@ -1,7 +1,8 @@
 FROM docker.io/searxng/searxng:latest
 
-# Copy settings
+# Copy settings and set correct ownership
 COPY searxng-settings.yml /etc/searxng/settings.yml
+RUN chown searxng:searxng /etc/searxng/settings.yml
 
 # Development environment variables
 ENV SEARXNG_BASE_URL=http://localhost:8080

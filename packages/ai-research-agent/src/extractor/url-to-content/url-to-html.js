@@ -79,8 +79,12 @@ export async function scrapeURL(url, options = {}) {
   if (changeReferer)
     headers["Referer"] = "https://www.google.com/";
 
-
-  let response = await fetch(url, headers);
+  let response;
+  try {
+    response = await fetch(url, headers);
+  } catch (e) {
+    return { error: "Error in fetch", msg: e.message };
+  }
 
   if (response.redirected) {
     if (maxRedirects <= 0)
@@ -115,13 +119,6 @@ export async function scrapeURL(url, options = {}) {
 
 
   return html;
-  // } else {
-  //   // For other types, return as arrayBuffer
-  //   return await response.arrayBuffer();
-  // }
-  // } catch (e) {
-  //   return { error: "Error in fetch", msg: e.message };
-  // }
 }
 
 /**

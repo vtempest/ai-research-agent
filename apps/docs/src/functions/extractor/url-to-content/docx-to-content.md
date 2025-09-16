@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/url-to-content/docx-to-content
+[ai-research-agent](../../modules.md) / extractor/url-to-content/docx-to-content
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function convertDOCXToHTML(input: string | ArrayBuffer | File | Blob, options?: DocxOptions): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:54](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L54)
+Defined in: [src/extractor/url-to-content/docx-to-content.js:54](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L54)
 
 Converts a DOCX document to HTML
 
@@ -81,7 +81,7 @@ const html = await convertDOCXToHTML(fileInput.files[0]);
 
 ### DocxOptions
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L5)
+Defined in: [src/extractor/url-to-content/docx-to-content.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L5)
 
 #### Properties
 
@@ -113,7 +113,7 @@ Base path for image resources
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L8)
+[src/extractor/url-to-content/docx-to-content.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L8)
 
 </td>
 </tr>
@@ -135,7 +135,7 @@ Whether to include document styles
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L7)
+[src/extractor/url-to-content/docx-to-content.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L7)
 
 </td>
 </tr>
@@ -157,7 +157,7 @@ Whether to preserve shape elements
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L6)
+[src/extractor/url-to-content/docx-to-content.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L6)
 
 </td>
 </tr>
@@ -168,7 +168,7 @@ Whether to preserve shape elements
 
 ### ParagraphStyle
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:220](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L220)
+Defined in: [src/extractor/url-to-content/docx-to-content.js:220](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L220)
 
 #### Properties
 
@@ -200,7 +200,7 @@ Text alignment (left, right, center, justify)
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:221](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L221)
+[src/extractor/url-to-content/docx-to-content.js:221](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L221)
 
 </td>
 </tr>
@@ -222,7 +222,7 @@ Paragraph indentation
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:223](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L223)
+[src/extractor/url-to-content/docx-to-content.js:223](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L223)
 
 </td>
 </tr>
@@ -244,7 +244,7 @@ Keep with next paragraph
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:224](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L224)
+[src/extractor/url-to-content/docx-to-content.js:224](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L224)
 
 </td>
 </tr>
@@ -266,7 +266,7 @@ Force page break before
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:225](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L225)
+[src/extractor/url-to-content/docx-to-content.js:225](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L225)
 
 </td>
 </tr>
@@ -288,7 +288,7 @@ Line spacing
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:222](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L222)
+[src/extractor/url-to-content/docx-to-content.js:222](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L222)
 
 </td>
 </tr>
@@ -299,7 +299,7 @@ Line spacing
 
 ### RunStyle
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L229)
+Defined in: [src/extractor/url-to-content/docx-to-content.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L229)
 
 #### Properties
 
@@ -331,7 +331,7 @@ Bold text
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:230](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L230)
+[src/extractor/url-to-content/docx-to-content.js:230](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L230)
 
 </td>
 </tr>
@@ -353,7 +353,7 @@ Text color
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:233](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L233)
+[src/extractor/url-to-content/docx-to-content.js:233](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L233)
 
 </td>
 </tr>
@@ -375,7 +375,7 @@ Font family
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:236](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L236)
+[src/extractor/url-to-content/docx-to-content.js:236](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L236)
 
 </td>
 </tr>
@@ -397,7 +397,7 @@ Highlight color
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:234](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L234)
+[src/extractor/url-to-content/docx-to-content.js:234](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L234)
 
 </td>
 </tr>
@@ -419,7 +419,7 @@ Italic text
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:231](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L231)
+[src/extractor/url-to-content/docx-to-content.js:231](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L231)
 
 </td>
 </tr>
@@ -441,7 +441,7 @@ Font size
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:235](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L235)
+[src/extractor/url-to-content/docx-to-content.js:235](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L235)
 
 </td>
 </tr>
@@ -463,7 +463,7 @@ Underlined text
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:232](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L232)
+[src/extractor/url-to-content/docx-to-content.js:232](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L232)
 
 </td>
 </tr>
@@ -474,7 +474,7 @@ Underlined text
 
 ### StyleConfig
 
-Defined in: [packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L13)
+Defined in: [src/extractor/url-to-content/docx-to-content.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L13)
 
 #### Properties
 
@@ -506,7 +506,7 @@ If true, element is rendered as block
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L14)
+[src/extractor/url-to-content/docx-to-content.js:14](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L14)
 
 </td>
 </tr>
@@ -528,7 +528,7 @@ CSS class name
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L18)
+[src/extractor/url-to-content/docx-to-content.js:18](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L18)
 
 </td>
 </tr>
@@ -550,7 +550,7 @@ HTML element name
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L16)
+[src/extractor/url-to-content/docx-to-content.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L16)
 
 </td>
 </tr>
@@ -572,7 +572,7 @@ If true, element is a heading
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L15)
+[src/extractor/url-to-content/docx-to-content.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L15)
 
 </td>
 </tr>
@@ -594,7 +594,7 @@ DOCX XML element name
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L17)
+[src/extractor/url-to-content/docx-to-content.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/url-to-content/docx-to-content.js#L17)
 
 </td>
 </tr>

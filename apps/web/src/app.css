@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Iowan Old Style";
+  src: url("/fonts/iowan.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
-  font-family: "Open Sans", "Montserrat", "Lato", Arial, sans-serif;
+  font-family: "Iowan Old Style", "Open Sans", "Montserrat", "Lato", Arial;
+  /* font-family: "Open Sans", "Montserrat", "Lato", Arial, sans-serif; */
   font-size: 14px;
   font-weight: 400;
 }

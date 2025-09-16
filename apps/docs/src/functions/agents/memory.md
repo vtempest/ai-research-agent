@@ -1,8 +1,8 @@
-[Documentation](../modules.md) / agents/memory
+[ai-research-agent](../modules.md) / agents/memory
 
 ## MemoryAgent
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:630](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L630)
+Defined in: [src/agents/memory.js:630](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L630)
 
 Enhanced Memory Agent with better error handling and features
 
@@ -24,7 +24,7 @@ new MemoryAgent(
    options: object): MemoryAgent;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:644](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L644)
+Defined in: [src/agents/memory.js:644](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L644)
 
 Initialize memory agent
 
@@ -207,7 +207,7 @@ Rate limiting configuration
 analytics: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L669)
+Defined in: [src/agents/memory.js:669](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L669)
 
 <table>
 <thead>
@@ -237,7 +237,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:672](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L672)
+[src/agents/memory.js:672](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L672)
 
 </td>
 </tr>
@@ -259,7 +259,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:673](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L673)
+[src/agents/memory.js:673](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L673)
 
 </td>
 </tr>
@@ -281,7 +281,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:674](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L674)
+[src/agents/memory.js:674](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L674)
 
 </td>
 </tr>
@@ -303,7 +303,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:670](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L670)
+[src/agents/memory.js:670](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L670)
 
 </td>
 </tr>
@@ -325,7 +325,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:671](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L671)
+[src/agents/memory.js:671](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L671)
 
 </td>
 </tr>
@@ -338,7 +338,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:669](https://github
 conversationHistory: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:666](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L666)
+Defined in: [src/agents/memory.js:666](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L666)
 
 #### defaultApiKey
 
@@ -346,7 +346,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:666](https://github
 defaultApiKey: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:651](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L651)
+Defined in: [src/agents/memory.js:651](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L651)
 
 #### defaultModel
 
@@ -354,7 +354,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:651](https://github
 defaultModel: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:652](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L652)
+Defined in: [src/agents/memory.js:652](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L652)
 
 #### defaultProvider
 
@@ -362,7 +362,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:652](https://github
 defaultProvider: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L650)
+Defined in: [src/agents/memory.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L650)
 
 #### memory
 
@@ -370,7 +370,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:650](https://github
 memory: SimpleMemory;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:649](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L649)
+Defined in: [src/agents/memory.js:649](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L649)
 
 #### providers
 
@@ -378,7 +378,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:649](https://github
 providers: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:662](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L662)
+Defined in: [src/agents/memory.js:662](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L662)
 
 #### rateLimitConfig
 
@@ -386,7 +386,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:662](https://github
 rateLimitConfig: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L656)
+Defined in: [src/agents/memory.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L656)
 
 #### rateLimiter
 
@@ -394,7 +394,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:656](https://github
 rateLimiter: Map<any, any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:655](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L655)
+Defined in: [src/agents/memory.js:655](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L655)
 
 #### sessionId
 
@@ -402,7 +402,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:655](https://github
 sessionId: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:665](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L665)
+Defined in: [src/agents/memory.js:665](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L665)
 
 ### Methods
 
@@ -415,7 +415,7 @@ buildPrompt(
    options: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:863](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L863)
+Defined in: [src/agents/memory.js:863](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L863)
 
 Build enhanced prompt with context
 
@@ -478,7 +478,7 @@ Build enhanced prompt with context
 chat(message: string, options: any): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:757](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L757)
+Defined in: [src/agents/memory.js:757](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L757)
 
 Main chat method with comprehensive error handling
 
@@ -564,7 +564,7 @@ checkRateLimit(
    windowMs: number): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:713](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L713)
+Defined in: [src/agents/memory.js:713](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L713)
 
 Rate limiting check with sliding window
 
@@ -661,7 +661,7 @@ Window size in milliseconds
 forceStoreSummary(): Promise<boolean>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:955](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L955)
+Defined in: [src/agents/memory.js:955](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L955)
 
 Force store summary of current conversation
 
@@ -675,7 +675,7 @@ Force store summary of current conversation
 generateResponse(prompt: any, options: any): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:837](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L837)
+Defined in: [src/agents/memory.js:837](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L837)
 
 Generate LLM response with timeout and error handling
 
@@ -726,7 +726,7 @@ Generate LLM response with timeout and error handling
 generateSessionId(): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:701](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L701)
+Defined in: [src/agents/memory.js:701](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L701)
 
 Generate unique session ID
 
@@ -740,7 +740,7 @@ Generate unique session ID
 getAnalytics(): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:990](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L990)
+Defined in: [src/agents/memory.js:990](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L990)
 
 Get analytics and performance metrics
 
@@ -776,7 +776,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:672](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L672)
+[src/agents/memory.js:672](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L672)
 
 </td>
 </tr>
@@ -798,7 +798,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:673](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L673)
+[src/agents/memory.js:673](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L673)
 
 </td>
 </tr>
@@ -829,7 +829,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:993](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L993)
+[src/agents/memory.js:993](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L993)
 
 </td>
 </tr>
@@ -851,7 +851,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:994](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L994)
+[src/agents/memory.js:994](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L994)
 
 </td>
 </tr>
@@ -873,7 +873,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:674](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L674)
+[src/agents/memory.js:674](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L674)
 
 </td>
 </tr>
@@ -895,7 +895,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:670](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L670)
+[src/agents/memory.js:670](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L670)
 
 </td>
 </tr>
@@ -917,7 +917,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:671](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L671)
+[src/agents/memory.js:671](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L671)
 
 </td>
 </tr>
@@ -939,7 +939,7 @@ Get analytics and performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:995](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L995)
+[src/agents/memory.js:995](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L995)
 
 </td>
 </tr>
@@ -952,7 +952,7 @@ Get analytics and performance metrics
 getDefaultProviders(): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:681](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L681)
+Defined in: [src/agents/memory.js:681](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L681)
 
 Get default LLM providers
 
@@ -982,7 +982,7 @@ Get default LLM providers
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:683](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L683)
+[src/agents/memory.js:683](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L683)
 
 </td>
 </tr>
@@ -999,7 +999,7 @@ Get default LLM providers
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:689](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L689)
+[src/agents/memory.js:689](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L689)
 
 </td>
 </tr>
@@ -1015,7 +1015,7 @@ getMemories(
    options: any): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:948](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L948)
+Defined in: [src/agents/memory.js:948](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L948)
 
 Get memories with filtering
 
@@ -1122,7 +1122,7 @@ const meetingMemories = await agent.getMemories('meeting', 10);
 healthCheck(): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:964](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L964)
+Defined in: [src/agents/memory.js:964](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L964)
 
 Health check for the agent
 
@@ -1142,7 +1142,7 @@ remember(
    metadata: any): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:920](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L920)
+Defined in: [src/agents/memory.js:920](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L920)
 
 Remember a fact manually
 
@@ -1270,7 +1270,7 @@ await agent.remember("User prefers meetings in the morning", 8, 'preference', {
 resetSession(): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:1002](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1002)
+Defined in: [src/agents/memory.js:1002](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1002)
 
 Reset session and clear conversation history
 
@@ -1284,7 +1284,7 @@ Reset session and clear conversation history
 updateAnalytics(tokensUsed: any, responseTime: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:893](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L893)
+Defined in: [src/agents/memory.js:893](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L893)
 
 Update analytics
 
@@ -1333,7 +1333,7 @@ Update analytics
 
 ## SimpleMemory
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:56](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L56)
+Defined in: [src/agents/memory.js:56](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L56)
 
 Simple Memory Class - Core memory management functionality
 
@@ -1356,7 +1356,7 @@ new SimpleMemory(
    options: object): SimpleMemory;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L69)
+Defined in: [src/agents/memory.js:69](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L69)
 
 Initialize memory system for a user
 
@@ -1522,7 +1522,7 @@ Messages before auto-summarization
 batchSize: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:79](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L79)
+Defined in: [src/agents/memory.js:79](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L79)
 
 #### cacheExpiry
 
@@ -1530,7 +1530,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:79](https://github.
 cacheExpiry: number;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:78](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L78)
+Defined in: [src/agents/memory.js:78](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L78)
 
 #### db
 
@@ -1538,7 +1538,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:78](https://github.
 db: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:75](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L75)
+Defined in: [src/agents/memory.js:75](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L75)
 
 #### enableAutoSummarization
 
@@ -1546,7 +1546,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:75](https://github.
 enableAutoSummarization: boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L84)
+Defined in: [src/agents/memory.js:84](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L84)
 
 #### enableVectorSearch
 
@@ -1554,7 +1554,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:84](https://github.
 enableVectorSearch: boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L83)
+Defined in: [src/agents/memory.js:83](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L83)
 
 #### isProcessing
 
@@ -1562,7 +1562,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:83](https://github.
 isProcessing: boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L89)
+Defined in: [src/agents/memory.js:89](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L89)
 
 #### maxMemories
 
@@ -1570,7 +1570,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:89](https://github.
 maxMemories: number;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L76)
+Defined in: [src/agents/memory.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L76)
 
 #### memoryCache
 
@@ -1578,7 +1578,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:76](https://github.
 memoryCache: Map<any, any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L88)
+Defined in: [src/agents/memory.js:88](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L88)
 
 #### metrics
 
@@ -1586,7 +1586,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:88](https://github.
 metrics: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L93)
+Defined in: [src/agents/memory.js:93](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L93)
 
 <table>
 <thead>
@@ -1616,7 +1616,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L94)
+[src/agents/memory.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L94)
 
 </td>
 </tr>
@@ -1638,7 +1638,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L95)
+[src/agents/memory.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L95)
 
 </td>
 </tr>
@@ -1660,7 +1660,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L98)
+[src/agents/memory.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L98)
 
 </td>
 </tr>
@@ -1682,7 +1682,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L97)
+[src/agents/memory.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L97)
 
 </td>
 </tr>
@@ -1704,7 +1704,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L96)
+[src/agents/memory.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L96)
 
 </td>
 </tr>
@@ -1717,7 +1717,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:93](https://github.
 processingQueue: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L90)
+Defined in: [src/agents/memory.js:90](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L90)
 
 #### recentMessages
 
@@ -1725,7 +1725,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:90](https://github.
 recentMessages: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:87](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L87)
+Defined in: [src/agents/memory.js:87](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L87)
 
 #### relevanceThreshold
 
@@ -1733,7 +1733,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:87](https://github.
 relevanceThreshold: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:80](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L80)
+Defined in: [src/agents/memory.js:80](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L80)
 
 #### summarizeTimeout
 
@@ -1741,7 +1741,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:80](https://github.
 summarizeTimeout: Timeout;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:161](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L161)
+Defined in: [src/agents/memory.js:161](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L161)
 
 #### summaryThreshold
 
@@ -1749,7 +1749,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:161](https://github
 summaryThreshold: number;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:77](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L77)
+Defined in: [src/agents/memory.js:77](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L77)
 
 #### userId
 
@@ -1757,7 +1757,7 @@ Defined in: [packages/ai-research-agent/src/agents/memory.js:77](https://github.
 userId: string;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L74)
+Defined in: [src/agents/memory.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L74)
 
 ### Methods
 
@@ -1770,7 +1770,7 @@ addMessage(
    metadata: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:114](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L114)
+Defined in: [src/agents/memory.js:114](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L114)
 
 Add a message to current session with intelligent deduplication
 
@@ -1861,7 +1861,7 @@ applyVectorSearch(
    options: any): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:394](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L394)
+Defined in: [src/agents/memory.js:394](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L394)
 
 Apply vector search to memories
 
@@ -1924,7 +1924,7 @@ Apply vector search to memories
 clearCache(): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:548](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L548)
+Defined in: [src/agents/memory.js:548](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L548)
 
 Clear cache utility
 
@@ -1938,7 +1938,7 @@ Clear cache utility
 debouncedSummarize(): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:156](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L156)
+Defined in: [src/agents/memory.js:156](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L156)
 
 Debounced summarization to prevent excessive processing
 
@@ -1952,7 +1952,7 @@ Debounced summarization to prevent excessive processing
 extractFactsFromConversation(conversationText: any): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:493](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L493)
+Defined in: [src/agents/memory.js:493](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L493)
 
 Extract facts from conversation using LLM
 
@@ -1994,7 +1994,7 @@ fetchMemoriesFromDB(
    options: any): Promise<any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:364](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L364)
+Defined in: [src/agents/memory.js:364](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L364)
 
 Fetch memories from database with filtering
 
@@ -2057,7 +2057,7 @@ Fetch memories from database with filtering
 findSimilarFacts(content: string): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:243](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L243)
+Defined in: [src/agents/memory.js:243](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L243)
 
 Find similar facts using content similarity
 
@@ -2107,7 +2107,7 @@ getMemoryContext(
    options: any): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:566](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L566)
+Defined in: [src/agents/memory.js:566](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L566)
 
 Get memory context with better formatting and relevance
 
@@ -2213,7 +2213,7 @@ const context = await memory.getMemoryContext('work meeting', true, {
 getMetrics(): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:608](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L608)
+Defined in: [src/agents/memory.js:608](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L608)
 
 Get performance metrics
 
@@ -2249,7 +2249,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L94)
+[src/agents/memory.js:94](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L94)
 
 </td>
 </tr>
@@ -2271,7 +2271,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L95)
+[src/agents/memory.js:95](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L95)
 
 </td>
 </tr>
@@ -2293,7 +2293,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:611](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L611)
+[src/agents/memory.js:611](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L611)
 
 </td>
 </tr>
@@ -2315,7 +2315,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L98)
+[src/agents/memory.js:98](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L98)
 
 </td>
 </tr>
@@ -2337,7 +2337,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:613](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L613)
+[src/agents/memory.js:613](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L613)
 
 </td>
 </tr>
@@ -2359,7 +2359,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:612](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L612)
+[src/agents/memory.js:612](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L612)
 
 </td>
 </tr>
@@ -2381,7 +2381,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L97)
+[src/agents/memory.js:97](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L97)
 
 </td>
 </tr>
@@ -2403,7 +2403,7 @@ Get performance metrics
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L96)
+[src/agents/memory.js:96](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L96)
 
 </td>
 </tr>
@@ -2416,7 +2416,7 @@ Get performance metrics
 processFactsInBatches(factsResponse: any): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:514](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L514)
+Defined in: [src/agents/memory.js:514](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L514)
 
 Process facts in batches to avoid overwhelming the database
 
@@ -2458,7 +2458,7 @@ recallRelevantMemories(
    options: any): Promise<any[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:302](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L302)
+Defined in: [src/agents/memory.js:302](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L302)
 
 Enhanced memory recall with caching and vector search
 
@@ -2575,7 +2575,7 @@ storeFact(
    metadata: any): Promise<string>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:182](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L182)
+Defined in: [src/agents/memory.js:182](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L182)
 
 Store important facts with validation and conflict resolution
 
@@ -2701,7 +2701,7 @@ await memory.storeFact('User works at Google', 9, 'personal', { confidence: 0.95
 summarizeAndStore(): Promise<boolean>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:451](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L451)
+Defined in: [src/agents/memory.js:451](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L451)
 
 Improved summarization with error handling and batch processing
 
@@ -2717,7 +2717,7 @@ Improved summarization with error handling and batch processing
 updateMemory(id: string, updates: any): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:274](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L274)
+Defined in: [src/agents/memory.js:274](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L274)
 
 Update memory record
 
@@ -2779,7 +2779,7 @@ Fields to update
 updateRelevanceScores(memories: any, sentencesByRelevance: any): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:426](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L426)
+Defined in: [src/agents/memory.js:426](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L426)
 
 Update relevance scores for memories
 
@@ -2832,11 +2832,11 @@ Update relevance scores for memories
 const MEMORY_CONFIG: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L20)
+Defined in: [src/agents/memory.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L20)
 
 Configuration constants for memory management
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -2866,7 +2866,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L30)
+[src/agents/memory.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L30)
 
 </td>
 </tr>
@@ -2888,7 +2888,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:24](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L24)
+[src/agents/memory.js:24](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L24)
 
 </td>
 </tr>
@@ -2910,7 +2910,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L23)
+[src/agents/memory.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L23)
 
 </td>
 </tr>
@@ -2935,7 +2935,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:26](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L26)
+[src/agents/memory.js:26](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L26)
 
 </td>
 </tr>
@@ -2957,7 +2957,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L21)
+[src/agents/memory.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L21)
 
 </td>
 </tr>
@@ -2982,7 +2982,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L27)
+[src/agents/memory.js:27](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L27)
 
 </td>
 </tr>
@@ -3004,7 +3004,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L25)
+[src/agents/memory.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L25)
 
 </td>
 </tr>
@@ -3026,7 +3026,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L22)
+[src/agents/memory.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L22)
 
 </td>
 </tr>
@@ -3048,7 +3048,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L28)
+[src/agents/memory.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L28)
 
 </td>
 </tr>
@@ -3070,7 +3070,7 @@ Configuration constants for memory management
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L29)
+[src/agents/memory.js:29](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L29)
 
 </td>
 </tr>
@@ -3085,11 +3085,11 @@ Configuration constants for memory management
 const MEMORY_TYPES: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:36](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L36)
+Defined in: [src/agents/memory.js:36](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L36)
 
 Memory types for categorization
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -3119,7 +3119,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:38](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L38)
+[src/agents/memory.js:38](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L38)
 
 </td>
 </tr>
@@ -3141,7 +3141,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:37](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L37)
+[src/agents/memory.js:37](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L37)
 
 </td>
 </tr>
@@ -3163,7 +3163,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:42](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L42)
+[src/agents/memory.js:42](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L42)
 
 </td>
 </tr>
@@ -3185,7 +3185,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:40](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L40)
+[src/agents/memory.js:40](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L40)
 
 </td>
 </tr>
@@ -3207,7 +3207,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L39)
+[src/agents/memory.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L39)
 
 </td>
 </tr>
@@ -3229,7 +3229,7 @@ Memory types for categorization
 </td>
 <td>
 
-[packages/ai-research-agent/src/agents/memory.js:41](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L41)
+[src/agents/memory.js:41](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L41)
 
 </td>
 </tr>
@@ -3244,7 +3244,7 @@ Memory types for categorization
 function createMemorySchema(db: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:1015](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1015)
+Defined in: [src/agents/memory.js:1015](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1015)
 
 Database schema for memory system
 
@@ -3293,7 +3293,7 @@ Database instance
 function exampleUsage(db: any): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/memory.js:1037](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1037)
+Defined in: [src/agents/memory.js:1037](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/memory.js#L1037)
 
 Comprehensive usage example with error handling
 

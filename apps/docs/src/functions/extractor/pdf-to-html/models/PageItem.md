@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/PageItem
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/PageItem
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L2)
 
 ### Extended by
 
@@ -17,7 +17,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L3)
 
 ##### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 annotation: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L8)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L8)
 
 #### parsedElements
 
@@ -64,7 +64,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 parsedElements: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L9)
 
 #### type
 
@@ -72,4 +72,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageIte
 type: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L7)
+Defined in: [src/extractor/pdf-to-html/models/PageItem.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/PageItem.js#L7)

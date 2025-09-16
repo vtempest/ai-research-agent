@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / statistics/predict-statistics
+[neural-net-training](../modules.md) / statistics/predict-statistics
 
 ## calculateRollingStats()
 

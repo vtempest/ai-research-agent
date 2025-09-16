@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/util/page-number-functions
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/util/page-number-functions
 
 ## findFirstPage()
 
@@ -6,7 +6,7 @@
 function findFirstPage(pageIndexNumMap: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L63)
+Defined in: [src/extractor/pdf-to-html/util/page-number-functions.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L63)
 
 Checks when the page number first begins and returns it
 
@@ -58,7 +58,7 @@ function findPageNumbers(
    items: any[]): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js:48](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L48)
+Defined in: [src/extractor/pdf-to-html/util/page-number-functions.js:48](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L48)
 
 Searches both top and bottom area and returns an object
 
@@ -141,7 +141,7 @@ pageIndexNumMap object
 function removePageNumber(textContent: any, pageNum: number): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js:104](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L104)
+Defined in: [src/extractor/pdf-to-html/util/page-number-functions.js:104](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/util/page-number-functions.js#L104)
 
 Return textContent with items that have pageNum removed
 

@@ -1,0 +1,32 @@
+{
+  "id": "api/extract-content",
+  "title": "## Extract structured content and cite from any URL",
+  "description": "![Extractor](https://i.imgur.com/nNfHmct.png)",
+  "source": "@site/src/api/extract-content.api.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/extract-content",
+  "permalink": "/docs/api/extract-content",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "extract-content",
+    "title": "## Extract structured content and cite from any URL",
+    "description": "![Extractor](https://i.imgur.com/nNfHmct.png)",
+    "sidebar_label": "## Extract structured content and cite from any URL",
+    "hide_title": true,
+    "hide_table_of_contents": true,
+    "api": "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",
+    "sidebar_class_name": "get api-method",
+    "info_path": "api/qwksearch-api",
+    "custom_edit_url": null,
+    "hide_send_button": true
+  },
+  "sidebar": "default",
+  "next": {
+    "title": "QwkSearch API",
+    "permalink": "/docs/api/qwksearch-api"
+  }
+}

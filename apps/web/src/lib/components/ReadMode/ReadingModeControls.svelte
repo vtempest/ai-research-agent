@@ -5,8 +5,6 @@
   // import { apiKey } from '$lib/customize-site';  
 
   // import {toggleHighlight} from './auto-highlight.js';
-
-  export let onChangeTheme;
   export let onToggleImages;
   export let onToggleMarkupMode;
   export let article = null;

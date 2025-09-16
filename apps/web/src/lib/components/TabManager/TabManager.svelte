@@ -1,7 +1,9 @@
 <script lang="ts">
   import { writable, derived } from "svelte/store";
   import TabList from "./TabList.svelte";
-  import WebSearch from "./WebSearch.svelte";
+  import TabSearch from "./TabSearch.svelte";
+  import WebSideSearch from "./WebSideSearch.svelte";
+  import AgentsPanel from "../SearchWeb/AgentsPanel.svelte";
 
   import * as Tabs from "$lib/components/ui/tabs";
   import { Layers, AppWindow, Settings } from "lucide-svelte";
@@ -47,24 +49,29 @@
       </Tabs.Trigger>
       <Tabs.Trigger value="apps" class="flex items-center gap-2">
         <AppWindow size={16} />
-        <span>AI</span>
+        <span>Search</span>
       </Tabs.Trigger>
       <Tabs.Trigger value="settings" class="flex items-center gap-2">
         <Settings size={16} />
-        <span>Search</span>
+        <span>AI</span>
       </Tabs.Trigger>
     </Tabs.List>
     <Tabs.Content value="tabs">
       
-      <WebSearch {results} {tabsStore} {fetchAllTabs} />
+      <TabSearch {results} {tabsStore} {fetchAllTabs} />
       <TabList {results} {tabsStore} {fetchAllTabs} />
     </Tabs.Content>
     <Tabs.Content value="apps">
-      <!-- <Categorizer {tabsStore}  /> -->
+      <!-- <WebSideSearch {results} {tabsStore} {fetchAllTabs} /> -->
+      
       <!-- Add content for Apps here -->
     </Tabs.Content>
     <Tabs.Content value="settings">
-      <!-- Add content for Settings here -->
+      
+      <!-- <AgentsPanel
+      searchText=" "
+      extractedArticle={null}
+    /> -->
     </Tabs.Content>
   </Tabs.Root>
 </div>

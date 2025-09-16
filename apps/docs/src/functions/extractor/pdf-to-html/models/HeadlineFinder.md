@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/HeadlineFinder
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/HeadlineFinder
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L3)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L4)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L4)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 headlineCharCodes: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L5)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L5)
 
 #### stackedChars
 
@@ -59,7 +59,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 stackedChars: number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L7)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L7)
 
 #### stackedLineItems
 
@@ -67,7 +67,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 stackedLineItems: any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L6)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L6)
 
 ### Methods
 
@@ -77,7 +77,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 consume(lineItem: any): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L10)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L10)
 
 ##### Parameters
 
@@ -114,7 +114,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Headlin
 matchAll(normalizedCharCodes: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L30)
+Defined in: [src/extractor/pdf-to-html/models/HeadlineFinder.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/HeadlineFinder.js#L30)
 
 ##### Parameters
 

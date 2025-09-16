@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Word
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Word
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L1)
+Defined in: [src/extractor/pdf-to-html/models/Word.js:1](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L1)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/Word.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L2)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js
 format: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L5)
+Defined in: [src/extractor/pdf-to-html/models/Word.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L5)
 
 #### string
 
@@ -59,7 +59,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js
 string: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/Word.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L3)
 
 #### type
 
@@ -67,4 +67,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js
 type: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L4)
+Defined in: [src/extractor/pdf-to-html/models/Word.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Word.js#L4)

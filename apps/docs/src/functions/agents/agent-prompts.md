@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / agents/agent-prompts
+[ai-research-agent](../modules.md) / agents/agent-prompts
 
 ## Generate
 
@@ -20,7 +20,7 @@ const AGENT_PROMPTS: (
 })[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/agent-prompts.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L12)
+Defined in: [src/agents/agent-prompts.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L12)
 
 Agent prompt templates which have in brackets the needed 
 variables and reformat the response in json with a callback.
@@ -33,7 +33,7 @@ variables and reformat the response in json with a callback.
 function extractJSONFromLanguageReply(text: string, key?: string): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/agents/agent-prompts.js:331](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L331)
+Defined in: [src/agents/agent-prompts.js:331](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/agents/agent-prompts.js#L331)
 
 Extracts and cleans content between XML-style tags and returns a JSON object.
 

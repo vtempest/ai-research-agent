@@ -1,0 +1,56 @@
+{
+  "docusaurusVersion": "3.8.1",
+  "siteVersion": "4.2.0",
+  "pluginVersions": {
+    "docusaurus-plugin-content-docs": {
+      "type": "package",
+      "name": "@docusaurus/plugin-content-docs",
+      "version": "3.8.1"
+    },
+    "docusaurus-plugin-content-pages": {
+      "type": "package",
+      "name": "@docusaurus/plugin-content-pages",
+      "version": "3.8.1"
+    },
+    "docusaurus-plugin-google-gtag": {
+      "type": "package",
+      "name": "@docusaurus/plugin-google-gtag",
+      "version": "3.8.1"
+    },
+    "docusaurus-plugin-sitemap": {
+      "type": "package",
+      "name": "@docusaurus/plugin-sitemap",
+      "version": "3.8.1"
+    },
+    "docusaurus-plugin-svgr": {
+      "type": "package",
+      "name": "@docusaurus/plugin-svgr",
+      "version": "3.8.1"
+    },
+    "docusaurus-theme-classic": {
+      "type": "package",
+      "name": "@docusaurus/theme-classic",
+      "version": "3.8.1"
+    },
+    "docusaurus-plugin-openapi-docs": {
+      "type": "package",
+      "name": "docusaurus-plugin-openapi-docs",
+      "version": "4.5.1"
+    },
+    "docusaurus-lunr-search": {
+      "type": "package",
+      "name": "docusaurus-lunr-search",
+      "version": "3.6.0"
+    },
+    "docusaurus-plugin-typedoc": {
+      "type": "package",
+      "name": "docusaurus-plugin-typedoc",
+      "version": "1.4.2"
+    },
+    "docusaurus-theme-openapi": {
+      "type": "package",
+      "name": "docusaurus-theme-openapi-docs",
+      "version": "4.5.1"
+    }
+  }
+}

@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/Page
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/Page
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L2)
+Defined in: [src/extractor/pdf-to-html/models/Page.js:2](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L2)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/Page.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L3)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js
 index: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L4)
+Defined in: [src/extractor/pdf-to-html/models/Page.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L4)
 
 #### items
 
@@ -59,4 +59,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js
 items: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L5)
+Defined in: [src/extractor/pdf-to-html/models/Page.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/Page.js#L5)

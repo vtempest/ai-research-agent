@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+  "title": "extract-content-mercury-utils",
+  "description": "ai-research-agent / extractor/html-to-content/extract-content/extract-content-mercury-utils",
+  "source": "@site/src/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils.md",
+  "sourceDirName": "functions/extractor/html-to-content/extract-content",
+  "slug": "/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+  "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "html-to-content",
+    "permalink": "/docs/functions/extractor/html-to-content/"
+  },
+  "next": {
+    "title": "extract-content-mercury",
+    "permalink": "/docs/functions/extractor/html-to-content/extract-content/extract-content-mercury"
+  }
+}

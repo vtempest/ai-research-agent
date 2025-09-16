@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / match/weigh-relevance-frequency
+[ai-research-agent](../modules.md) / match/weigh-relevance-frequency
 
 ## Match
 
@@ -11,7 +11,7 @@ function weighRelevanceTermFrequency(
    options?: object): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/match/weigh-relevance-frequency.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L28)
+Defined in: [src/match/weigh-relevance-frequency.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L28)
 
 #### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms
 <img width="350px"  src="https://i.imgur.com/e2uTpoh.png" /> 
@@ -174,7 +174,7 @@ score for term specificity
 function calculatePhraseSpecificity(phrase: string, options: any): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/match/weigh-relevance-frequency.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L76)
+Defined in: [src/match/weigh-relevance-frequency.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L76)
 
 Calculate overall domain-speicificity after Query Resolution to Phrases. 
 Words are tokenized into phrases and their specificity is calculated based on 

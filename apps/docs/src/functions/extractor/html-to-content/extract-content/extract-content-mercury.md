@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function extractMainContentFromHTML2(html: string, opts?: object): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury.js#L62)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury.js#L62)
 
 ### HTML-to-Main-Content Extractor #2
 

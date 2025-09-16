@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/TextItemLineGrouper
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/TextItemLineGrouper
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/TextItemLineGrouper.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L9)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 new default(options: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L10)
+Defined in: [src/extractor/pdf-to-html/models/TextItemLineGrouper.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L10)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 mostUsedDistance: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L11)
+Defined in: [src/extractor/pdf-to-html/models/TextItemLineGrouper.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L11)
 
 ### Methods
 
@@ -61,7 +61,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextIte
 group(textItems: any): any[][];
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L15)
+Defined in: [src/extractor/pdf-to-html/models/TextItemLineGrouper.js:15](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/TextItemLineGrouper.js#L15)
 
 ##### Parameters
 

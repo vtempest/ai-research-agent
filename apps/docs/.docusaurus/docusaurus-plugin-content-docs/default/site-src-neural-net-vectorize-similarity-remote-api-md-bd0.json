@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/vectorize/similarity-remote-api",
+  "title": "similarity-remote-api",
+  "description": "neural-net-training / vectorize/similarity-remote-api",
+  "source": "@site/src/neural-net/vectorize/similarity-remote-api.md",
+  "sourceDirName": "neural-net/vectorize",
+  "slug": "/neural-net/vectorize/similarity-remote-api",
+  "permalink": "/docs/neural-net/vectorize/similarity-remote-api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/neural-net/vectorize/similarity-remote-api.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "predict-statistics",
+    "permalink": "/docs/neural-net/statistics/predict-statistics"
+  },
+  "next": {
+    "title": "similarity-vector",
+    "permalink": "/docs/neural-net/vectorize/similarity-vector"
+  }
+}

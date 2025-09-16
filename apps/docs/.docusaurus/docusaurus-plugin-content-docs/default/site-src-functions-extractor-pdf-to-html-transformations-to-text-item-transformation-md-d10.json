@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+  "title": "ToTextItemTransformation",
+  "description": "ai-research-agent / extractor/pdf-to-html/transformations/ToTextItemTransformation",
+  "source": "@site/src/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/transformations",
+  "slug": "/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+  "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/transformations/ToTextItemTransformation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "ToTextBlocks",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/ToTextBlocks"
+  },
+  "next": {
+    "title": "Transformation",
+    "permalink": "/docs/functions/extractor/pdf-to-html/transformations/Transformation"
+  }
+}

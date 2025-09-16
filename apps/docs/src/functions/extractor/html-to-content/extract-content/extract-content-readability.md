@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function extractMainContentFromHTML(html: any, options?: object): Element;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L60)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L60)
 
 ### HTML-to-Main-Content Extractor #1
 The function extracts main content with regex patterns, cleaning HTML, scoring nodes
@@ -195,7 +195,7 @@ function classWeight(
    negativeRe: RegExp): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js:249](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L249)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:249](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L249)
 
 Calculates the weight of an element based on its class and id attributes.
 
@@ -278,7 +278,7 @@ The calculated weight
 function getLinkDensity(elem: Element): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L229)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L229)
 
 Calculates the link density of an element.
 
@@ -333,7 +333,7 @@ function sanitize(
    minTextLength: number): Element;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js:317](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L317)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:317](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L317)
 
 Sanitizes the content by removing unwanted elements and cleaning remaining elements.
 
@@ -470,7 +470,7 @@ function scoreNode(
    negativeRe: RegExp): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js:270](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L270)
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:270](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L270)
 
 Scores a node based on its tag name and attributes.
 

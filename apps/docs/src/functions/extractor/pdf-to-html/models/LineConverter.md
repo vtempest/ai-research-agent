@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/models/LineConverter
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/models/LineConverter
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:58](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L58)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:58](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L58)
 
 ### Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 new default(fontToFormats: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:59](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L59)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:59](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L59)
 
 ##### Parameters
 
@@ -51,7 +51,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 fontToFormats: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L60)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L60)
 
 ### Methods
 
@@ -61,7 +61,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 compact(textItems: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:64](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L64)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:64](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L64)
 
 ##### Parameters
 
@@ -100,9 +100,9 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 const WordFormat: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L9)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:9](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L9)
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -130,7 +130,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L10)
+[src/extractor/pdf-to-html/models/LineConverter.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L10)
 
 </td>
 </tr>
@@ -151,7 +151,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L22)
+[src/extractor/pdf-to-html/models/LineConverter.js:22](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L22)
 
 </td>
 </tr>
@@ -172,7 +172,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L16)
+[src/extractor/pdf-to-html/models/LineConverter.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L16)
 
 </td>
 </tr>
@@ -187,9 +187,9 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 const WordType: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L30)
+Defined in: [src/extractor/pdf-to-html/models/LineConverter.js:30](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L30)
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -216,7 +216,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:47](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L47)
+[src/extractor/pdf-to-html/models/LineConverter.js:47](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L47)
 
 </td>
 </tr>
@@ -238,7 +238,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:38](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L38)
+[src/extractor/pdf-to-html/models/LineConverter.js:38](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L38)
 
 </td>
 </tr>
@@ -258,7 +258,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/LineCon
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L31)
+[src/extractor/pdf-to-html/models/LineConverter.js:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/LineConverter.js#L31)
 
 </td>
 </tr>

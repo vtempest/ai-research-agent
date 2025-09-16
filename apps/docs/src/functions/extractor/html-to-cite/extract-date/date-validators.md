@@ -1,4 +1,4 @@
-[Documentation](../../../modules.md) / extractor/html-to-cite/extract-date/date-validators
+[ai-research-agent](../../../modules.md) / extractor/html-to-cite/extract-date/date-validators
 
 ## check\_date\_input()
 
@@ -6,7 +6,7 @@
 function check_date_input(date_object: any, default_date: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:153](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L153)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:153](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L153)
 
 ### Parameters
 
@@ -57,7 +57,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function check_extracted_reference(reference: any, options: any): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:142](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L142)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:142](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L142)
 
 ### Parameters
 
@@ -111,7 +111,7 @@ function compare_values(
    options: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L105)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:105](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L105)
 
 ### Parameters
 
@@ -177,7 +177,7 @@ function convert_date(
    outputformat: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:131](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L131)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:131](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L131)
 
 ### Parameters
 
@@ -247,7 +247,7 @@ function filter_ymd_candidate(
    max_date: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:119](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L119)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:119](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L119)
 
 ### Parameters
 
@@ -358,7 +358,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function get_max_date(max_date: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:171](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L171)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:171](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L171)
 
 ### Parameters
 
@@ -397,7 +397,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function get_min_date(min_date: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:167](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L167)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:167](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L167)
 
 ### Parameters
 
@@ -440,7 +440,7 @@ function is_valid_date(
    latest: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L11)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L11)
 
 ### Parameters
 
@@ -515,7 +515,7 @@ Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/
 function is_valid_format(outputformat: any): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:48](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L48)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:48](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L48)
 
 ### Parameters
 
@@ -560,7 +560,7 @@ function plausible_year_filter(
    incomplete: boolean): Map<any, any>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L65)
+Defined in: [src/extractor/html-to-cite/extract-date/date-validators.js:65](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-date/date-validators.js#L65)
 
 ### Parameters
 

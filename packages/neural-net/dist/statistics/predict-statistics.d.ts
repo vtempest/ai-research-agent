@@ -119,7 +119,7 @@ export function trainModels(fullData: Array<Object>, targetName: string, options
     featuresToUse: Array<string>;
 }): number;
 /**
- * Predicts energy output for future data using the trained XGBoost model
+ * Predicts target variable for future data using the trained XGBoost model
  * @param {Array<Object>} futureData - Array of weather data objects for future dates
  * @returns {Promise<Array<Object>>} Promise resolving to array of data objects with predictions
  */

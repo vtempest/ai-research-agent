@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / topics/seektopic-keyphrases
+[ai-research-agent](../modules.md) / topics/seektopic-keyphrases
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function extractSEEKTOPIC(docText: string, options?: object): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/topics/seektopic-keyphrases.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L74)
+Defined in: [src/topics/seektopic-keyphrases.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L74)
 
 ### 🔤📊 SEEKTOPIC: Summarization by Extracting Entities, Keyword Tokens, and Outline Phrases Important to Context 
 <img src="https://i.imgur.com/gZ4kI1V.png" width="360px" />
@@ -278,7 +278,7 @@ default=0.2 - percentage of top keyphrases to consider
 </td>
 <td>
 
-[packages/ai-research-agent/src/topics/seektopic-keyphrases.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L63)
+[src/topics/seektopic-keyphrases.js:63](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L63)
 
 </td>
 </tr>
@@ -295,7 +295,7 @@ default=0.2 - percentage of top keyphrases to consider
 </td>
 <td>
 
-[packages/ai-research-agent/src/topics/seektopic-keyphrases.js:64](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L64)
+[src/topics/seektopic-keyphrases.js:64](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L64)
 
 </td>
 </tr>
@@ -312,7 +312,7 @@ default=0.2 - percentage of top keyphrases to consider
 </td>
 <td>
 
-[packages/ai-research-agent/src/topics/seektopic-keyphrases.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L62)
+[src/topics/seektopic-keyphrases.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/seektopic-keyphrases.js#L62)
 
 </td>
 </tr>

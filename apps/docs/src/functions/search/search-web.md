@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / search/search-web
+[ai-research-agent](../modules.md) / search/search-web
 
 ## Search
 
@@ -8,7 +8,7 @@
 function searchWeb(query: string, options?: object): Promise<object[]>;
 ```
 
-Defined in: [packages/ai-research-agent/src/search/search-web.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-web.js#L39)
+Defined in: [src/search/search-web.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-web.js#L39)
 
 Search Web via SearXNG metasearch of all major search engines.
 Options are 10 search categories, recency, and how many

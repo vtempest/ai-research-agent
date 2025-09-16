@@ -118,30 +118,34 @@ overlay.style.overflow = 'auto';
 
 // 2. Insert your content into the overlay
 overlay.innerHTML = `
-  <div class="flex flex-row h-screen overflow-hidden">
-    <div id="reading-mode-controls" class="w-[100px] overflow-y-auto text-black bg-gray-100 p-4">
+  <div class="flex flex-row h-screen overflow-hidden" style="background: linear-gradient(120deg, #f8fafc 0%, #e2e8f0 100%);">
+    <div id="reading-mode-controls" class="w-[110px] min-w-[90px] max-w-[140px] overflow-y-auto text-black bg-gradient-to-b from-slate-100 to-slate-200 p-5 shadow-lg border-r border-slate-200">
       <!-- Sidebar content goes here -->
     </div>
-    <div id="readability-content" class="bg-slate-200 flex-1 overflow-y-auto py-[100px]">
-      <div class="max-w-3xl mx-auto p-6 font-serif text-lg leading-relaxed">
-        <div contenteditable class="text-gray-600 mb-4">
+    <div id="readability-content" class="flex-1 overflow-y-auto" style="padding: 60px 0; background: transparent;">
+      <div class="max-w-3xl mx-auto font-serif text-lg leading-relaxed bg-white/90 rounded-2xl shadow-2xl px-10 py-12 my-10 border border-slate-200"
+        style="box-shadow: 0 8px 32px 0 rgba(60,72,88,0.10); margin-left: 15vw; margin-right: 15vw;">
+        <div contenteditable class="text-gray-500 mb-4 text-base tracking-wide italic">
           ${author_short ? author_short + " " + year : ""}    
         </div>
-        <div class="border-b border-gray-300 text-sm text-gray-600">
+        <div class="border-b border-gray-200 text-sm text-gray-500 pb-2 mb-4">
           <p class="mt-2" contenteditable>${article.cite}</p>
         </div>
-        <div class="text-md text-slate-600">
+        <div class="text-2xl font-bold text-slate-700 mb-6 tracking-tight">
           ${article.title}    
         </div>
-        <div id="article-text" class="bg-slate-200 prose prose-lg">${article.html}</div>
+        <div id="article-text" class="prose prose-lg max-w-none text-slate-800" style="background: none; padding: 0 0 0 0; margin: 0;">
+          ${article.html}
+        </div>
       </div>
     </div>
   </div>
   <button id="close-reading-overlay" style="
-    position: fixed; top: 20px; right: 20px; z-index: 1000000;
-    background: #333; color: #fff; border: none; border-radius: 4px;
-    padding: 10px 16px; font-size: 18px; cursor: pointer;
-  ">✕</button>
+    position: fixed; top: 32px; right: 40px; z-index: 1000000;
+    background: #334155; color: #fff; border: none; border-radius: 6px;
+    padding: 12px 20px; font-size: 22px; cursor: pointer; box-shadow: 0 2px 8px 0 rgba(30,41,59,0.10);
+    transition: background 0.2s;
+  " onmouseover="this.style.background='#475569'" onmouseout="this.style.background='#334155'">✕</button>
 `;
 
 // 3. Append the overlay to the body
@@ -160,14 +164,17 @@ document.getElementById('close-reading-overlay').onclick = () => {
 
 
 
+
+function toggleAllCSS() {
+
 // Stores state for toggling
-let cssToggleState = {
+window.cssToggleState = {
   stylesheets: [],
   inlineStyles: new Map(),
   disabled: false
 };
 
-function toggleAllCSS() {
+
   // Disable if currently enabled
   if (!cssToggleState.disabled) {
     // Find all <style> and <link rel="stylesheet"> in the document (including <head>)

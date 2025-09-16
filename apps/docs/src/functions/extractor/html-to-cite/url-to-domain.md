@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/url-to-domain
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/url-to-domain
 
 ## convertURLToDomain()
 
@@ -6,7 +6,7 @@
 function convertURLToDomain(domain: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/url-to-domain.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/url-to-domain.js#L10)
+Defined in: [src/extractor/html-to-cite/url-to-domain.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/url-to-domain.js#L10)
 
 Extract TLD and hostname from domain in Regex. There's [two or more part 
 TLDs](https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains)

@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / topics/topic-distribution
+[ai-research-agent](../modules.md) / topics/topic-distribution
 
 ## Topics
 
@@ -8,7 +8,7 @@
 function extractTopicTermGroupsLDA(sentences: string[], options?: object): any[];
 ```
 
-Defined in: [packages/ai-research-agent/src/topics/topic-distribution.js:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/topic-distribution.js#L31)
+Defined in: [src/topics/topic-distribution.js:31](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/topics/topic-distribution.js#L31)
 
 Latent Dirichlet (pronounced Dee-ruesh-ley) allocation  is used
 in natural language processing to discover abstract topics in a

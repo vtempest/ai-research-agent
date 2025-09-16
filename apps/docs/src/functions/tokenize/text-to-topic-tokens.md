@@ -1,10 +1,10 @@
-[Documentation](../modules.md) / tokenize/text-to-topic-tokens
+[ai-research-agent](../modules.md) / tokenize/text-to-topic-tokens
 
 ## Other
 
 ### Token
 
-Defined in: [packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L4)
+Defined in: [src/tokenize/text-to-topic-tokens.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L4)
 
 #### Properties
 
@@ -36,7 +36,7 @@ The actual term or phrase
 </td>
 <td>
 
-[packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L7)
+[src/tokenize/text-to-topic-tokens.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L7)
 
 </td>
 </tr>
@@ -58,7 +58,7 @@ The category of the term
 </td>
 <td>
 
-[packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L5)
+[src/tokenize/text-to-topic-tokens.js:5](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L5)
 
 </td>
 </tr>
@@ -80,7 +80,7 @@ The uniqueness score of the term
 </td>
 <td>
 
-[packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L6)
+[src/tokenize/text-to-topic-tokens.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L6)
 
 </td>
 </tr>
@@ -95,7 +95,7 @@ The uniqueness score of the term
 function convertTextToTokens(phrase: string, options?: object): object[];
 ```
 
-Defined in: [packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js:35](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L35)
+Defined in: [src/tokenize/text-to-topic-tokens.js:35](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/tokenize/text-to-topic-tokens.js#L35)
 
 ### Convert Text Query to Topic Phrase Tokens
 <img width="350px"  src="https://i.imgur.com/NDrmSRQ.png" /> 

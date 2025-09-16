@@ -1,0 +1,24 @@
+{
+  "id": "functions/agents/memory",
+  "title": "memory",
+  "description": "ai-research-agent / agents/memory",
+  "source": "@site/src/functions/agents/memory.md",
+  "sourceDirName": "functions/agents",
+  "slug": "/functions/agents/memory",
+  "permalink": "/docs/functions/agents/memory",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/agents/memory.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "language-model-names",
+    "permalink": "/docs/functions/agents/language-model-names"
+  },
+  "next": {
+    "title": "extract-author",
+    "permalink": "/docs/functions/extractor/html-to-cite/extract-author"
+  }
+}

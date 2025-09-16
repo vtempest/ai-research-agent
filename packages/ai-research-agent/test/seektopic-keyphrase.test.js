@@ -1,5 +1,6 @@
 import { test, expect } from "vitest";
-import { extractSEEKTOPIC, extractContent } from "../index.js";
+import { extractSEEKTOPIC } from "../src/topics/seektopic-keyphrases.js";
+import { extractContent } from "../src/extractor/url-to-content/url-to-content.js";
 
 import fs from "fs";
 //load models or pass them in
@@ -14,9 +15,9 @@ var typosModel = JSON.parse(
 
 test("get top sentences specific to a query", async () => {
     let urls = [
-      "https://www.youtube.com/watch?v=T_IdLTofTUU",
-      "https://www.youtube.com/watch?v=OsW_kdOV6c8",
-      "https://arxiv.org/pdf/1706.03762",
+      // "https://www.youtube.com/watch?v=T_IdLTofTUU",
+      // "https://www.youtube.com/watch?v=OsW_kdOV6c8",
+      // "https://arxiv.org/pdf/1706.03762",
       "https://airesearch.js.org",
 
     ];

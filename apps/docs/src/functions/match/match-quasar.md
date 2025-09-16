@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / match/match-quasar
+[ai-research-agent](../modules.md) / match/match-quasar
 
 ## Match
 
@@ -8,7 +8,7 @@
 function matchQUASAR(document: string, query: string): boolean;
 ```
 
-Defined in: [packages/ai-research-agent/src/match/match-quasar.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/match-quasar.js#L19)
+Defined in: [src/match/match-quasar.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/match-quasar.js#L19)
 
 ### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp 
 

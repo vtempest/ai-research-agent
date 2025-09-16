@@ -1,4 +1,4 @@
-[Documentation](../../../../modules.md) / extractor/pdf-to-html/models/BlockType
+[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/models/BlockType
 
 ## Namespaces
 
@@ -10,9 +10,9 @@
 const default: object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L3)
+Defined in: [src/extractor/pdf-to-html/models/BlockType.js:3](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L3)
 
-### Type declaration
+### Type Declaration
 
 <table>
 <thead>
@@ -40,7 +40,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:67](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L67)
+[src/extractor/pdf-to-html/models/BlockType.js:67](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L67)
 
 </td>
 </tr>
@@ -62,7 +62,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:59](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L59)
+[src/extractor/pdf-to-html/models/BlockType.js:59](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L59)
 
 </td>
 </tr>
@@ -84,7 +84,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L4)
+[src/extractor/pdf-to-html/models/BlockType.js:4](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L4)
 
 </td>
 </tr>
@@ -106,7 +106,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L12)
+[src/extractor/pdf-to-html/models/BlockType.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L12)
 
 </td>
 </tr>
@@ -128,7 +128,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L20)
+[src/extractor/pdf-to-html/models/BlockType.js:20](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L20)
 
 </td>
 </tr>
@@ -150,7 +150,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L28)
+[src/extractor/pdf-to-html/models/BlockType.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L28)
 
 </td>
 </tr>
@@ -172,7 +172,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:36](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L36)
+[src/extractor/pdf-to-html/models/BlockType.js:36](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L36)
 
 </td>
 </tr>
@@ -194,7 +194,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:44](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L44)
+[src/extractor/pdf-to-html/models/BlockType.js:44](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L44)
 
 </td>
 </tr>
@@ -216,7 +216,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L74)
+[src/extractor/pdf-to-html/models/BlockType.js:74](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L74)
 
 </td>
 </tr>
@@ -236,7 +236,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:82](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L82)
+[src/extractor/pdf-to-html/models/BlockType.js:82](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L82)
 
 </td>
 </tr>
@@ -257,7 +257,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockTy
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js:52](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L52)
+[src/extractor/pdf-to-html/models/BlockType.js:52](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/models/BlockType.js#L52)
 
 </td>
 </tr>

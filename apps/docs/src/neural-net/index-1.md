@@ -1,4 +1,4 @@
-[Documentation](modules.md) / index
+[neural-net-training](modules.md) / index
 
 ## calculateCosineSimilarity
 

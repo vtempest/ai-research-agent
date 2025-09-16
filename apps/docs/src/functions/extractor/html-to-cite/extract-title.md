@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/extract-title
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-title
 
 ## extractTitle()
 
@@ -6,7 +6,7 @@
 function extractTitle(document: Document): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-title.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-title.js#L7)
+Defined in: [src/extractor/html-to-cite/extract-title.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-title.js#L7)
 
 Extract and clean title from document
 

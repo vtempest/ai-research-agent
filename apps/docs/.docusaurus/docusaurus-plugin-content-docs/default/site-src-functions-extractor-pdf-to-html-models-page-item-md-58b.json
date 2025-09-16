@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/PageItem",
+  "title": "PageItem",
+  "description": "ai-research-agent / extractor/pdf-to-html/models/PageItem",
+  "source": "@site/src/functions/extractor/pdf-to-html/models/PageItem.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/PageItem",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/PageItem",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/models/PageItem.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "Page",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Page"
+  },
+  "next": {
+    "title": "ParseResult",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/ParseResult"
+  }
+}

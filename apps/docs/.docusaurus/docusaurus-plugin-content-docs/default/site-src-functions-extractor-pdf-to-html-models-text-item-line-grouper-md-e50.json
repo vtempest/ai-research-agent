@@ -1,0 +1,24 @@
+{
+  "id": "functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+  "title": "TextItemLineGrouper",
+  "description": "ai-research-agent / extractor/pdf-to-html/models/TextItemLineGrouper",
+  "source": "@site/src/functions/extractor/pdf-to-html/models/TextItemLineGrouper.md",
+  "sourceDirName": "functions/extractor/pdf-to-html/models",
+  "slug": "/functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+  "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItemLineGrouper",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/functions/extractor/pdf-to-html/models/TextItemLineGrouper.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "TextItem",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/TextItem"
+  },
+  "next": {
+    "title": "Word",
+    "permalink": "/docs/functions/extractor/pdf-to-html/models/Word"
+  }
+}

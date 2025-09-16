@@ -23,8 +23,9 @@
     setStateInURL,
     loadHeadTags,
     type DeviceInfo,
+    // @ts-ignore
   } from "$components/utils";
-  import { log, grab } from "grab-api.js";
+  import { log, grab } from "grab-url";
   import {
     APP_NAME,
     GOOGLE_ANALYTICS,

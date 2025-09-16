@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-cite/extract-cite
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-cite
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function extractCite(document: Document, options: object): object;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L25)
+Defined in: [src/extractor/html-to-cite/extract-cite.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L25)
 
 ### 📚💎 Extract Expert Excerpt 
 <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
@@ -96,7 +96,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>
@@ -113,7 +113,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>
@@ -130,7 +130,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>
@@ -147,7 +147,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>
@@ -164,7 +164,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>
@@ -181,7 +181,7 @@ An object containing extracted citation information.
 </td>
 <td>
 
-[packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+[src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
 
 </td>
 </tr>

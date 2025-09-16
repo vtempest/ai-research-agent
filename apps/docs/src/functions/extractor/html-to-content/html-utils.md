@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/html-to-content/html-utils
+[ai-research-agent](../../modules.md) / extractor/html-to-content/html-utils
 
 ## HTML Utilities
 
@@ -8,7 +8,7 @@
 function convertMarkdownToHTML(content: string, toHtml: boolean): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:214](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L214)
+Defined in: [src/extractor/html-to-content/html-utils.js:214](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L214)
 
 Converts Markdown text to HTML. It handles the following Markdown elements:
 - Headers (h1 to h6)
@@ -107,7 +107,7 @@ console.log(html);
 function convertMathLaTexToImage(html: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L10)
+Defined in: [src/extractor/html-to-content/html-utils.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L10)
 
 Convert LaTex &lt;math&gt; equations found inside HTML
 into easy-to-read SVG and HTML with [KaTex.js](https://katex.org).
@@ -157,7 +157,7 @@ html with SVG of equations
 function convertURLSafeHTMLToHTML(str: string, toStandardHTML: boolean): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:61](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L61)
+Defined in: [src/extractor/html-to-content/html-utils.js:61](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L61)
 
 Converts URL-safe escaped HTML codes like &"'`&rsquo; & to standard HTML or in reverse.
 
@@ -243,7 +243,7 @@ console.log(normalHTML) // "<p>This & that © 2023 "Quotes" 'Apostrophes' €100
 function convertURLToAbsoluteURL(base: string, relative: string): string;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:136](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L136)
+Defined in: [src/extractor/html-to-content/html-utils.js:136](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L136)
 
 Convert relative URL to absolute URL using base URL.
 
@@ -322,7 +322,7 @@ console.log(absoluteURL) // Returns: "https:images/image.jpg"
 function copyHTMLToClipboard(html: string, options: object): Promise<void>;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:420](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L420)
+Defined in: [src/extractor/html-to-content/html-utils.js:420](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L420)
 
 Copy HTML to clipboard. When pasting into rich text field,
 pastes rich text. When pasting into plain text field, pastes:
@@ -415,7 +415,7 @@ the HTML is copied to the clipboard.
 function convertHTMLToMarkdown(html: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/html-to-content/html-utils.js:358](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L358)
+Defined in: [src/extractor/html-to-content/html-utils.js:358](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/html-utils.js#L358)
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / match/compare-letters
+[ai-research-agent](../modules.md) / match/compare-letters
 
 ## Match
 
@@ -8,7 +8,7 @@
 function weighSimilarityByCharacter(s1: string, s2: string): number;
 ```
 
-Defined in: [packages/ai-research-agent/src/match/compare-letters.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/compare-letters.js#L28)
+Defined in: [src/match/compare-letters.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/compare-letters.js#L28)
 
 ### Jaro-Winkler String Similarity Comparison
 <img width="350px"  src="https://i.imgur.com/1qpRzNh.png" /> 

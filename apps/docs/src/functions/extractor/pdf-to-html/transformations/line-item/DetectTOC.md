@@ -1,8 +1,8 @@
-[Documentation](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item/DetectTOC
+[ai-research-agent](../../../../modules.md) / extractor/pdf-to-html/transformations/line-item/DetectTOC
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L12)
 
 ### Extends
 
@@ -16,7 +16,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 new default(): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L13)
+Defined in: [src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L13)
 
 ##### Returns
 
@@ -24,7 +24,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](../ToLineItemTransformation.md#default).[`constructor`](../ToLineItemTransformation.md#default#constructor)
+[`default`](../ToLineItemTransformation.md#default).[`constructor`](../ToLineItemTransformation.md#constructor)
 
 ### Properties
 
@@ -34,11 +34,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 itemType: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
 
 ##### Inherited from
 
-[`default`](../ToLineItemTransformation.md#default).[`itemType`](../ToLineItemTransformation.md#default#itemtype)
+[`default`](../ToLineItemTransformation.md#default).[`itemType`](../ToLineItemTransformation.md#itemtype)
 
 #### name
 
@@ -46,11 +46,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 name: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
 
 ##### Inherited from
 
-[`default`](../ToLineItemTransformation.md#default).[`name`](../ToLineItemTransformation.md#default#name)
+[`default`](../ToLineItemTransformation.md#default).[`name`](../ToLineItemTransformation.md#name)
 
 ### Methods
 
@@ -60,7 +60,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 completeTransform(parseResult: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemTransformation.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemTransformation.js#L19)
+Defined in: [src/extractor/pdf-to-html/transformations/ToLineItemTransformation.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemTransformation.js#L19)
 
 ##### Parameters
 
@@ -93,7 +93,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Inherited from
 
-[`default`](../ToLineItemTransformation.md#default).[`completeTransform`](../ToLineItemTransformation.md#default#completetransform)
+[`default`](../ToLineItemTransformation.md#default).[`completeTransform`](../ToLineItemTransformation.md#completetransform)
 
 #### transform()
 
@@ -101,7 +101,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 transform(parseResult: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L17)
+Defined in: [src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js:17](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/line-item/DetectTOC.js#L17)
 
 ##### Parameters
 
@@ -134,4 +134,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](../ToLineItemTransformation.md#default).[`transform`](../ToLineItemTransformation.md#default#transform)
+[`default`](../ToLineItemTransformation.md#default).[`transform`](../ToLineItemTransformation.md#transform)

@@ -9,9 +9,9 @@ export default {
       relative: true // Required for proper path resolution [5]
     },
     alias: {
-      $utils: "../web-app/src/lib/utils",
-      $lib: '../web-app/src/lib',
-      $components: '../web-app/src/lib/components',
+      $utils: "../web/src/lib/utils",
+      $lib: '../web/src/lib',
+      $components: '../web/src/lib/components',
     }
   }
 };

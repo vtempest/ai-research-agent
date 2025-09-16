@@ -1,0 +1,24 @@
+{
+  "id": "neural-net/vectorize/usearch",
+  "title": "usearch",
+  "description": "neural-net-training / vectorize/usearch",
+  "source": "@site/src/neural-net/vectorize/usearch.md",
+  "sourceDirName": "neural-net/vectorize",
+  "slug": "/neural-net/vectorize/usearch",
+  "permalink": "/docs/neural-net/vectorize/usearch",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vtempest/ai-research-agent/tree/master/apps/docs/src/neural-net/vectorize/usearch.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "default",
+  "previous": {
+    "title": "similarity-vector",
+    "permalink": "/docs/neural-net/vectorize/similarity-vector"
+  },
+  "next": {
+    "title": "auth-google-one-tap",
+    "permalink": "/docs/web/components/AppLayout/auth-google-one-tap"
+  }
+}

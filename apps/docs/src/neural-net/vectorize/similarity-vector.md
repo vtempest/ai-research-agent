@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / vectorize/similarity-vector
+[neural-net-training](../modules.md) / vectorize/similarity-vector
 
 ## Other
 

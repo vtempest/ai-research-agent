@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / vectorize/similarity-remote-api
+[neural-net-training](../modules.md) / vectorize/similarity-remote-api
 
 ## Similarity
 

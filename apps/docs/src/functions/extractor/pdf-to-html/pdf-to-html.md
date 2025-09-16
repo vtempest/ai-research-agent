@@ -1,4 +1,4 @@
-[Documentation](../../modules.md) / extractor/pdf-to-html/pdf-to-html
+[ai-research-agent](../../modules.md) / extractor/pdf-to-html/pdf-to-html
 
 ## Extract
 
@@ -8,7 +8,7 @@
 function convertPDFToHTML(pdfURLOrBuffer: string, options?: object): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/pdf-to-html.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/pdf-to-html.js#L46)
+Defined in: [src/extractor/pdf-to-html/pdf-to-html.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/pdf-to-html.js#L46)
 
 ### Convert PDF to HTML 
 <img src="https://i.imgur.com/6IdNDLP.png" width="350px" />

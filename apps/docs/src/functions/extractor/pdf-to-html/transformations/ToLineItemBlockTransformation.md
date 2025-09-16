@@ -1,8 +1,8 @@
-[Documentation](../../../modules.md) / extractor/pdf-to-html/transformations/ToLineItemBlockTransformation
+[ai-research-agent](../../../modules.md) / extractor/pdf-to-html/transformations/ToLineItemBlockTransformation
 
 ## default
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L11)
 
 ### Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 new default(name: any): default;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L12)
 
 ##### Parameters
 
@@ -55,7 +55,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](Transformation.md#default).[`constructor`](Transformation.md#default#constructor)
+[`default`](Transformation.md#default).[`constructor`](Transformation.md#constructor)
 
 ### Properties
 
@@ -65,11 +65,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 itemType: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:12](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L12)
 
 ##### Inherited from
 
-[`default`](Transformation.md#default).[`itemType`](Transformation.md#default#itemtype)
+[`default`](Transformation.md#default).[`itemType`](Transformation.md#itemtype)
 
 #### name
 
@@ -77,11 +77,11 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 name: any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:11](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L11)
 
 ##### Inherited from
 
-[`default`](Transformation.md#default).[`name`](Transformation.md#default#name)
+[`default`](Transformation.md#default).[`name`](Transformation.md#name)
 
 ### Methods
 
@@ -91,7 +91,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 completeTransform(parseResult: any): any;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L19)
+Defined in: [src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/ToLineItemBlockTransformation.js#L19)
 
 ##### Parameters
 
@@ -124,7 +124,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Overrides
 
-[`default`](Transformation.md#default).[`completeTransform`](Transformation.md#default#completetransform)
+[`default`](Transformation.md#default).[`completeTransform`](Transformation.md#completetransform)
 
 #### transform()
 
@@ -132,7 +132,7 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 transform(parseResult: any): void;
 ```
 
-Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L16)
+Defined in: [src/extractor/pdf-to-html/transformations/Transformation.js:16](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/transformations/Transformation.js#L16)
 
 ##### Parameters
 
@@ -165,4 +165,4 @@ Defined in: [packages/ai-research-agent/src/extractor/pdf-to-html/transformation
 
 ##### Inherited from
 
-[`default`](Transformation.md#default).[`transform`](Transformation.md#default#transform)
+[`default`](Transformation.md#default).[`transform`](Transformation.md#transform)

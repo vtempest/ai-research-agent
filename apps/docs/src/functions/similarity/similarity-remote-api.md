@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / similarity/similarity-remote-api
+[ai-research-agent](../modules.md) / similarity/similarity-remote-api
 
 ## Similarity
 
@@ -11,7 +11,7 @@ function weighRelevanceConceptVectorAPI(
    options?: object): object[];
 ```
 
-Defined in: [packages/ai-research-agent/src/similarity/similarity-remote-api.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L19)
+Defined in: [src/similarity/similarity-remote-api.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L19)
 
 Calculate the semantic similarity between one text and a list of
 other sentences by comparing their embeddings.

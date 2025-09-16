@@ -1,4 +1,4 @@
-[Documentation](../modules.md) / vectorize/usearch
+[neural-net-training](../modules.md) / vectorize/usearch
 
 ## Other
 

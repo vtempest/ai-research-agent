@@ -1,4 +1,4 @@
-[Documentation](modules.md) / index
+[ai-research-agent](modules.md) / index
 
 ## addDOMFunctions
 
