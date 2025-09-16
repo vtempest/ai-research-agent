@@ -42,7 +42,8 @@
         "build": "turbo build --filter=ai-research-agent",
         "serve": "turbo serve",
         "test": "turbo test",
-        "docker": "cross-env DOMAIN=qwksearch.com; sudo docker compose up   --renew-anon-volumes  --build"
+        "docker:stop": "sudo docker compose down; sudo docker stop $(sudo docker ps -q)",
+        "docker:start": "cross-env DOMAIN=qwksearch.com; sudo docker compose up   --renew-anon-volumes  --build"
     },
     "dependencies": {
         "turbo": "^2.5.4"

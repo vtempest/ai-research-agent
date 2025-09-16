@@ -14,29 +14,29 @@
 services:
 
   # QwkSearch.com Web App
-  web-app:
-    container_name: web-app
-    image: oven/bun:latest
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./apps/web:/app
-    working_dir: /app
-    restart: unless-stopped
-    command: bash -c "bun i; bun make; bun preview"
-    networks:
-      - caddy
-    labels:
-      caddy: ${DOMAIN:-localhost}
-      caddy.reverse_proxy: "{{upstreams 5173}}"
+  # web-app:
+  #   container_name: web-app
+  #   image: oven/bun:latest
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./apps/web:/app
+  #   working_dir: /app
+  #   restart: unless-stopped
+  #   command: bash -c "bun i; bun make; bun preview"
+  #   networks:
+  #     - caddy
+  #   labels:
+  #     caddy: ${DOMAIN:-localhost}
+  #     caddy.reverse_proxy: "{{upstreams 5173}}"
 
   # Tardigrade the Web Scraper / Crawler
   scraper:
     container_name: scraper
     restart: unless-stopped
     volumes:
-      - ./packages/ai-research-agent/src/scraper:/app
-    build: ./packages/ai-research-agent/src/scraper/Dockerfile.scraper
+      - ./packages/scraper:/app
+    build: ./packages/scraper/Dockerfile.scraper
     ports:
       - 3000:3000
     networks:
@@ -56,8 +56,8 @@ services:
     ports:
       - 8088:8080
     volumes:
-      - ./packages/ai-research-agent/src/scraper/searxng-settings.yml:/etc/searxng/settings.yml:rw
-      - ./packages/ai-research-agent/src/scraper:/etc/searxng:rw
+      - ./packages/scraper/searxng-settings.yml:/etc/searxng/settings.yml:rw
+      - ./packages/scraper:/etc/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://search.${DOMAIN:-localhost}
       - UWSGI_WORKERS=4
