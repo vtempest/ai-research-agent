@@ -10,11 +10,11 @@ RUN apk add  \
       harfbuzz \
       ca-certificates \
       ttf-freefont
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 WORKDIR /app
 COPY package*.json ./
 RUN bun install
 COPY . .
 EXPOSE 3000
-CMD bun start
+CMD ["bun", "start"]

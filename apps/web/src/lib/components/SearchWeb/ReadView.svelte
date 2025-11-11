@@ -223,7 +223,7 @@
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <h3 class="text-xl text-gray-500 text-center">
-          {@html iconLogoQwksearchFull()}
+        <img src="./icons/qwksearch-logo.png" width="auto" height="auto" alt="logo" />
         {APP_SLOGAN}
       </h3>
 

@@ -1,17 +1,35 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { heyApiPlugin } from '@hey-api/vite-plugin';
 
 export default defineConfig({
   build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: true,
+      mangle: true,
+      format: {
+        comments: false
+      }
+    },
     lib: {
       entry: './src/index.ts',
-      formats: ['es'],
-      fileName: 'api-client'
+      formats: ['es', 'umd'],
+      fileName: 'api-client',
+      name: 'api-client'
     },
     outDir: 'dist',
-    emptyOutDir: true,
+    emptyOutDir: true
   },
   plugins: [
+
+    heyApiPlugin({
+      config: {
+        input: './qwksearch-openapi.yml',
+        output: './src'
+       
+      }
+    }),
     dts({
       outDir: 'dist',
       rollupTypes: true,

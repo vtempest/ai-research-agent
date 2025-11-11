@@ -26,6 +26,9 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const APPDIR: string;
+	export const APPIMAGE: string;
+	export const ARGV0: string;
 	export const BUNDLED_DEBUGPY_PATH: string;
 	export const BUN_INSTALL: string;
 	export const CHROME_DESKTOP: string;
@@ -33,11 +36,13 @@ declare module '$env/static/private' {
 	export const CURSOR_TRACE_ID: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const DEBUGINFOD_URLS: string;
+	export const DESKTOPINTEGRATION: string;
 	export const DESKTOP_SESSION: string;
 	export const DISPLAY: string;
 	export const DOCKER_HOST: string;
 	export const GDK_BACKEND: string;
 	export const GIT_ASKPASS: string;
+	export const GSETTINGS_SCHEMA_DIR: string;
 	export const GTK2_RC_FILES: string;
 	export const GTK_RC_FILES: string;
 	export const HOME: string;
@@ -58,23 +63,28 @@ declare module '$env/static/private' {
 	export const LC_PAPER: string;
 	export const LC_TELEPHONE: string;
 	export const LC_TIME: string;
+	export const LD_LIBRARY_PATH: string;
 	export const LOGNAME: string;
 	export const MAIL: string;
 	export const MANAGERPID: string;
+	export const MANAGERPIDFDID: string;
 	export const MEMORY_PRESSURE_WATCH: string;
 	export const MEMORY_PRESSURE_WRITE: string;
 	export const MOTD_SHOWN: string;
 	export const NODE: string;
 	export const NODE_NO_WARNINGS: string;
-	export const NODE_PATH: string;
 	export const NO_AT_BRIDGE: string;
 	export const OMF_CONFIG: string;
 	export const OMF_PATH: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
+	export const OWD: string;
 	export const PATH: string;
+	export const PERLLIB: string;
 	export const PWD: string;
 	export const PYDEVD_DISABLE_FILE_VALIDATION: string;
+	export const QT_PLUGIN_PATH: string;
 	export const QT_WAYLAND_RECONNECT: string;
+	export const REDIRECT_APPIMAGE: string;
 	export const SESSION_MANAGER: string;
 	export const SHELL: string;
 	export const SHLVL: string;
@@ -109,6 +119,7 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_TYPE: string;
 	export const XDG_VTNR: string;
 	export const XKB_DEFAULT_LAYOUT: string;
+	export const _: string;
 	export const _VOLTA_TOOL_RECURSION: string;
 	export const npm_command: string;
 	export const npm_config_local_prefix: string;
@@ -150,6 +161,9 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		APPDIR: string;
+		APPIMAGE: string;
+		ARGV0: string;
 		BUNDLED_DEBUGPY_PATH: string;
 		BUN_INSTALL: string;
 		CHROME_DESKTOP: string;
@@ -157,11 +171,13 @@ declare module '$env/dynamic/private' {
 		CURSOR_TRACE_ID: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
 		DEBUGINFOD_URLS: string;
+		DESKTOPINTEGRATION: string;
 		DESKTOP_SESSION: string;
 		DISPLAY: string;
 		DOCKER_HOST: string;
 		GDK_BACKEND: string;
 		GIT_ASKPASS: string;
+		GSETTINGS_SCHEMA_DIR: string;
 		GTK2_RC_FILES: string;
 		GTK_RC_FILES: string;
 		HOME: string;
@@ -182,23 +198,28 @@ declare module '$env/dynamic/private' {
 		LC_PAPER: string;
 		LC_TELEPHONE: string;
 		LC_TIME: string;
+		LD_LIBRARY_PATH: string;
 		LOGNAME: string;
 		MAIL: string;
 		MANAGERPID: string;
+		MANAGERPIDFDID: string;
 		MEMORY_PRESSURE_WATCH: string;
 		MEMORY_PRESSURE_WRITE: string;
 		MOTD_SHOWN: string;
 		NODE: string;
 		NODE_NO_WARNINGS: string;
-		NODE_PATH: string;
 		NO_AT_BRIDGE: string;
 		OMF_CONFIG: string;
 		OMF_PATH: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
+		OWD: string;
 		PATH: string;
+		PERLLIB: string;
 		PWD: string;
 		PYDEVD_DISABLE_FILE_VALIDATION: string;
+		QT_PLUGIN_PATH: string;
 		QT_WAYLAND_RECONNECT: string;
+		REDIRECT_APPIMAGE: string;
 		SESSION_MANAGER: string;
 		SHELL: string;
 		SHLVL: string;
@@ -233,6 +254,7 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_TYPE: string;
 		XDG_VTNR: string;
 		XKB_DEFAULT_LAYOUT: string;
+		_: string;
 		_VOLTA_TOOL_RECURSION: string;
 		npm_command: string;
 		npm_config_local_prefix: string;

@@ -1,4 +1,4 @@
-import { z as z$1 } from "zod";
+import { z } from "zod";
 import katex from "katex";
 import { marked } from "marked";
 import hljs from "highlight.js";
@@ -1501,11 +1501,11 @@ const LANGUAGE_MODELS = [
   }
 ];
 const LANGUAGE_PROVIDERS = LANGUAGE_MODELS.map((p) => p.provider.toLocaleLowerCase());
-var R = async (e, n) => {
-  let r = typeof n == "function" ? await n(e) : n;
-  if (r) return e.scheme === "bearer" ? `Bearer ${r}` : e.scheme === "basic" ? `Basic ${btoa(r)}` : r;
-}, _ = { bodySerializer: (e) => JSON.stringify(e, (n, r) => typeof r == "bigint" ? r.toString() : r) }, T = (e) => {
-  switch (e) {
+var j = async (s, r) => {
+  let e = typeof r == "function" ? await r(s) : r;
+  if (e) return s.scheme === "bearer" ? `Bearer ${e}` : s.scheme === "basic" ? `Basic ${btoa(e)}` : e;
+}, R = { bodySerializer: (s) => JSON.stringify(s, (r, e) => typeof e == "bigint" ? e.toString() : e) }, U = (s) => {
+  switch (s) {
     case "label":
       return ".";
     case "matrix":
@@ -1515,8 +1515,8 @@ var R = async (e, n) => {
     default:
       return "&";
   }
-}, I = (e) => {
-  switch (e) {
+}, _ = (s) => {
+  switch (s) {
     case "form":
       return ",";
     case "pipeDelimited":
@@ -1526,8 +1526,8 @@ var R = async (e, n) => {
     default:
       return ",";
   }
-}, U = (e) => {
-  switch (e) {
+}, D = (s) => {
+  switch (s) {
     case "label":
       return ".";
     case "matrix":
@@ -1537,133 +1537,134 @@ var R = async (e, n) => {
     default:
       return "&";
   }
-}, x = ({ allowReserved: e, explode: n, name: r, style: o, value: s }) => {
-  if (!n) {
-    let t = (e ? s : s.map((i) => encodeURIComponent(i))).join(I(o));
-    switch (o) {
+}, O = ({ allowReserved: s, explode: r, name: e, style: i, value: a }) => {
+  if (!r) {
+    let t = (s ? a : a.map((l) => encodeURIComponent(l))).join(_(i));
+    switch (i) {
       case "label":
         return `.${t}`;
       case "matrix":
-        return `;${r}=${t}`;
+        return `;${e}=${t}`;
       case "simple":
         return t;
       default:
-        return `${r}=${t}`;
+        return `${e}=${t}`;
     }
   }
-  let l = T(o), a = s.map((t) => o === "label" || o === "simple" ? e ? t : encodeURIComponent(t) : b({ allowReserved: e, name: r, value: t })).join(l);
-  return o === "label" || o === "matrix" ? l + a : a;
-}, b = ({ allowReserved: e, name: n, value: r }) => {
-  if (r == null) return "";
-  if (typeof r == "object") throw new Error("Deeply-nested arrays/objects aren’t supported. Provide your own `querySerializer()` to handle these.");
-  return `${n}=${e ? r : encodeURIComponent(r)}`;
-}, $ = ({ allowReserved: e, explode: n, name: r, style: o, value: s }) => {
-  if (s instanceof Date) return `${r}=${s.toISOString()}`;
-  if (o !== "deepObject" && !n) {
+  let o = U(i), n = a.map((t) => i === "label" || i === "simple" ? s ? t : encodeURIComponent(t) : h({ allowReserved: s, name: e, value: t })).join(o);
+  return i === "label" || i === "matrix" ? o + n : n;
+}, h = ({ allowReserved: s, name: r, value: e }) => {
+  if (e == null) return "";
+  if (typeof e == "object") throw new Error("Deeply-nested arrays/objects aren’t supported. Provide your own `querySerializer()` to handle these.");
+  return `${r}=${s ? e : encodeURIComponent(e)}`;
+}, S = ({ allowReserved: s, explode: r, name: e, style: i, value: a }) => {
+  if (a instanceof Date) return `${e}=${a.toISOString()}`;
+  if (i !== "deepObject" && !r) {
     let t = [];
-    Object.entries(s).forEach(([f, d]) => {
-      t = [...t, f, e ? d : encodeURIComponent(d)];
+    Object.entries(a).forEach(([f, p]) => {
+      t = [...t, f, s ? p : encodeURIComponent(p)];
     });
-    let i = t.join(",");
-    switch (o) {
+    let l = t.join(",");
+    switch (i) {
       case "form":
-        return `${r}=${i}`;
+        return `${e}=${l}`;
       case "label":
-        return `.${i}`;
+        return `.${l}`;
       case "matrix":
-        return `;${r}=${i}`;
+        return `;${e}=${l}`;
       default:
-        return i;
+        return l;
     }
   }
-  let l = U(o), a = Object.entries(s).map(([t, i]) => b({ allowReserved: e, name: o === "deepObject" ? `${r}[${t}]` : t, value: i })).join(l);
-  return o === "label" || o === "matrix" ? l + a : a;
-}, A = /\{[^{}]+\}/g, W = ({ path: e, url: n }) => {
-  let r = n, o = n.match(A);
-  if (o) for (let s of o) {
-    let l = false, a = s.substring(1, s.length - 1), t = "simple";
-    a.endsWith("*") && (l = true, a = a.substring(0, a.length - 1)), a.startsWith(".") ? (a = a.substring(1), t = "label") : a.startsWith(";") && (a = a.substring(1), t = "matrix");
-    let i = e[a];
-    if (i == null) continue;
-    if (Array.isArray(i)) {
-      r = r.replace(s, x({ explode: l, name: a, style: t, value: i }));
+  let o = D(i), n = Object.entries(a).map(([t, l]) => h({ allowReserved: s, name: i === "deepObject" ? `${e}[${t}]` : t, value: l })).join(o);
+  return i === "label" || i === "matrix" ? o + n : n;
+};
+var H = /\{[^{}]+\}/g, B = ({ path: s, url: r }) => {
+  let e = r, i = r.match(H);
+  if (i) for (let a of i) {
+    let o = false, n = a.substring(1, a.length - 1), t = "simple";
+    n.endsWith("*") && (o = true, n = n.substring(0, n.length - 1)), n.startsWith(".") ? (n = n.substring(1), t = "label") : n.startsWith(";") && (n = n.substring(1), t = "matrix");
+    let l = s[n];
+    if (l == null) continue;
+    if (Array.isArray(l)) {
+      e = e.replace(a, O({ explode: o, name: n, style: t, value: l }));
       continue;
     }
-    if (typeof i == "object") {
-      r = r.replace(s, $({ explode: l, name: a, style: t, value: i }));
+    if (typeof l == "object") {
+      e = e.replace(a, S({ explode: o, name: n, style: t, value: l }));
       continue;
     }
     if (t === "matrix") {
-      r = r.replace(s, `;${b({ name: a, value: i })}`);
+      e = e.replace(a, `;${h({ name: n, value: l })}`);
       continue;
     }
-    let f = encodeURIComponent(t === "label" ? `.${i}` : i);
-    r = r.replace(s, f);
+    let f = encodeURIComponent(t === "label" ? `.${l}` : l);
+    e = e.replace(a, f);
   }
-  return r;
-}, S = ({ allowReserved: e, array: n, object: r } = {}) => (o) => {
-  let s = [];
-  if (o && typeof o == "object") for (let l in o) {
-    let a = o[l];
-    if (a != null) if (Array.isArray(a)) {
-      let t = x({ allowReserved: e, explode: true, name: l, style: "form", value: a, ...n });
-      t && s.push(t);
-    } else if (typeof a == "object") {
-      let t = $({ allowReserved: e, explode: true, name: l, style: "deepObject", value: a, ...r });
-      t && s.push(t);
+  return e;
+}, A = ({ allowReserved: s, array: r, object: e } = {}) => (a) => {
+  let o = [];
+  if (a && typeof a == "object") for (let n in a) {
+    let t = a[n];
+    if (t != null) if (Array.isArray(t)) {
+      let l = O({ allowReserved: s, explode: true, name: n, style: "form", value: t, ...r });
+      l && o.push(l);
+    } else if (typeof t == "object") {
+      let l = S({ allowReserved: s, explode: true, name: n, style: "deepObject", value: t, ...e });
+      l && o.push(l);
     } else {
-      let t = b({ allowReserved: e, name: l, value: a });
-      t && s.push(t);
+      let l = h({ allowReserved: s, name: n, value: t });
+      l && o.push(l);
     }
   }
-  return s.join("&");
-}, z = (e) => {
-  if (!e) return "stream";
-  let n = e.split(";")[0]?.trim();
-  if (n) {
-    if (n.startsWith("application/json") || n.endsWith("+json")) return "json";
-    if (n === "multipart/form-data") return "formData";
-    if (["application/", "audio/", "image/", "video/"].some((r) => n.startsWith(r))) return "blob";
-    if (n.startsWith("text/")) return "text";
+  return o.join("&");
+}, P = (s) => {
+  if (!s) return "stream";
+  let r = s.split(";")[0]?.trim();
+  if (r) {
+    if (r.startsWith("application/json") || r.endsWith("+json")) return "json";
+    if (r === "multipart/form-data") return "formData";
+    if (["application/", "audio/", "image/", "video/"].some((e) => r.startsWith(e))) return "blob";
+    if (r.startsWith("text/")) return "text";
   }
-}, E = async ({ security: e, ...n }) => {
-  for (let r of e) {
-    let o = await R(r, n.auth);
-    if (!o) continue;
-    let s = r.name ?? "Authorization";
-    switch (r.in) {
+}, E = async ({ security: s, ...r }) => {
+  for (let e of s) {
+    let i = await j(e, r.auth);
+    if (!i) continue;
+    let a = e.name ?? "Authorization";
+    switch (e.in) {
       case "query":
-        n.query || (n.query = {}), n.query[s] = o;
+        r.query || (r.query = {}), r.query[a] = i;
         break;
       case "cookie":
-        n.headers.append("Cookie", `${s}=${o}`);
+        r.headers.append("Cookie", `${a}=${i}`);
         break;
       case "header":
       default:
-        n.headers.set(s, o);
+        r.headers.set(a, i);
         break;
     }
     return;
   }
-}, j = (e) => D({ baseUrl: e.baseUrl, path: e.path, query: e.query, querySerializer: typeof e.querySerializer == "function" ? e.querySerializer : S(e.querySerializer), url: e.url }), D = ({ baseUrl: e, path: n, query: r, querySerializer: o, url: s }) => {
-  let l = s.startsWith("/") ? s : `/${s}`, a = (e ?? "") + l;
-  n && (a = W({ path: n, url: a }));
-  let t = r ? o(r) : "";
-  return t.startsWith("?") && (t = t.substring(1)), t && (a += `?${t}`), a;
-}, v = (e, n) => {
-  let r = { ...e, ...n };
-  return r.baseUrl?.endsWith("/") && (r.baseUrl = r.baseUrl.substring(0, r.baseUrl.length - 1)), r.headers = q(e.headers, n.headers), r;
-}, q = (...e) => {
-  let n = new Headers();
-  for (let r of e) {
-    if (!r || typeof r != "object") continue;
-    let o = r instanceof Headers ? r.entries() : Object.entries(r);
-    for (let [s, l] of o) if (l === null) n.delete(s);
-    else if (Array.isArray(l)) for (let a of l) n.append(s, a);
-    else l !== void 0 && n.set(s, typeof l == "object" ? JSON.stringify(l) : l);
+}, q = (s) => W({ baseUrl: s.baseUrl, path: s.path, query: s.query, querySerializer: typeof s.querySerializer == "function" ? s.querySerializer : A(s.querySerializer), url: s.url }), W = ({ baseUrl: s, path: r, query: e, querySerializer: i, url: a }) => {
+  let o = a.startsWith("/") ? a : `/${a}`, n = (s ?? "") + o;
+  r && (n = B({ path: r, url: n }));
+  let t = e ? i(e) : "";
+  return t.startsWith("?") && (t = t.substring(1)), t && (n += `?${t}`), n;
+}, x = (s, r) => {
+  let e = { ...s, ...r };
+  return e.baseUrl?.endsWith("/") && (e.baseUrl = e.baseUrl.substring(0, e.baseUrl.length - 1)), e.headers = C(s.headers, r.headers), e;
+}, C = (...s) => {
+  let r = new Headers();
+  for (let e of s) {
+    if (!e || typeof e != "object") continue;
+    let i = e instanceof Headers ? e.entries() : Object.entries(e);
+    for (let [a, o] of i) if (o === null) r.delete(a);
+    else if (Array.isArray(o)) for (let n of o) r.append(a, n);
+    else o !== void 0 && r.set(a, typeof o == "object" ? JSON.stringify(o) : o);
   }
-  return n;
-}, w = class {
+  return r;
+}, m = class {
   _fns;
   constructor() {
     this._fns = [];
@@ -1671,66 +1672,80 @@ var R = async (e, n) => {
   clear() {
     this._fns = [];
   }
-  getInterceptorIndex(e) {
-    return typeof e == "number" ? this._fns[e] ? e : -1 : this._fns.indexOf(e);
+  getInterceptorIndex(r) {
+    return typeof r == "number" ? this._fns[r] ? r : -1 : this._fns.indexOf(r);
   }
-  exists(e) {
-    let n = this.getInterceptorIndex(e);
-    return !!this._fns[n];
+  exists(r) {
+    let e = this.getInterceptorIndex(r);
+    return !!this._fns[e];
   }
-  eject(e) {
-    let n = this.getInterceptorIndex(e);
-    this._fns[n] && (this._fns[n] = null);
+  eject(r) {
+    let e = this.getInterceptorIndex(r);
+    this._fns[e] && (this._fns[e] = null);
   }
-  update(e, n) {
-    let r = this.getInterceptorIndex(e);
-    return this._fns[r] ? (this._fns[r] = n, e) : false;
+  update(r, e) {
+    let i = this.getInterceptorIndex(r);
+    return this._fns[i] ? (this._fns[i] = e, r) : false;
   }
-  use(e) {
-    return this._fns = [...this._fns, e], this._fns.length - 1;
+  use(r) {
+    return this._fns = [...this._fns, r], this._fns.length - 1;
   }
-}, N = () => ({ error: new w(), request: new w(), response: new w() }), k = S({ allowReserved: false, array: { explode: true, style: "form" }, object: { explode: true, style: "deepObject" } }), P = { "Content-Type": "application/json" }, C = (e = {}) => ({ ..._, headers: P, parseAs: "auto", querySerializer: k, ...e }), H = (e = {}) => {
-  let n = v(C(), e), r = () => ({ ...n }), o = (a) => (n = v(n, a), r()), s = N(), l = async (a) => {
-    let t = { ...n, ...a, fetch: a.fetch ?? n.fetch ?? globalThis.fetch, headers: q(n.headers, a.headers) };
+}, v = () => ({ error: new m(), request: new m(), response: new m() }), N = A({ allowReserved: false, array: { explode: true, style: "form" }, object: { explode: true, style: "deepObject" } }), Q = { "Content-Type": "application/json" }, w = (s = {}) => ({ ...R, headers: Q, parseAs: "auto", querySerializer: N, ...s });
+var J = (s = {}) => {
+  let r = x(w(), s), e = () => ({ ...r }), i = (n) => (r = x(r, n), e()), a = v(), o = async (n) => {
+    let t = { ...r, ...n, fetch: n.fetch ?? r.fetch ?? globalThis.fetch, headers: C(r.headers, n.headers) };
     t.security && await E({ ...t, security: t.security }), t.body && t.bodySerializer && (t.body = t.bodySerializer(t.body)), (t.body === void 0 || t.body === "") && t.headers.delete("Content-Type");
-    let i = j(t), f = { redirect: "follow", ...t }, d = new Request(i, f);
-    for (let c of s.request._fns) c && (d = await c(d, t));
-    let O = t.fetch, u = await O(d);
-    for (let c of s.response._fns) c && (u = await c(u, d, t));
-    let y = { request: d, response: u };
-    if (u.ok) {
-      if (u.status === 204 || u.headers.get("Content-Length") === "0") return t.responseStyle === "data" ? {} : { data: {}, ...y };
-      let c = (t.parseAs === "auto" ? z(u.headers.get("Content-Type")) : t.parseAs) ?? "json";
-      if (c === "stream") return t.responseStyle === "data" ? u.body : { data: u.body, ...y };
-      let h = await u[c]();
-      return c === "json" && (t.responseValidator && await t.responseValidator(h), t.responseTransformer && (h = await t.responseTransformer(h))), t.responseStyle === "data" ? h : { data: h, ...y };
+    let l = q(t), f = { redirect: "follow", ...t }, p = new Request(l, f);
+    for (let u of a.request._fns) u && (p = await u(p, t));
+    let T = t.fetch, c = await T(p);
+    for (let u of a.response._fns) u && (c = await u(c, p, t));
+    let g = { request: p, response: c };
+    if (c.ok) {
+      if (c.status === 204 || c.headers.get("Content-Length") === "0") return t.responseStyle === "data" ? {} : { data: {}, ...g };
+      let u = (t.parseAs === "auto" ? P(c.headers.get("Content-Type")) : t.parseAs) ?? "json";
+      if (u === "stream") return t.responseStyle === "data" ? c.body : { data: c.body, ...g };
+      let y = await c[u]();
+      return u === "json" && (t.responseValidator && await t.responseValidator(y), t.responseTransformer && (y = await t.responseTransformer(y))), t.responseStyle === "data" ? y : { data: y, ...g };
     }
-    let m = await u.text();
+    let b = await c.text();
     try {
-      m = JSON.parse(m);
+      b = JSON.parse(b);
     } catch {
     }
-    let p = m;
-    for (let c of s.error._fns) c && (p = await c(m, u, d, t));
-    if (p = p || {}, t.throwOnError) throw p;
-    return t.responseStyle === "data" ? void 0 : { error: p, ...y };
+    let d = b;
+    for (let u of a.error._fns) u && (d = await u(b, c, p, t));
+    if (d = d || {}, t.throwOnError) throw d;
+    return t.responseStyle === "data" ? void 0 : { error: d, ...g };
   };
-  return { buildUrl: j, connect: (a) => l({ ...a, method: "CONNECT" }), delete: (a) => l({ ...a, method: "DELETE" }), get: (a) => l({ ...a, method: "GET" }), getConfig: r, head: (a) => l({ ...a, method: "HEAD" }), interceptors: s, options: (a) => l({ ...a, method: "OPTIONS" }), patch: (a) => l({ ...a, method: "PATCH" }), post: (a) => l({ ...a, method: "POST" }), put: (a) => l({ ...a, method: "PUT" }), request: l, setConfig: o, trace: (a) => l({ ...a, method: "TRACE" }) };
+  return { buildUrl: q, connect: (n) => o({ ...n, method: "CONNECT" }), delete: (n) => o({ ...n, method: "DELETE" }), get: (n) => o({ ...n, method: "GET" }), getConfig: e, head: (n) => o({ ...n, method: "HEAD" }), interceptors: a, options: (n) => o({ ...n, method: "OPTIONS" }), patch: (n) => o({ ...n, method: "PATCH" }), post: (n) => o({ ...n, method: "POST" }), put: (n) => o({ ...n, method: "PUT" }), request: o, setConfig: i, trace: (n) => o({ ...n, method: "TRACE" }) };
 };
-const g = H(C()), J = (e) => (e.client ?? g).get({
-  url: "/extract",
-  ...e
-}), B = (e) => (e.client ?? g).post({
-  url: "/agents",
-  ...e,
-  headers: {
-    "Content-Type": "application/json",
-    ...e.headers
-  }
-}), L = (e) => (e.client ?? g).get({
-  url: "/search",
-  ...e
+const createClientConfig = (config2) => ({
+  ...config2,
+  baseUrl: config2.baseUrl
 });
+const client = J(createClientConfig(w()));
+const extractContent = (options) => {
+  return (options.client ?? client).get({
+    url: "/extract",
+    ...options
+  });
+};
+const writeLanguage = (options) => {
+  return (options.client ?? client).post({
+    url: "/agents",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers
+    }
+  });
+};
+const searchWeb = (options) => {
+  return (options.client ?? client).get({
+    url: "/search",
+    ...options
+  });
+};
 const QWKSEARCH_CONFIG = {
   baseURL: typeof process !== "undefined" && process?.env.QWKSEARCH_URL || "https://api.qwksearch.com",
   apiKey: typeof process !== "undefined" && process?.env.QWKSEARCH_API_KEY || null
@@ -1739,16 +1754,16 @@ const AGENT_TOOLS = [
   {
     name: "web_search",
     description: "Search the web for information on any topic using QwkSearch API. Input: search query string and optional category. Returns relevant search results with titles, descriptions, and URLs from 100+ sources via SearXNG metasearch engine.",
-    schema: z$1.object({
-      query: z$1.string(),
-      category: z$1.enum(["general", "news", "videos", "images", "science", "files", "it"]).optional().default("general"),
-      recency: z$1.enum(["none", "day", "week", "month", "year"]).optional().default("none"),
-      page: z$1.number().optional().default(1),
-      language: z$1.string().optional().default("en-US"),
-      public: z$1.boolean().optional().default(false),
-      timeout: z$1.number().optional().default(10),
-      baseURL: z$1.string().optional(),
-      apiKey: z$1.string().optional()
+    schema: z.object({
+      query: z.string(),
+      category: z.enum(["general", "news", "videos", "images", "science", "files", "it"]).optional().default("general"),
+      recency: z.enum(["none", "day", "week", "month", "year"]).optional().default("none"),
+      page: z.number().optional().default(1),
+      language: z.string().optional().default("en-US"),
+      public: z.boolean().optional().default(false),
+      timeout: z.number().optional().default(10),
+      baseURL: z.string().optional(),
+      apiKey: z.string().optional()
     }),
     func: async ({ query, category = "general", recency = "none", page = 1, language = "en-US", public: isPublic = false, timeout = 10, baseURL, apiKey }) => {
       try {
@@ -1756,7 +1771,7 @@ const AGENT_TOOLS = [
           baseURL: baseURL || QWKSEARCH_CONFIG.baseURL,
           apiKey: apiKey || QWKSEARCH_CONFIG.apiKey
         };
-        const result = await L({
+        const result = await searchWeb({
           query: {
             q: query,
             cat: category,
@@ -1804,15 +1819,15 @@ const AGENT_TOOLS = [
   {
     name: "extract_page",
     description: "Extract and summarize content from a web page using QwkSearch API. Supports articles, PDFs, and YouTube videos. Uses Mozilla Readability and Postlight Mercury algorithms with 100+ custom adapters for major sites. Input: URL of the page to extract. Returns structured content with citation information.",
-    schema: z$1.object({
-      url: z$1.string().url(),
-      images: z$1.boolean().optional().default(true),
-      links: z$1.boolean().optional().default(true),
-      formatting: z$1.boolean().optional().default(true),
-      absoluteURLs: z$1.boolean().optional().default(true),
-      timeout: z$1.number().min(1).max(30).optional().default(10),
-      baseURL: z$1.string().optional(),
-      apiKey: z$1.string().optional()
+    schema: z.object({
+      url: z.string().url(),
+      images: z.boolean().optional().default(true),
+      links: z.boolean().optional().default(true),
+      formatting: z.boolean().optional().default(true),
+      absoluteURLs: z.boolean().optional().default(true),
+      timeout: z.number().min(1).max(30).optional().default(10),
+      baseURL: z.string().optional(),
+      apiKey: z.string().optional()
     }),
     func: async ({ url, images = true, links = true, formatting = true, absoluteURLs = true, timeout = 10, baseURL, apiKey }) => {
       try {
@@ -1820,7 +1835,7 @@ const AGENT_TOOLS = [
           baseURL: baseURL || QWKSEARCH_CONFIG.baseURL,
           apiKey: apiKey || QWKSEARCH_CONFIG.apiKey
         };
-        const result = await J({
+        const result = await extractContent({
           query: {
             url,
             images,
@@ -1889,10 +1904,10 @@ ${data.html}
   {
     name: "generate_ai_response",
     description: "Generate AI language model responses using QwkSearch API with various agent templates. Supports multiple providers (Groq, OpenAI, Anthropic, etc.) and agent types for different tasks like summarization, question answering, and content generation.",
-    schema: z$1.object({
-      provider: z$1.enum(["groq", "openai", "anthropic", "together", "xai", "google", "perplexity", "ollama", "cloudflare"]),
-      key: z$1.string().optional(),
-      agent: z$1.enum([
+    schema: z.object({
+      provider: z.enum(["groq", "openai", "anthropic", "together", "xai", "google", "perplexity", "ollama", "cloudflare"]),
+      key: z.string().optional(),
+      agent: z.enum([
         "question",
         "summarize-bullets",
         "summarize",
@@ -1902,14 +1917,14 @@ ${data.html}
         "knowledge-graph-nodes",
         "summary-longtext"
       ]).optional().default("question"),
-      model: z$1.string().optional().default("meta-llama/llama-4-maverick-17b-128e-instruct"),
-      temperature: z$1.number().min(0).max(2).optional().default(0.7),
-      html: z$1.boolean().optional().default(true),
-      query: z$1.string().optional(),
-      chat_history: z$1.string().optional(),
-      article: z$1.string().optional(),
-      baseURL: z$1.string().optional(),
-      apiKey: z$1.string().optional()
+      model: z.string().optional().default("meta-llama/llama-4-maverick-17b-128e-instruct"),
+      temperature: z.number().min(0).max(2).optional().default(0.7),
+      html: z.boolean().optional().default(true),
+      query: z.string().optional(),
+      chat_history: z.string().optional(),
+      article: z.string().optional(),
+      baseURL: z.string().optional(),
+      apiKey: z.string().optional()
     }),
     func: async ({ provider, key, agent = "question", model = "meta-llama/llama-4-maverick-17b-128e-instruct", temperature = 0.7, html = true, query, chat_history, article, baseURL, apiKey }) => {
       try {
@@ -1936,7 +1951,7 @@ ${data.html}
         if (article) {
           requestBody.article = article;
         }
-        const result = await B({
+        const result = await writeLanguage({
           body: requestBody,
           config
         });
@@ -2014,7 +2029,7 @@ function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
   }
   if (toStandardHTML) {
     const reverseEntityMap = Object.fromEntries(
-      Object.entries(entityMap).map(([k2, v2]) => [v2, k2])
+      Object.entries(entityMap).map(([k, v2]) => [v2, k])
     );
     reverseEntityMap["&apos;"] = "'";
     reverseEntityMap["&laquo;"] = "«";
@@ -2930,8 +2945,8 @@ function examine_time_elements(tree, options) {
 }
 function normalize_match(match) {
   if (!match) return null;
-  const groups = match.slice(1).filter((g2) => g2);
-  let [day, month, year] = groups.map((g2) => g2.padStart(2, "0"));
+  const groups = match.slice(1).filter((g) => g);
+  let [day, month, year] = groups.map((g) => g.padStart(2, "0"));
   if (year.length === 2) {
     year = year[0] === "9" ? `19${year}` : `20${year}`;
   }
@@ -3192,12 +3207,12 @@ class Counter {
   // Return n most common elements and their counts
   most_common(n = null) {
     const items = Object.entries(this._counts);
-    items.sort((a, b2) => b2[1] - a[1]);
+    items.sort((a, b) => b[1] - a[1]);
     return n ? items.slice(0, n) : items;
   }
   // Return the total of all counts
   total() {
-    return Object.values(this._counts).reduce((a, b2) => a + b2, 0);
+    return Object.values(this._counts).reduce((a, b) => a + b, 0);
   }
   // Return an iterator over elements, repeating each as many times as its count
   *elements() {

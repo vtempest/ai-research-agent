@@ -1,0 +1,22 @@
+{
+  "name": "pdf-to-html-docling",
+  "version": "1.0.0",
+  "description": "Node.js implementation of SmolDocling using Transformers.js",
+  "main": "/src/pdf-to-html-docling.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon",
+    "test": "node src/pdf-to-html-docling.js test/ocr-test.png"
+  },
+  "keywords": [
+    "transformers",
+    "vision",
+    "language",
+    "ai",
+    "machine-learning",
+    "image-text"
+  ],
+  "dependencies": {
+    "@huggingface/transformers": "^3.7.2"
+  }
+}

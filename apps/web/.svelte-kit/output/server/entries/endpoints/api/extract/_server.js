@@ -185,24 +185,20 @@ function isAllowedToScrape(rules, path, userAgent = "*") {
 }
 async function convertYoutubeToText(videoUrl, options = {}) {
   const {
-    useThirdPartyBackup = true,
     addTimestamps = true,
     addPlayer = true,
     timeout = 10,
     proxy = null
   } = options;
-  const videoId = getURLYoutubeVideo(videoUrl);
-  var res = {}, date;
-  if (!useThirdPartyBackup) {
-    var res = await fetchTranscriptOfficialYoutube(videoId, options);
-  } else {
-    var res = await fetchTranscriptOfficialYoutube(videoId, options);
-    var res = await fetchTranscriptOfficialYoutube(videoId, options);
-    res = await fetchTranscriptTactiq(videoId, options);
-    if (!res.content || res.error)
-      res = await fetchViaYoutubeToTranscriptCom(videoId, options);
-  }
-  date = await extractYouTubeDate(videoId, options);
+  var videoId = getURLYoutubeVideo(videoUrl), res = {};
+  res = await fetchTranscriptTactiq(videoId, options);
+  if (!res.content || res.error)
+    res = await fetchTranscriptOfficialYoutube(videoId, options);
+  if (!res.content || res.error)
+    res = await fetchViaYoutubeToTranscriptCom(videoId, options);
+  if (!res.content || res.error)
+    res = await fetchViaYoutubeTranscript(videoId, options);
+  var { date, title, author_cite, length } = await extractYouTubeInfo(videoId, options);
   if (!res.content || res.error) return { error: 1 };
   var { content: content2, timestamps } = res;
   var word_count = content2.split(" ").length;
@@ -238,14 +234,15 @@ async function convertYoutubeToText(videoUrl, options = {}) {
     total += c;
     return total;
   });
-  speeds = compressed.join(",") + "   " + compressedCount.join(",");
+  content2 = content2.replace(/\s+/g, " ");
+  speeds = compressed.join(",") + "  " + compressedCount.join(",");
   if (addPlayer)
     content2 = `<iframe width="100%" height="315px" data-timestamps="${speeds}" 
     src="https://www.youtube.com/embed/${videoId}" frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
     gyroscope; picture-in-picture" allowfullscreen></iframe>${content2}`;
   var source = "YouTube";
-  return { html: content2, word_count, source, date, ...res };
+  return { html: content2, word_count, source, date, title, author_cite, length };
 }
 function getURLYoutubeVideo(url) {
   var match = url?.match(
@@ -309,23 +306,43 @@ async function fetchTranscriptTactiq(videoId, options = {}) {
     return { error: true };
   }
 }
-async function extractYouTubeDate(videoId, options = {}) {
+async function fetchViaYoutubeTranscript(videoId, options = {}) {
+  const url = "https://youtubetranscript.com/?server_vid2=" + videoId;
+  var html = await (await fetch(url)).text();
+  const transcriptRegex = /<text start="([\d.]+)" dur="[\d.]+">((?:(?!<\/text>).|\n)*?)<\/text>/gms;
+  const matches = Array.from(html.matchAll(transcriptRegex));
+  const transcript = matches.map((match) => ({
+    text: match[2],
+    offset: parseFloat(match[1])
+  }));
+  const content2 = transcript.map((item) => item.text).join(" ");
+  let timestamps = [];
+  let charIndex = 0;
+  if (content2.includes("YouTube is currently blocking us from fetching"))
+    return { error: 1 };
+  transcript.forEach((item) => {
+    timestamps.push([charIndex, Math.floor(item.offset)]);
+    charIndex += item.text.length + 1;
+  });
+  return { content: content2, timestamps };
+}
+async function extractYouTubeInfo(videoId, options = {}) {
   var htmlString = await scrapeURL(
     `https://www.youtube.com/watch?v=${videoId}`,
     options
   );
-  if (htmlString?.error || htmlString.includes('class="g-recaptcha"') || !htmlString.includes('"playabilityStatus":'))
-    return { error: 1 };
+  if (htmlString?.error || htmlString.includes('class="g-recaptcha"') || !htmlString.includes('"playabilityStatus":')) return { error: 1 };
   htmlString = htmlString?.replace(/\n/g, "");
-  const pattern = /id="info"[^>]*>(?:.*?)(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}|\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago)/gi;
-  const match = htmlString.match(pattern);
-  if (match) {
+  const result = {};
+  const datePattern = /id="info"[^>]*>(?:.*?)(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}|\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago)/gi;
+  const dateMatch = htmlString.match(datePattern);
+  if (dateMatch) {
     const absoluteDatePattern = /(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}/;
     const relativeDatePattern = /\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago/i;
-    const absoluteMatch = match[0].match(absoluteDatePattern);
-    const relativeMatch = match[0].match(relativeDatePattern);
+    const absoluteMatch = dateMatch[0].match(absoluteDatePattern);
+    const relativeMatch = dateMatch[0].match(relativeDatePattern);
     if (absoluteMatch) {
-      return absoluteMatch[0];
+      result.date = absoluteMatch[0];
     } else if (relativeMatch) {
       const relative = relativeMatch[0];
       const [amount, unit] = relative.split(" ");
@@ -363,10 +380,21 @@ async function extractYouTubeDate(videoId, options = {}) {
       }
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       const formatted = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-      return formatted;
+      result.date = formatted;
     }
+  } else {
+    result.date = null;
   }
-  return null;
+  const titlePattern = /"title":"([^"]+)"/;
+  const titleMatch = htmlString.match(titlePattern);
+  result.title = titleMatch ? titleMatch[1] : null;
+  const authorPattern = /"author":"([^"]+)"/;
+  const authorMatch = htmlString.match(authorPattern);
+  result.author_cite = authorMatch ? authorMatch[1] : null;
+  const lengthPattern = /"lengthSeconds":"(\d+)"/;
+  const lengthMatch = htmlString.match(lengthPattern);
+  result.length = lengthMatch ? parseInt(lengthMatch[1]) : null;
+  return result;
 }
 async function fetchTranscriptOfficialYoutube(videoId, options = {}) {
   const videoPageBody = await scrapeURL(
@@ -2511,7 +2539,7 @@ async function extractContent(urlOrDoc, options = {}) {
     options.url = options.url || "";
     response = extractContentAndCite(urlOrDoc, options);
     return response;
-  } else if (typeof urlOrDoc === "string" && /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(urlOrDoc)) {
+  } else if (typeof urlOrDoc === "string" && urlOrDoc.startsWith("http")) {
     url = urlOrDoc;
     let googleDocId = url.match(/google\.com\/(file|document)\/d\/([\w-]+)/);
     if (googleDocId)

@@ -18,17 +18,17 @@ export default {
 			return new Response('Not Found', { status: 404 });
 		}
 
+		// Parse request parameters first (this reads the body)
+		const params = await parseRequestParams(request);
+		
 		// Handle authentication
-		const authResult = await authenticateRequest(request, env);
+		const authResult = await authenticateRequest(request, env, params);
 		if (!authResult.success) {
 			return new Response(authResult.error, { 
 				status: 401,
 				headers: { 'WWW-Authenticate': 'Bearer realm="API"' }
 			});
 		}
-
-		// Parse request parameters
-		const params = await parseRequestParams(request);
 		
 		if (!params.url) {
 			return new Response(
@@ -51,28 +51,27 @@ export default {
 };
 
 // Authentication function
-async function authenticateRequest(request, env) {
+async function authenticateRequest(request, env, params) {
 	// Skip auth if no API key is set
-	if (!env.API_KEY) {
+	if (!env.SCRAPER_API_KEY) {
 		return { success: true };
 	}
 
 	const authHeader = request.headers.get('Authorization');
 	const urlParams = new URL(request.url).searchParams;
-	const bodyApiKey = request.method === 'POST' ? await getApiKeyFromBody(request) : null;
 	
-	// Check API key in Authorization header, URL params, or POST body
+	// Check API key in Authorization header, URL params, or POST body (from parsed params)
 	let providedApiKey = null;
 	
 	if (authHeader && authHeader.startsWith('Bearer ')) {
 		providedApiKey = authHeader.substring(7);
-	} else if (urlParams.get('api_key')) {
-		providedApiKey = urlParams.get('api_key');
-	} else if (bodyApiKey) {
-		providedApiKey = bodyApiKey;
+	} else if (urlParams.get('SCRAPER_API_KEY')) {
+		providedApiKey = urlParams.get('SCRAPER_API_KEY');
+	} else if (params.SCRAPER_API_KEY) {
+		providedApiKey = params.SCRAPER_API_KEY;
 	}
 	
-	if (providedApiKey !== env.API_KEY) {
+	if (providedApiKey !== env.SCRAPER_API_KEY) {
 		return { 
 			success: false, 
 			error: JSON.stringify({ error: "Invalid or missing API key" })
@@ -80,22 +79,6 @@ async function authenticateRequest(request, env) {
 	}
 	
 	return { success: true };
-}
-
-async function getApiKeyFromBody(request) {
-	try {
-		const contentType = request.headers.get('content-type') || '';
-		if (contentType.includes('application/json')) {
-			const body = await request.json();
-			return body.api_key;
-		} else if (contentType.includes('application/x-www-form-urlencoded')) {
-			const formData = await request.formData();
-			return formData.get('api_key');
-		}
-	} catch (e) {
-		// Ignore parsing errors
-	}
-	return null;
 }
 
 async function parseRequestParams(request) {
@@ -119,6 +102,7 @@ async function parseRequestParams(request) {
 	
 	return {
 		url: searchParams.get('url') || bodyParams.url,
+		scraper_api_key: searchParams.get('SCRAPER_API_KEY') || bodyParams.SCRAPER_API_KEY,
 		wait: parseInt(searchParams.get('wait') || bodyParams.wait || '0'),
 		blockImages: searchParams.get('blockImages') === 'true' || bodyParams.blockImages === true,
 		sessionId: searchParams.get('sessionId') || bodyParams.sessionId || 'default',
@@ -160,8 +144,7 @@ function serveSwagger() {
             ],
             plugins: [
                 SwaggerUIBundle.plugins.DownloadUrl
-            ],
-            layout: "StandaloneLayout"
+            ]
         });
     </script>
 </body>
@@ -211,7 +194,7 @@ function serveOpenAPI() {
 							description: "The URL to render"
 						},
 						{
-							name: "api_key",
+							name: "SCRAPER_API_KEY",
 							in: "query",
 							required: false,
 							schema: { type: "string" },
@@ -338,7 +321,7 @@ function serveOpenAPI() {
 									required: ["url"],
 									properties: {
 										url: { type: "string", format: "uri" },
-										api_key: { type: "string" },
+										SCRAPER_API_KEY: { type: "string" },
 										wait: { type: "integer", minimum: 0, maximum: 30000 },
 										blockImages: { type: "boolean" },
 										sessionId: { type: "string" },
@@ -399,7 +382,7 @@ function serveOpenAPI() {
 				apiKeyAuth: {
 					type: "apiKey",
 					in: "query",
-					name: "api_key",
+					name: "SCRAPER_API_KEY",
 					description: "API key as query parameter"
 				}
 			}
@@ -490,7 +473,9 @@ export class BrowserDurableObject {
 			
 			// Additional wait if specified
 			if (params.wait > 0) {
-				await page.waitForTimeout(params.wait);
+				// page.waitForTimeout is not available in Cloudflare Workers' Puppeteer.
+				// Use a manual wait instead:
+				await new Promise(resolve => setTimeout(resolve, params.wait));
 			}
 			
 			// Get page content and metadata
@@ -511,22 +496,12 @@ export class BrowserDurableObject {
 			await this.scheduleCleanup();
 			
 			// Prepare response based on format
-			if (params.format === 'json') {
+			if (params.format == 'json') {
 				const responseData = {
 					html,
 					url: finalUrl,
 					title,
-					cookies,
-					performance: {
-						loadTime,
-						timestamp: new Date().toISOString()
-					},
-					metadata: {
-						sessionId: params.sessionId,
-						blockedResources: {
-							images: params.blockImages
-						}
-					}
+					cookies
 				};
 				
 				return new Response(JSON.stringify(responseData, null, 2), {

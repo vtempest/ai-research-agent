@@ -70,7 +70,7 @@ function PricingPlan($$payload) {
   head($$payload, ($$payload2) => {
     $$payload2.title = `<title>${escape_html(APP_NAME)} Pricing Plans</title>`;
   });
-  $$payload.out.push(`<div class="overflow-y-auto align-center pt-10"><div class="flex justify-center items-center w-full"><div class="flex items-center"><a href="/" class="cursor-pointer"><img src="/icons/qwksearch-logo.svg" alt="Qwk Logo" width="200px" class="object-contain mr-6"/></a> <div class="flex flex-col"><h1 class="text-2xl font-bold mb-2">${escape_html(APP_NAME)}</h1> <h3 class="text-1xl">${escape_html(APP_SLOGAN)}</h3></div></div></div> <div class="mt-5 m-6 sm:space-y-2 sm:grid sm:grid-cols-3 sm:gap-6"><!--[-->`);
+  $$payload.out.push(`<div class="overflow-y-auto align-center pt-10"><div class="flex justify-center items-center w-full"><div class="flex items-center"><a href="/" class="cursor-pointer"><img src="/icons/qwksearch-logo.png" alt="Qwk Logo" width="200px" class="object-contain mr-6"/></a> <div class="flex flex-col"><h1 class="text-2xl font-bold mb-2">${escape_html(APP_NAME)}</h1> <h3 class="text-1xl">${escape_html(APP_SLOGAN)}</h3></div></div></div> <div class="mt-5 m-6 sm:space-y-2 sm:grid sm:grid-cols-3 sm:gap-6"><!--[-->`);
   for (let $$index_1 = 0, $$length = each_array.length; $$index_1 < $$length; $$index_1++) {
     let plan = each_array[$$index_1];
     const each_array_1 = ensure_array_like(plan.features);

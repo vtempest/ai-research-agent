@@ -19,10 +19,11 @@ import { parseDate } from "chrono-node";
  * @param {Object} [options]
  * @param {string} options.category default=general - ["general", "news", "videos", "images",
  *  "science","it", "files", "social+media",  "map", "music"]
- * @param {number} options.recency default=0 - ["", "day", "week", "month", "year"]
+ * @param {string} options.recency default=all - ["all", "day", "week", "month", "year"]
  * @param {string|boolean} options.privateSearxng default=null - Use your custom domain SearXNG
  * @param {number} options.maxRetries default=3 - Maximum number of retry attempts if the initial search fails.
  * @param {number} options.page default=1 - The page number to retrieve.
+ * @param {boolean} options.safesearch default=false - Whether to block adult content.
  * @param {string} options.lang default="en-US" - The language to use for the search.
  * @param {string} options.proxy default=false - Use corsproxy.io to access in frontend JS
  * @returns {Promise<Array<{title: string, url: string, snippet: string, domain: string, favicon: string, path: string, engines: string[]}>>} An array of search result objects.
@@ -38,10 +39,11 @@ import { parseDate } from "chrono-node";
 export async function searchWeb(query, options = {}) {
   const {
     category = "general",
-    recency = 0,
+    recency,
     privateSearxng = null,
     maxRetries = 3,
     page = 1,
+    safesearch = false,
     lang = "en-US",
     proxy = null,
   } = options;
@@ -56,7 +58,7 @@ export async function searchWeb(query, options = {}) {
     "files",
     "social+media",
   ];
-  const RECENCY_LIST = ["", "day", "week", "month", "year"];
+  const RECENCY_ALLOWED_LIST = ["day", "week", "month", "year"];
 
   const SEARX_DOMAINS = [
     "baresearch.org",
@@ -128,17 +130,16 @@ export async function searchWeb(query, options = {}) {
   const searchDomain =
     privateSearxng ||
     "https://" +
-      SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
+    SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
 
   const categoryName =
     typeof category === "number" ? CATEGORY_LIST[category] : category; // Using the first category as default
 
-  const timeRangeName = RECENCY_LIST[recency]; // Using the first time range as default
-
   var url =
     `${searchDomain}/search?q=${encodeURIComponent(query)}` +
-    `&category_${categoryName}=1&language=${lang}&time_range=` +
-    `${timeRangeName}&safesearch=0&pageno=${page}`;
+    `&category_${categoryName}=1&language=${lang}` +
+    `${recency in RECENCY_ALLOWED_LIST ? '&time_range=' + recency 
+      : ""}&safesearch=${safesearch ? "1" : "0"}&pageno=${page}`;
 
   if (privateSearxng) url += "&format=json";
 
@@ -230,7 +231,7 @@ export async function searchWeb(query, options = {}) {
         favicon,
       };
     });
-    return {results, suggestions, infoboxes};
+    return { results, suggestions, infoboxes };
   }
 
   results = [];

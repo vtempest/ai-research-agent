@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Iowan Old Style";
+  src: url("https://qwksearch.com/fonts/iowan.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  font-family: "Iowan Old Style", "Open Sans", "Montserrat", "Lato", Arial;
+  /* font-family: "Open Sans", "Montserrat", "Lato", Arial, sans-serif; */
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .active {
   background-color: rgba(75, 85, 99, 0.8);
   color: #ffffff;
@@ -16,6 +31,7 @@
   border: none;
   background-color: #f1f5f9 !important;
   color: #1e293b !important;
+  font-family: "Iowan Old Style", "Palatino", "Palatino Linotype", "Times New Roman", serif;
 }
 [contenteditable] {
   outline: none;

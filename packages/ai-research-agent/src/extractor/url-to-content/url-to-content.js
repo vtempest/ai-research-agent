@@ -136,8 +136,7 @@ export async function extractContent(urlOrDoc, options = {}) {
     
     return response;
     // if URL
-  } else if (typeof urlOrDoc === "string" && /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
-      .test(urlOrDoc)) {
+  } else if (typeof urlOrDoc === "string" && urlOrDoc.startsWith("http")) {
 
     url = urlOrDoc;
 

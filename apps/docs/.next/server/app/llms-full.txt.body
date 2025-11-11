@@ -1,0 +1,3588 @@
+# 🏆 Comparison of HTTP Request Libraries
+URL: /docs/Comparisons
+
+***
+
+## title: 🏆 Comparison of HTTP Request Libraries
+
+## Comparison of HTTP Request Libraries
+
+| Feature                  | [GRAB](https://github.com/vtempest/GRAB-URL) | [Axios](https://github.com/axios/axios) | [TanStack Query](https://github.com/TanStack/query) | [SWR](https://github.com/vercel/swr) | [Alova](https://github.com/alovajs/alova) | [SuperAgent](https://github.com/ladjs/superagent) | [Apisauce](https://github.com/infinitered/apisauce) | [Ky](https://github.com/sindresorhus/ky) |
+| :----------------------- | :------------------------------------------- | :-------------------------------------- | :-------------------------------------------------- | :----------------------------------- | :---------------------------------------- | :------------------------------------------------ | :-------------------------------------------------- | :--------------------------------------- |
+| Size                     | ✅ 4KB                                        | ❌ 13KB                                  | ❌ 39KB                                              | ✅ 4.2KB                              | ✅ 4KB                                     | ❌ 19KB                                            | ❌ 15KB (with axios)                                 | ✅ 4KB                                    |
+| Zero Dependencies        | ✅ Yes                                        | ❌ No                                    | ❌ No                                                | ❌ No                                 | ✅ Yes                                     | ❌ No                                              | ❌ Needs Axios                                       | ✅ Yes                                    |
+| isLoading State Handling | ✅ Auto-managed                               | ❌ Manual                                | ✅ Yes                                               | ✅ Yes                                | ✅ Yes                                     | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Auto JSON Handling       | ✅ Automatic                                  | ✅ Configurable                          | ❌ Manual                                            | ❌ Manual                             | ✅ Automatic                               | ✅ Automatic                                       | ✅ Automatic                                         | ✅ Automatic                              |
+| Request Deduplication    | ✅ Built-in                                   | ❌ No                                    | ✅ Yes                                               | ✅ Yes                                | ✅ Yes                                     | ❌ No                                              | ❌ No                                                | ❌ No                                     |
+| Caching                  | ✅ Multi-level                                | ❌ No                                    | ✅ Advanced                                          | ✅ Advanced                           | ✅ Multi-level                             | ❌ No                                              | ❌ No                                                | ❌ No                                     |
+| Mock Testing             | ✅ Easy setup                                 | ❌ Needs MSW/etc                         | ❌ Needs MSW/etc                                     | ❌ Needs MSW/etc                      | ⚠️ Basic                                  | ❌ Needs separate lib                              | ❌ Needs separate lib                                | ❌ Needs MSW/etc                          |
+| Rate Limiting            | ✅ Built-in                                   | ❌ Manual                                | ❌ Manual                                            | ❌ Manual                             | ⚠️ Basic                                  | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Automatic Retry          | ✅ Configurable                               | ⚠️ Via interceptors                     | ✅ Built-in                                          | ✅ Built-in                           | ✅ Built-in                                | ✅ Built-in                                        | ❌ Manual                                            | ✅ Built-in                               |
+| Request Cancellation     | ✅ Auto + manual                              | ✅ Manual                                | ✅ Automatic                                         | ✅ Automatic                          | ✅ Manual                                  | ✅ Manual                                          | ✅ Manual                                            | ✅ Manual                                 |
+| Pagination Support       | ✅ Infinite scroll                            | ❌ Manual                                | ✅ Advanced                                          | ⚠️ Basic                             | ✅ Built-in                                | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Interceptors             | ✅ Advanced                                   | ✅ Advanced                              | ⚠️ Limited                                          | ⚠️ Limited                           | ✅ Advanced                                | ✅ Plugins                                         | ✅ Transforms                                        | ✅ Hooks system                           |
+| Debug Logging            | ✅ Colored output                             | ⚠️ Basic                                | ✅ DevTools                                          | ✅ DevTools                           | ⚠️ Basic                                  | ⚠️ Basic                                          | ⚠️ Basic                                            | ⚠️ Basic                                 |
+| Request History          | ✅ Built-in                                   | ❌ Manual                                | ✅ DevTools                                          | ✅ DevTools                           | ❌ Manual                                  | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Easy Syntax              | ✅ Minimal                                    | ⚠️ Medium                               | ❌ High                                              | ❌ High                               | ⚠️ Medium                                 | ⚠️ Medium                                         | ✅ Low                                               | ✅ Minimal                                |
+
+### Key Strengths of GRAB
+
+* **Simplicity**: One function covers all use cases, with no complex setup or configuration.
+* **Lightweight**: At just 3KB, it's significantly smaller than most alternatives.
+* **Instant Productivity**: Works seamlessly with any framework or plain JavaScript.
+* **Testing Ready**: Built-in mocking removes the need for external tools like MSW or Nock.
+* **Smart Defaults**: Automatically detects localhost for debugging and handles JSON out of the box.
+* **Performance**: Features like deduplication, caching, and rate limiting are built in to reduce redundant requests.
+
+## Migration Guide
+
+**Stop trying to make fetch happen!** \*
+
+**Why fetch things when you can just GRAB?**
+
+**Debugging requests is a bitch. Make the switch!**
+
+\*[Meme Reference Explanation](https://knowyourmeme.com/memes/stop-trying-to-make-fetch-happen)
+
+### From Fetch
+
+```javascript
+// Fetch
+const response = await fetch('/api/users', {
+  post: true,
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: 'John' })
+});
+const user = await response.json();
+
+// GRAB
+const user = await grab('users', {
+  post: true,
+  name: 'John'
+});
+```
+
+### From Axios
+
+```javascript
+// Axios
+axios.defaults.baseURL = 'https://api.example.com';
+const response = await axios.get('/users', { params: { page: 1 } });
+const users = response.data;
+
+// GRAB
+grab.defaults.baseURL = 'https://api.example.com';
+const users = await grab('users', { page: 1 });
+```
+
+### From TanStack Query
+
+```javascript
+// TanStack Query
+const mutation = useMutation({
+  mutationFn: (newUser) => {
+    return fetch('/api/user/create', {
+      post: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUser)
+    }).then(res => res.json())
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries(['users'])
+  }
+});
+
+// GRAB
+const [users, setUsers] = useState({});
+grab('user/create', { 
+    response: users, 
+    post: true,
+    newUser 
+});
+```
+
+## Top 20 JavaScript Request Libraries
+
+1. [vtempest/GRAB-URL](https://github.com/vtempest/GRAB-URL) - Elegantly simple syntax, deduping, mock, cache, defaults.
+2. [axios/axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and Node.js
+3. [TanStack/query](https://github.com/TanStack/query) - Powerful data synchronization for web applications
+4. [vercel/swr](https://github.com/vercel/swr) - Data fetching library with caching, revalidation, and more
+5. [alovajs/alova](https://github.com/alovajs/alova) - Request strategy library for MVVM libraries
+6. [sindresorhus/ky](https://github.com/sindresorhus/ky) - Tiny and elegant HTTP client based on Fetch API
+7. [ladjs/superagent](https://github.com/ladjs/superagent) - Ajax for Node.js and browsers (feature-rich)
+8. [skellock/apisauce](https://github.com/skellock/apisauce) - Axios + standardized errors + request/response transforms
+9. [elbywan/wretch](https://github.com/elbywan/wretch) - A tiny wrapper built around fetch with an intuitive syntax
+10. [lukeed/httpie](https://github.com/lukeed/httpie) - Ultra-lightweight Node.js HTTP client
+11. [tomas/needle](https://github.com/tomas/needle) - Nimble, streamable HTTP client for Node.js
+12. [nodejs/undici](https://github.com/nodejs/undici) - An HTTP/1.1 client, written from scratch for Node.js
+13. [sindresorhus/got](https://github.com/sindresorhus/got) - Human-friendly and powerful HTTP request library for Node.js
+14. [ava/use-http](https://github.com/ava/use-http) - React hook for making isomorphic HTTP requests
+15. [unjs/ofetch](https://github.com/unjs/ofetch) - Better fetch API. Works on node, browser and workers
+16. [node-fetch/node-fetch](https://github.com/node-fetch/node-fetch) - A light-weight module that brings window\.fetch to Node.js
+17. [mikeal/bent](https://github.com/mikeal/bent) - Functional HTTP client for Node.js w/ async/await
+18. [bitinn/node-fetch](https://github.com/bitinn/node-fetch) - A light-weight module that brings window\.fetch to Node.js
+19. [developit/redaxios](https://github.com/developit/redaxios) - The Axios API, as an 800 byte fetch wrapper
+20. [bekacru/better-fetch](https://github.com/bekacru/better-fetch) - fetch with standard schema validations, pre-defined routes, callbacks, plugins
+
+
+# 🚀 Request Strategies
+URL: /docs/Examples
+
+***
+
+title: 🚀 Request Strategies
+sidebar\_position: 1
+--------------------
+
+import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
+
+<InlineTOC items={toc} />
+
+### Install & Import
+
+```bash npm2yarn
+npm install grab-url
+```
+
+```bash npm2yarn
+bun i grab-url
+```
+
+```javascript
+import grab from "grab-url";
+```
+
+### Basic Request
+
+```javascript
+// Basic GET request
+grab("user").then(log); // { id: 123, name: "John Doe", ... }
+
+// GET with query parameters
+const searchResults = await grab("search", {
+  query: "javascript",
+  page: 1,
+  limit: 10,
+});
+
+// POST with body
+await grab("users", {
+  post: true, //shorthand for method: "POST"
+  email: "jane@example.com",
+  age: 25,
+});
+```
+
+### Reactive Loading Status
+
+<Tabs groupId="language" items={['React', 'Vue', 'Svelte']}>
+  <Tab value="React">
+    ```jsx
+    import React, { useState } from "react";
+    import grab from "grab-url";
+
+    function UserProfile() {
+      const [userState, setUserState] = useState<Partial<{ 
+        name: string; 
+        email: string;
+        isLoading: boolean;
+        error: string; 
+      }>>({})
+
+      await grab(`user`, {
+        response: setUserState
+      });
+
+      return (
+        <div>
+          {userState.isLoading && <div>Loading...</div>}
+          {userState.error && <div>Error: {userState.error}</div>}
+          {userState && (
+            <div>
+              <h2>{userState.name}</h2>
+              <p>{userState.email}</p>
+            </div>
+          )}
+        </div>
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab value="Svelte">
+    ```javascript
+    <script>
+      import grab from 'grab-url';
+
+
+      let searchResults = $state({
+        results: [],
+        isLoading: false,
+        error: null
+      });
+
+      async function searchProducts(query) {
+        await grab('products/search', {
+          response: searchResults,
+          post: true,
+          query: query,
+          category: 'electronics'
+        });
+      }
+    </script>
+
+    <input
+      type="text"
+      on:input={(e) => searchProducts(e.target.value)}
+      placeholder="Search products..."
+    />
+
+    {#if searchResults.isLoading}
+      <div class="loading">Searching...</div>
+    {:else if searchResults.error}
+      <div class="error">{searchResults.error}</div>
+    {:else if searchResults.results}
+      <div class="results">
+        {#each searchResults.results as product}
+          <div class="product-card">
+            <h3>{product.name}</h3>
+            <p>${product.price}</p>
+          </div>
+        {/each}
+      </div>
+    {/if}
+    ```
+  </Tab>
+
+  <Tab value="Vue">
+    ```javascript
+    <template>
+      <div>
+        <input 
+          v-model="searchTerm" 
+          @input="searchUsers"
+          placeholder="Search users..."
+        />
+        <div v-if="userResults.isLoading" class="loading">
+          Loading users...
+        </div>
+        <div v-else-if="userResults.error" class="error">
+          {{ userResults.error }}
+        </div>
+        <div v-else class="user-list">
+          <div 
+            v-for="user in userResults.users" 
+            :key="user.id"
+            class="user-card"
+          >
+            {{ user.name }} - {{ user.email }}
+          </div>
+        </div>
+      </div>
+    </template>
+    <script setup>
+    import { ref, reactive } from 'vue';
+    import grab from 'grab-url';
+    const searchTerm = ref('');
+    const userResults = reactive({
+      users: [],
+      isLoading: false,
+      error: null
+    });
+    const searchUsers = async () => {
+      if (searchTerm.value.length < 2) return;
+      
+      await grab('users/search', {
+        response: userResults,
+        query: searchTerm.value,
+        status: 'active'
+      });
+    };
+    </script>
+    ```
+  </Tab>
+</Tabs>
+
+### Global Defaults Configuration
+
+```javascript
+// set directly
+grab.defaults.baseURL = "https://api.myapp.com/v1";
+grab.defaults.headers = {
+  Authorization: "Bearer your-token-here",
+};
+
+// method 2: Set defaults for all requests
+grab("", {
+  setDefaults: true,
+  baseURL: "https://api.myapp.com/v1",
+  timeout: 30, // 30 seconds
+  debug: true,
+  rateLimit: 1, // 1 second between requests
+  cache: false,
+  cancelOngoingIfNew: true,
+  headers: {
+    Authorization: "Bearer your-token-here",
+  },
+});
+
+```
+
+### Instance with Separate Defaults
+
+```javascript
+// separate defaults, headers, and interceptors for a third-party API
+const grabGoogleAPI = grab.instance({
+  headers: { Authorization: "Bearer 9e9wjeffkwf0sf" },
+  baseURL: "https://api.google.com/v1/",
+  debug: true,
+});
+const data = await grabGoogleAPI("/api/endpoint");
+
+// Options Order of Precedence: Request Call > Instance > User Globals > Package Defaults
+```
+
+### TypeScript ToolTips & Error Check on Request & Response
+
+```javascript
+type User = { 
+  /** Name of the user  */ 
+  name: string;
+  /** Age of the user  */ 
+  age: number;
+};
+
+type RequestParams = { 
+  /** Query String  to search for */ 
+  q : string;
+  /** Category of search  */
+  category?: "news" | "general";
+
+};
+
+const result = await grab<User, RequestParams>('test-path', {
+  q: " react",
+  category: "general"
+});
+
+log(result.name)
+
+// instant error highlight and description tooltips over "category" and "name"
+
+```
+
+### Pagination with Infinite Scroll
+
+```javascript
+let productList = $state({}) as {
+  products: Array<{name:string}>,
+  isLoading: boolean
+}
+
+await grab("products", {
+  response: productList,
+  infiniteScroll: ["page", "products", ".results-container"]
+});
+
+<div class="results-container">
+  {productList.products.map(product => (
+    <div className="product-item">
+      <h3>{product.name}</h3>
+    </div>
+  ))}
+  {productList.isLoading && <div className="loading">Loading more products...</div>}
+</div>
+
+```
+
+### Debounced Search
+
+```javascript
+// Utility function for debouncing
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Debounced search implementation
+const debouncedSearch = debounce(async (query) => {
+  if (query.length < 2) return;
+
+  await grab("search", {
+    response: searchResults,
+    query: query,
+    cancelOngoingIfNew: true, // Cancel previous searches
+  });
+}, 300); // Wait 300ms after user stops typing
+
+// Usage in input handler
+function handleSearchInput(event) {
+  debouncedSearch(event.target.value);
+}
+```
+
+### Client Cache in User Memory
+
+```javascript
+// Enable caching for static data
+const categories = await grab("categories", {
+  cache: true,
+});
+
+const categoriesAgain = await grab("categories", {
+  cache: true,
+}); 
+// Instant response from frontend cache, no server call
+```
+
+### Rate Limiting
+
+```javascript
+// Prevent user's multi-click cascading requests
+let searchResults = {};
+
+async function searchWithRateLimit(query) {
+  await grab("search", {
+    response: searchResults,
+    query: query,
+    rateLimit: 2, // Wait 2 seconds between requests
+  });
+}
+searchWithRateLimit("python"); // Executes immediately
+searchWithRateLimit("golang"); // fails, needs to wait
+```
+
+### Duplicate Cancellation
+
+```javascript
+let currentSearch = {};
+
+async function searchProducts(query) {
+  // Cancel previous search when new one starts
+  await grab("products/search", {
+    response: currentSearch,
+    query: query,
+    cancelOngoingIfNew: true, // Default behavior
+  });
+}
+
+// Prevent new requests if one is ongoing
+async function preventDuplicateRequests(userId) {
+  await grab(`users/${userId}`, {
+    cancelNewIfOngoing: true, // Prevents duplicate requests
+  });
+}
+```
+
+### Error Handling and Retry
+
+```javascript
+let apiData = {};
+
+// Automatic retry on failure
+await grab("unreliable-endpoint", {
+  response: apiData,
+  retryAttempts: 3, // Retry 3 times on failure
+  timeout: 10, // 10 second timeout
+});
+
+// Manual error handling
+try {
+  const result = await grab("api/data");
+  console.log("Success:", result);
+} catch (error) {
+  if (error.message.includes("timeout")) {
+    console.log("Request timed out");
+  } else if (error.message.includes("rate limit")) {
+    console.log("Too many requests");
+  } else {
+    console.log("Other error:", error.message);
+  }
+}
+```
+
+### Request Hooks and Interceptors
+
+```javascript
+// Global request interceptor
+grab.defaults.onRequest = (path, response, params, fetchParams) => {
+  // Add authentication header
+  fetchParams.headers.Authorization = `Bearer ervv0sf9vs0v0sv`;
+
+  // Modify request data
+  if (params.userId) {
+    params.user_id = '2525';
+  }
+
+  return [path, response, params, fetchParams];
+};
+
+```
+
+### Proxy
+
+```javascript
+//polyfill fetch with node-fetch
+import fetch, { Headers, Request, Response } from 'node-fetch';
+
+if (!globalThis.fetch) {
+  globalThis.fetch = fetch;
+  globalThis.Headers = Headers;
+  globalThis.Request = Request;
+  globalThis.Response = Response;
+}
+
+//get proxy
+import { HttpsProxyAgent } from "https-proxy-agent";
+const agent = new HttpsProxyAgent("http://username:password@proxyhost:port");
+
+let res = await grab("/path", { agent });
+```
+
+### File Upload
+
+```javascript
+const formData = new FormData();
+formData.append("file", file);
+
+const response = await grab("/api/upload", {
+  post: true,
+  body: formData,
+  headers: {
+    Authorization: `Bearer ${getAuthToken()}`,
+  },
+});
+
+// Alternative: Convert file to base64 for JSON API
+async function uploadFileAsJSON(file) {
+  const base64 = await fileToBase64(file);
+
+  return await grab("files/upload", {
+    post: true,
+    filename: file.name,
+    content: base64,
+    mimeType: file.type,
+  });
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (error) => reject(error);
+  });
+}
+```
+
+## Command Line Usage Examples
+
+```bash
+## install for CLi testing of your APIs
+npm i -g grab.api.js
+
+# use "grab" if installed or "npx grab-url" if not
+grab https://api.example.com/download
+
+# Basic request, no flag
+npx grab-url https://api.example.com/download
+
+# Request with params
+npx grab-url https://api.example.com/download id=123 name=John
+
+# Request with JSON payload
+npx grab-url https://api.example.com/download '{"id":123,"name":"John"}'
+
+# Request with --x flag (just executes once, no watching)
+# - **`--x` or `-x` flag**: Simply executes the request/download once and exits—no file watching.
+npx grab-url https://api.example.com/download --x
+
+# Request with params and --x flag
+npx grab-url https://api.example.com/download id=123 name=John --x
+```
+
+### Mock Server for Testing
+
+```javascript
+// Setup mock responses for testing
+grab.mock.users = {
+  response: [
+    { id: 1, name: "John Doe", email: "john@example.com" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com" },
+  ],
+  delay: 1, // 1 second delay to simulate network
+};
+
+grab.mock["products/search"] = {
+  response: (params) => ({
+    results: [
+      { id: 1, name: `Product matching "${params.query}"`, price: 29.99 },
+      { id: 2, name: `Another product for "${params.query}"`, price: 19.99 },
+    ],
+    total: 2,
+  }),
+  post: true,
+  delay: 0.5,
+};
+
+// Now your API calls will use mock data
+const users = await grab("users"); // Returns mock user data
+
+// Mock with conditional responses
+grab.mock["auth/login"] = {
+  response: (params) => {
+    if (
+      params.email === "admin@example.com" &&
+      params.password === "admin123"
+    ) {
+      return {
+        success: true,
+        token: "mock-jwt-token-12345",
+        user: { id: 1, name: "Admin User", role: "admin" },
+      };
+    } else {
+      return {
+        success: false,
+        error: "Invalid credentials",
+      };
+    }
+  },
+  post: true,
+  delay: 1,
+};
+
+// Error simulation
+grab.mock["users/create"] = {
+  response: (params) => {
+    if (!params.email) {
+      throw new Error("Email is required");
+    }
+    return { id: Date.now(), ...params, created: true };
+  },
+  post: true,
+};
+```
+
+### Unit Tests with Jest
+
+```javascript
+// setup-tests.js
+import grab from "grab-url";
+
+// Setup global mocks for testing
+beforeEach(() => {
+  // Clear previous mocks
+  grab.mock = {};
+  grab.log = [];
+});
+
+// user.test.js
+import grab from "grab-url";
+
+describe("User API", () => {
+  test("should fetch user data", async () => {
+    // Setup mock
+    grab.mock.users = {
+      response: { id: 1, name: "Test User", email: "test@example.com" },
+    };
+
+    const result = await grab("users");
+
+    expect(result.id).toBe(1);
+    expect(result.name).toBe("Test User");
+  });
+
+  test("should handle user creation", async () => {
+    grab.mock.users = {
+      response: (params) => ({
+        id: 123,
+        ...params,
+        created: true,
+      }),
+      post: true,
+    };
+
+    const newUser = await grab("users", {
+      post: true,
+      name: "John Doe",
+      email: "john@example.com",
+    });
+
+    expect(newUser.name).toBe("John Doe");
+    expect(newUser.created).toBe(true);
+  });
+
+  test("should handle errors", async () => {
+    grab.mock.users = {
+      response: () => {
+        throw new Error("User not found");
+      },
+    };
+
+    const result = await grab("users");
+    expect(result.error).toBe("User not found");
+  });
+});
+```
+
+
+# ⚡️ Performance Best Practices
+URL: /docs/Performance
+
+***
+
+## title: ⚡️ Performance Best Practices
+
+## Best Practices
+
+### 1. **Use Response Objects for UI State**
+
+```javascript
+let userProfile = { };
+await grab('users/me', { response: userProfile });
+
+// Direct assignment is supported but loses .isLoading status
+let user = await grab('users/me');
+```
+
+### 2. **Configure Defaults Early**
+
+```javascript
+grab('', {
+  setDefaults: true,
+  baseURL: process.env.API_URL,
+  timeout: 30,
+  debug: process.env.NODE_ENV === 'development'
+});
+```
+
+### 3. **Use Mocks for Development**
+
+```javascript
+if (process.env.NODE_ENV === 'development') {
+  grab.mock = {
+    'users/me': { response: mockUser },
+    'posts': { response: mockPosts },
+    'settings': { response: mockSettings }
+  };
+}
+```
+
+### 4. **Handle Loading States**
+
+```javascript
+{state.isLoading ? (
+  <LoadingSpinner />
+) : state.error ? (
+  <ErrorMessage error={state.error} />
+) : (
+  <DataComponent data={state.data} />
+)}
+```
+
+### 5. **Use Rate Limiting for User Interactions**
+
+```javascript
+await grab('save-data', {
+  post: true,
+  rateLimit: 2, // 2 seconds between saves
+  data: formData
+});
+```
+
+### 6. **Development vs Production**
+
+```javascript
+// config.js
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// Configure GRAB for different environments
+grab('', {
+  setDefaults: true,
+  baseURL: isDevelopment 
+    ? 'http://localhost:3001/api'
+    : 'https://api.myapp.com/v1',
+  debug: isDevelopment,
+  timeout: isDevelopment ? 60 : 30,
+  cache: !isDevelopment,
+  retryAttempts: isDevelopment ? 0 : 2
+});
+```
+
+### Common Issues
+
+1. **Request not updating UI**: Make sure to use the `response` parameter and trigger re-renders in your framework.
+
+2. **CORS errors**: Configure your server's CORS policy or use a proxy in development.
+
+3. **Rate limiting too aggressive**: Adjust the `rateLimit` value or disable it for testing.
+
+4. **Mocks not working**: Ensure the mock path exactly matches the request path.
+
+5. **TypeScript errors**: Add proper type definitions or use `any` for rapid prototyping.
+
+
+# GRAB API Documentation
+URL: /docs
+
+***
+
+id: index
+title: GRAB API Documentation
+sidebar\_position: 1
+displayed\_sidebar: lib
+-----------------------
+
+<p align="center">
+  <img width="400px" src="https://i.imgur.com/xWD7gyV.png" />
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/SJdBqBz3tV">
+    <img src="https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat" alt="Join Discord" />
+  </a>
+
+  <a href="https://github.com/vtempest/GRAB-URL/discussions">
+    <img alt="GitHub Stars" src="https://img.shields.io/github/stars/vtempest/GRAB-URL" />
+  </a>
+
+  <a href="https://npmjs.org/package/grab-url">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/grab-url" />
+  </a>
+
+  <a href="https://github.com/vtempest/GRAB-URL/discussions">
+    <img alt="GitHub Discussions" src="https://img.shields.io/github/discussions/vtempest/GRAB-URL" />
+  </a>
+
+  <a href="https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" />
+  </a>
+
+  <a href="https://codespaces.new/vtempest/GRAB-URL">
+    <img src="https://github.com/codespaces/badge.svg" width="150" height="20" />
+  </a>
+</p>
+
+<h3 align="center">
+  <a href="https://grab.js.org"> 📑 Docs (grab.js.org)</a>
+  <a href="https://grab.js.org/docs/Examples"> 🎯 Example Strategies </a>
+</h3>
+
+```
+npm i grab-url
+```
+
+### GRAB: Generate Request to API from Browser
+
+**GRAB is the FBEST Request Manager: Functionally Brilliant, Elegantly Simple Tool**
+
+1. **One Function**: 3Kb min, 0 dependencies, minimalist syntax, [more features than top alternatives](https://grab.js.org/docs/Comparisons)
+2. **Auto-JSON Convert**: Pass parameters and get response or error in JSON, handling other data types as is.
+3. **isLoading Status**: Sets `.isLoading=true` on the pre-initialized response object so you can show a "Loading..." in any framework
+4. **Debug Logging**: Adds global `log()` and prints colored JSON structure, response, timing for requests in test.
+5. **Mock Server Support**: Configure `window.grab.mock` for development and testing environments
+6. **Cancel Duplicates**: Prevent this request if one is ongoing to same path & params, or cancel the ongoing request.
+7. **Timeout & Retry**: Customizable request timeout, default 20s, and auto-retry on error
+8. **DevTools**: `Ctrl+I` overlays webpage with devtools showing all requests and responses, timing, and JSON structure.
+9. **Request History**: Stores all request and response data in global `grab.log` object
+10. **Pagination Infinite Scroll**: Built-in pagination for infinite scroll to auto-load and merge next result page, with scroll position recovery.
+11. **Base URL Based on Environment**: Configure `grab.defaults.baseURL` once at the top, overide with `SERVER_API_URL` in `.env`.
+12. **Frontend Cache**: Set cache headers and retrieve from frontend memory for repeat requests to static data.
+13. **Regrab On Error**: Regrab on timeout error, or on window refocus, or on network change, or on stale data.
+14. **Framework Agnostic**: Alternatives like TanStack work only in component initialization and depend on React & others.
+15. **Globals**: Adds to window in browser or global in Node.js so you only import once: `grab()`, `log()`, `grab.log`, `grab.mock`, `grab.defaults`
+16. **TypeScript Tooltips**: Developers can hover over option names and autocomplete TypeScript.
+17. **Request Stategies**: [🎯 Examples](https://grab.js.org/docs/Examples) show common stategies like debounce, repeat, proxy, unit tests, interceptors, file upload, etc
+18. **Rate Limiting**: Built-in rate limiting to prevent multi-click cascading responses, require to wait seconds between requests.
+19. **Repeat**: Repeat request this many times, or repeat every X seconds to poll for updates.
+20. **Loading Icons**: Import from `grab-url/icons` to get enhanced animated loading icons.
+
+### Examples
+
+```ts
+import grab from 'grab-url';
+
+let res = $state({}) as {
+  results: Array<{title:string}>,
+  isLoading: boolean,
+  error: string,
+};
+
+await grab('search', {
+  response: res,
+  query: "search words",
+  post: true
+})
+ 
+grab('user').then(log)
+
+//in svelte component
+{#if res.results}
+    {res.results}
+{:else if res.isLoading}
+    ...
+{:else if res.error}
+    {res.error}
+{/if}
+
+ //Setup Mock testing server, response is object or function
+ window.grab.mock["search"] = {
+   response: (params) => {
+     return { results: [{title:`Result about ${params.query}`}] };
+   },
+   method: "POST"
+ };
+
+ //set defaults for all requests
+ grab("", { 
+   setDefaults: true,
+   baseURL: "http://localhost:8080",
+   timeout: 30,
+   debug: true,
+   rateLimit: 1,
+   cache: true,
+   cancelOngoingIfNew: true,
+ });
+
+ grab.defaults.baseURL = "http://localhost:8080/api/";
+```
+
+### Screenshots
+
+**Animated SVG Loading Icons with Customizable Colors**
+![icons](https://i.imgur.com/OqpWya1.gif)
+
+**Debug Colorized log(JSON)**
+![Debug log](https://i.imgur.com/R8Qp6Vg.png)
+
+**Autocomplete option names**
+
+![Autocomplete](https://i.imgur.com/XlxILJ0.png)
+
+**Hover over options for info**
+
+![Info Tooltip](https://i.imgur.com/vV5jbZo.png)
+
+## Comparison of HTTP Request Libraries
+
+| Feature                  | [GRAB](https://github.com/vtempest/GRAB-URL) | [Axios](https://github.com/axios/axios) | [TanStack Query](https://github.com/TanStack/query) | [SWR](https://github.com/vercel/swr) | [Alova](https://github.com/alovajs/alova) | [SuperAgent](https://github.com/ladjs/superagent) | [Apisauce](https://github.com/infinitered/apisauce) | [Ky](https://github.com/sindresorhus/ky) |
+| :----------------------- | :------------------------------------------- | :-------------------------------------- | :-------------------------------------------------- | :----------------------------------- | :---------------------------------------- | :------------------------------------------------ | :-------------------------------------------------- | :--------------------------------------- |
+| Size                     | ✅ 4KB                                        | ❌ 13KB                                  | ❌ 39KB                                              | ✅ 4.2KB                              | ✅ 4KB                                     | ❌ 19KB                                            | ❌ 15KB (with axios)                                 | ✅ 4KB                                    |
+| Zero Dependencies        | ✅ Yes                                        | ❌ No                                    | ❌ No                                                | ❌ No                                 | ✅ Yes                                     | ❌ No                                              | ❌ Needs Axios                                       | ✅ Yes                                    |
+| isLoading State Handling | ✅ Auto-managed                               | ❌ Manual                                | ✅ Yes                                               | ✅ Yes                                | ✅ Yes                                     | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Auto JSON Handling       | ✅ Automatic                                  | ✅ Configurable                          | ❌ Manual                                            | ❌ Manual                             | ✅ Automatic                               | ✅ Automatic                                       | ✅ Automatic                                         | ✅ Automatic                              |
+| Request Deduplication    | ✅ Built-in                                   | ❌ No                                    | ✅ Yes                                               | ✅ Yes                                | ✅ Yes                                     | ❌ No                                              | ❌ No                                                | ❌ No                                     |
+| Caching                  | ✅ Multi-level                                | ❌ No                                    | ✅ Advanced                                          | ✅ Advanced                           | ✅ Multi-level                             | ❌ No                                              | ❌ No                                                | ❌ No                                     |
+| Mock Testing             | ✅ Easy setup                                 | ❌ Needs MSW/etc                         | ❌ Needs MSW/etc                                     | ❌ Needs MSW/etc                      | ⚠️ Basic                                  | ❌ Needs separate lib                              | ❌ Needs separate lib                                | ❌ Needs MSW/etc                          |
+| Rate Limiting            | ✅ Built-in                                   | ❌ Manual                                | ❌ Manual                                            | ❌ Manual                             | ⚠️ Basic                                  | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Automatic Retry          | ✅ Configurable                               | ⚠️ Via interceptors                     | ✅ Built-in                                          | ✅ Built-in                           | ✅ Built-in                                | ✅ Built-in                                        | ❌ Manual                                            | ✅ Built-in                               |
+| Request Cancellation     | ✅ Auto + manual                              | ✅ Manual                                | ✅ Automatic                                         | ✅ Automatic                          | ✅ Manual                                  | ✅ Manual                                          | ✅ Manual                                            | ✅ Manual                                 |
+| Pagination Support       | ✅ Infinite scroll                            | ❌ Manual                                | ✅ Advanced                                          | ⚠️ Basic                             | ✅ Built-in                                | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Interceptors             | ✅ Advanced                                   | ✅ Advanced                              | ⚠️ Limited                                          | ⚠️ Limited                           | ✅ Advanced                                | ✅ Plugins                                         | ✅ Transforms                                        | ✅ Hooks system                           |
+| Debug Logging            | ✅ Colored output                             | ⚠️ Basic                                | ✅ DevTools                                          | ✅ DevTools                           | ⚠️ Basic                                  | ⚠️ Basic                                          | ⚠️ Basic                                            | ⚠️ Basic                                 |
+| Request History          | ✅ Built-in                                   | ❌ Manual                                | ✅ DevTools                                          | ✅ DevTools                           | ❌ Manual                                  | ❌ Manual                                          | ❌ Manual                                            | ❌ Manual                                 |
+| Easy Syntax              | ✅ Minimal                                    | ⚠️ Medium                               | ❌ High                                              | ❌ High                               | ⚠️ Medium                                 | ⚠️ Medium                                         | ✅ Low                                               | ✅ Minimal                                |
+
+**Stop trying to make fetch happen!** [\*](https://knowyourmeme.com/memes/stop-trying-to-make-fetch-happen)
+
+**Why fetch things when you can just GRAB?**
+
+**Debugging requests is a bitch. [Make the switch!](https://grab.js.org/docs/Comparisons)**
+
+
+# GRAB API Reference
+URL: /docs/lib/grab-api
+
+***
+
+## title: GRAB API Reference
+
+[Documentation](modules.md) / GRAB-URL
+
+## GrabMockHandler\<TParams, TResponse>
+
+Defined in: [GRAB-URL.ts:654](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L654)
+
+Combined options and parameters interface
+Mock server configuration for testing
+
+### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="response" /> `response`
+      </td>
+
+      <td>
+        `TResponse` | (`params`: `TParams`) => `TResponse`
+      </td>
+
+      <td>
+        Mock response data or function that returns response
+      </td>
+
+      <td>
+        [GRAB-URL.ts:656](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L656)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="method" /> `method?`
+      </td>
+
+      <td>
+        `"GET"` | `"POST"` | `"PUT"` | `"PATCH"` | `"DELETE"` | `"OPTIONS"` | `"HEAD"`
+      </td>
+
+      <td>
+        HTTP method this mock should respond to
+      </td>
+
+      <td>
+        [GRAB-URL.ts:658](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L658)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="params" /> `params?`
+      </td>
+
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        Request parameters this mock should match
+      </td>
+
+      <td>
+        [GRAB-URL.ts:660](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L660)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="delay" /> `delay?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Delay in seconds before returning mock response
+      </td>
+
+      <td>
+        [GRAB-URL.ts:662](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L662)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## GrabLogEntry
+
+Defined in: [GRAB-URL.ts:666](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L666)
+
+Request log entry for debugging and history
+
+### Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="path" /> `path`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        API path that was requested
+      </td>
+
+      <td>
+        [GRAB-URL.ts:668](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L668)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="request" /> `request`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        Stringified request parameters
+      </td>
+
+      <td>
+        [GRAB-URL.ts:670](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L670)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="response-1" /> `response?`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        Response data (only present for successful requests)
+      </td>
+
+      <td>
+        [GRAB-URL.ts:672](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L672)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="error" /> `error?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        Error message (only present for failed requests)
+      </td>
+
+      <td>
+        [GRAB-URL.ts:674](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L674)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="lastfetchtime" /> `lastFetchTime`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Timestamp when request was made
+      </td>
+
+      <td>
+        [GRAB-URL.ts:676](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L676)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="controller" /> `controller?`
+      </td>
+
+      <td>
+        `AbortController`
+      </td>
+
+      <td>
+        Abort controller for request cancellation
+      </td>
+
+      <td>
+        [GRAB-URL.ts:678](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L678)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="currentpage" /> `currentPage?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Current page number for paginated requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:680](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L680)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## GrabGlobal
+
+Defined in: [GRAB-URL.ts:684](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L684)
+
+Global grab configuration and state
+
+### Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="defaults-2" /> `defaults?`
+      </td>
+
+      <td>
+        `Partial`\<[`GrabOptions`](#graboptions)>
+      </td>
+
+      <td>
+        Default options applied to all requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:686](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L686)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="log-2" /> `log?`
+      </td>
+
+      <td>
+        [`GrabLogEntry`](#grablogentry)\[]
+      </td>
+
+      <td>
+        Request history and debugging info
+      </td>
+
+      <td>
+        [GRAB-URL.ts:688](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L688)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="mock-2" /> `mock?`
+      </td>
+
+      <td>
+        `Record`\<`string`, [`GrabMockHandler`](#grabmockhandler)>
+      </td>
+
+      <td>
+        Mock server handlers for testing
+      </td>
+
+      <td>
+        [GRAB-URL.ts:690](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L690)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="instance-4" /> `instance?`
+      </td>
+
+      <td>
+        (`defaultOptions?`: `Partial`\<[`GrabOptions`](#graboptions)>) => [`GrabFunction`](#grabfunction)
+      </td>
+
+      <td>
+        Create a separate instance of grab with separate default options
+      </td>
+
+      <td>
+        [GRAB-URL.ts:692](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L692)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## GrabFunction()
+
+Defined in: [GRAB-URL.ts:696](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L696)
+
+Main grab function signature with overloads for different use cases
+
+### Call Signature
+
+```ts
+GrabFunction<TResponse, TParams>(path: string): Promise<GrabResponse<TResponse>>;
+```
+
+Defined in: [GRAB-URL.ts:705](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L705)
+
+Main grab function signature with overloads for different use cases
+
+#### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        `Record`\<`string`, `any`>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `path`
+      </td>
+
+      <td>
+        `string`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`Promise`\<[`GrabResponse`](#grabresponse)\<`TResponse`>>
+
+The response object with resulting data or .error if error.
+
+#### Author
+
+[vtempest (2025)](https://github.com/vtempest/GRAB-URL)
+
+#### See
+
+[🎯 Examples](https://grab.js.org/docs/Examples) [📑 Docs](https://grab.js.org/lib)
+
+### Call Signature
+
+```ts
+GrabFunction<TResponse, TParams>(path: string, config: GrabOptions<TResponse, TParams>): Promise<GrabResponse<TResponse>>;
+```
+
+Defined in: [GRAB-URL.ts:717](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L717)
+
+Main grab function signature with overloads for different use cases
+
+#### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        `Record`\<`string`, `any`>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `path`
+      </td>
+
+      <td>
+        `string`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `config`
+      </td>
+
+      <td>
+        [`GrabOptions`](#graboptions)\<`TResponse`, `TParams`>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`Promise`\<[`GrabResponse`](#grabresponse)\<`TResponse`>>
+
+The response object with resulting data or .error if error.
+
+#### Author
+
+[vtempest (2025)](https://github.com/vtempest/GRAB-URL)
+
+#### See
+
+[🎯 Examples](https://grab.js.org/docs/Examples) [📑 Docs](https://grab.js.org/lib)
+
+### Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="defaults-3" /> `defaults?`
+      </td>
+
+      <td>
+        `Partial`\<[`GrabOptions`](#graboptions)>
+      </td>
+
+      <td>
+        Default options applied to all requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:723](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L723)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="log-3" /> `log?`
+      </td>
+
+      <td>
+        [`GrabLogEntry`](#grablogentry)\[]
+      </td>
+
+      <td>
+        Request history and debugging info for all requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:726](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L726)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="mock-3" /> `mock?`
+      </td>
+
+      <td>
+        `Record`\<`string`, [`GrabMockHandler`](#grabmockhandler)>
+      </td>
+
+      <td>
+        Mock server handlers for testing
+      </td>
+
+      <td>
+        [GRAB-URL.ts:729](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L729)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="instance-5" /> `instance?`
+      </td>
+
+      <td>
+        (`defaultOptions?`: `Partial`\<[`GrabOptions`](#graboptions)>) => [`GrabFunction`](#grabfunction)
+      </td>
+
+      <td>
+        Create a separate instance of grab with separate default options
+      </td>
+
+      <td>
+        [GRAB-URL.ts:732](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L732)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## LogFunction()
+
+Defined in: [GRAB-URL.ts:736](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L736)
+
+Log function for debugging
+
+```ts
+LogFunction(message: string | object, options?: LogOptions): void;
+```
+
+Defined in: [GRAB-URL.ts:741](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L741)
+
+Log function for debugging
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `message`
+      </td>
+
+      <td>
+        `string` | `object`
+      </td>
+
+      <td>
+        Message to log (string or object)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        [`LogOptions`](log.md#logoptions)
+      </td>
+
+      <td>
+        ‐
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`void`
+
+***
+
+## printJSONStructureFunction()
+
+Defined in: [GRAB-URL.ts:745](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L745)
+
+Utility function to describe JSON structure
+
+```ts
+printJSONStructureFunction(obj: any): string;
+```
+
+Defined in: [GRAB-URL.ts:751](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L751)
+
+Utility function to describe JSON structure
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `obj`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        The JSON object to describe
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`string`
+
+String representation of object structure
+
+***
+
+## GrabResponse\<TResponse>
+
+```ts
+type GrabResponse<TResponse> = TResponse & object;
+```
+
+Defined in: [GRAB-URL.ts:577](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L577)
+
+Core response object that gets populated with API response data
+
+### Type declaration
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `isLoading?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        Indicates if request is currently in progress
+      </td>
+
+      <td>
+        [GRAB-URL.ts:579](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L579)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `error?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        Error message if request failed
+      </td>
+
+      <td>
+        [GRAB-URL.ts:581](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L581)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `data?`
+      </td>
+
+      <td>
+        `TResponse` | `any`
+      </td>
+
+      <td>
+        Binary or text response data (JSON is set to the root)
+      </td>
+
+      <td>
+        [GRAB-URL.ts:583](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L583)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## GrabOptions\<TResponse, TParams>
+
+```ts
+type GrabOptions<TResponse, TParams> = TParams & object;
+```
+
+Defined in: [GRAB-URL.ts:588](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L588)
+
+### Type declaration
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `headers?`
+      </td>
+
+      <td>
+        `Record`\<`string`, `string`>
+      </td>
+
+      <td>
+        include headers and authorization in the request
+      </td>
+
+      <td>
+        [GRAB-URL.ts:590](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L590)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `response?`
+      </td>
+
+      <td>
+        `TResponse` | (`params`: `TParams`) => `TResponse` | `any`
+      </td>
+
+      <td>
+        Pre-initialized object which becomes response JSON, no need for .data
+      </td>
+
+      <td>
+        [GRAB-URL.ts:592](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L592)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `method?`
+      </td>
+
+      <td>
+        `"GET"` | `"POST"` | `"PUT"` | `"PATCH"` | `"DELETE"` | `"OPTIONS"` | `"HEAD"`
+      </td>
+
+      <td>
+        default="GET" The HTTP method to use
+      </td>
+
+      <td>
+        [GRAB-URL.ts:594](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L594)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cache?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Whether to cache the request and from frontend cache
+      </td>
+
+      <td>
+        [GRAB-URL.ts:596](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L596)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cacheForTime?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=60 Seconds to consider data stale and invalidate cache
+      </td>
+
+      <td>
+        [GRAB-URL.ts:598](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L598)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `timeout?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=30 The timeout for the request in seconds
+      </td>
+
+      <td>
+        [GRAB-URL.ts:600](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L600)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `baseURL?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        default='/api/' base url prefix, override with SERVER\_API\_URL env
+      </td>
+
+      <td>
+        [GRAB-URL.ts:602](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L602)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cancelOngoingIfNew?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true Cancel previous requests to same path
+      </td>
+
+      <td>
+        [GRAB-URL.ts:604](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L604)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `cancelNewIfOngoing?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Cancel if a request to path is in progress
+      </td>
+
+      <td>
+        [GRAB-URL.ts:606](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L606)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `rateLimit?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=false If set, how many seconds to wait between requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:608](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L608)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `debug?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Whether to log the request and response
+      </td>
+
+      <td>
+        [GRAB-URL.ts:610](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L610)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `infiniteScroll?`
+      </td>
+
+      <td>
+        \[`string`, `string`, `string`]
+      </td>
+
+      <td>
+        default=null \[page key, response field to concatenate, element with results]
+      </td>
+
+      <td>
+        [GRAB-URL.ts:612](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L612)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `setDefaults?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Pass this with options to set those options as defaults for all requests
+      </td>
+
+      <td>
+        [GRAB-URL.ts:614](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L614)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `retryAttempts?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=0 Retry failed requests this many times
+      </td>
+
+      <td>
+        [GRAB-URL.ts:616](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L616)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `logger()?`
+      </td>
+
+      <td>
+        (...`args`: `any`\[]) => `void`
+      </td>
+
+      <td>
+        default=log Custom logger to override the built-in color JSON log()
+      </td>
+
+      <td>
+        [GRAB-URL.ts:618](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L618)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `onRequest()?`
+      </td>
+
+      <td>
+        (...`args`: `any`\[]) => `any`
+      </td>
+
+      <td>
+        Set with defaults to modify each request data. Takes and returns in order: path, response, params, fetchParams
+      </td>
+
+      <td>
+        [GRAB-URL.ts:620](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L620)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `onResponse()?`
+      </td>
+
+      <td>
+        (...`args`: `any`\[]) => `any`
+      </td>
+
+      <td>
+        Set with defaults to modify each request data. Takes and returns in order: path, response, params, fetchParams
+      </td>
+
+      <td>
+        [GRAB-URL.ts:622](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L622)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `onError()?`
+      </td>
+
+      <td>
+        (...`args`: `any`\[]) => `any`
+      </td>
+
+      <td>
+        Set with defaults to modify each request data. Takes and returns in order: error, path, params
+      </td>
+
+      <td>
+        [GRAB-URL.ts:624](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L624)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `onStream()?`
+      </td>
+
+      <td>
+        (...`args`: `any`\[]) => `any`
+      </td>
+
+      <td>
+        Set with defaults to process the response as a stream (i.e., for instant unzip)
+      </td>
+
+      <td>
+        [GRAB-URL.ts:626](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L626)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `repeat?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=0 Repeat request this many times
+      </td>
+
+      <td>
+        [GRAB-URL.ts:628](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L628)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `repeatEvery?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=null Repeat request every seconds
+      </td>
+
+      <td>
+        [GRAB-URL.ts:630](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L630)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `debounce?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=0 Seconds to debounce request, wait to execute so that other requests may override
+      </td>
+
+      <td>
+        [GRAB-URL.ts:632](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L632)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `regrabOnStale?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Refetch when cache is past cacheForTime
+      </td>
+
+      <td>
+        [GRAB-URL.ts:634](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L634)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `regrabOnFocus?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Refetch on window refocus
+      </td>
+
+      <td>
+        [GRAB-URL.ts:636](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L636)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `regrabOnNetwork?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Refetch on network change
+      </td>
+
+      <td>
+        [GRAB-URL.ts:638](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L638)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `post?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        shortcut for method: "POST"
+      </td>
+
+      <td>
+        [GRAB-URL.ts:640](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L640)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `put?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        shortcut for method: "PUT"
+      </td>
+
+      <td>
+        [GRAB-URL.ts:642](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L642)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `patch?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        shortcut for method: "PATCH"
+      </td>
+
+      <td>
+        [GRAB-URL.ts:644](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L644)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `body?`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        default=null The body of the POST/PUT/PATCH request (can be passed into main)
+      </td>
+
+      <td>
+        [GRAB-URL.ts:646](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L646)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## grab()
+
+```ts
+function grab<TResponse, TParams>(path: string, options?: GrabOptions<TResponse, TParams>): Promise<GrabResponse<TResponse>>;
+```
+
+Defined in: [GRAB-URL.ts:88](https://github.com/vtempest/GRAB-URL/tree/master/src/GRAB-URL.ts#L88)
+
+### GRAB: Generate Request to API from Browser
+
+![GrabAPILogo](https://i.imgur.com/xWD7gyV.png)
+
+1. **GRAB is the FBEST Request Manager: Functionally Brilliant, Elegantly Simple Tool**: One Function, no dependencies,
+   minimalist syntax, [more features than alternatives](https://grab.js.org/docs/Comparisons)
+2. **Auto-JSON Convert**: Pass parameters and get response or error in JSON, handling other data types as is.
+3. **isLoading Status**: Sets `.isLoading=true` on the pre-initialized response object so you can show a "Loading..." in any framework
+4. **Debug Logging**: Adds global `log()` and prints colored JSON structure, response, timing for requests in test.
+5. **Mock Server Support**: Configure `window.grab.mock` for development and testing environments
+6. **Cancel Duplicates**: Prevent this request if one is ongoing to same path & params, or cancel the ongoing request.
+7. **Timeout & Retry**: Customizable request timeout, default 30s, and auto-retry on error
+8. **DevTools**: `Ctrl+I` overlays webpage with devtools showing all requests and responses, timing, and JSON structure.
+9. **Request History**: Stores all request and response data in global `grab.log` object
+10. **Pagination Infinite Scroll**: Built-in pagination for infinite scroll to auto-load and merge next result page, with scroll position recovery.
+11. **Base URL Based on Environment**: Configure `grab.defaults.baseURL` once at the top, overide with `SERVER_API_URL` in `.env`.
+12. **Frontend Cache**: Set cache headers and retrieve from frontend memory for repeat requests to static data.
+13. **Regrab On Error**: Regrab on timeout error, or on window refocus, or on network change, or on stale data.
+14. **Framework Agnostic**: Alternatives like TanStack work only in component initialization and depend on React & others.
+15. **Globals**: Adds to window in browser or global in Node.js so you only import once: `grab()`, `log()`, `grab.log`, `grab.mock`, `grab.defaults`
+16. **TypeScript Tooltips**: Developers can hover over option names and autocomplete TypeScript.
+17. **Request Stategies**: [🎯 Examples](https://grab.js.org/docs/Examples) show common stategies like debounce, repeat, proxy, unit tests, interceptors, file upload, etc
+18. **Rate Limiting**: Built-in rate limiting to prevent multi-click cascading responses, require to wait seconds between requests.
+19. **Repeat**: Repeat request this many times, or repeat every X seconds to poll for updates.
+20. **Loading Icons**: Import from `grab-url/icons` to get enhanced animated loading icons.
+
+### Type Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type Parameter</th>
+      <th>Default type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `TResponse`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `TParams`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `path`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        The full URL path OR relative path on this server after `grab.defaults.baseURL`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        [`GrabOptions`](#graboptions)\<`TResponse`, `TParams`>
+      </td>
+
+      <td>
+        Request params for GET or body for POST/PUT/PATCH and utility options
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`Promise`\<[`GrabResponse`](#grabresponse)\<`TResponse`>>
+
+The response object with resulting data or .error if error.
+
+### Author
+
+[vtempest (2025)](https://github.com/vtempest/GRAB-URL)
+
+### See
+
+[🎯 Examples](https://grab.js.org/docs/Examples) [📑 Docs](https://grab.js.org)
+
+### Example
+
+```ts
+import grab from 'grab-url';
+let res = {};
+await grab('search', {
+  response: res,
+  query: "search words"
+})
+```
+
+***
+
+## default
+
+Renames and re-exports [grab](#grab)
+
+***
+
+## log
+
+Re-exports [log](log.md#log)
+
+***
+
+## showAlert
+
+Re-exports [showAlert](log.md#showalert)
+
+***
+
+## printJSONStructure
+
+Re-exports [printJSONStructure](log.md#printjsonstructure)
+
+
+# Log Module Reference
+URL: /docs/lib/log
+
+***
+
+## title: Log Module Reference
+
+[Documentation](modules.md) / log
+
+## LogOptions
+
+Defined in: [log.ts:75](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L75)
+
+### Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="style" /> `style?`
+      </td>
+
+      <td>
+        `string` | `string`\[]
+      </td>
+
+      <td>
+        CSS style string or array of CSS strings for browser console styling
+      </td>
+
+      <td>
+        [log.ts:77](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L77)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="color" /> `color?`
+      </td>
+
+      <td>
+        \| `"reset"` | `"black"` | `"red"` | `"green"` | `"yellow"` | `"blue"` | `"magenta"` | `"cyan"` | `"white"` | `"gray"` | `"brightRed"` | `"brightGreen"` | `"brightYellow"` | `"brightBlue"` | `"brightMagenta"` | `"brightCyan"` | `"brightWhite"` | `"bgRed"` | `"bgGreen"` | `"bgYellow"` | `"bgBlue"` | `"bgMagenta"` | `"bgCyan"` | `"bgWhite"` | `"bgGray"`
+      </td>
+
+      <td>
+        Optional color name or code for terminal environments
+      </td>
+
+      <td>
+        [log.ts:79](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L79)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="hideinproduction" /> `hideInProduction?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        If true, hides log in production (auto-detects by hostname if undefined)
+      </td>
+
+      <td>
+        [log.ts:81](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L81)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="startspinner" /> `startSpinner?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        Start a spinner (for CLI tools, optional)
+      </td>
+
+      <td>
+        [log.ts:83](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L83)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="stopspinner" /> `stopSpinner?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        Stop a spinner (for CLI tools, optional)
+      </td>
+
+      <td>
+        [log.ts:85](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L85)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## colors
+
+```ts
+const colors: object;
+```
+
+Defined in: [log.ts:89](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L89)
+
+ANSI escape codes for terminal colors when running in Node.js
+
+### Type declaration
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default value</th>
+      <th>Description</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <a id="reset" /> `reset`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[0m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:90](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L90)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="black" /> `black`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[30m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:91](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L91)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="red" /> `red`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[31m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:92](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L92)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="green" /> `green`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[32m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:93](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L93)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="yellow" /> `yellow`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[33m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:94](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L94)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="blue" /> `blue`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[34m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:95](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L95)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="magenta" /> `magenta`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[35m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:96](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L96)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="cyan" /> `cyan`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[36m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:97](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L97)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="white" /> `white`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[37m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:98](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L98)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="gray" /> `gray`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[90m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:99](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L99)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightred" /> `brightRed`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[91m"
+      </td>
+
+      <td>
+        Bright variants
+      </td>
+
+      <td>
+        [log.ts:101](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L101)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightgreen" /> `brightGreen`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[92m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:102](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L102)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightyellow" /> `brightYellow`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[93m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:103](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L103)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightblue" /> `brightBlue`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[94m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:104](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L104)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightmagenta" /> `brightMagenta`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[95m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:105](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L105)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightcyan" /> `brightCyan`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[96m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:106](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L106)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="brightwhite" /> `brightWhite`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[97m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:107](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L107)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgred" /> `bgRed`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[41m"
+      </td>
+
+      <td>
+        Background colors (optional)
+      </td>
+
+      <td>
+        [log.ts:109](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L109)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bggreen" /> `bgGreen`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[42m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:110](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L110)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgyellow" /> `bgYellow`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[43m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:111](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L111)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgblue" /> `bgBlue`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[44m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:112](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L112)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgmagenta" /> `bgMagenta`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[45m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:113](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L113)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgcyan" /> `bgCyan`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[46m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:114](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L114)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bgwhite" /> `bgWhite`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[47m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:115](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L115)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a id="bggray" /> `bgGray`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        "\x1b\[100m"
+      </td>
+
+      <td>
+        ‐
+      </td>
+
+      <td>
+        [log.ts:116](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L116)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## log()
+
+```ts
+function log(message: string, options: LogOptions): boolean;
+```
+
+Defined in: [log.ts:13](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L13)
+
+### Colorized Log With JSON Structure
+
+![Debug log](https://i.imgur.com/R8Qp6Vg.png)
+Logs messages to the console with custom styling,
+prints JSON with description of structure layout,
+and showing debug output in development only.
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `message`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        `""`
+      </td>
+
+      <td>
+        The message to log. If an object is provided, it will be stringified.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options`
+      </td>
+
+      <td>
+        [`LogOptions`](#logoptions)
+      </td>
+
+      <td>
+        `{}`
+      </td>
+
+      <td>
+        ‐
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`boolean`
+
+***
+
+## printJSONStructure()
+
+```ts
+function printJSONStructure(obj: any, indent: number): string;
+```
+
+Defined in: [log.ts:157](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L157)
+
+Creates a colored visualization of a JSON object's structure
+Shows the shape and types of the data rather than actual values
+Recursively processes nested objects and arrays
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `obj`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `indent`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        `0`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`string`
+
+***
+
+## showAlert()
+
+```ts
+function showAlert(msg: any): void;
+```
+
+Defined in: [log.ts:228](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L228)
+
+Shows message in a modal overlay with scrollable message stack
+and is easier to dismiss unlike alert() which blocks window.
+Creates a semi-transparent overlay with a white box containing the message.
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `msg`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        The message to display
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`void`
+
+***
+
+## setupDevTools()
+
+```ts
+function setupDevTools(): void;
+```
+
+Defined in: [log.ts:266](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L266)
+
+Sets up development tools for debugging API requests
+Adds a keyboard shortcut (Ctrl+I) that shows a modal with request history
+Each request entry shows:
+
+* Request path
+* Request details
+* Response data
+* Timestamp
+
+### Returns
+
+`void`
+
+***
+
+## showSpinnerInTerminal()
+
+```ts
+function showSpinnerInTerminal(text: any): (success: string) => void;
+```
+
+Defined in: [log.ts:297](https://github.com/vtempest/GRAB-URL/tree/master/src/log.ts#L297)
+
+Displays an animated spinner in the terminal with the provided text.
+The spinner animates in-place until the returned function is called,
+which stops the spinner and prints a success message.
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `text`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        The text to display next to the spinner animation.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+Stop function with optional message.
+
+```ts
+(success: string): void;
+```
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `success`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        `"✔ Done!"`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`void`
+
+### Example
+
+```ts
+const stopSpinner = showSpinnerInTerminal('Downloading...');
+setTimeout(() => {
+   stopSpinner('Success!');
+}, 2000);
+```

@@ -12,6 +12,7 @@ export default {
       $utils: "../web/src/lib/utils",
       $lib: '../web/src/lib',
       $components: '../web/src/lib/components',
+      "ai-research-agent":  "../../packages/ai-research-agent"
     }
   }
 };

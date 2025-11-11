@@ -4,9 +4,11 @@
  * @returns {string} The URL of random artistic background
  */
 
-
 export function getBackgroundArtwork() {
   const backgrounds = [
+    "vKP22VU.png", // quantum particles and spheres
+    "ASVRQ1G.jpeg", // wavy log black and circular lines
+    "35svwUT.jpeg", // grey brain with ghost nodes
     "81xLiVI.jpeg", // 8 shapes around a cpu board
     "6kod2Em.jpeg", // radial blue to graph of docs
     "eU0C8zt.jpeg", // data insights big screen

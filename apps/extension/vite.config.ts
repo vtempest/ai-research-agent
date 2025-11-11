@@ -32,6 +32,10 @@ export default defineConfig({
       $lib: path.resolve("../web/src/lib"),
       $utils: path.resolve("../web/src/lib/utils"),
       $components: path.resolve("../web/src/lib/components"),
+      "grab-url":  path.resolve("../../../grab-url"),
+      "reason-editor":  path.resolve("../../packages/reason-editor"),
+     "qwksearch-api-client":  path.resolve("../../packages/qwksearch-api-client"),
+      "ai-research-agent":  path.resolve("../../packages/ai-research-agent"),
     },
   },
 });

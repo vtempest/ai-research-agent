@@ -216,7 +216,11 @@ export type SearchWebData = {
         /**
          * Recency filter - filter results by time period
          */
-        recency?: 'none' | 'day' | 'week' | 'month' | 'year';
+        recency?: 'all' | 'day' | 'week' | 'month' | 'year';
+        /**
+         * Whether to block adult content
+         */
+        safesearch?: boolean;
         /**
          * Use public server instances (optional)
          */
@@ -283,7 +287,7 @@ export type SearchWebResponses = {
             /**
              * Engines used to find the search result
              */
-            engines?: Array<unknown>;
+            engines?: string;
         }>;
     };
 };

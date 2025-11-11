@@ -583,7 +583,7 @@ const options = {
 </body>
 </html>`
   },
-  version_hash: "c8jbcl"
+  version_hash: "65vfoe"
 };
 async function get_hooks() {
   let handle;

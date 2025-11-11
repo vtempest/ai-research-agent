@@ -62,7 +62,7 @@
     <div class="flex items-center">
       <a href="/" class="cursor-pointer">
         <img
-        src="/icons/qwksearch-logo.svg"
+        src="/icons/qwksearch-logo.png"
         alt="Qwk Logo"
         width="200px"
         class=" object-contain mr-6"

@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({ success: true });
   }
 });
-
+    
 
 /**
  * Toggles Reading Mode on the current page, with extracted content,

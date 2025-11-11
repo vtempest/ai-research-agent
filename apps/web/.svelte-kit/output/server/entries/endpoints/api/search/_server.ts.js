@@ -40,10 +40,11 @@ import "resend";
 async function searchWeb(query, options = {}) {
   const {
     category = "general",
-    recency = 0,
+    recency,
     privateSearxng = null,
     maxRetries = 3,
     page = 1,
+    safesearch = false,
     lang = "en-US",
     proxy = null
   } = options;
@@ -57,7 +58,7 @@ async function searchWeb(query, options = {}) {
     "files",
     "social+media"
   ];
-  const RECENCY_LIST = ["", "day", "week", "month", "year"];
+  const RECENCY_ALLOWED_LIST = ["day", "week", "month", "year"];
   const SEARX_DOMAINS = [
     "baresearch.org",
     "copp.gg",
@@ -125,8 +126,7 @@ async function searchWeb(query, options = {}) {
   ];
   const searchDomain = privateSearxng || "https://" + SEARX_DOMAINS[Math.floor(Math.random() * SEARX_DOMAINS.length)];
   const categoryName = typeof category === "number" ? CATEGORY_LIST[category] : category;
-  const timeRangeName = RECENCY_LIST[recency];
-  var url = `${searchDomain}/search?q=${encodeURIComponent(query)}&category_${categoryName}=1&language=${lang}&time_range=${timeRangeName}&safesearch=0&pageno=${page}`;
+  var url = `${searchDomain}/search?q=${encodeURIComponent(query)}&category_${categoryName}=1&language=${lang}${recency in RECENCY_ALLOWED_LIST ? "&time_range=" + recency : ""}&safesearch=${safesearch ? "1" : "0"}&pageno=${page}`;
   if (privateSearxng) url += "&format=json";
   if (proxy && !privateSearxng) url = proxy + url;
   const resultHTML = await (await fetch(url, {
@@ -236,7 +236,8 @@ async function GET({ url }) {
     cat = "general",
     page = 1,
     lang = "en-US",
-    recency = 0,
+    safesearch = false,
+    recency,
     publicInstances = false
   } = Object.fromEntries(url.searchParams.entries());
   let startTime = Date.now();
@@ -244,6 +245,7 @@ async function GET({ url }) {
   let results = await searchWeb(query, {
     category: cat,
     recency,
+    safesearch,
     maxRetries: 6,
     privateSearxng: publicInstances ? false : searxngDomain,
     proxy: proxyDomain,
@@ -254,6 +256,7 @@ async function GET({ url }) {
     results = await searchWeb(query, {
       category: cat,
       recency,
+      safesearch,
       maxRetries: 6,
       privateSearxng: false,
       proxy: proxyDomain,
