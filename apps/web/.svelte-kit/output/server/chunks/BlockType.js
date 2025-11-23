@@ -1501,11 +1501,147 @@ const LANGUAGE_MODELS = [
   }
 ];
 const LANGUAGE_PROVIDERS = LANGUAGE_MODELS.map((p) => p.provider.toLocaleLowerCase());
-var j = async (s, r) => {
-  let e = typeof r == "function" ? await r(s) : r;
-  if (e) return s.scheme === "bearer" ? `Bearer ${e}` : s.scheme === "basic" ? `Basic ${btoa(e)}` : e;
-}, R = { bodySerializer: (s) => JSON.stringify(s, (r, e) => typeof e == "bigint" ? e.toString() : e) }, U = (s) => {
-  switch (s) {
+const jsonBodySerializer = {
+  bodySerializer: (body) => JSON.stringify(
+    body,
+    (_key, value) => typeof value === "bigint" ? value.toString() : value
+  )
+};
+const createSseClient = ({
+  onRequest,
+  onSseError,
+  onSseEvent,
+  responseTransformer,
+  responseValidator,
+  sseDefaultRetryDelay,
+  sseMaxRetryAttempts,
+  sseMaxRetryDelay,
+  sseSleepFn,
+  url,
+  ...options
+}) => {
+  let lastEventId;
+  const sleep = sseSleepFn ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+  const createStream = async function* () {
+    let retryDelay = sseDefaultRetryDelay ?? 3e3;
+    let attempt = 0;
+    const signal = options.signal ?? new AbortController().signal;
+    while (true) {
+      if (signal.aborted) break;
+      attempt++;
+      const headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers);
+      if (lastEventId !== void 0) {
+        headers.set("Last-Event-ID", lastEventId);
+      }
+      try {
+        const requestInit = {
+          redirect: "follow",
+          ...options,
+          body: options.serializedBody,
+          headers,
+          signal
+        };
+        let request = new Request(url, requestInit);
+        if (onRequest) {
+          request = await onRequest(url, requestInit);
+        }
+        const _fetch = options.fetch ?? globalThis.fetch;
+        const response = await _fetch(request);
+        if (!response.ok)
+          throw new Error(
+            `SSE failed: ${response.status} ${response.statusText}`
+          );
+        if (!response.body) throw new Error("No body in SSE response");
+        const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+        let buffer = "";
+        const abortHandler = () => {
+          try {
+            reader.cancel();
+          } catch {
+          }
+        };
+        signal.addEventListener("abort", abortHandler);
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += value;
+            const chunks = buffer.split("\n\n");
+            buffer = chunks.pop() ?? "";
+            for (const chunk of chunks) {
+              const lines = chunk.split("\n");
+              const dataLines = [];
+              let eventName;
+              for (const line of lines) {
+                if (line.startsWith("data:")) {
+                  dataLines.push(line.replace(/^data:\s*/, ""));
+                } else if (line.startsWith("event:")) {
+                  eventName = line.replace(/^event:\s*/, "");
+                } else if (line.startsWith("id:")) {
+                  lastEventId = line.replace(/^id:\s*/, "");
+                } else if (line.startsWith("retry:")) {
+                  const parsed = Number.parseInt(
+                    line.replace(/^retry:\s*/, ""),
+                    10
+                  );
+                  if (!Number.isNaN(parsed)) {
+                    retryDelay = parsed;
+                  }
+                }
+              }
+              let data;
+              let parsedJson = false;
+              if (dataLines.length) {
+                const rawData = dataLines.join("\n");
+                try {
+                  data = JSON.parse(rawData);
+                  parsedJson = true;
+                } catch {
+                  data = rawData;
+                }
+              }
+              if (parsedJson) {
+                if (responseValidator) {
+                  await responseValidator(data);
+                }
+                if (responseTransformer) {
+                  data = await responseTransformer(data);
+                }
+              }
+              onSseEvent?.({
+                data,
+                event: eventName,
+                id: lastEventId,
+                retry: retryDelay
+              });
+              if (dataLines.length) {
+                yield data;
+              }
+            }
+          }
+        } finally {
+          signal.removeEventListener("abort", abortHandler);
+          reader.releaseLock();
+        }
+        break;
+      } catch (error) {
+        onSseError?.(error);
+        if (sseMaxRetryAttempts !== void 0 && attempt >= sseMaxRetryAttempts) {
+          break;
+        }
+        const backoff = Math.min(
+          retryDelay * 2 ** (attempt - 1),
+          sseMaxRetryDelay ?? 3e4
+        );
+        await sleep(backoff);
+      }
+    }
+  };
+  const stream = createStream();
+  return { stream };
+};
+const separatorArrayExplode = (style) => {
+  switch (style) {
     case "label":
       return ".";
     case "matrix":
@@ -1515,8 +1651,9 @@ var j = async (s, r) => {
     default:
       return "&";
   }
-}, _ = (s) => {
-  switch (s) {
+};
+const separatorArrayNoExplode = (style) => {
+  switch (style) {
     case "form":
       return ",";
     case "pipeDelimited":
@@ -1526,8 +1663,9 @@ var j = async (s, r) => {
     default:
       return ",";
   }
-}, D = (s) => {
-  switch (s) {
+};
+const separatorObjectExplode = (style) => {
+  switch (style) {
     case "label":
       return ".";
     case "matrix":
@@ -1537,215 +1675,646 @@ var j = async (s, r) => {
     default:
       return "&";
   }
-}, O = ({ allowReserved: s, explode: r, name: e, style: i, value: a }) => {
-  if (!r) {
-    let t = (s ? a : a.map((l) => encodeURIComponent(l))).join(_(i));
-    switch (i) {
-      case "label":
-        return `.${t}`;
-      case "matrix":
-        return `;${e}=${t}`;
-      case "simple":
-        return t;
-      default:
-        return `${e}=${t}`;
-    }
-  }
-  let o = U(i), n = a.map((t) => i === "label" || i === "simple" ? s ? t : encodeURIComponent(t) : h({ allowReserved: s, name: e, value: t })).join(o);
-  return i === "label" || i === "matrix" ? o + n : n;
-}, h = ({ allowReserved: s, name: r, value: e }) => {
-  if (e == null) return "";
-  if (typeof e == "object") throw new Error("Deeply-nested arrays/objects aren’t supported. Provide your own `querySerializer()` to handle these.");
-  return `${r}=${s ? e : encodeURIComponent(e)}`;
-}, S = ({ allowReserved: s, explode: r, name: e, style: i, value: a }) => {
-  if (a instanceof Date) return `${e}=${a.toISOString()}`;
-  if (i !== "deepObject" && !r) {
-    let t = [];
-    Object.entries(a).forEach(([f, p]) => {
-      t = [...t, f, s ? p : encodeURIComponent(p)];
-    });
-    let l = t.join(",");
-    switch (i) {
-      case "form":
-        return `${e}=${l}`;
-      case "label":
-        return `.${l}`;
-      case "matrix":
-        return `;${e}=${l}`;
-      default:
-        return l;
-    }
-  }
-  let o = D(i), n = Object.entries(a).map(([t, l]) => h({ allowReserved: s, name: i === "deepObject" ? `${e}[${t}]` : t, value: l })).join(o);
-  return i === "label" || i === "matrix" ? o + n : n;
 };
-var H = /\{[^{}]+\}/g, B = ({ path: s, url: r }) => {
-  let e = r, i = r.match(H);
-  if (i) for (let a of i) {
-    let o = false, n = a.substring(1, a.length - 1), t = "simple";
-    n.endsWith("*") && (o = true, n = n.substring(0, n.length - 1)), n.startsWith(".") ? (n = n.substring(1), t = "label") : n.startsWith(";") && (n = n.substring(1), t = "matrix");
-    let l = s[n];
-    if (l == null) continue;
-    if (Array.isArray(l)) {
-      e = e.replace(a, O({ explode: o, name: n, style: t, value: l }));
-      continue;
-    }
-    if (typeof l == "object") {
-      e = e.replace(a, S({ explode: o, name: n, style: t, value: l }));
-      continue;
-    }
-    if (t === "matrix") {
-      e = e.replace(a, `;${h({ name: n, value: l })}`);
-      continue;
-    }
-    let f = encodeURIComponent(t === "label" ? `.${l}` : l);
-    e = e.replace(a, f);
-  }
-  return e;
-}, A = ({ allowReserved: s, array: r, object: e } = {}) => (a) => {
-  let o = [];
-  if (a && typeof a == "object") for (let n in a) {
-    let t = a[n];
-    if (t != null) if (Array.isArray(t)) {
-      let l = O({ allowReserved: s, explode: true, name: n, style: "form", value: t, ...r });
-      l && o.push(l);
-    } else if (typeof t == "object") {
-      let l = S({ allowReserved: s, explode: true, name: n, style: "deepObject", value: t, ...e });
-      l && o.push(l);
-    } else {
-      let l = h({ allowReserved: s, name: n, value: t });
-      l && o.push(l);
+const serializeArrayParam = ({
+  allowReserved,
+  explode,
+  name,
+  style,
+  value
+}) => {
+  if (!explode) {
+    const joinedValues2 = (allowReserved ? value : value.map((v) => encodeURIComponent(v))).join(separatorArrayNoExplode(style));
+    switch (style) {
+      case "label":
+        return `.${joinedValues2}`;
+      case "matrix":
+        return `;${name}=${joinedValues2}`;
+      case "simple":
+        return joinedValues2;
+      default:
+        return `${name}=${joinedValues2}`;
     }
   }
-  return o.join("&");
-}, P = (s) => {
-  if (!s) return "stream";
-  let r = s.split(";")[0]?.trim();
-  if (r) {
-    if (r.startsWith("application/json") || r.endsWith("+json")) return "json";
-    if (r === "multipart/form-data") return "formData";
-    if (["application/", "audio/", "image/", "video/"].some((e) => r.startsWith(e))) return "blob";
-    if (r.startsWith("text/")) return "text";
+  const separator = separatorArrayExplode(style);
+  const joinedValues = value.map((v) => {
+    if (style === "label" || style === "simple") {
+      return allowReserved ? v : encodeURIComponent(v);
+    }
+    return serializePrimitiveParam({
+      allowReserved,
+      name,
+      value: v
+    });
+  }).join(separator);
+  return style === "label" || style === "matrix" ? separator + joinedValues : joinedValues;
+};
+const serializePrimitiveParam = ({
+  allowReserved,
+  name,
+  value
+}) => {
+  if (value === void 0 || value === null) {
+    return "";
   }
-}, E = async ({ security: s, ...r }) => {
-  for (let e of s) {
-    let i = await j(e, r.auth);
-    if (!i) continue;
-    let a = e.name ?? "Authorization";
-    switch (e.in) {
+  if (typeof value === "object") {
+    throw new Error(
+      "Deeply-nested arrays/objects aren’t supported. Provide your own `querySerializer()` to handle these."
+    );
+  }
+  return `${name}=${allowReserved ? value : encodeURIComponent(value)}`;
+};
+const serializeObjectParam = ({
+  allowReserved,
+  explode,
+  name,
+  style,
+  value,
+  valueOnly
+}) => {
+  if (value instanceof Date) {
+    return valueOnly ? value.toISOString() : `${name}=${value.toISOString()}`;
+  }
+  if (style !== "deepObject" && !explode) {
+    let values = [];
+    Object.entries(value).forEach(([key, v]) => {
+      values = [
+        ...values,
+        key,
+        allowReserved ? v : encodeURIComponent(v)
+      ];
+    });
+    const joinedValues2 = values.join(",");
+    switch (style) {
+      case "form":
+        return `${name}=${joinedValues2}`;
+      case "label":
+        return `.${joinedValues2}`;
+      case "matrix":
+        return `;${name}=${joinedValues2}`;
+      default:
+        return joinedValues2;
+    }
+  }
+  const separator = separatorObjectExplode(style);
+  const joinedValues = Object.entries(value).map(
+    ([key, v]) => serializePrimitiveParam({
+      allowReserved,
+      name: style === "deepObject" ? `${name}[${key}]` : key,
+      value: v
+    })
+  ).join(separator);
+  return style === "label" || style === "matrix" ? separator + joinedValues : joinedValues;
+};
+const PATH_PARAM_RE = /\{[^{}]+\}/g;
+const defaultPathSerializer = ({ path, url: _url }) => {
+  let url = _url;
+  const matches = _url.match(PATH_PARAM_RE);
+  if (matches) {
+    for (const match of matches) {
+      let explode = false;
+      let name = match.substring(1, match.length - 1);
+      let style = "simple";
+      if (name.endsWith("*")) {
+        explode = true;
+        name = name.substring(0, name.length - 1);
+      }
+      if (name.startsWith(".")) {
+        name = name.substring(1);
+        style = "label";
+      } else if (name.startsWith(";")) {
+        name = name.substring(1);
+        style = "matrix";
+      }
+      const value = path[name];
+      if (value === void 0 || value === null) {
+        continue;
+      }
+      if (Array.isArray(value)) {
+        url = url.replace(
+          match,
+          serializeArrayParam({ explode, name, style, value })
+        );
+        continue;
+      }
+      if (typeof value === "object") {
+        url = url.replace(
+          match,
+          serializeObjectParam({
+            explode,
+            name,
+            style,
+            value,
+            valueOnly: true
+          })
+        );
+        continue;
+      }
+      if (style === "matrix") {
+        url = url.replace(
+          match,
+          `;${serializePrimitiveParam({
+            name,
+            value
+          })}`
+        );
+        continue;
+      }
+      const replaceValue = encodeURIComponent(
+        style === "label" ? `.${value}` : value
+      );
+      url = url.replace(match, replaceValue);
+    }
+  }
+  return url;
+};
+const getUrl = ({
+  baseUrl: baseUrl2,
+  path,
+  query,
+  querySerializer,
+  url: _url
+}) => {
+  const pathUrl = _url.startsWith("/") ? _url : `/${_url}`;
+  let url = (baseUrl2 ?? "") + pathUrl;
+  if (path) {
+    url = defaultPathSerializer({ path, url });
+  }
+  let search = query ? querySerializer(query) : "";
+  if (search.startsWith("?")) {
+    search = search.substring(1);
+  }
+  if (search) {
+    url += `?${search}`;
+  }
+  return url;
+};
+function getValidRequestBody(options) {
+  const hasBody = options.body !== void 0;
+  const isSerializedBody = hasBody && options.bodySerializer;
+  if (isSerializedBody) {
+    if ("serializedBody" in options) {
+      const hasSerializedBody = options.serializedBody !== void 0 && options.serializedBody !== "";
+      return hasSerializedBody ? options.serializedBody : null;
+    }
+    return options.body !== "" ? options.body : null;
+  }
+  if (hasBody) {
+    return options.body;
+  }
+  return void 0;
+}
+const getAuthToken = async (auth, callback) => {
+  const token = typeof callback === "function" ? await callback(auth) : callback;
+  if (!token) {
+    return;
+  }
+  if (auth.scheme === "bearer") {
+    return `Bearer ${token}`;
+  }
+  if (auth.scheme === "basic") {
+    return `Basic ${btoa(token)}`;
+  }
+  return token;
+};
+const createQuerySerializer = ({
+  parameters = {},
+  ...args
+} = {}) => {
+  const querySerializer = (queryParams) => {
+    const search = [];
+    if (queryParams && typeof queryParams === "object") {
+      for (const name in queryParams) {
+        const value = queryParams[name];
+        if (value === void 0 || value === null) {
+          continue;
+        }
+        const options = parameters[name] || args;
+        if (Array.isArray(value)) {
+          const serializedArray = serializeArrayParam({
+            allowReserved: options.allowReserved,
+            explode: true,
+            name,
+            style: "form",
+            value,
+            ...options.array
+          });
+          if (serializedArray) search.push(serializedArray);
+        } else if (typeof value === "object") {
+          const serializedObject = serializeObjectParam({
+            allowReserved: options.allowReserved,
+            explode: true,
+            name,
+            style: "deepObject",
+            value,
+            ...options.object
+          });
+          if (serializedObject) search.push(serializedObject);
+        } else {
+          const serializedPrimitive = serializePrimitiveParam({
+            allowReserved: options.allowReserved,
+            name,
+            value
+          });
+          if (serializedPrimitive) search.push(serializedPrimitive);
+        }
+      }
+    }
+    return search.join("&");
+  };
+  return querySerializer;
+};
+const getParseAs = (contentType) => {
+  if (!contentType) {
+    return "stream";
+  }
+  const cleanContent = contentType.split(";")[0]?.trim();
+  if (!cleanContent) {
+    return;
+  }
+  if (cleanContent.startsWith("application/json") || cleanContent.endsWith("+json")) {
+    return "json";
+  }
+  if (cleanContent === "multipart/form-data") {
+    return "formData";
+  }
+  if (["application/", "audio/", "image/", "video/"].some(
+    (type) => cleanContent.startsWith(type)
+  )) {
+    return "blob";
+  }
+  if (cleanContent.startsWith("text/")) {
+    return "text";
+  }
+  return;
+};
+const checkForExistence = (options, name) => {
+  if (!name) {
+    return false;
+  }
+  if (options.headers.has(name) || options.query?.[name] || options.headers.get("Cookie")?.includes(`${name}=`)) {
+    return true;
+  }
+  return false;
+};
+const setAuthParams = async ({
+  security,
+  ...options
+}) => {
+  for (const auth of security) {
+    if (checkForExistence(options, auth.name)) {
+      continue;
+    }
+    const token = await getAuthToken(auth, options.auth);
+    if (!token) {
+      continue;
+    }
+    const name = auth.name ?? "Authorization";
+    switch (auth.in) {
       case "query":
-        r.query || (r.query = {}), r.query[a] = i;
+        if (!options.query) {
+          options.query = {};
+        }
+        options.query[name] = token;
         break;
       case "cookie":
-        r.headers.append("Cookie", `${a}=${i}`);
+        options.headers.append("Cookie", `${name}=${token}`);
         break;
       case "header":
       default:
-        r.headers.set(a, i);
+        options.headers.set(name, token);
         break;
     }
-    return;
   }
-}, q = (s) => W({ baseUrl: s.baseUrl, path: s.path, query: s.query, querySerializer: typeof s.querySerializer == "function" ? s.querySerializer : A(s.querySerializer), url: s.url }), W = ({ baseUrl: s, path: r, query: e, querySerializer: i, url: a }) => {
-  let o = a.startsWith("/") ? a : `/${a}`, n = (s ?? "") + o;
-  r && (n = B({ path: r, url: n }));
-  let t = e ? i(e) : "";
-  return t.startsWith("?") && (t = t.substring(1)), t && (n += `?${t}`), n;
-}, x = (s, r) => {
-  let e = { ...s, ...r };
-  return e.baseUrl?.endsWith("/") && (e.baseUrl = e.baseUrl.substring(0, e.baseUrl.length - 1)), e.headers = C(s.headers, r.headers), e;
-}, C = (...s) => {
-  let r = new Headers();
-  for (let e of s) {
-    if (!e || typeof e != "object") continue;
-    let i = e instanceof Headers ? e.entries() : Object.entries(e);
-    for (let [a, o] of i) if (o === null) r.delete(a);
-    else if (Array.isArray(o)) for (let n of o) r.append(a, n);
-    else o !== void 0 && r.set(a, typeof o == "object" ? JSON.stringify(o) : o);
+};
+const buildUrl = (options) => getUrl({
+  baseUrl: options.baseUrl,
+  path: options.path,
+  query: options.query,
+  querySerializer: typeof options.querySerializer === "function" ? options.querySerializer : createQuerySerializer(options.querySerializer),
+  url: options.url
+});
+const mergeConfigs = (a, b) => {
+  const config = { ...a, ...b };
+  if (config.baseUrl?.endsWith("/")) {
+    config.baseUrl = config.baseUrl.substring(0, config.baseUrl.length - 1);
   }
-  return r;
-}, m = class {
-  _fns;
-  constructor() {
-    this._fns = [];
-  }
-  clear() {
-    this._fns = [];
-  }
-  getInterceptorIndex(r) {
-    return typeof r == "number" ? this._fns[r] ? r : -1 : this._fns.indexOf(r);
-  }
-  exists(r) {
-    let e = this.getInterceptorIndex(r);
-    return !!this._fns[e];
-  }
-  eject(r) {
-    let e = this.getInterceptorIndex(r);
-    this._fns[e] && (this._fns[e] = null);
-  }
-  update(r, e) {
-    let i = this.getInterceptorIndex(r);
-    return this._fns[i] ? (this._fns[i] = e, r) : false;
-  }
-  use(r) {
-    return this._fns = [...this._fns, r], this._fns.length - 1;
-  }
-}, v = () => ({ error: new m(), request: new m(), response: new m() }), N = A({ allowReserved: false, array: { explode: true, style: "form" }, object: { explode: true, style: "deepObject" } }), Q = { "Content-Type": "application/json" }, w = (s = {}) => ({ ...R, headers: Q, parseAs: "auto", querySerializer: N, ...s });
-var J = (s = {}) => {
-  let r = x(w(), s), e = () => ({ ...r }), i = (n) => (r = x(r, n), e()), a = v(), o = async (n) => {
-    let t = { ...r, ...n, fetch: n.fetch ?? r.fetch ?? globalThis.fetch, headers: C(r.headers, n.headers) };
-    t.security && await E({ ...t, security: t.security }), t.body && t.bodySerializer && (t.body = t.bodySerializer(t.body)), (t.body === void 0 || t.body === "") && t.headers.delete("Content-Type");
-    let l = q(t), f = { redirect: "follow", ...t }, p = new Request(l, f);
-    for (let u of a.request._fns) u && (p = await u(p, t));
-    let T = t.fetch, c = await T(p);
-    for (let u of a.response._fns) u && (c = await u(c, p, t));
-    let g = { request: p, response: c };
-    if (c.ok) {
-      if (c.status === 204 || c.headers.get("Content-Length") === "0") return t.responseStyle === "data" ? {} : { data: {}, ...g };
-      let u = (t.parseAs === "auto" ? P(c.headers.get("Content-Type")) : t.parseAs) ?? "json";
-      if (u === "stream") return t.responseStyle === "data" ? c.body : { data: c.body, ...g };
-      let y = await c[u]();
-      return u === "json" && (t.responseValidator && await t.responseValidator(y), t.responseTransformer && (y = await t.responseTransformer(y))), t.responseStyle === "data" ? y : { data: y, ...g };
+  config.headers = mergeHeaders(a.headers, b.headers);
+  return config;
+};
+const headersEntries = (headers) => {
+  const entries = [];
+  headers.forEach((value, key) => {
+    entries.push([key, value]);
+  });
+  return entries;
+};
+const mergeHeaders = (...headers) => {
+  const mergedHeaders = new Headers();
+  for (const header of headers) {
+    if (!header) {
+      continue;
     }
-    let b = await c.text();
+    const iterator = header instanceof Headers ? headersEntries(header) : Object.entries(header);
+    for (const [key, value] of iterator) {
+      if (value === null) {
+        mergedHeaders.delete(key);
+      } else if (Array.isArray(value)) {
+        for (const v of value) {
+          mergedHeaders.append(key, v);
+        }
+      } else if (value !== void 0) {
+        mergedHeaders.set(
+          key,
+          typeof value === "object" ? JSON.stringify(value) : value
+        );
+      }
+    }
+  }
+  return mergedHeaders;
+};
+class Interceptors {
+  fns = [];
+  clear() {
+    this.fns = [];
+  }
+  eject(id) {
+    const index = this.getInterceptorIndex(id);
+    if (this.fns[index]) {
+      this.fns[index] = null;
+    }
+  }
+  exists(id) {
+    const index = this.getInterceptorIndex(id);
+    return Boolean(this.fns[index]);
+  }
+  getInterceptorIndex(id) {
+    if (typeof id === "number") {
+      return this.fns[id] ? id : -1;
+    }
+    return this.fns.indexOf(id);
+  }
+  update(id, fn) {
+    const index = this.getInterceptorIndex(id);
+    if (this.fns[index]) {
+      this.fns[index] = fn;
+      return id;
+    }
+    return false;
+  }
+  use(fn) {
+    this.fns.push(fn);
+    return this.fns.length - 1;
+  }
+}
+const createInterceptors = () => ({
+  error: new Interceptors(),
+  request: new Interceptors(),
+  response: new Interceptors()
+});
+const defaultQuerySerializer = createQuerySerializer({
+  allowReserved: false,
+  array: {
+    explode: true,
+    style: "form"
+  },
+  object: {
+    explode: true,
+    style: "deepObject"
+  }
+});
+const defaultHeaders = {
+  "Content-Type": "application/json"
+};
+const createConfig = (override = {}) => ({
+  ...jsonBodySerializer,
+  headers: defaultHeaders,
+  parseAs: "auto",
+  querySerializer: defaultQuerySerializer,
+  ...override
+});
+const createClient = (config = {}) => {
+  let _config = mergeConfigs(createConfig(), config);
+  const getConfig = () => ({ ..._config });
+  const setConfig = (config2) => {
+    _config = mergeConfigs(_config, config2);
+    return getConfig();
+  };
+  const interceptors = createInterceptors();
+  const beforeRequest = async (options) => {
+    const opts = {
+      ..._config,
+      ...options,
+      fetch: options.fetch ?? _config.fetch ?? globalThis.fetch,
+      headers: mergeHeaders(_config.headers, options.headers),
+      serializedBody: void 0
+    };
+    if (opts.security) {
+      await setAuthParams({
+        ...opts,
+        security: opts.security
+      });
+    }
+    if (opts.requestValidator) {
+      await opts.requestValidator(opts);
+    }
+    if (opts.body !== void 0 && opts.bodySerializer) {
+      opts.serializedBody = opts.bodySerializer(opts.body);
+    }
+    if (opts.body === void 0 || opts.serializedBody === "") {
+      opts.headers.delete("Content-Type");
+    }
+    const url = buildUrl(opts);
+    return { opts, url };
+  };
+  const request = async (options) => {
+    const { opts, url } = await beforeRequest(options);
+    const requestInit = {
+      redirect: "follow",
+      ...opts,
+      body: getValidRequestBody(opts)
+    };
+    let request2 = new Request(url, requestInit);
+    for (const fn of interceptors.request.fns) {
+      if (fn) {
+        request2 = await fn(request2, opts);
+      }
+    }
+    const _fetch = opts.fetch;
+    let response;
     try {
-      b = JSON.parse(b);
+      response = await _fetch(request2);
+    } catch (error2) {
+      let finalError2 = error2;
+      for (const fn of interceptors.error.fns) {
+        if (fn) {
+          finalError2 = await fn(
+            error2,
+            void 0,
+            request2,
+            opts
+          );
+        }
+      }
+      finalError2 = finalError2 || {};
+      if (opts.throwOnError) {
+        throw finalError2;
+      }
+      return opts.responseStyle === "data" ? void 0 : {
+        error: finalError2,
+        request: request2,
+        response: void 0
+      };
+    }
+    for (const fn of interceptors.response.fns) {
+      if (fn) {
+        response = await fn(response, request2, opts);
+      }
+    }
+    const result = {
+      request: request2,
+      response
+    };
+    if (response.ok) {
+      const parseAs = (opts.parseAs === "auto" ? getParseAs(response.headers.get("Content-Type")) : opts.parseAs) ?? "json";
+      if (response.status === 204 || response.headers.get("Content-Length") === "0") {
+        let emptyData;
+        switch (parseAs) {
+          case "arrayBuffer":
+          case "blob":
+          case "text":
+            emptyData = await response[parseAs]();
+            break;
+          case "formData":
+            emptyData = new FormData();
+            break;
+          case "stream":
+            emptyData = response.body;
+            break;
+          case "json":
+          default:
+            emptyData = {};
+            break;
+        }
+        return opts.responseStyle === "data" ? emptyData : {
+          data: emptyData,
+          ...result
+        };
+      }
+      let data;
+      switch (parseAs) {
+        case "arrayBuffer":
+        case "blob":
+        case "formData":
+        case "json":
+        case "text":
+          data = await response[parseAs]();
+          break;
+        case "stream":
+          return opts.responseStyle === "data" ? response.body : {
+            data: response.body,
+            ...result
+          };
+      }
+      if (parseAs === "json") {
+        if (opts.responseValidator) {
+          await opts.responseValidator(data);
+        }
+        if (opts.responseTransformer) {
+          data = await opts.responseTransformer(data);
+        }
+      }
+      return opts.responseStyle === "data" ? data : {
+        data,
+        ...result
+      };
+    }
+    const textError = await response.text();
+    let jsonError;
+    try {
+      jsonError = JSON.parse(textError);
     } catch {
     }
-    let d = b;
-    for (let u of a.error._fns) u && (d = await u(b, c, p, t));
-    if (d = d || {}, t.throwOnError) throw d;
-    return t.responseStyle === "data" ? void 0 : { error: d, ...g };
-  };
-  return { buildUrl: q, connect: (n) => o({ ...n, method: "CONNECT" }), delete: (n) => o({ ...n, method: "DELETE" }), get: (n) => o({ ...n, method: "GET" }), getConfig: e, head: (n) => o({ ...n, method: "HEAD" }), interceptors: a, options: (n) => o({ ...n, method: "OPTIONS" }), patch: (n) => o({ ...n, method: "PATCH" }), post: (n) => o({ ...n, method: "POST" }), put: (n) => o({ ...n, method: "PUT" }), request: o, setConfig: i, trace: (n) => o({ ...n, method: "TRACE" }) };
-};
-const createClientConfig = (config2) => ({
-  ...config2,
-  baseUrl: config2.baseUrl
-});
-const client = J(createClientConfig(w()));
-const extractContent = (options) => {
-  return (options.client ?? client).get({
-    url: "/extract",
-    ...options
-  });
-};
-const writeLanguage = (options) => {
-  return (options.client ?? client).post({
-    url: "/agents",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers
+    const error = jsonError ?? textError;
+    let finalError = error;
+    for (const fn of interceptors.error.fns) {
+      if (fn) {
+        finalError = await fn(error, response, request2, opts);
+      }
     }
-  });
+    finalError = finalError || {};
+    if (opts.throwOnError) {
+      throw finalError;
+    }
+    return opts.responseStyle === "data" ? void 0 : {
+      error: finalError,
+      ...result
+    };
+  };
+  const makeMethodFn = (method) => (options) => request({ ...options, method });
+  const makeSseFn = (method) => async (options) => {
+    const { opts, url } = await beforeRequest(options);
+    return createSseClient({
+      ...opts,
+      body: opts.body,
+      headers: opts.headers,
+      method,
+      onRequest: async (url2, init) => {
+        let request2 = new Request(url2, init);
+        for (const fn of interceptors.request.fns) {
+          if (fn) {
+            request2 = await fn(request2, opts);
+          }
+        }
+        return request2;
+      },
+      url
+    });
+  };
+  return {
+    buildUrl,
+    connect: makeMethodFn("CONNECT"),
+    delete: makeMethodFn("DELETE"),
+    get: makeMethodFn("GET"),
+    getConfig,
+    head: makeMethodFn("HEAD"),
+    interceptors,
+    options: makeMethodFn("OPTIONS"),
+    patch: makeMethodFn("PATCH"),
+    post: makeMethodFn("POST"),
+    put: makeMethodFn("PUT"),
+    request,
+    setConfig,
+    sse: {
+      connect: makeSseFn("CONNECT"),
+      delete: makeSseFn("DELETE"),
+      get: makeSseFn("GET"),
+      head: makeSseFn("HEAD"),
+      options: makeSseFn("OPTIONS"),
+      patch: makeSseFn("PATCH"),
+      post: makeSseFn("POST"),
+      put: makeSseFn("PUT"),
+      trace: makeSseFn("TRACE")
+    },
+    trace: makeMethodFn("TRACE")
+  };
 };
-const searchWeb = (options) => {
-  return (options.client ?? client).get({
-    url: "/search",
-    ...options
-  });
-};
+const baseUrl = "https://qwksearch.com/api";
+const createClientConfig = (config) => ({
+  ...config,
+  baseUrl
+});
+const client = createClient(createClientConfig(createConfig()));
+const extractContent = (options) => (options.client ?? client).get({ url: "/extract", ...options });
+const writeLanguage = (options) => (options.client ?? client).post({
+  url: "/agents",
+  ...options,
+  headers: {
+    "Content-Type": "application/json",
+    ...options.headers
+  }
+});
+const searchWeb = (options) => (options.client ?? client).get({ url: "/search", ...options });
 const QWKSEARCH_CONFIG = {
   baseURL: typeof process !== "undefined" && process?.env.QWKSEARCH_URL || "https://api.qwksearch.com",
   apiKey: typeof process !== "undefined" && process?.env.QWKSEARCH_API_KEY || null
@@ -2029,7 +2598,7 @@ function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
   }
   if (toStandardHTML) {
     const reverseEntityMap = Object.fromEntries(
-      Object.entries(entityMap).map(([k, v2]) => [v2, k])
+      Object.entries(entityMap).map(([k, v]) => [v, k])
     );
     reverseEntityMap["&apos;"] = "'";
     reverseEntityMap["&laquo;"] = "«";

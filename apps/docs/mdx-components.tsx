@@ -1,15 +1,17 @@
-import defaultMdxComponents from 'fumadocs-ui/mdx';
-import type { MDXComponents } from 'mdx/types';
-import { openapi } from '@/lib/source';
-import { createAPIPage } from 'fumadocs-openapi/ui';
+
 import * as TabsComponents from 'fumadocs-ui/components/tabs';
+import defaultComponents from 'fumadocs-ui/mdx';
+import { APIPage } from '@/app/components/api-page';
+import type { MDXComponents } from 'mdx/types';
+// make sure you can use it in MDX files
+
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
-    ...defaultMdxComponents,
     ...TabsComponents,
-
-    APIPage: createAPIPage(openapi),
+    ...defaultComponents,
+    // @ts-ignore
+    APIPage,
     ...components,
   };
 }

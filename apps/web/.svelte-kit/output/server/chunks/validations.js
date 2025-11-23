@@ -1,168 +1,6 @@
-import { a7 as createAuthMiddleware, a8 as sessionMiddleware, Q as generateId, a9 as ms } from "./better-auth.Dgq_1hxR.js";
-import "better-call";
-import * as z from "zod";
-import { z as z$1 } from "zod";
-import "@better-auth/utils/base64";
-import "@better-auth/utils/hmac";
-import "@better-auth/utils/binary";
-import "@better-auth/utils/hash";
-import "@better-auth/utils/hex";
-import "@better-auth/utils/random";
-import "@better-fetch/fetch";
-import "defu";
-import "kysely";
 import TTLCache from "@isaacs/ttlcache";
 import { nanoid } from "nanoid";
-createAuthMiddleware(async () => {
-  return {};
-});
-createAuthMiddleware(
-  {
-    use: [sessionMiddleware]
-  },
-  async (ctx) => {
-    const session = ctx.context.session;
-    return {
-      session
-    };
-  }
-);
-const role = z.string();
-const invitationStatus = z.enum(["pending", "accepted", "rejected", "canceled"]).default("pending");
-z.object({
-  id: z.string().default(generateId),
-  name: z.string(),
-  slug: z.string(),
-  logo: z.string().nullish().optional(),
-  metadata: z.record(z.string(), z.unknown()).or(z.string().transform((v) => JSON.parse(v))).optional(),
-  createdAt: z.date()
-});
-z.object({
-  id: z.string().default(generateId),
-  organizationId: z.string(),
-  userId: z.coerce.string(),
-  role,
-  createdAt: z.date().default(() => /* @__PURE__ */ new Date())
-});
-z.object({
-  id: z.string().default(generateId),
-  organizationId: z.string(),
-  email: z.string(),
-  role,
-  status: invitationStatus,
-  teamId: z.string().nullish(),
-  inviterId: z.string(),
-  expiresAt: z.date()
-});
-z.object({
-  id: z.string().default(generateId),
-  name: z.string().min(1),
-  organizationId: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date().optional()
-});
-z.object({
-  id: z.string().default(generateId),
-  teamId: z.string(),
-  userId: z.string(),
-  createdAt: z.date().default(() => /* @__PURE__ */ new Date())
-});
-z.object({
-  id: z.string().default(generateId),
-  organizationId: z.string(),
-  role: z.string(),
-  permission: z.record(z.string(), z.array(z.string())),
-  createdAt: z.date().default(() => /* @__PURE__ */ new Date()),
-  updatedAt: z.date().optional()
-});
-const defaultRoles = ["admin", "member", "owner"];
-z.union([
-  z.enum(defaultRoles),
-  z.array(z.enum(defaultRoles))
-]);
-z.optional(
-  z.object({
-    /**
-     * If cookie cache is enabled, it will disable the cache
-     * and fetch the session from the database
-     */
-    disableCookieCache: z.boolean().meta({
-      description: "Disable cookie cache and fetch session from database"
-    }).or(z.string().transform((v) => v === "true")).optional(),
-    disableRefresh: z.boolean().meta({
-      description: "Disable session refresh. Useful for checking session status, without updating the session"
-    }).optional()
-  })
-);
-z.object({
-  id: z.string(),
-  deviceCode: z.string(),
-  userCode: z.string(),
-  userId: z.string().optional(),
-  expiresAt: z.date(),
-  status: z.string(),
-  lastPolledAt: z.date().optional(),
-  pollingInterval: z.number().optional(),
-  clientId: z.string().optional(),
-  scope: z.string().optional()
-});
-const msStringValueSchema = z.custom(
-  (val) => {
-    try {
-      ms(val);
-    } catch (e) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message: "Invalid time string format. Use formats like '30m', '5s', '1h', etc."
-  }
-);
-z.object({
-  expiresIn: msStringValueSchema.default("30m").describe(
-    "Time in seconds until the device code expires. Use formats like '30m', '5s', '1h', etc."
-  ),
-  interval: msStringValueSchema.default("5s").describe(
-    "Time in seconds between polling attempts. Use formats like '30m', '5s', '1h', etc."
-  ),
-  deviceCodeLength: z.number().int().positive().default(40).describe(
-    "Length of the device code to be generated. Default is 40 characters."
-  ),
-  userCodeLength: z.number().int().positive().default(8).describe(
-    "Length of the user code to be generated. Default is 8 characters."
-  ),
-  generateDeviceCode: z.custom(
-    (val) => typeof val === "function",
-    {
-      message: "generateDeviceCode must be a function that returns a string or a promise that resolves to a string."
-    }
-  ).optional().describe(
-    "Function to generate a device code. If not provided, a default random string generator will be used."
-  ),
-  generateUserCode: z.custom(
-    (val) => typeof val === "function",
-    {
-      message: "generateUserCode must be a function that returns a string or a promise that resolves to a string."
-    }
-  ).optional().describe(
-    "Function to generate a user code. If not provided, a default random string generator will be used."
-  ),
-  validateClient: z.custom(
-    (val) => typeof val === "function",
-    {
-      message: "validateClient must be a function that returns a boolean or a promise that resolves to a boolean."
-    }
-  ).optional().describe(
-    "Function to validate the client ID. If not provided, no validation will be performed."
-  ),
-  onDeviceAuthRequest: z.custom((val) => typeof val === "function", {
-    message: "onDeviceAuthRequest must be a function that returns void or a promise that resolves to void."
-  }).optional().describe(
-    "Function to handle device authorization requests. If not provided, no additional actions will be taken."
-  ),
-  schema: z.custom(() => true)
-});
+import { z } from "zod";
 let defaultHashFunction;
 if (globalThis?.crypto?.subtle) {
   defaultHashFunction = subtleSha256;
@@ -575,30 +413,30 @@ const EMAIL_MIN_LEN = 6;
 const EMAIL_MAX_LEN = 50;
 const USER_ID_LEN = 15;
 const TOKEN_LEN = 15;
-const emailField = z$1.string({ required_error: "Email is required" }).trim().email({ message: "Email must be a valid email address" }).min(EMAIL_MIN_LEN, {
+const emailField = z.string({ required_error: "Email is required" }).trim().email({ message: "Email must be a valid email address" }).min(EMAIL_MIN_LEN, {
   message: `Email must be at least ${EMAIL_MIN_LEN} characters`
 }).max(EMAIL_MAX_LEN, {
   message: `Email must not exceed ${EMAIL_MAX_LEN} characters`
 });
-z$1.boolean().default(false);
-z$1.boolean().default(false);
-const nameField = z$1.string({ required_error: "Name is required" }).trim().min(NAME_MIN_LEN, {
+z.boolean().default(false);
+z.boolean().default(false);
+const nameField = z.string({ required_error: "Name is required" }).trim().min(NAME_MIN_LEN, {
   message: `Name must be at least ${NAME_MIN_LEN} characters`
 }).max(NAME_MAX_LEN, {
   message: `Name must be at least ${NAME_MAX_LEN} characters`
 });
-const passwordConfirmField = z$1.string({
+const passwordConfirmField = z.string({
   required_error: "Password confirm is required"
 });
 const passwordConfirmMustBeEqualToPassword = ({ password, passwordConfirm }, ctx) => {
   if (passwordConfirm.length > 0 && password !== passwordConfirm) {
     ctx.addIssue({
-      code: z$1.ZodIssueCode.custom,
+      code: z.ZodIssueCode.custom,
       message: "Password and password confirm must match",
       path: ["password"]
     });
     ctx.addIssue({
-      code: z$1.ZodIssueCode.custom,
+      code: z.ZodIssueCode.custom,
       message: "Password and password confirm must match",
       path: ["passwordConfirm"]
     });
@@ -607,64 +445,64 @@ const passwordConfirmMustBeEqualToPassword = ({ password, passwordConfirm }, ctx
 const passwordRegex = new RegExp(
   `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*"'()+,\\-./:;<=>?[\\]^_\`{|}~])[A-Za-z0-9!@#$%^&*"'()+,\\-./:;<=>?[\\]^_\`{|}~]{${PASSWORD_MIN_LEN},${PASSWORD_MAX_LEN}}$`
 );
-const passwordField = z$1.string({ required_error: "Password is required" }).regex(passwordRegex, { message: "Password is invalid." }).min(PASSWORD_MIN_LEN, {
+const passwordField = z.string({ required_error: "Password is required" }).regex(passwordRegex, { message: "Password is invalid." }).min(PASSWORD_MIN_LEN, {
   message: `Password minimum length is ${PASSWORD_MIN_LEN}`
 }).max(PASSWORD_MAX_LEN, {
   message: `Password max length is ${PASSWORD_MAX_LEN}`
 });
-const tokenField = z$1.string({ required_error: "Token is required." }).trim().length(TOKEN_LEN, { message: `Token must be ${TOKEN_LEN} characters` });
-const userIdField = z$1.string({ required_error: "UserId is required" }).trim().length(USER_ID_LEN, {
+const tokenField = z.string({ required_error: "Token is required." }).trim().length(TOKEN_LEN, { message: `Token must be ${TOKEN_LEN} characters` });
+const userIdField = z.string({ required_error: "UserId is required" }).trim().length(USER_ID_LEN, {
   message: `User id must be ${USER_ID_LEN} characters`
 });
-const usernameField = z$1.string({ required_error: "Username is valid." }).trim().min(USERNAME_MIN_LEN, {
+const usernameField = z.string({ required_error: "Username is valid." }).trim().min(USERNAME_MIN_LEN, {
   message: `Username must be at least ${USERNAME_MIN_LEN} characters`
 }).max(USERNAME_MAX_LEN, {
   message: `Username must be max ${USERNAME_MAX_LEN} characters`
 });
-z$1.object({
+z.object({
   email: emailField,
   password: passwordField
 });
-z$1.object({
+z.object({
   name: nameField,
   email: emailField,
   password: passwordField,
   passwordConfirm: passwordConfirmField
 }).superRefine(passwordConfirmMustBeEqualToPassword);
-z$1.object({
+z.object({
   token: tokenField
 });
-z$1.object({
+z.object({
   email: emailField
 });
-z$1.object({
+z.object({
   token: tokenField
 });
-z$1.object({
+z.object({
   email: emailField
 });
-z$1.object({
+z.object({
   token: tokenField
 });
-z$1.object({
+z.object({
   password: passwordField,
   passwordConfirm: passwordConfirmField
 }).superRefine(passwordConfirmMustBeEqualToPassword);
-z$1.object({
+z.object({
   name: nameField
 });
-z$1.object({
+z.object({
   name: nameField
 });
-z$1.object({
+z.object({
   username: usernameField
 });
-z$1.object({
+z.object({
   token: tokenField
 });
-z$1.object({
+z.object({
   userId: userIdField
 });
-z$1.object({
+z.object({
   name: nameField
 });

@@ -1,7 +1,8 @@
 import type { CreateClientConfig } from './src/client.gen';
-import { baseURL } from './openapi-ts.config';
+
+export const baseUrl = 'https://qwksearch.com/api';
 
 export const createClientConfig: CreateClientConfig = (config) => ({
   ...config,
-  baseUrl: baseURL,
+  baseUrl,
 });

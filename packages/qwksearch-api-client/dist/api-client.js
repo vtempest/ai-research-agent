@@ -1,4 +1,3 @@
-import { defineConfig } from "@hey-api/openapi-ts";
 const jsonBodySerializer = {
   bodySerializer: (body) => JSON.stringify(
     body,
@@ -327,14 +326,14 @@ const defaultPathSerializer = ({ path, url: _url }) => {
   return url;
 };
 const getUrl = ({
-  baseUrl,
+  baseUrl: baseUrl2,
   path,
   query,
   querySerializer,
   url: _url
 }) => {
   const pathUrl = _url.startsWith("/") ? _url : `/${_url}`;
-  let url = (baseUrl ?? "") + pathUrl;
+  let url = (baseUrl2 ?? "") + pathUrl;
   if (path) {
     url = defaultPathSerializer({ path, url });
   }
@@ -493,12 +492,12 @@ const buildUrl = (options) => getUrl({
   url: options.url
 });
 const mergeConfigs = (a, b) => {
-  const config2 = { ...a, ...b };
-  if (config2.baseUrl?.endsWith("/")) {
-    config2.baseUrl = config2.baseUrl.substring(0, config2.baseUrl.length - 1);
+  const config = { ...a, ...b };
+  if (config.baseUrl?.endsWith("/")) {
+    config.baseUrl = config.baseUrl.substring(0, config.baseUrl.length - 1);
   }
-  config2.headers = mergeHeaders(a.headers, b.headers);
-  return config2;
+  config.headers = mergeHeaders(a.headers, b.headers);
+  return config;
 };
 const headersEntries = (headers) => {
   const entries = [];
@@ -591,11 +590,11 @@ const createConfig = (override = {}) => ({
   querySerializer: defaultQuerySerializer,
   ...override
 });
-const createClient = (config2 = {}) => {
-  let _config = mergeConfigs(createConfig(), config2);
+const createClient = (config = {}) => {
+  let _config = mergeConfigs(createConfig(), config);
   const getConfig = () => ({ ..._config });
-  const setConfig = (config22) => {
-    _config = mergeConfigs(_config, config22);
+  const setConfig = (config2) => {
+    _config = mergeConfigs(_config, config2);
     return getConfig();
   };
   const interceptors = createInterceptors();
@@ -639,7 +638,31 @@ const createClient = (config2 = {}) => {
       }
     }
     const _fetch = opts.fetch;
-    let response = await _fetch(request2);
+    let response;
+    try {
+      response = await _fetch(request2);
+    } catch (error2) {
+      let finalError2 = error2;
+      for (const fn of interceptors.error.fns) {
+        if (fn) {
+          finalError2 = await fn(
+            error2,
+            void 0,
+            request2,
+            opts
+          );
+        }
+      }
+      finalError2 = finalError2 || {};
+      if (opts.throwOnError) {
+        throw finalError2;
+      }
+      return opts.responseStyle === "data" ? void 0 : {
+        error: finalError2,
+        request: request2,
+        response: void 0
+      };
+    }
     for (const fn of interceptors.response.fns) {
       if (fn) {
         response = await fn(response, request2, opts);
@@ -773,45 +796,22 @@ const createClient = (config2 = {}) => {
     trace: makeMethodFn("TRACE")
   };
 };
-const baseURL = process.env.API_URL || "https://qwksearch.com/api";
-const config = {
-  input: "./qwksearch-openapi.yml",
-  output: "./src",
-  plugins: [
-    {
-      name: "@hey-api/client-fetch",
-      runtimeConfigPath: "../baseurl.ts"
-    }
-  ]
-};
-defineConfig(config);
-const createClientConfig = (config2) => ({
-  ...config2,
-  baseUrl: baseURL
+const baseUrl = "https://qwksearch.com/api";
+const createClientConfig = (config) => ({
+  ...config,
+  baseUrl
 });
 const client = createClient(createClientConfig(createConfig()));
-const extractContent = (options) => {
-  return (options.client ?? client).get({
-    url: "/extract",
-    ...options
-  });
-};
-const writeLanguage = (options) => {
-  return (options.client ?? client).post({
-    url: "/agents",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers
-    }
-  });
-};
-const searchWeb = (options) => {
-  return (options.client ?? client).get({
-    url: "/search",
-    ...options
-  });
-};
+const extractContent = (options) => (options.client ?? client).get({ url: "/extract", ...options });
+const writeLanguage = (options) => (options.client ?? client).post({
+  url: "/agents",
+  ...options,
+  headers: {
+    "Content-Type": "application/json",
+    ...options.headers
+  }
+});
+const searchWeb = (options) => (options.client ?? client).get({ url: "/search", ...options });
 export {
   extractContent,
   searchWeb,

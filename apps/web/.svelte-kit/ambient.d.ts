@@ -26,23 +26,19 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const APPDIR: string;
-	export const APPIMAGE: string;
-	export const ARGV0: string;
+	export const ANTIGRAVITY_CLI_ALIAS: string;
 	export const BUNDLED_DEBUGPY_PATH: string;
 	export const BUN_INSTALL: string;
 	export const CHROME_DESKTOP: string;
 	export const COLORTERM: string;
-	export const CURSOR_TRACE_ID: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const DEBUGINFOD_URLS: string;
-	export const DESKTOPINTEGRATION: string;
 	export const DESKTOP_SESSION: string;
 	export const DISPLAY: string;
 	export const DOCKER_HOST: string;
 	export const GDK_BACKEND: string;
 	export const GIT_ASKPASS: string;
-	export const GSETTINGS_SCHEMA_DIR: string;
+	export const GIT_DISCOVERY_ACROSS_FILESYSTEM: string;
 	export const GTK2_RC_FILES: string;
 	export const GTK_RC_FILES: string;
 	export const HOME: string;
@@ -63,7 +59,6 @@ declare module '$env/static/private' {
 	export const LC_PAPER: string;
 	export const LC_TELEPHONE: string;
 	export const LC_TIME: string;
-	export const LD_LIBRARY_PATH: string;
 	export const LOGNAME: string;
 	export const MAIL: string;
 	export const MANAGERPID: string;
@@ -77,14 +72,12 @@ declare module '$env/static/private' {
 	export const OMF_CONFIG: string;
 	export const OMF_PATH: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
-	export const OWD: string;
 	export const PATH: string;
-	export const PERLLIB: string;
 	export const PWD: string;
 	export const PYDEVD_DISABLE_FILE_VALIDATION: string;
-	export const QT_PLUGIN_PATH: string;
+	export const PYTHONSTARTUP: string;
+	export const PYTHON_BASIC_REPL: string;
 	export const QT_WAYLAND_RECONNECT: string;
-	export const REDIRECT_APPIMAGE: string;
 	export const SESSION_MANAGER: string;
 	export const SHELL: string;
 	export const SHLVL: string;
@@ -102,6 +95,7 @@ declare module '$env/static/private' {
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
+	export const VSCODE_NONCE: string;
 	export const WAYLAND_DISPLAY: string;
 	export const WRANGLER_DOCKER_BIN: string;
 	export const XAUTHORITY: string;
@@ -120,6 +114,7 @@ declare module '$env/static/private' {
 	export const XDG_VTNR: string;
 	export const XKB_DEFAULT_LAYOUT: string;
 	export const _: string;
+	export const _JAVA_AWT_WM_NONREPARENTING: string;
 	export const _VOLTA_TOOL_RECURSION: string;
 	export const npm_command: string;
 	export const npm_config_local_prefix: string;
@@ -161,23 +156,19 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		APPDIR: string;
-		APPIMAGE: string;
-		ARGV0: string;
+		ANTIGRAVITY_CLI_ALIAS: string;
 		BUNDLED_DEBUGPY_PATH: string;
 		BUN_INSTALL: string;
 		CHROME_DESKTOP: string;
 		COLORTERM: string;
-		CURSOR_TRACE_ID: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
 		DEBUGINFOD_URLS: string;
-		DESKTOPINTEGRATION: string;
 		DESKTOP_SESSION: string;
 		DISPLAY: string;
 		DOCKER_HOST: string;
 		GDK_BACKEND: string;
 		GIT_ASKPASS: string;
-		GSETTINGS_SCHEMA_DIR: string;
+		GIT_DISCOVERY_ACROSS_FILESYSTEM: string;
 		GTK2_RC_FILES: string;
 		GTK_RC_FILES: string;
 		HOME: string;
@@ -198,7 +189,6 @@ declare module '$env/dynamic/private' {
 		LC_PAPER: string;
 		LC_TELEPHONE: string;
 		LC_TIME: string;
-		LD_LIBRARY_PATH: string;
 		LOGNAME: string;
 		MAIL: string;
 		MANAGERPID: string;
@@ -212,14 +202,12 @@ declare module '$env/dynamic/private' {
 		OMF_CONFIG: string;
 		OMF_PATH: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
-		OWD: string;
 		PATH: string;
-		PERLLIB: string;
 		PWD: string;
 		PYDEVD_DISABLE_FILE_VALIDATION: string;
-		QT_PLUGIN_PATH: string;
+		PYTHONSTARTUP: string;
+		PYTHON_BASIC_REPL: string;
 		QT_WAYLAND_RECONNECT: string;
-		REDIRECT_APPIMAGE: string;
 		SESSION_MANAGER: string;
 		SHELL: string;
 		SHLVL: string;
@@ -237,6 +225,7 @@ declare module '$env/dynamic/private' {
 		VSCODE_GIT_ASKPASS_MAIN: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
 		VSCODE_GIT_IPC_HANDLE: string;
+		VSCODE_NONCE: string;
 		WAYLAND_DISPLAY: string;
 		WRANGLER_DOCKER_BIN: string;
 		XAUTHORITY: string;
@@ -255,6 +244,7 @@ declare module '$env/dynamic/private' {
 		XDG_VTNR: string;
 		XKB_DEFAULT_LAYOUT: string;
 		_: string;
+		_JAVA_AWT_WM_NONREPARENTING: string;
 		_VOLTA_TOOL_RECURSION: string;
 		npm_command: string;
 		npm_config_local_prefix: string;

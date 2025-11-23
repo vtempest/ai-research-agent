@@ -1,3 +1,4 @@
+const SCHEME = /^[a-z][a-z\d+\-.]+:/i;
 const internal = new URL("sveltekit-internal://");
 function resolve(base, path) {
   if (path[0] === "/" && path[1] === "/") return path;
@@ -158,6 +159,7 @@ const validate_layout_server_exports = validator(valid_layout_server_exports);
 const validate_page_server_exports = validator(valid_page_server_exports);
 const validate_server_exports = validator(valid_server_exports);
 export {
+  SCHEME as S,
   decode_params as a,
   validate_layout_exports as b,
   validate_page_server_exports as c,

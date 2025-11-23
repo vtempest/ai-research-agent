@@ -1,48 +1,5 @@
-import { W as sanitize_props, X as rest_props, Y as fallback, l as ensure_array_like, m as spread_attributes, o as clsx, Z as element, _ as slot, t as bind_props, u as pop, p as push, $ as spread_props } from "./index.js";
-/**
- * @license lucide-svelte v0.544.0 - ISC
- *
- * ISC License
- * 
- * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
- * 
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- * 
- * ---
- * 
- * The MIT License (MIT) (for portions derived from Feather)
- * 
- * Copyright (c) 2013-2023 Cole Bemis
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- * 
- */
+import { f as sanitize_props, g as rest_props, b as attributes, c as clsx, e as ensure_array_like, j as element, k as slot, d as bind_props, l as spread_props } from "./index2.js";
+import { aa as fallback } from "./context.js";
 const defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -54,7 +11,7 @@ const defaultAttributes = {
   "stroke-linecap": "round",
   "stroke-linejoin": "round"
 };
-function Icon($$payload, $$props) {
+function Icon($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const $$restProps = rest_props($$sanitized_props, [
     "name",
@@ -64,97 +21,53 @@ function Icon($$payload, $$props) {
     "absoluteStrokeWidth",
     "iconNode"
   ]);
-  push();
-  let name = fallback($$props["name"], void 0);
-  let color = fallback($$props["color"], "currentColor");
-  let size = fallback($$props["size"], 24);
-  let strokeWidth = fallback($$props["strokeWidth"], 2);
-  let absoluteStrokeWidth = fallback($$props["absoluteStrokeWidth"], false);
-  let iconNode = fallback($$props["iconNode"], () => [], true);
-  const mergeClasses = (...classes) => classes.filter((className, index, array) => {
-    return Boolean(className) && array.indexOf(className) === index;
-  }).join(" ");
-  const each_array = ensure_array_like(iconNode);
-  $$payload.out.push(`<svg${spread_attributes(
-    {
-      ...defaultAttributes,
-      ...$$restProps,
-      width: size,
-      height: size,
-      stroke: color,
-      "stroke-width": absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
-      class: clsx(mergeClasses("lucide-icon", "lucide", name ? `lucide-${name}` : "", $$sanitized_props.class))
-    },
-    null,
-    void 0,
-    void 0,
-    3
-  )}><!--[-->`);
-  for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-    let [tag, attrs] = each_array[$$index];
-    element($$payload, tag, () => {
-      $$payload.out.push(`${spread_attributes({ ...attrs }, null, void 0, void 0, 3)}`);
+  $$renderer.component(($$renderer2) => {
+    let name = fallback($$props["name"], void 0);
+    let color = fallback($$props["color"], "currentColor");
+    let size = fallback($$props["size"], 24);
+    let strokeWidth = fallback($$props["strokeWidth"], 2);
+    let absoluteStrokeWidth = fallback($$props["absoluteStrokeWidth"], false);
+    let iconNode = fallback($$props["iconNode"], () => [], true);
+    const mergeClasses = (...classes) => classes.filter((className, index, array) => {
+      return Boolean(className) && array.indexOf(className) === index;
+    }).join(" ");
+    $$renderer2.push(`<svg${attributes(
+      {
+        ...defaultAttributes,
+        ...$$restProps,
+        width: size,
+        height: size,
+        stroke: color,
+        "stroke-width": absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+        class: clsx(mergeClasses("lucide-icon", "lucide", name ? `lucide-${name}` : "", $$sanitized_props.class))
+      },
+      void 0,
+      void 0,
+      void 0,
+      3
+    )}><!--[-->`);
+    const each_array = ensure_array_like(iconNode);
+    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+      let [tag, attrs] = each_array[$$index];
+      element($$renderer2, tag, () => {
+        $$renderer2.push(`${attributes({ ...attrs }, void 0, void 0, void 0, 3)}`);
+      });
+    }
+    $$renderer2.push(`<!--]--><!--[-->`);
+    slot($$renderer2, $$props, "default", {});
+    $$renderer2.push(`<!--]--></svg>`);
+    bind_props($$props, {
+      name,
+      color,
+      size,
+      strokeWidth,
+      absoluteStrokeWidth,
+      iconNode
     });
-  }
-  $$payload.out.push(`<!--]--><!---->`);
-  slot($$payload, $$props, "default", {});
-  $$payload.out.push(`<!----></svg>`);
-  bind_props($$props, {
-    name,
-    color,
-    size,
-    strokeWidth,
-    absoluteStrokeWidth,
-    iconNode
   });
-  pop();
 }
-function Brain($$payload, $$props) {
+function Brain($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M12 18V5" }],
     [
@@ -174,7 +87,7 @@ function Brain($$payload, $$props) {
     ["path", { "d": "M6 18a4 4 0 0 1-2-7.464" }],
     ["path", { "d": "M6.003 5.125a4 4 0 0 0-2.526 5.77" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "brain" },
     $$sanitized_props,
     {
@@ -190,68 +103,24 @@ function Brain($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Chart_column($$payload, $$props) {
+function Chart_column($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M3 3v16a2 2 0 0 0 2 2h16" }],
     ["path", { "d": "M18 17V9" }],
     ["path", { "d": "M13 17V5" }],
     ["path", { "d": "M8 17v-3" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "chart-column" },
     $$sanitized_props,
     {
@@ -267,67 +136,23 @@ function Chart_column($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Chart_no_axes_column($$payload, $$props) {
+function Chart_no_axes_column($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M5 21v-6" }],
     ["path", { "d": "M12 21V3" }],
     ["path", { "d": "M19 21V9" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "chart-no-axes-column" },
     $$sanitized_props,
     {
@@ -343,66 +168,22 @@ function Chart_no_axes_column($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Clock($$payload, $$props) {
+function Clock($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M12 6v6l4 2" }],
     ["circle", { "cx": "12", "cy": "12", "r": "10" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "clock" },
     $$sanitized_props,
     {
@@ -418,61 +199,17 @@ function Clock($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Cog($$payload, $$props) {
+function Cog($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M11 10.27 7 3.34" }],
     ["path", { "d": "m11 13.73-4 6.93" }],
@@ -489,7 +226,7 @@ function Cog($$payload, $$props) {
     ["circle", { "cx": "12", "cy": "12", "r": "2" }],
     ["circle", { "cx": "12", "cy": "12", "r": "8" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "cog" },
     $$sanitized_props,
     {
@@ -505,61 +242,17 @@ function Cog($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Compass($$payload, $$props) {
+function Compass($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "path",
@@ -569,7 +262,7 @@ function Compass($$payload, $$props) {
     ],
     ["circle", { "cx": "12", "cy": "12", "r": "10" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "compass" },
     $$sanitized_props,
     {
@@ -585,61 +278,17 @@ function Compass($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Credit_card($$payload, $$props) {
+function Credit_card($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "rect",
@@ -647,7 +296,7 @@ function Credit_card($$payload, $$props) {
     ],
     ["line", { "x1": "2", "x2": "22", "y1": "10", "y2": "10" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "credit-card" },
     $$sanitized_props,
     {
@@ -663,67 +312,23 @@ function Credit_card($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Database($$payload, $$props) {
+function Database($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["ellipse", { "cx": "12", "cy": "5", "rx": "9", "ry": "3" }],
     ["path", { "d": "M3 5V19A9 3 0 0 0 21 19V5" }],
     ["path", { "d": "M3 12A9 3 0 0 0 21 12" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "database" },
     $$sanitized_props,
     {
@@ -739,66 +344,22 @@ function Database($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Gauge($$payload, $$props) {
+function Gauge($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "m12 14 4-4" }],
     ["path", { "d": "M3.34 19a10 10 0 1 1 17.32 0" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "gauge" },
     $$sanitized_props,
     {
@@ -814,61 +375,17 @@ function Gauge($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Globe($$payload, $$props) {
+function Globe($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["circle", { "cx": "12", "cy": "12", "r": "10" }],
     [
@@ -877,7 +394,7 @@ function Globe($$payload, $$props) {
     ],
     ["path", { "d": "M2 12h20" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "globe" },
     $$sanitized_props,
     {
@@ -893,61 +410,17 @@ function Globe($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Headphones($$payload, $$props) {
+function Headphones($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "path",
@@ -956,7 +429,7 @@ function Headphones($$payload, $$props) {
       }
     ]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "headphones" },
     $$sanitized_props,
     {
@@ -972,61 +445,17 @@ function Headphones($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Infinity($$payload, $$props) {
+function Infinity($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "path",
@@ -1035,7 +464,7 @@ function Infinity($$payload, $$props) {
       }
     ]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "infinity" },
     $$sanitized_props,
     {
@@ -1051,61 +480,17 @@ function Infinity($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Message_circle_question_mark($$payload, $$props) {
+function Message_circle_question_mark($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "path",
@@ -1116,7 +501,7 @@ function Message_circle_question_mark($$payload, $$props) {
     ["path", { "d": "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" }],
     ["path", { "d": "M12 17h.01" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "message-circle-question-mark" },
     $$sanitized_props,
     {
@@ -1132,61 +517,17 @@ function Message_circle_question_mark($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Phone_call($$payload, $$props) {
+function Phone_call($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M13 2a9 9 0 0 1 9 9" }],
     ["path", { "d": "M13 6a5 5 0 0 1 5 5" }],
@@ -1197,7 +538,7 @@ function Phone_call($$payload, $$props) {
       }
     ]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "phone-call" },
     $$sanitized_props,
     {
@@ -1213,61 +554,17 @@ function Phone_call($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Smile_plus($$payload, $$props) {
+function Smile_plus($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["path", { "d": "M22 11v1a10 10 0 1 1-9-10" }],
     ["path", { "d": "M8 14s1.5 2 4 2 4-2 4-2" }],
@@ -1276,7 +573,7 @@ function Smile_plus($$payload, $$props) {
     ["path", { "d": "M16 5h6" }],
     ["path", { "d": "M19 2v6" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "smile-plus" },
     $$sanitized_props,
     {
@@ -1292,61 +589,17 @@ function Smile_plus($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Sparkles($$payload, $$props) {
+function Sparkles($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     [
       "path",
@@ -1358,7 +611,7 @@ function Sparkles($$payload, $$props) {
     ["path", { "d": "M22 4h-4" }],
     ["circle", { "cx": "4", "cy": "20", "r": "2" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "sparkles" },
     $$sanitized_props,
     {
@@ -1374,67 +627,23 @@ function Sparkles($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }
   ]));
 }
-function Target($$payload, $$props) {
+function Target($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.544.0 - ISC
-   *
-   * ISC License
-   *
-   * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2025.
-   *
-   * Permission to use, copy, modify, and/or distribute this software for any
-   * purpose with or without fee is hereby granted, provided that the above
-   * copyright notice and this permission notice appear in all copies.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-   * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-   * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-   * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-   * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-   * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-   * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-   *
-   * ---
-   *
-   * The MIT License (MIT) (for portions derived from Feather)
-   *
-   * Copyright (c) 2013-2023 Cole Bemis
-   *
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   *
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   *
-   */
   const iconNode = [
     ["circle", { "cx": "12", "cy": "12", "r": "10" }],
     ["circle", { "cx": "12", "cy": "12", "r": "6" }],
     ["circle", { "cx": "12", "cy": "12", "r": "2" }]
   ];
-  Icon($$payload, spread_props([
+  Icon($$renderer, spread_props([
     { name: "target" },
     $$sanitized_props,
     {
@@ -1450,10 +659,10 @@ function Target($$payload, $$props) {
        *
        */
       iconNode,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        slot($$payload2, $$props, "default", {});
-        $$payload2.out.push(`<!---->`);
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
       },
       $$slots: { default: true }
     }

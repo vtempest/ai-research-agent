@@ -21,7 +21,8 @@
     "file": "chunks/Footer.svelte_svelte_type_style_lang.js",
     "name": "Footer.svelte_svelte_type_style_lang",
     "imports": [
-      "_index.js"
+      "_index2.js",
+      "_context.js"
     ],
     "css": [
       "_app/immutable/assets/Footer.D3ti1tuv.css"
@@ -31,25 +32,22 @@
     "file": "chunks/auth.js",
     "name": "auth",
     "imports": [
-      "_better-auth.Dgq_1hxR.js",
-      "_validations.js",
       "_schema.js",
       "_customize-site.js"
-    ],
-    "dynamicImports": [
-      "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/bun-sqlite-dialect.mjs",
-      "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/node-sqlite-dialect.mjs"
     ]
-  },
-  "_better-auth.Dgq_1hxR.js": {
-    "file": "chunks/better-auth.Dgq_1hxR.js",
-    "name": "better-auth.Dgq_1hxR"
   },
   "_button.js": {
     "file": "chunks/button.js",
     "name": "button",
     "imports": [
-      "_index.js"
+      "_index2.js"
+    ]
+  },
+  "_context.js": {
+    "file": "chunks/context.js",
+    "name": "context",
+    "imports": [
+      "_false.js"
     ]
   },
   "_customize-site.js": {
@@ -64,7 +62,7 @@
     "file": "chunks/events.js",
     "name": "events",
     "imports": [
-      "_index.js"
+      "_context.js"
     ]
   },
   "_exports.js": {
@@ -86,22 +84,23 @@
     "file": "chunks/index.js",
     "name": "index",
     "imports": [
-      "_false.js"
+      "_context.js"
     ]
   },
   "_index2.js": {
     "file": "chunks/index2.js",
     "name": "index",
     "imports": [
-      "_index.js"
+      "_context.js"
     ]
   },
   "_internal.js": {
     "file": "chunks/internal.js",
     "name": "internal",
     "imports": [
-      "_index.js",
+      "_context.js",
       "_events.js",
+      "_index2.js",
       "_environment.js"
     ],
     "dynamicImports": [
@@ -125,15 +124,12 @@
   },
   "_validations.js": {
     "file": "chunks/validations.js",
-    "name": "validations",
-    "imports": [
-      "_better-auth.Dgq_1hxR.js"
-    ]
+    "name": "validations"
   },
-  "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
+  "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
     "file": "remote-entry.js",
     "name": "remote-entry",
-    "src": "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
     "isEntry": true,
     "imports": [
       "_shared.js",
@@ -141,44 +137,32 @@
       "_environment.js"
     ]
   },
-  "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
+  "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
     "name": "entries/fallbacks/error.svelte",
-    "src": "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
+      "_context.js",
       "_exports.js",
       "_utils.js",
-      "_index2.js"
+      "_index.js"
     ]
   },
-  "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+  "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
     "file": "index.js",
     "name": "index",
-    "src": "node_modules/.pnpm/@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38.10_vite@7.1.5_@type_165d445dce9b8d769826906b8885f60b/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.49.0_@sveltejs+vite-plugin-svelte@6.2.1_svelte@5.43.14_vite@7.2.4_@type_ec474b98e3917b8dc7575b2e146150cf/node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
       "_false.js",
       "_environment.js",
+      "_shared.js",
       "_exports.js",
       "_utils.js",
-      "_index2.js",
-      "_internal.js",
-      "_shared.js"
+      "_index.js",
+      "_internal.js"
     ]
-  },
-  "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/bun-sqlite-dialect.mjs": {
-    "file": "chunks/bun-sqlite-dialect.js",
-    "name": "bun-sqlite-dialect",
-    "src": "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/bun-sqlite-dialect.mjs",
-    "isDynamicEntry": true
-  },
-  "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/node-sqlite-dialect.mjs": {
-    "file": "chunks/node-sqlite-dialect.js",
-    "name": "node-sqlite-dialect",
-    "src": "node_modules/.pnpm/better-auth@1.3.11_@sveltejs+kit@2.41.0_@sveltejs+vite-plugin-svelte@6.2.0_svelte@5.38._66e0a5a548f14a555bfc7702de8422e0/node_modules/better-auth/dist/chunks/node-sqlite-dialect.mjs",
-    "isDynamicEntry": true
   },
   "src/hooks.server.ts": {
     "file": "chunks/hooks.server.js",
@@ -189,8 +173,7 @@
       "_schema.js",
       "_auth.js",
       "_customize-site.js",
-      "_validations.js",
-      "_better-auth.Dgq_1hxR.js"
+      "_validations.js"
     ]
   },
   "src/routes/+layout.js": {
@@ -205,7 +188,7 @@
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "css": [
-      "_app/immutable/assets/_layout.DZFhq6dy.css"
+      "_app/immutable/assets/_layout.BrQ2YxK2.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -214,18 +197,18 @@
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
       "_index2.js",
+      "_index.js",
+      "_context.js",
       "_Footer.svelte_svelte_type_style_lang.js",
       "_button.js",
       "_events.js",
       "_BlockType.js",
       "_customize-site.js",
-      "_better-auth.Dgq_1hxR.js",
       "_html-to-content.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.Dh49Zl9v.css"
+      "_app/immutable/assets/_page.Df4hN8qY.css"
     ]
   },
   "src/routes/api/agents/+server.ts": {
@@ -296,9 +279,8 @@
     "imports": [
       "_BlockType.js",
       "_schema.js",
-      "_better-auth.Dgq_1hxR.js",
-      "_validations.js",
-      "_customize-site.js"
+      "_customize-site.js",
+      "_validations.js"
     ]
   },
   "src/routes/api/subscriptions/+server.ts": {
@@ -334,8 +316,9 @@
     "src": "src/routes/legal/privacy/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
-      "_customize-site.js"
+      "_index2.js",
+      "_customize-site.js",
+      "_context.js"
     ],
     "css": [
       "_app/immutable/assets/_page.Z69a6S5t.css"
@@ -347,8 +330,9 @@
     "src": "src/routes/legal/terms/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
-      "_customize-site.js"
+      "_index2.js",
+      "_customize-site.js",
+      "_context.js"
     ],
     "css": [
       "_app/immutable/assets/_page.DcLbCmbu.css"
@@ -360,9 +344,10 @@
     "src": "src/routes/pricing/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
+      "_index2.js",
       "_customize-site.js",
-      "_Footer.svelte_svelte_type_style_lang.js"
+      "_Footer.svelte_svelte_type_style_lang.js",
+      "_context.js"
     ]
   },
   "src/routes/settings/+layout.js": {
@@ -383,8 +368,8 @@
     "src": "src/routes/settings/+layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
-      "_button.js"
+      "_button.js",
+      "_context.js"
     ]
   },
   "src/routes/settings/+page.server.ts": {

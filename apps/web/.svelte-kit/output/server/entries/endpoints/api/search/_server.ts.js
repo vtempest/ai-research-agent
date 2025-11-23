@@ -21,22 +21,12 @@ import "marked";
 import { json } from "@sveltejs/kit";
 import "../../../../chunks/schema.js";
 import "stripe";
-import "better-call";
-import "../../../../chunks/better-auth.Dgq_1hxR.js";
-import "@better-auth/utils/base64";
-import "@better-auth/utils/hmac";
-import "@better-auth/utils/binary";
-import "@better-auth/utils/hash";
-import "@better-auth/utils/hex";
-import "@better-auth/utils/random";
-import "@better-fetch/fetch";
-import "defu";
-import "kysely";
-import "../../../../chunks/validations.js";
-import "@better-auth/utils/otp";
-import "@better-auth/utils";
+import "better-auth";
+import "better-auth/adapters/drizzle";
+import "better-auth/plugins";
 import { p as proxyDomain, s as searxngDomain } from "../../../../chunks/customize-site.js";
 import "resend";
+import "../../../../chunks/validations.js";
 async function searchWeb(query, options = {}) {
   const {
     category = "general",

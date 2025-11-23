@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  // import "grab-api.js/global";
+  // import "grab-url/global";
   import { grab, log } from "grab-url";
   import { Splitpanes, Pane } from "svelte-splitpanes";
   import SearchInput from "../SearchWeb/MainInputBox.svelte";
@@ -63,8 +63,6 @@
       debug: true,
     });
 
-
-    
   /**
    * Fetch and display html from URL
    * @param {string} articleUrl - The URL of the article to fetch
@@ -93,7 +91,7 @@
             type: "extractURL",
             url: articleUrl,
           },
-        })
+        }),
       );
 
       document.addEventListener("onExtractionResult", function (event) {
@@ -138,7 +136,7 @@
     document.querySelector("#searchInput")?.dispatchEvent(
       new MouseEvent("mousedown", {
         bubbles: true,
-      })
+      }),
     );
 
     // handle incoming vars in URL from browser search or extension
@@ -224,7 +222,7 @@
     // test if q is valid url with regex, then extract that URL
     if (
       searchText.match(
-        /^https?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/
+        /^https?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/,
       )
     ) {
       grabArticle(searchText, 0);

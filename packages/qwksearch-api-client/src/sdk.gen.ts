@@ -51,12 +51,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  * organizational author, ensuring proper citation formatting.
  *
  */
-export const extractContent = <ThrowOnError extends boolean = false>(options: Options<ExtractContentData, ThrowOnError>) => {
-    return (options.client ?? client).get<ExtractContentResponses, ExtractContentErrors, ThrowOnError>({
-        url: '/extract',
-        ...options
-    });
-};
+export const extractContent = <ThrowOnError extends boolean = false>(options: Options<ExtractContentData, ThrowOnError>) => (options.client ?? client).get<ExtractContentResponses, ExtractContentErrors, ThrowOnError>({ url: '/extract', ...options });
 
 /**
  * ## Generate language model reply using agent prompts
@@ -115,16 +110,14 @@ export const extractContent = <ThrowOnError extends boolean = false>(options: Op
  * ![agent_arch_viz2](https://i.imgur.com/uW6E9VJ.gif)
  *
  */
-export const writeLanguage = <ThrowOnError extends boolean = false>(options: Options<WriteLanguageData, ThrowOnError>) => {
-    return (options.client ?? client).post<WriteLanguageResponses, WriteLanguageErrors, ThrowOnError>({
-        url: '/agents',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const writeLanguage = <ThrowOnError extends boolean = false>(options: Options<WriteLanguageData, ThrowOnError>) => (options.client ?? client).post<WriteLanguageResponses, WriteLanguageErrors, ThrowOnError>({
+    url: '/agents',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * ## Search the web
@@ -146,9 +139,4 @@ export const writeLanguage = <ThrowOnError extends boolean = false>(options: Opt
  * Ranking uses over 200 factors, including keyword relevance, backlinks, page speed, and user experience; the top organic result gets about 22% of clicks, and ads allow monetizing keyword traffic.
  *
  */
-export const searchWeb = <ThrowOnError extends boolean = false>(options: Options<SearchWebData, ThrowOnError>) => {
-    return (options.client ?? client).get<SearchWebResponses, SearchWebErrors, ThrowOnError>({
-        url: '/search',
-        ...options
-    });
-};
+export const searchWeb = <ThrowOnError extends boolean = false>(options: Options<SearchWebData, ThrowOnError>) => (options.client ?? client).get<SearchWebResponses, SearchWebErrors, ThrowOnError>({ url: '/search', ...options });

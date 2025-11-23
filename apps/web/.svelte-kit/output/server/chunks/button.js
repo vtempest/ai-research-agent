@@ -1,4 +1,4 @@
-import { p as push, m as spread_attributes, o as clsx$1, t as bind_props, u as pop } from "./index.js";
+import { b as attributes, c as clsx$1, d as bind_props } from "./index2.js";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
@@ -127,25 +127,24 @@ const buttonVariants = tv({
   },
   defaultVariants: { variant: "default", size: "default" }
 });
-function Button($$payload, $$props) {
-  push();
-  let {
-    class: className,
-    variant = "default",
-    size = "default",
-    ref = null,
-    href = void 0,
-    type = "button",
-    disabled,
-    children,
-    $$slots,
-    $$events,
-    ...restProps
-  } = $$props;
-  if (href) {
-    $$payload.out.push("<!--[-->");
-    $$payload.out.push(`<a${spread_attributes(
-      {
+function Button($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      class: className,
+      variant = "default",
+      size = "default",
+      ref = null,
+      href = void 0,
+      type = "button",
+      disabled,
+      children,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    if (href) {
+      $$renderer2.push("<!--[-->");
+      $$renderer2.push(`<a${attributes({
         "data-slot": "button",
         class: clsx$1(cn(buttonVariants({ variant, size }), className)),
         href: disabled ? void 0 : href,
@@ -153,27 +152,24 @@ function Button($$payload, $$props) {
         role: disabled ? "link" : void 0,
         tabindex: disabled ? -1 : void 0,
         ...restProps
-      }
-    )}>`);
-    children?.($$payload);
-    $$payload.out.push(`<!----></a>`);
-  } else {
-    $$payload.out.push("<!--[!-->");
-    $$payload.out.push(`<button${spread_attributes(
-      {
+      })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></a>`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<button${attributes({
         "data-slot": "button",
         class: clsx$1(cn(buttonVariants({ variant, size }), className)),
         type,
         disabled,
         ...restProps
-      }
-    )}>`);
-    children?.($$payload);
-    $$payload.out.push(`<!----></button>`);
-  }
-  $$payload.out.push(`<!--]-->`);
-  bind_props($$props, { ref });
-  pop();
+      })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></button>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
 }
 export {
   Button as B,

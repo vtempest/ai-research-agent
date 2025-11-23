@@ -7,6 +7,7 @@
     "build": "next build --turbo; echo 'airesearch.js.org' > ./dist/CNAME;",
     "build:api": "node ./scripts/generate-api-docs.mjs ./openapi.yml",
     "dev": "next dev --turbo",
+    "copy": "rm -rf ../web/static/docs; mkdir ../web/static/docs; cp -r ./dist/* ../web/static/docs/",
     "start": "bunx concurrently \"npx serve -l 3000 ./dist --single\" \"sleep 2 && bunx open-cli http://localhost:3000\"",
     "check": "fumadocs-mdx && tsc --noEmit"
   },

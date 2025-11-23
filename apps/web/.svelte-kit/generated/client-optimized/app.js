@@ -29,6 +29,7 @@ export const hooks = {
 };
 
 export const decoders = Object.fromEntries(Object.entries(hooks.transport).map(([k, v]) => [k, v.decode]));
+export const encoders = Object.fromEntries(Object.entries(hooks.transport).map(([k, v]) => [k, v.encode]));
 
 export const hash = false;
 

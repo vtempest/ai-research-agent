@@ -1,6 +1,7 @@
 let base = "";
 let assets = base;
 const app_dir = "_app";
+const relative = true;
 const initial = { base, assets };
 function override(paths) {
   base = paths.base;
@@ -25,8 +26,9 @@ export {
   set_building as c,
   set_prerendering as d,
   assets as e,
+  reset as f,
   override as o,
   prerendering as p,
-  reset as r,
+  relative as r,
   set_assets as s
 };

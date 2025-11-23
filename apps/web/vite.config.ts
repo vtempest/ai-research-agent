@@ -19,23 +19,26 @@ export default defineConfig({
       $lib: path.resolve("./src/lib"),
       $assets: path.resolve("./src/assets"),
       $components: path.resolve("./src/lib/components"),
-      "grab-url":  path.resolve("../../../grab-url"),
-      "reason-editor":  path.resolve("../../packages/reason-editor"),
-      "qwksearch-api-client":  path.resolve("../../packages/qwksearch-api-client"),
-      "ai-research-agent":  path.resolve("../../packages/ai-research-agent/src/index.ts"),
+      "grab-url": path.resolve("../../../grab-url"),
+      "reason-editor": path.resolve("../../packages/reason-editor"),
+      "qwksearch-api-client": path.resolve("../../packages/qwksearch-api-client"),
+      "ai-research-agent": path.resolve("../../packages/ai-research-agent/src/index.ts"),
     },
+  },
+  ssr: {
+    noExternal: ['@hey-api/openapi-ts'], // keep it externalized in server build only
   },
   build: {
     rollupOptions: {
       // @ts-ignore
       plugins: [rollupNodePolyFill()],
-      external: [ 'fs'] // Prevent double-bundling
+      external: ['fs'] // Prevent double-bundling
 
     }
   },
   optimizeDeps: {
 
-    exclude: ['node:stream',  'child_process'],
+    exclude: ['node:stream', 'child_process'],
     esbuildOptions: {
       define: {
         global: 'globalThis' // Fix global scope

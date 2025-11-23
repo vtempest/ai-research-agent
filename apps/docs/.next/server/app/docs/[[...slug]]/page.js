@@ -1,7 +1,7 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/docs/[[...slug]]/page.js")
 R.c("server/chunks/ssr/[root-of-the-server]__d5ef473b._.js")
 R.c("server/chunks/ssr/apps_docs_59e09d82._.js")
-R.c("server/chunks/ssr/apps_docs_2ab724a2._.js")
+R.c("server/chunks/ssr/apps_docs_d7933d4e._.js")
 R.c("server/chunks/ssr/9b769_next_dist_3cb6daf4._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__3bf9c8aa._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__31777f87._.js")
@@ -14,7 +14,7 @@ R.c("server/chunks/ssr/9b769_next_dist_client_components_builtin_unauthorized_1e
 R.c("server/chunks/ssr/[root-of-the-server]__3ac73f0d._.js")
 R.c("server/chunks/ssr/apps_docs_da58f6e5._.js")
 R.c("server/chunks/ssr/f8afd__pnpm_ab2d13bf._.js")
-R.c("server/chunks/ssr/apps_docs_80917ec4._.js")
+R.c("server/chunks/ssr/apps_docs_b5ada73d._.js")
 R.c("server/chunks/ssr/apps_docs__next-internal_server_app_docs_[[___slug]]_page_actions_1e78c594.js")
 R.m(3296)
 module.exports=R.m(3296).exports

@@ -1,6 +1,6 @@
 import { defineConfig } from '@hey-api/openapi-ts';
 
-export const baseURL = process.env.API_URL || 'https://qwksearch.com/api';
+export const baseUrl = process.env.API_URL || 'https://qwksearch.com/api';
 
 export const config = {
   input: './qwksearch-openapi.yml',
@@ -8,7 +8,7 @@ export const config = {
   plugins: [
     {
       name: '@hey-api/client-fetch',
-      runtimeConfigPath: '../baseurl.ts', 
+      runtimeConfigPath: '../baseurl.ts',
     },
   ],
 };

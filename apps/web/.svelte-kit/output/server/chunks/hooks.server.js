@@ -6,43 +6,7 @@ import { c as createAuth, a as initDatabase } from "./auth.js";
 import "resend";
 import "./customize-site.js";
 import "./validations.js";
-import "better-call";
-import "./better-auth.Dgq_1hxR.js";
-import "@better-auth/utils/base64";
-import "@better-auth/utils/hmac";
-import "@better-auth/utils/binary";
-import "@better-auth/utils/hash";
-import "@better-auth/utils/hex";
-import "@better-auth/utils/random";
-import "@better-fetch/fetch";
-import "defu";
-const svelteKitHandler = async ({
-  auth,
-  event,
-  resolve,
-  building
-}) => {
-  if (building) {
-    return resolve(event);
-  }
-  const { request, url } = event;
-  if (isAuthPath(url.toString(), auth.options)) {
-    return auth.handler(request);
-  }
-  return resolve(event);
-};
-function isAuthPath(url, options) {
-  const _url = new URL(url);
-  const baseURL = new URL(
-    `${options.baseURL || _url.origin}${options.basePath || "/api/auth"}`
-  );
-  if (_url.origin !== baseURL.origin) return false;
-  if (!_url.pathname.startsWith(
-    baseURL.pathname.endsWith("/") ? baseURL.pathname : `${baseURL.pathname}/`
-  ))
-    return false;
-  return true;
-}
+import { svelteKitHandler } from "better-auth/svelte-kit";
 var authInstance;
 async function handleAuth({ event, resolve }) {
   if (!authInstance)

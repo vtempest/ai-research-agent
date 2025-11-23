@@ -21,10 +21,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-      external: [
-        '@hey-api/openapi-ts',
-        /^node:/
-      ]
+
     }
   },
   plugins: [

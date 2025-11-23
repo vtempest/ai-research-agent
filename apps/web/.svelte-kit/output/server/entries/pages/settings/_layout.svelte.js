@@ -1,7 +1,7 @@
 import "clsx";
-import { V as run, p as push, u as pop } from "../../../chunks/index.js";
 import { c as createSubscriber, M as MediaQuery } from "../../../chunks/button.js";
 import "style-to-object";
+import { a9 as run } from "../../../chunks/context.js";
 import process from "process";
 const defaultWindow$1 = void 0;
 function getActiveElement$1(document2) {
@@ -508,12 +508,12 @@ function createDerivedTheme() {
 }
 createDerivedMode();
 createDerivedTheme();
-function _layout($$payload, $$props) {
-  push();
-  let { children, user } = $$props;
-  children?.($$payload);
-  $$payload.out.push(`<!---->`);
-  pop();
+function _layout($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { children, user } = $$props;
+    children?.($$renderer2);
+    $$renderer2.push(`<!---->`);
+  });
 }
 export {
   _layout as default

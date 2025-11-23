@@ -16,322 +16,6 @@ description: All available pages
 </Cards>
 
 
-# Extract structured content and cite from any URL
-URL: /docs/extractContent
-
-***
-
-title: Extract structured content and cite from any URL
-description: ''
-full: true
-\_openapi:
-method: GET
-route: /extract
-toc: \[]
-structuredData:
-headings: \[]
-contents:
-
-* content: >
-  ![Extractor](https://i.imgur.com/nNfHmct.png)
-
-  ### 🚜📜 Tractor the Text Extractor
-
-  1. Main Content Detection: Extract the main content from a URL by
-     combining
-
-  Mozilla Readability and Postlight Mercury algorithms, utilizing over
-  100
-
-  custom adapters for major sites for article, author, date HTML
-  classes.
-
-  2. Basic HTML Standardization: Transform complex HTML into a
-     simplified
-
-  reading-mode format of basic HTML, making it ideal for research note
-  archival
-  and focused reading, with headings, images and links.
-  3\. YouTube Transcript Processing: When a YouTube video URL is
-  detected,
-
-  retrieve the complete video transcript including both manual captions
-  and
-
-  auto-generated subtitles, maintaining proper timestamp synchronization
-  and
-
-  speaker identification where available.
-
-  4. PDF to HTML: Process PDF documents by extracting
-     formatted text while intelligently handling line breaks, page headers,
-     footnotes. The system analyzes text height statistics to automatically
-     infer heading levels, creating a properly structured document hierarchy
-     based on standard deviation from mean text size.
-  5. Citation Information Extraction: Identify and extract citation
-     metadata
-     including author names, publication dates, sources, and titles using HTML
-     meta tags and common class name patterns. The system validates author names
-     against a comprehensive database of 90,000 first and last names,
-     distinguishing between personal and organizational authors to
-     properly
-
-  format citations.
-
-  6. Author Name Formatting: Process author names by checking against
-
-  known name databases, handling affixes and titles correctly, and
-  determining
-  whether to reverse the name order based on whether it's a personal or
-  organizational author, ensuring proper citation formatting.
-
-***
-
-![Extractor](https://i.imgur.com/nNfHmct.png)
-
-### 🚜📜 Tractor the Text Extractor
-
-1. Main Content Detection: Extract the main content from a URL by combining
-   Mozilla Readability and Postlight Mercury algorithms, utilizing over 100
-   custom adapters for major sites for article, author, date HTML classes.
-2. Basic HTML Standardization: Transform complex HTML into a simplified
-   reading-mode format of basic HTML, making it ideal for research note archival
-   and focused reading, with headings, images and links.
-3. YouTube Transcript Processing: When a YouTube video URL is detected,
-   retrieve the complete video transcript including both manual captions and
-   auto-generated subtitles, maintaining proper timestamp synchronization and
-   speaker identification where available.
-4. PDF to HTML: Process PDF documents by extracting
-   formatted text while intelligently handling line breaks, page headers,
-   footnotes. The system analyzes text height statistics to automatically
-   infer heading levels, creating a properly structured document hierarchy
-   based on standard deviation from mean text size.
-5. Citation Information Extraction: Identify and extract citation metadata
-   including author names, publication dates, sources, and titles using HTML
-   meta tags and common class name patterns. The system validates author names
-   against a comprehensive database of 90,000 first and last names,
-   distinguishing between personal and organizational authors to properly
-   format citations.
-6. Author Name Formatting: Process author names by checking against
-   known name databases, handling affixes and titles correctly, and determining
-   whether to reverse the name order based on whether it's a personal or
-   organizational author, ensuring proper citation formatting.
-
-<APIPage document={"./openapi.yml"} operations={[{"path":"/extract","method":"get"}]} webhooks={[]} hasHead={false} />
-
-
-# Search the web
-URL: /docs/searchWeb
-
-***
-
-title: Search the web
-description: ''
-full: true
-\_openapi:
-method: GET
-route: /search
-toc: \[]
-structuredData:
-headings: \[]
-contents:
-
-* content: >
-  ![AILogo](https://i.imgur.com/yYMTcTX.png)
-
-  Search the web by sending a query via SearXNG metasearch engine of
-  100+ sources.
-
-  You can specify the type of content you want—such as general web
-  results,
-
-  news articles, videos, images, science topics, files, or IT-related
-
-  information—by choosing the appropriate category.
-
-  Additional filters let you narrow results by recency (like results
-
-  from the past day, week, month, or year), language, and page number.
-
-  The API returns a structured list of results, each including a title,
-  URL, snippet, domain, and other useful details, making it easy to
-  display or analyze the information. This flexible and robust search
-  tool is ideal for apps, research projects, and any situation where
-  up-to-date, diverse web data is needed.
-
-  [Searxng
-  Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
-
-  **Web Search Stats**:
-
-  Google processses 90% of Web Search, 13.6 billion searches every
-  day—almost 5 trillion per year.
-
-  Its search index exceeds 100,000,000 GB and covers 130 trillion pages.
-
-  Ranking uses over 200 factors, including keyword relevance, backlinks,
-  page speed, and user experience; the top organic result gets about 22%
-  of clicks, and ads allow monetizing keyword traffic.
-
-***
-
-![AILogo](https://i.imgur.com/yYMTcTX.png)
-
-Search the web by sending a query via SearXNG metasearch engine of 100+ sources.
-You can specify the type of content you want—such as general web results,
-news articles, videos, images, science topics, files, or IT-related
-information—by choosing the appropriate category.
-Additional filters let you narrow results by recency (like results
-from the past day, week, month, or year), language, and page number.
-The API returns a structured list of results, each including a title, URL, snippet, domain, and other useful details, making it easy to display or analyze the information. This flexible and robust search tool is ideal for apps, research projects, and any situation where up-to-date, diverse web data is needed.
-[Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
-
-**Web Search Stats**:
-Google processses 90% of Web Search, 13.6 billion searches every day—almost 5 trillion per year.
-Its search index exceeds 100,000,000 GB and covers 130 trillion pages.
-Ranking uses over 200 factors, including keyword relevance, backlinks, page speed, and user experience; the top organic result gets about 22% of clicks, and ads allow monetizing keyword traffic.
-
-<APIPage document={"./openapi.yml"} operations={[{"path":"/search","method":"get"}]} webhooks={[]} hasHead={false} />
-
-
-# Generate language model reply using agent prompts
-URL: /docs/writeLanguage
-
-***
-
-title: Generate language model reply using agent prompts
-description: ''
-full: true
-\_openapi:
-method: POST
-route: /agents
-toc: \[]
-structuredData:
-headings: \[]
-contents:
-
-* content: >
-  ![Agents](https://i.imgur.com/ttOXv0p.jpeg)
-
-  * ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖
-    agent template name, 🧠 model name and options,
-    and 🆎 context variables for that agent
-  * 🤖 **Agent Instruction Templates**:
-    [LangHub](https://smith.langchain.com/hub) template or custom:
-    question(query, chat\_history), summarize-bullets(article), summarize(article),
-    suggest-followups(chat\_history, article), answer-cite-sources(context, chat\_history, query),
-    query-resolution(chat\_history, query), knowledge-graph-nodes(query, article),
-    summary-longtext(summaries)
-  * 🧠 **How Language Models Work**: Language models learn from billions
-    of text examples to
-
-  identify statistical patterns and structures across diverse sources,
-  converting words into
-  high-dimensional vectors—numerical lists that capture meaning and relationships between concepts.
-  These mathematical representations allow models to understand that "king/queen" share properties
-  and "Paris/France" mirrors "Tokyo/Japan" through their transformer architecture, a neural network
-  backbone that processes information through multiple layers of analysis. The attention mechanism
-  enables the system to dynamically focus on relevant parts of input text when generating each word,
-  maintaining context like humans tracking conversation threads, while calculating probability scores
-  across the entire vocabulary for each word position based on processed context. Rather than retrieving
-  stored responses, models create novel text by selecting the most probable words given learned
-  patterns, maintaining coherence across long passages while adapting to specific prompt nuances
-  through deep pattern recognition.\
-  **Self-Attention**: Each word creates three representations: Query (what it's looking for), Key (what
-  it offers), and Value (its actual content). For example, in "The cat sat on the mat," the word "cat"
-  has a Query vector that searches for actions, a Key vector that advertises itself as a subject, and
-  a Value vector containing its semantic meaning as an animal. The attention mechanism calculates how
-  much "cat" should focus on other words by comparing its Query with their Keys - finding high
-  similarity with "sat" (the action) - then combines the corresponding Value vectors to create a
-  contextualized representation where "cat" now understands it's the one doing the sitting.
-
-  * 📚 **Learning Resources**:
-    [LLM Training Example](https://github.com/vtempest/ai-research-agent/blob/master/packages/neural-net/src/train/predict-next-word.js),
-    [LangChain ReactAgent Tools](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4),
-    [Hugging Face Tutorials](https://huggingface.co/learn), [OpenAI Cookbook](https://cookbook.openai.com),
-    [Transformer Overview](https://jalammar.github.io/illustrated-transformer/),
-    [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch),
-    [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
-
-  ### 👄  Language Intelligence Providers (LIPs)
-
-  | 👄 Provider    | 🤖 Model Families                                                                                                                                             | 📚 Docs                                                                    | 🔑 Keys                                                                                            | 💰 Valuation | 💸 Revenue (2024) | 💲 Cost (1M Output) |
-  | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- | :----------- | :---------------- | :------------------ |
-  | **XAI**        | Grok, Grok Vision                                                                                                                                             | [Docs](https://docs.x.ai/docs#models)                                      | [Keys](https://console.x.ai/)                                                                      | $80B         | $100M             | $15.00              |
-  | **Groq**       | Llama, DeepSeek, Gemini, Mistral                                                                                                                              | [Docs](https://console.groq.com/docs/overview)                             | [Keys](https://console.groq.com/keys)                                                              | $2.8B        | -                 | $0.79               |
-  | **Ollama**     | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs)                                            | [Keys](https://ollama.com/settings/keys)                                                           | -            | $3.2M             | $0                  |
-  | **OpenAI**     | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni                                                                                                      | [Docs](https://platform.openai.com/docs/overview)                          | [Keys](https://platform.openai.com/api-keys)                                                       | $300B        | $3.7B             | $8.00               |
-  | **Anthropic**  | Claude Sonnet, Claude Opus, Claude Haiku                                                                                                                      | [Docs](https://docs.anthropic.com/en/docs/welcome)                         | [Keys](https://console.anthropic.com/settings/keys)                                                | $61.5B       | $1B               | $15.00              |
-  | **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena                                                                   | [Docs](https://docs.together.ai/docs/quickstart)                           | [Keys](https://api.together.xyz/settings/api-keys)                                                 | $3.3B        | $50M              | $0.90               |
-  | **Perplexity** | Sonar, Sonar Deep Research                                                                                                                                    | [Docs](https://docs.perplexity.ai/models/model-cards)                      | [Keys](https://www.perplexity.ai/account/api/keys)                                                 | $18B         | $20M              | $15.00              |
-  | **Cloudflare** | Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama                                                                                     | [Docs](https://developers.cloudflare.com/workers-ai/)                      | [Keys](https://dash.cloudflare.com/profile/api-tokens)                                             | $62.3B       | $1.67B            | $2.25               |
-  | **Google**     | Gemini                                                                                                                                                        | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | -            | \~$400M           | $10.00              |
-
-  ![agent\_arch\_viz](https://i.imgur.com/bailW5n.gif)
-
-  ![agent\_arch\_viz2](https://i.imgur.com/uW6E9VJ.gif)
-
-***
-
-![Agents](https://i.imgur.com/ttOXv0p.jpeg)
-
-* ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖 agent template name, 🧠 model name and options,
-  and 🆎 context variables for that agent
-
-* 🤖 **Agent Instruction Templates**: [LangHub](https://smith.langchain.com/hub) template or custom:
-  question(query, chat\_history), summarize-bullets(article), summarize(article),
-  suggest-followups(chat\_history, article), answer-cite-sources(context, chat\_history, query),
-  query-resolution(chat\_history, query), knowledge-graph-nodes(query, article),
-  summary-longtext(summaries)
-
-* 🧠 **How Language Models Work**: Language models learn from billions of text examples to
-  identify statistical patterns and structures across diverse sources, converting words into
-  high-dimensional vectors—numerical lists that capture meaning and relationships between concepts.
-  These mathematical representations allow models to understand that "king/queen" share properties
-  and "Paris/France" mirrors "Tokyo/Japan" through their transformer architecture, a neural network
-  backbone that processes information through multiple layers of analysis. The attention mechanism
-  enables the system to dynamically focus on relevant parts of input text when generating each word,
-  maintaining context like humans tracking conversation threads, while calculating probability scores
-  across the entire vocabulary for each word position based on processed context. Rather than retrieving
-  stored responses, models create novel text by selecting the most probable words given learned
-  patterns, maintaining coherence across long passages while adapting to specific prompt nuances
-  through deep pattern recognition.\
-  **Self-Attention**: Each word creates three representations: Query (what it's looking for), Key (what
-  it offers), and Value (its actual content). For example, in "The cat sat on the mat," the word "cat"
-  has a Query vector that searches for actions, a Key vector that advertises itself as a subject, and
-  a Value vector containing its semantic meaning as an animal. The attention mechanism calculates how
-  much "cat" should focus on other words by comparing its Query with their Keys - finding high
-  similarity with "sat" (the action) - then combines the corresponding Value vectors to create a
-  contextualized representation where "cat" now understands it's the one doing the sitting.
-
-* 📚 **Learning Resources**:
-  [LLM Training Example](https://github.com/vtempest/ai-research-agent/blob/master/packages/neural-net/src/train/predict-next-word.js),
-  [LangChain ReactAgent Tools](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4),
-  [Hugging Face Tutorials](https://huggingface.co/learn), [OpenAI Cookbook](https://cookbook.openai.com),
-  [Transformer Overview](https://jalammar.github.io/illustrated-transformer/),
-  [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch),
-  [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
-
-### 👄  Language Intelligence Providers (LIPs)
-
-| 👄 Provider    | 🤖 Model Families                                                                                                                                             | 📚 Docs                                                                    | 🔑 Keys                                                                                            | 💰 Valuation | 💸 Revenue (2024) | 💲 Cost (1M Output) |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- | :----------- | :---------------- | :------------------ |
-| **XAI**        | Grok, Grok Vision                                                                                                                                             | [Docs](https://docs.x.ai/docs#models)                                      | [Keys](https://console.x.ai/)                                                                      | $80B         | $100M             | $15.00              |
-| **Groq**       | Llama, DeepSeek, Gemini, Mistral                                                                                                                              | [Docs](https://console.groq.com/docs/overview)                             | [Keys](https://console.groq.com/keys)                                                              | $2.8B        | -                 | $0.79               |
-| **Ollama**     | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs)                                            | [Keys](https://ollama.com/settings/keys)                                                           | -            | $3.2M             | $0                  |
-| **OpenAI**     | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni                                                                                                      | [Docs](https://platform.openai.com/docs/overview)                          | [Keys](https://platform.openai.com/api-keys)                                                       | $300B        | $3.7B             | $8.00               |
-| **Anthropic**  | Claude Sonnet, Claude Opus, Claude Haiku                                                                                                                      | [Docs](https://docs.anthropic.com/en/docs/welcome)                         | [Keys](https://console.anthropic.com/settings/keys)                                                | $61.5B       | $1B               | $15.00              |
-| **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena                                                                   | [Docs](https://docs.together.ai/docs/quickstart)                           | [Keys](https://api.together.xyz/settings/api-keys)                                                 | $3.3B        | $50M              | $0.90               |
-| **Perplexity** | Sonar, Sonar Deep Research                                                                                                                                    | [Docs](https://docs.perplexity.ai/models/model-cards)                      | [Keys](https://www.perplexity.ai/account/api/keys)                                                 | $18B         | $20M              | $15.00              |
-| **Cloudflare** | Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama                                                                                     | [Docs](https://developers.cloudflare.com/workers-ai/)                      | [Keys](https://dash.cloudflare.com/profile/api-tokens)                                             | $62.3B       | $1.67B            | $2.25               |
-| **Google**     | Gemini                                                                                                                                                        | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | -            | \~$400M           | $10.00              |
-
-![agent\_arch\_viz](https://i.imgur.com/bailW5n.gif)
-![agent\_arch\_viz2](https://i.imgur.com/uW6E9VJ.gif)
-
-<APIPage document={"./openapi.yml"} operations={[{"path":"/agents","method":"post"}]} webhooks={[]} hasHead={false} />
-
-
 # Overview Intro
 URL: /docs/functions
 
@@ -669,6 +353,218 @@ URL: /docs/functions/modules
 * [topics/seektopic-keyphrases](topics/seektopic-keyphrases.md)
 * [topics/topic-distribution](topics/topic-distribution.md)
 * [types](types.md)
+
+
+# Search the web
+URL: /docs/searchWeb
+
+***
+
+title: Search the web
+description: ''
+full: true
+\_openapi:
+method: GET
+route: /search
+toc: \[]
+structuredData:
+headings: \[]
+contents:
+
+* content: >
+  ![AILogo](https://i.imgur.com/yYMTcTX.png)
+
+  Search the web by sending a query via SearXNG metasearch engine of
+  100+ sources.
+
+  You can specify the type of content you want—such as general web
+  results,
+
+  news articles, videos, images, science topics, files, or IT-related
+
+  information—by choosing the appropriate category.
+
+  Additional filters let you narrow results by recency (like results
+
+  from the past day, week, month, or year), language, and page number.
+
+  The API returns a structured list of results, each including a title,
+  URL, snippet, domain, and other useful details, making it easy to
+  display or analyze the information. This flexible and robust search
+  tool is ideal for apps, research projects, and any situation where
+  up-to-date, diverse web data is needed.
+
+  [Searxng
+  Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
+
+  **Web Search Stats**:
+
+  Google processses 90% of Web Search, 13.6 billion searches every
+  day—almost 5 trillion per year.
+
+  Its search index exceeds 100,000,000 GB and covers 130 trillion pages.
+
+  Ranking uses over 200 factors, including keyword relevance, backlinks,
+  page speed, and user experience; the top organic result gets about 22%
+  of clicks, and ads allow monetizing keyword traffic.
+
+***
+
+![AILogo](https://i.imgur.com/yYMTcTX.png)
+
+Search the web by sending a query via SearXNG metasearch engine of 100+ sources.
+You can specify the type of content you want—such as general web results,
+news articles, videos, images, science topics, files, or IT-related
+information—by choosing the appropriate category.
+Additional filters let you narrow results by recency (like results
+from the past day, week, month, or year), language, and page number.
+The API returns a structured list of results, each including a title, URL, snippet, domain, and other useful details, making it easy to display or analyze the information. This flexible and robust search tool is ideal for apps, research projects, and any situation where up-to-date, diverse web data is needed.
+[Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
+
+**Web Search Stats**:
+Google processses 90% of Web Search, 13.6 billion searches every day—almost 5 trillion per year.
+Its search index exceeds 100,000,000 GB and covers 130 trillion pages.
+Ranking uses over 200 factors, including keyword relevance, backlinks, page speed, and user experience; the top organic result gets about 22% of clicks, and ads allow monetizing keyword traffic.
+
+<APIPage document={"./openapi.yml"} operations={[{"path":"/search","method":"get"}]} webhooks={[]} hasHead={false} />
+
+
+# Generate language model reply using agent prompts
+URL: /docs/writeLanguage
+
+***
+
+title: Generate language model reply using agent prompts
+description: ''
+full: true
+\_openapi:
+method: POST
+route: /agents
+toc: \[]
+structuredData:
+headings: \[]
+contents:
+
+* content: >
+  ![Agents](https://i.imgur.com/ttOXv0p.jpeg)
+
+  * ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖
+    agent template name, 🧠 model name and options,
+    and 🆎 context variables for that agent
+  * 🤖 **Agent Instruction Templates**:
+    [LangHub](https://smith.langchain.com/hub) template or custom:
+    question(query, chat\_history), summarize-bullets(article), summarize(article),
+    suggest-followups(chat\_history, article), answer-cite-sources(context, chat\_history, query),
+    query-resolution(chat\_history, query), knowledge-graph-nodes(query, article),
+    summary-longtext(summaries)
+  * 🧠 **How Language Models Work**: Language models learn from billions
+    of text examples to
+
+  identify statistical patterns and structures across diverse sources,
+  converting words into
+  high-dimensional vectors—numerical lists that capture meaning and relationships between concepts.
+  These mathematical representations allow models to understand that "king/queen" share properties
+  and "Paris/France" mirrors "Tokyo/Japan" through their transformer architecture, a neural network
+  backbone that processes information through multiple layers of analysis. The attention mechanism
+  enables the system to dynamically focus on relevant parts of input text when generating each word,
+  maintaining context like humans tracking conversation threads, while calculating probability scores
+  across the entire vocabulary for each word position based on processed context. Rather than retrieving
+  stored responses, models create novel text by selecting the most probable words given learned
+  patterns, maintaining coherence across long passages while adapting to specific prompt nuances
+  through deep pattern recognition.\
+  **Self-Attention**: Each word creates three representations: Query (what it's looking for), Key (what
+  it offers), and Value (its actual content). For example, in "The cat sat on the mat," the word "cat"
+  has a Query vector that searches for actions, a Key vector that advertises itself as a subject, and
+  a Value vector containing its semantic meaning as an animal. The attention mechanism calculates how
+  much "cat" should focus on other words by comparing its Query with their Keys - finding high
+  similarity with "sat" (the action) - then combines the corresponding Value vectors to create a
+  contextualized representation where "cat" now understands it's the one doing the sitting.
+
+  * 📚 **Learning Resources**:
+    [LLM Training Example](https://github.com/vtempest/ai-research-agent/blob/master/packages/neural-net/src/train/predict-next-word.js),
+    [LangChain ReactAgent Tools](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4),
+    [Hugging Face Tutorials](https://huggingface.co/learn), [OpenAI Cookbook](https://cookbook.openai.com),
+    [Transformer Overview](https://jalammar.github.io/illustrated-transformer/),
+    [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch),
+    [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
+
+  ### 👄  Language Intelligence Providers (LIPs)
+
+  | 👄 Provider    | 🤖 Model Families                                                                                                                                             | 📚 Docs                                                                    | 🔑 Keys                                                                                            | 💰 Valuation | 💸 Revenue (2024) | 💲 Cost (1M Output) |
+  | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- | :----------- | :---------------- | :------------------ |
+  | **XAI**        | Grok, Grok Vision                                                                                                                                             | [Docs](https://docs.x.ai/docs#models)                                      | [Keys](https://console.x.ai/)                                                                      | $80B         | $100M             | $15.00              |
+  | **Groq**       | Llama, DeepSeek, Gemini, Mistral                                                                                                                              | [Docs](https://console.groq.com/docs/overview)                             | [Keys](https://console.groq.com/keys)                                                              | $2.8B        | -                 | $0.79               |
+  | **Ollama**     | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs)                                            | [Keys](https://ollama.com/settings/keys)                                                           | -            | $3.2M             | $0                  |
+  | **OpenAI**     | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni                                                                                                      | [Docs](https://platform.openai.com/docs/overview)                          | [Keys](https://platform.openai.com/api-keys)                                                       | $300B        | $3.7B             | $8.00               |
+  | **Anthropic**  | Claude Sonnet, Claude Opus, Claude Haiku                                                                                                                      | [Docs](https://docs.anthropic.com/en/docs/welcome)                         | [Keys](https://console.anthropic.com/settings/keys)                                                | $61.5B       | $1B               | $15.00              |
+  | **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena                                                                   | [Docs](https://docs.together.ai/docs/quickstart)                           | [Keys](https://api.together.xyz/settings/api-keys)                                                 | $3.3B        | $50M              | $0.90               |
+  | **Perplexity** | Sonar, Sonar Deep Research                                                                                                                                    | [Docs](https://docs.perplexity.ai/models/model-cards)                      | [Keys](https://www.perplexity.ai/account/api/keys)                                                 | $18B         | $20M              | $15.00              |
+  | **Cloudflare** | Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama                                                                                     | [Docs](https://developers.cloudflare.com/workers-ai/)                      | [Keys](https://dash.cloudflare.com/profile/api-tokens)                                             | $62.3B       | $1.67B            | $2.25               |
+  | **Google**     | Gemini                                                                                                                                                        | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | -            | \~$400M           | $10.00              |
+
+  ![agent\_arch\_viz](https://i.imgur.com/bailW5n.gif)
+
+  ![agent\_arch\_viz2](https://i.imgur.com/uW6E9VJ.gif)
+
+***
+
+![Agents](https://i.imgur.com/ttOXv0p.jpeg)
+
+* ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖 agent template name, 🧠 model name and options,
+  and 🆎 context variables for that agent
+
+* 🤖 **Agent Instruction Templates**: [LangHub](https://smith.langchain.com/hub) template or custom:
+  question(query, chat\_history), summarize-bullets(article), summarize(article),
+  suggest-followups(chat\_history, article), answer-cite-sources(context, chat\_history, query),
+  query-resolution(chat\_history, query), knowledge-graph-nodes(query, article),
+  summary-longtext(summaries)
+
+* 🧠 **How Language Models Work**: Language models learn from billions of text examples to
+  identify statistical patterns and structures across diverse sources, converting words into
+  high-dimensional vectors—numerical lists that capture meaning and relationships between concepts.
+  These mathematical representations allow models to understand that "king/queen" share properties
+  and "Paris/France" mirrors "Tokyo/Japan" through their transformer architecture, a neural network
+  backbone that processes information through multiple layers of analysis. The attention mechanism
+  enables the system to dynamically focus on relevant parts of input text when generating each word,
+  maintaining context like humans tracking conversation threads, while calculating probability scores
+  across the entire vocabulary for each word position based on processed context. Rather than retrieving
+  stored responses, models create novel text by selecting the most probable words given learned
+  patterns, maintaining coherence across long passages while adapting to specific prompt nuances
+  through deep pattern recognition.\
+  **Self-Attention**: Each word creates three representations: Query (what it's looking for), Key (what
+  it offers), and Value (its actual content). For example, in "The cat sat on the mat," the word "cat"
+  has a Query vector that searches for actions, a Key vector that advertises itself as a subject, and
+  a Value vector containing its semantic meaning as an animal. The attention mechanism calculates how
+  much "cat" should focus on other words by comparing its Query with their Keys - finding high
+  similarity with "sat" (the action) - then combines the corresponding Value vectors to create a
+  contextualized representation where "cat" now understands it's the one doing the sitting.
+
+* 📚 **Learning Resources**:
+  [LLM Training Example](https://github.com/vtempest/ai-research-agent/blob/master/packages/neural-net/src/train/predict-next-word.js),
+  [LangChain ReactAgent Tools](https://medium.com/@terrycho/how-langchain-agent-works-internally-trace-by-using-langsmith-df23766e7fb4),
+  [Hugging Face Tutorials](https://huggingface.co/learn), [OpenAI Cookbook](https://cookbook.openai.com),
+  [Transformer Overview](https://jalammar.github.io/illustrated-transformer/),
+  [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch),
+  [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
+
+### 👄  Language Intelligence Providers (LIPs)
+
+| 👄 Provider    | 🤖 Model Families                                                                                                                                             | 📚 Docs                                                                    | 🔑 Keys                                                                                            | 💰 Valuation | 💸 Revenue (2024) | 💲 Cost (1M Output) |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- | :----------- | :---------------- | :------------------ |
+| **XAI**        | Grok, Grok Vision                                                                                                                                             | [Docs](https://docs.x.ai/docs#models)                                      | [Keys](https://console.x.ai/)                                                                      | $80B         | $100M             | $15.00              |
+| **Groq**       | Llama, DeepSeek, Gemini, Mistral                                                                                                                              | [Docs](https://console.groq.com/docs/overview)                             | [Keys](https://console.groq.com/keys)                                                              | $2.8B        | -                 | $0.79               |
+| **Ollama**     | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs)                                            | [Keys](https://ollama.com/settings/keys)                                                           | -            | $3.2M             | $0                  |
+| **OpenAI**     | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni                                                                                                      | [Docs](https://platform.openai.com/docs/overview)                          | [Keys](https://platform.openai.com/api-keys)                                                       | $300B        | $3.7B             | $8.00               |
+| **Anthropic**  | Claude Sonnet, Claude Opus, Claude Haiku                                                                                                                      | [Docs](https://docs.anthropic.com/en/docs/welcome)                         | [Keys](https://console.anthropic.com/settings/keys)                                                | $61.5B       | $1B               | $15.00              |
+| **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena                                                                   | [Docs](https://docs.together.ai/docs/quickstart)                           | [Keys](https://api.together.xyz/settings/api-keys)                                                 | $3.3B        | $50M              | $0.90               |
+| **Perplexity** | Sonar, Sonar Deep Research                                                                                                                                    | [Docs](https://docs.perplexity.ai/models/model-cards)                      | [Keys](https://www.perplexity.ai/account/api/keys)                                                 | $18B         | $20M              | $15.00              |
+| **Cloudflare** | Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama                                                                                     | [Docs](https://developers.cloudflare.com/workers-ai/)                      | [Keys](https://dash.cloudflare.com/profile/api-tokens)                                             | $62.3B       | $1.67B            | $2.25               |
+| **Google**     | Gemini                                                                                                                                                        | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | -            | \~$400M           | $10.00              |
+
+![agent\_arch\_viz](https://i.imgur.com/bailW5n.gif)
+![agent\_arch\_viz2](https://i.imgur.com/uW6E9VJ.gif)
+
+<APIPage document={"./openapi.yml"} operations={[{"path":"/agents","method":"post"}]} webhooks={[]} hasHead={false} />
 
 
 # Agent Prompts
@@ -4309,47 +4205,65 @@ Comprehensive usage example with error handling
 `Promise`\<`void`>
 
 
-# Compare Letters
-URL: /docs/functions/match/compare-letters
+# Search Engines
+URL: /docs/functions/search/search-engines
 
 ***
 
-## title: Compare Letters
+## title: Search Engines
 
-[ai-research-agent](../modules.md) / match/compare-letters
+[ai-research-agent](../modules.md) / search/search-engines
 
-## Match
+## Search
 
-### weighSimilarityByCharacter()
+### searchEngines
 
 ```ts
-function weighSimilarityByCharacter(s1: string, s2: string): number;
+const searchEngines: any[];
 ```
 
-Defined in: [src/match/compare-letters.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/compare-letters.js#L28)
+Defined in: [src/search/search-engines.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-engines.js#L13)
 
-### Jaro-Winkler String Similarity Comparison
+A list of search engines which can be used to
+search selected text. Each item in the list is
+an object with the following properties:
+Categories: AI Web Search, Shopping Sites, and Social Media
 
-<img width="350px" src="https://i.imgur.com/1qpRzNh.png" />
+* `name`: The name of the search engine.
+* `url`: The base search URL that should have the query appended.
+* `icon`: A URL or data URL for the search engine. Prepend "data:image/png;base64,"
 
-Measures similarity between two strings, taking into account the common characters and
-their positions. Jaro-Winkler is often used in record linkage and data cleansing to improve
-the accuracy of string matching, particularly for names and addresses, by giving
-more weight to the common prefix and penalizing longer string differences.  It is [more
-optimal](https://medium.com/@appaloosastore/string-similarity-algorithms-compared-3f7b4d12f0ff)
-for words than [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance):
 
-1. Edit operations: Levenshtein considers insertions, deletions, and substitutions,
-   while Jaro focuses on transpositions.
-2. Sensitivity to string length: Levenshtein is more sensitive to overall
-   string length, while Jaro normalizes for length in its formula.
-3. Prefix matching: The Jaro-Winkler variant explicitly rewards matching
-   prefixes, which Levenshtein does not.
-4. Scale of results: Levenshtein produces an edit distance (usually converted to a similarity score),
-   while Jaro directly produces a similarity score.
+# Search Stream
+URL: /docs/functions/search/search-stream
 
-[A Comprehensive List of Similarity Search
-Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-search-algorithms/)
+***
+
+## title: Search Stream
+
+[ai-research-agent](../modules.md) / search/search-stream
+
+## Search
+
+### searchSTREAM()
+
+```ts
+function searchSTREAM(query: string, options?: object): Promise<any[]>;
+```
+
+Defined in: [src/search/search-stream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-stream.js#L34)
+
+### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
+
+<img width="350px" src="https://i.imgur.com/s8gsYt1.png" />
+
+1. Searches the Web for the query via metasearch of major engines or custom data.<br />
+2. Extracts text of top results using Tractor the Text Extractor.<br />
+3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.<br />
+4. Reranks document chunks based on relevance to the query, using embeddings to <br />
+   convert text to concept vectors within LLM "concept space", and calculates cosine similarity of query to topic. <br />
+5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq
+   Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
 
 #### Parameters
 
@@ -4363,188 +4277,6 @@ Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-sear
   </thead>
 
   <tbody>
-    <tr>
-      <td>
-        `s1`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        First string
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `s2`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        Second string
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`number`
-
-0-1 string similarity score
-
-#### Author
-
-[Jaro, M., Winkler, W. (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
-
-
-# Match Quasar
-URL: /docs/functions/match/match-quasar
-
-***
-
-## title: Match Quasar
-
-[ai-research-agent](../modules.md) / match/match-quasar
-
-## Match
-
-### matchQUASAR()
-
-```ts
-function matchQUASAR(document: string, query: string): boolean;
-```
-
-Defined in: [src/match/match-quasar.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/match-quasar.js#L19)
-
-### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
-
-Search document for all words of query ignoring casing
-but "words in quotes" as necessarily together like users expect
-in web search engines.  Single line function that can be used
-anywhere, such as UI inputs to filter a data list.
-
-<img width="350px" src="https://i.imgur.com/IuwW97p.png" />
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `query`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td />
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`boolean`
-
-true if doc has all words and "phrases in quotes"
-
-#### Example
-
-```ts
-var isFound = matchQUASAR(`Ask not what your country can do for you, 
-ask what you can do for your country.  is nothing to fear but fear itself.`, 
-` "Ask not" "but fear itself" nothing`) // returns true
-```
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-
-
-# Weigh Relevance Frequency
-URL: /docs/functions/match/weigh-relevance-frequency
-
-***
-
-## title: Weigh Relevance Frequency
-
-[ai-research-agent](../modules.md) / match/weigh-relevance-frequency
-
-## Match
-
-### weighRelevanceTermFrequency()
-
-```ts
-function weighRelevanceTermFrequency(
-   document: string, 
-   query: string, 
-   options?: object): number;
-```
-
-Defined in: [src/match/weigh-relevance-frequency.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L28)
-
-#### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms
-
-<img width="350px" src="https://i.imgur.com/e2uTpoh.png" />
-
-Calculate term specificity for a single doc with [BM25
-formula](https://www.youtube.com/watch?v=ruBm9WywevM)
-by using Wikipedia term frequencies as the baseline IDF. <br />
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        a single document to calculate the score for
-      </td>
-    </tr>
-
     <tr>
       <td>
         `query`
@@ -4555,7 +4287,7 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
       </td>
 
       <td>
-        phrase to search tf and idf for each word
+        The search query string.
       </td>
     </tr>
 
@@ -4565,7 +4297,7 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
       </td>
 
       <td>
-        \{ `avgDocWordCount`: `number`; `normalizeLength`: `number`; `saturationWeight`: `number`; `totalWikiPages`: `number`; }
+        \{ `categoryIndex`: `number`; `customSearxngDomain`: `string`; `maxRetries`: `number`; `maxTopResultsToExtract`: `number`; `recencyIndex`: `number`; }
       </td>
 
       <td />
@@ -4573,7 +4305,7 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
 
     <tr>
       <td>
-        `options.avgDocWordCount?`
+        `options.categoryIndex?`
       </td>
 
       <td>
@@ -4581,30 +4313,27 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
       </td>
 
       <td>
-        Estimated average word count of all documents
+        default=0 - Index of the search category.
       </td>
     </tr>
 
     <tr>
       <td>
-        `options.normalizeLength?`
+        `options.customSearxngDomain?`
       </td>
 
       <td>
-        `number`
+        `string`
       </td>
 
       <td>
-        normalizeLengthcontrols the document length normalization.
-        It ranges from 0 to 1, with 0.75 being a common default value.
-        When normalizeLength=1: Full length normalization is applied.
-        Longer documents are penalized more heavily.
+        default=null - Use your custom domain SearXNG
       </td>
     </tr>
 
     <tr>
       <td>
-        `options.saturationWeight?`
+        `options.maxRetries?`
       </td>
 
       <td>
@@ -4612,15 +4341,13 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
       </td>
 
       <td>
-        saturationWeight controls the impact of term frequency saturation.
-        It typically ranges from 1.2 to 2.0, with 1.5 being a common default value.
-        As saturationWeight increases: The impact of term frequency increases (i.e., multiple occurrences of a term in a document become more significant).
+        default=5 - Maximum number of retry attempts for the search.
       </td>
     </tr>
 
     <tr>
       <td>
-        `options.totalWikiPages?`
+        `options.maxTopResultsToExtract?`
       </td>
 
       <td>
@@ -4628,7 +4355,21 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
       </td>
 
       <td>
-        Total number of Wikipedia pages used to calculate IDF
+        default=6 - Maximum number of top results to extract and analyze.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.recencyIndex?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=0 - Index representing the recency of results.
       </td>
     </tr>
   </tbody>
@@ -4636,27 +4377,56 @@ by using Wikipedia term frequencies as the baseline IDF. <br />
 
 #### Returns
 
-`number`
+`Promise`\<`any`\[]>
 
-score for term specificity
+A promise that resolves to an array containing the search results,
+extracted information, and generated answer.
+
+#### Example
+
+```ts
+const advancedResults = await searchSTREAM('Latest developments in quantum computing', {
+  categoryIndex: 2,
+  recencyIndex: 1,
+  maxRetries: 5,
+  maxTopResultsToExtract: 10
+});
+```
 
 #### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)
 
-## Other
 
-### calculatePhraseSpecificity()
+# Search Web
+URL: /docs/functions/search/search-web
+
+***
+
+## title: Search Web
+
+[ai-research-agent](../modules.md) / search/search-web
+
+## Search
+
+### searchWeb()
 
 ```ts
-function calculatePhraseSpecificity(phrase: string, options: any): number;
+function searchWeb(query: string, options?: object): Promise<object[]>;
 ```
 
-Defined in: [src/match/weigh-relevance-frequency.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L76)
+Defined in: [src/search/search-web.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-web.js#L39)
 
-Calculate overall domain-speicificity after Query Resolution to Phrases.
-Words are tokenized into phrases and their specificity is calculated based on
-how many Wiki pages they appear in.
+Search Web via SearXNG metasearch of all major search engines.
+Options are 10 search categories, recency, and how many
+times to retry other domains if first time fails.
+SearXNG is a free internet metasearch engine which aggregates results from
+more than [180+ search sources](https://docs.searxng.org/user/configured_engines.html).
+
+[Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
+[Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
+
+![google\_dead](https://i.imgur.com/6rRpaY1.png)
 
 #### Parameters
 
@@ -4672,11 +4442,25 @@ how many Wiki pages they appear in.
   <tbody>
     <tr>
       <td>
-        `phrase`
+        `query`
       </td>
 
       <td>
         `string`
+      </td>
+
+      <td>
+        The search query string.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        \{ `category`: `string`; `lang`: `string`; `maxRetries`: `number`; `page`: `number`; `privateSearxng`: `string` | `boolean`; `proxy`: `string`; `recency`: `number`; }
       </td>
 
       <td />
@@ -4684,15 +4468,100 @@ how many Wiki pages they appear in.
 
     <tr>
       <td>
-        `options`
+        `options.category?`
       </td>
 
       <td>
-        `any`
+        `string`
       </td>
 
       <td>
-        ‐
+        default=general - \["general", "news", "videos", "images",
+        "science","it", "files", "social+media",  "map", "music"]
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.lang?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        default="en-US" - The language to use for the search.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.maxRetries?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=3 - Maximum number of retry attempts if the initial search fails.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.page?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=1 - The page number to retrieve.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.privateSearxng?`
+      </td>
+
+      <td>
+        `string` | `boolean`
+      </td>
+
+      <td>
+        default=null - Use your custom domain SearXNG
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.proxy?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        default=false - Use corsproxy.io to access in frontend JS
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.recency?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=0 - \["", "day", "week", "month", "year"]
       </td>
     </tr>
   </tbody>
@@ -4700,9 +4569,350 @@ how many Wiki pages they appear in.
 
 #### Returns
 
-`number`
+`Promise`\<`object`\[]>
 
-domain specificity 0-12\~
+An array of search result objects.
+
+#### Example
+
+```ts
+const advancedResults = await searchWeb('Node.js', {
+  category: 2,
+  recency: 1,
+  maxRetries: 5
+});
+```
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+[Heiser, M., Tauber, A., Flament, A., et al. (2014-)](https://github.com/searxng/searxng/graphs/contributors)
+
+
+# Search Wikipedia
+URL: /docs/functions/search/search-wikipedia
+
+***
+
+## title: Search Wikipedia
+
+[ai-research-agent](../modules.md) / search/search-wikipedia
+
+## Search
+
+### searchWikipedia()
+
+```ts
+function searchWikipedia(query: string, options?: object): object;
+```
+
+Defined in: [src/search/search-wikipedia.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L23)
+
+Function to query phrase in Wikipedia Search API and return
+page titles, images and first few sentences of each result.
+Wikipedia Search API  has complex [documentation](https://www.mediawiki.org/wiki/API:Opensearch)
+and is dificult to parse and clean up results.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `query`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        search phrase
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        \{ `filterDisambiguation`: `boolean`; `images`: `boolean`; `imageSize`: `number`; `limitSearchResults`: `number`; `plainText`: `boolean`; `searchInTitleOnly`: `boolean`; `summarySentenceLimit`: `number`; }
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `options.filterDisambiguation?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true Filter disambiguation pages
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.images?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true Include image in results
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.imageSize?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=200 Image size in pixels
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.limitSearchResults?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=1 Limit number of search results
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.plainText?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Return plain text instead of HTML
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.searchInTitleOnly?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=false Search in title only
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.summarySentenceLimit?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=3 Limit summary to this many sentences
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`object`
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `results`
+      </td>
+
+      <td>
+        `object`\[]
+      </td>
+
+      <td>
+        [src/search/search-wikipedia.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L19)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Example
+
+```ts
+await searchWikipedia("JavaScript", { plainText: true })
+```
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+
+
+# Similarity Remote Api
+URL: /docs/functions/similarity/similarity-remote-api
+
+***
+
+## title: Similarity Remote Api
+
+[ai-research-agent](../modules.md) / similarity/similarity-remote-api
+
+## Similarity
+
+### weighRelevanceConceptVectorAPI()
+
+```ts
+function weighRelevanceConceptVectorAPI(
+   source_sentence: string, 
+   sentences: string[], 
+   options?: object): object[];
+```
+
+Defined in: [src/similarity/similarity-remote-api.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L19)
+
+Calculate the semantic similarity between one text and a list of
+other sentences by comparing their embeddings.
+[https://huggingface.co/docs/api-inference/detailed\_parameters#sentence-similarity-task](https://huggingface.co/docs/api-inference/detailed_parameters#sentence-similarity-task)
+
+<img src="https://i.imgur.com/ex2UWnu.png" width="350px" />
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `source_sentence`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        The string that you wish to
+        compare the other strings with. This can be a phrase, sentence,
+        or longer passage, depending on the model being used.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `sentences`
+      </td>
+
+      <td>
+        `string`\[]
+      </td>
+
+      <td>
+        A list of strings which will be compared
+        against the source\_sentence.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        \{ `HF_API_KEY`: `string`; `model`: `string`; }
+      </td>
+
+      <td>
+        *
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.HF_API_KEY?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        Required [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.model?`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        default="sentence-transformers/all-MiniLM-L6-v2"
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`object`\[]
+
+sentences with relevance scores sorted by relevance
+\*
 
 
 # Stopwords
@@ -5421,716 +5631,6 @@ var rootWord = stemWordToRoot("running"); // returns "run"
 ```
 
 
-# Search Engines
-URL: /docs/functions/search/search-engines
-
-***
-
-## title: Search Engines
-
-[ai-research-agent](../modules.md) / search/search-engines
-
-## Search
-
-### searchEngines
-
-```ts
-const searchEngines: any[];
-```
-
-Defined in: [src/search/search-engines.js:13](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-engines.js#L13)
-
-A list of search engines which can be used to
-search selected text. Each item in the list is
-an object with the following properties:
-Categories: AI Web Search, Shopping Sites, and Social Media
-
-* `name`: The name of the search engine.
-* `url`: The base search URL that should have the query appended.
-* `icon`: A URL or data URL for the search engine. Prepend "data:image/png;base64,"
-
-
-# Search Stream
-URL: /docs/functions/search/search-stream
-
-***
-
-## title: Search Stream
-
-[ai-research-agent](../modules.md) / search/search-stream
-
-## Search
-
-### searchSTREAM()
-
-```ts
-function searchSTREAM(query: string, options?: object): Promise<any[]>;
-```
-
-Defined in: [src/search/search-stream.js:34](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-stream.js#L34)
-
-### 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
-
-<img width="350px" src="https://i.imgur.com/s8gsYt1.png" />
-
-1. Searches the Web for the query via metasearch of major engines or custom data.<br />
-2. Extracts text of top results using Tractor the Text Extractor.<br />
-3. Implements SEEKTOPIC to extract Keyphrase Topics and Top Sentences that centralize those topics.<br />
-4. Reranks document chunks based on relevance to the query, using embeddings to <br />
-   convert text to concept vectors within LLM "concept space", and calculates cosine similarity of query to topic. <br />
-5. Uses a Research Agent prompt with key sentences from relevant sources to generate an answer via Groq
-   Llama, OpenAI, or Anthropic API, and suggests follow-up queries.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `query`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        The search query string.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `categoryIndex`: `number`; `customSearxngDomain`: `string`; `maxRetries`: `number`; `maxTopResultsToExtract`: `number`; `recencyIndex`: `number`; }
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `options.categoryIndex?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=0 - Index of the search category.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.customSearxngDomain?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        default=null - Use your custom domain SearXNG
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.maxRetries?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=5 - Maximum number of retry attempts for the search.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.maxTopResultsToExtract?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=6 - Maximum number of top results to extract and analyze.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.recencyIndex?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=0 - Index representing the recency of results.
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`Promise`\<`any`\[]>
-
-A promise that resolves to an array containing the search results,
-extracted information, and generated answer.
-
-#### Example
-
-```ts
-const advancedResults = await searchSTREAM('Latest developments in quantum computing', {
-  categoryIndex: 2,
-  recencyIndex: 1,
-  maxRetries: 5,
-  maxTopResultsToExtract: 10
-});
-```
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-
-
-# Search Web
-URL: /docs/functions/search/search-web
-
-***
-
-## title: Search Web
-
-[ai-research-agent](../modules.md) / search/search-web
-
-## Search
-
-### searchWeb()
-
-```ts
-function searchWeb(query: string, options?: object): Promise<object[]>;
-```
-
-Defined in: [src/search/search-web.js:39](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-web.js#L39)
-
-Search Web via SearXNG metasearch of all major search engines.
-Options are 10 search categories, recency, and how many
-times to retry other domains if first time fails.
-SearXNG is a free internet metasearch engine which aggregates results from
-more than [180+ search sources](https://docs.searxng.org/user/configured_engines.html).
-
-[Searxng Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
-[Searxng Installation Guide](https://github.com/searxng/searxng-docker/tree/master)
-
-![google\_dead](https://i.imgur.com/6rRpaY1.png)
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `query`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        The search query string.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `category`: `string`; `lang`: `string`; `maxRetries`: `number`; `page`: `number`; `privateSearxng`: `string` | `boolean`; `proxy`: `string`; `recency`: `number`; }
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `options.category?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        default=general - \["general", "news", "videos", "images",
-        "science","it", "files", "social+media",  "map", "music"]
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.lang?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        default="en-US" - The language to use for the search.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.maxRetries?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=3 - Maximum number of retry attempts if the initial search fails.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.page?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=1 - The page number to retrieve.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.privateSearxng?`
-      </td>
-
-      <td>
-        `string` | `boolean`
-      </td>
-
-      <td>
-        default=null - Use your custom domain SearXNG
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.proxy?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        default=false - Use corsproxy.io to access in frontend JS
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.recency?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=0 - \["", "day", "week", "month", "year"]
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`Promise`\<`object`\[]>
-
-An array of search result objects.
-
-#### Example
-
-```ts
-const advancedResults = await searchWeb('Node.js', {
-  category: 2,
-  recency: 1,
-  maxRetries: 5
-});
-```
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-[Heiser, M., Tauber, A., Flament, A., et al. (2014-)](https://github.com/searxng/searxng/graphs/contributors)
-
-
-# Search Wikipedia
-URL: /docs/functions/search/search-wikipedia
-
-***
-
-## title: Search Wikipedia
-
-[ai-research-agent](../modules.md) / search/search-wikipedia
-
-## Search
-
-### searchWikipedia()
-
-```ts
-function searchWikipedia(query: string, options?: object): object;
-```
-
-Defined in: [src/search/search-wikipedia.js:23](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L23)
-
-Function to query phrase in Wikipedia Search API and return
-page titles, images and first few sentences of each result.
-Wikipedia Search API  has complex [documentation](https://www.mediawiki.org/wiki/API:Opensearch)
-and is dificult to parse and clean up results.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `query`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        search phrase
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `filterDisambiguation`: `boolean`; `images`: `boolean`; `imageSize`: `number`; `limitSearchResults`: `number`; `plainText`: `boolean`; `searchInTitleOnly`: `boolean`; `summarySentenceLimit`: `number`; }
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `options.filterDisambiguation?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true Filter disambiguation pages
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.images?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true Include image in results
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.imageSize?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=200 Image size in pixels
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.limitSearchResults?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=1 Limit number of search results
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.plainText?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=false Return plain text instead of HTML
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.searchInTitleOnly?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=false Search in title only
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.summarySentenceLimit?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=3 Limit summary to this many sentences
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`object`
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Defined in</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `results`
-      </td>
-
-      <td>
-        `object`\[]
-      </td>
-
-      <td>
-        [src/search/search-wikipedia.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/search/search-wikipedia.js#L19)
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Example
-
-```ts
-await searchWikipedia("JavaScript", { plainText: true })
-```
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-
-
-# Similarity Remote Api
-URL: /docs/functions/similarity/similarity-remote-api
-
-***
-
-## title: Similarity Remote Api
-
-[ai-research-agent](../modules.md) / similarity/similarity-remote-api
-
-## Similarity
-
-### weighRelevanceConceptVectorAPI()
-
-```ts
-function weighRelevanceConceptVectorAPI(
-   source_sentence: string, 
-   sentences: string[], 
-   options?: object): object[];
-```
-
-Defined in: [src/similarity/similarity-remote-api.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/similarity/similarity-remote-api.js#L19)
-
-Calculate the semantic similarity between one text and a list of
-other sentences by comparing their embeddings.
-[https://huggingface.co/docs/api-inference/detailed\_parameters#sentence-similarity-task](https://huggingface.co/docs/api-inference/detailed_parameters#sentence-similarity-task)
-
-<img src="https://i.imgur.com/ex2UWnu.png" width="350px" />
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `source_sentence`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        The string that you wish to
-        compare the other strings with. This can be a phrase, sentence,
-        or longer passage, depending on the model being used.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `sentences`
-      </td>
-
-      <td>
-        `string`\[]
-      </td>
-
-      <td>
-        A list of strings which will be compared
-        against the source\_sentence.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `HF_API_KEY`: `string`; `model`: `string`; }
-      </td>
-
-      <td>
-        *
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.HF_API_KEY?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        Required [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.model?`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        default="sentence-transformers/all-MiniLM-L6-v2"
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`object`\[]
-
-sentences with relevance scores sorted by relevance
-\*
-
-
 # Ngrams
 URL: /docs/functions/topics/ngrams
 
@@ -6845,6 +6345,918 @@ Explained](https://www.youtube.com/watch?v=aPRjj8i_6yE)<br />
 #### Author
 
 [ai-research-agent (2024)](https://airesearch.js.org)
+
+
+# Compare Letters
+URL: /docs/functions/match/compare-letters
+
+***
+
+## title: Compare Letters
+
+[ai-research-agent](../modules.md) / match/compare-letters
+
+## Match
+
+### weighSimilarityByCharacter()
+
+```ts
+function weighSimilarityByCharacter(s1: string, s2: string): number;
+```
+
+Defined in: [src/match/compare-letters.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/compare-letters.js#L28)
+
+### Jaro-Winkler String Similarity Comparison
+
+<img width="350px" src="https://i.imgur.com/1qpRzNh.png" />
+
+Measures similarity between two strings, taking into account the common characters and
+their positions. Jaro-Winkler is often used in record linkage and data cleansing to improve
+the accuracy of string matching, particularly for names and addresses, by giving
+more weight to the common prefix and penalizing longer string differences.  It is [more
+optimal](https://medium.com/@appaloosastore/string-similarity-algorithms-compared-3f7b4d12f0ff)
+for words than [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance):
+
+1. Edit operations: Levenshtein considers insertions, deletions, and substitutions,
+   while Jaro focuses on transpositions.
+2. Sensitivity to string length: Levenshtein is more sensitive to overall
+   string length, while Jaro normalizes for length in its formula.
+3. Prefix matching: The Jaro-Winkler variant explicitly rewards matching
+   prefixes, which Levenshtein does not.
+4. Scale of results: Levenshtein produces an edit distance (usually converted to a similarity score),
+   while Jaro directly produces a similarity score.
+
+[A Comprehensive List of Similarity Search
+Algorithms](https://crucialbits.com/blog/a-comprehensive-list-of-similarity-search-algorithms/)
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `s1`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        First string
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `s2`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        Second string
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`number`
+
+0-1 string similarity score
+
+#### Author
+
+[Jaro, M., Winkler, W. (1990)](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
+
+
+# Match Quasar
+URL: /docs/functions/match/match-quasar
+
+***
+
+## title: Match Quasar
+
+[ai-research-agent](../modules.md) / match/match-quasar
+
+## Match
+
+### matchQUASAR()
+
+```ts
+function matchQUASAR(document: string, query: string): boolean;
+```
+
+Defined in: [src/match/match-quasar.js:19](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/match-quasar.js#L19)
+
+### QUASAR: Quotes-Unifying Alphanumeric Search-All RegExp
+
+Search document for all words of query ignoring casing
+but "words in quotes" as necessarily together like users expect
+in web search engines.  Single line function that can be used
+anywhere, such as UI inputs to filter a data list.
+
+<img width="350px" src="https://i.imgur.com/IuwW97p.png" />
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `query`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td />
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`boolean`
+
+true if doc has all words and "phrases in quotes"
+
+#### Example
+
+```ts
+var isFound = matchQUASAR(`Ask not what your country can do for you, 
+ask what you can do for your country.  is nothing to fear but fear itself.`, 
+` "Ask not" "but fear itself" nothing`) // returns true
+```
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+
+
+# Weigh Relevance Frequency
+URL: /docs/functions/match/weigh-relevance-frequency
+
+***
+
+## title: Weigh Relevance Frequency
+
+[ai-research-agent](../modules.md) / match/weigh-relevance-frequency
+
+## Match
+
+### weighRelevanceTermFrequency()
+
+```ts
+function weighRelevanceTermFrequency(
+   document: string, 
+   query: string, 
+   options?: object): number;
+```
+
+Defined in: [src/match/weigh-relevance-frequency.js:28](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L28)
+
+#### 📈📝 WRITEFAT: Weigh Relevance by Inference of Topics, Entities, and Frequency Averages for Terms
+
+<img width="350px" src="https://i.imgur.com/e2uTpoh.png" />
+
+Calculate term specificity for a single doc with [BM25
+formula](https://www.youtube.com/watch?v=ruBm9WywevM)
+by using Wikipedia term frequencies as the baseline IDF. <br />
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        a single document to calculate the score for
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `query`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        phrase to search tf and idf for each word
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        \{ `avgDocWordCount`: `number`; `normalizeLength`: `number`; `saturationWeight`: `number`; `totalWikiPages`: `number`; }
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `options.avgDocWordCount?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Estimated average word count of all documents
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.normalizeLength?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        normalizeLengthcontrols the document length normalization.
+        It ranges from 0 to 1, with 0.75 being a common default value.
+        When normalizeLength=1: Full length normalization is applied.
+        Longer documents are penalized more heavily.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.saturationWeight?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        saturationWeight controls the impact of term frequency saturation.
+        It typically ranges from 1.2 to 2.0, with 1.5 being a common default value.
+        As saturationWeight increases: The impact of term frequency increases (i.e., multiple occurrences of a term in a document become more significant).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.totalWikiPages?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Total number of Wikipedia pages used to calculate IDF
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`number`
+
+score for term specificity
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+
+## Other
+
+### calculatePhraseSpecificity()
+
+```ts
+function calculatePhraseSpecificity(phrase: string, options: any): number;
+```
+
+Defined in: [src/match/weigh-relevance-frequency.js:76](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/match/weigh-relevance-frequency.js#L76)
+
+Calculate overall domain-speicificity after Query Resolution to Phrases.
+Words are tokenized into phrases and their specificity is calculated based on
+how many Wiki pages they appear in.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `phrase`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `options`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        ‐
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`number`
+
+domain specificity 0-12\~
+
+
+# Extract Author
+URL: /docs/functions/extractor/html-to-cite/extract-author
+
+***
+
+## title: Extract Author
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-author
+
+## extractAuthor()
+
+```ts
+function extractAuthor(document: Document): any;
+```
+
+Defined in: [src/extractor/html-to-cite/extract-author.js:53](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-author.js#L53)
+
+Extracts the author from the document and validates it as a human name
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `Document`
+      </td>
+
+      <td />
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+author\_cite, author\_short, author\_type - or null if no valid author found
+
+
+# Extract Cite
+URL: /docs/functions/extractor/html-to-cite/extract-cite
+
+***
+
+## title: Extract Cite
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-cite
+
+## Extract
+
+### extractCite()
+
+```ts
+function extractCite(document: Document, options: object): object;
+```
+
+Defined in: [src/extractor/html-to-cite/extract-cite.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L25)
+
+### 📚💎 Extract Expert Excerpt
+
+<img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
+
+Extract author, date, source, and title from HTML using meta tags
+and common class names. Validates human name from author string to check
+against common list of 90k first names, last names,and organizations to infer
+if it should be reversed starting by author last name (accounting for affixes/titles),
+since organizations are not reversed.
+[Article Extraction Benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `Document`
+      </td>
+
+      <td>
+        dom object or html string with article content
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options`
+      </td>
+
+      <td>
+        \{ }
+      </td>
+
+      <td>
+        ‐
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`object`
+
+An object containing extracted citation information.
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Defined in</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `author`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `author_cite`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `author_short`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `date`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `source`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `title`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+
+
+# Extract Source
+URL: /docs/functions/extractor/html-to-cite/extract-source
+
+***
+
+## title: Extract Source
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-source
+
+## extractSource()
+
+```ts
+function extractSource(document: Document): any;
+```
+
+Defined in: [src/extractor/html-to-cite/extract-source.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-source.js#L8)
+
+Extract source from document using common class names
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `Document`
+      </td>
+
+      <td>
+        document or dom object with article content
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+source
+
+
+# Extract Title
+URL: /docs/functions/extractor/html-to-cite/extract-title
+
+***
+
+## title: Extract Title
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-title
+
+## extractTitle()
+
+```ts
+function extractTitle(document: Document): string;
+```
+
+Defined in: [src/extractor/html-to-cite/extract-title.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-title.js#L7)
+
+Extract and clean title from document
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `Document`
+      </td>
+
+      <td>
+        DOM object with article content
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`string`
+
+Extracted and cleaned title
+
+
+# Human Names Recognize
+URL: /docs/functions/extractor/html-to-cite/human-names-recognize
+
+***
+
+## title: Human Names Recognize
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/human-names-recognize
+
+## extractHumanName()
+
+```ts
+function extractHumanName(author: string, options: any): any;
+```
+
+Defined in: [src/extractor/html-to-cite/human-names-recognize.js:143](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/human-names-recognize.js#L143)
+
+Validates and formats author names properly handling multiple authors and multi-word names
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `author`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        The author name string(s) to be processed
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        Configuration options
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+Formatted author information for citation
+
+
+# Metadata To Cite
+URL: /docs/functions/extractor/html-to-cite/metadata-to-cite
+
+***
+
+## title: Metadata To Cite
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/metadata-to-cite
+
+## extractCiteFromMetadata()
+
+```ts
+function extractCiteFromMetadata(doc: Document): any;
+```
+
+Defined in: [src/extractor/html-to-cite/metadata-to-cite.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/metadata-to-cite.js#L6)
+
+Extract cite info from common property names in webpage's metadata
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `doc`
+      </td>
+
+      <td>
+        `Document`
+      </td>
+
+      <td>
+        dom object of document
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+author, date, title, source
+
+
+# Url To Domain
+URL: /docs/functions/extractor/html-to-cite/url-to-domain
+
+***
+
+## title: Url To Domain
+
+[ai-research-agent](../../modules.md) / extractor/html-to-cite/url-to-domain
+
+## convertURLToDomain()
+
+```ts
+function convertURLToDomain(domain: string): string;
+```
+
+Defined in: [src/extractor/html-to-cite/url-to-domain.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/url-to-domain.js#L10)
+
+Extract TLD and hostname from domain in Regex. There's [two or more part
+TLDs](https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains)
+so it is hard to tell if host.secondTLD.tld or host.tld is correct way
+to get root domain (e.g. abc.go.jp, abc.co.uk)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `domain`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td />
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`string`
+
+rootDomain
 
 
 # Html To Basic Html
@@ -7775,87 +8187,38 @@ Defined in: [src/extractor/html-to-content/html-utils.js:358](https://github.com
 `any`
 
 
-# Extract Author
-URL: /docs/functions/extractor/html-to-cite/extract-author
+# Pdf To Html
+URL: /docs/functions/extractor/pdf-to-html/pdf-to-html
 
 ***
 
-## title: Extract Author
+## title: Pdf To Html
 
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-author
-
-## extractAuthor()
-
-```ts
-function extractAuthor(document: Document): any;
-```
-
-Defined in: [src/extractor/html-to-cite/extract-author.js:53](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-author.js#L53)
-
-Extracts the author from the document and validates it as a human name
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `Document`
-      </td>
-
-      <td />
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-author\_cite, author\_short, author\_type - or null if no valid author found
-
-
-# Extract Cite
-URL: /docs/functions/extractor/html-to-cite/extract-cite
-
-***
-
-## title: Extract Cite
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-cite
+[ai-research-agent](../../modules.md) / extractor/pdf-to-html/pdf-to-html
 
 ## Extract
 
-### extractCite()
+### convertPDFToHTML()
 
 ```ts
-function extractCite(document: Document, options: object): object;
+function convertPDFToHTML(pdfURLOrBuffer: string, options?: object): any;
 ```
 
-Defined in: [src/extractor/html-to-cite/extract-cite.js:25](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L25)
+Defined in: [src/extractor/pdf-to-html/pdf-to-html.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/pdf-to-html.js#L46)
 
-### 📚💎 Extract Expert Excerpt
+### Convert PDF to HTML
 
-<img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
+<img src="https://i.imgur.com/6IdNDLP.png" width="350px" />
 
-Extract author, date, source, and title from HTML using meta tags
-and common class names. Validates human name from author string to check
-against common list of 90k first names, last names,and organizations to infer
-if it should be reversed starting by author last name (accounting for affixes/titles),
-since organizations are not reversed.
-[Article Extraction Benchmark](https://github.com/scrapinghub/article-extraction-benchmark?tab=readme-ov-file#results)
+Extracts formatted text from PDF with parsing of linebreaks ,
+page headers, footnotes, and section headings. Supports fonts, links, bold,
+italics, lists, headings, headers, footnotes, and Table of Contents,
+Quotes, and Code Blocks, . Removes repeated headers, links footnote anchors to the footnote,
+and preserves number of the PDF page with invisible I element.
+
+This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless)
+to work in more environments than PDF.js-based tools:
+Cloudflare workers, serverless, node.js, and front-end only.
 
 #### Parameters
 
@@ -7871,29 +8234,55 @@ since organizations are not reversed.
   <tbody>
     <tr>
       <td>
-        `document`
+        `pdfURLOrBuffer`
       </td>
 
       <td>
-        `Document`
+        `string`
       </td>
 
       <td>
-        dom object or html string with article content
+        URL to a PDF file or buffer from fs.readFile
       </td>
     </tr>
 
     <tr>
       <td>
-        `options`
+        `options?`
       </td>
 
       <td>
-        \{ }
+        \{ `addPageNumbers`: `boolean`; `removePageHeaders`: `boolean`; }
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `options.addPageNumbers?`
       </td>
 
       <td>
-        ‐
+        `boolean`
+      </td>
+
+      <td>
+        default=false - Adds  #  to end of each page
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.removePageHeaders?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true - Removes repeated headers found on each page
       </td>
     </tr>
   </tbody>
@@ -7901,394 +8290,15 @@ since organizations are not reversed.
 
 #### Returns
 
-`object`
+`any`
 
-An object containing extracted citation information.
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Defined in</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `author`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `author_cite`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `author_short`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `date`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `source`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `title`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        [src/extractor/html-to-cite/extract-cite.js:21](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-cite.js#L21)
-      </td>
-    </tr>
-  </tbody>
-</table>
+HTML formatted text
 
 #### Author
 
-[ai-research-agent (2024)](https://airesearch.js.org)
-
-
-# Extract Source
-URL: /docs/functions/extractor/html-to-cite/extract-source
-
-***
-
-## title: Extract Source
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-source
-
-## extractSource()
-
-```ts
-function extractSource(document: Document): any;
-```
-
-Defined in: [src/extractor/html-to-cite/extract-source.js:8](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-source.js#L8)
-
-Extract source from document using common class names
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `Document`
-      </td>
-
-      <td>
-        document or dom object with article content
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-source
-
-
-# Extract Title
-URL: /docs/functions/extractor/html-to-cite/extract-title
-
-***
-
-## title: Extract Title
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/extract-title
-
-## extractTitle()
-
-```ts
-function extractTitle(document: Document): string;
-```
-
-Defined in: [src/extractor/html-to-cite/extract-title.js:7](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/extract-title.js#L7)
-
-Extract and clean title from document
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `Document`
-      </td>
-
-      <td>
-        DOM object with article content
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`string`
-
-Extracted and cleaned title
-
-
-# Human Names Recognize
-URL: /docs/functions/extractor/html-to-cite/human-names-recognize
-
-***
-
-## title: Human Names Recognize
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/human-names-recognize
-
-## extractHumanName()
-
-```ts
-function extractHumanName(author: string, options: any): any;
-```
-
-Defined in: [src/extractor/html-to-cite/human-names-recognize.js:143](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/human-names-recognize.js#L143)
-
-Validates and formats author names properly handling multiple authors and multi-word names
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `author`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        The author name string(s) to be processed
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        Configuration options
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-Formatted author information for citation
-
-
-# Metadata To Cite
-URL: /docs/functions/extractor/html-to-cite/metadata-to-cite
-
-***
-
-## title: Metadata To Cite
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/metadata-to-cite
-
-## extractCiteFromMetadata()
-
-```ts
-function extractCiteFromMetadata(doc: Document): any;
-```
-
-Defined in: [src/extractor/html-to-cite/metadata-to-cite.js:6](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/metadata-to-cite.js#L6)
-
-Extract cite info from common property names in webpage's metadata
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `doc`
-      </td>
-
-      <td>
-        `Document`
-      </td>
-
-      <td>
-        dom object of document
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-author, date, title, source
-
-
-# Url To Domain
-URL: /docs/functions/extractor/html-to-cite/url-to-domain
-
-***
-
-## title: Url To Domain
-
-[ai-research-agent](../../modules.md) / extractor/html-to-cite/url-to-domain
-
-## convertURLToDomain()
-
-```ts
-function convertURLToDomain(domain: string): string;
-```
-
-Defined in: [src/extractor/html-to-cite/url-to-domain.js:10](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-cite/url-to-domain.js#L10)
-
-Extract TLD and hostname from domain in Regex. There's [two or more part
-TLDs](https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains)
-so it is hard to tell if host.secondTLD.tld or host.tld is correct way
-to get root domain (e.g. abc.go.jp, abc.co.uk)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `domain`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td />
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`string`
-
-rootDomain
+[ai-research-agent (2024)](https://airesearch.js.org),
+[pdf-to-markdown (2017)](https://github.com/jzillmann/pdf-to-markdown/tree/master),
+[pdf.js (2012-)](https://github.com/mozilla/pdf.js/releases),
 
 
 # Docx To Content
@@ -9840,1795 +9850,6 @@ Fetch-based scraper of youtubetotranscript.com
 
 content, timestamps -  where content is the full text of
 the transcript, and timestamps is an array of \[characterIndex, timeSeconds]
-
-
-# Pdf To Html
-URL: /docs/functions/extractor/pdf-to-html/pdf-to-html
-
-***
-
-## title: Pdf To Html
-
-[ai-research-agent](../../modules.md) / extractor/pdf-to-html/pdf-to-html
-
-## Extract
-
-### convertPDFToHTML()
-
-```ts
-function convertPDFToHTML(pdfURLOrBuffer: string, options?: object): any;
-```
-
-Defined in: [src/extractor/pdf-to-html/pdf-to-html.js:46](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/pdf-to-html/pdf-to-html.js#L46)
-
-### Convert PDF to HTML
-
-<img src="https://i.imgur.com/6IdNDLP.png" width="350px" />
-
-Extracts formatted text from PDF with parsing of linebreaks ,
-page headers, footnotes, and section headings. Supports fonts, links, bold,
-italics, lists, headings, headers, footnotes, and Table of Contents,
-Quotes, and Code Blocks, . Removes repeated headers, links footnote anchors to the footnote,
-and preserves number of the PDF page with invisible I element.
-
-This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless)
-to work in more environments than PDF.js-based tools:
-Cloudflare workers, serverless, node.js, and front-end only.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `pdfURLOrBuffer`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        URL to a PDF file or buffer from fs.readFile
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `addPageNumbers`: `boolean`; `removePageHeaders`: `boolean`; }
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `options.addPageNumbers?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=false - Adds  #  to end of each page
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.removePageHeaders?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true - Removes repeated headers found on each page
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`any`
-
-HTML formatted text
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org),
-[pdf-to-markdown (2017)](https://github.com/jzillmann/pdf-to-markdown/tree/master),
-[pdf.js (2012-)](https://github.com/mozilla/pdf.js/releases),
-
-
-# Extract Content Mercury Utils
-URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils
-
-***
-
-## title: Extract Content Mercury Utils
-
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
-
-## brsToPs()
-
-```ts
-function brsToPs(document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:349](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L349)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## cleanAttributes()
-
-```ts
-function cleanAttributes(article: any, document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:464](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L464)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## cleanHOnes()
-
-```ts
-function cleanHOnes(article: any, document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:449](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L449)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## cleanImages()
-
-```ts
-function cleanImages(article: any, document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:424](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L424)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## convertNodeTo()
-
-```ts
-function convertNodeTo(
-   node: any, 
-   document: any, 
-   tag: string): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:326](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L326)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Default value</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `tag`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        `"p"`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## convertToParagraphs()
-
-```ts
-function convertToParagraphs(document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:392](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L392)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## getAttrs()
-
-```ts
-function getAttrs(node: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:316](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L316)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## isWordpress()
-
-```ts
-function isWordpress(document: any): boolean;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:645](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L645)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`boolean`
-
-***
-
-## linkDensity()
-
-```ts
-function linkDensity(node: any): number;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:578](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L578)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`number`
-
-***
-
-## nodeIsSufficient()
-
-```ts
-function nodeIsSufficient(node: any): boolean;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:640](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L640)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`boolean`
-
-***
-
-## normalizeSpaces()
-
-```ts
-function normalizeSpaces(text: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:288](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L288)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `text`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## paragraphize()
-
-```ts
-function paragraphize(
-   node: any, 
-   document: any, 
-   br: boolean): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:293](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L293)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Default value</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `br`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        `false`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## removeEmpty()
-
-```ts
-function removeEmpty(article: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:495](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L495)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## removeUnlessContent()
-
-```ts
-function removeUnlessContent(node: any, weight: any): void;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:508](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L508)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `weight`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`void`
-
-***
-
-## rewriteTopLevel()
-
-```ts
-function rewriteTopLevel(article: any, document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:565](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L565)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## setAttr()
-
-```ts
-function setAttr(
-   node: any, 
-   attr: any, 
-   val: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L650)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `attr`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `val`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## setAttrs()
-
-```ts
-function setAttrs(node: any, attrs: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L656)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `attrs`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## stripJunkTags()
-
-```ts
-function stripJunkTags(
-   article: any, 
-   document: any, 
-   tags: any[]): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:434](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L434)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Default value</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `article`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        `undefined`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `tags`
-      </td>
-
-      <td>
-        `any`\[]
-      </td>
-
-      <td>
-        `[]`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## stripTags()
-
-```ts
-function stripTags(text: any, document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:597](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L597)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `text`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## stripUnlikelyCandidates()
-
-```ts
-function stripUnlikelyCandidates(document: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:605](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L605)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `document`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## textLength()
-
-```ts
-function textLength(text: any): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:573](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L573)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `text`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`any`
-
-***
-
-## withinComment()
-
-```ts
-function withinComment(node: any): boolean;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:624](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L624)
-
-### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `any`
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-
-`boolean`
-
-
-# Extract Content Mercury
-URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-mercury
-
-***
-
-## title: Extract Content Mercury
-
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
-
-## Extract
-
-### extractMainContentFromHTML2()
-
-```ts
-function extractMainContentFromHTML2(html: string, opts?: object): string;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury.js#L62)
-
-### HTML-to-Main-Content Extractor #2
-
-1. The algorithm starts by loading the HTML content using linkedom, a lightweight DOM parser for Node.js.
-2. It then applies a series of cleaning and scoring techniques to identify the main content of
-   the page, starting with stripping unlikely candidates (e.g., elements with class names like "comment"
-   or "sidebar").
-3. The HTML is converted into a series of paragraph elements, which are then scored based on various
-   factors such as text length, number of commas, and the presence of certain class names or IDs.
-4. The algorithm assigns scores to parent and grandparent elements based on the scores of their
-   children, with parents receiving the full score and grandparents receiving half.
-5. After scoring, the algorithm finds the top candidate element by selecting the node with the
-   highest score.
-6. The top candidate's siblings are then examined to see if they should be included in the main
-   content, based on their scores and other factors like link density.
-7. The algorithm then cleans the selected content by removing unnecessary tags, attributes, and empty
-   elements.
-8. It also handles special cases like cleaning up header tags, images, and other potentially irrelevant
-   content.
-9. Throughout the process, the algorithm uses various regular expressions and scoring heuristics to
-   identify positive and negative indicators of content relevance.
-10. Finally, the cleaned and extracted content is returned as an HTML string, representing the main
-    body of the article or webpage.
-
-[Article Extraction Benchmark](https://trafilatura.readthedocs.io/en/latest/evaluation.html)
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `html`
-      </td>
-
-      <td>
-        `string`
-      </td>
-
-      <td>
-        The HTML content to extract from.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `opts?`
-      </td>
-
-      <td>
-        \{ `cleanConditionally`: `boolean`; `stripUnlikelyCandidates`: `boolean`; `weightNodes`: `boolean`; }
-      </td>
-
-      <td>
-        The options for content extraction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `opts.cleanConditionally?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true - Clean the node to remove superfluous content
-        like forms, ads, etc. Initially, pass in the most restrictive options which will return the highest
-        quality content. On each failure, retry with slightly more lax options.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `opts.stripUnlikelyCandidates?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true - Remove elements that match non-article-
-        like criteria first (e.g., elements with a classname of "comment").
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `opts.weightNodes?`
-      </td>
-
-      <td>
-        `boolean`
-      </td>
-
-      <td>
-        default=true - Modify an element's score based on certain classNames or
-        IDs (e.g., subtract if a node has a className of 'comment', add if a node has an ID of 'entry-content').
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`string`
-
-The extracted content as an HTML string, or null if extraction fails.
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-Based on [Postlight Mercury Parser (2017-)](https://github.com/postlight/parser/tree/main/src)
-
-#### Example
-
-```ts
-var url =  "https://en.wikipedia.org/wiki/David_Hilbert"
-var html = await (await fetch(url)).text();
-var content = extractMainContentFromHTML(html);
-console.log(content); // HTML content of main article body
-```
-
-
-# Extract Content Readability
-URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-readability
-
-***
-
-## title: Extract Content Readability
-
-[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
-
-## Extract
-
-### extractMainContentFromHTML()
-
-```ts
-function extractMainContentFromHTML(html: any, options?: object): Element;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L60)
-
-### HTML-to-Main-Content Extractor #1
-
-The function extracts main content with regex patterns, cleaning HTML, scoring nodes
-based on content indicators like paragraphs and id/class names, selecting
-the top candidate, extracting it, and cleaning up content around it.
-
-1. Define regular expressions:
-   * Various regex patterns are defined to identify content and non-content areas.
-
-2. Define helper functions:
-   * normalizeSpaces: Normalizes whitespace in a string.
-   * stripTags: Removes all HTML tags from a string.
-   * getTextLength: Calculates the length of text after stripping tags.
-   * calculateLinkDensity: Calculates the ratio of link text to total text.
-
-3. Clean HTML:
-   * Remove unlikely candidates (e.g., ads, sidebars) from the HTML.
-
-4. Define scoring function:
-   * scoreNode: Assigns a score to an HTML node based on content and attributes.
-   * Increases score for positive indicators (e.g., article, body, content tags).
-   * Decreases score for negative indicators (e.g., hidden, footer, sidebar tags).
-   * Adds to score based on paragraph tags and text length.
-
-5. Find and score candidate nodes:
-   * Identify potential content nodes in the cleaned HTML.
-   * Score each node using the scoreNode function.
-
-6. Select top candidate:
-   * Sort candidates by score and select the highest-scoring node.
-
-7. Extract content:
-   * Use regex to extract content around the top candidate node.
-
-8. Clean up extracted content:
-   * Remove script and style tags and their contents.
-   * Process anchor tags based on content density.
-   * Keep only specific HTML tags (a, p, img, h1-h6, ul, ol, li).
-   * Remove excess whitespace from the final content.
-
-[Article Extraction Benchmark](https://trafilatura.readthedocs.io/en/latest/evaluation.html)
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `html`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        ‐
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options?`
-      </td>
-
-      <td>
-        \{ `minContentLength`: `number`; `minScore`: `number`; `minTextLength`: `number`; `retryLength`: `number`; }
-      </td>
-
-      <td />
-    </tr>
-
-    <tr>
-      <td>
-        `options.minContentLength?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=140 - Minimum length of content to be considered valid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.minScore?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=20 - Minimum score for content to be considered valid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.minTextLength?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=25 - Minimum length of text to be considered valid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `options.retryLength?`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        default=250 - Length to retry content extraction if initial attempt fails
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`Element`
-
-Extracted HTML element of main content such as article body
-
-#### Example
-
-```ts
-var url = "https://www.nytimes.com/2024/08/28/business/telegram-ceo-pavel-durov-charged.html"
-const html = await (await fetch(url)).text();
-var articleContent = extractMainContentFromHTML(html);
-```
-
-#### Author
-
-[ai-research-agent (2024)](https://airesearch.js.org)
-Based on [Mozilla Readability (2015)](https://github.com/mozilla/readability)
-
-## Other
-
-### classWeight()
-
-```ts
-function classWeight(
-   elem: Element, 
-   positiveRe: RegExp, 
-   negativeRe: RegExp): number;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:249](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L249)
-
-Calculates the weight of an element based on its class and id attributes.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `elem`
-      </td>
-
-      <td>
-        `Element`
-      </td>
-
-      <td>
-        The element to calculate weight for
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `positiveRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for positive indicators
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `negativeRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for negative indicators
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`number`
-
-The calculated weight
-
-***
-
-### getLinkDensity()
-
-```ts
-function getLinkDensity(elem: Element): number;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L229)
-
-Calculates the link density of an element.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `elem`
-      </td>
-
-      <td>
-        `Element`
-      </td>
-
-      <td>
-        The element to calculate link density for
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`number`
-
-The link density (ratio of link text length to total text length)
-
-***
-
-### sanitize()
-
-```ts
-function sanitize(
-   node: Element, 
-   candidates: any, 
-   videoRe: RegExp, 
-   positiveRe: RegExp, 
-   negativeRe: RegExp, 
-   minTextLength: number): Element;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:317](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L317)
-
-Sanitizes the content by removing unwanted elements and cleaning remaining elements.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `node`
-      </td>
-
-      <td>
-        `Element`
-      </td>
-
-      <td>
-        The node to sanitize
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `candidates`
-      </td>
-
-      <td>
-        `any`
-      </td>
-
-      <td>
-        Object containing scored candidates
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `videoRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for video URLs
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `positiveRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for positive indicators
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `negativeRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for negative indicators
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `minTextLength`
-      </td>
-
-      <td>
-        `number`
-      </td>
-
-      <td>
-        Minimum text length to consider
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`Element`
-
-The sanitized node
-
-***
-
-### scoreNode()
-
-```ts
-function scoreNode(
-   elem: Element, 
-   positiveRe: RegExp, 
-   negativeRe: RegExp): any;
-```
-
-Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:270](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L270)
-
-Scores a node based on its tag name and attributes.
-
-#### Parameters
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `elem`
-      </td>
-
-      <td>
-        `Element`
-      </td>
-
-      <td>
-        The element to score
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `positiveRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for positive indicators
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `negativeRe`
-      </td>
-
-      <td>
-        `RegExp`
-      </td>
-
-      <td>
-        Regular expression for negative indicators
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-#### Returns
-
-`any`
-
-An object containing the score and the element
 
 
 # Date Extractors
@@ -13440,6 +11661,1681 @@ Extracted date or null if not found
 
 [ai-research-agent (2024)](https://airesearch.js.org)
 Based on [Barbaresi (2020)](https://github.com/adbar/htmldate/)
+
+
+# Extract Content Mercury Utils
+URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-mercury-utils
+
+***
+
+## title: Extract Content Mercury Utils
+
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury-utils
+
+## brsToPs()
+
+```ts
+function brsToPs(document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:349](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L349)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## cleanAttributes()
+
+```ts
+function cleanAttributes(article: any, document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:464](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L464)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## cleanHOnes()
+
+```ts
+function cleanHOnes(article: any, document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:449](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L449)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## cleanImages()
+
+```ts
+function cleanImages(article: any, document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:424](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L424)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## convertNodeTo()
+
+```ts
+function convertNodeTo(
+   node: any, 
+   document: any, 
+   tag: string): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:326](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L326)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `tag`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        `"p"`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## convertToParagraphs()
+
+```ts
+function convertToParagraphs(document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:392](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L392)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## getAttrs()
+
+```ts
+function getAttrs(node: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:316](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L316)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## isWordpress()
+
+```ts
+function isWordpress(document: any): boolean;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:645](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L645)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`boolean`
+
+***
+
+## linkDensity()
+
+```ts
+function linkDensity(node: any): number;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:578](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L578)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`number`
+
+***
+
+## nodeIsSufficient()
+
+```ts
+function nodeIsSufficient(node: any): boolean;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:640](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L640)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`boolean`
+
+***
+
+## normalizeSpaces()
+
+```ts
+function normalizeSpaces(text: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:288](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L288)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `text`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## paragraphize()
+
+```ts
+function paragraphize(
+   node: any, 
+   document: any, 
+   br: boolean): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:293](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L293)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `br`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        `false`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## removeEmpty()
+
+```ts
+function removeEmpty(article: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:495](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L495)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## removeUnlessContent()
+
+```ts
+function removeUnlessContent(node: any, weight: any): void;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:508](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L508)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `weight`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`void`
+
+***
+
+## rewriteTopLevel()
+
+```ts
+function rewriteTopLevel(article: any, document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:565](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L565)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## setAttr()
+
+```ts
+function setAttr(
+   node: any, 
+   attr: any, 
+   val: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:650](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L650)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `attr`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `val`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## setAttrs()
+
+```ts
+function setAttrs(node: any, attrs: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:656](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L656)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `attrs`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## stripJunkTags()
+
+```ts
+function stripJunkTags(
+   article: any, 
+   document: any, 
+   tags: any[]): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:434](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L434)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `article`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        `undefined`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `tags`
+      </td>
+
+      <td>
+        `any`\[]
+      </td>
+
+      <td>
+        `[]`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## stripTags()
+
+```ts
+function stripTags(text: any, document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:597](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L597)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `text`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## stripUnlikelyCandidates()
+
+```ts
+function stripUnlikelyCandidates(document: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:605](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L605)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `document`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## textLength()
+
+```ts
+function textLength(text: any): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:573](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L573)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `text`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`any`
+
+***
+
+## withinComment()
+
+```ts
+function withinComment(node: any): boolean;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js:624](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury-utils.js#L624)
+
+### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `any`
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+
+`boolean`
+
+
+# Extract Content Mercury
+URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-mercury
+
+***
+
+## title: Extract Content Mercury
+
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-mercury
+
+## Extract
+
+### extractMainContentFromHTML2()
+
+```ts
+function extractMainContentFromHTML2(html: string, opts?: object): string;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-mercury.js:62](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-mercury.js#L62)
+
+### HTML-to-Main-Content Extractor #2
+
+1. The algorithm starts by loading the HTML content using linkedom, a lightweight DOM parser for Node.js.
+2. It then applies a series of cleaning and scoring techniques to identify the main content of
+   the page, starting with stripping unlikely candidates (e.g., elements with class names like "comment"
+   or "sidebar").
+3. The HTML is converted into a series of paragraph elements, which are then scored based on various
+   factors such as text length, number of commas, and the presence of certain class names or IDs.
+4. The algorithm assigns scores to parent and grandparent elements based on the scores of their
+   children, with parents receiving the full score and grandparents receiving half.
+5. After scoring, the algorithm finds the top candidate element by selecting the node with the
+   highest score.
+6. The top candidate's siblings are then examined to see if they should be included in the main
+   content, based on their scores and other factors like link density.
+7. The algorithm then cleans the selected content by removing unnecessary tags, attributes, and empty
+   elements.
+8. It also handles special cases like cleaning up header tags, images, and other potentially irrelevant
+   content.
+9. Throughout the process, the algorithm uses various regular expressions and scoring heuristics to
+   identify positive and negative indicators of content relevance.
+10. Finally, the cleaned and extracted content is returned as an HTML string, representing the main
+    body of the article or webpage.
+
+[Article Extraction Benchmark](https://trafilatura.readthedocs.io/en/latest/evaluation.html)
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `html`
+      </td>
+
+      <td>
+        `string`
+      </td>
+
+      <td>
+        The HTML content to extract from.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `opts?`
+      </td>
+
+      <td>
+        \{ `cleanConditionally`: `boolean`; `stripUnlikelyCandidates`: `boolean`; `weightNodes`: `boolean`; }
+      </td>
+
+      <td>
+        The options for content extraction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `opts.cleanConditionally?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true - Clean the node to remove superfluous content
+        like forms, ads, etc. Initially, pass in the most restrictive options which will return the highest
+        quality content. On each failure, retry with slightly more lax options.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `opts.stripUnlikelyCandidates?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true - Remove elements that match non-article-
+        like criteria first (e.g., elements with a classname of "comment").
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `opts.weightNodes?`
+      </td>
+
+      <td>
+        `boolean`
+      </td>
+
+      <td>
+        default=true - Modify an element's score based on certain classNames or
+        IDs (e.g., subtract if a node has a className of 'comment', add if a node has an ID of 'entry-content').
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`string`
+
+The extracted content as an HTML string, or null if extraction fails.
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+Based on [Postlight Mercury Parser (2017-)](https://github.com/postlight/parser/tree/main/src)
+
+#### Example
+
+```ts
+var url =  "https://en.wikipedia.org/wiki/David_Hilbert"
+var html = await (await fetch(url)).text();
+var content = extractMainContentFromHTML(html);
+console.log(content); // HTML content of main article body
+```
+
+
+# Extract Content Readability
+URL: /docs/functions/extractor/html-to-content/extract-content/extract-content-readability
+
+***
+
+## title: Extract Content Readability
+
+[ai-research-agent](../../../modules.md) / extractor/html-to-content/extract-content/extract-content-readability
+
+## Extract
+
+### extractMainContentFromHTML()
+
+```ts
+function extractMainContentFromHTML(html: any, options?: object): Element;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:60](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L60)
+
+### HTML-to-Main-Content Extractor #1
+
+The function extracts main content with regex patterns, cleaning HTML, scoring nodes
+based on content indicators like paragraphs and id/class names, selecting
+the top candidate, extracting it, and cleaning up content around it.
+
+1. Define regular expressions:
+   * Various regex patterns are defined to identify content and non-content areas.
+
+2. Define helper functions:
+   * normalizeSpaces: Normalizes whitespace in a string.
+   * stripTags: Removes all HTML tags from a string.
+   * getTextLength: Calculates the length of text after stripping tags.
+   * calculateLinkDensity: Calculates the ratio of link text to total text.
+
+3. Clean HTML:
+   * Remove unlikely candidates (e.g., ads, sidebars) from the HTML.
+
+4. Define scoring function:
+   * scoreNode: Assigns a score to an HTML node based on content and attributes.
+   * Increases score for positive indicators (e.g., article, body, content tags).
+   * Decreases score for negative indicators (e.g., hidden, footer, sidebar tags).
+   * Adds to score based on paragraph tags and text length.
+
+5. Find and score candidate nodes:
+   * Identify potential content nodes in the cleaned HTML.
+   * Score each node using the scoreNode function.
+
+6. Select top candidate:
+   * Sort candidates by score and select the highest-scoring node.
+
+7. Extract content:
+   * Use regex to extract content around the top candidate node.
+
+8. Clean up extracted content:
+   * Remove script and style tags and their contents.
+   * Process anchor tags based on content density.
+   * Keep only specific HTML tags (a, p, img, h1-h6, ul, ol, li).
+   * Remove excess whitespace from the final content.
+
+[Article Extraction Benchmark](https://trafilatura.readthedocs.io/en/latest/evaluation.html)
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `html`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        ‐
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options?`
+      </td>
+
+      <td>
+        \{ `minContentLength`: `number`; `minScore`: `number`; `minTextLength`: `number`; `retryLength`: `number`; }
+      </td>
+
+      <td />
+    </tr>
+
+    <tr>
+      <td>
+        `options.minContentLength?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=140 - Minimum length of content to be considered valid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.minScore?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=20 - Minimum score for content to be considered valid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.minTextLength?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=25 - Minimum length of text to be considered valid
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `options.retryLength?`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        default=250 - Length to retry content extraction if initial attempt fails
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`Element`
+
+Extracted HTML element of main content such as article body
+
+#### Example
+
+```ts
+var url = "https://www.nytimes.com/2024/08/28/business/telegram-ceo-pavel-durov-charged.html"
+const html = await (await fetch(url)).text();
+var articleContent = extractMainContentFromHTML(html);
+```
+
+#### Author
+
+[ai-research-agent (2024)](https://airesearch.js.org)
+Based on [Mozilla Readability (2015)](https://github.com/mozilla/readability)
+
+## Other
+
+### classWeight()
+
+```ts
+function classWeight(
+   elem: Element, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp): number;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:249](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L249)
+
+Calculates the weight of an element based on its class and id attributes.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `elem`
+      </td>
+
+      <td>
+        `Element`
+      </td>
+
+      <td>
+        The element to calculate weight for
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `positiveRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for positive indicators
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `negativeRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for negative indicators
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`number`
+
+The calculated weight
+
+***
+
+### getLinkDensity()
+
+```ts
+function getLinkDensity(elem: Element): number;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:229](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L229)
+
+Calculates the link density of an element.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `elem`
+      </td>
+
+      <td>
+        `Element`
+      </td>
+
+      <td>
+        The element to calculate link density for
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`number`
+
+The link density (ratio of link text length to total text length)
+
+***
+
+### sanitize()
+
+```ts
+function sanitize(
+   node: Element, 
+   candidates: any, 
+   videoRe: RegExp, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp, 
+   minTextLength: number): Element;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:317](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L317)
+
+Sanitizes the content by removing unwanted elements and cleaning remaining elements.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `node`
+      </td>
+
+      <td>
+        `Element`
+      </td>
+
+      <td>
+        The node to sanitize
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `candidates`
+      </td>
+
+      <td>
+        `any`
+      </td>
+
+      <td>
+        Object containing scored candidates
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `videoRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for video URLs
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `positiveRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for positive indicators
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `negativeRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for negative indicators
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `minTextLength`
+      </td>
+
+      <td>
+        `number`
+      </td>
+
+      <td>
+        Minimum text length to consider
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`Element`
+
+The sanitized node
+
+***
+
+### scoreNode()
+
+```ts
+function scoreNode(
+   elem: Element, 
+   positiveRe: RegExp, 
+   negativeRe: RegExp): any;
+```
+
+Defined in: [src/extractor/html-to-content/extract-content/extract-content-readability.js:270](https://github.com/vtempest/ai-research-agent/tree/master/packages/ai-research-agent/src/extractor/html-to-content/extract-content/extract-content-readability.js#L270)
+
+Scores a node based on its tag name and attributes.
+
+#### Parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `elem`
+      </td>
+
+      <td>
+        `Element`
+      </td>
+
+      <td>
+        The element to score
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `positiveRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for positive indicators
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `negativeRe`
+      </td>
+
+      <td>
+        `RegExp`
+      </td>
+
+      <td>
+        Regular expression for negative indicators
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Returns
+
+`any`
+
+An object containing the score and the element
 
 
 # Annotation

@@ -30,7 +30,7 @@ engines:
   - name: bing
     engine: bing
     shortcut: bi
-    disabled: true
+    disabled: false
     
   - name: bing news
     engine: bing_news
@@ -152,7 +152,7 @@ engines:
   - name: yahoo
     engine: yahoo
     shortcut: yh
-    disabled: true
+    disabled: false
 
   - name: yahoo news
     engine: yahoo_news

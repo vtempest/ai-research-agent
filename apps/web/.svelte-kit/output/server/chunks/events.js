@@ -1,4 +1,4 @@
-import { q as queue_micro_task, w as without_reactive_context, d as define_property, i as is_array, s as set_active_reaction, a as set_active_effect, b as active_reaction, c as active_effect } from "./index.js";
+import { q as queue_micro_task, w as without_reactive_context, d as define_property, s as set_active_reaction, a as set_active_effect, b as active_reaction, c as active_effect } from "./context.js";
 const all_registered_events = /* @__PURE__ */ new Set();
 const root_event_handles = /* @__PURE__ */ new Set();
 function create_event(event_name, dom, handler, options = {}) {
@@ -83,12 +83,7 @@ function handle_event_propagation(event) {
         current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
         // -> the target could not have been disabled because it emits the event in the first place
         event.target === current_target)) {
-          if (is_array(delegated)) {
-            var [fn, ...data] = delegated;
-            fn.apply(current_target, [event, ...data]);
-          } else {
-            delegated.call(current_target, event);
-          }
+          delegated.call(current_target, event);
         }
       } catch (error) {
         if (throw_error) {

@@ -1,0 +1,1 @@
+import{e as b,r as d,d as h,q as k,S as q}from"./DJ8n_fHL.js";function u(r,i){return r===i||r?.[q]===i}function c(r={},i,a,S){return b(()=>{var f,s;return d(()=>{f=s,s=S?.()||[],h(()=>{r!==a(...s)&&(i(r,...s),f&&u(a(...f),r)&&i(null,...f))})}),()=>{k(()=>{s&&u(a(...s),r)&&i(null,...s)})}}),r}export{c as b};

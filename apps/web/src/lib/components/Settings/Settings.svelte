@@ -1,40 +1,37 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { onMount } from "svelte";
+  import { writable } from "svelte/store";
   import * as Select from "$lib/components/ui/select";
   import { Input } from "$lib/components/ui/input";
   import { Button } from "$lib/components/ui/button";
   import { Switch } from "$lib/components/ui/switch";
-  import { 
-    User, 
-    Mail, 
-    Lock, 
-    Upload, 
-    Save, 
-    Link2, 
-    LogOut, 
+  import {
+    User,
+    Mail,
+    Lock,
+    Upload,
+    Save,
+    Link2,
+    LogOut,
     Trash2,
     Github,
     Chrome,
     Facebook,
     Apple,
     Monitor,
-    Search, 
-    Key, 
-    Type, 
+    Search,
+    Key,
+    Type,
     ExternalLink,
-    Settings
-  } from 'lucide-svelte';
-  import grab from 'grab-api.js'
+    Settings,
+  } from "lucide-svelte";
+  import grab from "grab-url";
 
-  let {
-    user = null,
-  } = $props();
-  
+  let { user = null } = $props();
 
   let passwordData = {
-    currentPassword: '',
-    newPassword: ''
+    currentPassword: "",
+    newPassword: "",
   };
 
   let loading = {
@@ -45,19 +42,19 @@
     providers: {},
     signOut: false,
     deleteAccount: false,
-    settings: false
+    settings: false,
   };
 
   let avatarInput: HTMLInputElement;
   let showDeleteConfirm = false;
-  let activeTab = $state('profile'); // 'profile' or 'settings'
+  let activeTab = $state("profile"); // 'profile' or 'settings'
 
   // Settings form store
   const formStore = writable({
-    searchEngine: 'google',
-    groqApiKey: '...',
-    favoriteFont: 'Inter',
-    darkMode: false
+    searchEngine: "google",
+    groqApiKey: "...",
+    favoriteFont: "Inter",
+    darkMode: false,
   });
 
   const searchEngines = [
@@ -68,7 +65,8 @@
 
   let selectedEngine = $state("");
   const triggerContent = $derived(
-    searchEngines.find((engine) => engine.value === selectedEngine)?.label ?? "Select search engine"
+    searchEngines.find((engine) => engine.value === selectedEngine)?.label ??
+      "Select search engine",
   );
 
   const fonts = [
@@ -80,9 +78,7 @@
   let selectedFont = $state("");
 
   // Initialize profile data
-  onMount(() => {
-
-  });
+  onMount(() => {});
 
   // Avatar upload handler
   function handleAvatarClick() {
@@ -92,16 +88,16 @@
   async function handleAvatarUpload(event: Event) {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0];
-    
+
     if (!file) return;
 
     loading.avatar = true;
     try {
       const imageUrl = URL.createObjectURL(file);
       user.avatar = imageUrl;
-      console.log('Avatar uploaded successfully');
+      console.log("Avatar uploaded successfully");
     } catch (error) {
-      console.error('Avatar upload failed:', error);
+      console.error("Avatar upload failed:", error);
     } finally {
       loading.avatar = false;
     }
@@ -111,9 +107,9 @@
   async function updateProfile() {
     loading.profile = true;
     try {
-      console.log('Profile updated:', user.name);
+      console.log("Profile updated:", user.name);
     } catch (error) {
-      console.error('Profile update failed:', error);
+      console.error("Profile update failed:", error);
     } finally {
       loading.profile = false;
     }
@@ -122,9 +118,9 @@
   async function updateEmail() {
     loading.email = true;
     try {
-      console.log('Email updated:', user.email);
+      console.log("Email updated:", user.email);
     } catch (error) {
-      console.error('Email update failed:', error);
+      console.error("Email update failed:", error);
     } finally {
       loading.email = false;
     }
@@ -132,16 +128,16 @@
 
   async function changePassword() {
     if (!passwordData.currentPassword || !passwordData.newPassword) {
-      alert('Please fill in both password fields');
+      alert("Please fill in both password fields");
       return;
     }
 
     loading.password = true;
     try {
-      console.log('Password changed successfully');
-      passwordData = { currentPassword: '', newPassword: '' };
+      console.log("Password changed successfully");
+      passwordData = { currentPassword: "", newPassword: "" };
     } catch (error) {
-      console.error('Password change failed:', error);
+      console.error("Password change failed:", error);
     } finally {
       loading.password = false;
     }
@@ -163,9 +159,11 @@
   async function handleSignOut() {
     loading.signOut = true;
     try {
-      grab('auth/sign-out', {post: true}).then(()=>  window.location.reload() )
+      grab("auth/sign-out", { post: true }).then(() =>
+        window.location.reload(),
+      );
     } catch (error) {
-      console.error('Sign out failed:', error);
+      console.error("Sign out failed:", error);
     } finally {
       loading.signOut = false;
     }
@@ -180,9 +178,9 @@
 
     loading.deleteAccount = true;
     try {
-      console.log('Account deleted');
+      console.log("Account deleted");
     } catch (error) {
-      console.error('Account deletion failed:', error);
+      console.error("Account deletion failed:", error);
     } finally {
       loading.deleteAccount = false;
       showDeleteConfirm = false;
@@ -194,17 +192,15 @@
     event.preventDefault();
     loading.settings = true;
     try {
-      console.log('Settings saved:', $formStore);
+      console.log("Settings saved:", $formStore);
     } catch (error) {
-      console.error('Settings save failed:', error);
+      console.error("Settings save failed:", error);
     } finally {
       loading.settings = false;
     }
   }
 
-
-
-export const getProviderLogo = (providerName: string) => {
+  export const getProviderLogo = (providerName: string) => {
     switch (providerName.toLowerCase()) {
       case "google":
         return `<svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -239,10 +235,10 @@ export const getProviderLogo = (providerName: string) => {
   };
 
   const providers = [
-    { name: 'GitHub', icon: Github, connected: false },
-    { name: 'Google', icon: Chrome, connected: false },
-    { name: 'Facebook', icon: Facebook, connected: false },
-    { name: 'Apple', icon: Apple, connected: false }
+    { name: "GitHub", icon: Github, connected: false },
+    { name: "Google", icon: Chrome, connected: false },
+    { name: "Facebook", icon: Facebook, connected: false },
+    { name: "Apple", icon: Apple, connected: false },
   ];
 </script>
 
@@ -253,59 +249,83 @@ export const getProviderLogo = (providerName: string) => {
 <div class="max-w-4xl mx-auto p-6">
   <!-- Tab Navigation -->
   <div class="flex space-x-1 mb-8 bg-gray-100 p-1 rounded-lg">
-    <button 
-      class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2 {activeTab === 'profile' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}"
-      onclick={() => activeTab = 'profile'}
+    <button
+      class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2 {activeTab ===
+      'profile'
+        ? 'bg-white text-gray-900 shadow-sm'
+        : 'text-gray-600 hover:text-gray-900'}"
+      onclick={() => (activeTab = "profile")}
     >
       <User size={16} />
       Profile
     </button>
-    <button 
-      class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2 {activeTab === 'settings' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}"
-      onclick={() => activeTab = 'settings'}
+    <button
+      class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors flex items-center justify-center gap-2 {activeTab ===
+      'settings'
+        ? 'bg-white text-gray-900 shadow-sm'
+        : 'text-gray-600 hover:text-gray-900'}"
+      onclick={() => (activeTab = "settings")}
     >
       <Settings size={16} />
       Settings
     </button>
   </div>
 
-  {#if activeTab === 'profile'}
+  {#if activeTab === "profile"}
     <!-- Profile Tab Content -->
     <div class="space-y-6">
       <!-- Avatar Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <h2
+          class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2"
+        >
           <User size={20} />
           Avatar
         </h2>
-        
+
         <div class="flex items-center gap-4">
-          <button 
+          <button
             onclick={handleAvatarClick}
             class="relative w-16 h-16 rounded-full overflow-hidden bg-gray-100 hover:bg-gray-200 transition-colors border-2 border-dashed border-gray-300 hover:border-primary-500 flex items-center justify-center group"
             disabled={loading.avatar}
           >
             {#if user.avatar}
-              <img src={user.avatar} alt="Avatar" class="w-full h-full object-cover" />
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center">
-                <Upload size={20} class="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+              <img
+                src={user.avatar}
+                alt="Avatar"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center"
+              >
+                <Upload
+                  size={20}
+                  class="text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                />
               </div>
             {:else}
-              <Upload size={24} class="text-gray-400 group-hover:text-primary-500" />
+              <Upload
+                size={24}
+                class="text-gray-400 group-hover:text-primary-500"
+              />
             {/if}
           </button>
-          
+
           <div>
-            <p class="text-sm text-gray-600 mb-1">Click on the avatar to upload a custom one from your files.</p>
-            <p class="text-xs text-gray-500">An avatar is optional but strongly recommended.</p>
+            <p class="text-sm text-gray-600 mb-1">
+              Click on the avatar to upload a custom one from your files.
+            </p>
+            <p class="text-xs text-gray-500">
+              An avatar is optional but strongly recommended.
+            </p>
           </div>
         </div>
 
-        <input 
+        <input
           bind:this={avatarInput}
-          type="file" 
-          accept="image/*" 
-          class="hidden" 
+          type="file"
+          accept="image/*"
+          class="hidden"
           onchange={handleAvatarUpload}
         />
       </div>
@@ -313,101 +333,127 @@ export const getProviderLogo = (providerName: string) => {
       <!-- Name Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 class="text-lg font-semibold text-gray-900 mb-2">Name</h2>
-        <p class="text-sm text-gray-600 mb-4">Please enter your full name, or a display name.</p>
-        
+        <p class="text-sm text-gray-600 mb-4">
+          Please enter your full name, or a display name.
+        </p>
+
         <div class="flex gap-3">
-          <input 
+          <input
             bind:value={user.name}
-            type="text" 
+            type="text"
             class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="Enter your name"
             maxlength="32"
           />
-          <Button 
+          <Button
             onclick={updateProfile}
             disabled={loading.profile}
             variant="outline"
           >
             {#if loading.profile}
-              <div class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              <div
+                class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"
+              ></div>
             {:else}
               Save
             {/if}
           </Button>
         </div>
-        
-        <p class="text-xs text-gray-500 mt-2">Please use 32 characters at maximum.</p>
+
+        <p class="text-xs text-gray-500 mt-2">
+          Please use 32 characters at maximum.
+        </p>
       </div>
 
       <!-- Email Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
+        <h2
+          class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+        >
           <Mail size={20} />
           Email
         </h2>
-        <p class="text-sm text-gray-600 mb-4">Enter the email address you want to use to log in.</p>
-        
+        <p class="text-sm text-gray-600 mb-4">
+          Enter the email address you want to use to log in.
+        </p>
+
         <div class="flex gap-3">
-          <input 
+          <input
             bind:value={user.email}
-            type="email" 
+            type="email"
             class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="Enter your email"
           />
-          <Button 
+          <Button
             onclick={updateEmail}
             disabled={loading.email}
             variant="outline"
           >
             {#if loading.email}
-              <div class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              <div
+                class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"
+              ></div>
             {:else}
               Save
             {/if}
           </Button>
         </div>
-        
-        <p class="text-xs text-gray-500 mt-2">Please use a valid email address.</p>
+
+        <p class="text-xs text-gray-500 mt-2">
+          Please use a valid email address.
+        </p>
       </div>
 
       <!-- Change Password Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
+        <h2
+          class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+        >
           <Lock size={20} />
           Change Password
         </h2>
-        <p class="text-sm text-gray-600 mb-4">Enter your current password and a new password.</p>
-        
+        <p class="text-sm text-gray-600 mb-4">
+          Enter your current password and a new password.
+        </p>
+
         <div class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
-            <input 
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Current Password</label
+            >
+            <input
               bind:value={passwordData.currentPassword}
-              type="password" 
+              type="password"
               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               placeholder="Current Password"
             />
           </div>
-          
+
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-            <input 
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >New Password</label
+            >
+            <input
               bind:value={passwordData.newPassword}
-              type="password" 
+              type="password"
               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               placeholder="New Password"
             />
           </div>
-          
+
           <div class="flex justify-between items-center">
-            <p class="text-xs text-gray-500">Please use 8 characters at minimum.</p>
-            <Button 
+            <p class="text-xs text-gray-500">
+              Please use 8 characters at minimum.
+            </p>
+            <Button
               onclick={changePassword}
               disabled={loading.password}
               variant="outline"
             >
               {#if loading.password}
-                <div class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                <div
+                  class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"
+                ></div>
               {:else}
                 Save
               {/if}
@@ -419,23 +465,33 @@ export const getProviderLogo = (providerName: string) => {
       <!-- Providers Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 class="text-lg font-semibold text-gray-900 mb-2">Providers</h2>
-        <p class="text-sm text-gray-600 mb-4">Connect your account with a third-party service.</p>
-        
+        <p class="text-sm text-gray-600 mb-4">
+          Connect your account with a third-party service.
+        </p>
+
         <div class="space-y-3">
           {#each providers as provider}
-            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+            <div
+              class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+            >
               <div class="flex items-center gap-3">
-                <svelte:component this={provider.icon} size={20} class="text-gray-600" />
+                <svelte:component
+                  this={provider.icon}
+                  size={20}
+                  class="text-gray-600"
+                />
                 <span class="font-medium text-gray-900">{provider.name}</span>
               </div>
-              
-              <Button 
+
+              <Button
                 onclick={() => linkProvider(provider.name.toLowerCase())}
                 disabled={loading.providers[provider.name.toLowerCase()]}
                 size="sm"
               >
                 {#if loading.providers[provider.name.toLowerCase()]}
-                  <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div
+                    class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                  ></div>
                 {:else}
                   Link
                 {/if}
@@ -448,22 +504,28 @@ export const getProviderLogo = (providerName: string) => {
       <!-- Sessions Section -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 class="text-lg font-semibold text-gray-900 mb-2">Sessions</h2>
-        <p class="text-sm text-gray-600 mb-4">Manage your active sessions and revoke access.</p>
-        
-        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+        <p class="text-sm text-gray-600 mb-4">
+          Manage your active sessions and revoke access.
+        </p>
+
+        <div
+          class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+        >
           <div class="flex items-center gap-3">
             <Monitor size={20} class="text-gray-600" />
             <span class="font-medium text-gray-900">Current Session</span>
           </div>
-          
-          <Button 
+
+          <Button
             onclick={handleSignOut}
             disabled={loading.signOut}
             variant="outline"
             size="sm"
           >
             {#if loading.signOut}
-              <div class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              <div
+                class="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"
+              ></div>
             {:else}
               <LogOut size={16} />
               Sign Out
@@ -474,44 +536,51 @@ export const getProviderLogo = (providerName: string) => {
 
       <!-- Delete Account Section -->
       <div class="bg-white rounded-lg shadow-sm border border-red-200 p-6">
-        <h2 class="text-lg font-semibold text-red-900 mb-2 flex items-center gap-2">
+        <h2
+          class="text-lg font-semibold text-red-900 mb-2 flex items-center gap-2"
+        >
           <Trash2 size={20} />
           Delete Account
         </h2>
         <p class="text-sm text-red-600 mb-4">
-          Permanently remove your account and all of its contents. This action is not reversible, so please continue with caution.
+          Permanently remove your account and all of its contents. This action
+          is not reversible, so please continue with caution.
         </p>
-        
+
         {#if showDeleteConfirm}
           <div class="bg-red-50 border border-red-200 rounded-md p-4 mb-4">
-            <p class="text-sm text-red-800 font-medium mb-2">Are you absolutely sure?</p>
-            <p class="text-sm text-red-700">This action cannot be undone. This will permanently delete your account and remove all associated data.</p>
+            <p class="text-sm text-red-800 font-medium mb-2">
+              Are you absolutely sure?
+            </p>
+            <p class="text-sm text-red-700">
+              This action cannot be undone. This will permanently delete your
+              account and remove all associated data.
+            </p>
           </div>
-          
+
           <div class="flex gap-3">
-            <Button 
-              onclick={() => showDeleteConfirm = false}
+            <Button
+              onclick={() => (showDeleteConfirm = false)}
               variant="outline"
             >
               Cancel
             </Button>
-            <Button 
+            <Button
               onclick={deleteAccount}
               disabled={loading.deleteAccount}
               variant="destructive"
             >
               {#if loading.deleteAccount}
-                <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <div
+                  class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                ></div>
               {:else}
                 Yes, Delete Account
               {/if}
             </Button>
           </div>
         {:else}
-          <Button 
-            onclick={deleteAccount}
-            variant="destructive"
-          >
+          <Button onclick={deleteAccount} variant="destructive">
             Delete Account
           </Button>
         {/if}
@@ -525,7 +594,9 @@ export const getProviderLogo = (providerName: string) => {
         <div class="space-y-6">
           <!-- Search Engine -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <label class="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900">
+            <label
+              class="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900"
+            >
               <Search size={20} />
               Preferred Search Engine
             </label>
@@ -547,16 +618,29 @@ export const getProviderLogo = (providerName: string) => {
           <!-- Groq API Key -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div class="flex items-center justify-between mb-4">
-              <label for="groq-api-key" class="flex items-center gap-2 text-lg font-semibold text-gray-900">
+              <label
+                for="groq-api-key"
+                class="flex items-center gap-2 text-lg font-semibold text-gray-900"
+              >
                 <Key size={20} />
                 Groq API Key
               </label>
-              <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-500 hover:text-blue-600 flex items-center gap-1">
-                Get Free API Key 
+              <a
+                href="https://console.groq.com/keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-blue-500 hover:text-blue-600 flex items-center gap-1"
+              >
+                Get Free API Key
                 <ExternalLink size={14} />
               </a>
             </div>
-            <Input id="groq-api-key" type="password" bind:value={$formStore.groqApiKey} placeholder="Enter your Groq API key" />
+            <Input
+              id="groq-api-key"
+              type="password"
+              bind:value={$formStore.groqApiKey}
+              placeholder="Enter your Groq API key"
+            />
           </div>
         </div>
 
@@ -564,15 +648,18 @@ export const getProviderLogo = (providerName: string) => {
         <div class="space-y-6">
           <!-- Font Selection -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <label class="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900">
+            <label
+              class="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900"
+            >
               <Type size={20} />
               Preferred Font
             </label>
-          
+
             <Select.Root bind:value={selectedFont}>
               <Select.Trigger class="w-full">
                 <span class="text-gray-700">
-                  {fonts.find((font) => font.value === selectedFont)?.label ?? "Select font"}
+                  {fonts.find((font) => font.value === selectedFont)?.label ??
+                    "Select font"}
                 </span>
               </Select.Trigger>
               <Select.Content>
@@ -586,7 +673,9 @@ export const getProviderLogo = (providerName: string) => {
           <!-- Dark Mode -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div class="flex items-center justify-between">
-              <label for="dark-mode" class="text-lg font-semibold text-gray-900">Dark Mode</label>
+              <label for="dark-mode" class="text-lg font-semibold text-gray-900"
+                >Dark Mode</label
+              >
               <Switch id="dark-mode" bind:checked={$formStore.darkMode} />
             </div>
           </div>
@@ -595,20 +684,14 @@ export const getProviderLogo = (providerName: string) => {
 
       <!-- Action Buttons -->
       <div class="flex gap-4 pt-6">
-        <Button 
-          onclick={handleSignOut}
-          variant="outline"
-          class="flex-1"
-        >
+        <Button onclick={handleSignOut} variant="outline" class="flex-1">
           Sign Out
         </Button>
-        <Button 
-          type="submit" 
-          disabled={loading.settings}
-          class="flex-1"
-        >
+        <Button type="submit" disabled={loading.settings} class="flex-1">
           {#if loading.settings}
-            <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+            <div
+              class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"
+            ></div>
           {/if}
           Save Settings
         </Button>
