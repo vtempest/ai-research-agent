@@ -6,6 +6,7 @@
 
 export function getBackgroundArtwork() {
   const backgrounds = [
+    "DRAfJoc.jpeg", // octopus brain emerges from datacenter
     "vKP22VU.png", // quantum particles and spheres
     "ASVRQ1G.jpeg", // wavy log black and circular lines
     "35svwUT.jpeg", // grey brain with ghost nodes

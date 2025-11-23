@@ -1,6 +1,9 @@
 import cloneDeep from './util/cloneDeep';
 import isEqual from './util/isEqual';
 
+/**
+ * Map of formatting attributes.
+ */
 interface AttributeMap {
   [key: string]: any;
 }
@@ -19,6 +22,9 @@ function isDeepNull(value: unknown): boolean {
 }
 
 namespace AttributeMap {
+  /**
+   * Composes two attribute maps.
+   */
   export function compose(
     a: AttributeMap = {},
     b: AttributeMap = {},
@@ -52,6 +58,9 @@ namespace AttributeMap {
     return Object.keys(attributes).length > 0 ? attributes : undefined;
   }
 
+  /**
+   * Calculates the difference between two attribute maps.
+   */
   export function diff(
     a: AttributeMap = {},
     b: AttributeMap = {},
@@ -79,6 +88,9 @@ namespace AttributeMap {
     return Object.keys(attributes).length > 0 ? attributes : undefined;
   }
 
+  /**
+   * Inverts an attribute map against a base map.
+   */
   export function invert(
     attr: AttributeMap = {},
     base: AttributeMap = {},
@@ -102,6 +114,9 @@ namespace AttributeMap {
     }, baseInverted);
   }
 
+  /**
+   * Transforms an attribute map against another.
+   */
   export function transform(
     a: AttributeMap | undefined,
     b: AttributeMap | undefined,

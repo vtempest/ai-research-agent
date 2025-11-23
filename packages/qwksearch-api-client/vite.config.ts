@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { heyApiPlugin } from '@hey-api/vite-plugin';
+// import { heyApiPlugin } from '@hey-api/vite-plugin';
 
 export default defineConfig({
   build: {
@@ -19,17 +19,22 @@ export default defineConfig({
       name: 'api-client'
     },
     outDir: 'dist',
-    emptyOutDir: true
+    emptyOutDir: true,
+    rollupOptions: {
+      external: [
+        '@hey-api/openapi-ts',
+        /^node:/
+      ]
+    }
   },
   plugins: [
-
-    heyApiPlugin({
-      config: {
-        input: './qwksearch-openapi.yml',
-        output: './src'
-       
-      }
-    }),
+    // heyApiPlugin is disabled during build since we run openapi-ts separately
+    // heyApiPlugin({
+    //   config: {
+    //     input: './qwksearch-openapi.yml',
+    //     output: './src'
+    //   }
+    // }),
     dts({
       outDir: 'dist',
       rollupTypes: true,

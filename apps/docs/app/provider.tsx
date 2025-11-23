@@ -1,5 +1,5 @@
 'use client';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 // your custom dialog
 import SearchDialog from './components/search';
 import type { ReactNode } from 'react';

@@ -8,8 +8,11 @@ info:
     name: QwkSearch
     email: support@qwksearch.com
   x-logo:
-    url: "https://qwksearch.com/icons/qwksearch-logo.png"
+    url: "https://qwksearch.com/icons/qwksearch-logo.svg"
     altText: logo
+servers:
+  - url: "https://qwksearch.com/api"
+    description: "Production server"
 
 tags:
   - name: Services
@@ -22,7 +25,7 @@ paths:
       operationId: extractContent
       summary: Extract structured content and cite from any URL
       description: |
-          ![Extractor](https://i.imgur.com/NUcvBaY.png)
+          ![Extractor](https://i.imgur.com/nNfHmct.png)
           
           ### 🚜📜 Tractor the Text Extractor 
           1. Main Content Detection: Extract the main content from a URL by combining 
@@ -159,7 +162,8 @@ paths:
         - Services
       operationId: writeLanguage
       summary: Generate language model reply using agent prompts
-      description: |
+      description: | 
+          ![Agents](https://i.imgur.com/ttOXv0p.jpeg)
           - ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖 agent template name, 🧠 model name and options,
             and 🆎 context variables for that agent
           - 🤖 **Agent Instruction Templates**: [LangHub](https://smith.langchain.com/hub) template or custom: 
@@ -402,7 +406,7 @@ paths:
       tags:
         - Services
       operationId: searchWeb
-      summary: "## Search the web"
+      summary: "Search the web"
       description: |
         ![AILogo](https://i.imgur.com/yYMTcTX.png)
 

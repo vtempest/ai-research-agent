@@ -1,12 +1,18 @@
 //https://lazamar.github.io/virtual-dom/
 // https://npmtrends.com/@tiptap/core-vs-lexical-vs-quill-vs-slate-vs-tinymce
 // Based off of https://github.com/jorgebucaran/superfine/ MIT licensed
+/**
+ * Properties for VNodes.
+ */
 export interface Props {
   [key: string]: any;
 }
 
 export type VChild = VNode | string;
 
+/**
+ * Virtual DOM Node.
+ */
 export interface VNode {
   type: string;
   props: Props;
@@ -252,16 +258,19 @@ const createVdom = (type: string, props: Props, children: VChild[], key?: any): 
   key,
 });
 
-    //@ts-ignore
+//@ts-ignore
+/**
+ * Recycles a DOM node into VNodes.
+ */
 export const recycleNode = (dom: Node) =>
   dom.nodeType === Node.TEXT_NODE
     ? (dom.nodeValue as string)
     : createVdom(
-        dom.nodeName.toLowerCase(),
-        getDomProps(dom as Element),
-        EMPTY_ARR.map.call(dom.childNodes, recycleNode) as VNode[],
-        getKey(dom)
-      );
+      dom.nodeName.toLowerCase(),
+      getDomProps(dom as Element),
+      EMPTY_ARR.map.call(dom.childNodes, recycleNode) as VNode[],
+      getKey(dom)
+    );
 
 export interface H {
   <T, P extends Props | null | undefined, C extends VChild | VChild[]>(
@@ -272,6 +281,9 @@ export interface H {
   (type: string, props?: Props | null, ch?: VChild | VChild[]): VNode;
 }
 
+/**
+ * Hyperscript function to create VNodes.
+ */
 export const h: H = (type: string | Function, props?: Props | null, ch?: VChild | VChild[]) =>
   typeof type === 'function'
     ? type(props || {}, ch)
@@ -281,6 +293,9 @@ export const h: H = (type: string | Function, props?: Props | null, ch?: VChild 
 // Add `import { React } from 'typewriter-editor';` at the top of any .tsx page to use JSX.
 export const React = { createElement: h };
 
+/**
+ * Patches the DOM to match the VDOM.
+ */
 export const patch = (dom: Node, vdom: VNode | VNode[], oldKids?: ChildNode[]) => {
   if (Array.isArray(vdom)) {
     dom = patchChildren(dom, vdom, dom instanceof window.SVGElement, oldKids as Node[]);

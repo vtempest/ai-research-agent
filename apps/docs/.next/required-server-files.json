@@ -2,12 +2,8 @@
   "version": 1,
   "config": {
     "env": {},
-    "eslint": {
-      "ignoreDuringBuilds": false
-    },
     "typescript": {
-      "ignoreBuildErrors": false,
-      "tsconfigPath": "tsconfig.json"
+      "ignoreBuildErrors": false
     },
     "typedRoutes": false,
     "distDir": ".next",
@@ -39,7 +35,6 @@
         3840
       ],
       "imageSizes": [
-        16,
         32,
         48,
         64,
@@ -55,14 +50,25 @@
         "i.imgur.com"
       ],
       "disableStaticImages": false,
-      "minimumCacheTTL": 60,
+      "minimumCacheTTL": 14400,
       "formats": [
         "image/webp"
       ],
+      "maximumRedirects": 3,
+      "dangerouslyAllowLocalIP": false,
       "dangerouslyAllowSVG": false,
       "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
       "contentDispositionType": "attachment",
+      "localPatterns": [
+        {
+          "pathname": "**",
+          "search": ""
+        }
+      ],
       "remotePatterns": [],
+      "qualities": [
+        75
+      ],
       "unoptimized": true
     },
     "devIndicators": {
@@ -72,17 +78,12 @@
       "maxInactiveAge": 60000,
       "pagesBufferLength": 5
     },
-    "amp": {
-      "canonicalBase": ""
-    },
     "basePath": "",
     "sassOptions": {},
     "trailingSlash": false,
     "i18n": null,
     "productionBrowserSourceMaps": false,
     "excludeDefaultMomentLocales": true,
-    "serverRuntimeConfig": {},
-    "publicRuntimeConfig": {},
     "reactProductionProfiling": false,
     "reactStrictMode": false,
     "reactMaxHeadersLength": 6000,
@@ -102,47 +103,48 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/mnt/data/Projects/grab-url/docs",
+    "outputFileTracingRoot": "/mnt/data/Projects/ai-research-agent",
+    "cacheComponents": false,
+    "cacheLife": {
+      "default": {
+        "stale": 300,
+        "revalidate": 900,
+        "expire": 4294967294
+      },
+      "seconds": {
+        "stale": 30,
+        "revalidate": 1,
+        "expire": 60
+      },
+      "minutes": {
+        "stale": 300,
+        "revalidate": 60,
+        "expire": 3600
+      },
+      "hours": {
+        "stale": 300,
+        "revalidate": 3600,
+        "expire": 86400
+      },
+      "days": {
+        "stale": 300,
+        "revalidate": 86400,
+        "expire": 604800
+      },
+      "weeks": {
+        "stale": 300,
+        "revalidate": 604800,
+        "expire": 2592000
+      },
+      "max": {
+        "stale": 300,
+        "revalidate": 2592000,
+        "expire": 31536000
+      }
+    },
+    "cacheHandlers": {},
     "experimental": {
       "useSkewCookie": false,
-      "cacheLife": {
-        "default": {
-          "stale": 300,
-          "revalidate": 900,
-          "expire": 4294967294
-        },
-        "seconds": {
-          "stale": 30,
-          "revalidate": 1,
-          "expire": 60
-        },
-        "minutes": {
-          "stale": 300,
-          "revalidate": 60,
-          "expire": 3600
-        },
-        "hours": {
-          "stale": 300,
-          "revalidate": 3600,
-          "expire": 86400
-        },
-        "days": {
-          "stale": 300,
-          "revalidate": 86400,
-          "expire": 604800
-        },
-        "weeks": {
-          "stale": 300,
-          "revalidate": 604800,
-          "expire": 2592000
-        },
-        "max": {
-          "stale": 300,
-          "revalidate": 2592000,
-          "expire": 4294967294
-        }
-      },
-      "cacheHandlers": {},
       "cssChunking": true,
       "multiZoneDraftMode": false,
       "appNavFailHandling": false,
@@ -151,14 +153,12 @@
       "serverSourceMaps": false,
       "linkNoTouchStart": false,
       "caseSensitiveRoutes": false,
-      "clientSegmentCache": false,
-      "clientParamParsing": false,
       "dynamicOnHover": false,
       "preloadEntriesOnStart": true,
       "clientRouterFilter": true,
       "clientRouterFilterRedirects": false,
       "fetchCacheKeyPrefix": "",
-      "middlewarePrefetch": "flexible",
+      "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
       "cpus": 15,
@@ -190,23 +190,25 @@
       "webpackMemoryOptimizations": false,
       "optimizeServerReact": true,
       "viewTransition": false,
-      "routerBFCache": false,
       "removeUncaughtErrorAndRejectionListeners": false,
       "validateRSCRequestHeaders": false,
       "staleTimes": {
         "dynamic": 0,
         "static": 300
       },
+      "reactDebugChannel": false,
       "serverComponentsHmrCache": true,
       "staticGenerationMaxConcurrency": 8,
       "staticGenerationMinPagesPerWorker": 25,
-      "cacheComponents": false,
       "inlineCss": false,
       "useCache": false,
       "globalNotFound": false,
-      "devtoolSegmentExplorer": true,
       "browserDebugInfoInTerminal": false,
-      "optimizeRouterScrolling": false,
+      "lockDistDir": true,
+      "isolatedDevBuild": true,
+      "proxyClientMaxBodySize": 10485760,
+      "hideLogsAfterAbort": false,
+      "mcpServer": true,
       "optimizePackageImports": [
         "lucide-react",
         "date-fns",
@@ -297,29 +299,53 @@
             {
               "loader": "fumadocs-mdx/loader-mdx",
               "options": {
-                "configPath": "/mnt/data/Projects/grab-url/docs/source.config.ts",
-                "outDir": ".source"
+                "environment": "next",
+                "outDir": ".source",
+                "configPath": "source.config.ts",
+                "absoluteCompiledConfigPath": "/mnt/data/Projects/ai-research-agent/apps/docs/.source/source.config.mjs",
+                "isDev": false
+              }
+            }
+          ],
+          "as": "*.js"
+        },
+        "*.json": {
+          "loaders": [
+            {
+              "loader": "fumadocs-mdx/loader-meta",
+              "options": {
+                "environment": "next",
+                "outDir": ".source",
+                "configPath": "source.config.ts",
+                "absoluteCompiledConfigPath": "/mnt/data/Projects/ai-research-agent/apps/docs/.source/source.config.mjs",
+                "isDev": false
+              }
+            }
+          ],
+          "as": "*.json"
+        },
+        "*.yaml": {
+          "loaders": [
+            {
+              "loader": "fumadocs-mdx/loader-meta",
+              "options": {
+                "environment": "next",
+                "outDir": ".source",
+                "configPath": "source.config.ts",
+                "absoluteCompiledConfigPath": "/mnt/data/Projects/ai-research-agent/apps/docs/.source/source.config.mjs",
+                "isDev": false
               }
             }
           ],
           "as": "*.js"
         }
       },
-      "root": "/mnt/data/Projects/grab-url/docs"
+      "root": "/mnt/data/Projects/ai-research-agent"
     },
-    "_originalRewrites": {
-      "beforeFiles": [],
-      "afterFiles": [
-        {
-          "source": "/docs/:path*.mdx",
-          "destination": "/llms.mdx/:path*"
-        }
-      ],
-      "fallback": []
-    }
+    "distDirRoot": "./dist"
   },
-  "appDir": "/mnt/data/Projects/grab-url/docs",
-  "relativeAppDir": "",
+  "appDir": "/mnt/data/Projects/ai-research-agent/apps/docs",
+  "relativeAppDir": "apps/docs",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",
@@ -330,7 +356,6 @@
     ".next/server/middleware-build-manifest.js",
     ".next/server/app-paths-manifest.json",
     ".next/app-path-routes-manifest.json",
-    ".next/app-build-manifest.json",
     ".next/server/server-reference-manifest.js",
     ".next/server/server-reference-manifest.json",
     ".next/BUILD_ID",
@@ -338,7 +363,5 @@
     ".next/server/next-font-manifest.json",
     ".next/required-server-files.json"
   ],
-  "ignore": [
-    "node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*"
-  ]
+  "ignore": []
 }

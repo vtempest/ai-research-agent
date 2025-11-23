@@ -38,7 +38,7 @@ div[class*="sidebar"],
 [data-state="collapsed"],
 [data-slot="sidebar-container"],
 [data-slot="sidebar-gap"] {
-  background-color: rgb(255, 255, 255) !important;
+  background-color: rgba(255, 255, 255, 0.25) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
@@ -57,7 +57,7 @@ div[class*="sidebar"],
 .dark [data-state="collapsed"],
 .dark [data-slot="sidebar-container"],
 .dark [data-slot="sidebar-gap"] {
-  background-color: rgb(30, 41, 59) !important;
+  background-color: rgba(30, 41, 59, 0.35) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
   border: 1px solid rgba(148, 163, 184, 0.2) !important;
@@ -71,7 +71,7 @@ div[class*="sidebar"],
 [data-sidebar="sidebar"],
 [data-collapsible="offcanvas"] [data-slot="sidebar-inner"],
 [data-state="collapsed"] [data-slot="sidebar-inner"] {
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -84,7 +84,7 @@ div[class*="sidebar"],
 .dark [data-sidebar="sidebar"],
 .dark [data-collapsible="offcanvas"] [data-slot="sidebar-inner"],
 .dark [data-state="collapsed"] [data-slot="sidebar-inner"] {
-  background-color: rgba(30, 41, 59, 0.8) !important;
+  background-color: rgba(30, 41, 59, 0.25) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(148, 163, 184, 0.15) !important;
@@ -99,7 +99,7 @@ div[class*="sidebar"],
 [data-mobile="true"] [data-slot="sidebar"],
 [data-collapsible="offcanvas"][data-mobile="true"],
 [data-state="collapsed"][data-mobile="true"] {
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: rgba(255, 255, 255, 0.3) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
@@ -113,7 +113,7 @@ div[class*="sidebar"],
 .dark [data-mobile="true"] [data-slot="sidebar"],
 .dark [data-collapsible="offcanvas"][data-mobile="true"],
 .dark [data-state="collapsed"][data-mobile="true"] {
-  background-color: rgba(30, 41, 59, 0.9) !important;
+  background-color: rgba(30, 41, 59, 0.4) !important;
   backdrop-filter: blur(28px) !important;
   -webkit-backdrop-filter: blur(28px) !important;
   border: 1px solid rgba(148, 163, 184, 0.25) !important;
@@ -126,7 +126,7 @@ div[class*="sidebar"],
 *[class*="sidebar"],
 *[data-sidebar],
 *[data-slot*="sidebar"] {
-  background-color: rgba(255, 255, 255, 0.85) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
 }
@@ -134,7 +134,7 @@ div[class*="sidebar"],
 .dark *[class*="sidebar"],
 .dark *[data-sidebar],
 .dark *[data-slot*="sidebar"] {
-  background-color: rgba(30, 41, 59, 0.85) !important;
+  background-color: rgba(30, 41, 59, 0.3) !important;
   backdrop-filter: blur(22px) !important;
   -webkit-backdrop-filter: blur(22px) !important;
 }
@@ -558,7 +558,7 @@ div[class*="sidebar"],
 .absolute.inset-y-0.left-0,
 .md\:flex[data-slot="sidebar-container"],
 .md\:flex.bg-sidebar {
-  background-color: rgba(255, 255, 255, 0.85) !important;
+  background-color: rgba(255, 255, 255, 0.28) !important;
   backdrop-filter: blur(22px) !important;
   -webkit-backdrop-filter: blur(22px) !important;
   border: 1px solid rgba(255, 255, 255, 0.32) !important;
@@ -578,7 +578,7 @@ div[class*="sidebar"],
 .dark .absolute.inset-y-0.left-0,
 .dark .md\:flex[data-slot="sidebar-container"],
 .dark .md\:flex.bg-sidebar {
-  background-color: rgba(30, 41, 59, 0.85) !important;
+  background-color: rgba(30, 41, 59, 0.42) !important;
   backdrop-filter: blur(28px) !important;
   -webkit-backdrop-filter: blur(28px) !important;
   border: 1px solid rgba(148, 163, 184, 0.22) !important;

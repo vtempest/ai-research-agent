@@ -1,18 +1,28 @@
 // source.config.ts
-import { defineDocs } from "fumadocs-mdx/config";
-import { remarkAutoTypeTable, createGenerator } from "fumadocs-typescript";
-import { defineConfig } from "fumadocs-mdx/config";
-var generator = createGenerator();
-var source_config_default = defineConfig({
-  mdxOptions: {
-    remarkPlugins: [[remarkAutoTypeTable, { generator }]]
+import {
+  defineConfig,
+  defineDocs,
+  frontmatterSchema,
+  metaSchema
+} from "fumadocs-mdx/config";
+var docs = defineDocs({
+  dir: "./content/docs",
+  docs: {
+    schema: frontmatterSchema,
+    postprocess: {
+      includeProcessedMarkdown: true
+    }
+  },
+  meta: {
+    schema: metaSchema
   }
 });
-var { docs, meta } = defineDocs({
-  dir: "./content"
+var source_config_default = defineConfig({
+  mdxOptions: {
+    // MDX options
+  }
 });
 export {
   source_config_default as default,
-  docs,
-  meta
+  docs
 };

@@ -13,6 +13,8 @@ const processor = remark()
   .use(remarkGfm);
 
 export async function getLLMText(page: InferPageType<typeof source>) {
+  if (!page.absolutePath) return '';
+
   const processed = await processor.process({
     path: page.absolutePath,
     value: await fs.readFile(page.absolutePath),

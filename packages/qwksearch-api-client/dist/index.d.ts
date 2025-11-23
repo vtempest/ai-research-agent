@@ -1,14 +1,166 @@
-import { Client } from '@hey-api/client-fetch';
-import { Options as Options_2 } from '@hey-api/client-fetch';
-import { RequestResult } from '@hey-api/client-fetch';
-import { TDataShape } from '@hey-api/client-fetch';
+declare type ArrayStyle = 'form' | 'spaceDelimited' | 'pipeDelimited';
+
+declare interface Auth {
+    /**
+     * Which part of the request do we use to send the auth?
+     *
+     * @default 'header'
+     */
+    in?: 'header' | 'query' | 'cookie';
+    /**
+     * Header or query parameter name.
+     *
+     * @default 'Authorization'
+     */
+    name?: string;
+    scheme?: 'basic' | 'bearer';
+    type: 'apiKey' | 'http';
+}
+
+declare type AuthToken = string | undefined;
+
+declare type BodySerializer = (body: any) => any;
+
+declare type BuildUrlFn = <TData extends {
+    body?: unknown;
+    path?: Record<string, unknown>;
+    query?: Record<string, unknown>;
+    url: string;
+}>(options: TData & Options_2<TData>) => string;
+
+declare type Client = Client_2<RequestFn, Config, MethodFn, BuildUrlFn, SseFn> & {
+    interceptors: Middleware<Request, Response, unknown, ResolvedRequestOptions>;
+};
+
+declare type Client_2<RequestFn = never, Config = unknown, MethodFn = never, BuildUrlFn = never, SseFn = never> = {
+    /**
+     * Returns the final request URL.
+     */
+    buildUrl: BuildUrlFn;
+    getConfig: () => Config;
+    request: RequestFn;
+    setConfig: (config: Config) => Config;
+} & {
+    [K in HttpMethod]: MethodFn;
+} & ([SseFn] extends [never] ? {
+    sse?: never;
+} : {
+    sse: {
+        [K in HttpMethod]: SseFn;
+    };
+});
 
 export declare type ClientOptions = {
     baseUrl: `${string}://${string}` | (string & {});
 };
 
+declare interface ClientOptions_2 {
+    baseUrl?: string;
+    responseStyle?: ResponseStyle;
+    throwOnError?: boolean;
+}
+
+declare interface Config<T extends ClientOptions_2 = ClientOptions_2> extends Omit<RequestInit, 'body' | 'headers' | 'method'>, Config_2 {
+    /**
+     * Base URL for all requests made by this client.
+     */
+    baseUrl?: T['baseUrl'];
+    /**
+     * Fetch API implementation. You can use this option to provide a custom
+     * fetch instance.
+     *
+     * @default globalThis.fetch
+     */
+    fetch?: typeof fetch;
+    /**
+     * Please don't use the Fetch client for Next.js applications. The `next`
+     * options won't have any effect.
+     *
+     * Install {@link https://www.npmjs.com/package/@hey-api/client-next `@hey-api/client-next`} instead.
+     */
+    next?: never;
+    /**
+     * Return the response data parsed in a specified format. By default, `auto`
+     * will infer the appropriate method from the `Content-Type` response header.
+     * You can override this behavior with any of the {@link Body} methods.
+     * Select `stream` if you don't want to parse response data at all.
+     *
+     * @default 'auto'
+     */
+    parseAs?: 'arrayBuffer' | 'auto' | 'blob' | 'formData' | 'json' | 'stream' | 'text';
+    /**
+     * Should we return only data or multiple fields (data, error, response, etc.)?
+     *
+     * @default 'fields'
+     */
+    responseStyle?: ResponseStyle;
+    /**
+     * Throw an error instead of returning it in the response?
+     *
+     * @default false
+     */
+    throwOnError?: T['throwOnError'];
+}
+
+declare interface Config_2 {
+    /**
+     * Auth token or a function returning auth token. The resolved value will be
+     * added to the request payload as defined by its `security` array.
+     */
+    auth?: ((auth: Auth) => Promise<AuthToken> | AuthToken) | AuthToken;
+    /**
+     * A function for serializing request body parameter. By default,
+     * {@link JSON.stringify()} will be used.
+     */
+    bodySerializer?: BodySerializer | null;
+    /**
+     * An object containing any HTTP headers that you want to pre-populate your
+     * `Headers` object with.
+     *
+     * {@link https://developer.mozilla.org/docs/Web/API/Headers/Headers#init See more}
+     */
+    headers?: RequestInit['headers'] | Record<string, string | number | boolean | (string | number | boolean)[] | null | undefined | unknown>;
+    /**
+     * The request method.
+     *
+     * {@link https://developer.mozilla.org/docs/Web/API/fetch#method See more}
+     */
+    method?: Uppercase<HttpMethod>;
+    /**
+     * A function for serializing request query parameters. By default, arrays
+     * will be exploded in form style, objects will be exploded in deepObject
+     * style, and reserved characters are percent-encoded.
+     *
+     * This method will have no effect if the native `paramsSerializer()` Axios
+     * API function is used.
+     *
+     * {@link https://swagger.io/docs/specification/serialization/#query View examples}
+     */
+    querySerializer?: QuerySerializer | QuerySerializerOptions;
+    /**
+     * A function validating request data. This is useful if you want to ensure
+     * the request conforms to the desired shape, so it can be safely sent to
+     * the server.
+     */
+    requestValidator?: (data: unknown) => Promise<unknown>;
+    /**
+     * A function transforming response data before it's returned. This is useful
+     * for post-processing data, e.g. converting ISO strings into Date objects.
+     */
+    responseTransformer?: (data: unknown) => Promise<unknown>;
+    /**
+     * A function validating response data. This is useful if you want to ensure
+     * the response conforms to the desired shape, so it can be safely passed to
+     * the transformers and returned to the user.
+     */
+    responseValidator?: (data: unknown) => Promise<unknown>;
+}
+
+declare type ErrInterceptor<Err, Res, Req, Options> = (error: Err, response: Res, request: Req, options: Options) => Err | Promise<Err>;
+
 /**
  * ## Extract structured content and cite from any URL
+ *
  * ![Extractor](https://i.imgur.com/nNfHmct.png)
  *
  * ### 🚜📜 Tractor the Text Extractor
@@ -141,6 +293,30 @@ export declare type ExtractContentResponses = {
     };
 };
 
+declare type HttpMethod = 'connect' | 'delete' | 'get' | 'head' | 'options' | 'patch' | 'post' | 'put' | 'trace';
+
+declare class Interceptors<Interceptor> {
+    fns: Array<Interceptor | null>;
+    clear(): void;
+    eject(id: number | Interceptor): void;
+    exists(id: number | Interceptor): boolean;
+    getInterceptorIndex(id: number | Interceptor): number;
+    update(id: number | Interceptor, fn: Interceptor): number | Interceptor | false;
+    use(fn: Interceptor): number;
+}
+
+declare type MethodFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false, TResponseStyle extends ResponseStyle = 'fields'>(options: Omit<RequestOptions<TData, TResponseStyle, ThrowOnError>, 'method'>) => RequestResult<TData, TError, ThrowOnError, TResponseStyle>;
+
+declare interface Middleware<Req, Res, Err, Options> {
+    error: Interceptors<ErrInterceptor<Err, Res, Req, Options>>;
+    request: Interceptors<ReqInterceptor<Req, Options>>;
+    response: Interceptors<ResInterceptor<Res, Req, Options>>;
+}
+
+declare type ObjectStyle = 'form' | 'deepObject';
+
+declare type OmitKeys<T, K> = Pick<T, Exclude<keyof T, K>>;
+
 export declare type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options_2<TData, ThrowOnError> & {
     /**
      * You can provide a client instance returned by `createClient()` instead of
@@ -155,8 +331,73 @@ export declare type Options<TData extends TDataShape = TDataShape, ThrowOnError 
     meta?: Record<string, unknown>;
 };
 
+declare type Options_2<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown, TResponseStyle extends ResponseStyle = 'fields'> = OmitKeys<RequestOptions<TResponse, TResponseStyle, ThrowOnError>, 'body' | 'path' | 'query' | 'url'> & ([TData] extends [never] ? unknown : Omit<TData, 'url'>);
+
+declare type QuerySerializer = (query: Record<string, unknown>) => string;
+
+declare type QuerySerializerOptions = QuerySerializerOptionsObject & {
+    /**
+     * Per-parameter serialization overrides. When provided, these settings
+     * override the global array/object settings for specific parameter names.
+     */
+    parameters?: Record<string, QuerySerializerOptionsObject>;
+};
+
+declare type QuerySerializerOptionsObject = {
+    allowReserved?: boolean;
+    array?: Partial<SerializerOptions<ArrayStyle>>;
+    object?: Partial<SerializerOptions<ObjectStyle>>;
+};
+
+declare type ReqInterceptor<Req, Options> = (request: Req, options: Options) => Req | Promise<Req>;
+
+declare type RequestFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false, TResponseStyle extends ResponseStyle = 'fields'>(options: Omit<RequestOptions<TData, TResponseStyle, ThrowOnError>, 'method'> & Pick<Required<RequestOptions<TData, TResponseStyle, ThrowOnError>>, 'method'>) => RequestResult<TData, TError, ThrowOnError, TResponseStyle>;
+
+declare interface RequestOptions<TData = unknown, TResponseStyle extends ResponseStyle = 'fields', ThrowOnError extends boolean = boolean, Url extends string = string> extends Config<{
+    responseStyle: TResponseStyle;
+    throwOnError: ThrowOnError;
+}>, Pick<ServerSentEventsOptions<TData>, 'onSseError' | 'onSseEvent' | 'sseDefaultRetryDelay' | 'sseMaxRetryAttempts' | 'sseMaxRetryDelay'> {
+    /**
+     * Any body that you want to add to your request.
+     *
+     * {@link https://developer.mozilla.org/docs/Web/API/fetch#body}
+     */
+    body?: unknown;
+    path?: Record<string, unknown>;
+    query?: Record<string, unknown>;
+    /**
+     * Security mechanism(s) to use for the request.
+     */
+    security?: ReadonlyArray<Auth>;
+    url: Url;
+}
+
+declare type RequestResult<TData = unknown, TError = unknown, ThrowOnError extends boolean = boolean, TResponseStyle extends ResponseStyle = 'fields'> = ThrowOnError extends true ? Promise<TResponseStyle extends 'data' ? TData extends Record<string, unknown> ? TData[keyof TData] : TData : {
+    data: TData extends Record<string, unknown> ? TData[keyof TData] : TData;
+    request: Request;
+    response: Response;
+}> : Promise<TResponseStyle extends 'data' ? (TData extends Record<string, unknown> ? TData[keyof TData] : TData) | undefined : ({
+    data: TData extends Record<string, unknown> ? TData[keyof TData] : TData;
+    error: undefined;
+} | {
+    data: undefined;
+    error: TError extends Record<string, unknown> ? TError[keyof TError] : TError;
+}) & {
+    request: Request;
+    response: Response;
+}>;
+
+declare type ResInterceptor<Res, Req, Options> = (response: Res, request: Req, options: Options) => Res | Promise<Res>;
+
+declare interface ResolvedRequestOptions<TResponseStyle extends ResponseStyle = 'fields', ThrowOnError extends boolean = boolean, Url extends string = string> extends RequestOptions<unknown, TResponseStyle, ThrowOnError, Url> {
+    serializedBody?: string;
+}
+
+declare type ResponseStyle = 'data' | 'fields';
+
 /**
  * ## Search the web
+ *
  * ![AILogo](https://i.imgur.com/yYMTcTX.png)
  *
  * Search the web by sending a query via SearXNG metasearch engine of 100+ sources.
@@ -269,6 +510,96 @@ export declare type SearchWebResponses = {
     };
 };
 
+declare interface SerializerOptions<T> {
+    /**
+     * @default true
+     */
+    explode: boolean;
+    style: T;
+}
+
+declare type ServerSentEventsOptions<TData = unknown> = Omit<RequestInit, 'method'> & Pick<Config_2, 'method' | 'responseTransformer' | 'responseValidator'> & {
+    /**
+     * Fetch API implementation. You can use this option to provide a custom
+     * fetch instance.
+     *
+     * @default globalThis.fetch
+     */
+    fetch?: typeof fetch;
+    /**
+     * Implementing clients can call request interceptors inside this hook.
+     */
+    onRequest?: (url: string, init: RequestInit) => Promise<Request>;
+    /**
+     * Callback invoked when a network or parsing error occurs during streaming.
+     *
+     * This option applies only if the endpoint returns a stream of events.
+     *
+     * @param error The error that occurred.
+     */
+    onSseError?: (error: unknown) => void;
+    /**
+     * Callback invoked when an event is streamed from the server.
+     *
+     * This option applies only if the endpoint returns a stream of events.
+     *
+     * @param event Event streamed from the server.
+     * @returns Nothing (void).
+     */
+    onSseEvent?: (event: StreamEvent<TData>) => void;
+    serializedBody?: RequestInit['body'];
+    /**
+     * Default retry delay in milliseconds.
+     *
+     * This option applies only if the endpoint returns a stream of events.
+     *
+     * @default 3000
+     */
+    sseDefaultRetryDelay?: number;
+    /**
+     * Maximum number of retry attempts before giving up.
+     */
+    sseMaxRetryAttempts?: number;
+    /**
+     * Maximum retry delay in milliseconds.
+     *
+     * Applies only when exponential backoff is used.
+     *
+     * This option applies only if the endpoint returns a stream of events.
+     *
+     * @default 30000
+     */
+    sseMaxRetryDelay?: number;
+    /**
+     * Optional sleep function for retry backoff.
+     *
+     * Defaults to using `setTimeout`.
+     */
+    sseSleepFn?: (ms: number) => Promise<void>;
+    url: string;
+};
+
+declare type ServerSentEventsResult<TData = unknown, TReturn = void, TNext = unknown> = {
+    stream: AsyncGenerator<TData extends Record<string, unknown> ? TData[keyof TData] : TData, TReturn, TNext>;
+};
+
+declare type SseFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean = false, TResponseStyle extends ResponseStyle = 'fields'>(options: Omit<RequestOptions<TData, TResponseStyle, ThrowOnError>, 'method'>) => Promise<ServerSentEventsResult<TData, TError>>;
+
+declare interface StreamEvent<TData = unknown> {
+    data: TData;
+    event?: string;
+    id?: string;
+    retry?: number;
+}
+
+declare interface TDataShape {
+    body?: unknown;
+    headers?: unknown;
+    path?: unknown;
+    query?: unknown;
+    url: string;
+}
+
 export declare type User = {
     /**
      * User supplied username
@@ -286,6 +617,7 @@ export declare type User = {
 
 /**
  * ## Generate language model reply using agent prompts
+ *
  *
  * - ❓ **Inputs**: 👄 Language Intelligence Provider, 🔑 API Key,  🤖 agent template name, 🧠 model name and options,
  * and 🆎 context variables for that agent

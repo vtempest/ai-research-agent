@@ -8,7 +8,6 @@ import {
 import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
-import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -27,13 +26,6 @@ export default async function Page(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <div className="flex flex-row gap-2 items-center border-b pt-2 pb-6">
-          <LLMCopyButton markdownUrl={`https://raw.githubusercontent.com/vtempest/GRAB-URL/refs/heads/master/docs/content/${page.path.replace('/docs', '')}`} />
-          <ViewOptions
-            markdownUrl={`${page.absolutePath}`}
-            githubUrl={`https://github.com/vtempest/GRAB-URL/blob/master/docs/content/${page.path}`}
-          />
-        </div>
         <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
@@ -53,7 +45,6 @@ export async function generateMetadata(props: {
   const image = ['/docs-og', ...(params.slug ?? []), 'image.png'].join('/');
 
   return {
-    
     title: page.data.title,
     description: page.data.description,
     openGraph: {

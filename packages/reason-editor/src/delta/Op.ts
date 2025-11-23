@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import AttributeMap from './AttributeMap';
 
+/**
+ * Represents an operation in a Delta.
+ */
 interface Op {
   // only one property out of : insert, delete, retain will be present
   insert?: string | Record<string, any>;
@@ -11,10 +14,16 @@ interface Op {
 }
 
 namespace Op {
+  /**
+   * Creates a new OpIterator.
+   */
   export function iterator(ops: Op[]): OpIterator {
     return new OpIterator(ops);
   }
 
+  /**
+   * Calculates the length of an operation.
+   */
   export function length(op: Op): number {
     if (typeof op.delete === 'number') {
       return op.delete;
@@ -28,6 +37,9 @@ namespace Op {
 
 export default Op;
 
+/**
+ * Iterator for operations.
+ */
 export class OpIterator {
   ops: Op[];
   index: number;

@@ -16,11 +16,17 @@ const SKIP_ELEMENTS = { STYLE: true, SCRIPT: true, LINK: true, META: true, TITLE
 const whitespaceExp = /[ \t\n\r]+/g;
 const defaultOptions = {};
 
+/**
+ * Options for converting HTML to Delta.
+ */
 export interface DeltaFromHTMLOptions {
   possiblePartial?: boolean;
   collapseWhitespace?: boolean;
 }
 
+/**
+ * Options for converting DOM to Delta.
+ */
 export interface FromDomOptions {
   root?: HTMLElement;
   startNode?: Node;
@@ -31,7 +37,9 @@ export interface FromDomOptions {
   collapseWhitespace?: boolean;
 }
 
-// Determines if a BR tag in the editable area is part of the document or a doorstop at the end of a line.
+/**
+ * Determines if a BR tag in the editable area is part of the document or a doorstop at the end of a line.
+ */
 export function isBRPlaceholder(editor: Editor, node: Node) {
   if (node.nodeName !== 'BR') return false;
   return isLastNode(editor, node);
@@ -47,20 +55,32 @@ function isLastNode(editor: Editor, node: Node) {
   return !next || (next instanceof HTMLElement && next.matches(BLOCK_ELEMENTS));
 }
 
+/**
+ * Converts a document to an HTML string.
+ */
 export function docToHTML(editor: Editor, doc: TextDocument) {
   return (patch(document.createElement('div'), renderDoc(editor, doc, true)) as HTMLElement).innerHTML;
 }
 
+/**
+ * Converts a delta to an HTML string (inline only).
+ */
 export function inlineToHTML(editor: Editor, delta: Delta) {
   return (
     patch(document.createElement('div'), renderInline(editor, Line.create(delta), true) as VNode[]) as HTMLElement
   ).innerHTML;
 }
 
+/**
+ * Creates a document from an HTML string.
+ */
 export function docFromHTML(editor: Editor, html: string, selection?: EditorRange | null) {
   return new TextDocument(deltaFromHTML(editor, html), selection);
 }
 
+/**
+ * Creates a delta from an HTML string.
+ */
 export function deltaFromHTML(editor: Editor, html: string, options?: DeltaFromHTMLOptions) {
   const parser = new window.DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
@@ -73,11 +93,16 @@ export function deltaFromHTML(editor: Editor, html: string, options?: DeltaFromH
   return delta;
 }
 
+/**
+ * Creates a document from a DOM element.
+ */
 export function docFromDom(editor: Editor, root: HTMLElement) {
   return new TextDocument(deltaFromDom(editor, { root }));
 }
 
-// Return a line or multi-line array from the top-level node
+/**
+ * Return a line or multi-line array from the top-level node.
+ */
 export function fromNode(editor: Editor, dom: HTMLElement) {
   const lines = Line.fromDelta(deltaFromDom(editor, { root: dom }), editor.doc.byId);
   if (!lines.length) return;
@@ -86,7 +111,9 @@ export function fromNode(editor: Editor, dom: HTMLElement) {
   return lines[0];
 }
 
-// Removes invalid characters and normalizes line endings
+/**
+ * Removes invalid characters and normalizes line endings.
+ */
 export function cleanText(delta: Delta) {
   delta.ops = delta.filter(op => {
     if (typeof op.insert === 'string') {
@@ -96,6 +123,9 @@ export function cleanText(delta: Delta) {
   });
 }
 
+/**
+ * Creates a delta from a DOM element.
+ */
 export function deltaFromDom(editor: Editor, options: FromDomOptions = defaultOptions): Delta {
   const { lines, embeds } = editor.typeset;
   const root = options.root || editor.root;

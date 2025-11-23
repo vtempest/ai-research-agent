@@ -1,23 +1,19 @@
 import { createMDX } from 'fumadocs-mdx/next';
 
+
 const withMDX = createMDX({
- 
+  mdxOptions: {
+    remarkImageOptions: {
+      onError: "ignore", // or "hide"
+    },
+  },
 });
 
-/** @type {import('next').NextConfig} */
+
+
 export const config = {
- 
-  async rewrites() {
-    return [
-      {
-        source: '/docs/:path*.mdx',
-        destination: '/llms.mdx/:path*',
-      },
-    ];
-  },
   output: 'export',
   distDir: './dist',
-  
 
   reactStrictMode: false,
   images: {

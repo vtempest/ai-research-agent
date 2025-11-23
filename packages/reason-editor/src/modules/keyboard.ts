@@ -9,6 +9,10 @@ const EMPTY_OBJ = {};
 const IS_CHROME = (window as any).chrome && typeof (window as any).chrome === 'object';
 
 // Basic keyboard module.
+/**
+ * Keyboard module handles keyboard events (enter, backspace, delete, tab, etc.).
+ * @param editor The editor instance.
+ */
 export function keyboard(editor: Editor) {
   function onEnter(event: KeyboardEvent) {
     if (event.defaultPrevented) return;

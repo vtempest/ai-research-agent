@@ -1,0 +1,97 @@
+---
+title: Extract structured content and cite from any URL
+description: ''
+full: true
+_openapi:
+  method: GET
+  route: /extract
+  toc: []
+  structuredData:
+    headings: []
+    contents:
+      - content: >
+          ![Extractor](https://i.imgur.com/nNfHmct.png)
+
+
+          ### 🚜📜 Tractor the Text Extractor 
+
+          1. Main Content Detection: Extract the main content from a URL by
+          combining 
+
+          Mozilla Readability and Postlight Mercury algorithms, utilizing over
+          100 
+
+          custom adapters for major sites for article, author, date HTML
+          classes.
+
+          2. Basic HTML Standardization: Transform complex HTML into a
+          simplified 
+
+          reading-mode format of basic HTML, making it ideal for research note
+          archival
+            and focused reading, with headings, images and links.
+          3. YouTube Transcript Processing: When a YouTube video URL is
+          detected, 
+
+          retrieve the complete video transcript including both manual captions
+          and 
+
+          auto-generated subtitles, maintaining proper timestamp synchronization
+          and 
+
+          speaker identification where available.
+
+          4. PDF to HTML: Process PDF documents by extracting
+            formatted text while intelligently handling line breaks, page headers, 
+            footnotes. The system analyzes text height statistics to automatically
+            infer heading levels, creating a properly structured document hierarchy
+            based on standard deviation from mean text size.
+          5. Citation Information Extraction: Identify and extract citation
+          metadata
+            including author names, publication dates, sources, and titles using HTML
+            meta tags and common class name patterns. The system validates author names
+            against a comprehensive database of 90,000 first and last names, 
+          distinguishing between personal and organizational authors to
+          properly 
+
+          format citations.
+
+          6. Author Name Formatting: Process author names by checking against 
+
+          known name databases, handling affixes and titles correctly, and
+          determining
+            whether to reverse the name order based on whether it's a personal or 
+          organizational author, ensuring proper citation formatting.
+---
+
+![Extractor](https://i.imgur.com/nNfHmct.png)
+
+### 🚜📜 Tractor the Text Extractor 
+1. Main Content Detection: Extract the main content from a URL by combining 
+Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 
+custom adapters for major sites for article, author, date HTML classes.
+2. Basic HTML Standardization: Transform complex HTML into a simplified 
+reading-mode format of basic HTML, making it ideal for research note archival
+  and focused reading, with headings, images and links.
+3. YouTube Transcript Processing: When a YouTube video URL is detected, 
+retrieve the complete video transcript including both manual captions and 
+auto-generated subtitles, maintaining proper timestamp synchronization and 
+speaker identification where available.
+4. PDF to HTML: Process PDF documents by extracting
+  formatted text while intelligently handling line breaks, page headers, 
+  footnotes. The system analyzes text height statistics to automatically
+  infer heading levels, creating a properly structured document hierarchy
+  based on standard deviation from mean text size.
+5. Citation Information Extraction: Identify and extract citation metadata
+  including author names, publication dates, sources, and titles using HTML
+  meta tags and common class name patterns. The system validates author names
+  against a comprehensive database of 90,000 first and last names, 
+distinguishing between personal and organizational authors to properly 
+format citations.
+6. Author Name Formatting: Process author names by checking against 
+known name databases, handling affixes and titles correctly, and determining
+  whether to reverse the name order based on whether it's a personal or 
+organizational author, ensuring proper citation formatting.
+
+
+<APIPage document={"./openapi.yml"} operations={[{"path":"/extract","method":"get"}]} webhooks={[]} hasHead={false} />

@@ -2,6 +2,9 @@ import Line, { type LineIds, type LineIterator } from './Line';
 import { Op, OpIterator } from '../delta';
 
 namespace LineOp {
+  /**
+   * Creates a new LineOpIterator.
+   */
   export function iterator(lines: Line[], lineIds?: LineIds) {
     return new LineOpIterator(lines, lineIds);
   }
@@ -13,6 +16,9 @@ namespace LineOp {
 
 export default LineOp;
 
+/**
+ * Iterator for line operations (ops including newlines).
+ */
 export class LineOpIterator {
   lineIterator: LineIterator;
   opIterator: OpIterator;

@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg" />
+    <img width="400px" src="https://i.imgur.com/OFk5sG3.jpeg" />
 </p>
 <p align="center">
     Being is Becoming<br />

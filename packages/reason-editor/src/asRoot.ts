@@ -1,8 +1,12 @@
 import type { Editor } from './Editor';
 import { docFromDom } from './rendering/html';
 
-// A svelte action to set the root for your Editor to an element:
-//  use:asRoot = myEditor
+/**
+ * A svelte action to set the root for your Editor to an element.
+ * Usage: use:asRoot={editor}
+ * @param root The root element.
+ * @param editor The editor instance.
+ */
 export function asRoot(root: HTMLElement, editor: Editor) {
   function update(newEditor: Editor) {
     if (editor === newEditor) return;

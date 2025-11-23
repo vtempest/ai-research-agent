@@ -1,3 +1,0 @@
-module.exports=[522734,(a,b,c)=>{b.exports=a.x("fs",()=>require("fs"))},605365,(a,b,c)=>{b.exports=a.x("process",()=>require("process"))},500874,(a,b,c)=>{b.exports=a.x("buffer",()=>require("buffer"))},448672,a=>{a.v(JSON.parse('{"pages":["index","..."]}'))},687903,a=>{a.v(b=>Promise.all(["server/chunks/ssr/[externals]_node:fs_promises_ef82023e._.js"].map(b=>a.l(b))).then(()=>b(912714)))}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__0542a07a._.js.map
