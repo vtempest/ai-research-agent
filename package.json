@@ -3,7 +3,7 @@
     "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
     "author": "vtempest <grokthiscontact@gmail.com>",
     "license": "rights.institute/PROSPER",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "workspaces": [
         "packages/*",
         "apps/*"
