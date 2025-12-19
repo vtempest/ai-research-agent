@@ -1,11 +1,13 @@
 /**
  * Gets a random artistic background about graph theory 
- * and collective consciousness, 50+ artworks from Anthony Alcaraz
+ * and collective consciousness, 50+ AI-gen artworks found online
  * @returns {string} The URL of random artistic background
  */
-
 export function getBackgroundArtwork() {
   const backgrounds = [
+    "GpWeP6E.gif", //flying spaceship into vortex
+    "dUZlxYE.mp4", // spining globe scifi
+    "eRwiRJ9.jpeg", // girl robot reading news
     "DRAfJoc.jpeg", // octopus brain emerges from datacenter
     "vKP22VU.png", // quantum particles and spheres
     "ASVRQ1G.jpeg", // wavy log black and circular lines
@@ -58,10 +60,8 @@ export function getBackgroundArtwork() {
     "AWWsCv8.jpeg", // blue head in graph center
     "Tk9Tzzj.jpeg", // multi-verse spiral of universes
   ];
-  return (
-    "https://i.imgur.com/" +
+  return "https://i.imgur.com/" +
     backgrounds[Math.floor(Math.random() * backgrounds.length)]
-  );
 }
 
 

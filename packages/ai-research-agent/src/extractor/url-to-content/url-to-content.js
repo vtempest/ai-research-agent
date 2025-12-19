@@ -1,7 +1,7 @@
 import { extractContentAndCite } from "../html-to-content/html-to-content.js";
 import { getURLYoutubeVideo, convertYoutubeToText } from "./youtube-to-text.js";
 import { convertPDFToHTML } from "../pdf-to-html/pdf-to-html.js";
-import {  isUrlPDF } from "../pdf-to-html/util/is-url-pdf.js";
+import { isUrlPDF } from "../pdf-to-html/util/is-url-pdf.js";
 import { convertDOCXToHTML, isBufferDOCX } from "./docx-to-content.js";
 import { scrapeURL } from "./url-to-html.js";
 
@@ -24,7 +24,7 @@ import { scrapeURL } from "./url-to-html.js";
 
 /**
  * ### 🚜📜 Tractor the Text Extractor 
- * <img width="350px"  src="https://i.imgur.com/nNfHmct.png" />
+ * <img width="350px"  src="https://i.imgur.com/o8NTXxY.png" />
  * 
  * 1. Main Content Detection: Extract the main content from a URL by combining 
  * Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 
@@ -114,12 +114,12 @@ export async function extractContent(urlOrDoc, options = {}) {
   let url, isPdf, isDocxBuffer;
 
   // Check if input is a binary buffer (DOCX)
-  if (urlOrDoc instanceof ArrayBuffer || 
-      urlOrDoc instanceof Uint8Array || 
-      (typeof Buffer !== 'undefined' && Buffer.isBuffer(urlOrDoc))) {
-    
+  if (urlOrDoc instanceof ArrayBuffer ||
+    urlOrDoc instanceof Uint8Array ||
+    (typeof Buffer !== 'undefined' && Buffer.isBuffer(urlOrDoc))) {
+
     isDocxBuffer = isBufferDOCX(urlOrDoc);
-    
+
     if (isDocxBuffer) {
       // Handle DOCX binary buffer
       response.html = await convertDOCXToHTML(urlOrDoc, options);
@@ -132,8 +132,8 @@ export async function extractContent(urlOrDoc, options = {}) {
     // If urlOrDoc is an HTML string, treat as HTML content
     options.url = options.url || "";
 
-    response =  extractContentAndCite(urlOrDoc, options);
-    
+    response = extractContentAndCite(urlOrDoc, options);
+
     return response;
     // if URL
   } else if (typeof urlOrDoc === "string" && urlOrDoc.startsWith("http")) {
@@ -142,11 +142,11 @@ export async function extractContent(urlOrDoc, options = {}) {
 
     // check if google doc, then extract html or pdf file
     let googleDocId = url.match(/google\.com\/(file|document)\/d\/([\w-]+)/);
-    if (googleDocId) 
+    if (googleDocId)
       url = googleDocId[1] === 'file'
         ? `https://drive.google.com/uc?export=download&id=${googleDocId[2]}`
         : `https://docs.google.com/document/d/${googleDocId[2]}/export?format=html`;
-    
+
 
     isPdf = url.endsWith(".pdf") || await isUrlPDF(url);
     let youtubeID = getURLYoutubeVideo(url);
@@ -166,9 +166,9 @@ export async function extractContent(urlOrDoc, options = {}) {
 
     } else {
       // try {
-        var html = await scrapeURL(url, {
-          proxy,
-        });
+      var html = await scrapeURL(url, {
+        proxy,
+      });
       options.url = url;
       response = extractContentAndCite(html, options);
 
@@ -189,7 +189,7 @@ export async function extractContent(urlOrDoc, options = {}) {
       // pdf checker
       response = await convertPDFToHTML(url, {});
     else if (youtubeID) { // from front end
-      
+
       //if on same domain page in chrome-extension
       options.useThirdPartyBackup = false;
       response = await convertYoutubeToText(url, options);
@@ -202,7 +202,7 @@ export async function extractContent(urlOrDoc, options = {}) {
   }
 
   //if no text
-  if (response.error ||!response.html) return { error: response.error };
+  if (response.error || !response.html) return { error: response.error };
 
   //word count of full text original, no html
   response.word_count = response.html
@@ -213,20 +213,20 @@ export async function extractContent(urlOrDoc, options = {}) {
 
   var { author, author_cite, author_short, date, title, source } = response;
 
-  var apa_cite_date = new Date(date).getFullYear() > 1971 ? " (" + 
-    new Date(date).getFullYear() + ", " + new Date(date).toLocaleDateString('en-US', 
-      { month: citeFormatMonthFull ? 'long' : 'short', day: 'numeric' }) + ")" 
-      : "" //"(N.D.)";
+  var apa_cite_date = new Date(date).getFullYear() > 1971 ? " (" +
+    new Date(date).getFullYear() + ", " + new Date(date).toLocaleDateString('en-US',
+      { month: citeFormatMonthFull ? 'long' : 'short', day: 'numeric' }) + ")"
+    : "" //"(N.D.)";
 
-  var cite = `${author_cite || source || " "}${apa_cite_date}. <b>${title 
+  var cite = `${author_cite || source || " "}${apa_cite_date}. <b>${title
     || ''}</b>. <i>${source || ''}</i>. <a href="${url}" target="_blank">${url}</a>`;
 
   //shorten long urls by removing ?params=get used as state tracking
-  if (url && url.includes("?") && url.length > 150) 
+  if (url && url.includes("?") && url.length > 150)
     response.url = url.split("?")[0]
-  
+
   //put url on top
   response = Object.assign({ url, cite }, response);
   return response;
-  
+
 }

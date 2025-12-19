@@ -90,7 +90,7 @@ bun i qwksearch-api-client
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/nNfHmct.png" /> 
+<img width="350px"  src="https://i.imgur.com/o8NTXxY.png" /> 
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)

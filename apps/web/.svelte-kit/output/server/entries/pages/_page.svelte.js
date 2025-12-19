@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { m as lifecycle_function_unavailable, f as sanitize_props, l as spread_props, k as slot, n as derived, b as attributes, d as bind_props, p as props_id, e as ensure_array_like, c as clsx$1, j as element, o as store_set, a as attr, q as attr_class, t as attr_style, u as store_get, v as unsubscribe_stores, s as stringify, h as head, g as rest_props } from "../../chunks/index2.js";
+import { m as lifecycle_function_unavailable, f as sanitize_props, l as spread_props, k as slot, n as derived, p as props_id, b as attributes, d as bind_props, e as ensure_array_like, c as clsx$1, j as element, o as store_set, a as attr, q as attr_class, t as attr_style, u as store_get, v as unsubscribe_stores, s as stringify, h as head, g as rest_props } from "../../chunks/index2.js";
 import { w as writable, g as get$2, r as readable, d as derived$1 } from "../../chunks/index.js";
 import { ab as ATTACHMENT_KEY, k as ssr_context, n as noop$2, ac as hasContext, h as getContext, a8 as setContext, a9 as run, ad as getAllContexts, aa as fallback, g as escape_html, ae as invalid_default_snippet } from "../../chunks/context.js";
 import { BROWSER } from "esm-env-robust";
@@ -8,7 +8,7 @@ import { c as createSubscriber, S as SvelteMap, a as cn, B as Button, l as loadH
 import parse from "style-to-object";
 import { computePosition, offset, shift, flip, size, arrow, hide, limitShift } from "@floating-ui/dom";
 import { o as on } from "../../chunks/events.js";
-import { tabbable, focusable, isFocusable } from "tabbable";
+import { isTabbable, tabbable, isFocusable, focusable } from "tabbable";
 import diff from "fast-diff";
 import "@langchain/langgraph/prebuilt";
 import "@langchain/core/tools";
@@ -38,6 +38,7 @@ import sync, { getFrameData, cancelSync, flushSync } from "framesync";
 import { velocityPerSecond, cubicBezier, bounceOut, bounceInOut, bounceIn, anticipate, backOut, backInOut, backIn, circOut, circInOut, circIn, easeOut, easeInOut, easeIn, linear, inertia, animate, mix, distance, progress, clamp, pipe, interpolate } from "popmotion";
 import { complex, number, alpha, px, progressPercentage, degrees, scale, filter, color, percent, vw, vh } from "style-value-types";
 import { warning, invariant } from "hey-listen";
+import { tv } from "tailwind-variants";
 function createAttachmentKey() {
   return Symbol(ATTACHMENT_KEY);
 }
@@ -4476,7 +4477,7 @@ function Badge_x($$renderer, $$props) {
     }
   ]));
 }
-function Badge($$renderer, $$props) {
+function Badge$1($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const iconNode = [
     [
@@ -30264,7 +30265,7 @@ function Image_upscale($$renderer, $$props) {
     }
   ]));
 }
-function Image($$renderer, $$props) {
+function Image$1($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const iconNode = [
     [
@@ -35206,7 +35207,7 @@ function Memory_stick($$renderer, $$props) {
     }
   ]));
 }
-function Menu($$renderer, $$props) {
+function Menu$1($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const iconNode = [
     ["path", { "d": "M4 5h16" }],
@@ -61178,7 +61179,7 @@ const index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
   Axis3d: Axis_3d,
   Baby,
   Backpack,
-  Badge,
+  Badge: Badge$1,
   BadgeAlert: Badge_alert,
   BadgeCent: Badge_cent,
   BadgeCheck: Badge_check,
@@ -61881,7 +61882,7 @@ const index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
   IceCreamCone: Ice_cream_cone,
   IdCard: Id_card,
   IdCardLanyard: Id_card_lanyard,
-  Image,
+  Image: Image$1,
   ImageDown: Image_down,
   ImageMinus: Image_minus,
   ImageOff: Image_off,
@@ -62021,7 +62022,7 @@ const index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
   MegaphoneOff: Megaphone_off,
   Meh,
   MemoryStick: Memory_stick,
-  Menu,
+  Menu: Menu$1,
   Merge,
   MessageCircle: Message_circle,
   MessageCircleCode: Message_circle_code,
@@ -63011,7 +63012,7 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   BabyIcon: Baby,
   Backpack,
   BackpackIcon: Backpack,
-  Badge,
+  Badge: Badge$1,
   BadgeAlert: Badge_alert,
   BadgeAlertIcon: Badge_alert,
   BadgeCent: Badge_cent,
@@ -63024,7 +63025,7 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   BadgeEuroIcon: Badge_euro,
   BadgeHelp: Badge_question_mark,
   BadgeHelpIcon: Badge_question_mark,
-  BadgeIcon: Badge,
+  BadgeIcon: Badge$1,
   BadgeIndianRupee: Badge_indian_rupee,
   BadgeIndianRupeeIcon: Badge_indian_rupee,
   BadgeInfo: Badge_info,
@@ -64612,10 +64613,10 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   IdCardIcon: Id_card,
   IdCardLanyard: Id_card_lanyard,
   IdCardLanyardIcon: Id_card_lanyard,
-  Image,
+  Image: Image$1,
   ImageDown: Image_down,
   ImageDownIcon: Image_down,
-  ImageIcon: Image,
+  ImageIcon: Image$1,
   ImageMinus: Image_minus,
   ImageMinusIcon: Image_minus,
   ImageOff: Image_off,
@@ -64986,7 +64987,7 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   LucideAxis3d: Axis_3d,
   LucideBaby: Baby,
   LucideBackpack: Backpack,
-  LucideBadge: Badge,
+  LucideBadge: Badge$1,
   LucideBadgeAlert: Badge_alert,
   LucideBadgeCent: Badge_cent,
   LucideBadgeCheck: Badge_check,
@@ -65786,7 +65787,7 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   LucideIceCreamCone: Ice_cream_cone,
   LucideIdCard: Id_card,
   LucideIdCardLanyard: Id_card_lanyard,
-  LucideImage: Image,
+  LucideImage: Image$1,
   LucideImageDown: Image_down,
   LucideImageMinus: Image_minus,
   LucideImageOff: Image_off,
@@ -65942,7 +65943,7 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   LucideMegaphoneOff: Megaphone_off,
   LucideMeh: Meh,
   LucideMemoryStick: Memory_stick,
-  LucideMenu: Menu,
+  LucideMenu: Menu$1,
   LucideMenuSquare: Square_menu,
   LucideMerge: Merge,
   LucideMessageCircle: Message_circle,
@@ -66814,8 +66815,8 @@ const LucideIcons = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineP
   MehIcon: Meh,
   MemoryStick: Memory_stick,
   MemoryStickIcon: Memory_stick,
-  Menu,
-  MenuIcon: Menu,
+  Menu: Menu$1,
+  MenuIcon: Menu$1,
   MenuSquare: Square_menu,
   MenuSquareIcon: Square_menu,
   Merge,
@@ -69268,11 +69269,17 @@ function getIsIOS() {
 function isHTMLElement(element2) {
   return element2 instanceof HTMLElement;
 }
+function isElement(element2) {
+  return element2 instanceof Element;
+}
 function isElementOrSVGElement(element2) {
   return element2 instanceof Element || element2 instanceof SVGElement;
 }
 function isNotNull(value) {
   return value !== null;
+}
+function isSelectableInput(element2) {
+  return element2 instanceof HTMLInputElement && "select" in element2;
 }
 class RovingFocusGroup {
   #opts;
@@ -69515,6 +69522,31 @@ function Portal($$renderer, $$props) {
     $$renderer2.push(`<!--]-->`);
   });
 }
+class CustomEventDispatcher {
+  eventName;
+  options;
+  constructor(eventName, options = { bubbles: true, cancelable: true }) {
+    this.eventName = eventName;
+    this.options = options;
+  }
+  createEvent(detail) {
+    return new CustomEvent(this.eventName, {
+      ...this.options,
+      detail
+    });
+  }
+  dispatch(element2, detail) {
+    const event = this.createEvent(detail);
+    element2.dispatchEvent(event);
+    return event;
+  }
+  listen(element2, callback, options) {
+    const handler = (event) => {
+      callback(event);
+    };
+    return on(element2, this.eventName, handler, options);
+  }
+}
 function debounce(fn, wait = 500) {
   let timeout = null;
   const debounced = (...args) => {
@@ -69543,6 +69575,71 @@ function isClickTrulyOutside(event, contentNode) {
   const { clientX, clientY } = event;
   const rect = contentNode.getBoundingClientRect();
   return clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom;
+}
+const SELECTION_KEYS = [ENTER, SPACE];
+const FIRST_KEYS$1 = [ARROW_DOWN, PAGE_UP, HOME];
+const LAST_KEYS$1 = [ARROW_UP, PAGE_DOWN, END];
+const FIRST_LAST_KEYS$1 = [...FIRST_KEYS$1, ...LAST_KEYS$1];
+function isMouseEvent$1(event) {
+  return event.pointerType === "mouse";
+}
+function focus(element2, { select = false } = {}) {
+  if (!element2 || !element2.focus)
+    return;
+  const doc = getDocument(element2);
+  if (doc.activeElement === element2)
+    return;
+  const previouslyFocusedElement = doc.activeElement;
+  element2.focus({ preventScroll: true });
+  if (element2 !== previouslyFocusedElement && isSelectableInput(element2) && select) {
+    element2.select();
+  }
+}
+function focusFirst(candidates, { select = false } = {}, getActiveElement2) {
+  const previouslyFocusedElement = getActiveElement2();
+  for (const candidate of candidates) {
+    focus(candidate, { select });
+    if (getActiveElement2() !== previouslyFocusedElement)
+      return true;
+  }
+}
+function getTabbableOptions() {
+  return {
+    getShadowRoot: true,
+    displayCheck: (
+      // JSDOM does not support the `tabbable` library. To solve this we can
+      // check if `ResizeObserver` is a real function (not polyfilled), which
+      // determines if the current environment is JSDOM-like.
+      typeof ResizeObserver === "function" && ResizeObserver.toString().includes("[native code]") ? "full" : "none"
+    )
+  };
+}
+function getTabbableFrom(currentNode, direction) {
+  if (!isTabbable(currentNode, getTabbableOptions())) {
+    return getTabbableFromFocusable(currentNode, direction);
+  }
+  const doc = getDocument(currentNode);
+  const allTabbable = tabbable(doc.body, getTabbableOptions());
+  if (direction === "prev")
+    allTabbable.reverse();
+  const activeIndex = allTabbable.indexOf(currentNode);
+  if (activeIndex === -1)
+    return doc.body;
+  const nextTabbableElements = allTabbable.slice(activeIndex + 1);
+  return nextTabbableElements[0];
+}
+function getTabbableFromFocusable(currentNode, direction) {
+  const doc = getDocument(currentNode);
+  if (!isFocusable(currentNode, getTabbableOptions()))
+    return doc.body;
+  const allFocusable = focusable(doc.body, getTabbableOptions());
+  if (direction === "prev")
+    allFocusable.reverse();
+  const activeIndex = allFocusable.indexOf(currentNode);
+  if (activeIndex === -1)
+    return doc.body;
+  const nextFocusableElements = allFocusable.slice(activeIndex + 1);
+  return nextFocusableElements.find((node) => isTabbable(node, getTabbableOptions())) ?? doc.body;
 }
 function isValidIndex(index2, arr) {
   return index2 >= 0 && index2 < arr.length;
@@ -69677,9 +69774,184 @@ class DOMTypeahead {
     return this.#search.current;
   }
 }
+class GraceArea {
+  #opts;
+  #enabled;
+  #isPointerInTransit;
+  #pointerGraceArea = null;
+  constructor(opts) {
+    this.#opts = opts;
+    this.#enabled = derived(() => this.#opts.enabled());
+    this.#isPointerInTransit = boxAutoReset(false, {
+      afterMs: opts.transitTimeout ?? 300,
+      onChange: (value) => {
+        if (!this.#enabled()) return;
+        this.#opts.setIsPointerInTransit?.(value);
+      },
+      getWindow: () => getWindow(this.#opts.triggerNode())
+    });
+    watch([opts.triggerNode, opts.contentNode, opts.enabled], ([triggerNode, contentNode, enabled]) => {
+      if (!triggerNode || !contentNode || !enabled) return;
+      const handleTriggerLeave = (e) => {
+        this.#createGraceArea(e, contentNode);
+      };
+      const handleContentLeave = (e) => {
+        this.#createGraceArea(e, triggerNode);
+      };
+      return executeCallbacks(on(triggerNode, "pointerleave", handleTriggerLeave), on(contentNode, "pointerleave", handleContentLeave));
+    });
+    watch(() => this.#pointerGraceArea, () => {
+      const handleTrackPointerGrace = (e) => {
+        if (!this.#pointerGraceArea) return;
+        const target = e.target;
+        if (!isElement(target)) return;
+        const pointerPosition = { x: e.clientX, y: e.clientY };
+        const hasEnteredTarget = opts.triggerNode()?.contains(target) || opts.contentNode()?.contains(target);
+        const isPointerOutsideGraceArea = !isPointInPolygon(pointerPosition, this.#pointerGraceArea);
+        if (hasEnteredTarget) {
+          this.#removeGraceArea();
+        } else if (isPointerOutsideGraceArea) {
+          this.#removeGraceArea();
+          opts.onPointerExit();
+        }
+      };
+      const doc = getDocument(opts.triggerNode() ?? opts.contentNode());
+      if (!doc) return;
+      return on(doc, "pointermove", handleTrackPointerGrace);
+    });
+  }
+  #removeGraceArea() {
+    this.#pointerGraceArea = null;
+    this.#isPointerInTransit.current = false;
+  }
+  #createGraceArea(e, hoverTarget) {
+    const currentTarget = e.currentTarget;
+    if (!isHTMLElement(currentTarget)) return;
+    const exitPoint = { x: e.clientX, y: e.clientY };
+    const exitSide = getExitSideFromRect(exitPoint, currentTarget.getBoundingClientRect());
+    const paddedExitPoints = getPaddedExitPoints(exitPoint, exitSide);
+    const hoverTargetPoints = getPointsFromRect(hoverTarget.getBoundingClientRect());
+    const graceArea = getHull([...paddedExitPoints, ...hoverTargetPoints]);
+    this.#pointerGraceArea = graceArea;
+    this.#isPointerInTransit.current = true;
+  }
+}
+function getExitSideFromRect(point, rect) {
+  const top = Math.abs(rect.top - point.y);
+  const bottom = Math.abs(rect.bottom - point.y);
+  const right = Math.abs(rect.right - point.x);
+  const left = Math.abs(rect.left - point.x);
+  switch (Math.min(top, bottom, right, left)) {
+    case left:
+      return "left";
+    case right:
+      return "right";
+    case top:
+      return "top";
+    case bottom:
+      return "bottom";
+    default:
+      throw new Error("unreachable");
+  }
+}
+function getPaddedExitPoints(exitPoint, exitSide, padding = 5) {
+  const tipPadding = padding * 1.5;
+  switch (exitSide) {
+    case "top":
+      return [
+        { x: exitPoint.x - padding, y: exitPoint.y + padding },
+        { x: exitPoint.x, y: exitPoint.y - tipPadding },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      ];
+    case "bottom":
+      return [
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x, y: exitPoint.y + tipPadding },
+        { x: exitPoint.x + padding, y: exitPoint.y - padding }
+      ];
+    case "left":
+      return [
+        { x: exitPoint.x + padding, y: exitPoint.y - padding },
+        { x: exitPoint.x - tipPadding, y: exitPoint.y },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      ];
+    case "right":
+      return [
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x + tipPadding, y: exitPoint.y },
+        { x: exitPoint.x - padding, y: exitPoint.y + padding }
+      ];
+  }
+}
+function getPointsFromRect(rect) {
+  const { top, right, bottom, left } = rect;
+  return [
+    { x: left, y: top },
+    { x: right, y: top },
+    { x: right, y: bottom },
+    { x: left, y: bottom }
+  ];
+}
+function isPointInPolygon(point, polygon) {
+  const { x, y } = point;
+  let inside = false;
+  for (let i = 0, j2 = polygon.length - 1; i < polygon.length; j2 = i++) {
+    const xi = polygon[i].x;
+    const yi = polygon[i].y;
+    const xj = polygon[j2].x;
+    const yj = polygon[j2].y;
+    const intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+function getHull(points) {
+  const newPoints = points.slice();
+  newPoints.sort((a, b) => {
+    if (a.x < b.x) return -1;
+    else if (a.x > b.x) return 1;
+    else if (a.y < b.y) return -1;
+    else if (a.y > b.y) return 1;
+    else return 0;
+  });
+  return getHullPresorted(newPoints);
+}
+function getHullPresorted(points) {
+  if (points.length <= 1) return points.slice();
+  const upperHull = [];
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    while (upperHull.length >= 2) {
+      const q2 = upperHull[upperHull.length - 1];
+      const r = upperHull[upperHull.length - 2];
+      if ((q2.x - r.x) * (p.y - r.y) >= (q2.y - r.y) * (p.x - r.x)) upperHull.pop();
+      else break;
+    }
+    upperHull.push(p);
+  }
+  upperHull.pop();
+  const lowerHull = [];
+  for (let i = points.length - 1; i >= 0; i--) {
+    const p = points[i];
+    while (lowerHull.length >= 2) {
+      const q2 = lowerHull[lowerHull.length - 1];
+      const r = lowerHull[lowerHull.length - 2];
+      if ((q2.x - r.x) * (p.y - r.y) >= (q2.y - r.y) * (p.x - r.x)) lowerHull.pop();
+      else break;
+    }
+    lowerHull.push(p);
+  }
+  lowerHull.pop();
+  if (upperHull.length === 1 && lowerHull.length === 1 && upperHull[0].x === lowerHull[0].x && upperHull[0].y === lowerHull[0].y) return upperHull;
+  else return upperHull.concat(lowerHull);
+}
 const CONTEXT_MENU_TRIGGER_ATTR = "data-context-menu-trigger";
 const CONTEXT_MENU_CONTENT_ATTR = "data-context-menu-content";
-createBitsAttrs({
+const MenuRootContext = new Context("Menu.Root");
+const MenuMenuContext = new Context("Menu.Root | Menu.Sub");
+const MenuContentContext = new Context("Menu.Content");
+const MenuOpenEvent = new CustomEventDispatcher("bitsmenuopen", { bubbles: false, cancelable: true });
+const menuAttrs = createBitsAttrs({
   component: "menu",
   parts: [
     "trigger",
@@ -69697,6 +69969,485 @@ createBitsAttrs({
     "arrow"
   ]
 });
+class MenuRootState {
+  static create(opts) {
+    const root = new MenuRootState(opts);
+    return MenuRootContext.set(root);
+  }
+  opts;
+  isUsingKeyboard = new IsUsingKeyboard();
+  ignoreCloseAutoFocus = false;
+  isPointerInTransit = false;
+  constructor(opts) {
+    this.opts = opts;
+  }
+  getBitsAttr = (part) => {
+    return menuAttrs.getAttr(part, this.opts.variant.current);
+  };
+}
+class MenuMenuState {
+  static create(opts, root) {
+    return MenuMenuContext.set(new MenuMenuState(opts, root, null));
+  }
+  opts;
+  root;
+  parentMenu;
+  contentId = boxWith(() => "");
+  contentNode = null;
+  contentPresence;
+  triggerNode = null;
+  constructor(opts, root, parentMenu) {
+    this.opts = opts;
+    this.root = root;
+    this.parentMenu = parentMenu;
+    this.contentPresence = new PresenceManager({
+      ref: boxWith(() => this.contentNode),
+      open: this.opts.open,
+      onComplete: () => {
+        this.opts.onOpenChangeComplete.current(this.opts.open.current);
+      }
+    });
+    if (parentMenu) {
+      watch(() => parentMenu.opts.open.current, () => {
+        if (parentMenu.opts.open.current) return;
+        this.opts.open.current = false;
+      });
+    }
+  }
+  toggleOpen() {
+    this.opts.open.current = !this.opts.open.current;
+  }
+  onOpen() {
+    this.opts.open.current = true;
+  }
+  onClose() {
+    this.opts.open.current = false;
+  }
+}
+class MenuContentState {
+  static create(opts) {
+    return MenuContentContext.set(new MenuContentState(opts, MenuMenuContext.get()));
+  }
+  opts;
+  parentMenu;
+  rovingFocusGroup;
+  domContext;
+  attachment;
+  search = "";
+  #timer = 0;
+  #handleTypeaheadSearch;
+  mounted = false;
+  #isSub;
+  constructor(opts, parentMenu) {
+    this.opts = opts;
+    this.parentMenu = parentMenu;
+    this.domContext = new DOMContext(opts.ref);
+    this.attachment = attachRef(this.opts.ref, (v) => {
+      if (this.parentMenu.contentNode !== v) {
+        this.parentMenu.contentNode = v;
+      }
+    });
+    parentMenu.contentId = opts.id;
+    this.#isSub = opts.isSub ?? false;
+    this.onkeydown = this.onkeydown.bind(this);
+    this.onblur = this.onblur.bind(this);
+    this.onfocus = this.onfocus.bind(this);
+    this.handleInteractOutside = this.handleInteractOutside.bind(this);
+    new GraceArea({
+      contentNode: () => this.parentMenu.contentNode,
+      triggerNode: () => this.parentMenu.triggerNode,
+      enabled: () => this.parentMenu.opts.open.current && Boolean(this.parentMenu.triggerNode?.hasAttribute(this.parentMenu.root.getBitsAttr("sub-trigger"))),
+      onPointerExit: () => {
+        this.parentMenu.opts.open.current = false;
+      },
+      setIsPointerInTransit: (value) => {
+        this.parentMenu.root.isPointerInTransit = value;
+      }
+    });
+    this.#handleTypeaheadSearch = new DOMTypeahead({
+      getActiveElement: () => this.domContext.getActiveElement(),
+      getWindow: () => this.domContext.getWindow()
+    }).handleTypeaheadSearch;
+    this.rovingFocusGroup = new RovingFocusGroup({
+      rootNode: boxWith(() => this.parentMenu.contentNode),
+      candidateAttr: this.parentMenu.root.getBitsAttr("item"),
+      loop: this.opts.loop,
+      orientation: boxWith(() => "vertical")
+    });
+    watch(() => this.parentMenu.contentNode, (contentNode) => {
+      if (!contentNode) return;
+      const handler = () => {
+        afterTick(() => {
+          if (!this.parentMenu.root.isUsingKeyboard.current) return;
+          this.rovingFocusGroup.focusFirstCandidate();
+        });
+      };
+      return MenuOpenEvent.listen(contentNode, handler);
+    });
+  }
+  #getCandidateNodes() {
+    const node = this.parentMenu.contentNode;
+    if (!node) return [];
+    const candidates = Array.from(node.querySelectorAll(`[${this.parentMenu.root.getBitsAttr("item")}]:not([data-disabled])`));
+    return candidates;
+  }
+  #isPointerMovingToSubmenu() {
+    return this.parentMenu.root.isPointerInTransit;
+  }
+  onCloseAutoFocus = (e) => {
+    this.opts.onCloseAutoFocus.current?.(e);
+    if (e.defaultPrevented || this.#isSub) return;
+    if (this.parentMenu.triggerNode && isTabbable(this.parentMenu.triggerNode)) {
+      e.preventDefault();
+      this.parentMenu.triggerNode.focus();
+    }
+  };
+  handleTabKeyDown(e) {
+    let rootMenu = this.parentMenu;
+    while (rootMenu.parentMenu !== null) {
+      rootMenu = rootMenu.parentMenu;
+    }
+    if (!rootMenu.triggerNode) return;
+    e.preventDefault();
+    const nodeToFocus = getTabbableFrom(rootMenu.triggerNode, e.shiftKey ? "prev" : "next");
+    if (nodeToFocus) {
+      this.parentMenu.root.ignoreCloseAutoFocus = true;
+      rootMenu.onClose();
+      afterTick(() => {
+        nodeToFocus.focus();
+        afterTick(() => {
+          this.parentMenu.root.ignoreCloseAutoFocus = false;
+        });
+      });
+    } else {
+      this.domContext.getDocument().body.focus();
+    }
+  }
+  onkeydown(e) {
+    if (e.defaultPrevented) return;
+    if (e.key === TAB) {
+      this.handleTabKeyDown(e);
+      return;
+    }
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    if (!isHTMLElement(target) || !isHTMLElement(currentTarget)) return;
+    const isKeydownInside = target.closest(`[${this.parentMenu.root.getBitsAttr("content")}]`)?.id === this.parentMenu.contentId.current;
+    const isModifierKey = e.ctrlKey || e.altKey || e.metaKey;
+    const isCharacterKey = e.key.length === 1;
+    const kbdFocusedEl = this.rovingFocusGroup.handleKeydown(target, e);
+    if (kbdFocusedEl) return;
+    if (e.code === "Space") return;
+    const candidateNodes = this.#getCandidateNodes();
+    if (isKeydownInside) {
+      if (!isModifierKey && isCharacterKey) {
+        this.#handleTypeaheadSearch(e.key, candidateNodes);
+      }
+    }
+    if (e.target?.id !== this.parentMenu.contentId.current) return;
+    if (!FIRST_LAST_KEYS$1.includes(e.key)) return;
+    e.preventDefault();
+    if (LAST_KEYS$1.includes(e.key)) {
+      candidateNodes.reverse();
+    }
+    focusFirst(candidateNodes, { select: false }, () => this.domContext.getActiveElement());
+  }
+  onblur(e) {
+    if (!isElement(e.currentTarget)) return;
+    if (!isElement(e.target)) return;
+    if (!e.currentTarget.contains?.(e.target)) {
+      this.domContext.getWindow().clearTimeout(this.#timer);
+      this.search = "";
+    }
+  }
+  onfocus(_) {
+    if (!this.parentMenu.root.isUsingKeyboard.current) return;
+    afterTick(() => this.rovingFocusGroup.focusFirstCandidate());
+  }
+  onItemEnter() {
+    return this.#isPointerMovingToSubmenu();
+  }
+  onItemLeave(e) {
+    if (e.currentTarget.hasAttribute(this.parentMenu.root.getBitsAttr("sub-trigger"))) return;
+    if (this.#isPointerMovingToSubmenu() || this.parentMenu.root.isUsingKeyboard.current) return;
+    const contentNode = this.parentMenu.contentNode;
+    contentNode?.focus();
+    this.rovingFocusGroup.setCurrentTabStopId("");
+  }
+  onTriggerLeave() {
+    if (this.#isPointerMovingToSubmenu()) return true;
+    return false;
+  }
+  handleInteractOutside(e) {
+    if (!isElementOrSVGElement(e.target)) return;
+    const triggerId = this.parentMenu.triggerNode?.id;
+    if (e.target.id === triggerId) {
+      e.preventDefault();
+      return;
+    }
+    if (e.target.closest(`#${triggerId}`)) {
+      e.preventDefault();
+    }
+  }
+  get shouldRender() {
+    return this.parentMenu.contentPresence.shouldRender;
+  }
+  #snippetProps = derived(() => ({ open: this.parentMenu.opts.open.current }));
+  get snippetProps() {
+    return this.#snippetProps();
+  }
+  set snippetProps($$value) {
+    return this.#snippetProps($$value);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "menu",
+    "aria-orientation": "vertical",
+    [this.parentMenu.root.getBitsAttr("content")]: "",
+    "data-state": getDataOpenClosed(this.parentMenu.opts.open.current),
+    onkeydown: this.onkeydown,
+    onblur: this.onblur,
+    onfocus: this.onfocus,
+    dir: this.parentMenu.root.opts.dir.current,
+    style: { pointerEvents: "auto" },
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+  popperProps = { onCloseAutoFocus: (e) => this.onCloseAutoFocus(e) };
+}
+class MenuItemSharedState {
+  opts;
+  content;
+  attachment;
+  #isFocused = false;
+  constructor(opts, content) {
+    this.opts = opts;
+    this.content = content;
+    this.attachment = attachRef(this.opts.ref);
+    this.onpointermove = this.onpointermove.bind(this);
+    this.onpointerleave = this.onpointerleave.bind(this);
+    this.onfocus = this.onfocus.bind(this);
+    this.onblur = this.onblur.bind(this);
+  }
+  onpointermove(e) {
+    if (e.defaultPrevented) return;
+    if (!isMouseEvent$1(e)) return;
+    if (this.opts.disabled.current) {
+      this.content.onItemLeave(e);
+    } else {
+      const defaultPrevented = this.content.onItemEnter();
+      if (defaultPrevented) return;
+      const item = e.currentTarget;
+      if (!isHTMLElement(item)) return;
+      item.focus();
+    }
+  }
+  onpointerleave(e) {
+    if (e.defaultPrevented) return;
+    if (!isMouseEvent$1(e)) return;
+    this.content.onItemLeave(e);
+  }
+  onfocus(e) {
+    afterTick(() => {
+      if (e.defaultPrevented || this.opts.disabled.current) return;
+      this.#isFocused = true;
+    });
+  }
+  onblur(e) {
+    afterTick(() => {
+      if (e.defaultPrevented) return;
+      this.#isFocused = false;
+    });
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    tabindex: -1,
+    role: "menuitem",
+    "aria-disabled": boolToStr(this.opts.disabled.current),
+    "data-disabled": boolToEmptyStrOrUndef(this.opts.disabled.current),
+    "data-highlighted": this.#isFocused ? "" : void 0,
+    [this.content.parentMenu.root.getBitsAttr("item")]: "",
+    //
+    onpointermove: this.onpointermove,
+    onpointerleave: this.onpointerleave,
+    onfocus: this.onfocus,
+    onblur: this.onblur,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class MenuItemState {
+  static create(opts) {
+    const item = new MenuItemSharedState(opts, MenuContentContext.get());
+    return new MenuItemState(opts, item);
+  }
+  opts;
+  item;
+  root;
+  #isPointerDown = false;
+  constructor(opts, item) {
+    this.opts = opts;
+    this.item = item;
+    this.root = item.content.parentMenu.root;
+    this.onkeydown = this.onkeydown.bind(this);
+    this.onclick = this.onclick.bind(this);
+    this.onpointerdown = this.onpointerdown.bind(this);
+    this.onpointerup = this.onpointerup.bind(this);
+  }
+  #handleSelect() {
+    if (this.item.opts.disabled.current) return;
+    const selectEvent = new CustomEvent("menuitemselect", { bubbles: true, cancelable: true });
+    this.opts.onSelect.current(selectEvent);
+    if (selectEvent.defaultPrevented) {
+      this.item.content.parentMenu.root.isUsingKeyboard.current = false;
+      return;
+    }
+    if (this.opts.closeOnSelect.current) {
+      this.item.content.parentMenu.root.opts.onClose();
+    }
+  }
+  onkeydown(e) {
+    const isTypingAhead = this.item.content.search !== "";
+    if (this.item.opts.disabled.current || isTypingAhead && e.key === SPACE) return;
+    if (SELECTION_KEYS.includes(e.key)) {
+      if (!isHTMLElement(e.currentTarget)) return;
+      e.currentTarget.click();
+      e.preventDefault();
+    }
+  }
+  onclick(_) {
+    if (this.item.opts.disabled.current) return;
+    this.#handleSelect();
+  }
+  onpointerup(e) {
+    if (e.defaultPrevented) return;
+    if (!this.#isPointerDown) {
+      if (!isHTMLElement(e.currentTarget)) return;
+      e.currentTarget?.click();
+    }
+  }
+  onpointerdown(_) {
+    this.#isPointerDown = true;
+  }
+  #props = derived(() => mergeProps(this.item.props, {
+    onclick: this.onclick,
+    onpointerdown: this.onpointerdown,
+    onpointerup: this.onpointerup,
+    onkeydown: this.onkeydown
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class MenuSeparatorState {
+  static create(opts) {
+    return new MenuSeparatorState(opts, MenuRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "group",
+    [this.root.getBitsAttr("separator")]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class DropdownMenuTriggerState {
+  static create(opts) {
+    return new DropdownMenuTriggerState(opts, MenuMenuContext.get());
+  }
+  opts;
+  parentMenu;
+  attachment;
+  constructor(opts, parentMenu) {
+    this.opts = opts;
+    this.parentMenu = parentMenu;
+    this.attachment = attachRef(this.opts.ref, (v) => this.parentMenu.triggerNode = v);
+  }
+  onclick = (e) => {
+    if (this.opts.disabled.current || e.detail !== 0) return;
+    this.parentMenu.toggleOpen();
+    e.preventDefault();
+  };
+  onpointerdown = (e) => {
+    if (this.opts.disabled.current) return;
+    if (e.pointerType === "touch") return e.preventDefault();
+    if (e.button === 0 && e.ctrlKey === false) {
+      this.parentMenu.toggleOpen();
+      if (!this.parentMenu.opts.open.current) e.preventDefault();
+    }
+  };
+  onpointerup = (e) => {
+    if (this.opts.disabled.current) return;
+    if (e.pointerType === "touch") {
+      e.preventDefault();
+      this.parentMenu.toggleOpen();
+    }
+  };
+  onkeydown = (e) => {
+    if (this.opts.disabled.current) return;
+    if (e.key === SPACE || e.key === ENTER) {
+      this.parentMenu.toggleOpen();
+      e.preventDefault();
+      return;
+    }
+    if (e.key === ARROW_DOWN) {
+      this.parentMenu.onOpen();
+      e.preventDefault();
+    }
+  };
+  #ariaControls = derived(() => {
+    if (this.parentMenu.opts.open.current && this.parentMenu.contentId.current) return this.parentMenu.contentId.current;
+    return void 0;
+  });
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    disabled: this.opts.disabled.current,
+    "aria-haspopup": "menu",
+    "aria-expanded": boolToStr(this.parentMenu.opts.open.current),
+    "aria-controls": this.#ariaControls(),
+    "data-disabled": boolToEmptyStrOrUndef(this.opts.disabled.current),
+    "data-state": getDataOpenClosed(this.parentMenu.opts.open.current),
+    [this.parentMenu.root.getBitsAttr("trigger")]: "",
+    //
+    onclick: this.onclick,
+    onpointerdown: this.onpointerdown,
+    onpointerup: this.onpointerup,
+    onkeydown: this.onkeydown,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
 globalThis.bitsDismissableLayers ??= /* @__PURE__ */ new Map();
 class DismissibleLayerState {
   static create(opts) {
@@ -70450,6 +71201,162 @@ function Scroll_lock($$renderer, $$props) {
     if (preventScroll) {
       new BodyScrollLock(preventScroll, () => restoreScrollDelay);
     }
+  });
+}
+const avatarAttrs = createBitsAttrs({ component: "avatar", parts: ["root", "image", "fallback"] });
+const AvatarRootContext = new Context("Avatar.Root");
+class AvatarRootState {
+  static create(opts) {
+    return AvatarRootContext.set(new AvatarRootState(opts));
+  }
+  opts;
+  domContext;
+  attachment;
+  constructor(opts) {
+    this.opts = opts;
+    this.domContext = new DOMContext(this.opts.ref);
+    this.loadImage = this.loadImage.bind(this);
+    this.attachment = attachRef(this.opts.ref);
+  }
+  loadImage(src, crossorigin, referrerPolicy) {
+    if (this.opts.loadingStatus.current === "loaded") return;
+    let imageTimerId;
+    const image = new Image();
+    image.src = src;
+    if (crossorigin !== void 0) image.crossOrigin = crossorigin;
+    if (referrerPolicy) image.referrerPolicy = referrerPolicy;
+    this.opts.loadingStatus.current = "loading";
+    image.onload = () => {
+      imageTimerId = this.domContext.setTimeout(
+        () => {
+          this.opts.loadingStatus.current = "loaded";
+        },
+        this.opts.delayMs.current
+      );
+    };
+    image.onerror = () => {
+      this.opts.loadingStatus.current = "error";
+    };
+    return () => {
+      if (!imageTimerId) return;
+      this.domContext.clearTimeout(imageTimerId);
+    };
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    [avatarAttrs.root]: "",
+    "data-status": this.opts.loadingStatus.current,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class AvatarFallbackState {
+  static create(opts) {
+    return new AvatarFallbackState(opts, AvatarRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref);
+  }
+  #style = derived(() => this.root.opts.loadingStatus.current === "loaded" ? { display: "none" } : void 0);
+  get style() {
+    return this.#style();
+  }
+  set style($$value) {
+    return this.#style($$value);
+  }
+  #props = derived(() => ({
+    style: this.style,
+    "data-status": this.root.opts.loadingStatus.current,
+    [avatarAttrs.fallback]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+function Avatar$1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      delayMs = 0,
+      loadingStatus = "loading",
+      onLoadingStatusChange,
+      child,
+      children,
+      id = createId(uid),
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const rootState = AvatarRootState.create({
+      delayMs: boxWith(() => delayMs),
+      loadingStatus: boxWith(() => loadingStatus, (v) => {
+        if (loadingStatus !== v) {
+          loadingStatus = v;
+          onLoadingStatusChange?.(v);
+        }
+      }),
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, rootState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { loadingStatus, ref });
+  });
+}
+function Avatar_fallback$1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      children,
+      child,
+      id = createId(uid),
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const fallbackState = AvatarFallbackState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, fallbackState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<span${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></span>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
   });
 }
 function Hidden_input($$renderer, $$props) {
@@ -71997,6 +72904,68 @@ function Floating_layer_content_static($$renderer, $$props) {
     $$renderer2.push(`<!---->`);
   });
 }
+const separatorAttrs = createBitsAttrs({ component: "separator", parts: ["root"] });
+class SeparatorRootState {
+  static create(opts) {
+    return new SeparatorRootState(opts);
+  }
+  opts;
+  attachment;
+  constructor(opts) {
+    this.opts = opts;
+    this.attachment = attachRef(opts.ref);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: this.opts.decorative.current ? "none" : "separator",
+    "aria-orientation": this.opts.orientation.current,
+    "aria-hidden": boolToStrTrueOrUndef(this.opts.decorative.current),
+    "data-orientation": this.opts.orientation.current,
+    [separatorAttrs.root]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+function Separator$1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      child,
+      children,
+      decorative = false,
+      orientation = "horizontal",
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const rootState = SeparatorRootState.create({
+      ref: boxWith(() => ref, (v) => ref = v),
+      id: boxWith(() => id),
+      decorative: boxWith(() => decorative),
+      orientation: boxWith(() => orientation)
+    });
+    const mergedProps = mergeProps(restProps, rootState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
 function Popper_content($$renderer, $$props) {
   let {
     content,
@@ -72715,6 +73684,281 @@ function Select_scroll_up_button$1($$renderer, $$props) {
       $$render_inner($$inner_renderer);
     } while (!$$settled);
     $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Menu_item($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      child,
+      children,
+      ref = null,
+      id = createId(uid),
+      disabled = false,
+      onSelect = noop$1,
+      closeOnSelect = true,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const itemState = MenuItemState.create({
+      id: boxWith(() => id),
+      disabled: boxWith(() => disabled),
+      onSelect: boxWith(() => onSelect),
+      ref: boxWith(() => ref, (v) => ref = v),
+      closeOnSelect: boxWith(() => closeOnSelect)
+    });
+    const mergedProps = mergeProps(restProps, itemState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Menu_separator($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      ref = null,
+      id = createId(uid),
+      child,
+      children,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const separatorState = MenuSeparatorState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, separatorState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Menu($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      open = false,
+      dir = "ltr",
+      onOpenChange = noop$1,
+      onOpenChangeComplete = noop$1,
+      _internal_variant: variant = "dropdown-menu",
+      children
+    } = $$props;
+    const root = MenuRootState.create({
+      variant: boxWith(() => variant),
+      dir: boxWith(() => dir),
+      onClose: () => {
+        open = false;
+        onOpenChange(false);
+      }
+    });
+    MenuMenuState.create(
+      {
+        open: boxWith(() => open, (v) => {
+          open = v;
+          onOpenChange(v);
+        }),
+        onOpenChangeComplete: boxWith(() => onOpenChangeComplete)
+      },
+      root
+    );
+    Floating_layer($$renderer2, {
+      children: ($$renderer3) => {
+        children?.($$renderer3);
+        $$renderer3.push(`<!---->`);
+      }
+    });
+    bind_props($$props, { open });
+  });
+}
+function Dropdown_menu_content$1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      child,
+      children,
+      ref = null,
+      loop = true,
+      onInteractOutside = noop$1,
+      onEscapeKeydown = noop$1,
+      onCloseAutoFocus = noop$1,
+      forceMount = false,
+      trapFocus = false,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const contentState = MenuContentState.create({
+      id: boxWith(() => id),
+      loop: boxWith(() => loop),
+      ref: boxWith(() => ref, (v) => ref = v),
+      onCloseAutoFocus: boxWith(() => onCloseAutoFocus)
+    });
+    const mergedProps = mergeProps(restProps, contentState.props);
+    function handleInteractOutside(e) {
+      contentState.handleInteractOutside(e);
+      if (e.defaultPrevented) return;
+      onInteractOutside(e);
+      if (e.defaultPrevented) return;
+      if (e.target && e.target instanceof Element) {
+        const subContentSelector = `[${contentState.parentMenu.root.getBitsAttr("sub-content")}]`;
+        if (e.target.closest(subContentSelector)) return;
+      }
+      contentState.parentMenu.onClose();
+    }
+    function handleEscapeKeydown(e) {
+      onEscapeKeydown(e);
+      if (e.defaultPrevented) return;
+      contentState.parentMenu.onClose();
+    }
+    if (forceMount) {
+      $$renderer2.push("<!--[-->");
+      {
+        let popper = function($$renderer3, { props, wrapperProps }) {
+          const finalProps = mergeProps(props, { style: getFloatingContentCSSVars("dropdown-menu") });
+          if (child) {
+            $$renderer3.push("<!--[-->");
+            child($$renderer3, {
+              props: finalProps,
+              wrapperProps,
+              ...contentState.snippetProps
+            });
+            $$renderer3.push(`<!---->`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+            $$renderer3.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...finalProps })}>`);
+            children?.($$renderer3);
+            $$renderer3.push(`<!----></div></div>`);
+          }
+          $$renderer3.push(`<!--]-->`);
+        };
+        Popper_layer_force_mount($$renderer2, spread_props([
+          mergedProps,
+          contentState.popperProps,
+          {
+            ref: contentState.opts.ref,
+            enabled: contentState.parentMenu.opts.open.current,
+            onInteractOutside: handleInteractOutside,
+            onEscapeKeydown: handleEscapeKeydown,
+            trapFocus,
+            loop,
+            forceMount: true,
+            id,
+            shouldRender: contentState.shouldRender,
+            popper,
+            $$slots: { popper: true }
+          }
+        ]));
+      }
+    } else {
+      $$renderer2.push("<!--[!-->");
+      if (!forceMount) {
+        $$renderer2.push("<!--[-->");
+        {
+          let popper = function($$renderer3, { props, wrapperProps }) {
+            const finalProps = mergeProps(props, { style: getFloatingContentCSSVars("dropdown-menu") });
+            if (child) {
+              $$renderer3.push("<!--[-->");
+              child($$renderer3, {
+                props: finalProps,
+                wrapperProps,
+                ...contentState.snippetProps
+              });
+              $$renderer3.push(`<!---->`);
+            } else {
+              $$renderer3.push("<!--[!-->");
+              $$renderer3.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...finalProps })}>`);
+              children?.($$renderer3);
+              $$renderer3.push(`<!----></div></div>`);
+            }
+            $$renderer3.push(`<!--]-->`);
+          };
+          Popper_layer($$renderer2, spread_props([
+            mergedProps,
+            contentState.popperProps,
+            {
+              ref: contentState.opts.ref,
+              open: contentState.parentMenu.opts.open.current,
+              onInteractOutside: handleInteractOutside,
+              onEscapeKeydown: handleEscapeKeydown,
+              trapFocus,
+              loop,
+              forceMount: false,
+              id,
+              shouldRender: contentState.shouldRender,
+              popper,
+              $$slots: { popper: true }
+            }
+          ]));
+        }
+      } else {
+        $$renderer2.push("<!--[!-->");
+      }
+      $$renderer2.push(`<!--]-->`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Menu_trigger($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      child,
+      children,
+      disabled = false,
+      type = "button",
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const triggerState = DropdownMenuTriggerState.create({
+      id: boxWith(() => id),
+      disabled: boxWith(() => disabled ?? false),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, triggerState.props, { type });
+    Floating_layer_anchor($$renderer2, {
+      id,
+      ref: triggerState.opts.ref,
+      children: ($$renderer3) => {
+        if (child) {
+          $$renderer3.push("<!--[-->");
+          child($$renderer3, { props: mergedProps });
+          $$renderer3.push(`<!---->`);
+        } else {
+          $$renderer3.push("<!--[!-->");
+          $$renderer3.push(`<button${attributes({ ...mergedProps })}>`);
+          children?.($$renderer3);
+          $$renderer3.push(`<!----></button>`);
+        }
+        $$renderer3.push(`<!--]-->`);
+      }
+    });
     bind_props($$props, { ref });
   });
 }
@@ -74207,6 +75451,20 @@ function Tabs_trigger$1($$renderer, $$props) {
     bind_props($$props, { ref });
   });
 }
+let isUsingKeyboard = false;
+class IsUsingKeyboard {
+  static _refs = 0;
+  // Reference counting to avoid multiple listeners.
+  static _cleanup;
+  constructor() {
+  }
+  get current() {
+    return isUsingKeyboard;
+  }
+  set current(value) {
+    isUsingKeyboard = value;
+  }
+}
 const defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -74286,6 +75544,295 @@ function Check($$renderer, $$props) {
         $$slots: { default: true }
       }
     ]));
+  });
+}
+function Dropdown_menu_content($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      sideOffset = 4,
+      portalProps,
+      class: className,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Portal($$renderer3, spread_props([
+        portalProps,
+        {
+          children: ($$renderer4) => {
+            $$renderer4.push(`<!---->`);
+            Dropdown_menu_content$1($$renderer4, spread_props([
+              {
+                "data-slot": "dropdown-menu-content",
+                sideOffset,
+                class: cn("bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-h-(--radix-dropdown-menu-content-available-height) origin-(--radix-dropdown-menu-content-transform-origin) z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border p-1 shadow-md", className)
+              },
+              restProps,
+              {
+                get ref() {
+                  return ref;
+                },
+                set ref($$value) {
+                  ref = $$value;
+                  $$settled = false;
+                }
+              }
+            ]));
+            $$renderer4.push(`<!---->`);
+          },
+          $$slots: { default: true }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Dropdown_menu_item($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      class: className,
+      inset,
+      variant = "default",
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Menu_item($$renderer3, spread_props([
+        {
+          "data-slot": "dropdown-menu-item",
+          "data-inset": inset,
+          "data-variant": variant,
+          class: cn("data-highlighted:bg-accent data-highlighted:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:data-highlighted:bg-destructive/10 dark:data-[variant=destructive]:data-highlighted:bg-destructive/20 data-[variant=destructive]:data-highlighted:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled]:pointer-events-none data-[inset]:pl-8 data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0", className)
+        },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Dropdown_menu_separator($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      class: className,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Menu_separator($$renderer3, spread_props([
+        {
+          "data-slot": "dropdown-menu-separator",
+          class: cn("bg-border -mx-1 my-1 h-px", className)
+        },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Dropdown_menu_trigger($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { ref = null, $$slots, $$events, ...restProps } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Menu_trigger($$renderer3, spread_props([
+        { "data-slot": "dropdown-menu-trigger" },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+const Root$2 = Menu;
+function Avatar($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      class: className,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Avatar$1($$renderer3, spread_props([
+        {
+          "data-slot": "avatar",
+          class: cn("relative flex size-8 shrink-0 overflow-hidden rounded-full", className)
+        },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Avatar_fallback($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      class: className,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Avatar_fallback$1($$renderer3, spread_props([
+        {
+          "data-slot": "avatar-fallback",
+          class: cn("bg-muted flex size-full items-center justify-center rounded-full", className)
+        },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
+  });
+}
+function Separator($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      class: className,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Separator$1($$renderer3, spread_props([
+        {
+          "data-slot": "separator-root",
+          class: cn("bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px", className)
+        },
+        restProps,
+        {
+          get ref() {
+            return ref;
+          },
+          set ref($$value) {
+            ref = $$value;
+            $$settled = false;
+          }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { ref });
   });
 }
 const gatheringKey = {};
@@ -79346,7 +80893,7 @@ const categories = [
   { code: "general", icon: Search, name: "Web" },
   { code: "news", icon: Newspaper, name: "News" },
   { code: "videos", icon: Video, name: "Videos" },
-  { code: "images", icon: Image, name: "Images" },
+  { code: "images", icon: Image$1, name: "Images" },
   { code: "science", icon: Beaker, name: "Science" },
   { code: "files", icon: Files, name: "Files" },
   { code: "it", icon: Monitor, name: "Tech" }
@@ -79670,7 +81217,7 @@ function ReadView($$renderer, $$props) {
           $$renderer2.push(`<!----></div> <a${attr("href", fetchingURL)} target="_blank">${escape_html(fetchingURL)}</a></div>`);
         } else {
           $$renderer2.push("<!--[!-->");
-          $$renderer2.push(`<div class="relative h-full text-lg text-gray-500 text-center"><h3 class="text-xl text-gray-500 text-center"><img src="./icons/qwksearch-logo.png" width="auto" height="auto" alt="logo"/> ${escape_html(APP_SLOGAN)}</h3> <p class="text-lg text-gray-500 text-center justify-center"><a aria-label="Chrome Web Store" class="download-chrome download-btn text-center justify-center" target="_blank" href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko"></a> <a aria-label="Microsoft Store" class="download-windows download-btn text-center justify-center" target="_blank" href="https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&amp;hl=en-us&amp;gl=US"></a></p> <div class="absolute bottom-0 w-full text-center text-slate-500 text-xs z-20"></div></div>`);
+          $$renderer2.push(`<div class="relative h-full text-lg text-gray-500 text-center"><h3 class="text-xl text-gray-500 text-center"><video src="/icons/qwksearch-video.webm" width="300px" height="auto" autoplay loop muted playsinline class="mx-auto"></video> ${escape_html(APP_SLOGAN)}</h3> <p class="text-lg text-gray-500 text-center justify-center"><a aria-label="Chrome Web Store" class="download-chrome download-btn text-center justify-center" target="_blank" href="https://chromewebstore.google.com/detail/tab-manager-ai/manhemnhmipdhdpabojcplebckhckeko"></a> <a aria-label="Microsoft Store" class="download-windows download-btn text-center justify-center" target="_blank" href="https://apps.microsoft.com/detail/9pcgf9gnk460?rtc=1&amp;hl=en-us&amp;gl=US"></a></p> <div class="absolute bottom-0 w-full text-center text-slate-500 text-xs z-20"></div></div>`);
         }
         $$renderer2.push(`<!--]-->`);
       }
@@ -79793,6 +81340,12 @@ function AgentsPanel($$renderer, $$props) {
 }
 function getBackgroundArtwork() {
   const backgrounds = [
+    "GpWeP6E.gif",
+    //flying spaceship into vortex
+    "dUZlxYE.mp4",
+    // spining globe scifi
+    "eRwiRJ9.jpeg",
+    // girl robot reading news
     "DRAfJoc.jpeg",
     // octopus brain emerges from datacenter
     "vKP22VU.png",
@@ -80122,7 +81675,7 @@ function SearchMain($$renderer, $$props) {
         grabArticle(searchResults?.results[newIndex].url);
       }
     }
-    $$renderer2.push(`<main class="flex h-screen w-full">`);
+    $$renderer2.push(`<main class="flex h-screen w-full relative"><div class="flex-1 flex h-screen w-full md:transition-[margin-left] md:duration-200 md:ease-out"${attr_style(`margin-left: ${stringify("60px")};`)}>`);
     if (searchText.length == 0) {
       $$renderer2.push("<!--[-->");
       SearchHomepage($$renderer2, {
@@ -80174,7 +81727,7 @@ function SearchMain($$renderer, $$props) {
         $$slots: { default: true }
       });
     }
-    $$renderer2.push(`<!--]--></main>`);
+    $$renderer2.push(`<!--]--></div></main>`);
   });
 }
 const listDockApps = [
@@ -85042,9 +86595,391 @@ function AppDockMenu($$renderer, $$props) {
     if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
+const badgeVariants = tv({
+  base: "focus:ring-ring inline-flex select-none items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2",
+  variants: {
+    variant: {
+      default: "bg-primary text-primary-foreground hover:bg-primary/80 border-transparent shadow",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-transparent",
+      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent shadow",
+      outline: "text-foreground"
+    }
+  },
+  defaultVariants: { variant: "default" }
+});
+function Badge($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      ref = null,
+      href,
+      class: className,
+      variant = "default",
+      children,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    element(
+      $$renderer2,
+      href ? "a" : "span",
+      () => {
+        $$renderer2.push(`${attributes({
+          href,
+          class: clsx$1(cn(badgeVariants({ variant }), className)),
+          ...restProps
+        })}`);
+      },
+      () => {
+        children?.($$renderer2);
+        $$renderer2.push(`<!---->`);
+      }
+    );
+    bind_props($$props, { ref });
+  });
+}
+function MagicUISidebar($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { isCollapsed = true, user = null } = $$props;
+    async function handleSignOut() {
+      try {
+        await grab("auth/sign-out", { post: true });
+        window.location.reload();
+      } catch (error) {
+        console.error("Sign out failed:", error);
+      }
+    }
+    const navigationLinks = [
+      { label: "Search", icon: Search, href: "#search" },
+      { label: "History", icon: History, href: "#history" },
+      { label: "Bookmarks", icon: Bookmark, href: "#bookmarks" }
+    ];
+    const toolLinks = [
+      {
+        label: "Web Search",
+        icon: Globe,
+        href: "#web-search",
+        badge: "NEW"
+      },
+      { label: "Documents", icon: File_text, href: "#documents" },
+      { label: "Trending", icon: Trending_up, href: "#trending" }
+    ];
+    $$renderer2.push(`<div class="hidden md:flex md:flex-col h-full">`);
+    motion($$renderer2, {
+      animate: { width: isCollapsed ? "60px" : "240px" },
+      transition: { type: "tween", ease: "easeOut", duration: 0.2 },
+      children: invalid_default_snippet,
+      $$slots: {
+        default: ($$renderer3, { motion: motion2 }) => {
+          $$renderer3.push(`<div${attr_class(clsx$1(cn("sidebar fixed left-0 z-40 h-full shrink-0 border-r border-border bg-background")), "svelte-xwqr5v")}><div class="relative z-40 flex text-muted-foreground h-full shrink-0 flex-col transition-all"><ul class="flex h-full flex-col"><div class="flex grow flex-col items-center"><div class="flex h-[54px] w-full shrink-0 border-b border-border p-2"><div class="mt-[1.5px] flex w-full">`);
+          Root$2($$renderer3, {
+            children: ($$renderer4) => {
+              {
+                let children = function($$renderer5, { builder }) {
+                  Button($$renderer5, {
+                    builders: [builder],
+                    variant: "ghost",
+                    size: "sm",
+                    class: "flex w-fit items-center gap-2 px-2",
+                    children: ($$renderer6) => {
+                      Avatar($$renderer6, {
+                        class: "rounded size-4",
+                        children: ($$renderer7) => {
+                          Avatar_fallback($$renderer7, {
+                            children: ($$renderer8) => {
+                              $$renderer8.push(`<!---->SW`);
+                            },
+                            $$slots: { default: true }
+                          });
+                        },
+                        $$slots: { default: true }
+                      });
+                      $$renderer6.push(`<!----> `);
+                      if (!isCollapsed) {
+                        $$renderer6.push("<!--[-->");
+                        $$renderer6.push(`<div class="flex w-fit items-center gap-2"><p class="text-sm font-medium">SearchWeb</p> `);
+                        Chevrons_up_down($$renderer6, { class: "h-4 w-4 text-muted-foreground/50" });
+                        $$renderer6.push(`<!----></div>`);
+                      } else {
+                        $$renderer6.push("<!--[!-->");
+                      }
+                      $$renderer6.push(`<!--]-->`);
+                    },
+                    $$slots: { default: true }
+                  });
+                };
+                Dropdown_menu_trigger($$renderer4, {
+                  class: "w-full",
+                  asChild: true,
+                  children,
+                  $$slots: { default: true }
+                });
+              }
+              $$renderer4.push(`<!----> `);
+              Dropdown_menu_content($$renderer4, {
+                align: "start",
+                children: ($$renderer5) => {
+                  Dropdown_menu_item($$renderer5, {
+                    asChild: true,
+                    children: ($$renderer6) => {
+                      $$renderer6.push(`<a href="/app/settings/profile" class="flex items-center gap-2">`);
+                      Settings($$renderer6, { class: "h-4 w-4" });
+                      $$renderer6.push(`<!----> Preferences</a>`);
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer5.push(`<!----> `);
+                  Dropdown_menu_item($$renderer5, {
+                    class: "flex items-center gap-2",
+                    children: ($$renderer6) => {
+                      Globe($$renderer6, { class: "h-4 w-4" });
+                      $$renderer6.push(`<!----> Language`);
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer5.push(`<!---->`);
+                },
+                $$slots: { default: true }
+              });
+              $$renderer4.push(`<!---->`);
+            },
+            $$slots: { default: true }
+          });
+          $$renderer3.push(`<!----></div></div> <div class="flex h-full w-full flex-col"><div class="flex grow flex-col gap-4"><div class="h-16 grow p-2 overflow-y-auto"><div class="flex w-full flex-col gap-1"><!--[-->`);
+          const each_array = ensure_array_like(navigationLinks);
+          for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+            let link = each_array[$$index];
+            $$renderer3.push(`<a${attr("href", link.href)}${attr_class(clsx$1(cn("flex h-8 w-full flex-row items-center rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary")), "svelte-xwqr5v")}><!---->`);
+            link.icon?.($$renderer3, { class: "h-4 w-4 shrink-0" });
+            $$renderer3.push(`<!----> `);
+            if (!isCollapsed) {
+              $$renderer3.push("<!--[-->");
+              $$renderer3.push(`<p class="ml-2 text-sm font-medium">${escape_html(link.label)}</p>`);
+            } else {
+              $$renderer3.push("<!--[!-->");
+            }
+            $$renderer3.push(`<!--]--></a>`);
+          }
+          $$renderer3.push(`<!--]--> `);
+          Separator($$renderer3, { class: "w-full my-2" });
+          $$renderer3.push(`<!----> <!--[-->`);
+          const each_array_1 = ensure_array_like(toolLinks);
+          for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
+            let link = each_array_1[$$index_1];
+            $$renderer3.push(`<a${attr("href", link.href)}${attr_class(clsx$1(cn("flex h-8 flex-row items-center rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary")), "svelte-xwqr5v")}><!---->`);
+            link.icon?.($$renderer3, { class: "h-4 w-4 shrink-0" });
+            $$renderer3.push(`<!----> `);
+            if (!isCollapsed) {
+              $$renderer3.push("<!--[-->");
+              $$renderer3.push(`<div class="ml-2 flex items-center gap-2"><p class="text-sm font-medium">${escape_html(link.label)}</p> `);
+              if (link.badge) {
+                $$renderer3.push("<!--[-->");
+                Badge($$renderer3, {
+                  class: cn("flex h-fit w-fit items-center gap-1.5 rounded border-none bg-primary/10 px-1.5 text-primary text-[10px]"),
+                  variant: "outline",
+                  children: ($$renderer4) => {
+                    $$renderer4.push(`<!---->${escape_html(link.badge)}`);
+                  },
+                  $$slots: { default: true }
+                });
+              } else {
+                $$renderer3.push("<!--[!-->");
+              }
+              $$renderer3.push(`<!--]--></div>`);
+            } else {
+              $$renderer3.push("<!--[!-->");
+            }
+            $$renderer3.push(`<!--]--></a>`);
+          }
+          $$renderer3.push(`<!--]--></div></div></div> <div class="flex flex-col p-2"><a href="/app/settings/profile" class="mt-auto flex h-8 w-full flex-row items-center rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary">`);
+          Settings($$renderer3, { class: "h-4 w-4 shrink-0" });
+          $$renderer3.push(`<!----> `);
+          if (!isCollapsed) {
+            $$renderer3.push("<!--[-->");
+            $$renderer3.push(`<p class="ml-2 text-sm font-medium">Settings</p>`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+          }
+          $$renderer3.push(`<!--]--></a> `);
+          if (user) {
+            $$renderer3.push("<!--[-->");
+            $$renderer3.push(`<div>`);
+            Root$2($$renderer3, {
+              children: ($$renderer4) => {
+                {
+                  let children = function($$renderer5, { builder }) {
+                    Button($$renderer5, {
+                      builders: [builder],
+                      variant: "ghost",
+                      class: "flex h-8 w-full flex-row items-center gap-2 rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary",
+                      children: ($$renderer6) => {
+                        Avatar($$renderer6, {
+                          class: "size-4",
+                          children: ($$renderer7) => {
+                            if (user?.image) {
+                              $$renderer7.push("<!--[-->");
+                              $$renderer7.push(`<img${attr("src", user.image)}${attr("alt", user.name)} class="h-full w-full object-cover"/>`);
+                            } else {
+                              $$renderer7.push("<!--[!-->");
+                            }
+                            $$renderer7.push(`<!--]--> `);
+                            Avatar_fallback($$renderer7, {
+                              children: ($$renderer8) => {
+                                $$renderer8.push(`<!---->${escape_html(user?.name ? user.name[0].toUpperCase() : "U")}`);
+                              },
+                              $$slots: { default: true }
+                            });
+                            $$renderer7.push(`<!---->`);
+                          },
+                          $$slots: { default: true }
+                        });
+                        $$renderer6.push(`<!----> `);
+                        if (!isCollapsed) {
+                          $$renderer6.push("<!--[-->");
+                          $$renderer6.push(`<div class="flex w-full items-center gap-2"><p class="text-sm font-medium">${escape_html(user?.name || "User")}</p> `);
+                          Chevrons_up_down($$renderer6, { class: "ml-auto h-4 w-4 text-muted-foreground/50" });
+                          $$renderer6.push(`<!----></div>`);
+                        } else {
+                          $$renderer6.push("<!--[!-->");
+                        }
+                        $$renderer6.push(`<!--]-->`);
+                      },
+                      $$slots: { default: true }
+                    });
+                  };
+                  Dropdown_menu_trigger($$renderer4, {
+                    class: "w-full",
+                    asChild: true,
+                    children,
+                    $$slots: { default: true }
+                  });
+                }
+                $$renderer4.push(`<!----> `);
+                Dropdown_menu_content($$renderer4, {
+                  sideOffset: 5,
+                  children: ($$renderer5) => {
+                    $$renderer5.push(`<div class="flex flex-row items-center gap-2 p-2">`);
+                    Avatar($$renderer5, {
+                      class: "size-6",
+                      children: ($$renderer6) => {
+                        if (user?.image) {
+                          $$renderer6.push("<!--[-->");
+                          $$renderer6.push(`<img${attr("src", user.image)}${attr("alt", user.name)} class="h-full w-full object-cover"/>`);
+                        } else {
+                          $$renderer6.push("<!--[!-->");
+                        }
+                        $$renderer6.push(`<!--]--> `);
+                        Avatar_fallback($$renderer6, {
+                          children: ($$renderer7) => {
+                            $$renderer7.push(`<!---->${escape_html(user?.name ? user.name[0].toUpperCase() : "U")}`);
+                          },
+                          $$slots: { default: true }
+                        });
+                        $$renderer6.push(`<!---->`);
+                      },
+                      $$slots: { default: true }
+                    });
+                    $$renderer5.push(`<!----> <div class="flex flex-col text-left"><span class="text-sm font-medium">${escape_html(user?.name || "User")}</span> <span class="line-clamp-1 text-xs text-muted-foreground">${escape_html(user?.email || "user@searchweb.com")}</span></div></div> `);
+                    Dropdown_menu_separator($$renderer5, {});
+                    $$renderer5.push(`<!----> `);
+                    Dropdown_menu_item($$renderer5, {
+                      asChild: true,
+                      children: ($$renderer6) => {
+                        $$renderer6.push(`<a href="/app/settings/profile" class="flex items-center gap-2">`);
+                        Settings($$renderer6, { class: "h-4 w-4" });
+                        $$renderer6.push(`<!----> Account Settings</a>`);
+                      },
+                      $$slots: { default: true }
+                    });
+                    $$renderer5.push(`<!----> `);
+                    Dropdown_menu_item($$renderer5, {
+                      class: "flex items-center gap-2 cursor-pointer",
+                      onclick: handleSignOut,
+                      children: ($$renderer6) => {
+                        $$renderer6.push(`<!---->Sign out`);
+                      },
+                      $$slots: { default: true }
+                    });
+                    $$renderer5.push(`<!---->`);
+                  },
+                  $$slots: { default: true }
+                });
+                $$renderer4.push(`<!---->`);
+              },
+              $$slots: { default: true }
+            });
+            $$renderer3.push(`<!----></div>`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+          }
+          $$renderer3.push(`<!--]--></div></div></div></ul></div></div>`);
+        }
+      }
+    });
+    $$renderer2.push(`<!----></div> <div class="md:hidden"><div${attr_class(clsx$1(cn("h-14 px-4 py-4 flex flex-row items-center justify-between bg-background border-b border-border w-full")), "svelte-xwqr5v")}><div class="flex justify-between items-center z-20 w-full"><span class="font-semibold text-lg">SearchWeb</span> <button class="text-foreground cursor-pointer">`);
+    if (isCollapsed) {
+      $$renderer2.push("<!--[-->");
+      Menu$1($$renderer2, { class: "h-5 w-5" });
+    } else {
+      $$renderer2.push("<!--[!-->");
+      X($$renderer2, { class: "h-5 w-5" });
+    }
+    $$renderer2.push(`<!--]--></button></div></div> `);
+    if (!isCollapsed) {
+      $$renderer2.push("<!--[-->");
+      motion($$renderer2, {
+        animate: { x: 0, opacity: 1 },
+        initial: { x: "-100%", opacity: 0 },
+        transition: { duration: 1, ease: "easeInOut" },
+        children: invalid_default_snippet,
+        $$slots: {
+          default: ($$renderer3, { motion: motion2 }) => {
+            $$renderer3.push(`<div class="fixed h-full w-full inset-0 bg-background p-10 z-[100] flex flex-col justify-between"><div class="flex flex-col gap-4"><!--[-->`);
+            const each_array_2 = ensure_array_like(navigationLinks);
+            for (let $$index_2 = 0, $$length = each_array_2.length; $$index_2 < $$length; $$index_2++) {
+              let link = each_array_2[$$index_2];
+              $$renderer3.push(`<a${attr("href", link.href)} class="flex h-8 w-full flex-row items-center rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary"><!---->`);
+              link.icon?.($$renderer3, { class: "h-4 w-4 shrink-0" });
+              $$renderer3.push(`<!----> <p class="ml-2 text-sm font-medium">${escape_html(link.label)}</p></a>`);
+            }
+            $$renderer3.push(`<!--]--> `);
+            Separator($$renderer3, { class: "w-full my-2" });
+            $$renderer3.push(`<!----> <!--[-->`);
+            const each_array_3 = ensure_array_like(toolLinks);
+            for (let $$index_3 = 0, $$length = each_array_3.length; $$index_3 < $$length; $$index_3++) {
+              let link = each_array_3[$$index_3];
+              $$renderer3.push(`<a${attr("href", link.href)} class="flex h-8 flex-row items-center rounded-md px-2 py-1.5 transition hover:bg-muted hover:text-primary"><!---->`);
+              link.icon?.($$renderer3, { class: "h-4 w-4 shrink-0" });
+              $$renderer3.push(`<!----> <div class="ml-2 flex items-center gap-2"><p class="text-sm font-medium">${escape_html(link.label)}</p> `);
+              if (link.badge) {
+                $$renderer3.push("<!--[-->");
+                Badge($$renderer3, {
+                  class: cn("flex h-fit w-fit items-center gap-1.5 rounded border-none bg-primary/10 px-1.5 text-primary text-[10px]"),
+                  variant: "outline",
+                  children: ($$renderer4) => {
+                    $$renderer4.push(`<!---->${escape_html(link.badge)}`);
+                  },
+                  $$slots: { default: true }
+                });
+              } else {
+                $$renderer3.push("<!--[!-->");
+              }
+              $$renderer3.push(`<!--]--></div></a>`);
+            }
+            $$renderer3.push(`<!--]--></div></div>`);
+          }
+        }
+      });
+    } else {
+      $$renderer2.push("<!--[!-->");
+    }
+    $$renderer2.push(`<!--]--></div>`);
+    bind_props($$props, { isCollapsed });
+  });
+}
 function AppLayout($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     const theme = writable("modern-minimal");
+    let sidebarCollapsed = true;
     let view = null;
     let user = {};
     let deviceInfo = {};
@@ -85053,31 +86988,52 @@ function AppLayout($$renderer, $$props) {
       view = newView;
       playSoundEffect("boop");
     }
-    head("1p56vzz", $$renderer2, ($$renderer3) => {
-      $$renderer3.push(`${html(loadHeadTags({
-        title: APP_NAME + " - " + APP_SLOGAN,
-        faviconPath: "/favicon.ico",
-        androidManifest: "/site.webmanifest",
-        appleIcon: "/icons/apple-touch-icon.png",
-        fonts: "Lato, Open Sans, Montserrat",
-        googleAnalyticsId: GOOGLE_ANALYTICS,
-        simpleAnalytics: true,
-        addMobileViewport: true,
-        shouldAppend: false
-      }))}`);
-    });
-    $$renderer2.push(`<div class="theme-doom-64 light flex w-full overflow-hidden flex-col h-screen"><main${attr_class(`relative flex-1 overflow-y-auto text-lg ${stringify(deviceInfo?.isMobile ? "mb-16" : "")}`)}><div><!--[-->`);
-    const each_array = ensure_array_like(listDockApps);
-    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-      let viewComponent = each_array[$$index];
-      const AppViewComponent = viewComponent.component;
-      $$renderer2.push(`<div${attr_style(`position: relative; display: ${stringify(viewComponent.id == view ? "block" : "none")}`)}><!---->`);
-      AppViewComponent($$renderer2, { user });
-      $$renderer2.push(`<!----></div>`);
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      head("1p56vzz", $$renderer3, ($$renderer4) => {
+        $$renderer4.push(`${html(loadHeadTags({
+          title: APP_NAME + " - " + APP_SLOGAN,
+          faviconPath: "/favicon.ico",
+          androidManifest: "/site.webmanifest",
+          appleIcon: "/icons/apple-touch-icon.png",
+          fonts: "Lato, Open Sans, Montserrat",
+          googleAnalyticsId: GOOGLE_ANALYTICS,
+          simpleAnalytics: true,
+          addMobileViewport: true,
+          shouldAppend: false
+        }))}`);
+      });
+      $$renderer3.push(`<div class="theme-doom-64 light flex w-full overflow-hidden flex-col h-screen"><main${attr_class(`relative flex-1 overflow-y-auto text-lg ${stringify(deviceInfo?.isMobile ? "mb-16" : "")}`)}>`);
+      MagicUISidebar($$renderer3, {
+        user,
+        get isCollapsed() {
+          return sidebarCollapsed;
+        },
+        set isCollapsed($$value) {
+          sidebarCollapsed = $$value;
+          $$settled = false;
+        }
+      });
+      $$renderer3.push(`<!----> <div><!--[-->`);
+      const each_array = ensure_array_like(listDockApps);
+      for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+        let viewComponent = each_array[$$index];
+        const AppViewComponent = viewComponent.component;
+        $$renderer3.push(`<div${attr_style(`position: relative; display: ${stringify(viewComponent.id == view ? "block" : "none")}`)}><!---->`);
+        AppViewComponent($$renderer3, { user });
+        $$renderer3.push(`<!----></div>`);
+      }
+      $$renderer3.push(`<!--]--></div></main> <div${attr_class(clsx$1(deviceInfo?.isMobile ? "fixed bottom-0 left-0 w-full z-10" : "absolute top-0 left-0 z-100 mt-16"))}>`);
+      AppDockMenu($$renderer3, { handleAppDockClick, listDockApps });
+      $$renderer3.push(`<!----></div></div>`);
     }
-    $$renderer2.push(`<!--]--></div></main> <div${attr_class(clsx$1(deviceInfo?.isMobile ? "fixed bottom-0 left-0 w-full z-10" : "absolute top-0 left-0 z-100 mt-16"))}>`);
-    AppDockMenu($$renderer2, { handleAppDockClick, listDockApps });
-    $$renderer2.push(`<!----></div></div>`);
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
     bind_props($$props, { theme });
   });
 }

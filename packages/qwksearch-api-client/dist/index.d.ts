@@ -161,7 +161,7 @@ declare type ErrInterceptor<Err, Res, Req, Options> = (error: Err, response: Res
 /**
  * ## Extract structured content and cite from any URL
  *
- * ![Extractor](https://i.imgur.com/nNfHmct.png)
+ * ![Extractor](https://i.imgur.com/o8NTXxY.png)
  *
  * ### 🚜📜 Tractor the Text Extractor
  * 1. Main Content Detection: Extract the main content from a URL by combining

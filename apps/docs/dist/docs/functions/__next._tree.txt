@@ -15,7 +15,7 @@
 :HL["https://i.imgur.com/Z9OJMwd.gif","image"]
 :HL["https://github.com/TutteInstitute/datamapplot/raw/main/examples/ArXiv_example.gif","image"]
 :HL["https://i.imgur.com/s8gsYt1.png","image"]
-:HL["https://i.imgur.com/nNfHmct.png","image"]
+:HL["https://i.imgur.com/o8NTXxY.png","image"]
 :HL["https://i.imgur.com/nMoDgz6.jpeg","image"]
 :HL["https://i.imgur.com/iuzpcvD.png","image"]
 :HL["https://i.imgur.com/ffaU3s7.jpeg","image"]

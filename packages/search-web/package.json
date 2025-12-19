@@ -1,0 +1,37 @@
+{
+  "name": "hono-searxng-api",
+  "version": "1.0.0",
+  "description": "Hono API wrapper for SearXNG metasearch engine",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "docker:build": "docker build -t hono-searxng-api .",
+    "docker:up": "sudo docker compose up",
+    "docker:down": "sudo docker compose down",
+    "docker:logs": "sudo docker compose logs -f"
+  },
+  "keywords": [
+    "hono",
+    "searxng",
+    "search",
+    "api",
+    "metasearch",
+    "privacy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hono/node-server": "^1.19.6",
+    "chrono-node": "^2.9.0",
+    "hono": "^4.10.7",
+    "tldts": "^7.0.19"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

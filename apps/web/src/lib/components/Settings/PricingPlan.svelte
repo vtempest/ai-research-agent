@@ -61,12 +61,23 @@
   <div class="flex justify-center items-center w-full">
     <div class="flex items-center">
       <a href="/" class="cursor-pointer">
-        <img
+         <video
+          src="/icons/qwksearch-video.webm"
+          width="300px"
+          height="auto"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="mx-auto"
+        ></video>
+        
+        <!-- <img
         src="/icons/qwksearch-logo.png"
         alt="Qwk Logo"
         width="200px"
         class=" object-contain mr-6"
-        />
+        /> -->
       </a>
       <div class="flex flex-col">
         <h1 class="text-2xl font-bold mb-2">{APP_NAME} </h1>

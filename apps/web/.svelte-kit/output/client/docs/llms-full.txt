@@ -131,7 +131,7 @@ bun i qwksearch-api-client
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-  <img width="350px" src="https://i.imgur.com/nNfHmct.png" />
+  <img width="350px" src="https://i.imgur.com/o8NTXxY.png" />
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)
@@ -8733,7 +8733,7 @@ Defined in: [src/extractor/url-to-content/url-to-content.js:88](https://github.c
 
 ### 🚜📜 Tractor the Text Extractor
 
-<img width="350px" src="https://i.imgur.com/nNfHmct.png" />
+<img width="350px" src="https://i.imgur.com/o8NTXxY.png" />
 
 1. Main Content Detection: Extract the main content from a URL by combining
    Mozilla Readability and Postlight Mercury algorithms, utilizing over 100

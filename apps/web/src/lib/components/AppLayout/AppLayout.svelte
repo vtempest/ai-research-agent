@@ -1,5 +1,5 @@
 <script lang="ts">
-/** 
+  /** 
 ## TODO
 - sidebar
 - mobile view with chat, and popup browser
@@ -32,6 +32,7 @@
     APP_SLOGAN,
     SERVER_API_URL,
   } from "$lib/customize-site";
+  import MagicUISidebar from "./MagicUISidebar.svelte";
 
   import { authClient } from "$lib/components/utils/auth-client";
 
@@ -39,6 +40,7 @@
   // import { displayGoogleOneTapLogin } from "$lib/components/AppLayout/auth-google-one-tap";
 
   export const theme = writable("modern-minimal"); // default theme
+  let sidebarCollapsed = $state(true);
 
   // State variables
   let optionSoundOnSwitch = $state(true);
@@ -127,6 +129,9 @@
       ? 'mb-16'
       : ''}"
   >
+    <!-- MagicUI Sidebar -->
+    <!-- <MagicUISidebar bind:isCollapsed={sidebarCollapsed} {user} /> -->
+
     <div>
       {#each listDockApps as viewComponent}
         {@const AppViewComponent = viewComponent.component as any}

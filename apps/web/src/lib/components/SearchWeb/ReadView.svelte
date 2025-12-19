@@ -223,7 +223,16 @@
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <h3 class="text-xl text-gray-500 text-center">
-        <img src="./icons/qwksearch-logo.png" width="auto" height="auto" alt="logo" />
+        <video
+          src="/icons/qwksearch-video.webm"
+          width="300px"
+          height="auto"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="mx-auto"
+        ></video>
         {APP_SLOGAN}
       </h3>
 
