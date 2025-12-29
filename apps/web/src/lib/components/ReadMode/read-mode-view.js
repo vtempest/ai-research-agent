@@ -151,6 +151,46 @@ overlay.innerHTML = `
 // 3. Append the overlay to the body
 document.body.appendChild(overlay);
 
+// Add CSS to constrain images within margins
+const imageConstraintStyle = document.createElement('style');
+imageConstraintStyle.textContent = `
+  #readability-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  #readability-content figure {
+    max-width: 100% !important;
+    margin: 1.5rem auto;
+    text-align: center;
+  }
+  
+  #readability-content figure img {
+    margin: 0 auto 0.5rem auto;
+  }
+  
+  #readability-content video {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+  }
+  
+  #readability-content iframe {
+    max-width: 100% !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+  }
+`;
+document.head.appendChild(imageConstraintStyle);
+
 
 
 
@@ -158,6 +198,10 @@ document.body.appendChild(overlay);
 // 4. Add a close button handler
 document.getElementById('close-reading-overlay').onclick = () => {
   overlay.remove();
+  // Clean up the added styles when closing
+  if (imageConstraintStyle && imageConstraintStyle.parentNode) {
+    imageConstraintStyle.parentNode.removeChild(imageConstraintStyle);
+  }
 };
 
 
