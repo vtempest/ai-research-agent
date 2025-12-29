@@ -17,44 +17,27 @@ import { scrapeURL } from "./url-to-html.js";
  * @author [ai-research-agent (2024)](https://airesearch.js.org)
  */
 export async function convertYoutubeToText(videoUrl, options = {}) {
-  const { 
-    useThirdPartyBackup = true,
-    addTimestamps = true, 
+  const {
+    addTimestamps = true,
     addPlayer = true,
     timeout = 10,
     proxy = null
   } = options;
 
-  const videoId = getURLYoutubeVideo(videoUrl);
-
-  var res = {}, date;
-
-  // alert(useThirdPartyBackup)
-  if (!useThirdPartyBackup) {
-    var res = await fetchTranscriptOfficialYoutube(videoId, options);
-    // alert(res)
-
-  } else {
-      var res = await fetchTranscriptOfficialYoutube(videoId, options);
-
-    //ip blocked on cf -- add proxy?
-    var res = await fetchTranscriptOfficialYoutube(videoId, options);
-
-    // // console.log(res);
-    // if (!res.content || res.error)
-    //   res = await fetchViaYoutubeTranscript(videoId, options);
-
-    // if (!res.content || res.error)
-      res = await fetchTranscriptTactiq(videoId, options);
-    
-    if (!res.content || res.error)
-      res = await fetchViaYoutubeToTranscriptCom(videoId, options);
-
-    
-  }
+  var videoId = getURLYoutubeVideo(videoUrl), res = {};
   
-  date = await extractYouTubeDate(videoId, options);
-  // console.log(date);
+  res = await fetchTranscriptTactiq(videoId, options);
+  
+  if (!res.content || res.error)
+    res = await fetchTranscriptOfficialYoutube(videoId, options);
+  
+  if (!res.content || res.error)
+    res = await fetchViaYoutubeToTranscriptCom(videoId, options);
+
+  if (!res.content || res.error)
+    res = await fetchViaYoutubeTranscript(videoId, options);
+
+  var {date, title, author_cite, length} = await extractYouTubeInfo(videoId, options);
 
   if (!res.content || res.error) return { error: 1 };
   var { content, timestamps } = res;
@@ -63,9 +46,7 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
 
   content = convertURLSafeHTMLToHTML(content);
 
-
   //timestamp to track characters per second speed at each interval
-
   var speedsEveryCharPeriod = {};
   const valueCharPeriod = 100;
 
@@ -104,7 +85,10 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
     return total;
   });
 
-  speeds = compressed.join(",") + "   " + compressedCount.join(",");
+  //remove extra spaces
+  content = content.replace(/\s+/g, " ");
+
+  speeds = compressed.join(",") + "  " + compressedCount.join(",");
 
   if (addPlayer)
     content = `<iframe width="100%" height="315px" data-timestamps="${speeds}" 
@@ -112,10 +96,10 @@ export async function convertYoutubeToText(videoUrl, options = {}) {
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
     gyroscope; picture-in-picture" allowfullscreen></iframe>${content}`;
 
-  
+
   var source = "YouTube";
-  
-  return { html: content, word_count, source,  date, ...res };
+
+  return { html: content, word_count, source, date, title, author_cite, length  };
 }
 
 function decompressTimestampsArray(compressedStr) {
@@ -152,49 +136,49 @@ export function getURLYoutubeVideo(url) {
  */
 export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
   // try {
-    const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
+  const url = `https://youtubetotranscript.com/transcript?v=${videoId}&current_language_code=en`;
 
-    var html = await scrapeURL(url, options);
-    
-    if (!html) return { error: 1 };
+  var html = await scrapeURL(url, options);
 
-    //remove line breaks
-    html = html?.replace(/[\r\n]/gi, " ");
-    // Title regex
-    const titleRegex = /<h1[^>]*>([^<]+)<\/h1>/gi;
-    var title = html?.match(titleRegex)?.[1] 
-    //extract title between h1 tags
-    title = title?.replace(/<[^>]*>/g, "")?.replace("Transcript of ", "")?.trim();
+  if (!html) return { error: 1 };
 
-    // Author regex with "Author :" prefix
+  //remove line breaks
+  html = html?.replace(/[\r\n]/gi, " ");
+  // Title regex
+  const titleRegex = /<h1[^>]*>([^<]+)<\/h1>/gi;
+  var title = html?.match(titleRegex)?.[1]
+  //extract title between h1 tags
+  title = title?.replace(/<[^>]*>/g, "")?.replace("Transcript of ", "")?.trim();
 
-    const authorRegex = /Author\s*:\s*<a[\s\S]*?>\s*(.*?)\s*<\/a\s*>/;
-    var author_cite = html.match(authorRegex)?.[1];
+  // Author regex with "Author :" prefix
 
-
-    const transcriptRegex =
-      /<span[^>]*?data-start="([\d.]+)"[^>]*?class="transcript-segment"[^>]*?>[\s\n]*((?:(?!<\/span>).|\n)*?)[\s\n]*<\/span>/gms;
-
-    const matches = Array.from(html.matchAll(transcriptRegex));
-
-    const transcript = matches.map((match) => ({
-      text: match[2]?.replace(/<br\s*\/?>/gi, " ")?.trim(),
-      offset: parseFloat(match[1]),
-    }));
-
-    const content = transcript.map((item) => item.text).join(" ");
-    let timestamps = [];
-    let charIndex = 0;
-
-    transcript.forEach((item) => {
-      timestamps.push([charIndex, Math.floor(item.offset)]);
-      charIndex += item.text.length + 1; // +1 for the space we added
-    });
+  const authorRegex = /Author\s*:\s*<a[\s\S]*?>\s*(.*?)\s*<\/a\s*>/;
+  var author_cite = html.match(authorRegex)?.[1];
 
 
+  const transcriptRegex =
+    /<span[^>]*?data-start="([\d.]+)"[^>]*?class="transcript-segment"[^>]*?>[\s\n]*((?:(?!<\/span>).|\n)*?)[\s\n]*<\/span>/gms;
+
+  const matches = Array.from(html.matchAll(transcriptRegex));
+
+  const transcript = matches.map((match) => ({
+    text: match[2]?.replace(/<br\s*\/?>/gi, " ")?.trim(),
+    offset: parseFloat(match[1]),
+  }));
+
+  const content = transcript.map((item) => item.text).join(" ");
+  let timestamps = [];
+  let charIndex = 0;
+
+  transcript.forEach((item) => {
+    timestamps.push([charIndex, Math.floor(item.offset)]);
+    charIndex += item.text.length + 1; // +1 for the space we added
+  });
 
 
-    return { content, title, author_cite, timestamps };
+
+
+  return { content, title, author_cite, timestamps };
   // } catch (e) {
   //   return { error: 1 };
   // }
@@ -207,14 +191,14 @@ export async function fetchViaYoutubeToTranscriptCom(videoId, options = {}) {
  */
 async function fetchTranscriptTactiq(videoId, options = {}) {
   try {
-  
+
     var data = await (await fetch(
       "https://tactiq-apps-prod.tactiq.io/transcript", {
       "headers": {
         "content-type": "application/json",
       },
-      "body": "{\"videoUrl\":\"https://www.youtube.com/watch?v="+
-      videoId + "\"}",
+      "body": "{\"videoUrl\":\"https://www.youtube.com/watch?v=" +
+        videoId + "\"}",
       "method": "POST"
     })).text();
 
@@ -261,9 +245,9 @@ export async function fetchViaYoutubeTranscript(videoId, options = {}) {
 
 
   const transcriptRegex = /<text start="([\d.]+)" dur="[\d.]+">((?:(?!<\/text>).|\n)*?)<\/text>/gms;
-     const matches = Array.from(html.matchAll(transcriptRegex));
+  const matches = Array.from(html.matchAll(transcriptRegex));
 
-  
+
   const transcript = matches.map((match) => ({
     text: match[2],
     offset: parseFloat(match[1]),
@@ -275,6 +259,9 @@ export async function fetchViaYoutubeTranscript(videoId, options = {}) {
   let timestamps = [];
   let charIndex = 0;
 
+  if (content.includes("YouTube is currently blocking us from fetching"))
+    return { error: 1 };
+
   transcript.forEach((item) => {
     timestamps.push([charIndex, Math.floor(item.offset)]);
     charIndex += item.text.length + 1; // +1 for the space we added
@@ -283,86 +270,106 @@ export async function fetchViaYoutubeTranscript(videoId, options = {}) {
   return { content, timestamps };
 }
 
-async function extractYouTubeDate(videoId, options = {}) {
+export async function extractYouTubeInfo(videoId, options = {}) {
   var htmlString = await scrapeURL(
-    `https://www.youtube.com/watch?v=${videoId}`, options
+    `https://www.youtube.com/watch?v=${videoId}`,
+    options
   );
 
-  //youtube bot limiting
+  // youtube bot limiting
   if (
     htmlString?.error ||
     htmlString.includes('class="g-recaptcha"') ||
     !htmlString.includes('"playabilityStatus":')
-  )
-    return { error: 1 };
+  ) return { error: 1 };
 
-     // Pattern for both absolute and relative dates after id="info"
-     htmlString = htmlString?.replace(/\n/g, "");
-     const pattern = /id="info"[^>]*>(?:.*?)(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}|\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago)/gi;
-     const match = htmlString.match(pattern);
+  // Remove newlines for easier regex matching
+  htmlString = htmlString?.replace(/\n/g, "");
 
-     
-     if (match) {
-         // Extract just the date part using two possible patterns
-         const absoluteDatePattern = /(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}/;
-         const relativeDatePattern = /\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago/i;
-         
-         const absoluteMatch = match[0].match(absoluteDatePattern);
-         const relativeMatch = match[0].match(relativeDatePattern);
-         
-         if (absoluteMatch) {
-             return absoluteMatch[0];
-         } else if (relativeMatch) {
-             const relative = relativeMatch[0];
-             const [amount, unit] = relative.split(' ');
-             
-             // Convert relative date to absolute date
-             const now = new Date();
-             const date = new Date(now);
-             
-             switch(unit?.toLowerCase()) {
-                 case 'second':
-                 case 'seconds':
-                     date.setSeconds(now.getSeconds() - parseInt(amount));
-                     break;
-                 case 'minute':
-                 case 'minutes':
-                     date.setMinutes(now.getMinutes() - parseInt(amount));
-                     break;
-                 case 'hour':
-                 case 'hours':
-                     date.setHours(now.getHours() - parseInt(amount));
-                     break;
-                 case 'day':
-                 case 'days':
-                     date.setDate(now.getDate() - parseInt(amount));
-                     break;
-                 case 'week':
-                 case 'weeks':
-                     date.setDate(now.getDate() - (parseInt(amount) * 7));
-                     break;
-                 case 'month':
-                 case 'months':
-                     date.setMonth(now.getMonth() - parseInt(amount));
-                     break;
-                 case 'year':
-                 case 'years':
-                     date.setFullYear(now.getFullYear() - parseInt(amount));
-                     break;
-             }
-             
-             // Format the date in YouTube style (MMM DD, YYYY)
-             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-             const formatted = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-             
-             return formatted;
-         }
-     }
-     
-     return null;
- }
+  const result = {};
 
- 
+  // Extract date
+  const datePattern = /id="info"[^>]*>(?:.*?)(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}|\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago)/gi;
+  const dateMatch = htmlString.match(datePattern);
+
+  if (dateMatch) {
+    // Extract just the date part using two possible patterns
+    const absoluteDatePattern = /(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}/;
+    const relativeDatePattern = /\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago/i;
+    
+    const absoluteMatch = dateMatch[0].match(absoluteDatePattern);
+    const relativeMatch = dateMatch[0].match(relativeDatePattern);
+
+    if (absoluteMatch) {
+      result.date = absoluteMatch[0];
+    } else if (relativeMatch) {
+      const relative = relativeMatch[0];
+      const [amount, unit] = relative.split(' ');
+      
+      // Convert relative date to absolute date
+      const now = new Date();
+      const date = new Date(now);
+      
+      switch(unit?.toLowerCase()) {
+        case 'second':
+        case 'seconds':
+          date.setSeconds(now.getSeconds() - parseInt(amount));
+          break;
+        case 'minute':
+        case 'minutes':
+          date.setMinutes(now.getMinutes() - parseInt(amount));
+          break;
+        case 'hour':
+        case 'hours':
+          date.setHours(now.getHours() - parseInt(amount));
+          break;
+        case 'day':
+        case 'days':
+          date.setDate(now.getDate() - parseInt(amount));
+          break;
+        case 'week':
+        case 'weeks':
+          date.setDate(now.getDate() - (parseInt(amount) * 7));
+          break;
+        case 'month':
+        case 'months':
+          date.setMonth(now.getMonth() - parseInt(amount));
+          break;
+        case 'year':
+        case 'years':
+          date.setFullYear(now.getFullYear() - parseInt(amount));
+          break;
+      }
+      
+      // Format the date in YouTube style (MMM DD, YYYY)
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const formatted = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+      result.date = formatted;
+    }
+  } else {
+    result.date = null;
+  }
+
+  // Extract title
+  const titlePattern = /"title":"([^"]+)"/;
+  const titleMatch = htmlString.match(titlePattern);
+  result.title = titleMatch ? titleMatch[1] : null;
+
+  // Extract author/channel name
+  const authorPattern = /"author":"([^"]+)"/;
+  const authorMatch = htmlString.match(authorPattern);
+  result.author_cite = authorMatch ? authorMatch[1] : null;
+
+  // Extract length in seconds (bonus)
+  const lengthPattern = /"lengthSeconds":"(\d+)"/;
+  const lengthMatch = htmlString.match(lengthPattern);
+  result.length = lengthMatch ? parseInt(lengthMatch[1]) : null;
+
+  return result;
+}
+
+
+
 
 async function fetchTranscriptOfficialYoutube(videoId, options = {}) {
   const videoPageBody = await scrapeURL(
@@ -384,7 +391,7 @@ async function fetchTranscriptOfficialYoutube(videoId, options = {}) {
     ?.split(',"videoDetails')[0];
 
 
-    if (!videoObj) return { error: 2 };
+  if (!videoObj) return { error: 2 };
 
 
   const captions = JSON.parse(videoObj)?.playerCaptionsTracklistRenderer;

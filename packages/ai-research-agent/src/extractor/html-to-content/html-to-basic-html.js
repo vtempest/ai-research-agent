@@ -40,7 +40,7 @@ export function convertHTMLToBasicHTML(html, options = {}) {
     openLinksNewWindow = false,
     mathLatex = true,
     allowTags = "br,p,u,b,i,em,strong,h1,h2,h3,h4,h5,h6,blockquote,code,\
-      ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math",
+      ul,ol,li,dd,dl,table,th,tr,td,thead,tbody,sub,sup,math,iframe",
     allowedAttributes = "href,src,type,width,height,id,data,target",
   } = options;
 

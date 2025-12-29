@@ -19,6 +19,10 @@ const MUTATION_OPTIONS = {
 
 type HTMLLineRange = [HTMLLineElement, HTMLLineElement];
 
+/**
+ * Input module handles user input events (typing, composition, etc.).
+ * @param editor The editor instance.
+ */
 export function input(editor: Editor) {
   let gboardEnter = false;
 

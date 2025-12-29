@@ -26,7 +26,7 @@
 <div
   class="absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-200 text-sm z-20 {optionBackgroundColor} rounded-lg px-2 py-1 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-wrap items-center justify-center gap-x-6 max-w-[90vw]"
 >
-  <div class="max-w-4xl mx-auto grid grid-cols-2 gap-2">
+  <div class="max-w-4xl mx-auto grid grid-cols-3 gap-2">
     {#each listFooterLinks as { url, text, icon }}
       {@const IconComponent = LucideIcons[icon]}
 

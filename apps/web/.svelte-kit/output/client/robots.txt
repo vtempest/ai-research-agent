@@ -1,0 +1,60 @@
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+#            AVAST, ROBOT OVERLORDS! HERE BE DRAGONS! 
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+#                                                  .~))>>
+#                                                 .~)>>
+#                                               .~))))>>>
+#                                             .~))>>             ___
+#                                           .~))>>)))>>      .-~))>>
+#                                         .~)))))>>       .-~))>>)>
+#                                       .~)))>>))))>>  .-~)>>)>
+#                   )                 .~))>>))))>>  .-~)))))>>)>
+#                ( )@@*)             //)>))))))  .-~))))>>)>
+#              ).@(@@               //))>>))) .-~))>>)))))>>)>
+#            (( @.@).              //))))) .-~)>>)))))>>)>
+#          ))  )@@*.@@ )          //)>))) //))))))>>))))>>)>
+#       ((  ((@@@.@@             |/))))) //)))))>>)))>>)>
+#      )) @@*. )@@ )   (\_(\-\b  |))>)) //)))>>)))))))>>)>
+#    (( @@@(.@(@ .    _/`-`  ~|b |>))) //)>>)))))))>>)>
+#     )* @@@ )@*     (@)  (@) /\b|))) //))))))>>))))>>
+#   (( @. )@( @ .   _/  /    /  \b)) //))>>)))))>>>_._
+#    )@@ (@@*)@@.  (6///6)- / ^  \b)//))))))>>)))>>   ~~-.
+# ( @jgs@@. @@@.*@_ VvvvvV//  ^  \b/)>>))))>>      _.     `bb
+#  ((@@ @@@*.(@@ . - | o |' \ (  ^   \b)))>>        .'       b`,
+#   ((@@).*@@ )@ )   \^^^/  ((   ^  ~)_        \  /           b `,
+#     (@@. (@@ ).     `-'   (((   ^    `\ \ \ \ \|             b  `.
+#       (*.@*              / ((((        \| | |  \       .       b `.
+#                         / / (((((  \    \ /  _.-~\     Y,      b  ;
+#                        / / / (((((( \    \.-~   _.`" _.-~`,    b  ;
+#                       /   /   `(((((()    )    (((((~      `,  b  ;
+#                     _/  _/      `"""/   /'                  ; b   ;
+#                 _.-~_.-~           /  /'                _.'~bb _.'
+#               ((((~~              / /'              _.'~bb.--~
+#                                  ((((          __.-~bb.-~
+#                                              .'  b .~~
+#                                              :bb ,' 
+#                                              ~~~*
+
+User-agent: AdsBot-Google
+User-agent: Twitterbot
+User-agent: facebookexternalhit
+User-agent: anthropic-ai
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: cohere-ai
+User-agent: Diffbot
+User-agent: FacebookBot
+User-agent: GPTBot
+User-agent: ImagesiftBot
+User-agent: Meta-ExternalAgent
+User-agent: Meta-ExternalFetcher
+User-agent: Omgilibot
+User-agent: PerplexityBot
+User-agent: Timpibot
+Disallow: /
+
+User-agent: *
+Allow: /

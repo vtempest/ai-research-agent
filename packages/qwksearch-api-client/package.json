@@ -1,29 +1,30 @@
 {
   "name": "qwksearch-api-client",
+  "version": "0.0.8",
+  "description": "QwkSearch API Client - Generated from openapi-docs.yml",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/api-client.js",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
+  "module": "./dist/api-client.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/api-client.js"
     }
   },
   "scripts": {
-    "test:api": "vitest",
-    "test:api:ui": "vitest --ui",
-    "build:api": "npx @hey-api/openapi-ts -i ../../apps/docs/openapi-docs.yml -o ./src -c @hey-api/client-fetch; vite build"
+    "ship": "npx standard-version --release-as patch; npm publish",
+    "build:api": "API_URL=https://qwksearch.com/api openapi-ts && vite build",
+    "test:api": "vitest"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@hey-api/client-fetch": "^0.12.0",
-    "@hey-api/openapi-ts": "^0.71.1",
-    "@vitest/ui": "^3.2.2",
-    "vite-plugin-dts": "^4.5.4",
-    "vitest": "^3.2.2"
+    "@hey-api/client-fetch": "^0.13.1",
+    "@hey-api/openapi-ts": "^0.88.0",
+    "@hey-api/vite-plugin": "^0.2.0",
+    "terser": "^5.44.1",
+    "vite-plugin-dts": "^4.5.4"
   }
 }

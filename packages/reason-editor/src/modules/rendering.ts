@@ -2,11 +2,18 @@ import { TextDocument } from '../document';
 import { Editor, EditorChangeEvent } from '../Editor';
 import { renderChanges, render as renderWhole } from '../rendering/rendering';
 
+/**
+ * Options for rendering.
+ */
 export interface RenderWhat {
   old?: TextDocument;
   doc?: TextDocument;
 }
 
+/**
+ * Rendering module handles document rendering.
+ * @param editor The editor instance.
+ */
 export function rendering(editor: Editor) {
   editor.on('change', onChange);
 

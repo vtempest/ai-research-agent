@@ -1,0 +1,12 @@
+:HL["/_next/static/chunks/72677d2bc9fa2616.css","style"]
+:HL["/_next/static/media/70bc3e132a0a741e-s.p.15008bfb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["https://i.imgur.com/ttOXv0p.jpeg","image"]
+:HL["https://img.shields.io/discord/1110227955554209923.svg?label=Chat&logo=Discord&colorB=7289da&style=flat","image"]
+:HL["https://img.shields.io/github/stars/vtempest/ai-research-agent","image"]
+:HL["https://img.shields.io/npm/v/ai-research-agent","image"]
+:HL["https://img.shields.io/bundlephobia/minzip/ai-research-agent","image"]
+:HL["https://img.shields.io/github/discussions/vtempest/ai-research-agent","image"]
+:HL["https://img.shields.io/badge/PRs-welcome-brightgreen.svg","image"]
+:HL["https://github.com/codespaces/badge.svg","image"]
+0:{"buildId":"KIE3H32dLefE0eOGOwLgI","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"(home)","paramType":null,"paramKey":"(home)","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

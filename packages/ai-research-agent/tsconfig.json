@@ -6,6 +6,9 @@
     "node_modules",
   ],
   "compilerOptions": {
+    "paths": {
+      "qwksearch-api-client": ["../../packages/qwksearch-api-client"]
+    },
     "typeRoots": ["src/types.d.ts"],
     "target": "ESNext",
     "module": "ESNext",

@@ -2,16 +2,25 @@ import { Delta, TextChange, TextDocument } from '../document';
 import { Editor, EditorChangeEvent } from '../Editor';
 import { Source, type SourceString } from '../Source';
 
+/**
+ * Represents a single undo/redo entry.
+ */
 export interface StackEntry {
   redo: TextChange;
   undo: TextChange;
 }
 
+/**
+ * Represents the undo/redo stack.
+ */
 export interface UndoStack {
   undo: StackEntry[];
   redo: StackEntry[];
 }
 
+/**
+ * Options for the history module.
+ */
 export interface Options {
   delay: number;
   maxStack: number;
@@ -21,6 +30,9 @@ export interface Options {
 // Default history module
 export const history = initHistory();
 
+/**
+ * Interface for the history module.
+ */
 export interface HistoryModule {
   options: Options;
   hasUndo: () => boolean;
@@ -186,6 +198,9 @@ export function initHistory(initOptions: Partial<Options> = {}) {
   };
 }
 
+/**
+ * Creates a new empty undo stack.
+ */
 export function undoStack(): UndoStack {
   return {
     undo: [],
@@ -193,6 +208,11 @@ export function undoStack(): UndoStack {
   };
 }
 
+/**
+ * Transforms the history stack against a delta or change.
+ * @param stack The stack to transform.
+ * @param delta The delta or change to transform against.
+ */
 export function transformHistoryStack(stack: UndoStack, delta: TextChange | Delta) {
   const change = (delta as Delta).ops ? new TextChange(null, delta as Delta) : (delta as TextChange);
 

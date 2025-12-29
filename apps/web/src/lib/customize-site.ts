@@ -19,7 +19,8 @@ export const DEV = typeof window !== "undefined" && window.location.hostname.inc
   searxngDomain = "https://search." + PUBLIC_DOMAIN.split("//")[1],
   proxyDomain = "https://proxy." + PUBLIC_DOMAIN.split("//")[1] + "/?url=",
   listFooterLinks = [
-    { url: "/docs/functions/", text: "Docs", icon: "HelpCircle" },
+    // { url: "/docs/", text: "Docs", icon: "HelpCircle" },
+    { url: "https://airesearch.js.org/docs/functions", text: "Docs", icon: "HelpCircle" },
     { url: "/pricing", text: "Pricing", icon: "DollarSign" },
     { url: "https://www.linkedin.com/company/qwksearch/posts/", text: "Blog", icon: "Newspaper" },
     { url: "https://discord.gg/SJdBqBz3tV", text: "Support", icon: "MessageCircle" },
@@ -27,4 +28,3 @@ export const DEV = typeof window !== "undefined" && window.location.hostname.inc
     // { url: "/legal/terms", text: "Terms", icon: "FileText" },
     { url: "https://rights.institute", text: "Ethics", icon: "Bot" },
   ];
-  

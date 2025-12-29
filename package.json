@@ -3,7 +3,7 @@
     "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
     "author": "vtempest <grokthiscontact@gmail.com>",
     "license": "rights.institute/PROSPER",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "workspaces": [
         "packages/*",
         "apps/*"
@@ -41,9 +41,13 @@
         "dev": "turbo dev --filter=qwksearch-web-app",
         "build": "turbo build --filter=ai-research-agent",
         "serve": "turbo serve",
-        "test": "turbo test"
+        "test": "turbo test",
+        "docker:init": "sudo docker network create caddy",
+        "docker:stop": "sudo docker compose down; sudo docker stop $(sudo docker ps -q)",
+        "docker:start": "cross-env DOMAIN=qwksearch.com sudo -E docker compose up   --renew-anon-volumes  --build"
     },
     "dependencies": {
+        "@cloudflare/puppeteer": "^1.0.4",
         "turbo": "^2.5.4"
     }
 }

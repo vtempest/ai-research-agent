@@ -29,9 +29,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      $lib: path.resolve("../web-app/src/lib"),
-      $utils: path.resolve("../web-app/src/lib/utils"),
-      $components: path.resolve("../web-app/src/lib/components"),
+      $lib: path.resolve("../web/src/lib"),
+      $utils: path.resolve("../web/src/lib/utils"),
+      $components: path.resolve("../web/src/lib/components"),
+      "grab-url":  path.resolve("../../../grab-url"),
+      "reason-editor":  path.resolve("../../packages/reason-editor"),
+     "qwksearch-api-client":  path.resolve("../../packages/qwksearch-api-client"),
+      "ai-research-agent":  path.resolve("../../packages/ai-research-agent"),
     },
   },
 });

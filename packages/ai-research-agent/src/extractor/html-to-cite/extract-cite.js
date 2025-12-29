@@ -7,6 +7,7 @@ import { extractTitle } from "./extract-title.js";
 import { extractCiteFromMetadata } from "./metadata-to-cite.js";
 import { extractHumanName } from "./human-names-recognize.js";
 import { parseDate } from "chrono-node";
+
 /**
  * ### 📚💎 Extract Expert Excerpt 
  * <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
@@ -64,11 +65,9 @@ export function extractCite(document, options = {}) {
   title = extractTitle(document) || title;
   source = extractSource(document) || source;
 
-  if (!source)
-    source = url.split('//')[1].split('/')[0]?.replace("www.", "");
-
-  //capitalize source
-  source = source
+  // URL TO SOURCE
+  if (!source && url?.length > 20)
+    source = url.split('//')[1].split('/')[0]?.replace("www.", "")
     .split(" ")
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(" ");

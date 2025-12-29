@@ -1,0 +1,32 @@
+FROM oven/bun:1-alpine as builder
+COPY . /app
+WORKDIR /app
+RUN bun install
+
+
+FROM docker.io/searxng/searxng:latest
+
+# Set environment variables
+ENV SEARXNG_BASE_URL=http://localhost:8080
+ENV UWSGI_WORKERS=4
+ENV UWSGI_THREADS=4
+
+# Copy settings file
+COPY ./config/settings.yml /etc/searxng/settings.yml
+
+# Copy the built app from builder stage
+COPY --from=builder /app /app
+
+# Copy bun binary
+COPY --from=builder /usr/local/bin/bun /usr/local/bin/bun
+
+# Copy the startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# Expose both ports
+EXPOSE 3000
+EXPOSE 8080
+
+# Run the startup script that launches both services
+CMD ["/start.sh"]

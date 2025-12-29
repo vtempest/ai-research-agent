@@ -3,19 +3,31 @@ type OnceEvents = { [type: string]: Map<EventListener, EventListener> };
 const dispatcherEvents = new WeakMap<EventDispatcher, Events>();
 const onceListeners = new WeakMap<EventDispatcher, OnceEvents>();
 
+/**
+ * A class that dispatches events.
+ */
 export class EventDispatcher<T extends Record<string, any> = Record<string, Event>> {
+  /**
+   * Adds an event listener.
+   */
   on<K extends keyof T>(type: K, listener: (event: T[K]) => any, options?: AddEventListenerOptions): void;
   on(type: string, listener: (event: Event) => any, options?: AddEventListenerOptions): void;
   on(type: string, listener: (event: any) => any, options?: AddEventListenerOptions) {
     this.addEventListener(type, listener, options);
   }
 
+  /**
+   * Removes an event listener.
+   */
   off<K extends keyof T>(type: K, listener: (event: T[K]) => any, options?: AddEventListenerOptions): void;
   off(type: string, listener: (event: Event) => any, options?: AddEventListenerOptions): void;
   off(type: string, listener: (event: any) => any, options?: AddEventListenerOptions) {
     this.removeEventListener(type, listener, options);
   }
 
+  /**
+   * Adds an event listener (alias for on).
+   */
   addEventListener<K extends keyof T>(type: K, listener: (event: T[K]) => any, options?: AddEventListenerOptions): void;
   addEventListener(type: string, listener: (event: Event) => any, options?: AddEventListenerOptions): void;
   addEventListener(type: string, listener: (event: any) => any, options?: AddEventListenerOptions): void {
@@ -23,6 +35,9 @@ export class EventDispatcher<T extends Record<string, any> = Record<string, Even
     getEventListeners(this, type, true).add(listener);
   }
 
+  /**
+   * Removes an event listener (alias for off).
+   */
   removeEventListener<K extends keyof T>(
     type: K,
     listener: (event: T[K]) => any,
@@ -36,6 +51,9 @@ export class EventDispatcher<T extends Record<string, any> = Record<string, Even
     events && events.delete(listener);
   }
 
+  /**
+   * Dispatches an event.
+   */
   dispatchEvent(event: Event, catchErrors?: boolean) {
     let stopped = false;
     if (event.bubbles) {
@@ -50,7 +68,7 @@ export class EventDispatcher<T extends Record<string, any> = Record<string, Even
         } catch (err) {
           try {
             this.dispatchEvent(new ErrorEvent('error', { error: err }));
-          } catch (err) {}
+          } catch (err) { }
         }
       } else {
         listener.call(this, event);

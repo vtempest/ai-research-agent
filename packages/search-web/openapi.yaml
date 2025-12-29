@@ -1,0 +1,493 @@
+openapi: 3.0.3
+info:
+  title: SearXNG API Wrapper
+  description: |
+    A Hono-based API wrapper for SearXNG metasearch engine, providing simplified access to web search functionality across 180+ search sources.
+    
+    SearXNG aggregates results from major search engines while maintaining user privacy and offering advanced filtering options.
+  version: 1.0.0
+  contact:
+    name: API Support
+    url: https://github.com/searxng/searxng
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+  - url: https://api.example.com/v1
+    description: Production server
+
+tags:
+  - name: search
+    description: Web search operations
+  - name: health
+    description: Service health and status
+
+paths:
+  /search:
+    get:
+      tags:
+        - search
+      summary: Search the web using SearXNG
+      description: |
+        Performs a web search across multiple search engines using SearXNG metasearch.
+        Results are deduplicated and ranked by relevance.
+      operationId: searchWeb
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The search query string
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 500
+          example: "Node.js tutorials"
+        
+        - name: category
+          in: query
+          required: false
+          description: Search category to filter results
+          schema:
+            type: string
+            enum:
+              - general
+              - news
+              - videos
+              - images
+              - science
+              - it
+              - files
+              - social+media
+              - map
+              - music
+            default: general
+          example: "general"
+        
+        - name: recency
+          in: query
+          required: false
+          description: Time range to filter results
+          schema:
+            type: string
+            enum:
+              - all
+              - day
+              - week
+              - month
+              - year
+            default: all
+          example: "week"
+        
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 1
+          example: 1
+        
+        - name: safesearch
+          in: query
+          required: false
+          description: Enable safe search to filter adult content
+          schema:
+            type: boolean
+            default: false
+          example: false
+        
+        - name: lang
+          in: query
+          required: false
+          description: Language code for search results
+          schema:
+            type: string
+            pattern: '^[a-z]{2}-[A-Z]{2}$'
+            default: "en-US"
+          example: "en-US"
+        
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum:
+              - json
+              - html
+            default: json
+          example: "json"
+
+      responses:
+        '200':
+          description: Successful search operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+              examples:
+                generalSearch:
+                  summary: General web search results
+                  value:
+                    query: "Node.js tutorials"
+                    page: 1
+                    results:
+                      - title: "Node.js Tutorial - W3Schools"
+                        url: "https://www.w3schools.com/nodejs/"
+                        snippet: "Node.js is an open source server environment. Node.js allows you to run JavaScript on the server."
+                        score: 0.95
+                        domain: "w3schools.com"
+                        source: "W3Schools"
+                        favicon: "https://www.google.com/s2/favicons?domain=https://www.w3schools.com&sz=16"
+                      - title: "Getting Started Guide | Node.js"
+                        url: "https://nodejs.org/en/docs/guides/getting-started-guide"
+                        snippet: "This guide will help you get started with Node.js development."
+                        score: 0.92
+                        domain: "nodejs.org"
+                        source: "Nodejs"
+                        favicon: "https://www.google.com/s2/favicons?domain=https://nodejs.org&sz=16"
+                    suggestions: ["nodejs npm", "nodejs express", "nodejs tutorial for beginners"]
+                    infoboxes: []
+                    metadata:
+                      total_results: 1250
+                      search_time: 0.42
+                      engines_used: ["google", "bing", "duckduckgo"]
+        
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Invalid category specified"
+                message: "Category must be one of: general, news, videos, images, science, it, files, social+media, map, music"
+                code: "INVALID_CATEGORY"
+        
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Rate limit exceeded"
+                message: "Maximum 100 requests per minute allowed"
+                code: "RATE_LIMIT_EXCEEDED"
+        
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Search service unavailable"
+                message: "SearXNG instance did not return valid response"
+                code: "SERVICE_ERROR"
+        
+        '502':
+          description: Bad gateway - upstream SearXNG error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Upstream service error"
+                message: "Failed to connect to SearXNG instance"
+                code: "UPSTREAM_ERROR"
+
+  /search/engines:
+    get:
+      tags:
+        - search
+      summary: Get list of available search engines
+      description: Returns information about all search engines supported by the SearXNG instance
+      operationId: getEngines
+      responses:
+        '200':
+          description: List of available search engines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  engines:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SearchEngine'
+
+  /search/categories:
+    get:
+      tags:
+        - search
+      summary: Get list of available search categories
+      description: Returns all valid search categories that can be used in search requests
+      operationId: getCategories
+      responses:
+        '200':
+          description: List of search categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                        - general
+                        - news
+                        - videos
+                        - images
+                        - science
+                        - it
+                        - files
+                        - social+media
+                        - map
+                        - music
+                example:
+                  categories:
+                    - general
+                    - news
+                    - videos
+                    - images
+                    - science
+                    - it
+                    - files
+                    - social+media
+                    - map
+                    - music
+
+  /health:
+    get:
+      tags:
+        - health
+      summary: Health check endpoint
+      description: Check if the API service and SearXNG backend are operational
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok, degraded]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  searxng:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum: [up, down]
+                      url:
+                        type: string
+                      response_time:
+                        type: number
+                        description: Response time in milliseconds
+                example:
+                  status: "ok"
+                  timestamp: "2024-11-27T10:30:00Z"
+                  searxng:
+                    status: "up"
+                    url: "http://searxng:8080"
+                    response_time: 45
+        
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [down]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  error:
+                    type: string
+
+components:
+  schemas:
+    SearchResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The original search query
+        page:
+          type: integer
+          description: Current page number
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        suggestions:
+          type: array
+          items:
+            type: string
+          description: Search query suggestions
+        infoboxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Infobox'
+          description: Contextual information boxes
+        metadata:
+          $ref: '#/components/schemas/SearchMetadata'
+      required:
+        - query
+        - page
+        - results
+
+    SearchResult:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the search result
+        url:
+          type: string
+          format: uri
+          description: URL of the result
+        snippet:
+          type: string
+          description: Text snippet/description from the page
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Relevance score
+        date:
+          type: string
+          format: date
+          description: Publication date (if available)
+        source:
+          type: string
+          description: Source name
+        domain:
+          type: string
+          description: Domain name
+        favicon:
+          type: string
+          format: uri
+          description: URL to the site's favicon
+        engines:
+          type: array
+          items:
+            type: string
+          description: Search engines that returned this result
+      required:
+        - title
+        - url
+        - snippet
+        - domain
+        - favicon
+
+    Infobox:
+      type: object
+      properties:
+        infobox:
+          type: string
+          description: Title of the infobox
+        content:
+          type: string
+          description: Content/description
+        img_src:
+          type: string
+          format: uri
+          description: Image URL
+        urls:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              url:
+                type: string
+                format: uri
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+
+    SearchMetadata:
+      type: object
+      properties:
+        total_results:
+          type: integer
+          description: Estimated total number of results
+        search_time:
+          type: number
+          format: float
+          description: Search execution time in seconds
+        engines_used:
+          type: array
+          items:
+            type: string
+          description: List of search engines used
+
+    SearchEngine:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Engine name
+        shortcut:
+          type: string
+          description: Shortcut code
+        description:
+          type: string
+          description: Engine description
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories this engine supports
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error title
+        message:
+          type: string
+          description: Detailed error message
+        code:
+          type: string
+          description: Error code for programmatic handling
+      required:
+        - error
+        - message
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Optional API key for rate limiting and access control
+
+security:
+  - ApiKeyAuth: []
+  - {}

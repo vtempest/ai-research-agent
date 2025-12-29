@@ -11,6 +11,9 @@ const INFINITY = {
 export type LineRanges = Map<Line, any>;
 export type LineIds = Map<string, Line>;
 
+/**
+ * Represents a line in the document.
+ */
 interface Line {
   id: string;
   attributes: AttributeMap;
@@ -19,10 +22,16 @@ interface Line {
 }
 
 namespace Line {
+  /**
+   * Creates a new LineIterator.
+   */
   export function iterator(lines: Line[], lineIds?: LineIds) {
     return new LineIterator(lines, lineIds);
   }
 
+  /**
+   * Creates a map of line IDs to lines.
+   */
   export function linesToLineIds(lines: Line[]) {
     const lineIds = new Map();
     lines.forEach((line) =>
@@ -40,6 +49,9 @@ namespace Line {
     return line.id;
   }
 
+  /**
+   * Checks if two lines are equal.
+   */
   export function equal(value: Line, other: Line) {
     return (
       isEqual(value.attributes, other.attributes) &&
@@ -47,6 +59,9 @@ namespace Line {
     );
   }
 
+  /**
+   * Creates lines from a Delta.
+   */
   export function fromDelta(delta: Delta, existing?: LineIds) {
     const lines: Line[] = [];
 
@@ -65,6 +80,9 @@ namespace Line {
     return lines;
   }
 
+  /**
+   * Converts lines to a Delta.
+   */
   export function toDelta(lines: Line[]): Delta {
     let delta = new Delta();
     lines.forEach((line) => {
@@ -74,6 +92,9 @@ namespace Line {
     return delta;
   }
 
+  /**
+   * Creates a new Line.
+   */
   export function create(
     content: Delta = new Delta(),
     attributes: AttributeMap = {},
@@ -84,6 +105,9 @@ namespace Line {
     return { id, attributes, content: content, length };
   }
 
+  /**
+   * Creates a new Line from an existing one or defaults.
+   */
   export function createFrom(
     line?: Line,
     content = new Delta(),
@@ -94,6 +118,9 @@ namespace Line {
     return { id, attributes, content, length: 1 };
   }
 
+  /**
+   * Gets ranges for a list of lines.
+   */
   export function getLineRanges(lines: Line[]) {
     const ranges = new Map<Line, any>() as LineRanges;
     let pos = 0;
@@ -103,10 +130,13 @@ namespace Line {
     return ranges;
   }
 
+  /**
+   * Creates a unique line ID.
+   */
   export function createId(existing: LineIds = EMPTY_MAP) {
     let id: string;
     //@ts-ignore
-
+    // eslint-disable-next-line no-cond-assign
     while (existing[(id = Math.random().toString(36).slice(2))]);
     return id;
   }
@@ -114,6 +144,9 @@ namespace Line {
 
 export default Line;
 
+/**
+ * Iterator for lines.
+ */
 export class LineIterator {
   lines: Line[];
   index: number;

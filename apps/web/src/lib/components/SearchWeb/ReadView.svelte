@@ -7,7 +7,7 @@
   import { iconLogoQwksearchFull } from "$lib/components/icons";
   import QuantumWaveOrbital from "$lib/components/SearchWeb/extras/QuantumWaveOrbital.svelte";
   import EditorComponent from "$lib/components/Editor/EditorComponent.svelte";
-  import { listFooterLinks, APP_NAME, APP_SLOGAN } from "$lib/customize-site";
+  import { listFooterLinks, APP_NAME, APP_SLOGAN, DOWNLOAD_CHROME_URL } from "$lib/customize-site";
 
   let {
     extractedArticle = {} as any,
@@ -188,12 +188,23 @@
   {:else if extractedArticle?.error}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <h3 class="text-xl text-gray-500 text-center">
-        Cannot Extract Web Page
+        Extension Needed to Extract Web Page
       </h3>
       <a href={fetchingURL} target="_blank">
         {fetchingURL}
      </a>
-    </div>
+
+     
+     <p class="text-sm text-gray-500 mb-0">
+     <a
+     aria-label="Chrome Web Store"
+     class="mt-8 download-chrome download-btn text-center justify-center"
+     target="_blank"
+     href={DOWNLOAD_CHROME_URL}
+     >
+    </a>
+    </p>
+  </div>
   {:else if extractedArticle?.isLoading}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <div class="flex justify-center items-center">
@@ -212,7 +223,16 @@
   {:else}
     <div class="relative h-full text-lg text-gray-500 text-center">
       <h3 class="text-xl text-gray-500 text-center">
-          {@html iconLogoQwksearchFull()}
+        <video
+          src="/icons/qwksearch-video.webm"
+          width="300px"
+          height="auto"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="mx-auto"
+        ></video>
         {APP_SLOGAN}
       </h3>
 

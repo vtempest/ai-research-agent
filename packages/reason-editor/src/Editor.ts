@@ -25,6 +25,9 @@ const eventProxies = new WeakMap<Editor, EventListener>();
 
 type FormatMethods = 'formatText' | 'toggleTextFormat' | 'formatLine' | 'toggleLineFormat' | 'removeFormat';
 
+/**
+ * Options for initializing the Editor.
+ */
 export interface EditorOptions {
   identifier?: any;
   root?: HTMLElement | false;
@@ -43,10 +46,16 @@ export interface EditorOptions {
   throwOnError?: boolean;
 }
 
+/**
+ * Map of keyboard shortcuts to command names.
+ */
 export interface Shortcuts {
   [shortcut: string]: string;
 }
 
+/**
+ * Interface for an editor module.
+ */
 export interface Module {
   init?: () => void;
   destroy?: () => void;
@@ -77,6 +86,9 @@ export interface EditorChangeEventInit extends EventInit {
   source: SourceString;
 }
 
+/**
+ * Event fired when the editor content changes.
+ */
 export class EditorChangeEvent extends Event {
   old: TextDocument;
   doc: TextDocument;
@@ -140,6 +152,10 @@ export interface EditorTextChange extends TextChange {
   apply(source?: SourceString): Editor;
 }
 
+/**
+ * The main Editor class.
+ * Handles document state, rendering, and user interaction.
+ */
 export class Editor extends EventDispatcher<EditorEventMap> {
   identifier: any;
   typeset: Typeset;
@@ -210,6 +226,11 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Updates the editor with a change or delta.
+   * @param changeOrDelta The change or delta to apply.
+   * @param source The source of the change (user or api).
+   */
   update(changeOrDelta: TextChange | Delta, source: SourceString = Source.user): this {
     if (!this.enabled && source !== Source.api) {
       return this;
@@ -224,6 +245,13 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Sets the editor document state.
+   * @param docOrDelta The new document or delta.
+   * @param source The source of the change.
+   * @param change The text change that caused this update.
+   * @param changedLines The lines that were changed.
+   */
   set(
     docOrDelta: TextDocument | Delta,
     source: SourceString = Source.user,
@@ -253,26 +281,54 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Returns the editor content as HTML.
+   */
   getHTML(): string {
     return docToHTML(this, this.doc);
   }
 
+  /**
+   * Sets the editor content from HTML.
+   * @param html The HTML content.
+   * @param selection The new selection range.
+   * @param source The source of the change.
+   */
   setHTML(html: string, selection: EditorRange | null = this.doc.selection, source?: SourceString): this {
     return this.set(docFromHTML(this, html, selection), source);
   }
 
+  /**
+   * Returns the editor content as a Delta.
+   */
   getDelta(): Delta {
     return this.doc.toDelta();
   }
 
+  /**
+   * Sets the editor content from a Delta.
+   * @param delta The Delta content.
+   * @param selection The new selection range.
+   * @param source The source of the change.
+   */
   setDelta(delta: Delta, selection: EditorRange | null = this.doc.selection, source?: SourceString): this {
     return this.set(new TextDocument(delta, selection), source);
   }
 
+  /**
+   * Returns the editor content as plain text.
+   * @param range Optional range to get text from.
+   */
   getText(range?: EditorRange): string {
     return this.doc.getText(range);
   }
 
+  /**
+   * Sets the editor content from plain text.
+   * @param text The text content.
+   * @param selection The new selection range.
+   * @param source The source of the change.
+   */
   setText(text: string, selection: EditorRange | null = this.doc.selection, source?: SourceString): this {
     return this.set(new TextDocument(new Delta().insert(text), selection), source);
   }
@@ -291,6 +347,9 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return selection;
   }
 
+  /**
+   * Returns the active formatting attributes at the current selection.
+   */
   getActive(): AttributeMap {
     const { selection } = this.doc;
     let active = selection
@@ -304,10 +363,22 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return active;
   }
 
+  /**
+   * Selects a range or position in the editor.
+   * @param at The range or position to select.
+   * @param source The source of the selection change.
+   */
   select(at: EditorRange | number | null, source?: Source): this {
     return this.update(this.change.select(at), source);
   }
 
+  /**
+   * Inserts text or content at the current selection or a specific location.
+   * @param insert The text or content to insert.
+   * @param format Optional formatting attributes.
+   * @param selection Optional selection to insert at.
+   * @param options Optional insertion options.
+   */
   insert(
     insert: string | object,
     format?: AttributeMap,
@@ -344,12 +415,22 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this.update(change);
   }
 
+  /**
+   * Inserts a Delta content at the current selection.
+   * @param content The Delta content to insert.
+   * @param selection Optional selection to insert at.
+   */
   insertContent(content: Delta, selection = this.doc.selection): this {
     if (!selection) return this;
     const change = this.change.delete(selection).insertContent(selection[0], content);
     return this.update(change);
   }
 
+  /**
+   * Deletes content or characters.
+   * @param directionOrSelection Direction (-1 or 1) or range to delete.
+   * @param options Optional deletion options.
+   */
   delete(directionOrSelection?: -1 | 1 | EditorRange, options?: { dontFixNewline?: boolean }): this {
     let range: EditorRange;
     let selectOffset = 0;
@@ -381,6 +462,11 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this.update(change);
   }
 
+  /**
+   * Formats text at the current selection.
+   * @param format The format attributes or name.
+   * @param selection Optional selection to format.
+   */
   formatText(format: AttributeMap | string, selection = this.doc.selection): this {
     if (!selection) return this;
     if (typeof format === 'string') format = { [format]: true };
@@ -393,6 +479,11 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Toggles text format at the current selection.
+   * @param format The format attributes or name.
+   * @param selection Optional selection to format.
+   */
   toggleTextFormat(format: AttributeMap | 'string', selection = this.doc.selection): this {
     if (!selection) return this;
     if (typeof format === 'string') format = { [format]: true };
@@ -406,33 +497,59 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Formats the line at the current selection.
+   * @param format The format attributes or name.
+   * @param selection Optional selection to format.
+   */
   formatLine(format: AttributeMap | string, selection: EditorRange | number | null = this.doc.selection): this {
     if (typeof format === 'string') format = { [format]: true };
     changeFormat(this, 'formatLine', format, selection);
     return this;
   }
 
+  /**
+   * Toggles line format at the current selection.
+   * @param format The format attributes or name.
+   * @param selection Optional selection to format.
+   */
   toggleLineFormat(format: AttributeMap | string, selection = this.doc.selection): this {
     if (typeof format === 'string') format = { [format]: true };
     changeFormat(this, 'toggleLineFormat', format, selection);
     return this;
   }
 
+  /**
+   * Indents the selected lines.
+   */
   indent(): this {
     indentLines(this, 1);
     return this;
   }
 
+  /**
+   * Outdents the selected lines.
+   */
   outdent(): this {
     indentLines(this, -1);
     return this;
   }
 
+  /**
+   * Removes formatting from the current selection.
+   * @param selection Optional selection to remove format from.
+   */
   removeFormat(selection = this.doc.selection): this {
     changeFormat(this, 'removeFormat', null, selection);
     return this;
   }
 
+  /**
+   * Gets the bounding rectangle for a range.
+   * @param range The range to get bounds for.
+   * @param relativeTo Optional element to calculate bounds relative to.
+   * @param relativeInside Whether to calculate relative to the inside of the element (accounting for scroll).
+   */
   getBounds(range: EditorRange | number, relativeTo?: Element, relativeInside?: boolean): DOMRect | undefined {
     if (typeof range === 'number') range = [range, range];
     if (!range) return undefined;
@@ -446,6 +563,12 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return rect;
   }
 
+  /**
+   * Gets all bounding rectangles for a range (e.g. for multi-line selections).
+   * @param range The range to get bounds for.
+   * @param relativeTo Optional element to calculate bounds relative to.
+   * @param relativeInside Whether to calculate relative to the inside of the element.
+   */
   getAllBounds(range: EditorRange | number, relativeTo?: Element, relativeInside?: boolean): DOMRect[] | undefined {
     if (typeof range === 'number') range = [range, range];
     const collection = getBoudingBrowserRange(this, range)?.getClientRects();
@@ -459,10 +582,18 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return list;
   }
 
+  /**
+   * Gets the character index from a point (x, y).
+   * @param x The x coordinate.
+   * @param y The y coordinate.
+   */
   getIndexFromPoint(x: number, y: number) {
     return getIndexFromPoint(this, x, y);
   }
 
+  /**
+   * Renders the editor content.
+   */
   render(): this {
     this.modules.decorations?.gatherDecorations();
     this.modules.rendering?.render();
@@ -470,6 +601,9 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     return this;
   }
 
+  /**
+   * Initializes the editor.
+   */
   init() {
     const root = this._root as any;
     if (root.editor) root.editor.destroy();
@@ -491,6 +625,9 @@ export class Editor extends EventDispatcher<EditorEventMap> {
     this.render();
   }
 
+  /**
+   * Destroys the editor and cleans up listeners.
+   */
   destroy() {
     const root = this._root as any;
     if (!root) return;

@@ -42,11 +42,6 @@
     display: block;
     height: auto;
   }
-body {
-    font-family: "Open Sans", "Montserrat", "Lato", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-}
 
 .splitpanes__pane {
     background-color: #FAFAF7 !important;

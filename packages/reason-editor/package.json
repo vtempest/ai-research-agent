@@ -2,9 +2,11 @@
   "name": "reason-editor",
   "description": "Web text editor with inline tooltips, full customization, vdom, and change diffs",
   "type": "module",
+  "license": "MIT",
+  "author": "vtempest",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
+  "module": "./dist/index.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -12,7 +14,9 @@
       "require": "./dist/index.cjs"
     },
     "./svelte": "./svelte/index.js",
-    "./svelte/*": "./svelte/*"
+    "./svelte/*": "./svelte/*",
+    "./react": "./react/index.ts",
+    "./react/*": "./react/*"
   },
   "scripts": {
     "test:api": "vitest",
@@ -26,9 +30,19 @@
     "@vitest/ui": "^3.2.2",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.2",
-    "@types/node": "^22.15.30"
+    "@types/node": "^22.15.30",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "svelte": "^4.0.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "fast-diff": "^1.3.0",
     "popper.js": "^1.16.1"
   }

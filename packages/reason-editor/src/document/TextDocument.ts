@@ -1,5 +1,5 @@
 import { Delta, AttributeMap, Op, isEqual } from '../delta';
-import Line,{ type LineRanges, type LineIds } from './Line';
+import Line, { type LineRanges, type LineIds } from './Line';
 import LineOp from './LineOp';
 import { type EditorRange, normalizeRange } from './EditorRange';
 import TextChange from './TextChange';
@@ -10,11 +10,18 @@ const EMPTY_OBJ = {};
 const DELTA_CACHE = new WeakMap<TextDocument, Delta>();
 const excludeProps = new Set(['id']);
 
+/**
+ * Options for formatting retrieval.
+ */
 export interface FormattingOptions {
   nameOnly?: boolean;
   allFormats?: boolean;
 }
 
+/**
+ * Represents a text document with lines and selection.
+ * Immutable structure that returns new instances on change.
+ */
 export default class TextDocument {
   private _ranges: LineRanges;
   byId: LineIds;
@@ -22,6 +29,11 @@ export default class TextDocument {
   length: number;
   selection: EditorRange | null;
 
+  /**
+   * Creates a new TextDocument.
+   * @param linesOrDocOrDelta Initial content (lines, another doc, or delta).
+   * @param selection Initial selection.
+   */
   constructor(
     linesOrDocOrDelta?: TextDocument | Line[] | Delta,
     selection: EditorRange | null = null,
@@ -65,12 +77,19 @@ export default class TextDocument {
     this.selection = selection;
   }
 
+  /**
+   * Creates a new TextChange for this document.
+   */
   get change() {
     const change = new TextChange(this);
     change.apply = () => this.apply(change);
     return change;
   }
 
+  /**
+   * Gets the text content of the document or a range.
+   * @param range Optional range to get text from.
+   */
   getText(range?: EditorRange): string {
     if (range) range = normalizeRange(range);
     return deltaToText(
@@ -78,10 +97,18 @@ export default class TextDocument {
     );
   }
 
+  /**
+   * Gets a line by its ID.
+   * @param id The line ID.
+   */
   getLineBy(id: string) {
     return this.byId.get(id) as Line;
   }
 
+  /**
+   * Gets the line at a specific character index.
+   * @param at The character index.
+   */
   getLineAt(at: number) {
     return this.lines.find((line) => {
       const [start, end] = this.getLineRange(line);
@@ -89,6 +116,11 @@ export default class TextDocument {
     }) as Line;
   }
 
+  /**
+   * Gets lines within a range.
+   * @param atOrRange The range or position.
+   * @param encompassed Whether to include only lines fully encompassed by the range.
+   */
   getLinesAt(atOrRange: number | EditorRange, encompassed?: boolean) {
     let at: number, to: number;
     if (Array.isArray(atOrRange)) [at, to] = normalizeRange(atOrRange);
@@ -101,6 +133,10 @@ export default class TextDocument {
     });
   }
 
+  /**
+   * Gets the range of a line.
+   * @param at The line, its ID, or a position within it.
+   */
   getLineRange(at: number | string | Line): EditorRange {
     const { lines, _ranges: lineRanges } = this;
     if (typeof at === 'number') {
@@ -115,6 +151,10 @@ export default class TextDocument {
     }
   }
 
+  /**
+   * Gets ranges for multiple lines.
+   * @param at Optional range to get line ranges for.
+   */
   getLineRanges(at?: number | EditorRange) {
     if (at == null) {
       return Array.from(this._ranges.values());
@@ -123,6 +163,11 @@ export default class TextDocument {
     }
   }
 
+  /**
+   * Gets the line format at a position or range.
+   * @param at The position or range.
+   * @param options Formatting options.
+   */
   getLineFormat(
     at: number | EditorRange = this.selection as EditorRange,
     options?: FormattingOptions,
@@ -133,6 +178,11 @@ export default class TextDocument {
     return getAttributes(Line, this.lines, at, to, undefined, options);
   }
 
+  /**
+   * Gets the text format at a position or range.
+   * @param at The position or range.
+   * @param options Formatting options.
+   */
   getTextFormat(
     at: number | EditorRange = this.selection as EditorRange,
     options?: FormattingOptions,
@@ -150,6 +200,11 @@ export default class TextDocument {
     );
   }
 
+  /**
+   * Gets both text and line formats at a position or range.
+   * @param at The position or range.
+   * @param options Formatting options.
+   */
   getFormats(
     at: number | EditorRange = this.selection as EditorRange,
     options?: FormattingOptions,
@@ -160,6 +215,11 @@ export default class TextDocument {
     };
   }
 
+  /**
+   * Returns a slice of the document as a Delta.
+   * @param start Start index.
+   * @param end End index.
+   */
   slice(start = 0, end = Infinity): Delta {
     const ops: Op[] = [];
     const iter = LineOp.iterator(this.lines);
@@ -177,6 +237,12 @@ export default class TextDocument {
     return new Delta(ops);
   }
 
+  /**
+   * Applies a change or delta to the document, returning a new TextDocument.
+   * @param change The change or delta to apply.
+   * @param selection Optional new selection.
+   * @param throwOnError Whether to throw on error.
+   */
   apply(
     change: Delta | TextChange,
     selection?: EditorRange | null,
@@ -336,10 +402,18 @@ export default class TextDocument {
     return new TextDocument(lines, selection);
   }
 
+  /**
+   * Creates a new document replacing the current one with a delta.
+   * @param delta The new content delta.
+   * @param selection The new selection.
+   */
   replace(delta?: Delta, selection?: EditorRange | null) {
     return new TextDocument(delta, selection);
   }
 
+  /**
+   * Converts the document to a Delta.
+   */
   toDelta(): Delta {
     const cache = DELTA_CACHE;
     let delta = cache.get(this);
@@ -350,6 +424,11 @@ export default class TextDocument {
     return delta;
   }
 
+  /**
+   * Checks if this document is equal to another.
+   * @param other The other document.
+   * @param options Comparison options.
+   */
   equals(other: TextDocument, options?: { contentOnly?: boolean }) {
     return (
       this === other ||
@@ -412,7 +491,7 @@ function intersectAttributes(
   other: AttributeMap,
   nameOnly?: boolean,
 ) {
-  return Object.keys(other).reduce(function (intersect :any, name) {
+  return Object.keys(other).reduce(function (intersect: any, name) {
     if (nameOnly) {
       if (name in attributes && name in other) intersect[name] = true;
     } else if (isEqual(attributes[name], other[name], { partial: true })) {

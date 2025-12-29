@@ -9,7 +9,7 @@
   import { iconLoadingRipple } from "$lib/components/icons";
   // @ts-ignore
   import { highlightCodeSyntax, copyHTMLToClipboard } from "ai-research-agent";
-  import grab from "grab-api.js";
+  import grab from "grab-url";
   import * as QwkSearch from 'qwksearch-api-client'
   import {type WriteLanguageData} from 'qwksearch-api-client'
 
@@ -45,14 +45,14 @@
       ?.replace(/<[^>]*>?/g, "")
       .slice(0, MAX_ARTICLE_LENGTH);
 
-    var res = await grab<
+    await grab<
       { 
         /** Language Model response to user question */
         content?: string, 
         /** Language Model response converted to structured JSON in some agents */
         data: object 
       },
-      { agent: WriteLanguageData["body"]["agent"]; query: string; chat_history?: string }
+      WriteLanguageData["body"] & { MAX_FOLLOWUP_QUESTIONS: number }
     >("agents", {
       agent,
       response: agent === "question" ? AIResponse : AIResponseFollowUps,

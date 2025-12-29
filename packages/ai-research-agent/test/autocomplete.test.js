@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import {suggestNextWordCompletions} from "../index.js"
+import {suggestNextWordCompletions} from "../src/index.js"
 import fs from "fs";
 import phrasesModel from "../src/wordlists/wiki-phrases-model-240k.json"
 

@@ -37,11 +37,11 @@ jobs:
         run: |
           cd apps/docs
           npm install --force --legacy-peer-deps || true
-          PATH_ON_SLASH_DOCS=true npm run docs:build:subdomain || true
+          npm run build || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './apps/docs/docs-dist/'
+          path: './apps/docs/dist/'
       - name: Deploy Docs to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

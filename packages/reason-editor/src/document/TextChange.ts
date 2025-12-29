@@ -3,6 +3,10 @@ import TextDocument from './TextDocument';
 import { type EditorRange, normalizeRange } from './EditorRange';
 import { deltaToText } from './deltaToText';
 
+/**
+ * Represents a change to be applied to a TextDocument.
+ * Builder pattern for creating complex changes.
+ */
 export default class TextChange {
   private _pos: number;
   doc: TextDocument | null;
@@ -10,6 +14,13 @@ export default class TextChange {
   selection?: EditorRange | null;
   activeFormats?: AttributeMap;
 
+  /**
+   * Creates a new TextChange.
+   * @param doc The document to apply change to.
+   * @param delta The delta representing the change.
+   * @param selection The new selection.
+   * @param activeFormats Active formatting attributes.
+   */
   constructor(
     doc: TextDocument | null,
     delta = new Delta(),
@@ -23,10 +34,16 @@ export default class TextChange {
     this.activeFormats = activeFormats;
   }
 
+  /**
+   * Whether the content has changed.
+   */
   get contentChanged() {
     return this.delta.ops.length > 0;
   }
 
+  /**
+   * Whether the selection has changed.
+   */
   get selectionChanged() {
     return (
       this.selection !== undefined &&
@@ -34,26 +51,46 @@ export default class TextChange {
     );
   }
 
+  /**
+   * Applies the change. Must be overridden.
+   */
   apply() {
     throw new Error('Must be overridden by creator of change (e.g. Editor).');
   }
 
+  /**
+   * Sets the delta for this change.
+   * @param delta The new delta.
+   */
   setDelta(delta: Delta) {
     this.delta = delta;
     this._pos = delta.length();
     return this;
   }
 
+  /**
+   * Sets the active formats.
+   * @param activeFormats The active formats.
+   */
   setActiveFormats(activeFormats: AttributeMap) {
     this.activeFormats = activeFormats;
     return this;
   }
 
+  /**
+   * Sets the new selection.
+   * @param at The new selection range or position.
+   */
   select(at: EditorRange | number | null) {
     this.selection = typeof at === 'number' ? [at, at] : at;
     return this;
   }
 
+  /**
+   * Deletes a range of text.
+   * @param range The range to delete.
+   * @param options Deletion options.
+   */
   delete(range: EditorRange | null, options?: { dontFixNewline?: boolean }) {
     if (!range || !this.doc) return this;
     let [at, to] = normalizeRange(range);
@@ -73,6 +110,13 @@ export default class TextChange {
     return this;
   }
 
+  /**
+   * Inserts text or content.
+   * @param at Position to insert at.
+   * @param insert Text or content to insert.
+   * @param format Formatting attributes.
+   * @param options Insertion options.
+   */
   insert(
     at: number,
     insert: string | object,
@@ -117,6 +161,11 @@ export default class TextChange {
     return this;
   }
 
+  /**
+   * Inserts a Delta content.
+   * @param at Position to insert at.
+   * @param content The Delta content.
+   */
   insertContent(at: number, content: Delta) {
     if (!this.doc) return this;
     at = this.normalizePoint(at);
@@ -141,6 +190,11 @@ export default class TextChange {
     return this;
   }
 
+  /**
+   * Formats text in a range.
+   * @param range The range to format.
+   * @param format The format attributes.
+   */
   formatText(range: EditorRange, format?: AttributeMap) {
     if (!this.doc) return this;
     range = normalizeRange(range);
@@ -162,6 +216,11 @@ export default class TextChange {
     return this;
   }
 
+  /**
+   * Toggles text format in a range.
+   * @param range The range to format.
+   * @param format The format attributes.
+   */
   toggleTextFormat(range: EditorRange, format: AttributeMap) {
     if (!this.doc) return this;
     if (typeof range === 'number') range = [range, range];
@@ -171,6 +230,12 @@ export default class TextChange {
     return this.formatText(range, format);
   }
 
+  /**
+   * Formats lines in a range.
+   * @param range The range covering lines to format.
+   * @param format The format attributes.
+   * @param decoration Whether this is a decoration (internal use).
+   */
   formatLine(
     range: EditorRange | number,
     format: AttributeMap,
@@ -192,6 +257,11 @@ export default class TextChange {
     return this;
   }
 
+  /**
+   * Toggles line format in a range.
+   * @param range The range covering lines to format.
+   * @param format The format attributes.
+   */
   toggleLineFormat(range: EditorRange | number, format: AttributeMap) {
     if (!this.doc) return this;
     if (typeof range === 'number') range = [range, range];
@@ -201,6 +271,10 @@ export default class TextChange {
     return this.formatLine(range, format);
   }
 
+  /**
+   * Removes formatting in a range.
+   * @param range The range to remove format from.
+   */
   removeFormat(range: EditorRange) {
     if (!this.doc) return this;
     range = normalizeRange(range);
@@ -213,6 +287,11 @@ export default class TextChange {
     );
   }
 
+  /**
+   * Transforms this change against another change.
+   * @param change The other change.
+   * @param priority Whether this change has priority.
+   */
   transform(change: TextChange, priority?: boolean) {
     const delta = this.delta.transform(change.delta, priority);
     const selection =
@@ -220,6 +299,11 @@ export default class TextChange {
     return new TextChange(null, delta, selection);
   }
 
+  /**
+   * Transforms a selection against this change.
+   * @param selection The selection to transform.
+   * @param priority Whether the selection has priority.
+   */
   transformSelection(
     selection: EditorRange | null,
     priority?: boolean,
@@ -231,6 +315,11 @@ export default class TextChange {
     return [from, to];
   }
 
+  /**
+   * Transforms this change against a delta or change.
+   * @param delta The delta or change to transform against.
+   * @param priority Whether this change has priority.
+   */
   transformAgainst(delta: TextChange | Delta, priority?: boolean) {
     const change = (delta as Delta).ops
       ? new TextChange(null, delta as Delta)
@@ -238,10 +327,17 @@ export default class TextChange {
     return change.transform(this, !priority);
   }
 
+  /**
+   * Checks if this change is for a specific document.
+   * @param doc The document to check.
+   */
   isFor(doc: TextDocument) {
     return this.doc === doc;
   }
 
+  /**
+   * Clones this TextChange.
+   */
   clone() {
     return new TextChange(
       this.doc,

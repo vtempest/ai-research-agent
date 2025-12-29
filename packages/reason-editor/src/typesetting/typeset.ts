@@ -8,6 +8,9 @@ const formatTypes: Record<string, FormatType> = {};
 const embedTypes: Record<string, BasicType> = {};
 const shouldCombine: ShouldCombine = (prev, next) => true;
 
+/**
+ * Manages the typeset (lines, formats, embeds) for the editor.
+ */
 export class Typeset {
   lines: Types<LineType>;
   formats: Types<FormatType>;
@@ -29,15 +32,24 @@ export class Typeset {
   }
 }
 
+/**
+ * Defines a line type.
+ */
 export function line(type: LineType) {
   if (type.renderMultiple && !type.shouldCombine) type.shouldCombine = shouldCombine;
   return (lineTypes[type.name] = type);
 }
 
+/**
+ * Defines a format type.
+ */
 export function format(type: FormatType) {
   return (formatTypes[type.name] = type);
 }
 
+/**
+ * Defines an embed type.
+ */
 export function embed(type: EmbedType) {
   return (embedTypes[type.name] = type);
 }
@@ -57,7 +69,9 @@ export interface Commands {
   [name: string]: (...args: any[]) => any;
 }
 
-// A basic DOM type used in Typewriter views, either a line, format, or embed
+/**
+ * A basic DOM type used in Typewriter views, either a line, format, or embed.
+ */
 export interface BasicType {
   // Type name
   name: string;
@@ -80,15 +94,24 @@ export interface BasicType {
   render?: Renderer;
 }
 
+/**
+ * Type definition for a format (e.g. bold, italic).
+ */
 export interface FormatType extends BasicType {
   greedy?: boolean;
 }
 
+/**
+ * Type definition for an embed (e.g. image, video).
+ */
 export interface EmbedType extends BasicType {
   // If this embed doesn't fill any space, set noFill to true to add  BR tag afterwards if nothing else is in the line
   noFill?: boolean;
 }
 
+/**
+ * Type definition for a line (e.g. paragraph, heading).
+ */
 export interface LineType extends BasicType {
   // Whether this line can be indented/unindented with the tab key
   indentable?: boolean;
@@ -128,6 +151,9 @@ export interface LineType extends BasicType {
   shouldCombine?: ShouldCombine;
 }
 
+/**
+ * Configuration for initializing a Typeset.
+ */
 export interface TypesetTypes {
   lines?: Array<string | LineType>;
   formats?: Array<string | FormatType>;
@@ -163,6 +189,9 @@ export class Types<T extends BasicType = BasicType> {
     return this.list[0];
   }
 
+  /**
+   * Initializes the types.
+   */
   init() {
     this.selector = this.list
       .map(type => type.selector || '')
@@ -181,21 +210,33 @@ export class Types<T extends BasicType = BasicType> {
     );
   }
 
+  /**
+   * Adds a type.
+   */
   add(type: T) {
     this.list.push(type);
     this.init();
   }
 
+  /**
+   * Removes a type.
+   */
   remove(type: T | string) {
     const name = typeof type === 'string' ? type : type.name;
     this.list = this.list.filter(type => type.name !== name);
     this.init();
   }
 
+  /**
+   * Gets a type by name.
+   */
   get(name: string) {
     return this.types[name];
   }
 
+  /**
+   * Gets the priority of a type.
+   */
   priority(name: string) {
     // Attribute keys that do not have types assigned to them need a default sorting value.
     // A default value of -1 means that "loose" attribute keys do not corrupt priority sorting
@@ -204,7 +245,9 @@ export class Types<T extends BasicType = BasicType> {
     return priority !== undefined ? priority : -1;
   }
 
-  // Whether or not the provided element is one of our types
+  /**
+   * Checks if a node matches any type.
+   */
   matches(node: Node | null) {
     if (!node) return false;
     if (!node.nodeType) throw new Error('Cannot match against ' + node);
@@ -213,7 +256,9 @@ export class Types<T extends BasicType = BasicType> {
     }
   }
 
-  // Find the first type by priority that matches this element
+  /**
+   * Finds the first type that matches a node.
+   */
   findByNode(node: Node, fallbackToDefault: true): T;
   findByNode(node: Node, fallbackToDefault?: boolean): T | undefined;
   findByNode(node: Node, fallbackToDefault = false) {
@@ -226,7 +271,9 @@ export class Types<T extends BasicType = BasicType> {
     if (fallbackToDefault) return this.default;
   }
 
-  // Find the first type by priority that matches this attributes object. Can return the default for no match.
+  /**
+   * Finds the first type that matches attributes.
+   */
   findByAttributes(attributes: AttributeMap | undefined, fallbackToDefault: true): T;
   findByAttributes(attributes: AttributeMap | undefined, fallbackToDefault?: boolean): T | undefined;
   findByAttributes(attributes: AttributeMap | undefined, fallbackToDefault = false): T | undefined {

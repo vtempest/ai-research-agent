@@ -35,27 +35,9 @@
     }
     suggestions = await suggestNextWordCompletions(searchText, {
       phrasesModel,
-      limit: 10,
+      limitMaxResults: 10,
+      optionShowFullQuery: true,
     });
-    if (!suggestions) return;
-
-    var words = searchText.trim().split(/\W+/);
-    var name;
-    suggestions = suggestions
-      .map((s) => {
-        if (s.word) name = words.slice(0, -1).join(" ") + " " + s.word;
-        if (s.phrase) {
-          name =
-            words
-              .join(" ")
-              .slice(0, words.join(" ").lastIndexOf(s.phrase.split(" ")[0])) +
-            " " +
-            s.phrase;
-        }
-        return name;
-      })
-      .filter(Boolean);
-
     showSuggestions = suggestions.length > 0;
     selectedIndex = -1;
   }

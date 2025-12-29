@@ -19,18 +19,30 @@ interface CombinedData {
   byKey: Record<string, CombinedEntry>;
 }
 type LineRanges = [EditorRange, EditorRange];
+/**
+ * HTML element representing a line.
+ */
 export interface HTMLLineElement extends HTMLElement {
   key: string;
 }
 
+/**
+ * Gets the start index of a line node.
+ */
 export function getLineNodeStart(root: HTMLElement, node: Node) {
   return nodeRanges.get(root)?.get(node)?.[0] as number;
 }
 
+/**
+ * Gets the end index of a line node.
+ */
 export function getLineNodeEnd(root: HTMLElement, node: Node) {
   return nodeRanges.get(root)?.get(node)?.[1] as number;
 }
 
+/**
+ * Sets the ranges for line nodes.
+ */
 export function setLineNodesRanges(editor: Editor) {
   const { root, doc } = editor;
   const combined = combineLines(editor, doc.lines);
@@ -66,6 +78,9 @@ export function setLineNodesRanges(editor: Editor) {
   nodeRanges.set(root, ranges);
 }
 
+/**
+ * Renders the document.
+ */
 export function render(editor: Editor, doc: TextDocument) {
   const { root } = editor;
   editor.dispatchEvent(new Event('rendering'));
@@ -75,6 +90,9 @@ export function render(editor: Editor, doc: TextDocument) {
   editor.dispatchEvent(new Event('rendered'));
 }
 
+/**
+ * Renders changes between two documents.
+ */
 export function renderChanges(editor: Editor, oldDoc: TextDocument, newDoc: TextDocument) {
   const { root } = editor;
   // Ranges of line indexes, not document indexes
@@ -104,18 +122,30 @@ export function renderChanges(editor: Editor, oldDoc: TextDocument, newDoc: Text
   editor.dispatchEvent(new Event('rendered'));
 }
 
+/**
+ * Renders a document to VNodes.
+ */
 export function renderDoc(editor: Editor, doc: TextDocument, forHTML?: boolean) {
   return renderCombined(editor, combineLines(editor, doc.lines).combined, forHTML);
 }
 
+/**
+ * Renders combined lines to VNodes.
+ */
 export function renderCombined(editor: Editor, combined: Combined, forHTML?: boolean) {
   return combined.map(line => renderLine(editor, line, forHTML)).filter(Boolean) as VNode[];
 }
 
+/**
+ * Renders a line or multi-line entry.
+ */
 export function renderLine(editor: Editor, line: CombinedEntry, forHTML?: boolean) {
   return Array.isArray(line) ? renderMultiLine(editor, line, forHTML) : renderSingleLine(editor, line, forHTML);
 }
 
+/**
+ * Renders a single line.
+ */
 export function renderSingleLine(editor: Editor, line: Line, forHTML?: boolean) {
   const type = getLineType(editor, line);
   if (!type.render) throw new Error('No render method defined for line');
@@ -125,6 +155,9 @@ export function renderSingleLine(editor: Editor, line: Line, forHTML?: boolean) 
   return node;
 }
 
+/**
+ * Renders multiple lines.
+ */
 export function renderMultiLine(editor: Editor, lines: Line[], forHTML?: boolean) {
   const type = getLineType(editor, lines[0]);
   if (!type.renderMultiple) throw new Error('No render method defined for line');
@@ -137,7 +170,9 @@ export function renderMultiLine(editor: Editor, lines: Line[], forHTML?: boolean
   return node;
 }
 
-// Join multi-lines into arrays. Memoize the results.
+/**
+ * Joins multi-lines into arrays. Memoize the results.
+ */
 export function combineLines(editor: Editor, lines: Line[]): CombinedData {
   const cache = linesCombined.get(lines);
   if (cache) return cache;
@@ -176,6 +211,9 @@ export function combineLines(editor: Editor, lines: Line[]): CombinedData {
 }
 
 // Most changes will occur to adjacent lines, so the simplistic approach
+/**
+ * Gets the ranges of lines that have changed.
+ */
 export function getChangedRanges(oldC: Combined, newC: Combined): LineRanges {
   const oldLength = oldC.length;
   const newLength = newC.length;
@@ -203,6 +241,9 @@ export function getChangedRanges(oldC: Combined, newC: Combined): LineRanges {
   ];
 }
 
+/**
+ * Renders inline content of a line.
+ */
 export function renderInline(editor: Editor, line: Line, forHTML?: boolean) {
   const { lines, formats, embeds } = editor.typeset;
   let inlineChildren: VChild[] = [];

@@ -1,0 +1,21 @@
+services:
+  searxng:
+    container_name: webs
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config/settings.yml:/etc/searxng/settings.yml:rw
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080
+      - UWSGI_WORKERS=4
+      - UWSGI_THREADS=4
+
+# web-app:
+#   container_name: web-app
+#   image: oven/bun:1-alpine
+#   working_dir: /app
+#   volumes:
+#     - .:/app
+#   command: sh -c "bun install && bun run dev"

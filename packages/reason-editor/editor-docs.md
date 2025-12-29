@@ -796,8 +796,143 @@ And there you have it. The building blocks to create the editor of your dreams! 
                         // Webviews are normally torn down when not visible and re-created when they become visible again.
                         // State lets us save information across these re-loads
                         const state = vscode.getState();
-                        if (state) {
-                            updateContent(state.text);
+
+## Source Code Overview
+
+This section provides a detailed overview of the `src` directory structure and key files to help you navigate the codebase.
+
+### Directory Structure
+
+#### `delta/`
+Contains the implementation of the Delta format, which is the core data model for the editor's content.
+- `Delta.ts`: The main Delta class, representing a sequence of operations (insert, delete, retain).
+- `Op.ts`: Definitions for individual operations within a Delta.
+- `AttributeMap.ts`: Utilities for handling formatting attributes.
+
+#### `document/`
+Contains the `TextDocument` model and related classes that build upon the Delta format.
+- `TextDocument.ts`: Represents the immutable state of the editor, including content (as Lines) and selection.
+- `TextChange.ts`: A builder class for creating and applying changes to a `TextDocument`.
+- `Line.ts`: Represents a single line in the document, wrapping a Delta.
+- `LineOp.ts`: Iterator for operations within a line.
+
+#### `modules/`
+Contains the various modules that power the editor's functionality.
+- `history.ts`: Handles undo/redo functionality.
+- `input.ts`: Manages text input and composition events.
+- `keyboard.ts`: Handles keyboard shortcuts and key bindings.
+- `selection.ts`: Manages user selection and cursor movement.
+- `rendering.ts`: Orchestrates the rendering process.
+- `copy.ts`, `paste.ts`: Handle clipboard operations.
+
+#### `rendering/`
+Handles the conversion of the document model to the DOM and manages updates.
+- `html.ts`: Utilities for converting between Delta/TextDocument and HTML.
+- `vdom.ts`: A lightweight virtual DOM implementation for efficient rendering.
+- `rendering.ts`: Core rendering logic, diffing, and patching the DOM.
+- `position.ts`: Utilities for calculating cursor positions and mapping between DOM nodes and document indexes.
+
+#### `typesetting/`
+Manages the configuration for different content types allowed in the editor.
+- `typeset.ts`: The `Typeset` class, which holds registries for Lines, Formats, and Embeds.
+- `types.ts`: Type definitions for the typesetting system.
+
+#### `util/`
+General utility classes and functions.
+- `EventDispatcher.ts`: A base class for handling events.
+
+### Key Files
+
+#### `Editor.ts`
+The heart of the library. The `Editor` class ties everything together. It manages the `TextDocument` state, orchestrates modules, handles events, and provides the public API for interacting with the editor.
+
+#### `index.ts`
+The main entry point for the package. It exports all the public classes, interfaces, and functions that you should use in your application.
+
+#### `stores.ts`
+Provides Svelte stores (`editorStore`, `selectionStore`, etc.) that make it easy to use the editor within Svelte applications. These stores react to editor changes and update the UI automatically.
+
+## Usage Examples
+
+### Creating a Custom Module
+
+Modules allow you to extend the editor's functionality. Here is a simple example of a module that logs every change to the console.
+
+```typescript
+import { Editor } from 'typewriter-editor';
+
+export function loggerModule(editor: Editor) {
+  function onChange(event) {
+    console.log('Document changed:', event);
+  }
+
+  return {
+    init() {
+      editor.on('change', onChange);
+    },
+    destroy() {
+      editor.off('change', onChange);
+    }
+  };
+}
+
+// Usage
+const editor = new Editor({
+  modules: {
+    logger: loggerModule
+  }
+});
+```
+
+### Defining a Custom Line Type
+
+You can define custom line types to support different block-level elements. For example, a "Todo" list item.
+
+```typescript
+import { Editor, h } from 'typewriter-editor';
+
+const todoLine = {
+  name: 'todo',
+  selector: 'div.todo',
+  render: (attributes, children, line, editor) => {
+    return h('div', { class: 'todo' }, [
+      h('input', {
+        type: 'checkbox',
+        checked: attributes.checked,
+        onchange: (e) => {
+          editor.change
+            .formatLine(line.id, { checked: e.target.checked })
+            .apply();
+        }
+      }),
+      h('span', null, children)
+    ]);
+  }
+};
+
+editor.typeset.lines.add(todoLine);
+```
+
+### Programmatic Editing
+
+You can manipulate the editor content programmatically using the `change` API.
+
+```typescript
+// Insert text at the current selection
+editor.insert('Hello World');
+
+// Format the current selection as bold
+editor.formatText({ bold: true });
+
+// Delete the first 5 characters
+editor.change.delete([0, 5]).apply();
+
+// Replace the entire document content
+import { Delta } from 'typewriter-editor';
+const newContent = new Delta().insert('New Content\n');
+editor.set(newContent);
+```
+
                             console.log(state.text);
                         }
                     } )

@@ -10,6 +10,9 @@ type NodeOffsetAndFrozen = [Node | null, number, boolean?];
 
 const EMPTY_NODE_OFFSET: NodeAndOffset = [null, 0];
 
+/**
+ * Information about a line at a specific point.
+ */
 export interface LineInfo {
   line: Line;
   element: HTMLLineElement;
@@ -17,6 +20,9 @@ export interface LineInfo {
   belowMid: boolean;
 }
 
+/**
+ * Gets the document index from a point (x, y).
+ */
 export function getIndexFromPoint(editor: Editor, x: number, y: number) {
   const document = editor.root.ownerDocument;
   if ('caretPositionFromPoint' in document) {
@@ -25,7 +31,7 @@ export function getIndexFromPoint(editor: Editor, x: number, y: number) {
       if (pos) {
         return getIndexFromNodeAndOffset(editor, pos.offsetNode, pos.offset);
       }
-    } catch (_) {}
+    } catch (_) { }
   }
 
   if (document.caretRangeFromPoint) {
@@ -38,7 +44,9 @@ export function getIndexFromPoint(editor: Editor, x: number, y: number) {
   return null;
 }
 
-// Return the line that matches a point and true if the point comes after the midpoint of the line display
+/**
+ * Return the line that matches a point and true if the point comes after the midpoint of the line display.
+ */
 export function getLineInfoFromPoint(editor: Editor, y: number): LineInfo | undefined {
   const { root } = editor;
   if (!root.ownerDocument) return;
@@ -55,7 +63,9 @@ export function getLineInfoFromPoint(editor: Editor, y: number): LineInfo | unde
   }
 }
 
-// Get a browser range object for the given editor range tuple
+/**
+ * Get a browser range object for the given editor range tuple.
+ */
 export function getBrowserRange(editor: Editor, range: EditorRange) {
   if (range[0] > range[1]) range = [range[1], range[0]];
   const [anchorNode, anchorOffset, focusNode, focusOffset] = getNodesForRange(editor, range);
@@ -67,16 +77,22 @@ export function getBrowserRange(editor: Editor, range: EditorRange) {
   return browserRange;
 }
 
+/**
+ * Gets a bounding browser range for the given editor range.
+ */
 export function getBoudingBrowserRange(editor: Editor, range: EditorRange): Range {
   const browserRange = getBrowserRange(editor, range);
   if (browserRange?.endContainer.nodeType === Node.ELEMENT_NODE) {
     try {
       browserRange.setEnd(browserRange.endContainer, browserRange.endOffset + 1);
-    } catch (e) {}
+    } catch (e) { }
   }
   return browserRange;
 }
 
+/**
+ * Gets the document index from a DOM node and offset.
+ */
 export function getIndexFromNodeAndOffset(editor: Editor, node: Node, offset: number, current?: number | null): number {
   const { root } = editor;
   const { lines } = editor.typeset;
@@ -107,7 +123,9 @@ export function getIndexFromNodeAndOffset(editor: Editor, node: Node, offset: nu
   return getIndexFromNode(editor, node) + offset;
 }
 
-// Get the index the node starts at in the content
+/**
+ * Get the index the node starts at in the content.
+ */
 export function getIndexFromNode(editor: Editor, startNode: Node): number {
   const { root } = editor;
   if (!root.ownerDocument) return -1;
@@ -131,6 +149,9 @@ export function getIndexFromNode(editor: Editor, startNode: Node): number {
   return index;
 }
 
+/**
+ * Gets the line element at a specific index.
+ */
 export function getLineElementAt(editor: Editor, index: number) {
   const { root } = editor;
   if (!root.ownerDocument) return;
@@ -140,6 +161,9 @@ export function getLineElementAt(editor: Editor, index: number) {
   ) as HTMLLineElement;
 }
 
+/**
+ * Gets the length of a DOM node in editor characters.
+ */
 export function getNodeLength(editor: Editor, parentNode: Node): number {
   const { lines, embeds } = editor.typeset;
   if (embeds.matches(parentNode) && !isBRPlaceholder(editor, parentNode as HTMLElement)) {
@@ -160,7 +184,9 @@ export function getNodeLength(editor: Editor, parentNode: Node): number {
   return length;
 }
 
-// Get the browser nodes and offsets for the range (a tuple of indexes) of this view
+/**
+ * Get the browser nodes and offsets for the range (a tuple of indexes) of this view.
+ */
 export function getNodesForRange(editor: Editor, range: EditorRange): [Node | null, number, Node | null, number] {
   if (range == null) {
     return [null, 0, null, 0];
@@ -180,6 +206,9 @@ export function getNodesForRange(editor: Editor, range: EditorRange): [Node | nu
   }
 }
 
+/**
+ * Gets the DOM node and offset for a document index.
+ */
 export function getNodeAndOffset(editor: Editor, index: number, direction: 0 | 1): NodeOffsetAndFrozen {
   const { root } = editor;
   if (!root.ownerDocument) return EMPTY_NODE_OFFSET;
@@ -239,6 +268,9 @@ export function getNodeAndOffset(editor: Editor, index: number, direction: 0 | 1
   return atStart ? [line, 0] : EMPTY_NODE_OFFSET;
 }
 
+/**
+ * Gets the length of a text node.
+ */
 export function textNodeLength(lines: Types, node: Node) {
   const value = node.nodeValue || '';
   if (value.trim() || !(lines.matches(node.previousSibling) || lines.matches(node.nextSibling))) {

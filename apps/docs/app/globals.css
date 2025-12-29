@@ -1,0 +1,700 @@
+@import "tailwindcss";
+@import 'fumadocs-ui/css/shadcn.css';
+@import "fumadocs-ui/css/preset.css";
+@import 'fumadocs-openapi/css/preset.css';
+
+/* Custom Refined Beige & Sand Desert Paper Theme Variables */
+:root {
+  --color-fd-background: hsl(42, 35%, 97%);
+  --color-fd-primary: hsl(38, 45%, 52%);
+  --color-fd-accent: hsl(32, 55%, 62%);
+  --color-fd-muted: hsl(42, 25%, 92%);
+  --color-fd-border: hsl(38, 30%, 82%);
+  --color-fd-text: hsl(28, 30%, 22%);
+  --color-fd-text-muted: hsl(28, 25%, 42%);
+
+  /* Layout customization */
+  --fd-layout-width: 1400px;
+}
+
+.dark {
+  --color-fd-background: hsl(28, 20%, 14%);
+  --color-fd-primary: hsl(38, 45%, 65%);
+  --color-fd-accent: hsl(32, 55%, 75%);
+  --color-fd-muted: hsl(28, 25%, 20%);
+  --color-fd-border: hsl(28, 30%, 28%);
+  --color-fd-text: hsl(42, 25%, 88%);
+  --color-fd-text-muted: hsl(42, 20%, 72%);
+}
+
+/* Sidebar Glass Effect Override - Comprehensive */
+.bg-sidebar,
+[data-sidebar="sidebar"],
+[data-slot="sidebar"],
+[data-slot="sidebar-inner"],
+div[class*="bg-sidebar"],
+div[class*="sidebar"],
+[data-collapsible="offcanvas"],
+[data-state="collapsed"],
+[data-slot="sidebar-container"],
+[data-slot="sidebar-gap"] {
+  background-color: rgb(255, 255, 255) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.dark .bg-sidebar,
+.dark [data-sidebar="sidebar"],
+.dark [data-slot="sidebar"],
+.dark [data-slot="sidebar-inner"],
+.dark div[class*="bg-sidebar"],
+.dark div[class*="sidebar"],
+.dark [data-collapsible="offcanvas"],
+.dark [data-state="collapsed"],
+.dark [data-slot="sidebar-container"],
+.dark [data-slot="sidebar-gap"] {
+  background-color: rgb(30, 41, 59) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Enhanced Sidebar Container Glass Effect */
+[data-slot="sidebar-inner"],
+[data-sidebar="sidebar"],
+[data-collapsible="offcanvas"] [data-slot="sidebar-inner"],
+[data-state="collapsed"] [data-slot="sidebar-inner"] {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark [data-slot="sidebar-inner"],
+.dark [data-sidebar="sidebar"],
+.dark [data-collapsible="offcanvas"] [data-slot="sidebar-inner"],
+.dark [data-state="collapsed"] [data-slot="sidebar-inner"] {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Mobile Sidebar Glass Effect */
+[data-mobile="true"],
+[data-mobile="true"] [data-sidebar="sidebar"],
+[data-mobile="true"] [data-slot="sidebar"],
+[data-collapsible="offcanvas"][data-mobile="true"],
+[data-state="collapsed"][data-mobile="true"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+.dark [data-mobile="true"],
+.dark [data-mobile="true"] [data-sidebar="sidebar"],
+.dark [data-mobile="true"] [data-slot="sidebar"],
+.dark [data-collapsible="offcanvas"][data-mobile="true"],
+.dark [data-state="collapsed"][data-mobile="true"] {
+  background-color: rgba(30, 41, 59, 0.9) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Force override for any sidebar-related elements */
+*[class*="sidebar"],
+*[data-sidebar],
+*[data-slot*="sidebar"] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+.dark *[class*="sidebar"],
+.dark *[data-sidebar],
+.dark *[data-slot*="sidebar"] {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+
+/* 3D Glassmorphism Effects */
+.glass-3d {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-3d-hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease-out;
+  transform: translateZ(0);
+}
+
+.glass-3d-hover:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Advanced Hover Animations */
+.hover-lift {
+  transition: all 0.3s ease-out;
+  transform: translateY(0) scale(1);
+}
+
+.hover-lift:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.hover-glow {
+  transition: all 0.3s ease-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.hover-rotate {
+  transition: all 0.5s ease-out;
+  transform: rotate(0deg) scale(1);
+}
+
+.hover-rotate:hover {
+  transform: rotate(2deg) scale(1.05);
+}
+
+.hover-bounce {
+  transition: all 0.3s ease-out;
+  animation: none;
+}
+
+.hover-bounce:hover {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.hover-pulse {
+  transition: all 0.3s ease-out;
+}
+
+.hover-pulse:hover {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.hover-shake {
+  transition: all 0.3s ease-out;
+}
+
+.hover-shake:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* 3D Card Effects */
+.card-3d {
+  transition: all 0.5s ease-out;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-3d:hover {
+  transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+}
+
+/* NEW: Gradient Animations */
+.gradient-animate {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.gradient-animate-hover {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  transition: all 0.3s ease;
+}
+
+.gradient-animate-hover:hover {
+  animation: gradientShift 2s ease infinite;
+  transform: scale(1.05);
+}
+
+/* NEW: Morphing Effects */
+.morph {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1rem;
+}
+
+.morph:hover {
+  border-radius: 2rem;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* NEW: Particle Effect */
+.particle-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.particle-effect:hover::before {
+  left: 100%;
+}
+
+/* NEW: Neon Glow Effect */
+.neon-glow {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.neon-glow:hover {
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(255, 255, 255, 0.6),
+    0 0 60px rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* NEW: Magnetic Effect */
+.magnetic {
+  transition: all 0.3s ease;
+  transform: translate(0, 0);
+}
+
+.magnetic:hover {
+  transform: translate(5px, -5px);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* NEW: Elastic Bounce */
+.elastic-bounce {
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.elastic-bounce:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* NEW: Slide In Effect */
+.slide-in {
+  transition: all 0.4s ease;
+  transform: translateX(-100%);
+}
+
+.slide-in:hover {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* NEW: Flip Card Effect */
+.flip-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* NEW: Typewriter Effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* NEW: Breathing Effect */
+.breathing {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+/* NEW: Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* NEW: Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-1 0.5s infinite;
+  color: #ff0000;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.5s infinite;
+  color: #00ff00;
+  z-index: -2;
+}
+
+/* Floating Animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hover-float {
+  transition: all 0.3s ease-out;
+}
+
+.hover-float:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Shake Animation */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-2px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    transform: translate3d(0, -8px, 0);
+  }
+
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* NEW: Gradient Shift Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* NEW: Typewriter Animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: currentColor;
+  }
+}
+
+/* NEW: Breathing Animation */
+@keyframes breathing {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* NEW: Glitch Animations */
+@keyframes glitch-1 {
+
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitch-2 {
+
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(2px, -2px);
+  }
+
+  40% {
+    transform: translate(2px, 2px);
+  }
+
+  60% {
+    transform: translate(-2px, -2px);
+  }
+
+  80% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+/* Hover Animation Utility */
+.hover-animate {
+  transition: all 0.3s ease-in-out;
+}
+
+.hover-animate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+
+/* Enhanced typography for MDX content */
+.prose {
+  color: var(--color-fd-text);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--color-fd-text);
+}
+
+.prose a {
+  color: var(--color-fd-primary);
+}
+
+.prose a:hover {
+  color: var(--color-fd-accent);
+}
+
+/* Custom refined beige accent for code blocks */
+.prose pre {
+  background-color: var(--color-fd-muted);
+  border: 1px solid var(--color-fd-border);
+}
+
+.prose code {
+  color: var(--color-fd-primary);
+  background-color: var(--color-fd-muted);
+}
+
+/* --- FORCE GLASS EFFECT FOR FLYOUT/POPOUT SIDEBAR --- */
+.fixed[data-slot="sidebar-container"],
+.absolute[data-slot="sidebar-container"],
+.fixed.bg-sidebar,
+.absolute.bg-sidebar,
+.fixed[data-sidebar="sidebar"],
+.absolute[data-sidebar="sidebar"],
+.fixed[data-slot*="sidebar"],
+.absolute[data-slot*="sidebar"],
+.fixed.inset-y-0.left-0,
+.absolute.inset-y-0.left-0,
+.md\:flex[data-slot="sidebar-container"],
+.md\:flex.bg-sidebar {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  z-index: 1000 !important;
+}
+
+.dark .fixed[data-slot="sidebar-container"],
+.dark .absolute[data-slot="sidebar-container"],
+.dark .fixed.bg-sidebar,
+.dark .absolute.bg-sidebar,
+.dark .fixed[data-sidebar="sidebar"],
+.dark .absolute[data-sidebar="sidebar"],
+.dark .fixed[data-slot*="sidebar"],
+.dark .absolute[data-slot*="sidebar"],
+.dark .fixed.inset-y-0.left-0,
+.dark .absolute.inset-y-0.left-0,
+.dark .md\:flex[data-slot="sidebar-container"],
+.dark .md\:flex.bg-sidebar {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.22) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  z-index: 1000 !important;
+}

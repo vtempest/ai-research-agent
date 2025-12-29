@@ -14,38 +14,38 @@
 services:
 
   # QwkSearch.com Web App
-  web-app:
-    container_name: web-app
-    image: oven/bun:latest
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./apps/web:/app
-    working_dir: /app
-    restart: unless-stopped
-    command: bash -c "bun i; bun make; bun preview"
-    networks:
-      - caddy
-    labels:
-      caddy: ${DOMAIN:-localhost}
-      caddy.reverse_proxy: "{{upstreams 5173}}"
+  # web-app:
+  #   container_name: web-app
+  #   image: oven/bun:latest
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./apps/web:/app
+  #   working_dir: /app
+  #   restart: unless-stopped
+  #   command: bash -c "bun i; bun make; bun preview"
+  #   networks:
+  #     - caddy
+  #   labels:
+  #     caddy: ${DOMAIN:-localhost}
+  #     caddy.reverse_proxy: "{{upstreams 5173}}"
 
   # Tardigrade the Web Scraper / Crawler
-  scraper:
-    container_name: scraper
-    restart: unless-stopped
-    volumes:
-      - ./packages/ai-research-agent/src/crawler:/app
-    build: ./packages/ai-research-agent/src/crawler/Dockerfile.scraper
-    ports:
-      - 3000:3000
-    networks:
-      - caddy
-    labels:
-      caddy: proxy.${DOMAIN:-localhost}
-      caddy.reverse_proxy: "{{upstreams 3000}}"
+  # scraper:
+  #   container_name: scraper
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./packages/scraper:/app
+  #   build: ./packages/scraper
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - caddy
+  #   labels:
+  #     caddy: proxy.${DOMAIN:-localhost}
+  #     caddy.reverse_proxy: "{{upstreams 3000}}"
 
-    
+
   # SearXNG Search engine proxy
   searxng:
     container_name: searxng
@@ -56,50 +56,45 @@ services:
     ports:
       - 8088:8080
     volumes:
-      # - ./src/crawler/searxng-engines.yml:/etc/searxng/engines.yml:rw
-      - ./packages/ai-research-agent/src/crawler/searxng-settings.yml:/etc/searxng/settings.yml:rw
-      # - ./src/crawler/uwsgi.ini:/etc/searxng/uwsgi.ini:rw
-      - ./packages/ai-research-agent/src/crawler:/etc/searxng:rw
+      - ./packages/search-web/config/settings.yml:/etc/searxng/settings.yml:rw
     environment:
       - SEARXNG_BASE_URL=https://search.${DOMAIN:-localhost}
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETGID
-      - SETUID
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "1m"
-        max-file: "1"
+    # cap_drop:
+    #   - ALL
+    # cap_add:
+    #   - CHOWN
+    #   - SETGID
+    #   - SETUID
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "1m"
+    #     max-file: "1"
     labels:
       caddy: search.${DOMAIN:-localhost}
       caddy.reverse_proxy: "{{upstreams 8080}}"
-
-
-  # IP Rotating Proxy Admin
-  # scrapoxy:
-  #   image: fabienvauchelles/scrapoxy
-  #   ports:
-  #     - 8888:8888
-  #     - 8890:8890
-  #   environment:
-  #     - NODE_ENV=production
-  #     - AUTH_LOCAL_USERNAME=admin
-  #     - AUTH_LOCAL_PASSWORD=password
-  #     - BACKEND_JWT_SECRET=secret1
-  #     - FRONTEND_JWT_SECRET=secret2
+    # IP Rotating Proxy Admin
+    # scrapoxy:
+    #   image: fabienvauchelles/scrapoxy
+    #   ports:
+    #     - 8888:8888
+    #     - 8890:8890
+    #   environment:
+    #     - NODE_ENV=production
+    #     - AUTH_LOCAL_USERNAME=admin
+    #     - AUTH_LOCAL_PASSWORD=password
+    #     - BACKEND_JWT_SECRET=secret1
+    #     - FRONTEND_JWT_SECRET=secret2
     # labels:
     #   caddy: proxyadmin.${DOMAIN:-localhost}
     #   caddy.reverse_proxy: "{{upstreams 8890}}"
 
 
-  # # # Caddy - proxy server router for containers 
-  # sudo docker network create caddy
-  caddy:  
+    # # # Caddy - proxy server router for containers 
+    # sudo docker network create caddy
+  caddy:
     image: lucaslorentz/caddy-docker-proxy:ci-alpine
     ports:
       - 80:80
@@ -112,31 +107,28 @@ services:
       - CADDY_INGRESS_NETWORKS=caddy
     networks:
       - caddy
-
-
   # # # valkey - helper for rate limiting 
-  valkey:
-    container_name: valkey
-    image: docker.io/valkey/valkey:8-alpine
-    command: valkey-server --save 30 1 --loglevel warning
-    restart: unless-stopped
-    networks:
-      - caddy
-    ports:
-      - 6379:6379
-    volumes:
-      - valkey-data2:/data
-    cap_drop:
-      - ALL
-    cap_add:
-      - SETGID
-      - SETUID
-      - DAC_OVERRIDE
+  # valkey:
+  #   container_name: valkey
+  #   image: docker.io/valkey/valkey:8-alpine
+  #   command: valkey-server --save 30 1 --loglevel warning
+  #   restart: unless-stopped
+  #   networks:
+  #     - caddy
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - valkey-data2:/data
+  #   cap_drop:
+  #     - ALL
+  #   cap_add:
+  #     - SETGID
+  #     - SETUID
+  #     - DAC_OVERRIDE
 
 networks:
   caddy:
     external: true
-  
 
 volumes:
   caddy-data:

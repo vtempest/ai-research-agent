@@ -4,6 +4,10 @@ import { getLineNodeStart } from '../rendering/rendering';
 import { getSelection, setSelection } from '../rendering/selection';
 import type { DecorationsModule } from './decorations';
 
+/**
+ * Selection module handles selection changes and rendering.
+ * @param editor The editor instance.
+ */
 export function selection(editor: Editor) {
   let rootDocument: Document;
   let rootWindow: Window;

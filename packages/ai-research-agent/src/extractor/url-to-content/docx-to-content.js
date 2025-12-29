@@ -42,7 +42,7 @@ const TABLE_STYLES = {
 /**
  * Converts a DOCX document to HTML
  * 
- * @param {string|File|Blob|ArrayBuffer} input - DOCX input to convert
+ * @param {string|File|Blob|ArrayBuffer|Buffer|Uint8Array} input - DOCX input to convert
  * @param {DocxOptions} [options] - Conversion options
  * @returns {Promise<string>} The converted HTML
  * @throws {Error} If conversion fails
@@ -62,12 +62,18 @@ export async function convertDOCXToHTML(input, options = {}) {
 
   /** 
    * Converts input to ArrayBuffer
-   * @param {string|File|Blob|ArrayBuffer} input
+   * @param {string|File|Blob|ArrayBuffer|Buffer|Uint8Array} input
    * @returns {Promise<ArrayBuffer>}
    */
   async function getBuffer(input) {
     if (input instanceof ArrayBuffer) {
       return input;
+    }
+    if (input instanceof Uint8Array) {
+      return input.buffer.slice(input.byteOffset, input.byteOffset + input.byteLength);
+    }
+    if (typeof Buffer !== 'undefined' && Buffer.isBuffer(input)) {
+      return input.buffer.slice(input.byteOffset, input.byteOffset + input.byteLength);
     }
     if (input instanceof Blob || input instanceof File) {
       return await input.arrayBuffer();
@@ -607,4 +613,49 @@ function generateHtml(content, styles) {
     ${bodyContent}
     </body>
     </html>`;
+}
+
+
+/**
+ * Detects if a binary buffer is a DOCX file by checking the file signature
+ * DOCX files are ZIP archives with specific internal structure
+ * 
+ * @param {ArrayBuffer|Buffer|Uint8Array} buffer - Binary buffer to check
+ * @returns {boolean} True if buffer appears to be a DOCX file
+ * @category Extract
+ */
+export function isBufferDOCX(buffer) {
+  if (!buffer) return false;
+  
+  try {
+    // Convert to Uint8Array for consistent access
+    const uint8Array = buffer instanceof Uint8Array 
+      ? buffer 
+      : new Uint8Array(buffer);
+    
+    // Check minimum length (DOCX files are ZIP archives, need at least ZIP header)
+    if (uint8Array.length < 30) return false;
+    
+    // Check ZIP file signature (PK header)
+    // ZIP files start with "PK" (0x504B)
+    if (uint8Array[0] !== 0x50 || uint8Array[1] !== 0x4B) return false;
+    
+    // Check if it's a ZIP file (central directory or local file header)
+    const signature = uint8Array[2] << 8 | uint8Array[3];
+    if (signature !== 0x0304 && signature !== 0x0201) return false;
+    
+    // For DOCX, we need to check if it contains the required DOCX structure
+    // This is a more thorough check that looks for DOCX-specific files
+    const bufferString = new TextDecoder('utf-8', { fatal: false }).decode(uint8Array.slice(0, Math.min(1024, uint8Array.length)));
+    
+    // Look for DOCX-specific markers in the ZIP structure
+    // DOCX files should contain references to word/document.xml
+    return bufferString.includes('word/document.xml') || 
+           bufferString.includes('word/styles.xml') ||
+           bufferString.includes('[Content_Types].xml');
+           
+  } catch (error) {
+    // If we can't parse the buffer, assume it's not a DOCX
+    return false;
+  }
 }

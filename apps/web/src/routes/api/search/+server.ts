@@ -10,7 +10,8 @@ export async function GET({ url }) {
     cat = "general",
     page = 1,
     lang = "en-US",
-    recency = 0,
+    safesearch = false,
+    recency,
     publicInstances = false,
   } = Object.fromEntries(url.searchParams.entries());
 
@@ -24,6 +25,7 @@ export async function GET({ url }) {
   let results = await searchWeb(query, {
     category: cat,
     recency,
+    safesearch,
     maxRetries: 6,
     privateSearxng: publicInstances ? false : searxngDomain,
     proxy: proxyDomain,
@@ -35,6 +37,7 @@ export async function GET({ url }) {
     results = await searchWeb(query, {
       category: cat,
       recency,
+      safesearch,
       maxRetries: 6,
       privateSearxng: false,
       proxy: proxyDomain,
@@ -48,5 +51,5 @@ export async function GET({ url }) {
   
 
   let elapsedTime = Date.now() - startTime;
-  return json({ results, elapsedTime });
+  return json({ ...results, elapsedTime });
 }

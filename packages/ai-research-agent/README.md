@@ -85,7 +85,7 @@ Language Models can distill the essence of collective thought into a vector spac
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/nNfHmct.png" /> 
+<img width="350px"  src="https://i.imgur.com/o8NTXxY.png" /> 
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)

@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  // import "grab-api.js/global";
-  import { grab } from "grab-api.js";
-  import { setStateInURL } from "$components/utils";
+  import { grab, log } from "grab-url";
   import { Splitpanes, Pane } from "svelte-splitpanes";
   import SearchInput from "./MainInputBox.svelte";
   import SearchResults from "./SearchResults.svelte";
@@ -10,8 +8,27 @@
   import AgentsPanel from "./AgentsPanel.svelte";
   import SearchHome from "./SearchHomepage.svelte";
   import "./home-style.css";
+  // @ts-ignorec
+  import { extractContentAndCite } from "/mnt/data/Projects/ai-research-agent/packages/ai-research-agent/src/extractor/html-to-content/html-to-content.js";
+
+  import { setStateInURL } from "$components/utils";
+  // @ts-ignore
+  import type { ArticleType } from "ai-research-agent";
+  import { extractContent } from "ai-research-agent";
 
   let { user = {} as User } = $props();
+
+  let isMobile = $state(false);
+
+  $effect(() => {
+    if (typeof window === "undefined") return;
+    const checkMobile = () => {
+      isMobile = window.innerWidth < 768;
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  });
 
   let searchText = $state("");
   let phrasesModel = $state({}) as Response & {
@@ -54,9 +71,14 @@
       lang: navigator?.language,
       cancelNewIfOngoing: false,
       cancelOngoingIfNew: true,
-      infiniteScroll: ["page", "results", ".results-list"],
+      // @ts-ignore
+      infiniteScroll: [
+        "page",
+        "results",
+        document.querySelector(".results-list"),
+      ],
       cache: false,
-      debug: true   
+      debug: true,
     });
 
   /**
@@ -66,12 +88,59 @@
    */
   let grabArticle = async (articleUrl, index?) => {
     fetchingURL = articleUrl;
-    await grab("extract", {
+
+    await grab<
+      ArticleType,
+      {
+        /** URL of the page to extract */
+        url: string;
+      }
+    >("extract", {
       response: extractedArticle,
       url: articleUrl,
+      timeout: 8,
       cancelOngoingIfNew: true,
     });
 
+    if (extractedArticle.error) {
+      document.dispatchEvent(
+        new CustomEvent("onInvokeChromeAPI", {
+          detail: {
+            type: "extractURL",
+            url: articleUrl,
+          },
+        }),
+      );
+
+      window.addEventListener("onExtractionResult", function (event) {
+        // extractedArticle = event.detail;
+
+        var ex2 = extractContentAndCite(event.detail.html, { url: articleUrl });
+        log(ex2);
+
+        // Merge extractedArticle and ex2
+        extractedArticle.title = ex2.title;
+        extractedArticle.author = ex2.author;
+        extractedArticle.author_cite = ex2.author_cite;
+        extractedArticle.author_short = ex2.author_short;
+        extractedArticle.date = ex2.date;
+        extractedArticle.source = ex2.source;
+        extractedArticle.html = ex2.html;
+        // extractedArticle.html = event.detail.html
+        // You can use mergedArticle as needed below
+
+        onAfterLoadArticle();
+      });
+    } else {
+      onAfterLoadArticle();
+    }
+  };
+
+  /**
+   * After loading article, run summarize AI function
+   * and question AI function and scroll to top
+   */
+  function onAfterLoadArticle() {
     var readViewElement = document.querySelector(".read-view");
     readViewElement?.scrollTo(0, 0);
 
@@ -80,7 +149,7 @@
     setTimeout(() => {
       AgentsPanelComponent?.callLanguageAPI("question");
     }, 1000);
-  };
+  }
 
   onMount(async () => {
     setupKeyboardListener();
@@ -89,7 +158,7 @@
     document.querySelector("#searchInput")?.dispatchEvent(
       new MouseEvent("mousedown", {
         bubbles: true,
-      })
+      }),
     );
 
     // handle incoming vars in URL from browser search or extension
@@ -104,37 +173,22 @@
 
     if (q) {
       searchText = q;
-      handleSearchSubmit();
+      setTimeout(async () => {
+        await handleSearchSubmit();
+      }, 1000);
     }
 
     // initialize phrases model
-    phrasesModel = await grab("model", {debug: false});
+    phrasesModel = await grab("model", { debug: false });
 
     //setup infinite loading scroll listener
 
     // setupScrollListener(".results-list", grabSearchResults);
   });
 
-  /**
-   * Sets up an infinite scroll listener to get more results when scrolled.
-   * @param {HTMLElement|string} element - The element or selector to attach scroll to
-   * @param {Function} searchFunction - The function to call when scrolled near bottom
-   */
-  // let setupScrollListener = (
-  //   element: HTMLElement | string,
-  //   searchFunction: Function
-  // ) =>
-  //   (typeof element === "string"
-  //     ? document.querySelector(element)
-  //     : element
-  //   )?.addEventListener(
-  //     "scroll",
-  //     ({ target: t }: any) =>
-  //       t.scrollHeight - t.scrollTop <= t.clientHeight + 200 && alert()
-  //   );
-
   onDestroy(() => {
-    cleanupKeyboardListener();
+    if (typeof window === "undefined") return;
+    window.removeEventListener("keydown", handleKeyboardNavigation);
   });
 
   /**
@@ -142,15 +196,7 @@
    */
   function setupKeyboardListener() {
     if (typeof window === "undefined") return;
-    window.addEventListener("keydown", handleKeyboardNavigation);
-  }
-
-  /**
-   * Remove the keyboard event listener
-   */
-  function cleanupKeyboardListener() {
-    if (typeof window === "undefined") return;
-    window.removeEventListener("keydown", handleKeyboardNavigation);
+    // window.addEventListener("keydown", handleKeyboardNavigation);
   }
 
   function updateSearchText(newText) {
@@ -175,7 +221,7 @@
     // test if q is valid url with regex, then extract that URL
     if (
       searchText.match(
-        /^https?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/
+        /^https?:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/,
       )
     ) {
       grabArticle(searchText, 0);
@@ -270,65 +316,71 @@
   }
 </script>
 
-<main class="flex h-screen w-full">
-  {#if searchText.length == 0}
-    <SearchHome
-      {user}
-      {handleSearchSubmit}
-      {phrasesModel}
-      {searchText}
-      {updateSearchText}
-      {selectedCategory}
-    />
-  {:else}
-    <Splitpanes>
-      <!-- Sidebar (20% width)  -->
-      <Pane size={20} snapSize={10}>
-        <div class="h-full flex flex-col shadow-md p-1">
-          <!-- Search bar at the top of the sidebar -->
-          <div class="border-b border-gray-200">
-            <SearchInput
-              {handleSearchSubmit}
-              {phrasesModel}
-              {selectedCategory}
-              {searchText}
-              {handleCategoryClick}
-              {updateSearchText}
-            />
-          </div>
+<main class="flex h-screen w-full relative">
+  <!-- Main Content Area -->
+  <div
+    class="flex-1 flex h-screen w-full md:transition-[margin-left] md:duration-200 md:ease-out"
+    style="margin-left: {!isMobile ? '60px' : '0'};"
+  >
+    {#if searchText.length == 0}
+      <SearchHome
+        {user}
+        {handleSearchSubmit}
+        {phrasesModel}
+        {searchText}
+        {updateSearchText}
+        {selectedCategory}
+      />
+    {:else}
+      <Splitpanes>
+        <!-- Sidebar (20% width)  -->
+        <Pane size={20} snapSize={10}>
+          <div class="h-full flex flex-col shadow-md p-1">
+            <!-- Search bar at the top of the sidebar -->
+            <div class="border-b border-gray-200">
+              <SearchInput
+                {handleSearchSubmit}
+                {phrasesModel}
+                {selectedCategory}
+                {searchText}
+                {handleCategoryClick}
+                {updateSearchText}
+              />
+            </div>
 
-          <div
-            bind:this={resultsList}
-            class="results-list grow overflow-y-auto overflow-x-hidden p-0"
-          >
-            <SearchResults
-              {searchResults}
-              {selectedResultIndex}
-              {grabArticle}
-              {grabSearchResults}
-            />
+            <div
+              bind:this={resultsList}
+              class="results-list grow overflow-y-auto overflow-x-hidden p-0"
+            >
+              <SearchResults
+                {searchResults}
+                {selectedResultIndex}
+                {grabArticle}
+                {grabSearchResults}
+              />
+            </div>
           </div>
-        </div>
-      </Pane>
+        </Pane>
 
-      <!-- ReadView (center panel) -->
+        <!-- ReadView (center panel) -->
+        <Pane size={45} snapSize={10}>
+          <ReadView {extractedArticle} {grabArticle} {fetchingURL} />
+        </Pane>
+
+        <!-- GRAPH 
       <Pane size={45} snapSize={10}>
-        <ReadView {extractedArticle} {grabArticle} {fetchingURL} />
-      </Pane>
+        <Graph />
+      </Pane> -->
 
-      <!-- GRAPH 
-    <Pane size={45} snapSize={10}>
-      <Graph />
-    </Pane> -->
-
-      <!-- AgentsPanel (right panel) -->
-      <Pane size={35} snapSize={10}>
-        <AgentsPanel
-          bind:this={AgentsPanelComponent}
-          {searchText}
-          {extractedArticle}
-        />
-      </Pane>
-    </Splitpanes>
-  {/if}
+        <!-- AgentsPanel (right panel) -->
+        <Pane size={35} snapSize={10}>
+          <AgentsPanel
+            bind:this={AgentsPanelComponent}
+            {searchText}
+            {extractedArticle}
+          />
+        </Pane>
+      </Splitpanes>
+    {/if}
+  </div>
 </main>

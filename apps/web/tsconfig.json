@@ -5,7 +5,12 @@
   "src/wordlists"],
   "compilerOptions": {
     "paths": {
-      "$lib/*": ["./src/lib/*"]
+      "$lib/*": ["./src/lib/*"],
+      "$assets/*": ["./src/assets/*"],
+      "$components/*": ["./src/lib/components/*"],
+      "reason-editor": ["../../packages/reason-editor"],
+      "ai-research-agent": ["../../packages/ai-research-agent"],
+      "qwksearch-api-client": ["../../packages/qwksearch-api-client"]
     },
     "typeRoots": ["./src/global.d.ts"],
    "target": "ESNext",

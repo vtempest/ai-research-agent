@@ -42,7 +42,7 @@
   "content_scripts": [
     {
       "js": [
-        "assets/index.js-loader-DFbmiRxx.js"
+        "assets/index.js-loader-DdIEns5c.js"
       ],
       "matches": [
         "<all_urls>"
@@ -61,9 +61,10 @@
         "src/*",
         "*.svg",
         "_favicon/*",
-        "assets/search-engines-oLmTS5w1.js",
-        "assets/Icon-DIu92qC6.js",
-        "assets/index.js-B2HTGXzs.js"
+        "assets/_commonjsHelpers-DbgfNesX.js",
+        "assets/api-BS-Ti-VQ.js",
+        "assets/marked.esm-YAkW4s6j.js",
+        "assets/index.js-BgkMCVkx.js"
       ],
       "use_dynamic_url": false
     }

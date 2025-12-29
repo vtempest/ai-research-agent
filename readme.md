@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="350px" src="https://i.imgur.com/8JvNmxU.jpeg" />
+    <img width="400px" src="https://i.imgur.com/OFk5sG3.jpeg" />
 </p>
 <p align="center">
     Being is Becoming<br />
@@ -7,13 +7,6 @@
     That is What It Must Become.<br />
     If AI is Humanity's Last Invention, <br />
     Then Vector Space is the Final Frontier.<br />
-</p>
-<p align="center">
-    <br />
-    <a href="https://npmjs.org/package/ai-research-agent">
-        <img src="https://i.imgur.com/HZUZUP0.png"
-            alt="NPM badge for ai-research-agent" />
-    </a>
 </p>
 <p align="center">
     <a href="https://discord.gg/SJdBqBz3tV">
@@ -97,7 +90,7 @@ bun i qwksearch-api-client
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/nNfHmct.png" /> 
+<img width="350px"  src="https://i.imgur.com/o8NTXxY.png" /> 
 </p>
 
 [extract Docs](https://airesearch.js.org/functions/extractor/url-to-content/)

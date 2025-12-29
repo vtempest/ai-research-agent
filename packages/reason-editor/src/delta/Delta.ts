@@ -1,16 +1,22 @@
 import diff from 'fast-diff';
-// import diff from './fast-diff.js';
 import AttributeMap from './AttributeMap.ts';
 import Op from './Op.ts';
 import isEqual from './util/isEqual.ts';
 
 const NULL_CHARACTER = String.fromCharCode(0); // Placeholder char for embed in diff()
 
+/**
+ * Represents a Delta, a list of operations describing a change or document.
+ */
 export default class Delta {
   static Op = Op;
   static AttributeMap = AttributeMap;
 
   ops: Op[];
+  /**
+   * Creates a new Delta.
+   * @param ops List of operations.
+   */
   constructor(ops?: Op[] | { ops: Op[] }) {
     // Assume we are given a well formed ops
     if (Array.isArray(ops)) {
@@ -22,6 +28,11 @@ export default class Delta {
     }
   }
 
+  /**
+   * Inserts text or content.
+   * @param arg Text or content to insert.
+   * @param attributes Formatting attributes.
+   */
   insert(arg: string | Record<string, any>, attributes?: AttributeMap | null): this {
     const newOp: Op = {};
     if (typeof arg === 'string' && arg.length === 0) {
@@ -34,6 +45,10 @@ export default class Delta {
     return this.push(newOp);
   }
 
+  /**
+   * Deletes content.
+   * @param length Number of characters to delete.
+   */
   delete(length: number): this {
     if (length <= 0) {
       return this;
@@ -41,6 +56,11 @@ export default class Delta {
     return this.push({ delete: length });
   }
 
+  /**
+   * Retains content (keeps it unchanged).
+   * @param length Number of characters to retain.
+   * @param attributes Formatting attributes to apply.
+   */
   retain(length: number, attributes?: AttributeMap | null): this {
     if (length <= 0) {
       return this;
@@ -52,6 +72,10 @@ export default class Delta {
     return this.push(newOp);
   }
 
+  /**
+   * Pushes an operation to the delta.
+   * @param newOp The operation to push.
+   */
   push(newOp: Op): this {
     let index = this.ops.length;
     let lastOp = this.ops[index - 1];
@@ -94,6 +118,9 @@ export default class Delta {
     return this;
   }
 
+  /**
+   * Removes trailing retain operations.
+   */
   chop(): this {
     const lastOp = this.ops[this.ops.length - 1];
     if (lastOp && lastOp.retain && !lastOp.attributes) {
@@ -102,18 +129,30 @@ export default class Delta {
     return this;
   }
 
+  /**
+   * Filters operations.
+   */
   filter(predicate: (op: Op, index: number) => boolean): Op[] {
     return this.ops.filter(predicate);
   }
 
+  /**
+   * Iterates over operations.
+   */
   forEach(predicate: (op: Op, index: number) => void): void {
     this.ops.forEach(predicate);
   }
 
+  /**
+   * Maps operations to a new array.
+   */
   map<T>(predicate: (op: Op, index: number) => T): T[] {
     return this.ops.map(predicate);
   }
 
+  /**
+   * Partitions operations into two arrays.
+   */
   partition(predicate: (op: Op) => boolean): [Op[], Op[]] {
     const passed: Op[] = [];
     const failed: Op[] = [];
@@ -124,10 +163,16 @@ export default class Delta {
     return [passed, failed];
   }
 
+  /**
+   * Reduces operations to a value.
+   */
   reduce<T>(predicate: (accum: T, curr: Op, index: number) => T, initialValue: T): T {
     return this.ops.reduce(predicate, initialValue);
   }
 
+  /**
+   * Calculates the change in length of the document.
+   */
   changeLength(): number {
     return this.reduce((length, elem) => {
       if (elem.insert) {
@@ -139,12 +184,18 @@ export default class Delta {
     }, 0);
   }
 
+  /**
+   * Calculates the length of the delta.
+   */
   length(): number {
     return this.reduce((length, elem) => {
       return length + Op.length(elem);
     }, 0);
   }
 
+  /**
+   * Returns a slice of the delta.
+   */
   slice(start = 0, end = Infinity): Delta {
     const ops: Op[] = [];
     const iter = Op.iterator(this.ops);
@@ -162,6 +213,9 @@ export default class Delta {
     return new Delta(ops);
   }
 
+  /**
+   * Composes this delta with another delta.
+   */
   compose(other: Delta, discardNull?: boolean): Delta {
     const thisIter = Op.iterator(this.ops);
     const otherIter = Op.iterator(other.ops);
@@ -233,6 +287,9 @@ export default class Delta {
     return delta.chop();
   }
 
+  /**
+   * Concatenates this delta with another delta.
+   */
   concat(other: Delta): Delta {
     const delta = new Delta(this.ops.slice());
     if (other.ops.length > 0) {
@@ -242,6 +299,9 @@ export default class Delta {
     return delta;
   }
 
+  /**
+   * Calculates the difference between this delta and another.
+   */
   diff(other: Delta, cursor?: any): Delta {
     if (this.ops === other.ops) {
       return new Delta();
@@ -292,6 +352,9 @@ export default class Delta {
     return retDelta.chop();
   }
 
+  /**
+   * Iterates over each line in the delta.
+   */
   eachLine(predicate: (line: Delta, attributes: AttributeMap, index: number) => boolean | void, newline = '\n'): void {
     const iter = Op.iterator(this.ops);
     let line = new Delta();
@@ -320,6 +383,9 @@ export default class Delta {
     }
   }
 
+  /**
+   * Inverts the delta against a base delta.
+   */
   invert(base: Delta): Delta {
     const inverted = new Delta();
     this.reduce((baseIndex, op) => {
@@ -347,6 +413,9 @@ export default class Delta {
 
   transform(index: number, priority?: boolean): number;
   transform(other: Delta, priority?: boolean): Delta;
+  /**
+   * Transforms the delta or index against another delta.
+   */
   transform(arg: number | Delta, priority = false): typeof arg {
     priority = !!priority;
     if (typeof arg === 'number') {
@@ -379,6 +448,9 @@ export default class Delta {
     return delta.chop();
   }
 
+  /**
+   * Transforms an index against this delta.
+   */
   transformPosition(index: number, priority = false): number {
     priority = !!priority;
     const thisIter = Op.iterator(this.ops);
