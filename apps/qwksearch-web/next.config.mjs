@@ -1,0 +1,81 @@
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import path from "path";
+import { fileURLToPath } from "url";
+
+if (process.env.NODE_ENV === "development") {
+  initOpenNextCloudflareForDev();
+}
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "standalone",
+  outputFileTracingRoot: path.join(__dirname, "../../"),
+  images: {
+    remotePatterns: [
+      {
+        hostname: "s2.googleusercontent.com",
+      },
+    ],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    turbotrace: {
+      logLevel: "error",
+      memoryLimit: 512,
+    },
+  },
+  serverExternalPackages: ["pdf-parse", "@libsql/isomorphic-ws"],
+  transpilePackages: ["reason-editor"],
+
+  webpack: (config, { isServer }) => {
+    // Resolve reason-editor from source, not dist
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "reason-editor/reader": path.resolve(
+        __dirname,
+        "../../packages/reason-editor/src/reader.tsx",
+      ),
+      "reason-editor": path.resolve(
+        __dirname,
+        "../../packages/reason-editor/src/index.tsx",
+      ),
+      // Stub missing optional dependency of resend package
+      "@react-email/render": path.resolve(
+        __dirname,
+        "lib/stubs/react-email-render.js",
+      ),
+    };
+
+    // Prefer root node_modules over nested packages/reason-editor/node_modules
+    config.resolve.modules = [
+      path.resolve(__dirname, "../../node_modules"),
+      path.resolve(__dirname, "node_modules"),
+      path.resolve(__dirname, "../../packages/reason-editor/node_modules"),
+      "node_modules",
+    ];
+    return config;
+  },
+
+  turbopack: {},
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Referrer-Policy", value: "no-referrer-when-downgrade" },
+          // Allow any origin to embed this app in an iframe
+          { key: "Content-Security-Policy", value: "frame-ancestors *;" },
+        ],
+      },
+    ];
+  },
+};
+
+export default nextConfig;

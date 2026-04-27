@@ -1,0 +1,374 @@
+/**
+ * @fileoverview Message sending and streaming response handling.
+ * Handles the complete flow of sending a chat message, receiving streamed
+ * responses, and updating the UI state accordingly.
+ * @module components/ResearchAgent/state/chat/sendMessage
+ */
+
+import crypto from "crypto";
+import { toast } from "sonner";
+import grab from "grab-url";
+import {
+  Message,
+  SourceMessage,
+} from "@/components/ResearchAgent/ChatConversation/ChatWindow";
+import { getSuggestions } from "@/lib/server-actions";
+import { getAutoMediaSearch } from "@/lib/config/serverRegistry";
+import { ChatModelProvider } from "./types";
+
+const SOURCE_EXTRACTION_KEY = "sourceExtractionEnabled";
+
+/**
+ * Parameters for sending a chat message.
+ */
+export interface SendMessageParams {
+  /** The message content to send */
+  message: string;
+  /** Optional custom message ID (used when rewriting) */
+  messageId?: string;
+  /** Whether this is a rewrite of a previous response */
+  rewrite?: boolean;
+}
+
+/**
+ * Dependencies required by the sendMessage function.
+ * These are passed from the ChatProvider to allow the function
+ * to access and modify chat state.
+ */
+export interface SendMessageDeps {
+  /** Current chat session ID */
+  chatId: string;
+  /** Whether a message is currently being sent */
+  loading: boolean;
+  /** Current messages in the chat */
+  messages: Message[];
+  /** IDs of files attached to the chat */
+  fileIds: string[];
+  /** Current search/focus mode */
+  focusMode: string;
+  /** Current category for search filtering */
+  category: string;
+  /** Response optimization mode */
+  optimizationMode: string;
+  /** Conversation history for context */
+  chatHistory: [string, string][];
+  /** AI model provider configuration */
+  chatModelProvider: ChatModelProvider;
+  /** Whether the user is authenticated */
+  isAuthenticated: boolean;
+  /** Ref to current messages (avoids stale closures) */
+  messagesRef: React.MutableRefObject<Message[]>;
+  /** Ref to the AbortController for cancelling the stream */
+  abortControllerRef: React.MutableRefObject<AbortController | null>;
+  /** Setter for loading state */
+  setLoading: (loading: boolean) => void;
+  /** Setter for message appeared state */
+  setMessageAppeared: (appeared: boolean) => void;
+  /** Setter for messages array */
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  /** Setter for chat history */
+  setChatHistory: React.Dispatch<React.SetStateAction<[string, string][]>>;
+}
+
+/**
+ * Sends a message to the chat API and handles the streaming response.
+ *
+ * This function:
+ * 1. Adds the user message to the chat immediately
+ * 2. Sends the request to `/api/chat`
+ * 3. Processes the streaming response (sources, message chunks, completion)
+ * 4. Updates the URL to include the chat ID
+ * 5. Triggers auto media search if enabled
+ * 6. Fetches follow-up suggestions after the response completes
+ *
+ * The streaming response is expected in newline-delimited JSON format with
+ * message types: 'sources', 'message', 'messageEnd', 'error'.
+ *
+ * @param params - The message parameters
+ * @param deps - State and setter dependencies from ChatProvider
+ *
+ * @example
+ * ```typescript
+ * await sendMessage(
+ *   { message: 'What is TypeScript?', rewrite: false },
+ *   {
+ *     chatId: 'abc123',
+ *     loading: false,
+ *     messages: [],
+ *     // ... other dependencies
+ *   }
+ * );
+ * ```
+ */
+export async function sendMessage(
+  params: SendMessageParams,
+  deps: SendMessageDeps,
+): Promise<void> {
+  const { message, messageId: providedMessageId, rewrite = false } = params;
+  const {
+    chatId,
+    loading,
+    messages,
+    fileIds,
+    focusMode,
+    category,
+    optimizationMode,
+    chatHistory,
+    chatModelProvider,
+    isAuthenticated,
+    messagesRef,
+    abortControllerRef,
+    setLoading,
+    setMessageAppeared,
+    setMessages,
+    setChatHistory,
+  } = deps;
+  const sourceExtractionEnabled =
+    typeof window !== "undefined" &&
+    localStorage.getItem(SOURCE_EXTRACTION_KEY) === "true";
+
+  // Prevent duplicate sends or empty messages
+  if (loading || !message) return;
+
+  // Create a new AbortController for this request
+  const abortController = new AbortController();
+  abortControllerRef.current = abortController;
+
+  setLoading(true);
+  setMessageAppeared(false);
+
+  // Update URL to include chat ID (for sharing/bookmarking)
+  if (messages.length <= 1) {
+    window.history.replaceState(null, "", `/c/${chatId}`);
+  }
+
+  // Accumulator for streaming response
+  let receivedMessage = "";
+  let added = false;
+
+  // Generate or use provided message ID
+  const messageId = providedMessageId ?? crypto.randomBytes(7).toString("hex");
+
+  // Add user message to chat immediately
+  setMessages((prevMessages) => [
+    ...prevMessages,
+    {
+      content: message,
+      messageId: messageId,
+      chatId: chatId,
+      role: "user",
+      createdAt: new Date(),
+    },
+  ]);
+
+  /**
+   * Handles individual streaming events from the chat API.
+   * @param data - Parsed JSON event from the stream
+   */
+  const messageHandler = async (data: any) => {
+    // Handle error events
+    if (data.type === "error") {
+      toast.error(data.data);
+      setLoading(false);
+      return;
+    }
+
+    // Handle sources (search results, documents)
+    if (data.type === "sources") {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          messageId: data.messageId,
+          chatId: chatId,
+          role: "source",
+          sources: data.data || [],
+          createdAt: new Date(),
+        },
+      ]);
+      if (data.data && data.data.length > 0) {
+        setMessageAppeared(true);
+      }
+    }
+
+    // Handle message chunks (streaming AI response)
+    if (data.type === "message") {
+      if (!added) {
+        // First chunk - create the assistant message
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            content: data.data,
+            messageId: data.messageId,
+            chatId: chatId,
+            role: "assistant",
+            createdAt: new Date(),
+          },
+        ]);
+        added = true;
+        setMessageAppeared(true);
+      } else {
+        // Subsequent chunks - append to existing message
+        setMessages((prev) =>
+          prev.map((msg) => {
+            if (msg.messageId === data.messageId && msg.role === "assistant") {
+              return { ...msg, content: msg.content + data.data };
+            }
+            return msg;
+          }),
+        );
+      }
+      receivedMessage += data.data;
+    }
+
+    // Handle stream completion
+    if (data.type === "messageEnd") {
+      // Update chat history with the complete exchange
+      setChatHistory((prevHistory) => [
+        ...prevHistory,
+        ["human", message],
+        ["assistant", receivedMessage],
+      ]);
+
+      setLoading(false);
+
+      // Auto-trigger media search if enabled
+      const lastMsg = messagesRef.current[messagesRef.current.length - 1];
+      const autoMediaSearch = getAutoMediaSearch();
+
+      if (autoMediaSearch) {
+        document.getElementById(`search-images-${lastMsg.messageId}`)?.click();
+        document.getElementById(`search-videos-${lastMsg.messageId}`)?.click();
+      }
+
+      // Fetch follow-up suggestions if we have sources and no existing suggestions
+      const userMessageIndex = messagesRef.current.findIndex(
+        (msg) => msg.messageId === messageId && msg.role === "user",
+      );
+
+      const sourceMessage = messagesRef.current.find(
+        (msg, i) => i > userMessageIndex && msg.role === "source",
+      ) as SourceMessage | undefined;
+
+      const suggestionMessageIndex = messagesRef.current.findIndex(
+        (msg, i) => i > userMessageIndex && msg.role === "suggestion",
+      );
+
+      if (
+        sourceMessage &&
+        sourceMessage.sources.length > 0 &&
+        suggestionMessageIndex === -1
+      ) {
+        const suggestions = await getSuggestions(messagesRef.current);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "suggestion",
+            suggestions: suggestions,
+            chatId: chatId,
+            createdAt: new Date(),
+            messageId: crypto.randomBytes(7).toString("hex"),
+          },
+        ]);
+      }
+    }
+  };
+
+  // For rewrites, trim history to before the rewritten message
+  const messageIndex = messages.findIndex((m) => m.messageId === messageId);
+
+  try {
+    // Send the chat request
+    const res = await fetch("/api/agent/chat", {
+      method: "POST",
+      signal: abortController.signal,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: message,
+        message: {
+          messageId: messageId,
+          chatId: chatId,
+          content: message,
+        },
+        chatId: chatId,
+        files: fileIds,
+        focusMode: focusMode,
+        category: category,
+        optimizationMode: optimizationMode,
+        history: rewrite
+          ? chatHistory.slice(0, messageIndex === -1 ? undefined : messageIndex)
+          : chatHistory,
+        chatModel: {
+          key: chatModelProvider.key,
+          providerId: chatModelProvider.providerId,
+        },
+        sourceExtractionEnabled,
+        systemInstructions: localStorage.getItem("systemInstructions"),
+      }),
+    });
+
+    // Handle authentication errors
+    if (res.status === 401) {
+      if (isAuthenticated) {
+        toast.error("Your session has expired. Please sign in again.");
+        setLoading(false);
+        window.location.href = "/";
+        return;
+      }
+      // For guests, 401 is expected - the API handles guest mode
+    }
+
+    // Handle other errors
+    if (!res.ok) {
+      toast.error("Failed to send message. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    if (!res.body) throw new Error("No response body");
+
+    // Process the streaming response
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let partialChunk = "";
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+
+      partialChunk += decoder.decode(value, { stream: true });
+
+      try {
+        // Parse newline-delimited JSON
+        const lines = partialChunk.split("\n");
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const json = JSON.parse(line);
+          messageHandler(json);
+        }
+        partialChunk = "";
+      } catch {
+        // Incomplete JSON - wait for next chunk
+      }
+    }
+  } catch (err: any) {
+    // Handle abort (user clicked stop)
+    if (err.name === "AbortError") {
+      // Finalize chat history with whatever was received so far
+      if (receivedMessage) {
+        setChatHistory((prevHistory) => [
+          ...prevHistory,
+          ["human", message],
+          ["assistant", receivedMessage],
+        ]);
+      }
+      setLoading(false);
+      abortControllerRef.current = null;
+      return;
+    }
+    throw err;
+  }
+
+  abortControllerRef.current = null;
+}

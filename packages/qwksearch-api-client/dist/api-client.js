@@ -796,7 +796,7 @@ const createClient = (config = {}) => {
     trace: makeMethodFn("TRACE")
   };
 };
-const baseUrl = "https://qwksearch.com/api";
+const baseUrl = "https://app.qwksearch.com/api";
 const createClientConfig = (config) => ({
   ...config,
   baseUrl

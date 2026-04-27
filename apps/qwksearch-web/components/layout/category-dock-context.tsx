@@ -1,0 +1,58 @@
+"use client"
+
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react"
+
+interface CategoryState {
+  currentCategory: any
+  onCategoryChange: (category: any) => void
+}
+
+interface CategoryDockContextValue {
+  categoryState: CategoryState | null
+  register: (state: CategoryState) => void
+  unregister: () => void
+}
+
+const CategoryDockContext = createContext<CategoryDockContextValue>({
+  categoryState: null,
+  register: () => { },
+  unregister: () => { },
+})
+
+export function CategoryDockProvider({ children }: { children: ReactNode }) {
+  const [categoryState, setCategoryState] = useState<CategoryState | null>(null)
+
+  const register = useCallback((state: CategoryState) => {
+    setCategoryState(state)
+  }, [])
+
+  const unregister = useCallback(() => {
+    setCategoryState(null)
+  }, [])
+
+  return (
+    <CategoryDockContext.Provider value={{ categoryState, register, unregister }}>
+      {children}
+    </CategoryDockContext.Provider>
+  )
+}
+
+/**
+ * Hook for pages to register their video category state into the global dock.
+ * Call from the videos page to add category items to the shared dock.
+ */
+export function useCategoryDock(currentCategory: any, onCategoryChange: (category: any) => void) {
+  const { register, unregister } = useContext(CategoryDockContext)
+
+  useEffect(() => {
+    register({ currentCategory, onCategoryChange })
+  }, [currentCategory, onCategoryChange, register])
+
+  useEffect(() => {
+    return () => unregister()
+  }, [unregister])
+}
+
+export function useCategoryDockState() {
+  return useContext(CategoryDockContext).categoryState
+}

@@ -1,0 +1,29 @@
+# JS build artefacts
+node_modules/
+build/
+.svelte-kit/
+
+# Rust build artefacts (huge — always rebuilt inside the container)
+src-tauri/target/
+
+# Version control
+.git/
+.gitignore
+
+# Editor / OS
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Docker files themselves (not needed inside the image)
+Dockerfile
+Dockerfile.windows
+.dockerignore
+
+# Local env / secrets
+.env
+.env.*
+
+# Dist output folder (populated by docker run, not needed inside the image)
+dist/

@@ -1,0 +1,35 @@
+{
+  "name": "qwksearch-desktop",
+  "version": "0.2.0",
+  "description": "QwkSearch Desktop - Select text, press ` to search web",
+  "type": "module",
+  "homepage": "https://qwksearch.com",
+  "license": "AGPL-3.0",
+  "author": "QwkSearch <support@qwksearch.com>",
+  "scripts": {
+    "docker:linux": " sudo docker run -v \"$(pwd)/dist:/output\" qwksearch-linux",
+    "docker:windows": "mkdir -p dist && sudo docker build -t qwksearch-windows -f Dockerfile.windows . && sudo docker run -v \"$(pwd)/dist:/output\" qwksearch-windows",
+    "docker:build:linux": "mkdir -p dist && sudo docker build -t qwksearch-linux -f Dockerfile .",
+    "docker:build:windows": "docker build -t qwksearch-windows -f Dockerfile.windows .",
+    "tauri": "cross-env LINUXDEPLOY_SKIP_STRIP=1 NO_STRIP=true tauri build",
+    "docker:all": "npm run docker:linux && npm run docker:windows",
+    "tauri:macos": "cross-env LINUXDEPLOY_SKIP_STRIP=1 NO_STRIP=true tauri build --bundles dmg,app"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "~2.10.0",
+    "@tauri-apps/plugin-autostart": "~2.5.0",
+    "@tauri-apps/plugin-clipboard-manager": "~2.3.0",
+    "@tauri-apps/plugin-shell": "~2.3.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.53.0",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "@tauri-apps/cli": "2.10.0",
+    "cross-env": "^10.1.0",
+    "svelte": "^5.53.0",
+    "svelte-check": "^4.4.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}

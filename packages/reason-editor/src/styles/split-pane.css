@@ -1,0 +1,110 @@
+/**
+ * Custom styles for react-split-pane resizers
+ * Makes the drag handles more visible and user-friendly
+ */
+
+/* Horizontal resizer (vertical split - divides left/right) */
+.Resizer.horizontal {
+  width: 20px;
+  margin: 0 -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  cursor: col-resize;
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+}
+
+.Resizer.horizontal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 60px;
+  background-color: hsl(var(--border));
+  border-radius: 2px;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.Resizer.horizontal:hover::before,
+.Resizer.horizontal.resizing::before {
+  opacity: 1;
+  background-color: hsl(var(--primary));
+  height: 80px;
+  width: 5px;
+}
+
+/* Vertical resizer (horizontal split - divides top/bottom) */
+.Resizer.vertical {
+  height: 20px;
+  margin: -10px 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  cursor: row-resize;
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+}
+
+.Resizer.vertical::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 6px;
+  width: 60px;
+  background-color: hsl(var(--border));
+  border-radius: 3px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.Resizer.vertical:hover::before,
+.Resizer.vertical.resizing::before {
+  opacity: 1;
+  background-color: hsl(var(--primary));
+  width: 80px;
+  height: 8px;
+}
+
+/* Disabled state */
+.Resizer.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.Resizer.disabled:hover::before {
+  opacity: 0.3;
+  background-color: hsl(var(--border));
+}
+
+/* Alternative grip style (dots) */
+.Resizer.horizontal.dots::before {
+  content: '⋮';
+  background: none;
+  font-size: 20px;
+  color: hsl(var(--muted-foreground));
+  width: auto;
+  height: auto;
+  opacity: 0.4;
+}
+
+.Resizer.vertical.dots::before {
+  content: '⋯';
+  background: none;
+  font-size: 20px;
+  color: hsl(var(--muted-foreground));
+  width: auto;
+  height: auto;
+  opacity: 0.4;
+}
+
+.Resizer.dots:hover::before,
+.Resizer.dots.resizing::before {
+  opacity: 0.8;
+  color: hsl(var(--primary));
+}

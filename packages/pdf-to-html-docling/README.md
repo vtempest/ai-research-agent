@@ -9,10 +9,8 @@ This system processes documents by extracting text with OCR while preserving lay
 
 ## Features
 
-- 📄 Convert PDF files to structured HTML
+- 📄 Convert complex PDF files to structured HTML
 - 🤖 Uses advanced Granite Docling AI model for accurate text extraction
-- 🎨 Generates clean, styled HTML output
-- 📱 Responsive HTML design
 - 📐 Layout and Localization – Preserves document structure and document element bounding boxes.
 - 💻 Code Recognition – Detects and formats code blocks including identation.
 - 🔢 Formula Recognition – Identifies and processes mathematical expressions.

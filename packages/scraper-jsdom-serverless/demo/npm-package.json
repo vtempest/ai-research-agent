@@ -1,0 +1,52 @@
+{
+  "name": "jsdom-scraper",
+  "version": "1.1.0",
+  "description": "Pure JavaScript DOM scraper with custom script execution, automation, and link extraction using JSDOM",
+  "main": "dist/scraper.js",
+  "types": "dist/scraper.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/scraper.d.ts",
+      "import": "./dist/scraper.mjs",
+      "require": "./dist/scraper.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "jsdom",
+    "scraper",
+    "web-scraping",
+    "automation",
+    "javascript",
+    "dom",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/jsdom-scraper"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/jsdom-scraper/issues"
+  },
+  "homepage": "https://github.com/yourusername/jsdom-scraper#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

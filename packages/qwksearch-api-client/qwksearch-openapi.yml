@@ -1,19 +1,18 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   description: |
     Search, extract, vectorize and outline a topic base with AI Research Agent.
   version: 1.0.0
   title: QwkSearch API
-  privacyPolicy: "http://qwksearch.com/legal/privacy/"
   contact:
     name: QwkSearch
     email: support@qwksearch.com
   x-logo:
     url: "https://qwksearch.com/icons/qwksearch-logo.png"
     altText: logo
-  servers:
-    - url: https://qwksearch.com/api
-      description: QwkSearch Production API
+servers:
+  - url: https://app.qwksearch.com/api
+    description: QwkSearch Production API
 
 tags:
   - name: Services
@@ -204,16 +203,17 @@ paths:
 
             | 👄 Provider | 🤖 Model Families | 📚 Docs | 🔑 Keys | 💰 Valuation | 💸 Revenue (2024) | 💲 Cost (1M Output) |
             | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-            | **XAI** | Grok, Grok Vision | [Docs](https://docs.x.ai/docs#models) | [Keys](https://console.x.ai/) | \$80B | \$100M | \$15.00 |
-            | **Groq** | Llama, DeepSeek, Gemini, Mistral | [Docs](https://console.groq.com/docs/overview) | [Keys](https://console.groq.com/keys) | \$2.8B | - | \$0.79 |
-            | **Ollama** | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs) | [Keys](https://ollama.com/settings/keys) | - | \$3.2M | \$0 |
-            | **OpenAI** | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni | [Docs](https://platform.openai.com/docs/overview) | [Keys](https://platform.openai.com/api-keys) | \$300B | \$3.7B | \$8.00 |
+            | **Google** | Gemini | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | - | ~$400M | \$10.00 |
             | **Anthropic** | Claude Sonnet, Claude Opus, Claude Haiku | [Docs](https://docs.anthropic.com/en/docs/welcome) | [Keys](https://console.anthropic.com/settings/keys) | \$61.5B | \$1B | \$15.00 |
-            | **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena | [Docs](https://docs.together.ai/docs/quickstart) | [Keys](https://api.together.xyz/settings/api-keys) | \$3.3B | \$50M | \$0.90 |
+            | **OpenAI** | o1, o1-mini, o4, o4-mini, gpt-4, gpt-4-turbo, gpt-4-omni | [Docs](https://platform.openai.com/docs/overview) | [Keys](https://platform.openai.com/api-keys) | \$300B | \$3.7B | \$8.00 |
+            | **Groq** | Llama, DeepSeek, Gemini, Mistral | [Docs](https://console.groq.com/docs/overview) | [Keys](https://console.groq.com/keys) | \$2.8B | - | \$0.79 |
+            | **XAI** | Grok, Grok Vision | [Docs](https://docs.x.ai/docs#models) | [Keys](https://console.x.ai/) | \$80B | \$100M | \$15.00 |
             | **Perplexity** | Sonar, Sonar Deep Research | [Docs](https://docs.perplexity.ai/models/model-cards) | [Keys](https://www.perplexity.ai/account/api/keys) | \$18B | \$20M | \$15.00 |
             | **Cloudflare** | Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama | [Docs](https://developers.cloudflare.com/workers-ai/) | [Keys](https://dash.cloudflare.com/profile/api-tokens) | \$62.3B | \$1.67B | \$2.25 |
-            | **Google** | Gemini | [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) | [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys) | - | ~$400M | \$10.00 |
+            | **Ollama** | llama, mistral, mixtral, vicuna, gemma, qwen, deepseek, openchat, openhermes, codelama, codegemma, llava, minicpm, wizardcoder, wizardmath, meditrion, falcon | [Docs](https://ollama.com/docs) | [Keys](https://ollama.com/settings/keys) | - | \$3.2M | \$0 |
+            | **TogetherAI** | Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena | [Docs](https://docs.together.ai/docs/quickstart) | [Keys](https://api.together.xyz/settings/api-keys) | \$3.3B | \$50M | \$0.90 |
 
+          ![how_transformer_works](https://i.imgur.com/l0BvtlG.jpeg)
           ![agent_arch_viz](https://i.imgur.com/bailW5n.gif)
           ![agent_arch_viz2](https://i.imgur.com/uW6E9VJ.gif)
       requestBody:
@@ -365,15 +365,12 @@ paths:
                   default: 1
                 query:
                   type: string
-                  required: false
                   description: (context for some agents) Use query to answer
                 chat_history:
                   type: string
-                  required: false
                   description: (context for some agents) Chat history
                 article:
                   type: string
-                  required: false
                   description: (context for some agents) Article to summarize
 
       responses:

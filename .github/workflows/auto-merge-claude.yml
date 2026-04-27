@@ -1,0 +1,54 @@
+name: Auto-merge Claude PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: >
+      github.actor == 'claude[bot]' ||
+      github.actor == 'anthropic-claude[bot]' ||
+      github.actor == 'vtempest'
+    steps:
+      - name: Auto-approve
+        uses: hmarr/auto-approve-action@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Wait for checks & Merge
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "Waiting for checks on PR #$PR_NUMBER"
+          
+          # Poll status checks (adjust required checks)
+          while true; do
+            STATUS=$(gh pr status $PR_NUMBER --json statusCheckRollup)
+            if [[ "$STATUS" == *"ALL_SUCCESS"* || "$STATUS" == *"QUEUED"* ]]; then
+              break
+            fi
+            sleep 30
+          done
+          
+          gh pr merge $PR_NUMBER --squash --auto --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  delete-branch:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == true
+    steps:
+      - name: Delete head branch
+        run: gh api repos/${{ github.repository }}/git/refs/heads/${{ github.event.pull_request.head.ref }} -X DELETE
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

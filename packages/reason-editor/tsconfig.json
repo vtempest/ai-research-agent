@@ -1,32 +1,39 @@
 {
-  "include": [
-    "src/**/*",
-    "react/**/*",
-    "svelte/**/*"
-  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2022",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./dist",
+    "sourceMap": true,
     "paths": {
-      "*": [
-        "src/*"
+      "@/*": [
+        "./*"
       ]
     },
-    "allowImportingTsExtensions": true,
-    "typeRoots": [
-      "src/global.d.ts"
-    ],
-    "target": "ESNext",
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "checkJs": false,
-    "noEmitOnError": false,
-    "strict": false,
-    "isolatedModules": false,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx"
-  }
+    "types": []
+  },
+  "include": [
+    "src",
+    "vite-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-demo",
+    "demo"
+  ]
 }

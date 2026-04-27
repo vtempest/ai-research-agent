@@ -1,53 +1,29 @@
 {
-    "name": "qwksearch",
-    "description": "Search, extract, vectorize, outline graph, and monitor the web for AI Research Agent.",
-    "author": "vtempest <grokthiscontact@gmail.com>",
-    "license": "rights.institute/PROSPER",
-    "version": "1.1.2",
-    "workspaces": [
-        "packages/*",
-        "apps/*"
-    ],
-    "packageManager": "bun@1.2.16",
-    "type": "module",
-    "exports": {
-        ".": {
-            "types": "./packages/ai-research-agent/dist/types.d.ts",
-            "import": "./packages/ai-research-agent/dist/research-agent.es.js",
-            "require": "./packages/ai-research-agent/dist/research-agent.cjs.js"
-        },
-        "./api-client": {
-            "types": "./packages/qwksearch-api-client/dist/index.d.ts",
-            "import": "./packages/qwksearch-api-client/dist/index.js",
-            "require": "./packages/qwksearch-api-client/dist/index.cjs"
-        },
-        "./editor": {
-            "types": "./packages/reason-editor/dist/types.d.ts",
-            "import": "./packages/reason-editor/dist/index.js",
-            "require": "./packages/reason-editor/dist/index.cjs"
-        },
-        "./neural-net": {
-            "types": "./packages/neural-net/dist/index.d.ts",
-            "import": "./packages/neural-net/dist/index.js",
-            "require": "./packages/neural-net/dist/index.cjs"
-        }
-    },
-    "scripts": {
-        "ship": "npx standard-version --release-as patch; npm publish",
-        "build:packages": "turbo build --filter=./packages/*",
-        "build:api": "turbo build:api --filter=qwksearch-api-client",
-        "docs": "turbo build:docs:slashdocs --filter=qwksearch-api-docs;",
-        "docs:serve": "turbo docs",
-        "dev": "turbo dev --filter=qwksearch-web-app",
-        "build": "turbo build --filter=ai-research-agent",
-        "serve": "turbo serve",
-        "test": "turbo test",
-        "docker:init": "sudo docker network create caddy",
-        "docker:stop": "sudo docker compose down; sudo docker stop $(sudo docker ps -q)",
-        "docker:start": "cross-env DOMAIN=qwksearch.com sudo -E docker compose up   --renew-anon-volumes  --build"
-    },
-    "dependencies": {
-        "@cloudflare/puppeteer": "^1.0.4",
-        "turbo": "^2.5.4"
-    }
+  "name": "qwksearch",
+  "private": true,
+  "version": "2.2.0",
+  "packageManager": "yarn@4.12.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "dev:web": "turbo dev --filter=qwksearch-web",
+    "build:web": "turbo build --filter=qwksearch-web",
+    "dev:editor": "turbo dev --filter=reason-editor",
+    "build:editor": "turbo build --filter=reason-editor"
+  },
+  "devDependencies": {
+    "turbo": "^2.8.14"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@opennextjs/cloudflare"
+  ],
+  "resolutions": {
+    "@vitejs/plugin-react": "5.2.0",
+    "@opennextjs/aws": "3.9.16"
+  }
 }

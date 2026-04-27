@@ -1,0 +1,497 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
+import { Loader2, Upload, Github, Monitor, Linkedin } from 'lucide-react';
+import { authClient } from '@/lib/auth/client';
+import { cn } from '@/lib/utils';
+
+interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  image?: string | null;
+}
+
+interface LinkedAccount {
+  id: string;
+  providerId: string;
+  accountId: string;
+}
+
+interface SessionInfo {
+  id: string;
+  token: string;
+  ipAddress?: string | null;
+  userAgent?: string | null;
+  createdAt: string | number | null;
+  expiresAt: string | number | null;
+  isCurrent: boolean;
+}
+
+const PROVIDERS = [
+  { id: 'google', name: 'Google', icon: () => (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+  )},
+  { id: 'github', name: 'GitHub', icon: () => <Github className="w-4 h-4" /> },
+  { id: 'discord', name: 'Discord', icon: () => (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.022.015.043.031.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+    </svg>
+  )},
+  { id: 'linkedin', name: 'LinkedIn', icon: () => <Linkedin className="w-4 h-4" /> },
+  { id: 'facebook', name: 'Facebook', icon: () => (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  )},
+  { id: 'apple', name: 'Apple', icon: () => (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.54 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+    </svg>
+  )},
+];
+
+function formatUA(ua: string | null | undefined): string {
+  if (!ua) return 'Unknown device';
+  if (ua.includes('Chrome')) return 'Chrome';
+  if (ua.includes('Firefox')) return 'Firefox';
+  if (ua.includes('Safari')) return 'Safari';
+  if (ua.includes('Edge')) return 'Edge';
+  return ua.slice(0, 40);
+}
+
+function formatDate(ts: string | number | null): string {
+  if (!ts) return '';
+  const d = new Date(typeof ts === 'number' ? ts * 1000 : ts);
+  return d.toLocaleDateString();
+}
+
+const SectionCard = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <section className={cn('rounded-xl border border-light-200 bg-light-primary/80 p-4 lg:p-6 transition-colors dark:border-dark-200 dark:bg-dark-primary/80', className)}>
+    {children}
+  </section>
+);
+
+const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: string }) => (
+  <div className="mb-4">
+    <h4 className="text-sm text-black dark:text-white font-medium">{title}</h4>
+    {subtitle && <p className="text-[11px] lg:text-xs text-black/50 dark:text-white/50">{subtitle}</p>}
+  </div>
+);
+
+const inputClass =
+  'w-full rounded-lg border border-light-200 dark:border-dark-200 bg-light-primary dark:bg-dark-primary px-3 py-2 lg:px-4 lg:py-3 !text-xs lg:!text-[13px] text-black/80 dark:text-white/80 placeholder:text-black/40 dark:placeholder:text-white/40 focus-visible:outline-none focus-visible:border-light-300 dark:focus-visible:border-dark-300 transition-colors disabled:cursor-not-allowed disabled:opacity-60';
+
+const SaveButton = ({ onClick, loading, disabled }: { onClick: () => void; loading: boolean; disabled?: boolean }) => (
+  <button
+    onClick={onClick}
+    disabled={loading || disabled}
+    className="mt-3 px-4 py-2 rounded-lg bg-[#24A0ED] hover:bg-[#1a8fd1] text-white text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+  >
+    {loading && <Loader2 className="w-3 h-3 animate-spin" />}
+    Save
+  </button>
+);
+
+export default function Account() {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [linkedAccounts, setLinkedAccounts] = useState<LinkedAccount[]>([]);
+  const [sessions, setSessions] = useState<SessionInfo[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+
+  const [nameSaving, setNameSaving] = useState(false);
+  const [emailSaving, setEmailSaving] = useState(false);
+  const [passwordSaving, setPasswordSaving] = useState(false);
+  const [avatarSaving, setAvatarSaving] = useState(false);
+  const [deletingSession, setDeletingSession] = useState<string | null>(null);
+  const [deletingAccount, setDeletingAccount] = useState(false);
+  const [linkingProvider, setLinkingProvider] = useState<string | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [profileRes, accountsRes, sessionsRes] = await Promise.all([
+          fetch('/api/user'),
+          fetch('/api/user/accounts'),
+          fetch('/api/user/sessions'),
+        ]);
+        const [profileData, accountsData, sessionsData] = await Promise.all([
+          profileRes.json(),
+          accountsRes.json(),
+          sessionsRes.json(),
+        ]);
+        setProfile(profileData);
+        setName(profileData.name ?? '');
+        setEmail(profileData.email ?? '');
+        setLinkedAccounts(Array.isArray(accountsData) ? accountsData : []);
+        setSessions(Array.isArray(sessionsData) ? sessionsData : []);
+      } catch (err) {
+        toast.error('Failed to load account settings.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error('Avatar must be under 2MB.');
+      return;
+    }
+    setAvatarSaving(true);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        const dataUrl = ev.target?.result as string;
+        const res = await fetch('/api/user', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: dataUrl }),
+        });
+        if (!res.ok) throw new Error();
+        setProfile((p) => p ? { ...p, image: dataUrl } : p);
+        toast.success('Avatar updated.');
+        setAvatarSaving(false);
+      };
+      reader.readAsDataURL(file);
+    } catch {
+      toast.error('Failed to upload avatar.');
+      setAvatarSaving(false);
+    }
+  };
+
+  const handleSaveName = async () => {
+    if (name.length > 32) { toast.error('Name must be 32 characters or fewer.'); return; }
+    setNameSaving(true);
+    try {
+      const res = await fetch('/api/user', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }),
+      });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+      setProfile((p) => p ? { ...p, name } : p);
+      toast.success('Name saved.');
+    } catch (err: any) {
+      toast.error(err.message ?? 'Failed to save name.');
+    } finally {
+      setNameSaving(false);
+    }
+  };
+
+  const handleSaveEmail = async () => {
+    setEmailSaving(true);
+    try {
+      const res = await fetch('/api/user', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+      setProfile((p) => p ? { ...p, email } : p);
+      toast.success('Email saved.');
+    } catch (err: any) {
+      toast.error(err.message ?? 'Failed to save email.');
+    } finally {
+      setEmailSaving(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword.length < 8) { toast.error('New password must be at least 8 characters.'); return; }
+    setPasswordSaving(true);
+    try {
+      const res = await fetch('/api/user/password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+      toast.success('Password changed.');
+      setCurrentPassword('');
+      setNewPassword('');
+    } catch (err: any) {
+      toast.error(err.message ?? 'Failed to change password.');
+    } finally {
+      setPasswordSaving(false);
+    }
+  };
+
+  const handleRevokeSession = async (id: string, isCurrent: boolean) => {
+    if (isCurrent) {
+      await authClient.signOut();
+      return;
+    }
+    setDeletingSession(id);
+    try {
+      const res = await fetch(`/api/user/sessions/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error();
+      setSessions((s) => s.filter((x) => x.id !== id));
+      toast.success('Session revoked.');
+    } catch {
+      toast.error('Failed to revoke session.');
+    } finally {
+      setDeletingSession(null);
+    }
+  };
+
+  const handleLinkProvider = async (providerId: string) => {
+    setLinkingProvider(providerId);
+    try {
+      await authClient.signIn.social({
+        provider: providerId as any,
+        callbackURL: window.location.href,
+      });
+    } catch (err: any) {
+      toast.error(err.message ?? 'Failed to link account.');
+      setLinkingProvider(null);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!confirm('Are you sure you want to permanently delete your account? This cannot be undone.')) return;
+    setDeletingAccount(true);
+    try {
+      const res = await fetch('/api/user', { method: 'DELETE' });
+      if (!res.ok) throw new Error();
+      await authClient.signOut();
+      window.location.href = '/';
+    } catch {
+      toast.error('Failed to delete account.');
+      setDeletingAccount(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <Loader2 className="w-5 h-5 animate-spin text-black/40 dark:text-white/40" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 space-y-4 overflow-y-auto px-6 py-6">
+      {/* Avatar */}
+      <SectionCard>
+        <SectionTitle
+          title="Avatar"
+          subtitle="Click on the avatar to upload a custom one from your files."
+        />
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={avatarSaving}
+            className="relative group w-16 h-16 rounded-full overflow-hidden border-2 border-light-200 dark:border-dark-200 flex-shrink-0 hover:border-[#24A0ED] transition-colors"
+            title="Upload avatar"
+          >
+            {profile?.image ? (
+              <img src={profile.image} alt="Avatar" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-light-200 dark:bg-dark-200 flex items-center justify-center text-xl font-medium text-black/50 dark:text-white/50">
+                {profile?.name?.[0]?.toUpperCase() ?? '?'}
+              </div>
+            )}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              {avatarSaving
+                ? <Loader2 className="w-5 h-5 text-white animate-spin" />
+                : <Upload className="w-5 h-5 text-white" />
+              }
+            </div>
+          </button>
+          <p className="text-xs text-black/50 dark:text-white/50">
+            An avatar is optional but strongly recommended.
+          </p>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleAvatarChange}
+          />
+        </div>
+      </SectionCard>
+
+      {/* Name */}
+      <SectionCard>
+        <SectionTitle
+          title="Name"
+          subtitle="Please enter your full name, or a display name."
+        />
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={32}
+          placeholder="Enter your name"
+          className={inputClass}
+        />
+        <p className="mt-1 text-[10px] text-black/40 dark:text-white/40">
+          Please use 32 characters at maximum.
+        </p>
+        <SaveButton onClick={handleSaveName} loading={nameSaving} />
+      </SectionCard>
+
+      {/* Email */}
+      <SectionCard>
+        <SectionTitle
+          title="Email"
+          subtitle="Enter the email address you want to use to log in."
+        />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          type="email"
+          className={inputClass}
+        />
+        <p className="mt-1 text-[10px] text-black/40 dark:text-white/40">
+          Please use a valid email address.
+        </p>
+        <SaveButton onClick={handleSaveEmail} loading={emailSaving} />
+      </SectionCard>
+
+      {/* Change Password */}
+      <SectionCard>
+        <SectionTitle
+          title="Change Password"
+          subtitle="Enter your current password and a new password."
+        />
+        <div className="space-y-2">
+          <input
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            placeholder="Current Password"
+            type="password"
+            className={inputClass}
+          />
+          <input
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="New Password"
+            type="password"
+            className={inputClass}
+          />
+        </div>
+        <p className="mt-1 text-[10px] text-black/40 dark:text-white/40">
+          Please use 8 characters at minimum.
+        </p>
+        <SaveButton
+          onClick={handleChangePassword}
+          loading={passwordSaving}
+          disabled={!newPassword}
+        />
+      </SectionCard>
+
+      {/* Providers */}
+      <SectionCard>
+        <SectionTitle
+          title="Providers"
+          subtitle="Connect your account with a third-party service."
+        />
+        <div className="space-y-2">
+          {PROVIDERS.map((provider) => {
+            const linked = linkedAccounts.some((a) => a.providerId === provider.id);
+            const isLinking = linkingProvider === provider.id;
+            return (
+              <div
+                key={provider.id}
+                className="flex items-center justify-between py-2 border-b border-light-200/60 dark:border-dark-200/60 last:border-0"
+              >
+                <div className="flex items-center gap-2 text-sm text-black/80 dark:text-white/80">
+                  <provider.icon />
+                  <span>{provider.name}</span>
+                </div>
+                {linked ? (
+                  <span className="text-xs text-green-500 font-medium">Connected</span>
+                ) : (
+                  <button
+                    onClick={() => handleLinkProvider(provider.id)}
+                    disabled={isLinking}
+                    className="text-xs text-[#24A0ED] hover:underline disabled:opacity-50 flex items-center gap-1"
+                  >
+                    {isLinking && <Loader2 className="w-3 h-3 animate-spin" />}
+                    Link
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </SectionCard>
+
+      {/* Sessions */}
+      <SectionCard>
+        <SectionTitle
+          title="Sessions"
+          subtitle="Manage your active sessions and revoke access."
+        />
+        <div className="space-y-2">
+          {sessions.map((s) => (
+            <div
+              key={s.id}
+              className="flex items-center justify-between py-2 border-b border-light-200/60 dark:border-dark-200/60 last:border-0"
+            >
+              <div>
+                <p className="text-xs text-black/80 dark:text-white/80">
+                  {formatUA(s.userAgent)}
+                  {s.isCurrent && (
+                    <span className="ml-2 text-[10px] bg-[#24A0ED]/20 text-[#24A0ED] px-1.5 py-0.5 rounded-full font-medium">
+                      Current
+                    </span>
+                  )}
+                </p>
+                <p className="text-[10px] text-black/40 dark:text-white/40">
+                  {s.ipAddress && `${s.ipAddress} · `}
+                  {formatDate(s.createdAt)}
+                </p>
+              </div>
+              <button
+                onClick={() => handleRevokeSession(s.id, s.isCurrent)}
+                disabled={deletingSession === s.id}
+                className="text-xs text-red-500 hover:underline disabled:opacity-50 flex items-center gap-1"
+              >
+                {deletingSession === s.id && <Loader2 className="w-3 h-3 animate-spin" />}
+                {s.isCurrent ? 'Sign Out' : 'Revoke'}
+              </button>
+            </div>
+          ))}
+          {sessions.length === 0 && (
+            <p className="text-xs text-black/40 dark:text-white/40">No active sessions found.</p>
+          )}
+        </div>
+      </SectionCard>
+
+      {/* Delete Account */}
+      <SectionCard>
+        <SectionTitle title="Delete Account" />
+        <p className="text-xs text-black/50 dark:text-white/50 mb-4">
+          Permanently delete your account and all associated data. This action cannot be undone.
+        </p>
+        <button
+          onClick={handleDeleteAccount}
+          disabled={deletingAccount}
+          className="px-4 py-2 rounded-lg border border-red-500/60 text-red-500 hover:bg-red-500/10 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+        >
+          {deletingAccount && <Loader2 className="w-3 h-3 animate-spin" />}
+          Delete Account
+        </button>
+      </SectionCard>
+    </div>
+  );
+}

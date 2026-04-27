@@ -1,0 +1,39 @@
+
+.floating-text-format-popup {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: white;
+  border: 1px solid hsl(var(--border, 214.3 31.8% 91.4%));
+  color: hsl(var(--popover-foreground, 222.2 84% 4.9%));
+  padding: 4px;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  opacity: 0;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 0.75rem;
+  transition: opacity 0.5s;
+  will-change: transform;
+  backdrop-filter: blur(6px);
+}
+
+/* Dark mode fallback */
+@media (prefers-color-scheme: dark) {
+  .floating-text-format-popup {
+    background-color: #1a1a1a;
+    background: hsl(var(--popover, 222.2 84% 4.9%));
+    border-color: hsl(var(--border, 217.2 32.6% 17.5%));
+    color: hsl(var(--popover-foreground, 210 40% 98%));
+  }
+}
+
+/* Legacy styles removed - now using shadcn Button components */
+
+@media (max-width: 1024px) {
+  .floating-text-format-popup button.insert-comment {
+    display: none;
+  }
+}

@@ -1,0 +1,113 @@
+# QwkSearch Public Source License (PSL)
+
+Version 1.0
+
+Copyright © 2024-2026 QwkSearch. All rights reserved.
+
+## 1. Acceptance
+
+By accessing, using, modifying, or distributing the Software, you agree to the terms of this License. If you do not agree, you may not use the Software.
+
+## 2. License Grant
+
+QwkSearch ("Licensor") grants you a non-exclusive, royalty-free, worldwide, non-transferable, non-sublicensable license to:
+
+- Use and copy the Software
+- Modify the source code for permitted purposes
+- Distribute the Software in unmodified or modified form under the same License, only where explicitly allowed below
+
+## 3. Permitted Uses
+
+You may use the Software for:
+
+### 3.1 Internal Organizational Use
+
+Use and modify the Software within your own company, including affiliates under common control, for operational or development purposes.
+
+### 3.2 Personal, Academic, and Research Use
+
+Use the Software for learning, experimentation, non-commercial research, and personal projects.
+
+### 3.3 Consulting & Implementation Services
+
+Provide professional services (deployment, customization, integration, maintenance, support) around the Software, provided you do not charge for the Software itself, nor provide network-based access to it.
+
+### 3.4 Self-Hosting (Private Use Only)
+
+Deploy and run the Software on your own infrastructure for your internal use only, without providing access to third-party users.
+
+### 3.5 Extension & Integration Development
+
+Develop connectors, integrations, extensions, plugins, or external tools that interface with the Software, without embedding or re-licensing the Software as part of those tools.
+
+### 3.6 Public Distribution (Free, Restricted, and Attributed)
+
+You may redistribute the Software or derivative works free of charge, for non-commercial and non-network-accessible use, if and only if:
+
+- This License is included without modification
+- Attribution notices are preserved
+- A clear notice of modification is added if applicable
+
+## 4. Prohibited Uses
+
+Unless you hold a separate commercial agreement from QwkSearch, you may not:
+
+**4.1** Offer network-accessible access to the Software (SaaS, managed services, hosted/shared instances, API access, multiplayer or centralized deployments for external users, etc.)
+
+**4.2** Rebrand or white-label the Software and present it as an original or proprietary offering
+
+**4.3** Commercialize, sell, sublicense, or bundle the Software into any paid product, service, offering, or distribution
+
+**4.4** Use the Software to develop a competing product or commercial alternative to QwkSearch services or Software
+
+**4.5** Embed the Software inside any distributed extension, integration, or client project in a way that provides end-user access without direct issuance of this License
+
+## 5. Attribution & Notices
+
+You must:
+
+- Preserve all copyright, trademark, and proprietary notices
+- Add a visible notice if you modify the Software: "This Software has been modified from the original version distributed by QwkSearch"
+- Provide this same License to any party receiving the Software from you
+
+You may not:
+
+- Remove or obscure ownership, branding, license, or rights notices
+
+## 6. Patent Rights
+
+A limited patent license is granted only to support Permitted Uses. It does not cover:
+
+- Patent claims arising from your modifications
+- Claims asserted against the Software by you or entities you control (such assertion terminates your patent rights under this License)
+
+## 7. No Warranty
+
+The Software is provided AS IS, without any guaranteed performance, support obligation, or warranty of any kind.
+
+## 8. Liability Limitation
+
+Licensor is not liable for damages, direct or consequential, arising from the Software, its use, or its inability to perform as expected.
+
+## 9. Termination
+
+- Your rights terminate automatically upon violation
+- If notified, you have 30 days to cure
+- Further violations result in permanent revocation
+
+## 10. Third-Party Components
+
+Bundled third-party dependencies retain their original licenses.
+
+## 11. Definitions
+
+- **"Licensor"** — QwkSearch
+- **"Software"** — The software made available under these terms, including all source code, documentation, and associated files.
+- **"You"** — The individual or entity exercising rights under this License.
+- **"Your Organization"** — Any legal entity you work for, including parent companies, subsidiaries, and affiliates under common control.
+- **"Derivative Work"** — Any work based on or derived from the Software.
+- **"Third Parties"** — Any individual or entity other than you or your organization.
+
+## 12. Commercial Licensing
+
+Commercial licensing is available through direct agreement with QwkSearch via support@qwksearch.com

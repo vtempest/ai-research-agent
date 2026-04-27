@@ -1,0 +1,49 @@
+import { Document } from "../../documents/DocumentTree";
+import type { TableOfContentsEntry } from "@lexical/react/LexicalTableOfContentsPlugin";
+
+export interface SidebarProps {
+  documents: Document[];
+  activeId: string | null;
+  activeDocument: Document | undefined;
+  onSelect: (id: string) => void;
+  onAdd: (parentId: string | null, isFolder?: boolean) => void;
+  onDelete: (id: string) => void;
+  onDuplicate: (id: string) => void;
+  onToggleExpand: (id: string) => void;
+  onMove: (
+    draggedId: string,
+    targetId: string | null,
+    position: "before" | "after" | "child",
+  ) => void;
+  onManageTags?: (id: string) => void;
+  onRename?: (id: string, newTitle: string) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  onSearchClear: () => void;
+  onSearchFocus: () => void;
+  // Mobile drawer props
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  isMobile?: boolean;
+  // View mode
+  viewMode: "tree" | "outline" | "split";
+  onViewModeChange: (mode: "tree" | "outline" | "split") => void;
+  // Settings
+  onSettingsClick?: () => void;
+  onInviteClick?: () => void;
+  // Trash callbacks
+  onRestore?: (id: string) => void;
+  onPermanentDelete?: (id: string) => void;
+  // New document ID to trigger rename mode
+  newDocumentId?: string | null;
+  // Right-side outline toggle
+  showRightOutline?: boolean;
+  onToggleRightOutline?: () => void;
+  // File source
+  activeFileSourceId?: string;
+  onFileSourceChange?: (sourceId: string) => void;
+  // Headings for outline view
+  headings?: TableOfContentsEntry[];
+}
+
+export type ViewMode = "tree" | "outline" | "split";

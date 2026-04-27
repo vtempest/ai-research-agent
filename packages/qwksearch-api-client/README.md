@@ -20,13 +20,72 @@ QwkSearch API provides three core services for AI-powered research and content a
 
 1. **Content Extraction** - Extract structured content and citations from any URL
 2. **Language Generation** - Generate AI responses using multiple language model providers
-3. **Web Search** - Search the web using SearXNG metasearch engine across 100+ sources
+3. **Web Search** - Search the web using  metasearch engine across 100+ sources
 
-## Base URL
 
+
+## Complete Example: Research Pipeline
+
+Combine all three endpoints to create a complete research pipeline:
+
+```javascript
+import * as qwk from 'qwksearch-api-client';
+
+async function researchTopic(topic) {
+  // 1. Search for relevant articles
+  const searchResults = await qwk.searchWeb({
+    query: {
+      q: topic,
+      cat: 'science',
+      recency: 'month'
+    }
+  });
+
+  console.log(`Found ${searchResults.results.length} results`);
+
+  // 2. Extract content from top 3 results
+  const articles = await Promise.all(
+    searchResults.results.slice(0, 3).map(async (result) => {
+      const content = await qwk.extractContent({
+        query: {
+          url: result.url
+        }
+      });
+      return content;
+    })
+  );
+
+  // 3. Generate summary of all articles
+  const combinedText = articles
+    .map(a => `${a.title}\n\n${a.html}`)
+    .join('\n\n---\n\n');
+
+  const summary = await qwk.writeLanguage({
+    body: {
+      provider: 'groq',
+      key: process.env.GROQ_API_KEY,
+      agent: 'summarize-bullets',
+      article: combinedText
+    }
+  });
+
+  return {
+    searchResults: searchResults.results,
+    articles,
+    summary: summary.content
+  };
+}
+
+// Run the research pipeline
+researchTopic('quantum computing applications')
+  .then(results => {
+    console.log('Research Summary:');
+    console.log(results.summary);
+  });
 ```
-https://qwksearch.com/api
-```
+
+---
+
 
 ## API Endpoints
 
@@ -60,62 +119,6 @@ GET /extract?url={url}&images={boolean}&links={boolean}
 | `absoluteURLs` | boolean | No | true | Convert relative URLs to absolute |
 | `timeout` | integer | No | 5 | HTTP request timeout (1-30 seconds) |
 
-#### Response
-
-**200 OK**
-
-```json
-{
-  "title": "Article or video title",
-  "html": "Simplified HTML content with standardized structure",
-  "cite": "Author Last, F. I. (2024). Title. Source.",
-  "author_cite": "Last, First Middle",
-  "author_short": "Last",
-  "author_type": "single|two-author|more-than-two|organization",
-  "author": "Original author string from source",
-  "date": "2024-01-15",
-  "source": "Publishing organization/site name",
-  "word_count": 1234,
-  "url": "https://canonical-url.com"
-}
-```
-
-#### Example Usage
-
-```javascript
-import * as qwk from 'qwksearch-api-client';
-
-// Basic extraction
-const data = await qwk.extractContent({
-  query: {
-    url: 'https://example.com/article'
-  }
-});
-console.log(data.title, data.html, data.cite);
-
-// With options
-const youtubeContent = await qwk.extractContent({
-  query: {
-    url: 'https://youtube.com/watch?v=example',
-    images: false,
-    timeout: 10
-  }
-});
-
-// Extract PDF content
-const pdfContent = await qwk.extractContent({
-  query: {
-    url: 'https://example.com/article.pdf',
-    images: true,
-    links: true
-  }
-});
-console.log(`Title: ${pdfContent.title}`);
-console.log(`Citation: ${pdfContent.cite}`);
-console.log(`Words: ${pdfContent.word_count}`);
-```
-
----
 
 ### 2. Generate Language (`/agents`)
 
@@ -198,7 +201,7 @@ Content-Type: application/json
 import * as qwk from 'qwksearch-api-client';
 
 // Question answering
-const response = await qwk.generateLanguage({
+const response = await qwk.writeLanguage({
   body: {
     provider: 'groq',
     key: process.env.GROQ_API_KEY,
@@ -212,7 +215,7 @@ const { content } = response;
 console.log(content);
 
 // Summarize article
-const summary = await qwk.generateLanguage({
+const summary = await qwk.writeLanguage({
   body: {
     provider: 'anthropic',
     key: process.env.ANTHROPIC_API_KEY,
@@ -223,7 +226,7 @@ const summary = await qwk.generateLanguage({
 });
 
 // Answer with citations
-const answer = await qwk.generateLanguage({
+const answer = await qwk.writeLanguage({
   body: {
     provider: 'openai',
     key: process.env.OPENAI_API_KEY,
@@ -240,7 +243,7 @@ console.log(answer.content);
 
 ### 3. Search Web (`/search`)
 
-Search the web using SearXNG metasearch engine aggregating 100+ search sources.
+Search the web using  metasearch engine aggregating 100+ search sources.
 
 #### Features
 
@@ -249,13 +252,8 @@ Search the web using SearXNG metasearch engine aggregating 100+ search sources.
 - **Recency Filters**: Filter by day, week, month, year
 - **Multi-Language**: Support for various languages
 - **Diverse Sources**: Aggregates from 100+ search engines
-
-#### Stats
-
-- Google processes 90% of web searches: 13.6 billion daily (~5 trillion/year)
 - Search index exceeds 100,000,000 GB covering 130 trillion pages
 - Uses 200+ ranking factors including keywords, backlinks, page speed
-- Top organic result gets ~22% of clicks
 
 #### Request
 
@@ -295,58 +293,6 @@ GET /search?q={query}&cat={category}&recency={filter}&lang={language}
 }
 ```
 
-#### Example Usage
-
-```javascript
-import * as qwk from 'qwksearch-api-client';
-
-// Basic search
-const searchResults = await qwk.searchWeb({
-  query: {
-    q: 'quantum computing'
-  }
-});
-
-searchResults.results.forEach(result => {
-  console.log(result.title, result.url);
-});
-
-// Advanced search
-const scienceResults = await qwk.searchWeb({
-  query: {
-    q: 'climate change',
-    cat: 'science',
-    recency: 'month',
-    lang: 'en-US',
-    page: 1
-  }
-});
-
-// News search
-const newsResults = await qwk.searchWeb({
-  query: {
-    q: 'artificial intelligence',
-    cat: 'news',
-    recency: 'week',
-    page: 1
-  }
-});
-
-newsResults.results.forEach(item => {
-  console.log(`${item.title}\n${item.url}\n${item.snippet}\n`);
-});
-
-// Video search
-const videoResults = await qwk.searchWeb({
-  query: {
-    q: 'machine learning tutorial',
-    cat: 'videos'
-  }
-});
-```
-
----
-
 ## Installation
 
 ### NPM Package
@@ -355,75 +301,8 @@ const videoResults = await qwk.searchWeb({
 npm install qwksearch-api-client
 ```
 
-### Python Package
-
-```bash
-pip install qwksearch-api-client
-```
-
 ---
 
-## Complete Example: Research Pipeline
-
-Combine all three endpoints to create a complete research pipeline:
-
-```javascript
-import * as qwk from 'qwksearch-api-client';
-
-async function researchTopic(topic) {
-  // 1. Search for relevant articles
-  const searchResults = await qwk.searchWeb({
-    query: {
-      q: topic,
-      cat: 'science',
-      recency: 'month'
-    }
-  });
-
-  console.log(`Found ${searchResults.results.length} results`);
-
-  // 2. Extract content from top 3 results
-  const articles = await Promise.all(
-    searchResults.results.slice(0, 3).map(async (result) => {
-      const content = await qwk.extractContent({
-        query: {
-          url: result.url
-        }
-      });
-      return content;
-    })
-  );
-
-  // 3. Generate summary of all articles
-  const combinedText = articles
-    .map(a => `${a.title}\n\n${a.html}`)
-    .join('\n\n---\n\n');
-
-  const summary = await qwk.generateLanguage({
-    body: {
-      provider: 'groq',
-      key: process.env.GROQ_API_KEY,
-      agent: 'summarize-bullets',
-      article: combinedText
-    }
-  });
-
-  return {
-    searchResults: searchResults.results,
-    articles,
-    summary: summary.content
-  };
-}
-
-// Run the research pipeline
-researchTopic('quantum computing applications')
-  .then(results => {
-    console.log('Research Summary:');
-    console.log(results.summary);
-  });
-```
-
----
 
 
 ## Links
@@ -440,6 +319,6 @@ researchTopic('quantum computing applications')
 - [Transformer Overview](https://jalammar.github.io/illustrated-transformer/)
 - [Building Transformer Guide](https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch)
 - [PyTorch Overview](https://www.learnpytorch.io/pytorch_cheatsheet/)
-- [SearXNG Overview](https://medium.com/@elmo92/search-in-peace-with-searxng-an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
-
+- [SearXNG Overview](https://medium.com/@elmo92/search-in-peace-with--an-alternative-search-engine-that-keeps-your-searches-private-accd8cddd6fc)
+- [Evaluating Large Language Models in Scientific Discovery](https://arxiv.org/pdf/2512.15567)
 ---

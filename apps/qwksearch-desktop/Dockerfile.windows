@@ -1,0 +1,77 @@
+FROM ubuntu:22.04
+LABEL description="Desktop build environment — Windows target (NSIS .exe) via MinGW cross-compilation"
+
+# NOTE: This produces a Windows NSIS installer (.exe) by cross-compiling on Linux.
+# Requires Docker running on any host (Linux, macOS, or Windows with WSL2).
+# The resulting installer targets x86_64 Windows 10+.
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# ── System dependencies ──────────────────────────────────────────────────────
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    apt-get update && apt-get install -y --no-install-recommends \
+    # Core build tools
+    curl wget gnupg ca-certificates \
+    build-essential pkg-config git cmake file \
+    # SSL
+    libssl-dev \
+    # MinGW-w64: C/C++ cross-compiler for Windows x86_64
+    gcc-mingw-w64-x86-64 \
+    g++-mingw-w64-x86-64 \
+    mingw-w64 \
+    # NSIS: cross-platform installer compiler (produces Windows .exe)
+    nsis \
+    && rm -rf /var/lib/apt/lists/*
+
+# ── Node.js 20 LTS ───────────────────────────────────────────────────────────
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# ── Rust stable + Windows target ─────────────────────────────────────────────
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+    sh -s -- -y --no-modify-path --default-toolchain stable
+ENV PATH="/usr/local/cargo/bin:${PATH}"
+
+# Add the Windows x86_64 target (GNU ABI, via MinGW)
+RUN rustup target add x86_64-pc-windows-gnu
+
+# Tell Cargo to use MinGW cross-linker for the Windows target
+RUN mkdir -p /usr/local/cargo/config && \
+    printf '[target.x86_64-pc-windows-gnu]\nlinker = "x86_64-w64-mingw32-gcc"\nar = "x86_64-w64-mingw32-ar"\n' \
+    > /usr/local/cargo/config/windows.toml
+ENV CARGO_CONFIG_DIR=/usr/local/cargo/config
+
+# ── Bun ──────────────────────────────────────────────────────────────────────
+ENV BUN_INSTALL=/usr/local/bun
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/usr/local/bun/bin:${PATH}"
+
+# ── Project ───────────────────────────────────────────────────────────────────
+WORKDIR /app
+
+COPY package.json ./
+RUN bun install
+
+COPY svelte.config.js vite.config.js jsconfig.json ./
+COPY src ./src
+COPY static ./static
+COPY src-tauri ./src-tauri
+
+# Point Cargo to the global config that sets the MinGW linker
+ENV CARGO_HOME=/usr/local/cargo
+
+# Artifacts volume
+VOLUME ["/output"]
+
+ENTRYPOINT ["/bin/sh", "-c", "\
+  set -e && \
+  echo '==> Building Windows target (NSIS .exe, cross-compiled via MinGW)...' && \
+  bunx tauri build --target x86_64-pc-windows-gnu --bundles nsis && \
+  mkdir -p /output && \
+  find src-tauri/target/x86_64-pc-windows-gnu/release/bundle -type f \\( -name '*.exe' -o -name '*.msi' \\) \
+    -exec cp -v {} /output/ \\; && \
+  echo '' && echo '==> Done. Artifacts in /output:' && ls -lh /output/ \
+"]
