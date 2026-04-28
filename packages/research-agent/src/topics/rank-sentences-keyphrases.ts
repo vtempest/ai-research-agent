@@ -8,10 +8,10 @@ import type { SentenceEntry, RankOptions } from "./types";
  * Selects the next vertex in a random walk using weighted sampling.
  *
  * Instead of building a distribution array (O(totalWeight) space per step),
- * this scans the adjacency map once with a single random draw — O(degree) time
+ * this scans the adjacency map once with a single random draw \u2014 O(degree) time
  * and O(1) additional space.
  *
- * @param adjacent - Map of neighbour key → edge weight.
+ * @param adjacent - Map of neighbour key \u2192 edge weight.
  * @returns The selected neighbour key.
  */
 function weightedRandom(adjacent: Map<string, number>): string {
@@ -36,17 +36,17 @@ function weightedRandom(adjacent: Map<string, number>): string {
  * a random-walk simulation (analogous to PageRank): nodes visited more often
  * during the walk are considered more central to the document's key concepts.
  *
- * **Key optimisations vs. naïve implementation:**
+ * **Key optimisations vs. na\u00efve implementation:**
  * - Weighted sampling via a single O(degree) scan instead of an O(weight) array.
  * - `Set`-based keyphrase intersection (O(1) lookup) instead of `Array.includes`.
  * - `Map<text, index>` for O(1) weight increment instead of O(n) linear scan.
- * - Flat `Map<string, Map<string, number>>` graph — no object-method overhead.
+ * - Flat `Map<string, Map<string, number>>` graph \u2014 no object-method overhead.
  * - Periodic forced reset prevents the walk from getting stuck in dense clusters.
  *
  * **References:**
- * 1. Zhao & Xie (2021) — "An Improved TextRank Multi-feature Fusion Algorithm"
+ * 1. Zhao & Xie (2021) \u2014 "An Improved TextRank Multi-feature Fusion Algorithm"
  *    https://iopscience.iop.org/article/10.1088/1742-6596/2078/1/012021/pdf
- * 2. Pan et al. (2019) — "An improved TextRank keywords extraction algorithm"
+ * 2. Pan et al. (2019) \u2014 "An improved TextRank keywords extraction algorithm"
  *    https://dl.acm.org/doi/10.1145/3321408.3326659
  *
  * @param sentencesWithKeyphrases - Sentences with pre-attached keyphrase lists.
@@ -60,11 +60,11 @@ export function rankSentencesCentralToKeyphrase(
 ): SentenceEntry[] | undefined {
   const { iterations = 1000, resetInterval = 100 } = options;
 
-  // ── Build graph ──────────────────────────────────────────────────────────
-  // graph: sentence text → { neighbour text → edge weight }
+  // \u2500\u2500 Build graph \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // graph: sentence text \u2192 { neighbour text \u2192 edge weight }
   const graph = new Map<string, Map<string, number>>();
 
-  // text → array index for O(1) weight increments during the walk
+  // text \u2192 array index for O(1) weight increments during the walk
   const textToIndex = new Map<string, number>();
 
   const sentences: SentenceEntry[] = sentencesWithKeyphrases.map((s, i) => {
@@ -105,11 +105,11 @@ export function rankSentencesCentralToKeyphrase(
   const allVertices = [...graph.keys()];
   if (allVertices.length === 0) return undefined;
 
-  // ── Random walk ──────────────────────────────────────────────────────────
+  // \u2500\u2500 Random walk \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   let currentKey = allVertices[Math.floor(Math.random() * allVertices.length)];
 
   for (let i = 0; i < iterations; i++) {
-    // Periodic reset — escape dense clusters and improve global coverage
+    // Periodic reset \u2014 escape dense clusters and improve global coverage
     if (i % resetInterval === 0) {
       currentKey = allVertices[Math.floor(Math.random() * allVertices.length)];
     }

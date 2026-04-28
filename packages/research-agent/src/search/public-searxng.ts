@@ -162,7 +162,7 @@ export async function searchWeb(
     results = results.map((result: any) => {
       let title = result.title.replace(/<\/?[^>]+(>|$)/g, "");
 
-      const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
+      const TITLE_SPLITTERS_RE = /( [|\-\/:\u00bb] )|( - )|(\|)/;
 
       if (TITLE_SPLITTERS_RE.test(title)) {
         const splitTitle = title.split(TITLE_SPLITTERS_RE);

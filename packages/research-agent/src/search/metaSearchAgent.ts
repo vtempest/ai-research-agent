@@ -22,7 +22,7 @@ import { searchSearxng } from "./public-searxng";
 import { searchTavily, isTavilyConfigured } from "./tavily";
 import { scrapeURL } from "./url-to-html";
 
-/** Strip HTML tags and decode entities — works in Cloudflare edge runtime */
+/** Strip HTML tags and decode entities \u2014 works in Cloudflare edge runtime */
 function htmlToText(html: string): string {
   return html
     .replace(/<(script|style)[^>]*>[\s\S]*?<\/(script|style)>/gi, ' ')

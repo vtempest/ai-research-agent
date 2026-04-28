@@ -19,7 +19,7 @@ import { generateLanguageResponse } from "../agents/generate-language";
 import { weighRelevanceConceptVectorMultiple } from "./vector-search";
 
 /**
- * ### SEEKTOPIC — Keyphrase & Sentence Extraction
+ * ### SEEKTOPIC \u2014 Keyphrase & Sentence Extraction
  *
  * Pulls the most important phrases and sentences out of any document.
  * Given raw text, it returns a ranked list of key concepts (e.g. "neural
@@ -28,19 +28,19 @@ import { weighRelevanceConceptVectorMultiple } from "./vector-search";
  *
  * <img src="https://i.imgur.com/gZ4kI1V.png" width="360px" />
  *
- * **How it works — 8-step pipeline:**
+ * **How it works \u2014 8-step pipeline:**
  *
- * 1. **Clean** — strip HTML tags and entities.
- * 2. **Split** — break text into sentences, respecting abbreviations and URLs.
- * 3. **Topic Extraction** *(LLM Path)* — sends the first 5000 words to an LLM
+ * 1. **Clean** \u2014 strip HTML tags and entities.
+ * 2. **Split** \u2014 break text into sentences, respecting abbreviations and URLs.
+ * 3. **Topic Extraction** *(LLM Path)* \u2014 sends the first 5000 words to an LLM
  *    to extract the most descriptive key topic phrases labeling the document.
- * 4. **Vector Search** *(LLM Path)* — calculates cosine similarity embeddings
+ * 4. **Vector Search** *(LLM Path)* \u2014 calculates cosine similarity embeddings
  *    for all sentences vs topic phrases, finding the top relevant sentences per topic.
- * 5. **Tokenise & Extract** *(Fallback)* — if LLM fails, identify noun-anchored
+ * 5. **Tokenise & Extract** *(Fallback)* \u2014 if LLM fails, identify noun-anchored
  *    n-grams (1-N words).
- * 6. **Score & Fold** *(Fallback)* — weight phrases and merge subsumed phrases.
- * 7. **Re-weight** *(Fallback)* — boost Wikipedia entities and rare domain terms.
- * 8. **TextRank** *(Fallback)* — build sentence similarity graph and run random walk.
+ * 6. **Score & Fold** *(Fallback)* \u2014 weight phrases and merge subsumed phrases.
+ * 7. **Re-weight** *(Fallback)* \u2014 boost Wikipedia entities and rare domain terms.
+ * 8. **TextRank** *(Fallback)* \u2014 build sentence similarity graph and run random walk.
  *
  * <video src="https://github.com/user-attachments/assets/73348d63-7671-4e20-8df9-29a13d5b0768"
  *  width="550px" controls />
@@ -48,14 +48,14 @@ import { weighRelevanceConceptVectorMultiple } from "./vector-search";
  * @param docText - Plain text or HTML document to analyse.
  * @param options - Optional tuning parameters (word limits, thresholds, query bias).
  * @returns
- *   - `optionSkipRanking: true` (default) → `KeyphraseEntry[]` sorted by weight.
- *   - `optionSkipRanking: false` → `SEEKTOPICResult` with `topSentences`,
+ *   - `optionSkipRanking: true` (default) \u2192 `KeyphraseEntry[]` sorted by weight.
+ *   - `optionSkipRanking: false` \u2192 `SEEKTOPICResult` with `topSentences`,
  *     `keyphrases`, and the full `sentences` array.
  *
  * @example
  * // Fast: just extract keyphrases
  * const keyphrases = extractSEEKTOPIC(articleText, { phrasesModel });
- * // → [{ keyphrase: "machine learning", weight: 84 }, ...]
+ * // \u2192 [{ keyphrase: "machine learning", weight: 84 }, ...]
  *
  * @example
  * // Full: keyphrases + summary sentences, biased toward a search query
@@ -90,17 +90,17 @@ export async function extractSEEKTOPIC(
     getEnv = () => "",
   } = options;
 
-  // ── 1. Normalize HTML ────────────────────────────────────────────────────
+  // \u2500\u2500 1. Normalize HTML \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   let text = docText
     .replace(/</g, " <")
     .replace(/>/g, "> ")
     .replace(/&.{2,5};/g, ""); // strip &quot; &amp; &lt; &gt; &nbsp;
   if (removeHTML) text = text.replace(/<[^>]*>/g, "");
 
-  // ── 2. Sentence segmentation ─────────────────────────────────────────────
+  // \u2500\u2500 2. Sentence segmentation \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   const sentencesArray = splitTextToSentences(text);
 
-  // ── 3. LLM Topic Extraction (Starting Step) ──────────────────────────────
+  // \u2500\u2500 3. LLM Topic Extraction (Starting Step) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   const first5kWords = text.split(/\s+/).slice(0, 5000).join(" ");
   const llmPrompt = `Extract the 5-10 most important key topic phrases that best 
   label this document. Return exclusively a comma-separated list of the key topic 
@@ -123,7 +123,7 @@ export async function extractSEEKTOPIC(
     console.error("LLM topic extraction failed", e);
   }
 
-  // ── 4. Use vector-search.ts for top topic sentences ──────────────────────
+  // \u2500\u2500 4. Use vector-search.ts for top topic sentences \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   if (llmTopics.length > 0) {
     if (optionSkipRanking) {
       return llmTopics.map((topic: string) => ({
@@ -186,7 +186,7 @@ export async function extractSEEKTOPIC(
     } as unknown as SEEKTOPICResult;
   }
 
-  // ── FALLBACK: Tokenise + extract n-grams ─────────────────────────────────
+  // \u2500\u2500 FALLBACK: Tokenise + extract n-grams \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   const nGrams: NgramMap = {};
   const sentenceKeysMap: SentenceEntry[] = [];
 
@@ -208,7 +208,7 @@ export async function extractSEEKTOPIC(
     }
   }
 
-  // ── 5. Score raw keyphrases ───────────────────────────────────────────────
+  // \u2500\u2500 5. Score raw keyphrases \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   let keyphraseObjects: KeyphraseEntry[] = [];
   for (let n = minWords; n <= maxWords; n++) {
     if (!nGrams[n]) continue;
@@ -222,7 +222,7 @@ export async function extractSEEKTOPIC(
     }
   }
 
-  // ── 6. Fold subphrases + deduplicate ──────────────────────────────────────
+  // \u2500\u2500 6. Fold subphrases + deduplicate \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   const folded = foldSubphrases(keyphraseObjects);
   const seen = new Set<string>();
   keyphraseObjects = folded
@@ -235,7 +235,7 @@ export async function extractSEEKTOPIC(
         : k.sentences,
     }));
 
-  // ── 7. IDF + wiki-entity + heavy-query weighting ─────────────────────────
+  // \u2500\u2500 7. IDF + wiki-entity + heavy-query weighting \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   keyphraseObjects = weightKeyphrasesBySpecificity(
     keyphraseObjects,
     phrasesModel,
@@ -247,7 +247,7 @@ export async function extractSEEKTOPIC(
   // Fast path: return keyphrases without TextRank
   if (optionSkipRanking) return keyphraseObjects;
 
-  // ── 8. Attach keyphrases to sentences ────────────────────────────────────
+  // \u2500\u2500 8. Attach keyphrases to sentences \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   for (const { keyphrase, sentences, weight } of keyphraseObjects) {
     if (Array.isArray(sentences)) {
       for (const si of sentences) {
@@ -256,7 +256,7 @@ export async function extractSEEKTOPIC(
     }
   }
 
-  // ── 9. TextRank ───────────────────────────────────────────────────────────
+  // \u2500\u2500 9. TextRank \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   const ranked = rankSentencesCentralToKeyphrase(sentenceKeysMap);
 
   const topSentences = (ranked ?? [])

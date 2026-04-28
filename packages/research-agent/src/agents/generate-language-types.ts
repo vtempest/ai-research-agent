@@ -34,7 +34,7 @@ export interface GenerateLanguageOptions {
   /** Specific model ID. Falls back to the provider's registered default. */
   model?: string;
   /**
-   * Sampling temperature (0–2).
+   * Sampling temperature (0\u20132).
    * Lower = more deterministic; higher = more creative. Default: `1`
    */
   temperature?: number;

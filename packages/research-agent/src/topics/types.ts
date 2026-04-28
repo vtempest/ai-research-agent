@@ -8,7 +8,7 @@ import type {
 
 export type { TopicToken, PhrasesModel };
 
-/** Map from n-gram size → { phrase text → sentence indices } */
+/** Map from n-gram size \u2192 { phrase text \u2192 sentence indices } */
 export type NgramMap = Record<number, Record<string, number[]>>;
 
 /**
@@ -40,7 +40,7 @@ export interface SentenceEntry {
 }
 
 /**
- * A sentence in the final SEEKTOPIC output — keyphrases are resolved to strings.
+ * A sentence in the final SEEKTOPIC output \u2014 keyphrases are resolved to strings.
  */
 export interface SentenceResult {
   text: string;

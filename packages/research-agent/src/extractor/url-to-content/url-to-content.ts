@@ -63,7 +63,7 @@ type UrlLikeDocument = {
  */
 
 /**
- * ### 🚜📜 Tractor the Text Extractor
+ * ### \u1f69c\u1f4dc Tractor the Text Extractor
  * <img width="350px"  src="https://i.imgur.com/o8NTXxY.png" />
  *
  * 1. Main Content Detection: Extract the main content from a URL by combining

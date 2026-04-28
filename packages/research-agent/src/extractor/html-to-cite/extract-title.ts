@@ -49,7 +49,7 @@ export function extractTitle(document) {
   }
 
   // Clean and normalize the title
-  const TITLE_SPLITTERS_RE = /( [|\-\/:»] )|( - )|(\|)/;
+  const TITLE_SPLITTERS_RE = /( [|\-\/:\u00bb] )|( - )|(\|)/;
   const DOMAIN_ENDINGS_RE = /\.(com|net|org|io|gov|edu|co\.uk)$/i;
 
   // Handle split titles

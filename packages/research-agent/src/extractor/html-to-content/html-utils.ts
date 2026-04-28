@@ -60,7 +60,7 @@ export function convertMathLaTexToImage(html) {
  * @example
  * var normalHTML = convertURLSafeHTMLToHTML('&lt;p&gt;This &amp; that &copy; 2023 '+
  * '&quot;Quotes&quot;&#39;Apostrophes&#39; &euro;100 &#x263A;&lt;/p&gt;', true)
- * console.log(normalHTML) // "<p>This & that © 2023 "Quotes" 'Apostrophes' €100 ☺</p>"
+ * console.log(normalHTML) // "<p>This & that \u00a9 2023 "Quotes" 'Apostrophes' \u20ac100 \u263a</p>"
  */
 export function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
   const entityMap = {
@@ -71,13 +71,13 @@ export function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
     " ": "&nbsp;",
     "'": "&#39;",
     "`": "&#96;",
-    "¢": "&cent;",
-    "£": "&pound;",
-    "¥": "&yen;",
-    "€": "&euro;",
-    "©": "&copy;",
-    "®": "&reg;",
-    "™": "&trade;",
+    "\u00a2": "&cent;",
+    "\u00a3": "&pound;",
+    "\u00a5": "&yen;",
+    "\u20ac": "&euro;",
+    "\u00a9": "&copy;",
+    "\u00ae": "&reg;",
+    "\u2122": "&trade;",
   };
 
   // Add numeric character references for Latin-1 Supplement characters
@@ -93,8 +93,8 @@ export function convertURLSafeHTMLToHTML(str, toStandardHTML = true) {
 
     // Add alternative representations
     reverseEntityMap["&apos;"] = "'";
-    reverseEntityMap["&laquo;"] = "«";
-    reverseEntityMap["&raquo;"] = "»";
+    reverseEntityMap["&laquo;"] = "\u00ab";
+    reverseEntityMap["&raquo;"] = "\u00bb";
 
     // Regex to match all types of HTML entities
     const entityRegex = new RegExp(

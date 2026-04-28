@@ -18,7 +18,7 @@ const COPY_ONCLICK = [
   "})(this)",
 ].join("");
 
-// Configure marked once at module load — stacking use() calls would duplicate extensions
+// Configure marked once at module load \u2014 stacking use() calls would duplicate extensions
 marked.use({ breaks: true, gfm: true, async: true });
 
 marked.use({
@@ -44,7 +44,7 @@ marked.use({
 
 /**
  * Convert markdown text to HTML with Highlight.js syntax highlighting.
- * Unescapes HTML entities like `&amp;` → `&`.
+ * Unescapes HTML entities like `&amp;` \u2192 `&`.
  */
 export async function convertMarkdownToHTMLEscaped(
   markdown: string,

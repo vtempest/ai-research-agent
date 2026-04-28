@@ -190,7 +190,7 @@ class OpenAIProvider extends BaseModelProvider<OpenAIConfig> {
       const modelType = modelTypeMap[matchedPattern] || 'non-chat model';
 
       throw new Error(
-        `❌ Invalid chat model: "${key}"\n\n` +
+        `\u274c Invalid chat model: "${key}"\n\n` +
         `This is a ${modelType}.\n\n` +
         `Please remove this model from your chat model configuration and select a valid chat completion model (e.g., gpt-3.5-turbo, gpt-4, gpt-4o).\n\n` +
         `You can manage your models in the Settings page.`,

@@ -1,7 +1,31 @@
 import { defineConfig } from 'wxt';
+import type { Plugin } from 'vite';
+
+// Chrome rejects content scripts with non-ASCII bytes.
+// Vite's minifier converts \uXXXX escapes back to literal chars,
+// so we post-process the content script bundle to re-escape them.
+function escapeNonAsciiPlugin(): Plugin {
+  return {
+    name: 'escape-non-ascii-content-script',
+    apply: 'build',
+    generateBundle(_options, bundle) {
+      for (const [fileName, chunk] of Object.entries(bundle)) {
+        if (fileName.includes('content-scripts/') && chunk.type === 'chunk') {
+          chunk.code = chunk.code.replace(
+            /[^\x00-\x7F]/g,
+            (ch) => `\\u${ch.codePointAt(0)!.toString(16).padStart(4, '0')}`
+          );
+        }
+      }
+    },
+  };
+}
 
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
+  vite: () => ({
+    plugins: [escapeNonAsciiPlugin()],
+  }),
   manifest: {
     name: 'QwkSearch Tab Manager AI',
     version: '6.0.0',

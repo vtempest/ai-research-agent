@@ -90,7 +90,7 @@ const TWO_COMP_REGEX = new RegExp(`(${MONTH_RE})[/.-](${YEAR_RE})`);
 
 // Search patterns
 const YEAR_PATTERN = new RegExp(`^\\D?(${YEAR_RE})`);
-const COPYRIGHT_PATTERN = new RegExp(`(?:©|\\&copy;|Copyright|\\(c\\))\\D*(?:${YEAR_RE})?-?(${YEAR_RE})\\D`);
+const COPYRIGHT_PATTERN = new RegExp(`(?:\u00a9|\\&copy;|Copyright|\\(c\\))\\D*(?:${YEAR_RE})?-?(${YEAR_RE})\\D`);
 const THREE_PATTERN = new RegExp("/([0-9]{4}/[0-9]{2}/[0-9]{2})[01/]");
 const THREE_CATCH = new RegExp("([0-9]{4})/([0-9]{2})/([0-9]{2})");
 const THREE_LOOSE_PATTERN = new RegExp("\\D([0-9]{4}[/.-][0-9]{2}[/.-][0-9]{2})\\D");
@@ -121,12 +121,12 @@ const YM_PATTERN = new RegExp(
 
 const REGEX_MONTHS = `
 January?|February?|March|A[pv]ril|Ma[iy]|Jun[ei]|Jul[iy]|August|September|O[ck]tober|November|De[csz]ember|
-Jan|Feb|M[aä]r|Apr|Jun|Jul|Aug|Sep|O[ck]t|Nov|De[cz]|
+Jan|Feb|M[a\u00e4]r|Apr|Jun|Jul|Aug|Sep|O[ck]t|Nov|De[cz]|
 Januari|Februari|Maret|Mei|Agustus|
-Jänner|Feber|März|
-janvier|février|mars|juin|juillet|aout|septembre|octobre|novembre|décembre|
-Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık|
-Oca|Şub|Mar|Nis|Haz|Tem|Ağu|Eyl|Eki|Kas|Ara
+J\u00e4nner|Feber|M\u00e4rz|
+janvier|f\u00e9vrier|mars|juin|juillet|aout|septembre|octobre|novembre|d\u00e9cembre|
+Ocak|\u015eubat|Mart|Nisan|May\u0131s|Haziran|Temmuz|A\u011fustos|Eyl\u00fcl|Ekim|Kas\u0131m|Aral\u0131k|
+Oca|\u015eub|Mar|Nis|Haz|Tem|A\u011fu|Eyl|Eki|Kas|Ara
 `.replace(/\n/g, '');
 
 const LONG_TEXT_PATTERN = new RegExp(
@@ -144,18 +144,18 @@ const JSON_PUBLISHED = new RegExp(`"datePublished": ?"(${YEAR_RE}-${MONTH_RE}-${
 const TIMESTAMP_PATTERN = new RegExp(`(${YEAR_RE}-${MONTH_RE}-${DAY_RE}).[0-9]{2}:[0-9]{2}:[0-9]{2}`);
 
 const MONTHS = [
-    ["jan", "januar", "jänner", "january", "januari", "janvier", "ocak", "oca"],
-    ["feb", "februar", "feber", "february", "februari", "février", "şubat", "şub"],
-    ["mar", "mär", "märz", "march", "maret", "mart", "mars"],
+    ["jan", "januar", "j\u00e4nner", "january", "januari", "janvier", "ocak", "oca"],
+    ["feb", "februar", "feber", "february", "februari", "f\u00e9vrier", "\u015fubat", "\u015fub"],
+    ["mar", "m\u00e4r", "m\u00e4rz", "march", "maret", "mart", "mars"],
     ["apr", "april", "avril", "nisan", "nis"],
-    ["may", "mai", "mei", "mayıs"],
+    ["may", "mai", "mei", "may\u0131s"],
     ["jun", "juni", "june", "juin", "haziran", "haz"],
     ["jul", "juli", "july", "juillet", "temmuz", "tem"],
-    ["aug", "august", "agustus", "ağustos", "ağu", "aout"],
-    ["sep", "september", "septembre", "eylül", "eyl"],
+    ["aug", "august", "agustus", "a\u011fustos", "a\u011fu", "aout"],
+    ["sep", "september", "septembre", "eyl\u00fcl", "eyl"],
     ["oct", "oktober", "october", "octobre", "okt", "ekim", "eki"],
-    ["nov", "november", "kasım", "kas", "novembre"],
-    ["dec", "dez", "dezember", "december", "desember", "décembre", "aralık", "ara"],
+    ["nov", "november", "kas\u0131m", "kas", "novembre"],
+    ["dec", "dez", "dezember", "december", "desember", "d\u00e9cembre", "aral\u0131k", "ara"],
 ];
 
 const TEXT_MONTHS = {};
@@ -170,20 +170,20 @@ const TEXT_DATE_PATTERN = /[.:,_/ -]|^\d+$/;
 const DISCARD_PATTERNS = new RegExp(
     "^\\d{2}:\\d{2}(?: |:|$)|" +
     "^\\D*\\d{4}\\D*$|" +
-    "[$€¥Ұ£¢₽₱฿#₹]|" +
+    "[$\u20ac\u00a5\u04b0\u00a3\u00a2\u20bd\u20b1\u0e3f#\u20b9]|" +
     "[A-Z]{3}[^A-Z]|" +
     "(?:^|\\D)(?:\\+\\d{2}|\\d{3}|\\d{5})\\D|" +
     "ftps?|https?|sftp|" +
     "\\.(?:com|net|org|info|gov|edu|de|fr|io)\\b|" +
     "IBAN|[A-Z]{2}[0-9]{2}|" +
-    "®"
+    "\u00ae"
 );
 
 const TEXT_PATTERNS = new RegExp(
     '(?:date[^0-9"]{,20}|updated|published|on)(?:[ :])*?([0-9]{1,4})[./]([0-9]{1,2})[./]([0-9]{2,4})|' +
-    "(?:Datum|Stand|Veröffentlicht am):? ?([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})|" +
-    "(?:güncellen?me|yayı(?:m|n)lan?ma) *?(?:tarihi)? *?:? *?([0-9]{1,2})[./]([0-9]{1,2})[./]([0-9]{2,4})|" +
-    "([0-9]{1,2})[./]([0-9]{1,2})[./]([0-9]{2,4}) *?(?:'de|'da|'te|'ta|'de|'da|'te|'ta|tarihinde) *(?:güncellendi|yayı(?:m|n)landı)",
+    "(?:Datum|Stand|Ver\u00f6ffentlicht am):? ?([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})|" +
+    "(?:g\u00fcncellen?me|yay\u0131(?:m|n)lan?ma) *?(?:tarihi)? *?:? *?([0-9]{1,2})[./]([0-9]{1,2})[./]([0-9]{2,4})|" +
+    "([0-9]{1,2})[./]([0-9]{1,2})[./]([0-9]{2,4}) *?(?:'de|'da|'te|'ta|'de|'da|'te|'ta|tarihinde) *(?:g\u00fcncellendi|yay\u0131(?:m|n)land\u0131)",
     "i"
 );
 

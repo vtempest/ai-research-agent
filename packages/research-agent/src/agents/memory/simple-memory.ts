@@ -492,7 +492,7 @@ export class SimpleMemory {
         .filter((memory) => memory.importance > (options.minImportance || 0.5))
         .forEach((memory) => {
           const importanceIndicator =
-            memory.importance >= 8 ? "⭐" : memory.importance >= 5 ? "•" : "-";
+            memory.importance >= 8 ? "\u2b50" : memory.importance >= 5 ? "\u2022" : "-";
           context += `${importanceIndicator} ${memory.content}\n`;
         });
     }

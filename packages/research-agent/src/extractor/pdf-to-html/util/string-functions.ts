@@ -100,11 +100,11 @@ export function isListItemCharacter(string) {
     return false
   }
   const char = string.charAt(0)
-  return char === '-' || char === '•' || char === '–'
+  return char === '-' || char === '\u2022' || char === '\u2013'
 }
 
 export function isListItem(string) {
-  return /^[\s]*[-•–][\s].*$/g.test(string)
+  return /^[\s]*[-\u2022\u2013][\s].*$/g.test(string)
 }
 
 export function isNumberedListItem(string) {

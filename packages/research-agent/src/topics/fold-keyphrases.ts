@@ -21,7 +21,7 @@ import type { KeyphraseEntry } from "./types";
  * before their constituent sub-phrases.
  *
  * @param keyphrases - Raw scored keyphrases, any order.
- * @returns Deduplicated, folded array — larger representative phrases only.
+ * @returns Deduplicated, folded array \u2014 larger representative phrases only.
  *
  * @example
  * const folded = foldSubphrases([
@@ -73,11 +73,11 @@ export function foldSubphrases(keyphrases: KeyphraseEntry[]): KeyphraseEntry[] {
           existing.words = curr.words;
         }
 
-        continue outer; // merged — skip push
+        continue outer; // merged \u2014 skip push
       }
     }
 
-    // No compatible existing phrase found — add as new entry
+    // No compatible existing phrase found \u2014 add as new entry
     if (curr.sentences.length >= 1) {
       folded.push({ ...curr });
     }

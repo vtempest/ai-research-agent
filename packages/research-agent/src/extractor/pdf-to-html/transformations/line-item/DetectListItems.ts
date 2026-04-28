@@ -11,7 +11,7 @@ import { REMOVED_ANNOTATION, ADDED_ANNOTATION, DETECTED_ANNOTATION } from '../..
 import BlockType from '../../models/BlockType'
 import { isListItemCharacter, isNumberedListItem } from '../../util/string-functions'
 
-// Detect items starting with -, •, etc...
+// Detect items starting with -, \u2022, etc...
 export default class DetectListItems extends ToLineItemTransformation {
   constructor () {
     super('Detect List Items')

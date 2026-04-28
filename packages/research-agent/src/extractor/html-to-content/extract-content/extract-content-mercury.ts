@@ -466,7 +466,7 @@ function scoreNode(node) {
 
   // TODO: Consider ordering by most likely.
   // E.g., if divs are a more common tag on a page,
-  // Could save doing that regex test on every node – AP
+  // Could save doing that regex test on every node \u2013 AP
   if (PARAGRAPH_SCORE_TAGS.test(tagName)) {
     return scoreParagraph(node);
   }

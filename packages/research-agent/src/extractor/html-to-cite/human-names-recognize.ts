@@ -9,13 +9,13 @@ const TERMS_ORG =
   "abc,ag,ap,academy,advisors,agency,airbnb,amazon,america,american,apple,associated,association,atlantic," +
   "attorneys,authority,axel,bank,baptiste,bbc,bertelsmann,blackrock,bloomberg,bmw,boston,broadcasting,bureau," +
   "business,buzzfeed,cambridge,capital,cbs,center,chase,chicago,china,church,citigroup,clinic,club,cnn,coca-cola," +
-  "college,commission,communications,condé,consulting,corp,corps,costco,daily,department,der,deutsche,division,dow," +
+  "college,commission,communications,cond\u00e9,consulting,corp,corps,costco,daily,department,der,deutsche,division,dow," +
   "economist,enterprises,eu,european,fabrication,facebook,fargo,ferrari,financial,ford,forbes,fox,france,fund," +
   "gannett,general,global,globe,gm,gmbh,goldman,google,group,guardian,harvard,hearst,herald,hill,holdings,home," +
   "honda,hospital,huffington,ibm,inc,industries,institute,intel,international,investments,jazeera,japan,jones," +
   "jpmorgan,lancet,laboratories,law,legal,linkedin,llc,los,ltd,manufacturing,macy's,mcdonald's,media,medical," +
   "mercedes-benz,meta,microsoft,ministry,mit,morgan,mosque,msnbc,nast,national,nato,nbc,netflix,news,newsweek," +
-  "new,nike,nordstrom,npr,ny,organization,oxford,país,partners,pbs,pentagon,plc,politico,porsche,post,press," +
+  "new,nike,nordstrom,npr,ny,organization,oxford,pa\u00eds,partners,pbs,pentagon,plc,politico,porsche,post,press," +
   "productions,r&d,regiment,retail,reuters,research,rt,sachs,school,science,scientific,securities,services,silicon," +
   "society,solutions,south,spacex,spiegel,springer,stanford,stanley,starbucks,straits,studios,sydney,synagogue," +
   "systems,target,team,tech,techcrunch,temple,tesla,the,thomson,times,toronto,toyota,trust,twitter,uber,union," +

@@ -81,9 +81,9 @@ Use the appropriate language identifier for syntax highlighting.
 
 Mathematical Expressions
 
-Wrap all math expressions in LaTeX using  for inline and  for block formulas. For example: x4=x−3x4=x−3
+Wrap all math expressions in LaTeX using  for inline and  for block formulas. For example: x4=x\u22123x4=x\u22123
 
-To cite a formula add citations to the end, for examplesin⁡(x)sin(x) 12 or x2−2x2−2 4.
+To cite a formula add citations to the end, for examplesin\u2061(x)sin(x) 12 or x2\u22122x2\u22122 4.
 
 Never use $ or $$ to render LaTeX, even if it is present in the Query.
 
@@ -568,7 +568,7 @@ of your knowledge graph. For each edge:
     accurately represents the main ideas, themes, and essential details of the document.
 
     Please remember to be thorough, and ensure that the final summary is a true reflection of 
-    the document’s content and purpose.
+    the document\u2019s content and purpose.
     <sections>
     Summarized Sections:
     {sections}
@@ -582,7 +582,7 @@ of your knowledge graph. For each edge:
       You are an AI research assistant. From the following list of search results, choose the most relevant URLs for the query:  
 **"{user_query}"**
 
-Evaluate relevance by semantic similarity and keyword alignment. Rephrase the query to make it more specific and relevant to the search results. Return 3–5 links with a short justification.
+Evaluate relevance by semantic similarity and keyword alignment. Rephrase the query to make it more specific and relevant to the search results. Return 3\u20135 links with a short justification.
 {results}
 
     `,
@@ -610,7 +610,7 @@ export function extractJSONFromLanguageReply(text, key = null) {
 
   //if no key is provided, return all the lines that start with a number or a bullet point
   if (!key) {
-    const lines = text.split('\n').filter(line => /^\d+[.)]\s*|\s*[-*•]\s/.test(line)).map(line => line.replace(/^\s*[-*•]|\d+[.)]\s*|[\u2022]\s*/g, ''));
+    const lines = text.split('\n').filter(line => /^\d+[.)]\s*|\s*[-*\u2022]\s/.test(line)).map(line => line.replace(/^\s*[-*\u2022]|\d+[.)]\s*|[\u2022]\s*/g, ''));
     return lines;
   }
 
@@ -639,7 +639,7 @@ export function extractJSONFromLanguageReply(text, key = null) {
   // Remove list markers and clean whitespace
   return results?.join('\n')
     .split('\n')
-    .map(line => line.replace(/^\s*[-*•]|\d+[.)]\s*|[\u2022]\s*/gm, '').trim())
+    .map(line => line.replace(/^\s*[-*\u2022]|\d+[.)]\s*|[\u2022]\s*/gm, '').trim())
     .filter(line => line) || []
 }
 

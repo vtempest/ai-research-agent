@@ -47,28 +47,28 @@ export { convertMarkdownToHTMLEscaped } from "./markdown-to-html";
  * <img src="https://i.imgur.com/bailW5n.gif" />
  * <img src="https://i.imgur.com/uW6E9VJ.gif" />
  *
- * ### 👄 LIPs: Language Intelligence Providers
+ * ### \u1f444 LIPs: Language Intelligence Providers
  * **IDs**: groq, togetherai, openai, anthropic, xai, google, perplexity, ollama, cloudflare, nvidia
  *
- * - **XAI** 📚 [Docs](https://docs.x.ai/docs#models) 🔑 [Keys](https://console.x.ai/) 💰 80B 💸 100M:
+ * - **XAI** \u1f4da [Docs](https://docs.x.ai/docs#models) \u1f511 [Keys](https://console.x.ai/) \u1f4b0 80B \u1f4b8 100M:
  *   Grok, Grok Vision
- * - **Groq** 📚 [Docs](https://console.groq.com/docs/overview) 🔑 [Keys](https://console.groq.com/keys) 💰 2.8B:
+ * - **Groq** \u1f4da [Docs](https://console.groq.com/docs/overview) \u1f511 [Keys](https://console.groq.com/keys) \u1f4b0 2.8B:
  *   Llama, DeepSeek, Gemini, Mistral
- * - **NVIDIA** 📚 [Docs](https://docs.api.nvidia.com/) 🔑 [Keys](https://build.nvidia.com/settings/api-keys) 💰 1.2T 💸 30B:
+ * - **NVIDIA** \u1f4da [Docs](https://docs.api.nvidia.com/) \u1f511 [Keys](https://build.nvidia.com/settings/api-keys) \u1f4b0 1.2T \u1f4b8 30B:
  *   Kimi K2.5, Nemotron Nano, DeepSeek V3, Llama Nemotron, Qwen2.5, Gemma3, Llama 4
- * - **Ollama** 📚 [Docs](https://ollama.com/docs) — runs locally, no API key needed
- * - **OpenAI** 📚 [Docs](https://platform.openai.com/docs/overview) 🔑 [Keys](https://platform.openai.com/api-keys) 💰 300B 💸 3.7B:
+ * - **Ollama** \u1f4da [Docs](https://ollama.com/docs) \u2014 runs locally, no API key needed
+ * - **OpenAI** \u1f4da [Docs](https://platform.openai.com/docs/overview) \u1f511 [Keys](https://platform.openai.com/api-keys) \u1f4b0 300B \u1f4b8 3.7B:
  *   o1, o4, GPT-4, GPT-4 Turbo, GPT-4 Omni
- * - **Anthropic** 📚 [Docs](https://docs.anthropic.com/en/docs/welcome) 🔑 [Keys](https://console.anthropic.com/settings/keys) 💰 61.5B 💸 1B:
+ * - **Anthropic** \u1f4da [Docs](https://docs.anthropic.com/en/docs/welcome) \u1f511 [Keys](https://console.anthropic.com/settings/keys) \u1f4b0 61.5B \u1f4b8 1B:
  *   Claude Sonnet, Claude Opus, Claude Haiku
- * - **TogetherAI** 📚 [Docs](https://docs.together.ai/docs/quickstart) 🔑 [Keys](https://api.together.xyz/settings/api-keys) 💰 3.3B 💸 50M:
+ * - **TogetherAI** \u1f4da [Docs](https://docs.together.ai/docs/quickstart) \u1f511 [Keys](https://api.together.xyz/settings/api-keys) \u1f4b0 3.3B \u1f4b8 50M:
  *   Llama, Mistral, Mixtral, Qwen, Gemma, WizardLM, DBRX, DeepSeek, Hermes, SOLAR, StripedHyena
- * - **Perplexity** 📚 [Docs](https://docs.perplexity.ai/models/model-cards) 🔑 [Keys](https://www.perplexity.ai/account/api/keys) 💰 18B 💸 20M:
+ * - **Perplexity** \u1f4da [Docs](https://docs.perplexity.ai/models/model-cards) \u1f511 [Keys](https://www.perplexity.ai/account/api/keys) \u1f4b0 18B \u1f4b8 20M:
  *   Sonar, Sonar Deep Research
- * - **Cloudflare** 📚 [Docs](https://developers.cloudflare.com/workers-ai/) 🔑 [Keys](https://dash.cloudflare.com/profile/api-tokens) 💰 62.3B 💸 1.67B:
+ * - **Cloudflare** \u1f4da [Docs](https://developers.cloudflare.com/workers-ai/) \u1f511 [Keys](https://dash.cloudflare.com/profile/api-tokens) \u1f4b0 62.3B \u1f4b8 1.67B:
  *   Llama, Gemma, Mistral, Phi, Qwen, DeepSeek, Hermes, SQL Coder, Code Llama
- * - **Google Vertex** 📚 [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models)
- *   🔑 [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
+ * - **Google Vertex** \u1f4da [Docs](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models)
+ *   \u1f511 [Keys](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview#api-keys): Gemini
  *
  * @param options - Configuration for the language-model call
  * @returns Resolved response object with `content`, optional `extract`, or `error`
@@ -97,7 +97,7 @@ export async function generateLanguageResponse(
   // Normalise provider to lowercase for consistent switch matching
   const provider = options.provider?.toLowerCase();
 
-  // Resolve model: explicit override → provider's registered default
+  // Resolve model: explicit override \u2192 provider's registered default
   const model =
     options.model ??
     (LANGUAGE_MODELS as Array<{ provider: string; default?: string }>).find(
@@ -106,7 +106,7 @@ export async function generateLanguageResponse(
     "";
 
   try {
-    // ── 1. Validate required inputs ──────────────────────────────────────────
+    // \u2500\u2500 1. Validate required inputs \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const validProviders = LANGUAGE_PROVIDERS as string[];
     if (!apiKey || !provider || !validProviders.includes(provider)) {
       return {
@@ -116,26 +116,26 @@ export async function generateLanguageResponse(
       };
     }
 
-    // ── 2. Load agent prompt (local registry → LangChain Hub fallback) ───────
+    // \u2500\u2500 2. Load agent prompt (local registry \u2192 LangChain Hub fallback) \u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const agentObject = ((AGENT_PROMPTS as AgentPrompt[]).find(
       (p) => p?.name === agent,
     ) ?? (await pull(agent, { apiKey: LANGCHAIN_API_KEY }))) as AgentPrompt;
 
     if (!agentObject) return { error: `Agent "${agent}" not found` };
 
-    // ── 3. Pre-process the prompt template via optional `before` hook ─────────
+    // \u2500\u2500 3. Pre-process the prompt template via optional `before` hook \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     if (agentObject.before) {
       agentObject.prompt = agentObject.before(agentObject.prompt, options);
     }
 
-    // ── 4. Build template variable map and interpolate placeholders ───────────
+    // \u2500\u2500 4. Build template variable map and interpolate placeholders \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const templateVars: Record<string, unknown> = {
       ...options,
       input: `${context.query ?? ""} ${context.article ?? ""}`,
     };
     let prompt = interpolateTemplate(agentObject.template ?? "", templateVars);
 
-    // ── 5. Trim prompt to the model's context window ──────────────────────────
+    // \u2500\u2500 5. Trim prompt to the model's context window \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     if (applyContextLimit) {
       const modelConfig = (
         LANGUAGE_MODELS as Array<{
@@ -151,16 +151,16 @@ export async function generateLanguageResponse(
       }
     }
 
-    // ── 6. Instantiate the LLM provider ──────────────────────────────────────
+    // \u2500\u2500 6. Instantiate the LLM provider \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const llm = createLLMProvider(provider, apiKey, model, temperature);
     if (!llm) return { error: "Invalid provider selected" };
 
-    // ── 7. Resolve tools declared by the agent ────────────────────────────────
+    // \u2500\u2500 7. Resolve tools declared by the agent \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const tools = (AGENT_TOOLS as AgentTool[])
       .filter((t) => agentObject.tools?.includes(t.name))
       .map((t) => tool(t.func as Parameters<typeof tool>[0], t));
 
-    // ── 8. Invoke LLM (ReAct agent when tools are present, plain otherwise) ───
+    // \u2500\u2500 8. Invoke LLM (ReAct agent when tools are present, plain otherwise) \u2500\u2500\u2500
     let rawReply: string;
     if (tools.length > 0) {
       const agentResult = await createReactAgent({ llm, tools }).invoke({
@@ -175,12 +175,12 @@ export async function generateLanguageResponse(
           : String((invokeResult as { content?: unknown })?.content ?? "");
     }
 
-    // ── 9. Format output (HTML or raw Markdown) ───────────────────────────────
+    // \u2500\u2500 9. Format output (HTML or raw Markdown) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const content: string = html
       ? await convertMarkdownToHTMLEscaped(rawReply)
       : rawReply;
 
-    // ── 10. Extract structured data via optional `after` hook ─────────────────
+    // \u2500\u2500 10. Extract structured data via optional `after` hook \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
     const extract = agentObject.after?.(rawReply, options);
 
     return { content, ...(extract !== undefined && { extract }) };
@@ -196,7 +196,7 @@ export async function generateLanguageResponse(
   }
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// \u2500\u2500\u2500 Helpers \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 
 /**
  * Substitutes `{variableName}` placeholders in a template string with values

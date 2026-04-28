@@ -25,7 +25,7 @@ export interface ExtractCiteOptions {
 }
 
 /**
- * ### 📚💎 Extract Expert Excerpt
+ * ### \u1f4da\u1f48e Extract Expert Excerpt
  * <img width="350px" src="https://i.imgur.com/4GOOM9s.jpeg" />
  *
  * Extract author, date, source, and title from HTML using meta tags

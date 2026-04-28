@@ -8,12 +8,12 @@ import { convertTextToTokens } from "../tokenize/text-to-topic-tokens";
 /**
  * Applies two weighting passes to a keyphrase list:
  *
- * 1. **Wiki-entity bonus** — if any token in the phrase is a Wikipedia-linked
+ * 1. **Wiki-entity bonus** \u2014 if any token in the phrase is a Wikipedia-linked
  *    entity (POS tag 5), the keyphrase weight is doubled and `wiki` is set.
- * 2. **IDF domain-specificity** — weight is multiplied by the average POS
+ * 2. **IDF domain-specificity** \u2014 weight is multiplied by the average POS
  *    uniqueness score across the phrase's tokens. Rare, domain-specific terms
  *    (high uniqueness) receive a larger multiplier than common nouns.
- * 3. **Heavy-query bias** (optional) — if `heavyWeightQuery` is set, keyphrases
+ * 3. **Heavy-query bias** (optional) \u2014 if `heavyWeightQuery` is set, keyphrases
  *    that closely match the query words receive a large additive bonus, allowing
  *    dynamic re-ranking when a user clicks a term or arrives via a search query.
  *

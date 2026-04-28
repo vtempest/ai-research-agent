@@ -40,7 +40,7 @@ export interface ConvertTextToTokensOptions {
  *  more accurate if we infer likely phrases and search for those words occuring together and
  *  not just split into words and find frequency. Examples are "white house" or "state of the art"
  *  which should be searched as a phrase but would return different context if split into words.
- *  As Led Zeppelin famously put it: ♫ "'Cause you know sometimes words have two meanings."
+ *  As Led Zeppelin famously put it: \u266b "'Cause you know sometimes words have two meanings."
  *
  * @param {string} phrase
  * @param {Object} [options]
