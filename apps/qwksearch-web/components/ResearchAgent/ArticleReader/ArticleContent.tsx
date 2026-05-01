@@ -1,6 +1,5 @@
-/**
- * React component that renders ArticleContent within the ResearchAgent area of ResearchAgent.
- */
+'use client';
+
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { Article } from '../types';

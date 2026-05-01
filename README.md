@@ -35,14 +35,47 @@
     <a href="https://v0-research-editor-features.vercel.app"> 📑 Docs </a> <a href="https://editor.qwksearch.com/api/docs"> 🎯 API </a>
  </h3>
 
-## QwkSearch Research Agent
+## 🧠💻 Reimagine the Internet as Self-Organizing Mind Map
+
+<p align="center">
+ <img  src="https://i.imgur.com/Z9OJMwd.gif" />
+</p>
+
+Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, to evolve crowdsourced chain-of-thought reasoning, to unlock faster ways to read long articles, to monitor developments by topic modeling a knowledge base graph, and to provide a public service of answers to research.
+
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process, leading to direct democratic AI economy where public votes reward influence. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests. Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Imagine uploading a research paper, then the app extracts full text of reference cites and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective and interests in a self-organizing mind map. Similar apps are Anthropic Claude, Obsidian, SciSpace and Perplexity, showing that people need an emergence of this "self-organizing mind map" approach to manage the complexity of information flow.
+
+```bash
+# Download Source
+bunx git0 vtempest/ai-research-agent
+```
+
+```bash
+# Import Self-Hosted API
+bun i ai-research-agent
+```
+
+```bash
+# Import API Client 
+bun i qwksearch-api-client
+```
+
+![image](https://i.imgur.com/R2ARMyq.png)
+
+<img src="https://github.com/TutteInstitute/datamapplot/raw/main/examples/ArXiv_example.gif" width="800px"/>
+
+## 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
+
+<p align="center">
+    <img width="350px" src="https://i.imgur.com/s8gsYt1.png" /> 
+</p>
 
 **Reimagine The Web as Self-Organizing Mind Map**
 
 - 🔍 **Web Search** - 100+ popular sites search across 10 categories: Web Search, Academic, Videos, Images, Files, News, etc
 - 📝 **Article Preview** - Extract and summarize articles before reading them
 - 🤖 **User Choice of LLM** - OpenAI, Claude, Gemini, Groq, Ollama, Anthropic, etc
-- 📄 **File Upload Support** - Ask questions about PDFs, URLs, DOCX, Google Docs, and Youtube 
+- 📄 **File Upload Support** - Ask questions about PDFs, URLs, DOCX, Google Docs, and Youtube
 - 📚 **Search History** - All searches saved locally for privacy
 - ❓ **Follow-up Questions** - Generate follow-up questions to ask language models
 
@@ -66,3 +99,43 @@
 - ⌨️ **Keyboard Navigation**: efficient keyboard shortcuts for power users
 - 💬 **Research Quotes**: capture and organize key quotes and insights from your research
 - 🏗️ **Built with**: [Claude Code](https://claude.com/code), [Lexical Editor](https://lexical.dev/), [shadcn/ui](https://ui.shadcn.com/docs/components), [Cloudflare](https://developers.cloudflare.com/), [Next.js](https://nextjs.org/docs/app/getting-started), Google Docs API
+
+### 🚜📜 Tractor the Text Extractor
+
+<p align="center">
+<img width="350px"  src="https://i.imgur.com/o8NTXxY.png" /> 
+</p>
+
+1. **Main Content Detection**: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
+2. **YouTube Transcript Processing**: When a YouTube video URL is detected, retrieve the complete video transcript including both manual captions and auto-generated subtitles, maintaining proper timestamp synchronization.
+3. **PDF to HTML**: Extracts formatted text from PDF with parsing of linebreaks , page headers, footnotes, and section headings. Supports fonts, links, bold, italics, lists, headings, headers, footnotes, and Table of Contents, Quotes, and Code Blocks. Removes repeated headers, links footnote anchors to the footnote, and preserves number of the PDF page with invisible I element. This function uses [pdfjs-serverless](https://github.com/johannschopplich/pdfjs-serverless) to work in more environments than PDF.js-based tools: Cloudflare workers, serverless, node.js, and front-end only.
+4. **Basic HTML Standardization**: Transform complex HTML into a simplified reading-mode format of basic HTML, making it ideal for research note archival and focused reading, with headings, images and links.
+5. **Cite**: Identify and extract citation metadata including author names, publication dates, sources, and titles using HTML meta tags and common class name patterns. The system validates author names against a comprehensive database of 90,000 first and last names, distinguishing between personal and organizational authors to properly format citations.
+
+## Further Research
+
+* [ThoughtSource Reasoning Datasets](https://github.com/OpenBioLink/ThoughtSource)
+* [Debate on Graph (arxiv)](https://arxiv.org/html/2409.03155v1)
+* [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
+* [AI Research Agent&#39;s NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
+* [Tensorflow.js Demos](https://www.tensorflow.org/js/demos)
+* [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
+* [NLP Papers Latest Updates](https://index.quantumstat.com)
+* [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)
+* [NLP Research Progress](https://github.com/sebastianruder/NLP-progress/)
+* [NLP Datasets](https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file)
+* [Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers](https://www.youtube.com/watch?v=9QJXvNiJIG8)
+* [Google Search Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
+* [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
+* [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
+* [Graph Algorithms Playground](https://playground.memgraph.com)
+* [CommonCrawl C4 Download](https://huggingface.co/datasets/allenai/c4)
+* [Knowledge Graphs Prompts Papers](https://github.com/zjunlp/PromptKG)
+* [Paper - Iterative Research Idea Generation](https://arxiv.org/abs/2404.07738)
+* [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8&t=70s)
+* [Awesome-LLM-Graph-Theory](https://github.com/XiaoxinHe/Awesome-Graph-LLM)
+* [Open Deep Search](https://arxiv.org/html/2503.20201v1)
+* [LangChain Hub](https://smith.langchain.com/hub) - A collection of reusable prompts, chains, and agents for building LLM applications
+* [LangChain Documentation](https://js.langchain.com/docs) - Comprehensive documentation for LangChain.js
+
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) 🌟 Please star this repo so it will grow and get updates!
