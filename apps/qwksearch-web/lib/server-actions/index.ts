@@ -10,13 +10,14 @@ export const getSuggestions = async (chatHistory: Message[]) => {
       `/api/agent/suggestions`,
       {
         method: "POST",
-        body: JSON.stringify({
+        headers: { "Content-Type": "application/json" },
+        body: {
           chatHistory: chatHistory,
           chatModel: {
             providerId: chatModelProvider,
             key: chatModel,
           },
-        }),
+        },
       },
     );
 
