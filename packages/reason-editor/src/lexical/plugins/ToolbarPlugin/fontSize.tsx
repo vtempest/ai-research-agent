@@ -1,21 +1,21 @@
 
 import { LexicalEditor } from 'lexical';
 import * as React from 'react';
+import { ChevronDown } from 'lucide-react';
 
-import { cn } from '../../../lib/utils';
-import Icon from '../../ui/Icon';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../../../ui/dropdown-menu';
 import {
   MAX_ALLOWED_FONT_SIZE,
   MIN_ALLOWED_FONT_SIZE,
 } from '../../context/ToolbarContext';
-import { isKeyboardInput } from '../../utils/focusUtils';
-import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts';
-import {
-  updateFontSize,
-  updateFontSizeInSelection,
-  UpdateFontSizeType,
-} from './utils';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../../../ui/tooltip';
+import { updateFontSizeInSelection } from './utils';
+
+const FONT_SIZE_OPTIONS = [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 64, 72];
 
 function parseFontSize(input: string): [number, string] | null {
   const match = input.match(/^(\d+(?:\.\d+)?)(px|pt)$/);
@@ -34,10 +34,7 @@ function isValidFontSize(fontSizePx: number): boolean {
 
 export function parseFontSizeForToolbar(input: string): string {
   const parsed = parseFontSize(input);
-  if (!parsed) {
-    return '';
-  }
-
+  if (!parsed) return '';
   const [fontSize, unit] = parsed;
   const fontSizePx = normalizeToPx(fontSize, unit);
   return `${fontSizePx}px`;
@@ -45,10 +42,7 @@ export function parseFontSizeForToolbar(input: string): string {
 
 export function parseAllowedFontSize(input: string): string {
   const parsed = parseFontSize(input);
-  if (!parsed) {
-    return '';
-  }
-
+  if (!parsed) return '';
   const [fontSize, unit] = parsed;
   const fontSizePx = normalizeToPx(fontSize, unit);
   return isValidFontSize(fontSizePx) ? input : '';
@@ -63,120 +57,78 @@ export default function FontSize({
   disabled: boolean;
   editor: LexicalEditor;
 }) {
-  const [inputValue, setInputValue] = React.useState<string>(selectionFontSize);
-  const [inputChangeFlag, setInputChangeFlag] = React.useState<boolean>(false);
-  const [isMouseMode, setIsMouseMode] = React.useState(false);
-  const [lastAppliedSize, setLastAppliedSize] = React.useState<string>(selectionFontSize);
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const inputValueNumber = Number(inputValue);
-
-    if (e.key === 'Tab') {
-      return;
-    }
-    if (['e', 'E', '+', '-'].includes(e.key) || isNaN(inputValueNumber)) {
-      e.preventDefault();
-      setInputValue('');
-      return;
-    }
-    setInputChangeFlag(true);
-
-    // Apply immediately on arrow up/down keys
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      // Let the browser update the input value first
-      setTimeout(() => {
-        const newValue = Number((e.target as HTMLInputElement).value);
-        if (!isNaN(newValue)) {
-          updateFontSizeByInputValue(newValue, true);
-        }
-      }, 0);
-    } else if (e.key === 'Enter' || e.key === 'Escape') {
-      e.preventDefault();
-      updateFontSizeByInputValue(inputValueNumber, !isMouseMode);
-    }
-  };
-
-  const handleInputBlur = () => {
-    setIsMouseMode(false);
-
-    if (inputValue !== '' && inputChangeFlag) {
-      const inputValueNumber = Number(inputValue);
-      updateFontSizeByInputValue(inputValueNumber);
-    }
-  };
-
-  const handleClick = (e: React.MouseEvent) => {
-    setIsMouseMode(true);
-  };
-
-  const updateFontSizeByInputValue = (
-    inputValueNumber: number,
-    skipRefocus: boolean = false,
-  ) => {
-    let updatedFontSize = inputValueNumber;
-    if (inputValueNumber > MAX_ALLOWED_FONT_SIZE) {
-      updatedFontSize = MAX_ALLOWED_FONT_SIZE;
-    } else if (inputValueNumber < MIN_ALLOWED_FONT_SIZE) {
-      updatedFontSize = MIN_ALLOWED_FONT_SIZE;
-    }
-
-    const fontSizeStr = String(updatedFontSize);
-    setInputValue(fontSizeStr);
-    setLastAppliedSize(fontSizeStr);
-    updateFontSizeInSelection(
-      editor,
-      fontSizeStr + 'px',
-      null,
-      skipRefocus,
-    );
-    setInputChangeFlag(false);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    setInputChangeFlag(true);
-
-    // Auto-apply when using spinner buttons (value changes by exactly 1)
-    const numValue = Number(newValue);
-    const lastNum = Number(lastAppliedSize);
-    if (!isNaN(numValue) && !isNaN(lastNum) && Math.abs(numValue - lastNum) === 1) {
-      // This is likely from spinner buttons
-      updateFontSizeByInputValue(numValue, true);
-    }
-  };
+  const [inputValue, setInputValue] = React.useState(
+    selectionFontSize ? String(parseInt(selectionFontSize, 10)) : '',
+  );
 
   React.useEffect(() => {
-    setInputValue(selectionFontSize);
-    setLastAppliedSize(selectionFontSize);
+    setInputValue(selectionFontSize ? String(parseInt(selectionFontSize, 10)) : '');
   }, [selectionFontSize]);
 
-  const btnClass = 'inline-flex items-center justify-center rounded-md h-7 w-7 bg-transparent border-0 cursor-pointer text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';
+  const applySize = (value: string, skipRefocus = false) => {
+    const num = parseInt(value, 10);
+    if (isNaN(num)) return;
+    const clamped = Math.min(MAX_ALLOWED_FONT_SIZE, Math.max(MIN_ALLOWED_FONT_SIZE, num));
+    setInputValue(String(clamped));
+    updateFontSizeInSelection(editor, clamped + 'px', null, skipRefocus);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applySize(inputValue);
+    } else if (e.key === 'Escape') {
+      setInputValue(selectionFontSize ? String(parseInt(selectionFontSize, 10)) : '');
+    }
+  };
+
+  const handleBlur = () => {
+    if (inputValue) applySize(inputValue);
+  };
+
+  const handlePresetSelect = (size: number) => {
+    setInputValue(String(size));
+    updateFontSizeInSelection(editor, size + 'px', null, false);
+  };
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div className="inline-flex items-center gap-0.5 shrink-0">
-          <input
-            type="number"
-            value={inputValue}
-            disabled={disabled}
-            className={cn(
-              'w-9 h-7 text-center text-sm font-semibold bg-transparent border border-border rounded-md',
-              'focus:outline-none focus:ring-1 focus:ring-ring',
-              'disabled:opacity-50 disabled:cursor-not-allowed',
-              '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
-            )}
-            min={MIN_ALLOWED_FONT_SIZE}
-            max={MAX_ALLOWED_FONT_SIZE}
-            onChange={handleInputChange}
-            onClick={handleClick}
-            onKeyDown={handleKeyPress}
-            onBlur={handleInputBlur}
-          />
-        </div>
-      </TooltipTrigger>
-      <TooltipContent>Font size</TooltipContent>
-    </Tooltip>
+    <div
+      className="inline-flex items-center h-7 rounded-md border border-border shrink-0 overflow-hidden focus-within:ring-1 focus-within:ring-ring"
+      aria-label="Font size"
+    >
+      <input
+        type="number"
+        value={inputValue}
+        disabled={disabled}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        className="w-8 h-full text-center text-xs font-semibold bg-transparent border-0 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        min={MIN_ALLOWED_FONT_SIZE}
+        max={MAX_ALLOWED_FONT_SIZE}
+      />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild disabled={disabled}>
+          <button
+            className="h-full px-0.5 flex items-center border-l border-border hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
+            tabIndex={-1}
+            aria-label="Font size presets"
+          >
+            <ChevronDown className="h-3 w-3" />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="min-w-[4rem] max-h-64 overflow-y-auto">
+          {FONT_SIZE_OPTIONS.map((size) => (
+            <DropdownMenuItem
+              key={size}
+              className="text-xs justify-center"
+              onSelect={() => handlePresetSelect(size)}
+            >
+              {size}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }

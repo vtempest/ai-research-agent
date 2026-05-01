@@ -135,7 +135,7 @@ export const DocumentTabs = ({
             <TabsList className="h-10 bg-transparent p-0 rounded-none border-0 w-full flex flex-nowrap">
               {openTabs.map((tabId) => (
                 <ContextMenu key={tabId}>
-                  <ContextMenuTrigger className="flex-1 min-w-0" style={{ minWidth: '2.5rem' }}>
+                  <ContextMenuTrigger className="flex-1 min-w-[80px]">
                     <div className="relative group h-10 w-full">
                       <TabsTrigger
                         value={tabId}

@@ -1059,40 +1059,42 @@ export default function ToolbarPlugin({
 
   return (
     <div className="toolbar flex items-center gap-0 flex-nowrap overflow-x-auto scrollbar-thin px-1 py-0.5 border-b border-border bg-card">
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button
-            disabled={!toolbarState.canUndo || !isEditable}
-            onClick={(e) =>
-              dispatchToolbarCommand(UNDO_COMMAND, undefined, isKeyboardInput(e))
-            }
-            type="button"
-            className={toolbarBtnClass}
-            aria-label="Undo">
-            <Icon name="undo" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent>
-          {IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
-        </TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button
-            disabled={!toolbarState.canRedo || !isEditable}
-            onClick={(e) =>
-              dispatchToolbarCommand(REDO_COMMAND, undefined, isKeyboardInput(e))
-            }
-            type="button"
-            className={toolbarBtnClass}
-            aria-label="Redo">
-            <Icon name="redo" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent>
-          {IS_APPLE ? 'Redo (⇧⌘Z)' : 'Redo (Ctrl+Y)'}
-        </TooltipContent>
-      </Tooltip>
+      {toolbarState.canUndo && isEditable && (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={(e) =>
+                dispatchToolbarCommand(UNDO_COMMAND, undefined, isKeyboardInput(e))
+              }
+              type="button"
+              className={toolbarBtnClass}
+              aria-label="Undo">
+              <Icon name="undo" />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
+          </TooltipContent>
+        </Tooltip>
+      )}
+      {toolbarState.canRedo && isEditable && (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={(e) =>
+                dispatchToolbarCommand(REDO_COMMAND, undefined, isKeyboardInput(e))
+              }
+              type="button"
+              className={toolbarBtnClass}
+              aria-label="Redo">
+              <Icon name="redo" />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {IS_APPLE ? 'Redo (⇧⌘Z)' : 'Redo (Ctrl+Y)'}
+          </TooltipContent>
+        </Tooltip>
+      )}
       <Divider />
       {toolbarState.blockType in blockTypeToBlockName &&
         activeEditor === editor && (
@@ -1335,20 +1337,6 @@ export default function ToolbarPlugin({
             isRTL={toolbarState.isRTL}
           />
 
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                disabled={!isEditable}
-                onClick={insertLink}
-                className={cn(toolbarBtnClass, toolbarState.isLink && toolbarBtnActiveClass)}
-                aria-label="Insert link"
-                type="button">
-                <Icon name="link" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent>Insert link ({SHORTCUTS.INSERT_LINK})</TooltipContent>
-          </Tooltip>
-
           {/* <Tooltip>
             <TooltipTrigger asChild>
               <button
@@ -1371,6 +1359,12 @@ export default function ToolbarPlugin({
                 buttonIconClassName="icon plus"
                 tooltip="Insert">
 
+                <DropDownItem
+                  onClick={insertLink}
+                  className={cn('item', toolbarState.isLink && 'active')}>
+                  <Icon name="link" />
+                  <span className="text">Link ({SHORTCUTS.INSERT_LINK})</span>
+                </DropDownItem>
                 {/* <DropDownItem
                   onClick={() => dispatchToolbarCommand(INSERT_PAGE_BREAK)}
                   className="item">
@@ -1541,11 +1535,11 @@ export default function ToolbarPlugin({
               </DropDown>
               <Divider />
 
-              {/* Invite Dropdown */}
-              {documentTitle && documentId && (
+              {/* Share Menu */}
+              {documentId && (
                 <div className="toolbar-item spaced">
                   <InviteDropdown
-                    documentTitle={documentTitle}
+                    documentTitle={documentTitle || 'Untitled'}
                     documentId={documentId}
                   />
                 </div>
