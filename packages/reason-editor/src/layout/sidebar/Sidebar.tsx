@@ -171,7 +171,7 @@ export const Sidebar = ({
               onViewModeChange={onViewModeChange}
               onToggleRightOutline={onToggleRightOutline}
             />
-            <FileManagerModal open={isFileManagerOpen} onOpenChange={setIsFileManagerOpen} documents={activeDocuments} />
+            <FileManagerModal open={isFileManagerOpen} onOpenChange={setIsFileManagerOpen} documents={activeDocuments} onSelectDocument={onSelect} />
           </aside>
         </SheetContent>
       </Sheet>
@@ -231,7 +231,7 @@ export const Sidebar = ({
         onViewModeChange={onViewModeChange}
         onToggleRightOutline={onToggleRightOutline}
       />
-      <FileManagerModal open={isFileManagerOpen} onOpenChange={setIsFileManagerOpen} />
+      <FileManagerModal open={isFileManagerOpen} onOpenChange={setIsFileManagerOpen} documents={activeDocuments} onSelectDocument={onSelect} />
     </aside>
   );
 };

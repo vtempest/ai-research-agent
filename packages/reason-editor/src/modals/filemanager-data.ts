@@ -43,3 +43,29 @@ export function convertDocumentsToFileItems(documents: Document[]): FileItem[] {
 export function getData(documents: Document[] = []): FileItem[] {
   return convertDocumentsToFileItems(documents);
 }
+
+/** Returns a map from file path → document ID for reverse-lookup when a file is opened. */
+export function getPathToDocIdMap(documents: Document[]): Map<string, string> {
+  const byId = new Map<string, Document>();
+  for (const doc of documents) byId.set(doc.id, doc);
+
+  function pathFor(doc: Document): string {
+    const segments: string[] = [slugify(doc.title)];
+    let current = doc;
+    while (current.parentId) {
+      const parent = byId.get(current.parentId);
+      if (!parent) break;
+      segments.unshift(slugify(parent.title));
+      current = parent;
+    }
+    return '/' + segments.join('/');
+  }
+
+  const map = new Map<string, string>();
+  for (const doc of documents) {
+    if (!doc.isFolder) {
+      map.set(pathFor(doc), doc.id);
+    }
+  }
+  return map;
+}
