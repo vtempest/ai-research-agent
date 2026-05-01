@@ -1541,11 +1541,11 @@ export default function ToolbarPlugin({
               </DropDown>
               <Divider />
 
-              {/* Invite Dropdown */}
-              {documentTitle && documentId && (
+              {/* Share Menu */}
+              {documentId && (
                 <div className="toolbar-item spaced">
                   <InviteDropdown
-                    documentTitle={documentTitle}
+                    documentTitle={documentTitle || 'Untitled'}
                     documentId={documentId}
                   />
                 </div>
