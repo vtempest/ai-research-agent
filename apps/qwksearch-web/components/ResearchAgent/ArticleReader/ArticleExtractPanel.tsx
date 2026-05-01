@@ -108,7 +108,7 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
 
   const extractURL = async () => {
     setIsLoadingExtract(true);
-    const { article } = await grab('doc/article', { url });
+    const { article } = await grab(`doc/article?url=${encodeURIComponent(url)}`);
 
     const textContent = article?.html?.replace(/<[^>]*>/g, '').trim() || '';
 
@@ -123,8 +123,7 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
       await new Promise<void>((resolve) => {
         const handler = async (event: Event) => {
           window.removeEventListener('onExtractionResult', handler);
-          const detail = (event as CustomEvent).detail;
-          const { article: fallbackArticle } = await grab('doc/article', { html: detail?.html, url });
+          const { article: fallbackArticle } = await grab(`doc/article?url=${encodeURIComponent(url)}`);
           if (fallbackArticle) {
             setExtractedArticle(fallbackArticle);
             if (fallbackArticle.followUpQuestions?.length > 0) {
