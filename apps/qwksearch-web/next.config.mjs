@@ -22,19 +22,17 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  experimental: {
-    turbotrace: {
-      logLevel: "error",
-      memoryLimit: 512,
-    },
-  },
-  serverExternalPackages: ["pdf-parse", "@libsql/isomorphic-ws"],
+  serverExternalPackages: [
+    "pdf-parse",
+    "@libsql/isomorphic-ws",
+    // Client-only packages pulled in via reason-editor (transpilePackages) — never run server-side
+    "prettier",
+    "@huggingface/transformers",
+    "onnxruntime-web",
+  ],
   transpilePackages: ["reason-editor"],
 
-  webpack: (config, { isServer }) => {
+  webpack: (config) => {
     // Resolve reason-editor from source, not dist
     config.resolve.alias = {
       ...config.resolve.alias,
