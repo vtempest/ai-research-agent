@@ -68,9 +68,9 @@ const Chat = () => {
 
   }, [chatTurns]);
 
-  // Calculate container max width based on panel state
+  // Calculate container width based on panel state
   const containerStyle = isDesktop && isPanelOpen
-    ? { marginRight: `${panelWidth}px` }
+    ? { width: `calc(100% - ${panelWidth}px)` }
     : {};
 
   return (

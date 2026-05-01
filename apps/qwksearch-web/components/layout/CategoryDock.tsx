@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
-import { UserCircle2, Moon, Sun, Palette, Settings } from "lucide-react"
+import { UserCircle2, Moon, Sun, Palette, Settings, EyeOff, ChevronDown, ChevronUp } from "lucide-react"
 import { AnimatePresence } from "framer-motion"
 import SettingsDialogue from "@/components/Settings/SettingsDialogue"
 import { useTheme } from "next-themes"
@@ -149,7 +149,7 @@ const NAV_ITEMS = [
   // { href: "/news", label: "News", icon: iconNews },
 ]
 
-function SettingsMenu({ side, onOpenSettings }: { side: "bottom" | "top"; onOpenSettings: () => void }) {
+function SettingsMenu({ side, onOpenSettings, onHideDock }: { side: "bottom" | "top"; onOpenSettings: () => void; onHideDock: () => void }) {
   const themeState = useThemeState()
 
   return (
@@ -199,6 +199,10 @@ function SettingsMenu({ side, onOpenSettings }: { side: "bottom" | "top"; onOpen
         <Settings className="mr-2 h-4 w-4" />
         Settings
       </DropdownMenuItem>
+      <DropdownMenuItem onSelect={onHideDock}>
+        <EyeOff className="mr-2 h-4 w-4" />
+        Hide App Dock
+      </DropdownMenuItem>
       <DropdownMenuItem>
         <UserCircle2 className="mr-2 h-4 w-4" />
         Profile
@@ -218,10 +222,12 @@ function DockInstance({
   dockClassName,
   side,
   allItems,
+  onHideDock,
 }: {
   dockClassName: string
   side: "bottom" | "top"
   allItems: { key: string; label: string; icon: any; active: boolean; onClick: () => void }[]
+  onHideDock: () => void
 }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
@@ -255,7 +261,7 @@ function DockInstance({
             </DockItem>
           </DropdownMenuTrigger>
         </Dock>
-        <SettingsMenu side={side} onOpenSettings={() => setIsSettingsOpen(true)} />
+        <SettingsMenu side={side} onOpenSettings={() => setIsSettingsOpen(true)} onHideDock={onHideDock} />
       </DropdownMenu>
       <AnimatePresence>
         {isSettingsOpen && <SettingsDialogue isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen} />}
@@ -272,6 +278,39 @@ function DockInstance({
 export function CategoryDock() {
   const pathname = usePathname()
   const router = useRouter()
+  const [dockHidden, setDockHidden] = useState(false)
+  const [dockTemporarilyVisible, setDockTemporarilyVisible] = useState(false)
+  const desktopDockRef = useRef<HTMLDivElement>(null)
+  const mobileDockRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dock-hidden')
+    if (saved === 'true') setDockHidden(true)
+  }, [])
+
+  // Collapse temporarily-visible dock when clicking outside
+  useEffect(() => {
+    if (!dockTemporarilyVisible) return
+    const handleClick = (e: MouseEvent) => {
+      const inDesktop = desktopDockRef.current?.contains(e.target as Node)
+      const inMobile = mobileDockRef.current?.contains(e.target as Node)
+      if (!inDesktop && !inMobile) {
+        setDockTemporarilyVisible(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [dockTemporarilyVisible])
+
+  const hideDock = () => {
+    setDockHidden(true)
+    setDockTemporarilyVisible(false)
+    localStorage.setItem('dock-hidden', 'true')
+  }
+
+  const showDockTemporarily = () => {
+    setDockTemporarilyVisible(true)
+  }
 
   const allItems = NAV_ITEMS.map(({ href, label, icon }) => ({
     key: href,
@@ -305,24 +344,50 @@ export function CategoryDock() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [router])
 
+  const isDockVisible = !dockHidden || dockTemporarilyVisible
+
   return (
     <>
       {/* Desktop: top-left corner */}
-      <div className="hidden md:block fixed top-0 left-2 z-50 ">
-        <DockInstance
-          dockClassName="h-[52px] shrink-0 !mt-0 !mx-0"
-          side="bottom"
-          allItems={allItems}
-        />
+      <div className="hidden md:block fixed top-0 left-2 z-50" ref={desktopDockRef}>
+        {isDockVisible ? (
+          <DockInstance
+            dockClassName="h-[52px] shrink-0 !mt-0 !mx-0"
+            side="bottom"
+            allItems={allItems}
+            onHideDock={hideDock}
+          />
+        ) : (
+          <button
+            onClick={showDockTemporarily}
+            className="bg-background border border-border border-t-0 rounded-b-lg px-3 py-1 flex items-center gap-1 shadow-md hover:bg-accent transition-colors text-muted-foreground"
+            aria-label="Show dock"
+          >
+            <ChevronDown className="h-4 w-4" />
+          </button>
+        )}
       </div>
 
       {/* Mobile: fixed bottom bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 pb-safe">
-        <DockInstance
-          dockClassName="h-[52px] shrink-0 !mt-0 mx-auto w-max mb-2 !gap-1 !p-1"
-          side="top"
-          allItems={allItems}
-        />
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 pb-safe" ref={mobileDockRef}>
+        {isDockVisible ? (
+          <DockInstance
+            dockClassName="h-[52px] shrink-0 !mt-0 mx-auto w-max mb-2 !gap-1 !p-1"
+            side="top"
+            allItems={allItems}
+            onHideDock={hideDock}
+          />
+        ) : (
+          <div className="flex justify-center">
+            <button
+              onClick={showDockTemporarily}
+              className="bg-background border border-border border-b-0 rounded-t-lg px-4 py-1.5 flex items-center gap-1 shadow-md hover:bg-accent transition-colors text-muted-foreground"
+              aria-label="Show dock"
+            >
+              <ChevronUp className="h-4 w-4" />
+            </button>
+          </div>
+        )}
       </div>
     </>
   )
