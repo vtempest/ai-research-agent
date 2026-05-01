@@ -4,7 +4,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Upload, CloudIcon, FolderOpen, Loader2, Layers } from 'lucide-react';
+import { Upload, CloudIcon, FolderOpen, Loader2, ChevronRight } from 'lucide-react';
 import grab from 'grab-url';
 import {
   Popover,
@@ -20,15 +20,11 @@ import { ModelSelector } from '../SearchConfig/ModelSelector';
 interface FileUploadDropdownProps {
   onFileSelect: (files: FileList | File[]) => void;
   disabled?: boolean;
-  sourceExtractionCount: number;
-  setSourceExtractionCount: (v: number) => void;
 }
 
 const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
   onFileSelect,
   disabled = false,
-  sourceExtractionCount,
-  setSourceExtractionCount,
 }) => {
   const { category, setCategory } = useChat();
   const selectedCodes = category ? category.split(',').filter(Boolean) : ['general'];
@@ -45,7 +41,28 @@ const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
   const [isConnecting, setIsConnecting] = useState(false);
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
   const [isScanningFolder, setIsScanningFolder] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [thinkingOpen, setThinkingOpen] = useState(false);
+  const [thinkingTimeLimit, setThinkingTimeLimit] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const n = Number(localStorage.getItem('thinkingTimeLimit') ?? '0');
+    return Number.isFinite(n) ? n : 0;
+  });
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const THINKING_OPTIONS = [
+    { label: '5s', value: 5 },
+    { label: '15s', value: 15 },
+    { label: '30s', value: 30 },
+    { label: '45s', value: 45 },
+    { label: '60s', value: 60 },
+    { label: 'Unlimited', value: 0 },
+  ];
+
+  const handleThinkingTimeLimit = (value: number) => {
+    setThinkingTimeLimit(value);
+    localStorage.setItem('thinkingTimeLimit', String(value));
+  };
   const { openPicker } = useGooglePicker();
 
   // Check if Google Drive is connected on mount
@@ -298,11 +315,25 @@ return (
           </button>
         </PopoverTrigger>
 
-        <PopoverContent align="start" className="w-72 md:w-[400px] p-0">
+        <PopoverContent align="start" className="w-52 p-0">
           <div className="bg-popover border rounded-lg border-border w-full overflow-hidden">
-            <div className="p-3">
-              <p className="text-xs text-muted-foreground font-normal mb-2 px-1">Search category</p>
-              <div className="flex flex-col">
+
+            {/* Categories submenu toggle */}
+            <button
+              type="button"
+              onClick={() => setCategoriesOpen((v) => !v)}
+              className="w-full flex items-center justify-between gap-2 px-3 py-2 text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground"
+            >
+              <div className="flex items-center gap-2">
+                <img src={primaryCategory.icon} alt={primaryCategory.name} className="w-4 h-4 flex-shrink-0" />
+                <span className="font-medium">Category</span>
+              </div>
+              <ChevronRight className={cn('w-3.5 h-3.5 text-muted-foreground transition-transform', categoriesOpen && 'rotate-90')} />
+            </button>
+
+            {/* Categories submenu */}
+            {categoriesOpen && (
+              <div className="border-t border-border px-2 py-1">
                 {categories.map((cat) => {
                   const checked = selectedCodes.includes(cat.code);
                   return (
@@ -311,63 +342,83 @@ return (
                       key={cat.code}
                       type="button"
                       className={cn(
-                        'flex items-center gap-3 px-2 py-1.5 rounded-lg cursor-pointer transition duration-150 focus:outline-none',
+                        'w-full flex items-center gap-2 px-2 py-1 rounded-md cursor-pointer transition duration-150 focus:outline-none',
                         checked ? 'bg-secondary' : 'hover:bg-secondary',
                       )}
                     >
                       <span
                         className={cn(
-                          'flex-shrink-0 w-4 h-4 rounded border flex items-center justify-center transition-colors',
+                          'flex-shrink-0 w-3.5 h-3.5 rounded border flex items-center justify-center transition-colors',
                           checked ? 'bg-accent border-accent' : 'border-border bg-transparent',
                         )}
                       >
                         {checked && (
-                          <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 10 10">
+                          <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 10 10">
                             <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         )}
                       </span>
-                      <img src={cat.icon} alt={cat.name} className="w-4 h-4 flex-shrink-0" />
-                      <span className={cn('text-sm font-medium', checked ? 'text-primary' : 'text-popover-foreground')}>
+                      <img src={cat.icon} alt={cat.name} className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span className={cn('text-xs font-medium', checked ? 'text-primary' : 'text-popover-foreground')}>
                         {cat.name}
                       </span>
                     </button>
                   );
                 })}
               </div>
-            </div>
+            )}
 
-            <div className="border-t border-border px-3 py-2">
-              <div className="flex items-center justify-between gap-3 px-2 py-1.5">
-                <div className="flex items-center gap-2 text-popover-foreground">
-                  <Layers className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm font-medium">Extract sources</span>
-                </div>
-                <select
-                  value={sourceExtractionCount}
-                  onChange={(e) => setSourceExtractionCount(Number(e.target.value))}
-                  className="text-sm bg-secondary border border-border rounded-md px-2 py-0.5 text-popover-foreground focus:outline-none focus:ring-1 focus:ring-accent cursor-pointer"
-                >
-                  {Array.from({ length: 10 }, (_, i) => (
-                    <option key={i} value={i}>{i === 0 ? 'Off' : i}</option>
-                  ))}
-                </select>
+            {/* Thinking Time Limit submenu toggle */}
+            <button
+              type="button"
+              onClick={() => setThinkingOpen((v) => !v)}
+              className="w-full flex items-center justify-between gap-2 px-3 py-2 text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground border-t border-border"
+            >
+              <span className="font-medium text-sm">Thinking Time</span>
+              <div className="flex items-center gap-1">
+                <span className="text-xs text-muted-foreground">
+                  {THINKING_OPTIONS.find((o) => o.value === thinkingTimeLimit)?.label ?? 'Unlimited'}
+                </span>
+                <ChevronRight className={cn('w-3.5 h-3.5 text-muted-foreground transition-transform', thinkingOpen && 'rotate-90')} />
               </div>
-            </div>
+            </button>
 
-            <div className="border-t border-border px-3 py-2 flex items-center justify-between">
+            {thinkingOpen && (
+              <div className="border-t border-border px-2 py-1">
+                {THINKING_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => handleThinkingTimeLimit(opt.value)}
+                    className={cn(
+                      'w-full flex items-center justify-between px-2 py-1 rounded-md text-xs cursor-pointer transition focus:outline-none',
+                      thinkingTimeLimit === opt.value ? 'bg-secondary text-primary' : 'hover:bg-secondary text-popover-foreground',
+                    )}
+                  >
+                    <span className="font-medium">{opt.label}</span>
+                    {thinkingTimeLimit === opt.value && (
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 10 10">
+                        <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="px-3 py-2 flex items-center justify-between border-t border-border">
               <p className="text-xs text-muted-foreground font-normal">Model</p>
               <ModelSelector />
             </div>
 
             <div className="border-t border-border p-2">
-              <p className="text-xs text-muted-foreground font-normal mb-1 px-2 pt-1">Upload from</p>
+              <p className="text-xs text-muted-foreground font-normal mb-1 px-2 pt-0.5">Upload from</p>
               <button
                 type="button"
                 onClick={handleLocalFileUpload}
-                className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground"
+                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-xs hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground"
               >
-                <Upload className="h-4 w-4" />
+                <Upload className="h-3.5 w-3.5 flex-shrink-0" />
                 <span>Your Device</span>
               </button>
 
@@ -375,12 +426,12 @@ return (
                 type="button"
                 onClick={handleLocalFolderAccess}
                 disabled={isScanningFolder}
-                className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-xs hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isScanningFolder ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-3.5 w-3.5 animate-spin flex-shrink-0" />
                 ) : (
-                  <FolderOpen className="h-4 w-4" />
+                  <FolderOpen className="h-3.5 w-3.5 flex-shrink-0" />
                 )}
                 <span>{isScanningFolder ? 'Scanning...' : 'Local Folder'}</span>
               </button>
@@ -390,12 +441,12 @@ return (
                   type="button"
                   onClick={handleGoogleDriveUpload}
                   disabled={isLoadingFiles}
-                  className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-xs hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoadingFiles ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-3.5 w-3.5 animate-spin flex-shrink-0" />
                   ) : (
-                    <CloudIcon className="h-4 w-4" />
+                    <CloudIcon className="h-3.5 w-3.5 flex-shrink-0" />
                   )}
                   <span>{isLoadingFiles ? 'Loading...' : 'Google Drive'}</span>
                 </button>
@@ -404,12 +455,12 @@ return (
                   type="button"
                   onClick={handleGoogleDriveConnect}
                   disabled={isConnecting}
-                  className="w-full flex items-center gap-2 px-2 py-2 rounded-md text-sm hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-xs hover:bg-secondary transition focus:outline-none cursor-pointer text-popover-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isConnecting ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-3.5 w-3.5 animate-spin flex-shrink-0" />
                   ) : (
-                    <CloudIcon className="h-4 w-4" />
+                    <CloudIcon className="h-3.5 w-3.5 flex-shrink-0" />
                   )}
                   <span>{isConnecting ? 'Connecting...' : 'Connect Google Drive'}</span>
                 </button>

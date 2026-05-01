@@ -1769,31 +1769,24 @@ button.item.dropdown-item-active i {
   display: inline-block;
 }
 
-/* Light mode: Make toolbar icons black */
+/* Default (light mode): Make toolbar and dropdown icons black */
 img.icon,
 .toolbar .toolbar-item i.format,
 .toolbar i.chevron-down,
 .toolbar-item i.chevron-down,
-i.chevron-down {
+i.chevron-down,
+.dropdown .item .icon,
+.dropdown .item i.format {
   filter: brightness(0);
 }
 
-/* Dark mode: Make toolbar icons white */
-@media (prefers-color-scheme: dark) {
-  img.icon,
-  .toolbar .toolbar-item i.format,
-  .toolbar i.chevron-down,
-  .toolbar-item i.chevron-down,
-  i.chevron-down {
-    filter: brightness(0) invert(1);
-  }
-}
-
-/* Dark mode using shadcn .dark class: Make toolbar icons white */
+/* Dark mode using shadcn .dark class: Make toolbar and dropdown icons white */
 .dark img.icon,
 .dark .toolbar .toolbar-item i.format,
 .dark .toolbar i.chevron-down,
 .dark .toolbar-item i.chevron-down,
-.dark i.chevron-down {
+.dark i.chevron-down,
+.dark .dropdown .item .icon,
+.dark .dropdown .item i.format {
   filter: brightness(0) invert(1);
 }

@@ -11,21 +11,9 @@ import { useFileHandling } from '../FileUpload/useFileHandling';
 import { ActionBar } from './ActionBar';
 import { LiveWaveform } from '@/components/ui/live-waveform';
 
-const SOURCE_EXTRACTION_KEY = 'sourceExtractionCount';
-
-const readSourceExtractionPreference = (): number => {
-    if (typeof window === 'undefined') return 0;
-    const stored = localStorage.getItem(SOURCE_EXTRACTION_KEY);
-    if (stored === null) return 0;
-    const n = Number(stored);
-    return Number.isFinite(n) && n >= 0 && n <= 9 ? n : 0;
-};
-
 const ChatInputBox = () => {
     const { loading, sendMessage, stopStreaming, files: contextFiles, fileIds: contextFileIds, setFiles: setContextFiles, setFileIds: setContextFileIds } = useChat();
     const [message, setMessage] = useState("");
-    const [sourceExtractionCount, setSourceExtractionCount] = useState(0);
-
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const {
@@ -72,29 +60,6 @@ const ChatInputBox = () => {
             textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 384) + "px";
         }
     }, [message]);
-
-    useEffect(() => {
-        const updatePreference = () => {
-            setSourceExtractionCount(readSourceExtractionPreference());
-        };
-
-        updatePreference();
-        window.addEventListener('client-config-changed', updatePreference);
-        window.addEventListener('storage', updatePreference);
-
-        return () => {
-            window.removeEventListener('client-config-changed', updatePreference);
-            window.removeEventListener('storage', updatePreference);
-        };
-    }, []);
-
-    const handleSourceExtractionCountChange = (count: number) => {
-        setSourceExtractionCount(count);
-        if (typeof window !== 'undefined') {
-            localStorage.setItem(SOURCE_EXTRACTION_KEY, String(count));
-            window.dispatchEvent(new Event('client-config-changed'));
-        }
-    };
 
     const handleSend = () => {
         if (loading) return;
@@ -183,8 +148,6 @@ const ChatInputBox = () => {
                         isListening={isListening}
                         isSpeechSupported={isSpeechSupported}
                         toggleSpeech={toggleSpeech}
-                        sourceExtractionCount={sourceExtractionCount}
-                        setSourceExtractionCount={handleSourceExtractionCountChange}
                         handleFiles={handleFiles}
                         hasContent={hasContent}
                         handleSend={handleSend}

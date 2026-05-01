@@ -2,46 +2,44 @@ import type { Document } from '../documents/DocumentTree';
 
 export interface FileItem {
   id: string;
-  name: string;
   type: "folder" | "file";
-  date?: string;
+  date?: Date;
   size?: number;
 }
 
-/**
- * Converts the reason docs Document structure to FileManager FileItem structure.
- * Flattens the tree structure into a flat list with path-based IDs.
- */
-export function convertDocumentsToFileItems(documents: Document[]): FileItem[] {
-  const fileItems: FileItem[] = [];
-
-  function traverse(doc: Document, parentPath: string = '') {
-    const currentPath = parentPath ? `${parentPath}/${doc.id}` : `/${doc.id}`;
-
-    // Add the current document/folder
-    fileItems.push({
-      id: currentPath,
-      name: doc.title || 'Untitled',
-      type: doc.isFolder ? 'folder' : 'file',
-      date: new Date().toISOString().split('T')[0],
-      size: doc.isFolder ? undefined : (doc.content?.length || 0),
-    });
-
-    // Recursively traverse children
-    if (doc.children && doc.children.length > 0) {
-      doc.children.forEach(child => traverse(child, currentPath));
-    }
-  }
-
-  documents.forEach(doc => traverse(doc));
-
-  return fileItems;
+function slugify(title: string): string {
+  return (title || 'Untitled')
+    .trim()
+    .replace(/[^a-zA-Z0-9\s-]/g, '')
+    .replace(/\s+/g, '-');
 }
 
-/**
- * Gets FileManager data from the reason docs documents.
- * This should be called with the current documents state.
- */
+export function convertDocumentsToFileItems(documents: Document[]): FileItem[] {
+  // Build a map from doc.id → doc for parent lookup
+  const byId = new Map<string, Document>();
+  for (const doc of documents) byId.set(doc.id, doc);
+
+  // Build path for a doc by walking up parentId chain
+  function pathFor(doc: Document): string {
+    const segments: string[] = [slugify(doc.title)];
+    let current = doc;
+    while (current.parentId) {
+      const parent = byId.get(current.parentId);
+      if (!parent) break;
+      segments.unshift(slugify(parent.title));
+      current = parent;
+    }
+    return '/' + segments.join('/');
+  }
+
+  return documents.map(doc => ({
+    id: pathFor(doc),
+    type: doc.isFolder ? 'folder' : 'file',
+    date: new Date(),
+    size: doc.isFolder ? undefined : (doc.content?.length || 0),
+  }));
+}
+
 export function getData(documents: Document[] = []): FileItem[] {
   return convertDocumentsToFileItems(documents);
 }

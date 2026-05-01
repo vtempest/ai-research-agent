@@ -14,7 +14,7 @@ import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { $isListNode, ListNode } from '@lexical/list';
 import { INSERT_EMBED_COMMAND } from '@lexical/react/LexicalAutoEmbedPlugin';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
-import { $isHeadingNode } from '@lexical/rich-text';
+import { $isHeadingNode, HeadingTagType } from '@lexical/rich-text';
 import {
   $getSelectionStyleValueForProperty,
   $isParentElementRTL,
@@ -210,6 +210,128 @@ function dropDownActiveClass(active: boolean) {
   }
 }
 
+const HEADING_STYLE_TAG = 'data-heading-style-override';
+const HEADING_CLASS_MAP: Partial<Record<HeadingTagType, string>> = {
+  h1: 'PlaygroundEditorTheme__h1',
+  h2: 'PlaygroundEditorTheme__h2',
+  h3: 'PlaygroundEditorTheme__h3',
+  h4: 'PlaygroundEditorTheme__h4',
+};
+
+type CapturedHeadingStyle = {
+  headingTag: HeadingTagType;
+  fontSize: string;
+  fontFamily: string;
+  fontWeight: string;
+  fontStyle: string;
+  color: string;
+  textTransform: string;
+};
+
+function captureCurrentHeadingStyle(
+  editor: LexicalEditor,
+): CapturedHeadingStyle | null {
+  let result: CapturedHeadingStyle | null = null;
+  editor.getEditorState().read(() => {
+    const selection = $getSelection();
+    if (!$isRangeSelection(selection)) return;
+    const anchorNode = selection.anchor.getNode();
+    const topLevel = $findMatchingParent(anchorNode, (e) => {
+      const parent = e.getParent();
+      return parent !== null && $isRootOrShadowRoot(parent);
+    }) ?? anchorNode.getTopLevelElement();
+    if (!topLevel || !$isHeadingNode(topLevel)) return;
+    const tag = topLevel.getTag() as HeadingTagType;
+    if (!(tag in HEADING_CLASS_MAP)) return;
+    const domEl = editor.getElementByKey(topLevel.getKey());
+    if (!domEl) return;
+    const cs = window.getComputedStyle(domEl);
+    const inlineStyle = (domEl as HTMLElement).style;
+    result = {
+      headingTag: tag,
+      fontSize: inlineStyle.fontSize || cs.fontSize,
+      fontFamily: inlineStyle.fontFamily || cs.fontFamily,
+      fontWeight: inlineStyle.fontWeight || cs.fontWeight,
+      fontStyle: inlineStyle.fontStyle || cs.fontStyle,
+      color: inlineStyle.color || cs.color,
+      textTransform: inlineStyle.textTransform || cs.textTransform,
+    };
+  });
+  return result;
+}
+
+function applyHeadingStyleOverride(captured: CapturedHeadingStyle) {
+  const className = HEADING_CLASS_MAP[captured.headingTag]!;
+  const styleId = `heading-style-override-${captured.headingTag}`;
+  let styleEl = document.getElementById(styleId) as HTMLStyleElement | null;
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = styleId;
+    styleEl.setAttribute(HEADING_STYLE_TAG, captured.headingTag);
+    document.head.appendChild(styleEl);
+  }
+  const rules: string[] = [];
+  if (captured.fontSize) rules.push(`font-size: ${captured.fontSize}`);
+  if (captured.fontFamily) rules.push(`font-family: ${captured.fontFamily}`);
+  if (captured.fontWeight) rules.push(`font-weight: ${captured.fontWeight}`);
+  if (captured.fontStyle) rules.push(`font-style: ${captured.fontStyle}`);
+  if (captured.color) rules.push(`color: ${captured.color}`);
+  if (captured.textTransform) rules.push(`text-transform: ${captured.textTransform}`);
+  styleEl.textContent = `.${className} { ${rules.join('; ')}; }`;
+}
+
+function UpdateHeadingStyleDialog({
+  captured,
+  onClose,
+}: {
+  captured: CapturedHeadingStyle;
+  onClose: () => void;
+}) {
+  const headingName = captured.headingTag.toUpperCase();
+  const styleLines = [
+    captured.fontSize && `Font size: ${captured.fontSize}`,
+    captured.fontFamily && `Font family: ${captured.fontFamily}`,
+    captured.fontWeight && `Font weight: ${captured.fontWeight}`,
+    captured.fontStyle && `Font style: ${captured.fontStyle}`,
+    captured.color && `Color: ${captured.color}`,
+    captured.textTransform && captured.textTransform !== 'none' && `Text transform: ${captured.textTransform}`,
+  ].filter(Boolean) as string[];
+
+  return (
+    <div className="flex flex-col gap-4 p-1">
+      <p className="text-sm text-muted-foreground">
+        This will update the <strong>default style for all {headingName} headings</strong> in
+        this document to match the formatting of the currently selected heading.
+      </p>
+      <div className="rounded-md border bg-muted/40 p-3 text-sm space-y-1">
+        {styleLines.map((line) => (
+          <div key={line} className="font-mono text-xs">{line}</div>
+        ))}
+      </div>
+      <p className="text-xs text-muted-foreground">
+        All existing {headingName} headings that do not have their own inline style overrides
+        will visually update immediately. This override is stored per session via an injected
+        CSS rule.
+      </p>
+      <div className="flex justify-end gap-2 pt-1">
+        <button
+          className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium border bg-background hover:bg-accent transition-colors"
+          onClick={onClose}>
+          Cancel
+        </button>
+        <button
+          className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+          onClick={() => {
+            applyHeadingStyleOverride(captured);
+            onClose();
+          }}>
+          Apply to All {headingName}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /**
  * Dropdown component for selecting block-level formatting (Paragraph, Heading, List, etc.).
  */
@@ -218,12 +340,24 @@ function BlockFormatDropDown({
   blockType,
   rootType,
   disabled = false,
+  showModal,
 }: {
   blockType: keyof typeof blockTypeToBlockName;
   rootType: keyof typeof rootTypeToRootName;
   editor: LexicalEditor;
   disabled?: boolean;
+  showModal: (title: string, getContent: (onClose: () => void) => JSX.Element) => void;
 }): JSX.Element {
+  const isHeadingBlock = blockType === 'h1' || blockType === 'h2' || blockType === 'h3' || blockType === 'h4';
+
+  const handleUpdateToMatchStyle = () => {
+    const captured = captureCurrentHeadingStyle(editor);
+    if (!captured) return;
+    showModal(`Update ${captured.headingTag.toUpperCase()} Default Style`, (onClose) => (
+      <UpdateHeadingStyleDialog captured={captured} onClose={onClose} />
+    ));
+  };
+
   return (
     <DropDown
       disabled={disabled}
@@ -335,6 +469,22 @@ function BlockFormatDropDown({
         </div>
         <span className="shortcut">{SHORTCUTS.CLEAR_FORMATTING}</span>
       </DropDownItem>
+
+      {isHeadingBlock && (
+        <>
+          <DropDownSeparator />
+          <DropDownItem
+            onClick={handleUpdateToMatchStyle}
+            className="item wide"
+            title="Update heading default style to match selected text"
+            aria-label="Update heading default style to match selected text">
+            <div className="icon-text-container">
+              <Icon name={blockType as string} />
+              <span className="pl-2 text">Update to Match Style</span>
+            </div>
+          </DropDownItem>
+        </>
+      )}
     </DropDown>
   );
 }
@@ -952,6 +1102,7 @@ export default function ToolbarPlugin({
               blockType={toolbarState.blockType}
               rootType={toolbarState.rootType}
               editor={activeEditor}
+              showModal={showModal}
             />
           </>
         )}
@@ -1386,42 +1537,6 @@ export default function ToolbarPlugin({
                   className="item">
                   <Icon name="comments" />
                   <span className="text">Toggle Comments</span>
-                </DropDownItem>
-                <DropDownItem
-                  onClick={() => {
-                    setOption('isAutocompleteWords', !settings.isAutocompleteWords);
-                  }}
-                  className="item">
-                  <Icon name={settings.isAutocompleteWords ? 'check' : 'close'} />
-                  <span className="text">Complete Words</span>
-                </DropDownItem>
-                <DropDownItem
-                  onClick={() => {
-                    setOption('isAutocompleteSentences', !settings.isAutocompleteSentences);
-                  }}
-                  className="item">
-                  <Icon name={settings.isAutocompleteSentences ? 'check' : 'close'} />
-                  <span className="text">Complete Sentences</span>
-                </DropDownItem>
-                <DropDownItem
-                  onClick={() => {
-                    setOption('isAutocompleteWords', !settings.isAutocompleteWords);
-                  }}
-                  className="item">
-                  <Icon name="type-bold" />
-                  <span className="text">
-                    {settings.isAutocompleteWords ? '✓ ' : ''}Complete Words
-                  </span>
-                </DropDownItem>
-                <DropDownItem
-                  onClick={() => {
-                    setOption('isAutocompleteSentences', !settings.isAutocompleteSentences);
-                  }}
-                  className="item">
-                  <Icon name="text-paragraph" />
-                  <span className="text">
-                    {settings.isAutocompleteSentences ? '✓ ' : ''}Complete Sentences
-                  </span>
                 </DropDownItem>
               </DropDown>
               <Divider />

@@ -157,7 +157,7 @@ const SettingsDialogue = ({
           </div>
         ) : (
           <div className="flex flex-1 inset-0 h-full overflow-hidden">
-            <div className="hidden lg:flex flex-col w-[240px] border-r border-white-200 dark:border-dark-200 h-full px-3 pt-3 overflow-y-auto">
+            <div className="hidden lg:flex flex-col w-[240px] border-r border-light-200 dark:border-dark-200 h-full px-3 pt-3 overflow-y-auto">
               <button
                 onClick={() => setIsOpen(false)}
                 className="group flex flex-row items-center hover:bg-light-200 hover:dark:bg-dark-200 p-2 rounded-lg"

@@ -6,6 +6,7 @@ import SettingsButtonMobile from '../../Settings/SettingsButtonMobile';
 import MessageBoxLoading from './ChatMessageLoadingSkeleton';
 import { GradientBlur } from '@/components/ui/gradient-blur';
 import ChatInputBox from '../MessageComposer/ChatInputBox';
+import RecentHistoryChips from './RecentHistoryChips';
 import { useChat } from '@/components/ResearchAgent/hooks/useChat';
 import { getBackgroundArtwork } from './background-art';
 const { listFooterLinks } = config;
@@ -95,8 +96,7 @@ export default function ChatHomepage() {
 
             <div className="w-full space-y-2">
               <ChatInputBox />
-              <div className="flex justify-center">
-              </div>
+              <RecentHistoryChips />
               <p className="text-lg text-gray-500 text-center justify-center mt-4">
                 <a
                   aria-label="Chrome Web Store"

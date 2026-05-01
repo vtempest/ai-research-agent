@@ -342,12 +342,17 @@ export async function sendMessage(
       try {
         // Parse newline-delimited JSON
         const lines = partialChunk.split("\n");
+        // Keep the last segment as it may be an incomplete JSON chunk
+        partialChunk = lines.pop() ?? "";
         for (const line of lines) {
           if (!line.trim()) continue;
-          const json = JSON.parse(line);
-          messageHandler(json);
+          try {
+            const json = JSON.parse(line);
+            messageHandler(json);
+          } catch {
+            // Malformed line - skip it
+          }
         }
-        partialChunk = "";
       } catch {
         // Incomplete JSON - wait for next chunk
       }

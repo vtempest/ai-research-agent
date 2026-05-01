@@ -11,8 +11,6 @@ interface ActionBarProps {
     isListening: boolean;
     isSpeechSupported: boolean;
     toggleSpeech: () => void;
-    sourceExtractionCount: number;
-    setSourceExtractionCount: (v: number) => void;
     handleFiles: (files: FileList | File[]) => void;
     hasContent: boolean;
     handleSend: () => void;
@@ -24,8 +22,6 @@ export function ActionBar({
     isListening,
     isSpeechSupported,
     toggleSpeech,
-    sourceExtractionCount,
-    setSourceExtractionCount,
     handleFiles,
     hasContent,
     handleSend,
@@ -38,8 +34,6 @@ export function ActionBar({
                 <FileUploadDropdown
                     onFileSelect={handleFiles}
                     disabled={loading}
-                    sourceExtractionCount={sourceExtractionCount}
-                    setSourceExtractionCount={setSourceExtractionCount}
                 />
 
                 {isSpeechSupported && (

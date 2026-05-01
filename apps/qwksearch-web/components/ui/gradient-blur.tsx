@@ -114,13 +114,12 @@ export function GradientBlur({
     }
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault()
       mouseRef.current.x = e.touches[0].pageX
       mouseRef.current.y = e.touches[0].pageY
     }
 
     window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("touchmove", handleTouchMove, { passive: false })
+    window.addEventListener("touchmove", handleTouchMove, { passive: true })
     window.addEventListener("resize", resizeCanvas)
 
     draw()
@@ -133,7 +132,7 @@ export function GradientBlur({
   }, [radius, opacityDecay, backgroundColor, color, colorGenerator])
 
   return (
-    <div className="relative w-full h-screen overflow-hidden cursor-move">
+    <div className="relative w-full h-screen overflow-hidden pointer-events-none">
       <canvas
         ref={canvasRef}
         className="absolute inset-0"

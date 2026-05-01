@@ -19,10 +19,9 @@ interface FileManagerModalProps {
 export function FileManagerModal({ open, onOpenChange, documents = defaultDocuments }: FileManagerModalProps) {
   const data = getData(documents).map((item) => ({
     id: item.id,
-    name: item.name,
     type: item.type,
     size: item.size ?? 0,
-    date: item.date ? new Date(item.date) : new Date(),
+    date: item.date ?? new Date(),
   }));
 
   return (

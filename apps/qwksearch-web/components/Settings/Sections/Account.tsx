@@ -73,7 +73,7 @@ function formatDate(ts: string | number | null): string {
 }
 
 const SectionCard = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <section className={cn('rounded-xl border border-light-200 bg-light-primary/80 p-4 lg:p-6 transition-colors dark:border-dark-200 dark:bg-dark-primary/80', className)}>
+  <section className={cn('rounded-xl border border-light-200 bg-secondary/50 p-4 lg:p-6 transition-colors dark:border-dark-200 dark:bg-dark-primary/80', className)}>
     {children}
   </section>
 );
@@ -86,7 +86,7 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: string })
 );
 
 const inputClass =
-  'w-full rounded-lg border border-light-200 dark:border-dark-200 bg-light-primary dark:bg-dark-primary px-3 py-2 lg:px-4 lg:py-3 !text-xs lg:!text-[13px] text-black/80 dark:text-white/80 placeholder:text-black/40 dark:placeholder:text-white/40 focus-visible:outline-none focus-visible:border-light-300 dark:focus-visible:border-dark-300 transition-colors disabled:cursor-not-allowed disabled:opacity-60';
+  'w-full rounded-lg border border-black/20 dark:border-dark-200 bg-white dark:bg-dark-primary px-3 py-2 lg:px-4 lg:py-3 !text-xs lg:!text-[13px] text-black/80 dark:text-white/80 placeholder:text-black/40 dark:placeholder:text-white/40 focus-visible:outline-none focus-visible:border-black/40 dark:focus-visible:border-dark-300 transition-colors disabled:cursor-not-allowed disabled:opacity-60';
 
 const SaveButton = ({ onClick, loading, disabled }: { onClick: () => void; loading: boolean; disabled?: boolean }) => (
   <button

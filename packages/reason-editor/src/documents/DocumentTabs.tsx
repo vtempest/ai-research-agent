@@ -1,8 +1,7 @@
 /**
  * @module DocumentTabs
- * @description Horizontally scrollable tab bar that lists all open documents.
- * Supports inline rename, right-click context menu (rename, close, split, reopen),
- * and scroll arrows for overflow navigation.
+ * @description Tab bar listing all open documents. Tabs shrink to fit available
+ * space; a "…" overflow dropdown provides access to all tabs and close actions.
  */
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { Button } from '../ui/button';
@@ -13,7 +12,13 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from '../ui/context-menu';
-import { X, Plus, ChevronLeft, ChevronRight, Menu, Edit2, Trash2, RotateCcw, SplitSquareVertical } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { X, Plus, MoreHorizontal, Menu, Edit2, RotateCcw, SplitSquareVertical } from 'lucide-react';
 import { Document } from './DocumentTree';
 import { cn } from '../lib/utils';
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -21,37 +26,20 @@ import { useIsMobile } from '../hooks/use-mobile';
 
 /** Props for the {@link DocumentTabs} component. */
 interface DocumentTabsProps {
-  /** Ordered list of document IDs currently open as tabs. */
   openTabs: string[];
-  /** ID of the currently active tab, or `null` if none. */
   activeTab: string | null;
-  /** Full document list used to resolve tab labels. */
   documents: Document[];
-  /** Called when the user selects a different tab. */
   onTabChange: (tabId: string) => void;
-  /** Called when the user closes a tab. */
   onTabClose: (tabId: string) => void;
-  /** Called when the "+" button is clicked to open a new tab. */
   onTabAdd: () => void;
-  /** Optional callback for inline document rename. */
   onRename?: (tabId: string, newTitle: string) => void;
-  /** Optional callback for the mobile hamburger-menu button. */
   onMenuClick?: () => void;
-  /** Optional callback for permanently deleting a document from the context menu. */
   onDelete?: (tabId: string) => void;
-  /** Optional callback to reopen the most recently closed tab. */
   onReopenLastClosed?: () => void;
-  /** Optional callback to open a document in a split-right panel. */
   onSplitRight?: (tabId: string) => void;
-  /** Whether a closed tab is available to reopen. Defaults to `false`. */
   canReopenLastClosed?: boolean;
 }
 
-/**
- * Horizontally scrollable document tab bar. Returns `null` when there are no
- * open tabs. Supports inline rename via double-click and full context-menu
- * actions (rename, close, split right, reopen last closed).
- */
 export const DocumentTabs = ({
   openTabs,
   activeTab,
@@ -70,35 +58,28 @@ export const DocumentTabs = ({
   const [renamingTabId, setRenamingTabId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isScrollable, setIsScrollable] = useState(false);
+  const tabsListRef = useRef<HTMLDivElement>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
 
-  /** Updates `isScrollable` based on whether the tab list overflows its container. */
-  const checkScrollable = useCallback(() => {
-    const el = scrollContainerRef.current;
-    if (el) setIsScrollable(el.scrollWidth > el.clientWidth);
+  const checkOverflow = useCallback(() => {
+    const el = tabsListRef.current;
+    if (el) setHasOverflow(el.scrollWidth > el.clientWidth + 2);
   }, []);
 
   useEffect(() => {
-    const el = scrollContainerRef.current;
+    const el = tabsListRef.current;
     if (!el) return;
-    checkScrollable();
-    const ro = new ResizeObserver(checkScrollable);
+    checkOverflow();
+    const ro = new ResizeObserver(checkOverflow);
     ro.observe(el);
-    el.addEventListener('scroll', checkScrollable);
-    return () => { ro.disconnect(); el.removeEventListener('scroll', checkScrollable); };
-  }, [checkScrollable, openTabs]);
+    return () => ro.disconnect();
+  }, [checkOverflow, openTabs]);
 
-  /**
-   * Resolves the display title for a tab by its document ID.
-   * Returns `'Untitled'` when the document has no title.
-   */
   const getDocumentTitle = (docId: string) => {
     const doc = documents.find((d) => d.id === docId);
     return doc?.title || 'Untitled';
   };
 
-  // Focus input when renaming starts
   useEffect(() => {
     if (renamingTabId && inputRef.current) {
       inputRef.current.focus();
@@ -106,10 +87,6 @@ export const DocumentTabs = ({
     }
   }, [renamingTabId]);
 
-  /**
-   * Begins inline rename for the given tab on double-click.
-   * Pre-fills the rename input with the current document title.
-   */
   const handleDoubleClick = (tabId: string) => {
     if (onRename) {
       setRenamingTabId(tabId);
@@ -117,10 +94,6 @@ export const DocumentTabs = ({
     }
   };
 
-  /**
-   * Commits the pending rename. Calls `onRename` if the new value is non-empty,
-   * then clears the rename state regardless.
-   */
   const handleRenameSubmit = () => {
     if (renamingTabId && renameValue.trim() && onRename) {
       onRename(renamingTabId, renameValue.trim());
@@ -129,11 +102,6 @@ export const DocumentTabs = ({
     setRenameValue('');
   };
 
-  /**
-   * Keyboard handler for the inline rename input.
-   * - `Enter` commits the rename.
-   * - `Escape` cancels without saving.
-   */
   const handleRenameKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -144,28 +112,12 @@ export const DocumentTabs = ({
     }
   };
 
-  /** Scrolls the tab list 200 px to the left. */
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
-    }
-  };
-
-  /** Scrolls the tab list 200 px to the right. */
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
-    }
-  };
-
-  if (openTabs.length === 0) {
-    return null;
-  }
+  if (openTabs.length === 0) return null;
 
   return (
     <div className="border-b border-border bg-card">
       <Tabs value={activeTab || undefined} onValueChange={onTabChange}>
-        <div className="flex items-center">
+        <div className="flex items-center min-w-0">
           {isMobile && onMenuClick && (
             <Button
               variant="ghost"
@@ -178,36 +130,23 @@ export const DocumentTabs = ({
             </Button>
           )}
 
-          {(isScrollable || isMobile) && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-10 w-10 p-0 rounded-none border-r border-border shrink-0"
-              onClick={scrollLeft}
-              title="Scroll left"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-          )}
-
-          <div ref={scrollContainerRef} className="flex-1 overflow-x-auto">
-            <TabsList className="h-10 bg-transparent p-0 rounded-none border-0 flex-nowrap">
+          {/* Tabs list — overflow hidden so tabs shrink rather than scroll */}
+          <div ref={tabsListRef} className="flex-1 min-w-0 overflow-hidden">
+            <TabsList className="h-10 bg-transparent p-0 rounded-none border-0 w-full flex flex-nowrap">
               {openTabs.map((tabId) => (
                 <ContextMenu key={tabId}>
-                  <ContextMenuTrigger>
-                    <div className="relative group">
+                  <ContextMenuTrigger className="flex-1 min-w-0" style={{ minWidth: '2.5rem' }}>
+                    <div className="relative group h-10 w-full">
                       <TabsTrigger
                         value={tabId}
                         onDoubleClick={() => handleDoubleClick(tabId)}
                         className={cn(
-                          'relative h-10 rounded-none border-r border-border px-4 py-2',
+                          'w-full h-10 rounded-none border-r border-border px-2 py-2',
                           'data-[state=active]:bg-background data-[state=active]:text-blue-600 data-[state=active]:font-bold',
                           'data-[state=active]:shadow-sm data-[state=active]:border-b-2 data-[state=active]:border-b-blue-600',
                           'data-[state=active]:z-10',
                           'data-[state=inactive]:bg-muted/50 data-[state=inactive]:text-muted-foreground data-[state=inactive]:font-normal',
-                          'hover:bg-muted',
-                          'pr-8',
-                          'transition-all duration-200'
+                          'hover:bg-muted pr-7 transition-all duration-200'
                         )}
                       >
                         {renamingTabId === tabId ? (
@@ -218,13 +157,13 @@ export const DocumentTabs = ({
                             onChange={(e) => setRenameValue(e.target.value)}
                             onKeyDown={handleRenameKeyDown}
                             onBlur={handleRenameSubmit}
-                            className="max-w-[150px] text-sm bg-transparent border-none outline-none focus:ring-1 focus:ring-primary rounded px-1 font-normal"
+                            className="w-full text-sm bg-transparent border-none outline-none focus:ring-1 focus:ring-primary rounded px-1 font-normal"
                             onClick={(e) => e.stopPropagation()}
                             onMouseDown={(e) => e.stopPropagation()}
                             autoFocus
                           />
                         ) : (
-                          <span className="max-w-[150px] truncate text-sm">
+                          <span className="truncate text-sm block w-full">
                             {getDocumentTitle(tabId)}
                           </span>
                         )}
@@ -233,7 +172,7 @@ export const DocumentTabs = ({
                         variant="ghost"
                         size="sm"
                         className={cn(
-                          'absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6 p-0',
+                          'absolute right-1 top-1/2 -translate-y-1/2 h-5 w-5 p-0',
                           'opacity-0 group-hover:opacity-100 transition-opacity',
                           'hover:bg-destructive/10 hover:text-destructive'
                         )}
@@ -249,9 +188,7 @@ export const DocumentTabs = ({
                   </ContextMenuTrigger>
                   <ContextMenuContent>
                     {onRename && (
-                      <ContextMenuItem
-                        onClick={() => handleDoubleClick(tabId)}
-                      >
+                      <ContextMenuItem onClick={() => handleDoubleClick(tabId)}>
                         <Edit2 className="mr-2 h-4 w-4" />
                         Rename
                       </ContextMenuItem>
@@ -267,9 +204,7 @@ export const DocumentTabs = ({
                     )}
                     <ContextMenuSeparator />
                     {onSplitRight && (
-                      <ContextMenuItem
-                        onClick={() => onSplitRight(tabId)}
-                      >
+                      <ContextMenuItem onClick={() => onSplitRight(tabId)}>
                         <SplitSquareVertical className="mr-2 h-4 w-4" />
                         Split Right
                       </ContextMenuItem>
@@ -289,17 +224,43 @@ export const DocumentTabs = ({
             </TabsList>
           </div>
 
-          {(isScrollable || isMobile) && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-10 w-10 p-0 rounded-none border-r border-border shrink-0"
-              onClick={scrollRight}
-              title="Scroll right"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          )}
+          {/* Overflow dropdown — always visible so users can navigate all tabs */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-10 w-8 p-0 rounded-none border-r border-border shrink-0"
+                title="All tabs"
+              >
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 max-h-80 overflow-y-auto">
+              {openTabs.map((tabId) => (
+                <DropdownMenuItem
+                  key={tabId}
+                  className={cn(
+                    'flex items-center justify-between gap-2 cursor-pointer pr-1',
+                    tabId === activeTab && 'font-semibold text-blue-600'
+                  )}
+                  onSelect={() => onTabChange(tabId)}
+                >
+                  <span className="truncate flex-1 text-sm">{getDocumentTitle(tabId)}</span>
+                  <button
+                    className="shrink-0 h-5 w-5 flex items-center justify-center rounded hover:bg-destructive/10 hover:text-destructive"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onTabClose(tabId);
+                    }}
+                    title="Close tab"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Button
             variant="ghost"

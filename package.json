@@ -24,6 +24,9 @@
   ],
   "resolutions": {
     "@vitejs/plugin-react": "5.2.0",
-    "@opennextjs/aws": "3.9.16"
+    "@opennextjs/aws": "3.10.4"
+  },
+  "dependencies": {
+    "@opennextjs/cloudflare": "^1.19.5"
   }
 }
