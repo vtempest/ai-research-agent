@@ -145,6 +145,7 @@ export async function sendMessage(
   // Accumulator for streaming response
   let receivedMessage = "";
   let added = false;
+  let suggestionsFetched = false;
 
   // Generate or use provided message ID
   const messageId = providedMessageId ?? crypto.randomBytes(7).toString("hex");
@@ -240,35 +241,31 @@ export async function sendMessage(
         document.getElementById(`search-videos-${lastMsg.messageId}`)?.click();
       }
 
-      // Fetch follow-up suggestions if we have sources and no existing suggestions
-      const userMessageIndex = messagesRef.current.findIndex(
-        (msg) => msg.messageId === messageId && msg.role === "user",
-      );
+      // Fetch follow-up suggestions if we have sources and haven't fetched yet for this request
+      if (!suggestionsFetched) {
+        suggestionsFetched = true;
 
-      const sourceMessage = messagesRef.current.find(
-        (msg, i) => i > userMessageIndex && msg.role === "source",
-      ) as SourceMessage | undefined;
+        const userMessageIndex = messagesRef.current.findIndex(
+          (msg) => msg.messageId === messageId && msg.role === "user",
+        );
 
-      const suggestionMessageIndex = messagesRef.current.findIndex(
-        (msg, i) => i > userMessageIndex && msg.role === "suggestion",
-      );
+        const sourceMessage = messagesRef.current.find(
+          (msg, i) => i > userMessageIndex && msg.role === "source",
+        ) as SourceMessage | undefined;
 
-      if (
-        sourceMessage &&
-        sourceMessage.sources.length > 0 &&
-        suggestionMessageIndex === -1
-      ) {
-        const suggestions = await getSuggestions(messagesRef.current);
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "suggestion",
-            suggestions: suggestions,
-            chatId: chatId,
-            createdAt: new Date(),
-            messageId: crypto.randomBytes(7).toString("hex"),
-          },
-        ]);
+        if (sourceMessage && sourceMessage.sources.length > 0) {
+          const suggestions = await getSuggestions(messagesRef.current);
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: "suggestion",
+              suggestions: suggestions,
+              chatId: chatId,
+              createdAt: new Date(),
+              messageId: crypto.randomBytes(7).toString("hex"),
+            },
+          ]);
+        }
       }
     }
   };
