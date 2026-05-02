@@ -67,7 +67,7 @@ bun i qwksearch-api-client
 ## 🤖🔎 STREAM: Search with Top Result Extraction & Answer Model
 
 <p align="center">
-    <img width="350px" src="https://i.imgur.com/s8gsYt1.png" /> 
+    <img width="350px" src="https://i.imgur.com//LJ5hBjh.png" /> 
 </p>
 
 **Reimagine The Web as Self-Organizing Mind Map**
@@ -103,7 +103,7 @@ bun i qwksearch-api-client
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/o8NTXxY.png" /> 
+<img width="350px"  src="https://i.imgur.com/dz8FE7D.jpeg" /> 
 </p>
 
 1. **Main Content Detection**: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
