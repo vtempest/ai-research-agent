@@ -84,7 +84,7 @@ bun i qwksearch-api-client
 #### Research Editor for Annotated Summaries in Outline Notation
 
 <p align="center">
-    <img width="400px" src="https://i.imgur.com/WMhnKip.jpeg" />
+    <img width="400px" src="https://i.imgur.com/pDvMC1Q.png" />
 </p>
 
 - 📂 **Nested Document Tree**: organize research notes with a nested document organizer with drag-and-drop, tabs, and custom storage sources
@@ -115,27 +115,21 @@ bun i qwksearch-api-client
 ## Further Research
 
 * [ThoughtSource Reasoning Datasets](https://github.com/OpenBioLink/ThoughtSource)
-* [Debate on Graph (arxiv)](https://arxiv.org/html/2409.03155v1)
 * [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets)
-* [AI Research Agent&#39;s NPM Dependecies](https://npmgraph.js.org/?q=ai-research-agent#hide=)
-* [Tensorflow.js Demos](https://www.tensorflow.org/js/demos)
 * [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
 * [NLP Papers Latest Updates](https://index.quantumstat.com)
 * [Anthropic Persuation Overview](https://www.anthropic.com/research/measuring-model-persuasiveness)
 * [NLP Research Progress](https://github.com/sebastianruder/NLP-progress/)
 * [NLP Datasets](https://github.com/niderhoff/nlp-datasets?tab=readme-ov-file)
-* [Mastering Retrieval for LLMs - BM25, Fine-tuned Embeddings, and Re-Rankers](https://www.youtube.com/watch?v=9QJXvNiJIG8)
 * [Google Search Algorithm](https://searchengineland.com/google-search-document-leak-ranking-442617)
-* [Transformers Explained Visually (Part 3)](https://towardsdatascience.com/transformers-explained-visually-part-3-multi-head-attention-deep-dive-1c1ff1024853)
 * [Can LLMs Generate Novel Research Ideas?](https://arxiv.org/html/2409.04109v1)
 * [Graph Algorithms Playground](https://playground.memgraph.com)
 * [CommonCrawl C4 Download](https://huggingface.co/datasets/allenai/c4)
 * [Knowledge Graphs Prompts Papers](https://github.com/zjunlp/PromptKG)
 * [Paper - Iterative Research Idea Generation](https://arxiv.org/abs/2404.07738)
-* [How might LLMs store facts](https://www.youtube.com/watch?v=9-Jl0dxWQs8&t=70s)
-* [Awesome-LLM-Graph-Theory](https://github.com/XiaoxinHe/Awesome-Graph-LLM)
 * [Open Deep Search](https://arxiv.org/html/2503.20201v1)
-* [LangChain Hub](https://smith.langchain.com/hub) - A collection of reusable prompts, chains, and agents for building LLM applications
-* [LangChain Documentation](https://js.langchain.com/docs) - Comprehensive documentation for LangChain.js
+* [LangChain Hub](https://smith.langchain.com/hub)
 
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) 🌟 Please star this repo so it will grow and get updates!
+🌟 Please star this repo so it will grow and get updates!
+
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
