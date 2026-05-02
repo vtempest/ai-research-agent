@@ -3,7 +3,6 @@
  */
 import React from "react";
 import FileUploadDropdown from '../FileUpload/FileUploadDropdown';
-import HistoryDropdown from '../ChatHistoryDropdown';
 import { Icons } from "./MessageInputIconSet";
 
 interface ActionBarProps {
@@ -61,9 +60,6 @@ export function ActionBar({
 
             {/* Right Tools */}
             <div className="flex flex-row items-center min-w-0 gap-1">
-                <div className="flex flex-row items-center space-x-1">
-                    <HistoryDropdown position="top" align="right" />
-                </div>
                 {/* Send / Stop Button */}
                 <div>
                     {loading ? (

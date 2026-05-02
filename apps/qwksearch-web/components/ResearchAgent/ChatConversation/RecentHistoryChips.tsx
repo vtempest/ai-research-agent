@@ -2,18 +2,20 @@
 
 import Link from 'next/link';
 import { useHistoryState } from '../ChatHistoryDropdown/useHistoryState';
+import HistoryDropdown from '../ChatHistoryDropdown';
 
 export default function RecentHistoryChips() {
   const { chats, loading } = useHistoryState();
-
-  if (loading || chats.length === 0) return null;
 
   const recent = [...chats]
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, 3);
 
+  if (loading) return null;
+
   return (
     <div className="flex flex-row items-center justify-center gap-2 flex-wrap">
+      <HistoryDropdown position="top" align="right" />
       {recent.map((chat) => (
         <Link
           key={chat.id}
