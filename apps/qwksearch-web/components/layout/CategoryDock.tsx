@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
-import { UserCircle2, Moon, Sun, Palette, Settings, EyeOff, ChevronDown, ChevronUp } from "lucide-react"
+import { UserCircle2, Moon, Sun, Palette, Settings, ChevronDown, ChevronUp } from "lucide-react"
 import { AnimatePresence } from "framer-motion"
 import SettingsDialogue from "@/components/Settings/SettingsDialogue"
 import { useTheme } from "next-themes"
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock"
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -149,7 +150,7 @@ const NAV_ITEMS = [
   // { href: "/news", label: "News", icon: iconNews },
 ]
 
-function SettingsMenu({ side, onOpenSettings, onHideDock }: { side: "bottom" | "top"; onOpenSettings: () => void; onHideDock: () => void }) {
+function SettingsMenu({ side, onOpenSettings, onToggleDock, dockHidden }: { side: "bottom" | "top"; onOpenSettings: () => void; onToggleDock: () => void; dockHidden: boolean }) {
   const themeState = useThemeState()
 
   return (
@@ -199,10 +200,9 @@ function SettingsMenu({ side, onOpenSettings, onHideDock }: { side: "bottom" | "
         <Settings className="mr-2 h-4 w-4" />
         Settings
       </DropdownMenuItem>
-      <DropdownMenuItem onSelect={onHideDock}>
-        <EyeOff className="mr-2 h-4 w-4" />
+      <DropdownMenuCheckboxItem checked={dockHidden} onCheckedChange={onToggleDock}>
         Hide App Dock
-      </DropdownMenuItem>
+      </DropdownMenuCheckboxItem>
       <DropdownMenuItem>
         <UserCircle2 className="mr-2 h-4 w-4" />
         Profile
@@ -222,12 +222,14 @@ function DockInstance({
   dockClassName,
   side,
   allItems,
-  onHideDock,
+  onToggleDock,
+  dockHidden,
 }: {
   dockClassName: string
   side: "bottom" | "top"
   allItems: { key: string; label: string; icon: any; active: boolean; onClick: () => void }[]
-  onHideDock: () => void
+  onToggleDock: () => void
+  dockHidden: boolean
 }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
@@ -261,7 +263,7 @@ function DockInstance({
             </DockItem>
           </DropdownMenuTrigger>
         </Dock>
-        <SettingsMenu side={side} onOpenSettings={() => setIsSettingsOpen(true)} onHideDock={onHideDock} />
+        <SettingsMenu side={side} onOpenSettings={() => setIsSettingsOpen(true)} onToggleDock={onToggleDock} dockHidden={dockHidden} />
       </DropdownMenu>
       <AnimatePresence>
         {isSettingsOpen && <SettingsDialogue isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen} />}
@@ -302,10 +304,11 @@ export function CategoryDock() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [dockTemporarilyVisible])
 
-  const hideDock = () => {
-    setDockHidden(true)
+  const toggleDock = () => {
+    const next = !dockHidden
+    setDockHidden(next)
     setDockTemporarilyVisible(false)
-    localStorage.setItem('dock-hidden', 'true')
+    localStorage.setItem('dock-hidden', String(next))
   }
 
   const showDockTemporarily = () => {
@@ -355,7 +358,7 @@ export function CategoryDock() {
             dockClassName="h-[52px] shrink-0 !mt-0 !mx-0"
             side="bottom"
             allItems={allItems}
-            onHideDock={hideDock}
+            onToggleDock={toggleDock} dockHidden={dockHidden}
           />
         ) : (
           <button
@@ -375,7 +378,7 @@ export function CategoryDock() {
             dockClassName="h-[52px] shrink-0 !mt-0 mx-auto w-max mb-2 !gap-1 !p-1"
             side="top"
             allItems={allItems}
-            onHideDock={hideDock}
+            onToggleDock={toggleDock} dockHidden={dockHidden}
           />
         ) : (
           <div className="flex justify-center">
