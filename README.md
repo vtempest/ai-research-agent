@@ -43,7 +43,7 @@
 
 Critical times call for critical thinkers to create a crowdsourced argument reasoning dataset, for AI models to recommend research quotes, to evolve crowdsourced chain-of-thought reasoning, to unlock faster ways to read long articles, to monitor developments by topic modeling a knowledge base graph, and to provide a public service of answers to research.
 
-Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests. Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Imagine uploading a research paper, then the app extracts full text of reference cites and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective and interests in a self-organizing mind map. 
+Language Models can distill the essence of collective thought into a vector space where every point has a weighted value representing its contribution to the overall decision-making process. AI will show its reasoning based on what sentences and cites it used from the collective research, so that people can see it is aligned with our interests. Research Agents recommend articles for human researchers working alongside AI to develop a summarized topic outline as a public service. The agents monitor for any related articles via web searches for keywords associated with that Topic Model. Imagine uploading a research paper, then the app extracts full text of reference cites and creates topic model and keyword summaries, then monitors that literature base and stores highlights. People will make personal knowledge bases of what influences them to create AI assistants cloning their mind-uploaded perspective and interests in a self-organizing mind map.
 
 ```bash
 # Download Source
@@ -103,7 +103,7 @@ bun i qwksearch-api-client
 ### 🚜📜 Tractor the Text Extractor
 
 <p align="center">
-<img width="350px"  src="https://i.imgur.com/dz8FE7D.jpeg" /> 
+<img width="350px"  src="https://i.imgur.com/TrF7dYz.png" /> 
 </p>
 
 1. **Main Content Detection**: Extract the main content from a URL by combining Mozilla Readability and Postlight Mercury algorithms, utilizing over 100 custom adapters for major sites for article, author, date HTML classes.
