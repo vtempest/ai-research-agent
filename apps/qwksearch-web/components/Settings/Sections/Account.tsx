@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { Loader2, Upload, Github, Monitor, Linkedin } from 'lucide-react';
+import { Loader2, Upload, Github, Monitor, Linkedin, Copy, RefreshCw, Eye, EyeOff } from 'lucide-react';
 import { authClient } from '@/lib/auth/client';
 import { cn } from '@/lib/utils';
 
@@ -11,6 +11,7 @@ interface UserProfile {
   name: string;
   email: string;
   image?: string | null;
+  apiKey?: string;
 }
 
 interface LinkedAccount {
@@ -105,6 +106,10 @@ export default function Account() {
   const [sessions, setSessions] = useState<SessionInfo[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const [apiKey, setApiKey] = useState('');
+  const [keyGenerating, setKeyGenerating] = useState(false);
+  const [showApiKey, setShowApiKey] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -136,6 +141,7 @@ export default function Account() {
         setProfile(profileData);
         setName(profileData.name ?? '');
         setEmail(profileData.email ?? '');
+        setApiKey(profileData.apiKey ?? '');
         setLinkedAccounts(Array.isArray(accountsData) ? accountsData : []);
         setSessions(Array.isArray(sessionsData) ? sessionsData : []);
       } catch (err) {
@@ -230,6 +236,32 @@ export default function Account() {
       toast.error(err.message ?? 'Failed to change password.');
     } finally {
       setPasswordSaving(false);
+    }
+  };
+
+  const handleCopyApiKey = () => {
+    navigator.clipboard.writeText(apiKey);
+    toast.success('API key copied to clipboard.');
+  };
+
+  const handleRegenerateApiKey = async () => {
+    if (!confirm('Are you sure you want to regenerate your API key? Old key will stop working.')) return;
+    setKeyGenerating(true);
+    try {
+      const res = await fetch('/api/user', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ regenerateApiKey: true }),
+      });
+      if (!res.ok) throw new Error();
+      const newKeyRes = await fetch('/api/user');
+      const newKeyData = await newKeyRes.json();
+      setApiKey(newKeyData.apiKey);
+      toast.success('API key regenerated.');
+    } catch {
+      toast.error('Failed to regenerate API key.');
+    } finally {
+      setKeyGenerating(false);
     }
   };
 
@@ -396,6 +428,46 @@ export default function Account() {
           loading={passwordSaving}
           disabled={!newPassword}
         />
+      </SectionCard>
+
+      {/* API Key */}
+      <SectionCard>
+        <SectionTitle
+          title="API Key"
+          subtitle="Use this API key to access QwkSearch programmatically."
+        />
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <input
+              value={apiKey}
+              readOnly
+              className={inputClass}
+              type={showApiKey ? "text" : "password"}
+            />
+            <button
+              onClick={() => setShowApiKey(!showApiKey)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-black/50 hover:text-black/80 dark:text-white/50 dark:hover:text-white/80 transition-colors"
+              title={showApiKey ? "Hide API Key" : "Show API Key"}
+            >
+              {showApiKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
+          <button
+            onClick={handleCopyApiKey}
+            className="p-2 lg:p-3 rounded-lg border border-black/20 dark:border-dark-200 bg-white dark:bg-dark-primary hover:bg-light-200 dark:hover:bg-dark-200 transition-colors"
+            title="Copy API Key"
+          >
+            <Copy className="w-4 h-4 text-black/70 dark:text-white/70" />
+          </button>
+          <button
+            onClick={handleRegenerateApiKey}
+            disabled={keyGenerating}
+            className="p-2 lg:p-3 rounded-lg border border-black/20 dark:border-dark-200 bg-white dark:bg-dark-primary hover:bg-light-200 dark:hover:bg-dark-200 transition-colors disabled:opacity-50"
+            title="Regenerate API Key"
+          >
+            <RefreshCw className={cn("w-4 h-4 text-black/70 dark:text-white/70", keyGenerating && "animate-spin")} />
+          </button>
+        </div>
       </SectionCard>
 
       {/* Providers */}

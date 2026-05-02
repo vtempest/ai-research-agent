@@ -1,37 +1,37 @@
 {
-  "name": "ai-research-agent-full",
+  "name": "ai-research-agent",
   "version": "1.2.1",
-  "module": "index.ts",
-  "description": "Separch, extract, vectorize, outline graph, and monitor the web for a topic with AI Research Agent.",
+  "description": "Multi-provider AI agent toolkit: generate language responses, search the web, extract content, and manage memory across 10+ LLM providers.",
   "author": "vtempest <grokthiscontact@gmail.com>",
-  "license": "rights.institute/PROSPER",
-  "main": "./src/index.ts",
-  "types": "./src/types.d.ts",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vtempest/ai-research-agent"
+  },
+  "homepage": "https://airesearch.js.org",
+  "bugs": {
+    "url": "https://github.com/vtempest/ai-research-agent/issues"
+  },
+  "main": "./dist/research-agent.cjs.js",
+  "module": "./dist/research-agent.es.js",
+  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
       "import": "./dist/research-agent.es.js",
       "require": "./dist/research-agent.cjs.js"
-    },
-    "./*": "./src/*"
+    }
   },
   "files": [
     "dist",
     "src"
   ],
-  "typesVersions": {
-    "*": {
-      "*": [
-        "src/*"
-      ]
-    }
-  },
   "scripts": {
     "build": "vite build",
     "test": "vitest",
-    "ship": "npx standard-version --release-as patch; npm publish",
     "test-ui": "vitest --ui --watch",
-    "make": "rm -rf dist/*; NODE_OPTIONS=--max-old-space-size=15192 BUN_JSC_forceRAMSize=15192  vite build "
+    "make": "rm -rf dist/*; NODE_OPTIONS=--max-old-space-size=15192 vite build",
+    "ship": "npx standard-version --release-as patch && npm publish --access public"
   },
   "peerDependencies": {
     "next": ">=15.0.0"
@@ -42,14 +42,7 @@
     }
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.17.1",
-    "@tsconfig/svelte": "^5.0.8",
     "@vitest/ui": "^4.0.18",
-    "axios": "^1.13.6",
-    "clsx": "^2.1.1",
-    "next": "^16.1.5",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
     "terser": "^5.46.0",
     "typedoc-plugin-markdown": "^4.10.0",
     "typescript": "^5.9.3",
@@ -90,13 +83,21 @@
     "zod": "^4.3.6"
   },
   "keywords": [
+    "ai-agent",
+    "llm",
+    "research-agent",
+    "langchain",
     "nlp",
-    "autocomplete",
+    "web-search",
     "knowledge-graph",
-    "keywords",
-    "search-algorithm",
-    "hacktoberfest",
-    "mind-map",
-    "ai-search"
-  ]
+    "multi-provider",
+    "groq",
+    "openai",
+    "anthropic",
+    "ollama",
+    "hacktoberfest"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

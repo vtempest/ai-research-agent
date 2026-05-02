@@ -46,6 +46,7 @@ export const user = sqliteTable('user', {
   }).notNull(),
   image: text('image'),
   trialAllowed: integer('trialAllowed').notNull().default(6),
+  apiKey: text('apiKey'),
   createdAt: integer('createdAt', {
     mode: 'timestamp',
   }).notNull(),

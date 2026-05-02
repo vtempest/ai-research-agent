@@ -23,6 +23,7 @@ export async function GET() {
       name: userTable.name,
       email: userTable.email,
       image: userTable.image,
+      apiKey: userTable.apiKey,
       createdAt: userTable.createdAt,
     })
     .from(userTable)
@@ -31,6 +32,13 @@ export async function GET() {
 
   if (!u) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  // Auto-generate API key if missing
+  if (!u.apiKey) {
+    const newApiKey = `qwk_${crypto.randomUUID().replace(/-/g, '')}`;
+    await db.update(userTable).set({ apiKey: newApiKey }).where(eq(userTable.id, session.user.id));
+    u.apiKey = newApiKey;
   }
 
   return NextResponse.json(u);
@@ -43,7 +51,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { name, email, image } = body;
+  const { name, email, image, regenerateApiKey } = body;
 
   const updates: Record<string, any> = {
     updatedAt: new Date(),
@@ -72,6 +80,10 @@ export async function PATCH(req: NextRequest) {
 
   if (image !== undefined) {
     updates.image = image;
+  }
+
+  if (regenerateApiKey) {
+    updates.apiKey = `qwk_${crypto.randomUUID().replace(/-/g, '')}`;
   }
 
   const db = getDB();

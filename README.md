@@ -98,7 +98,7 @@ bun i qwksearch-api-client
 - 💾 **Persistent Storage**: reliable SQLite storage ensures your data is safe and accessible
 - ⌨️ **Keyboard Navigation**: efficient keyboard shortcuts for power users
 - 💬 **Research Quotes**: capture and organize key quotes and insights from your research
-- 🏗️ **Built with**: [Claude Code](https://claude.com/code), [Lexical Editor](https://lexical.dev/), [shadcn/ui](https://ui.shadcn.com/docs/components), [Cloudflare](https://developers.cloudflare.com/), [Next.js](https://nextjs.org/docs/app/getting-started), Google Docs API
+- 🏗️ **Built with**: [Claude Code](https://claude.com/code), [Lexical Editor](https://lexical.dev/), [shadcn/ui](https://ui.shadcn.com/docs/components), [Cloudflare](https://developers.cloudflare.com/), [Next.js](https://nextjs.org/docs/app/getting-started), [Google Docs API](https://developers.google.com/workspace/docs/api/how-tos/overview)
 
 ### 🚜📜 Tractor the Text Extractor
 
