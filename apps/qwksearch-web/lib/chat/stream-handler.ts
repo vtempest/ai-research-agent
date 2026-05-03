@@ -96,8 +96,8 @@ export const handleEmitterEvents = async (
    *
    * @param {SSEMessage} message - The SSE message payload to serialize and send.
    */
-  const writeSSE = (message: SSEMessage): void => {
-    writer.write(encoder.encode(JSON.stringify(message) + "\n"));
+  const writeSSE = (message: SSEMessage): Promise<void> => {
+    return writer.write(encoder.encode(JSON.stringify(message) + "\n"));
   };
 
   stream.on("data", (data: string) => {
@@ -138,9 +138,9 @@ export const handleEmitterEvents = async (
     }
   });
 
-  stream.on("end", () => {
-    writeSSE({ type: "messageEnd" });
-    writer.close();
+  stream.on("end", async () => {
+    await writeSSE({ type: "messageEnd" });
+    await writer.close();
 
     // Only save the assistant message to database for authenticated users
     if (userId) {
@@ -157,12 +157,12 @@ export const handleEmitterEvents = async (
     }
   });
 
-  stream.on("error", (data: string) => {
+  stream.on("error", async (data: string) => {
     const parsedData = JSON.parse(data);
-    writeSSE({
+    await writeSSE({
       type: "error",
       data: parsedData.data,
     });
-    writer.close();
+    await writer.close();
   });
 };
