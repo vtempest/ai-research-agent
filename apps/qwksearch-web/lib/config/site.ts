@@ -49,11 +49,11 @@ export const /** App Name in title case */
   MAX_FOLLOWUP_QUESTIONS: number = 4;
 
 export const listFooterLinks: FooterLink[] = [
-  {
-    url: "https://airesearch.js.org/docs/functions",
-    text: "Docs",
-    icon: HelpCircle,
-  },
+  // {
+  //   url: "https://airesearch.js.org/docs/functions",
+  //   text: "Docs",
+  //   icon: HelpCircle,
+  // },
   // { url: "/pricing", text: "Pricing", icon: "DollarSign" },
   {
     url: "https://www.linkedin.com/company/qwksearch/posts/",

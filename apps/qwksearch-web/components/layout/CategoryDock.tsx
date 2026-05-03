@@ -7,10 +7,12 @@ import { UserCircle2, Moon, Sun, Palette, Settings, ChevronDown, ChevronUp } fro
 import { AnimatePresence } from "framer-motion"
 import SettingsDialogue from "@/components/Settings/SettingsDialogue"
 import { useTheme } from "next-themes"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock"
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -19,7 +21,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Switch } from "@/components/ui/switch"
 import iconRead from '@/components/icons/icon-read.svg'
 import iconNews from '@/components/icons/icon-news-title.svg'
 import iconSettings from '@/components/icons/icon-configure.svg'
@@ -152,6 +153,7 @@ const NAV_ITEMS = [
 
 function SettingsMenu({ side, onOpenSettings, onToggleDock, dockHidden }: { side: "bottom" | "top"; onOpenSettings: () => void; onToggleDock: () => void; dockHidden: boolean }) {
   const themeState = useThemeState()
+  const isMobile = useIsMobile()
 
   return (
     <DropdownMenuContent side={side} align="end" className="w-48">
@@ -200,10 +202,11 @@ function SettingsMenu({ side, onOpenSettings, onToggleDock, dockHidden }: { side
         <Settings className="mr-2 h-4 w-4" />
         Settings
       </DropdownMenuItem>
-      <DropdownMenuItem onSelect={(e) => { e.preventDefault(); onToggleDock() }} className="flex items-center justify-between">
-        Hide App Dock
-        <Switch checked={dockHidden} className="ml-2 pointer-events-none" />
-      </DropdownMenuItem>
+      {isMobile && (
+        <DropdownMenuCheckboxItem checked={dockHidden} onCheckedChange={() => setTimeout(onToggleDock, 0)}>
+          Hide App Dock
+        </DropdownMenuCheckboxItem>
+      )}
       <DropdownMenuItem>
         <UserCircle2 className="mr-2 h-4 w-4" />
         Profile
@@ -233,6 +236,16 @@ function DockInstance({
   dockHidden: boolean
 }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const isMobile = useIsMobile()
+  const router = useRouter()
+
+  const handleOpenSettings = () => {
+    if (isMobile) {
+      router.push('/settings')
+    } else {
+      setIsSettingsOpen(true)
+    }
+  }
 
   return (
     <>
@@ -264,7 +277,7 @@ function DockInstance({
             </DockItem>
           </DropdownMenuTrigger>
         </Dock>
-        <SettingsMenu side={side} onOpenSettings={() => setIsSettingsOpen(true)} onToggleDock={onToggleDock} dockHidden={dockHidden} />
+        <SettingsMenu side={side} onOpenSettings={handleOpenSettings} onToggleDock={onToggleDock} dockHidden={dockHidden} />
       </DropdownMenu>
       <AnimatePresence>
         {isSettingsOpen && <SettingsDialogue isOpen={isSettingsOpen} setIsOpen={setIsSettingsOpen} />}
