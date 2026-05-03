@@ -224,6 +224,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
           setMessageAppeared: setters.setMessageAppeared,
           setMessages: setters.setMessages,
           setChatHistory: setters.setChatHistory,
+          setExtractionByMessageId: setters.setExtractionByMessageId,
         },
       );
     },
@@ -327,6 +328,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     notFound: state.notFound,
     optimizationMode: state.optimizationMode,
     chatModelProvider: state.chatModelProvider,
+    extractionByMessageId: state.extractionByMessageId,
     incognito,
     // Actions
     setFileIds: setters.setFileIds,

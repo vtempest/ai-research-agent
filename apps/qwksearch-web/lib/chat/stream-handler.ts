@@ -17,8 +17,17 @@ import { messages as messagesSchema } from "@/lib/database/schema";
  * @property {string | Document[]}    data - The payload; text chunk or source list.
  */
 interface StreamEvent {
-  type: "response" | "sources";
-  data: string | Document[];
+  type: "response" | "sources" | "extraction";
+  data?: string | Document[];
+  // extraction-event fields
+  phase?: "start" | "progress" | "end";
+  total?: number;
+  completed?: number;
+  capSeconds?: number;
+  url?: string;
+  status?: "pending" | "success" | "failed";
+  urls?: { url: string; title?: string; status: string }[];
+  elapsedMs?: number;
 }
 
 /**
@@ -35,9 +44,17 @@ interface StreamEvent {
  * | `"error"`     | Error description     | _absent_      |
  */
 interface SSEMessage {
-  type: "message" | "sources" | "messageEnd" | "error";
+  type: "message" | "sources" | "messageEnd" | "error" | "extraction";
   data?: string | Document[];
   messageId?: string;
+  phase?: "start" | "progress" | "end";
+  total?: number;
+  completed?: number;
+  capSeconds?: number;
+  url?: string;
+  status?: "pending" | "success" | "failed";
+  urls?: { url: string; title?: string; status: string }[];
+  elapsedMs?: number;
 }
 
 /**
@@ -112,6 +129,19 @@ export const handleEmitterEvents = async (
       });
 
       receivedMessage += parsedData.data;
+    } else if (parsedData.type === "extraction") {
+      writeSSE({
+        type: "extraction",
+        messageId: aiMessageId,
+        phase: parsedData.phase,
+        total: parsedData.total,
+        completed: parsedData.completed,
+        capSeconds: parsedData.capSeconds,
+        url: parsedData.url,
+        status: parsedData.status,
+        urls: parsedData.urls,
+        elapsedMs: parsedData.elapsedMs,
+      });
     } else if (parsedData.type === "sources") {
       writeSSE({
         type: "sources",

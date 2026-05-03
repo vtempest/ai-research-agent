@@ -73,6 +73,11 @@ export const bodySchema = z.object({
   chatModel: chatModelSchema,
   /** Whether to extract and return source content alongside results. */
   sourceExtractionEnabled: z.boolean().optional().default(false),
+  /**
+   * Max seconds to spend extracting URL contents from top sources.
+   * 0 = unlimited (use server default). Drives the per-question extraction time cap.
+   */
+  extractTimeLimit: z.number().nonnegative().optional().default(0),
   /** Custom system instructions to prepend to the prompt. */
   systemInstructions: z.string().nullable().optional().default(""),
 });

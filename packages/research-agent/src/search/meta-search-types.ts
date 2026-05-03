@@ -16,6 +16,7 @@ export interface MetaSearchAgentType {
     systemInstructions: string,
     category?: string,
     sourceExtractionEnabled?: boolean,
+    extractTimeLimit?: number,
   ) => Promise<EventEmitter>;
 }
 

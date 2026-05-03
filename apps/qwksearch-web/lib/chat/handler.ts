@@ -195,6 +195,7 @@ export const handleChatRequest = async (req: Request): Promise<Response> => {
       body.systemInstructions as string,
       body.category,
       body.sourceExtractionEnabled,
+      body.extractTimeLimit,
     );
 
     // --- Set up the SSE response stream ---

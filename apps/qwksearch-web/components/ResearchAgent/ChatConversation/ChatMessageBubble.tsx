@@ -16,6 +16,7 @@ import ThinkTagProcessor from './MessageBubble/ThinkTagProcessor';
 import UserMessageHeader from './MessageBubble/UserMessageHeader';
 import AssistantMessageActions from './MessageBubble/AssistantMessageActions';
 import FollowUpSuggestions from './MessageBubble/FollowUpSuggestions';
+import ExtractionProgressPanel from './ExtractionProgressPanel';
 
 /**
  * Component that renders a single chat section (user message + assistant response).
@@ -38,7 +39,8 @@ const MessageBox = ({
   dividerRef?: Ref<HTMLDivElement>;
   isLast: boolean;
 }) => {
-  const { loading, sendMessage } = useChat();
+  const { loading, sendMessage, extractionByMessageId } = useChat();
+  const extraction = extractionByMessageId[section.userMessage.messageId];
   const [isExpanded, setIsExpanded] = useState(true);
   const [fontFamily, setFontFamily] = useState('');
   const [copiedUserMsg, setCopiedUserMsg] = useState(false);
@@ -168,6 +170,13 @@ const MessageBox = ({
           ref={dividerRef}
           className="flex flex-col space-y-6 w-full"
         >
+          {extraction && (
+            <ExtractionProgressPanel
+              progress={extraction}
+              active={loading && isLast}
+            />
+          )}
+
           {section.sourceMessage &&
             section.sourceMessage.sources.length > 0 && (
               <div className="flex flex-col space-y-2">

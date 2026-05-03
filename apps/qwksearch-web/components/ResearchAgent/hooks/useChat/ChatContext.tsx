@@ -9,7 +9,7 @@
 
 import { createContext, useContext } from 'react';
 import { ChatTurn, Message } from '@/components/ResearchAgent/ChatConversation/ChatWindow';
-import { ChatFile, ChatModelProvider, Section } from './types';
+import { ChatFile, ChatModelProvider, ExtractionProgress, Section } from './types';
 
 /**
  * The value provided by the ChatContext.
@@ -52,6 +52,11 @@ export interface ChatContextValue {
   hasError: boolean;
   /** Current AI model provider configuration */
   chatModelProvider: ChatModelProvider;
+  /**
+   * Per-question URL extraction progress, keyed by the assistant message ID.
+   * Populated as the server streams "extraction" SSE frames.
+   */
+  extractionByMessageId: Record<string, ExtractionProgress>;
 
   // ============ Actions ============
 
@@ -165,6 +170,7 @@ export const chatContext = createContext<ChatContextValue>({
   notFound: false,
   optimizationMode: '',
   chatModelProvider: { key: '', providerId: '' },
+  extractionByMessageId: {},
   // Default no-op actions
   rewrite: () => { },
   sendMessage: async () => { },

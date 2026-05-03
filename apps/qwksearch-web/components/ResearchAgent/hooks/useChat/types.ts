@@ -35,6 +35,19 @@ export type Section = {
 };
 
 /**
+ * Per-message URL extraction progress, mirroring the events emitted by the
+ * research-agent during the source-extraction phase.
+ */
+export interface ExtractionProgress {
+  total: number;
+  completed: number;
+  capSeconds: number;
+  startedAt: number;
+  endedAt?: number;
+  urls: { url: string; title?: string; status: "pending" | "success" | "failed" }[];
+}
+
+/**
  * Represents an uploaded file attached to a chat.
  */
 export interface ChatFile {

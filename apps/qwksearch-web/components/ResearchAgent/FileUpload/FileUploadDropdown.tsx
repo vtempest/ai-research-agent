@@ -4,7 +4,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Upload, CloudIcon, FolderOpen, Loader2, Clock } from 'lucide-react';
+import { Upload, CloudIcon, FolderOpen, Loader2, Clock, Timer } from 'lucide-react';
 import grab from 'grab-url';
 import {
   DropdownMenu,
@@ -34,6 +34,15 @@ const THINKING_OPTIONS = [
   { label: '15s', value: 15 },
   { label: '30s', value: 30 },
   { label: '45s', value: 45 },
+  { label: '60s', value: 60 },
+  { label: 'Unlimited', value: 0 },
+];
+
+const EXTRACT_OPTIONS = [
+  { label: '5s', value: 5 },
+  { label: '10s', value: 10 },
+  { label: '20s', value: 20 },
+  { label: '30s', value: 30 },
   { label: '60s', value: 60 },
   { label: 'Unlimited', value: 0 },
 ];
@@ -72,6 +81,11 @@ const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
     const n = Number(localStorage.getItem('thinkingTimeLimit') ?? '0');
     return Number.isFinite(n) ? n : 0;
   });
+  const [extractTimeLimit, setExtractTimeLimit] = useState<number>(() => {
+    if (typeof window === 'undefined') return 20;
+    const n = Number(localStorage.getItem('extractTimeLimit') ?? '20');
+    return Number.isFinite(n) ? n : 20;
+  });
 
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const { openPicker } = useGooglePicker();
@@ -92,6 +106,12 @@ const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
   const handleThinkingTimeLimit = (value: number) => {
     setThinkingTimeLimit(value);
     localStorage.setItem('thinkingTimeLimit', String(value));
+  };
+
+  const handleExtractTimeLimit = (value: number) => {
+    setExtractTimeLimit(value);
+    localStorage.setItem('extractTimeLimit', String(value));
+    window.dispatchEvent(new Event('client-config-changed'));
   };
 
   const handleLocalFileUpload = async () => {
@@ -237,6 +257,7 @@ const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
   };
 
   const currentThinkingLabel = THINKING_OPTIONS.find((o) => o.value === thinkingTimeLimit)?.label ?? 'Unlimited';
+  const currentExtractLabel = EXTRACT_OPTIONS.find((o) => o.value === extractTimeLimit)?.label ?? `${extractTimeLimit}s`;
 
   return (
     <>
@@ -304,6 +325,31 @@ const FileUploadDropdown: React.FC<FileUploadDropdownProps> = ({
                   >
                     <span>{opt.label}</span>
                     {thinkingTimeLimit === opt.value && (
+                      <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 10 10">
+                        <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+
+            {/* Extract Time flyout submenu — caps URL extraction from top sources */}
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger className="gap-2">
+                <Timer className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
+                <span>Extract Time</span>
+                <span className="ml-auto text-xs text-muted-foreground">{currentExtractLabel}</span>
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent className="w-36">
+                {EXTRACT_OPTIONS.map((opt) => (
+                  <DropdownMenuItem
+                    key={opt.value}
+                    onSelect={() => handleExtractTimeLimit(opt.value)}
+                    className={cn('justify-between', extractTimeLimit === opt.value && 'bg-secondary')}
+                  >
+                    <span>{opt.label}</span>
+                    {extractTimeLimit === opt.value && (
                       <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 10 10">
                         <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>

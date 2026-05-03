@@ -12,7 +12,7 @@ import {
 } from "@/components/ResearchAgent/ChatConversation/ChatWindow";
 import { getSuggestions } from "@/lib/server-actions";
 import { getAutoMediaSearch } from "@/lib/config/serverRegistry";
-import { ChatModelProvider } from "./types";
+import { ChatModelProvider, ExtractionProgress } from "./types";
 
 const SOURCE_EXTRACTION_KEY = "sourceExtractionEnabled";
 
@@ -66,6 +66,10 @@ export interface SendMessageDeps {
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   /** Setter for chat history */
   setChatHistory: React.Dispatch<React.SetStateAction<[string, string][]>>;
+  /** Setter for the per-message extraction-progress map */
+  setExtractionByMessageId: React.Dispatch<
+    React.SetStateAction<Record<string, ExtractionProgress>>
+  >;
 }
 
 /**
@@ -120,10 +124,15 @@ export async function sendMessage(
     setMessageAppeared,
     setMessages,
     setChatHistory,
+    setExtractionByMessageId,
   } = deps;
   const sourceExtractionEnabled =
     typeof window !== "undefined" &&
     localStorage.getItem(SOURCE_EXTRACTION_KEY) === "true";
+  const extractTimeLimit =
+    typeof window !== "undefined"
+      ? Number(localStorage.getItem("extractTimeLimit") ?? "20") || 0
+      : 0;
 
   // Prevent duplicate sends or empty messages
   if (loading || !message) return;
@@ -170,6 +179,61 @@ export async function sendMessage(
     if (data.type === "error") {
       toast.error(data.data);
       setLoading(false);
+      return;
+    }
+
+    // Handle URL extraction progress from the research agent.
+    // The server emits one "start" frame, one "progress" frame per URL, and a final "end" frame.
+    // Keyed by the user message ID so the section can find its progress entry
+    // before the assistant/source messages have arrived.
+    if (data.type === "extraction") {
+      const id = messageId;
+      setExtractionByMessageId((prev) => {
+        const existing = prev[id];
+        if (data.phase === "start") {
+          return {
+            ...prev,
+            [id]: {
+              total: data.total ?? 0,
+              completed: 0,
+              capSeconds: data.capSeconds ?? 0,
+              startedAt: Date.now(),
+              urls: (data.urls ?? []).map((u: any) => ({
+                url: u.url,
+                title: u.title,
+                status: "pending",
+              })),
+            },
+          };
+        }
+        if (!existing) return prev;
+        if (data.phase === "progress") {
+          return {
+            ...prev,
+            [id]: {
+              ...existing,
+              completed: data.completed ?? existing.completed,
+              urls: existing.urls.map((u) =>
+                u.url === data.url ? { ...u, status: data.status ?? u.status } : u,
+              ),
+            },
+          };
+        }
+        if (data.phase === "end") {
+          return {
+            ...prev,
+            [id]: {
+              ...existing,
+              completed: data.completed ?? existing.completed,
+              endedAt: Date.now(),
+              urls: existing.urls.map((u) =>
+                u.status === "pending" ? { ...u, status: "failed" } : u,
+              ),
+            },
+          };
+        }
+        return prev;
+      });
       return;
     }
 
@@ -290,6 +354,7 @@ export async function sendMessage(
           providerId: chatModelProvider.providerId,
         },
         sourceExtractionEnabled,
+        extractTimeLimit,
         systemInstructions: localStorage.getItem("systemInstructions"),
       }),
     });

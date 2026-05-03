@@ -71,6 +71,8 @@ class MetaSearchAgent implements MetaSearchAgentType {
     llm: BaseChatModel,
     category: string = "general",
     sourceExtractionEnabled = false,
+    extractTimeLimit = 0,
+    progressEmitter?: EventEmitter,
   ) {
     (llm as unknown as ChatOpenAI).temperature = 0;
 
@@ -163,16 +165,38 @@ class MetaSearchAgent implements MetaSearchAgentType {
         }
 
         const scrapeCount = sourceExtractionEnabled ? 3 : 0;
-        const scrapeTimeout = Math.max(1, getSourceScrapeTimeout());
+        const perURLTimeout = Math.max(1, getSourceScrapeTimeout());
 
         if (scrapeCount > 0) {
-          const extractionTasks = documents.slice(0, scrapeCount).map(async (doc, idx) => {
-            const url = doc.metadata?.url;
-            if (!url) return;
+          const targets = documents
+            .slice(0, scrapeCount)
+            .map((doc, idx) => ({ doc, idx, url: doc.metadata?.url as string | undefined }))
+            .filter((t) => t.url);
+
+          const startedAt = Date.now();
+          const overallCapMs = extractTimeLimit > 0 ? extractTimeLimit * 1000 : 0;
+
+          progressEmitter?.emit(
+            "data",
+            JSON.stringify({
+              type: "extraction",
+              phase: "start",
+              total: targets.length,
+              completed: 0,
+              capSeconds: extractTimeLimit,
+              urls: targets.map((t) => ({ url: t.url, title: t.doc.metadata?.title, status: "pending" })),
+            }),
+          );
+
+          let completed = 0;
+          const extractionTasks = targets.map(async ({ url, idx }) => {
             try {
+              const remainingMs = overallCapMs > 0 ? overallCapMs - (Date.now() - startedAt) : Infinity;
+              if (remainingMs <= 0) throw new Error("extract-time-cap-exceeded");
+              const taskTimeout = Math.min(perURLTimeout * 1000 + 1500, remainingMs);
               const result = await waitWithTimeout(
-                scrapeURL(url, { timeout: scrapeTimeout }),
-                scrapeTimeout * 1000 + 1500,
+                scrapeURL(url!, { timeout: perURLTimeout }),
+                taskTimeout,
               );
               if (typeof result === "string" && result.length > 100) {
                 const text = htmlToText(result)
@@ -184,12 +208,53 @@ class MetaSearchAgent implements MetaSearchAgentType {
                   documents[idx].pageContent = text;
                 }
               }
+              completed += 1;
+              progressEmitter?.emit(
+                "data",
+                JSON.stringify({
+                  type: "extraction",
+                  phase: "progress",
+                  total: targets.length,
+                  completed,
+                  url,
+                  status: "success",
+                }),
+              );
             } catch {
-              // Keep original snippet on scraping failure or timeout
+              completed += 1;
+              progressEmitter?.emit(
+                "data",
+                JSON.stringify({
+                  type: "extraction",
+                  phase: "progress",
+                  total: targets.length,
+                  completed,
+                  url,
+                  status: "failed",
+                }),
+              );
             }
           });
 
-          await Promise.allSettled(extractionTasks);
+          if (overallCapMs > 0) {
+            await Promise.race([
+              Promise.allSettled(extractionTasks),
+              new Promise<void>((resolve) => setTimeout(resolve, overallCapMs)),
+            ]);
+          } else {
+            await Promise.allSettled(extractionTasks);
+          }
+
+          progressEmitter?.emit(
+            "data",
+            JSON.stringify({
+              type: "extraction",
+              phase: "end",
+              total: targets.length,
+              completed,
+              elapsedMs: Date.now() - startedAt,
+            }),
+          );
         }
 
         return { query: question, docs: documents };
@@ -204,6 +269,8 @@ class MetaSearchAgent implements MetaSearchAgentType {
     systemInstructions: string,
     category: string = "general",
     sourceExtractionEnabled = false,
+    extractTimeLimit = 0,
+    progressEmitter?: EventEmitter,
   ) {
     return RunnableSequence.from([
       RunnableMap.from({
@@ -222,6 +289,8 @@ class MetaSearchAgent implements MetaSearchAgentType {
               llm,
               category,
               sourceExtractionEnabled,
+              extractTimeLimit,
+              progressEmitter,
             );
             const result = await searchRetrieverChain.invoke({
               chat_history: processedHistory,
@@ -256,6 +325,7 @@ class MetaSearchAgent implements MetaSearchAgentType {
     systemInstructions: string,
     category: string = "general",
     sourceExtractionEnabled = false,
+    extractTimeLimit = 0,
   ) {
     const emitter = new EventEmitter();
 
@@ -266,6 +336,8 @@ class MetaSearchAgent implements MetaSearchAgentType {
       systemInstructions,
       category,
       sourceExtractionEnabled,
+      extractTimeLimit,
+      emitter,
     );
 
     const stream = answeringChain.streamEvents(

@@ -12,7 +12,7 @@ import {
   ChatTurn,
   Message,
 } from "@/components/ResearchAgent/ChatConversation/ChatWindow";
-import { ChatFile, ChatModelProvider, Section } from "./types";
+import { ChatFile, ChatModelProvider, ExtractionProgress, Section } from "./types";
 import { buildSections } from "./buildSections";
 
 /**
@@ -54,6 +54,8 @@ export interface ChatState {
   hasError: boolean;
   /** Whether the chat system is fully ready for use */
   isReady: boolean;
+  /** Per-question URL extraction progress keyed by assistant messageId */
+  extractionByMessageId: Record<string, ExtractionProgress>;
 }
 
 /**
@@ -95,6 +97,10 @@ export interface ChatStateSetters {
   setHasError: (hasError: boolean) => void;
   /** Sets the ready state */
   setIsReady: (ready: boolean) => void;
+  /** Updates the extraction-progress map (supports functional updates) */
+  setExtractionByMessageId: React.Dispatch<
+    React.SetStateAction<Record<string, ExtractionProgress>>
+  >;
 }
 
 /**
@@ -153,6 +159,9 @@ export function useChatState(initialChatId?: string): UseChatStateReturn {
   // ============ Message State ============
   const [chatHistory, setChatHistory] = useState<[string, string][]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [extractionByMessageId, setExtractionByMessageId] = useState<
+    Record<string, ExtractionProgress>
+  >({});
 
   // ============ File State ============
   const [files, setFiles] = useState<ChatFile[]>([]);
@@ -211,6 +220,7 @@ export function useChatState(initialChatId?: string): UseChatStateReturn {
       isConfigReady,
       hasError,
       isReady,
+      extractionByMessageId,
     },
     setters: {
       setChatId,
@@ -230,6 +240,7 @@ export function useChatState(initialChatId?: string): UseChatStateReturn {
       setIsConfigReady,
       setHasError,
       setIsReady,
+      setExtractionByMessageId,
     },
     messagesRef,
     chatTurns,
