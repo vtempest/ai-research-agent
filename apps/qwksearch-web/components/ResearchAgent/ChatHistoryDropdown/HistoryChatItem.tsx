@@ -4,7 +4,7 @@
  */
 'use client';
 
-import { ClockIcon, Trash, Pin } from 'lucide-react';
+import { Trash, Pin } from 'lucide-react';
 import { Chat } from '@/components/ResearchAgent/types';
 import { formatTimeDifference } from '@/lib/utils';
 import Link from 'next/link';
@@ -17,31 +17,19 @@ interface HistoryChatItemProps {
 }
 
 export function HistoryChatItem({ chat, isPinned, onTogglePin, onDelete }: HistoryChatItemProps) {
+  const messageCount = chat.messageCount ?? 0;
   return (
-    <div className="group flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-secondary transition-colors duration-200">
-      <Link href={`/c/${chat.id}`} className="flex-1 min-w-0">
-        <div>
-          <p className="text-sm font-medium text-popover-foreground truncate">
-            {isPinned && <Pin size={12} className="inline mr-1.5 text-primary" />}
-            {chat.title}
-          </p>
-          <div className="flex items-center gap-2 mt-0.5">
-            <div className="flex items-center gap-1">
-              <ClockIcon size={12} className="text-muted-foreground" />
-              <p className="text-xs text-muted-foreground">
-                {formatTimeDifference(new Date(), chat.createdAt)} ago
-              </p>
-            </div>
-            {(chat.messageCount ?? 0) > 0 && (
-              <>
-                <span className="text-muted-foreground/50">·</span>
-                <span className="text-xs text-muted-foreground">
-                  {chat.messageCount} {chat.messageCount === 1 ? 'question' : 'questions'}
-                </span>
-              </>
-            )}
-          </div>
-        </div>
+    <div className="group flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-secondary transition-colors duration-200">
+      <Link href={`/c/${chat.id}`} className="flex-1 min-w-0 flex items-center gap-1.5">
+        <span className="text-xs text-muted-foreground whitespace-nowrap shrink-0">
+          {messageCount > 0 && `${messageCount}Q`}
+          {' '}
+          {formatTimeDifference(new Date(), chat.createdAt)}
+        </span>
+        <p className="text-xs text-popover-foreground truncate">
+          {isPinned && <Pin size={10} className="inline mr-1 text-primary" />}
+          {chat.title}
+        </p>
       </Link>
       <button
         onClick={(e) => onTogglePin(e, chat.id)}

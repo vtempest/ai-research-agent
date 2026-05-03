@@ -34,7 +34,10 @@ export function ActionBar({
                     onFileSelect={handleFiles}
                     disabled={loading}
                 />
+            </div>
 
+            {/* Right Tools */}
+            <div className="flex flex-row items-center min-w-0 gap-1">
                 {isSpeechSupported && (
                     <div className="relative flex shrink min-w-8 !shrink-0 group">
                         <button
@@ -56,10 +59,6 @@ export function ActionBar({
                         </div>
                     </div>
                 )}
-            </div>
-
-            {/* Right Tools */}
-            <div className="flex flex-row items-center min-w-0 gap-1">
                 {/* Send / Stop Button */}
                 <div>
                     {loading ? (
@@ -75,10 +74,10 @@ export function ActionBar({
                         <button
                             onClick={handleSend}
                             disabled={!hasContent}
-                            className={`inline-flex items-center justify-center relative shrink-0 transition-colors h-8 w-8 rounded-md active:scale-95 !rounded-xl !h-8 !w-8
+                            className={`inline-flex items-center justify-center relative shrink-0 transition-all duration-200 h-8 w-8 rounded-md active:scale-95 !rounded-xl !h-8 !w-8
                                 ${hasContent
-                                    ? 'bg-accent text-bg-0 hover:bg-accent-hover shadow-md'
-                                    : 'bg-accent/30 text-bg-0/60 cursor-default'}
+                                    ? 'bg-accent text-bg-0 hover:bg-accent-hover shadow-md scale-100'
+                                    : 'bg-bg-300 text-text-400 cursor-default opacity-50'}
                             `}
                             type="button"
                             aria-label="Send message"

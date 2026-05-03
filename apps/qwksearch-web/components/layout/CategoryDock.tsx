@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils"
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -20,6 +19,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Switch } from "@/components/ui/switch"
 import iconRead from '@/components/icons/icon-read.svg'
 import iconNews from '@/components/icons/icon-news-title.svg'
 import iconSettings from '@/components/icons/icon-configure.svg'
@@ -200,9 +200,10 @@ function SettingsMenu({ side, onOpenSettings, onToggleDock, dockHidden }: { side
         <Settings className="mr-2 h-4 w-4" />
         Settings
       </DropdownMenuItem>
-      <DropdownMenuCheckboxItem checked={dockHidden} onCheckedChange={onToggleDock}>
+      <DropdownMenuItem onSelect={(e) => { e.preventDefault(); onToggleDock() }} className="flex items-center justify-between">
         Hide App Dock
-      </DropdownMenuCheckboxItem>
+        <Switch checked={dockHidden} className="ml-2 pointer-events-none" />
+      </DropdownMenuItem>
       <DropdownMenuItem>
         <UserCircle2 className="mr-2 h-4 w-4" />
         Profile

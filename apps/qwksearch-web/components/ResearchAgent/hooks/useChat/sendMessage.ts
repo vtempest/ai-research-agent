@@ -7,10 +7,8 @@
 
 import crypto from "crypto";
 import { toast } from "sonner";
-import grab from "grab-url";
 import {
   Message,
-  SourceMessage,
 } from "@/components/ResearchAgent/ChatConversation/ChatWindow";
 import { getSuggestions } from "@/lib/server-actions";
 import { getAutoMediaSearch } from "@/lib/config/serverRegistry";
@@ -146,6 +144,7 @@ export async function sendMessage(
   let receivedMessage = "";
   let added = false;
   let suggestionsFetched = false;
+  let capturedSources: any[] = [];
 
   // Generate or use provided message ID
   const messageId = providedMessageId ?? crypto.randomBytes(7).toString("hex");
@@ -176,17 +175,18 @@ export async function sendMessage(
 
     // Handle sources (search results, documents)
     if (data.type === "sources") {
+      capturedSources = data.data || [];
       setMessages((prevMessages) => [
         ...prevMessages,
         {
           messageId: data.messageId,
           chatId: chatId,
           role: "source",
-          sources: data.data || [],
+          sources: capturedSources,
           createdAt: new Date(),
         },
       ]);
-      if (data.data && data.data.length > 0) {
+      if (capturedSources.length > 0) {
         setMessageAppeared(true);
       }
     }
@@ -242,30 +242,19 @@ export async function sendMessage(
       }
 
       // Fetch follow-up suggestions if we have sources and haven't fetched yet for this request
-      if (!suggestionsFetched) {
+      if (!suggestionsFetched && capturedSources.length > 0) {
         suggestionsFetched = true;
-
-        const userMessageIndex = messagesRef.current.findIndex(
-          (msg) => msg.messageId === messageId && msg.role === "user",
-        );
-
-        const sourceMessage = messagesRef.current.find(
-          (msg, i) => i > userMessageIndex && msg.role === "source",
-        ) as SourceMessage | undefined;
-
-        if (sourceMessage && sourceMessage.sources.length > 0) {
-          const suggestions = await getSuggestions(messagesRef.current);
-          setMessages((prev) => [
-            ...prev,
-            {
-              role: "suggestion",
-              suggestions: suggestions,
-              chatId: chatId,
-              createdAt: new Date(),
-              messageId: crypto.randomBytes(7).toString("hex"),
-            },
-          ]);
-        }
+        const suggestions = await getSuggestions(messagesRef.current);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "suggestion",
+            suggestions: suggestions,
+            chatId: chatId,
+            createdAt: new Date(),
+            messageId: crypto.randomBytes(7).toString("hex"),
+          },
+        ]);
       }
     }
   };
