@@ -7,6 +7,7 @@ import { ChevronDown } from 'lucide-react';
 import { useChat, useMainView } from 'research-agent-ui';
 
 import { ResearchWorkspaceView } from 'research-agent-ui/workspace';
+import { isHomeLandingState } from '@/lib/home-landing';
 import { cn } from '@/lib/utils';
 
 /**
@@ -61,13 +62,21 @@ function usePrefersReducedMotion() {
  * How far the features slab has travelled into view: 0 while it still sits
  * entirely below the fold, 1 once its top edge has risen through 55% of the
  * viewport. Drives both the fade-in and which way the scroll cue points.
+ *
+ * `enabled` is false whenever the slab isn't mounted at all (see
+ * `isHomeLandingState`); the progress then snaps back to 0 so a reader who
+ * scrolled down and then started a chat doesn't leave the cue stuck pointing
+ * back up at content that no longer exists.
  */
-function useEnterProgress(ref: React.RefObject<HTMLElement | null>) {
+function useEnterProgress(ref: React.RefObject<HTMLElement | null>, enabled: boolean) {
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const el = enabled ? ref.current : null;
+    if (!el) {
+      setProgress(0);
+      return;
+    }
 
     const scroller =
       document.getElementById('app-scroll-root') ?? findScrollParent(el) ?? null;
@@ -97,7 +106,7 @@ function useEnterProgress(ref: React.RefObject<HTMLElement | null>) {
       target.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };
-  }, [ref]);
+  }, [ref, enabled]);
 
   return progress;
 }
@@ -141,10 +150,23 @@ export function HomeScrollStack() {
   const workspaceRef = React.useRef<HTMLDivElement>(null);
   const featuresRef = React.useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
-  const progress = useEnterProgress(featuresRef);
   const pathname = usePathname();
   const { activeView } = useMainView();
   const { chatTurns } = useChat();
+
+  // The features slab belongs to the homepage's landing state and nowhere
+  // else. The workspace never leaves `/` — chats and REASON documents are tabs
+  // within this one route — so a route check alone would leave a screen of
+  // marketing copy scrollable underneath a live conversation. Mount it only
+  // while the first screen is still the empty research view; the moment a chat
+  // is submitted it unmounts, and the page is a plain 100vh app shell again.
+  const showFeatures = isHomeLandingState({
+    pathname,
+    activeView,
+    chatTurnCount: chatTurns.length,
+  });
+
+  const progress = useEnterProgress(featuresRef, showFeatures);
 
   // Flip the cue only once the features cover more than half the screen —
   // pointing "up" any earlier would strand a reader who is still on their way
@@ -152,16 +174,8 @@ export function HomeScrollStack() {
   // stays correct when motion is reduced.
   const showingFeatures = progress > 0.9;
 
-  // The cue belongs to the homepage's landing state and nowhere else. The
-  // workspace never leaves `/` — chats and REASON documents are tabs within
-  // this one route — so the route check alone would leave the bubble parked on
-  // top of the composer for the whole of a conversation. Show it only while
-  // the first screen is still the empty research view, plus whenever the
-  // features slab already fills the screen, so a reader who scrolled down
-  // always keeps a way back up.
-  const onHomepage = pathname === '/';
-  const isLandingState = activeView === 'research' && chatTurns.length === 0;
-  const showCue = onHomepage && (isLandingState || showingFeatures);
+  // The cue only ever points at the slab, so it lives and dies with it.
+  const showCue = showFeatures;
 
   const scrollTo = (ref: React.RefObject<HTMLElement | null>) => {
     ref.current?.scrollIntoView({
@@ -195,21 +209,23 @@ export function HomeScrollStack() {
           position, so measuring the moving element would feed the fade back
           into its own input, and `scrollIntoView` would stop short of the real
           section boundary by however much it is currently offset. */}
-      <div ref={featuresRef}>
-        <div
-          style={
-            reducedMotion
-              ? undefined
-              : {
-                  opacity: 0.12 + progress * 0.88,
-                  transform: `translate3d(0, ${(1 - progress) * 48}px, 0)`,
-                  willChange: progress < 1 ? 'opacity, transform' : undefined,
-                }
-          }
-        >
-          <FeaturesView />
+      {showFeatures && (
+        <div ref={featuresRef}>
+          <div
+            style={
+              reducedMotion
+                ? undefined
+                : {
+                    opacity: 0.12 + progress * 0.88,
+                    transform: `translate3d(0, ${(1 - progress) * 48}px, 0)`,
+                    willChange: progress < 1 ? 'opacity, transform' : undefined,
+                  }
+            }
+          >
+            <FeaturesView />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
