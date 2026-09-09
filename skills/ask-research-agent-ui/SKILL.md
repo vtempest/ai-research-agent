@@ -1,0 +1,102 @@
+---
+name: ask-research-agent-ui
+description: Guide to research-agent-ui (packages/research-agent-ui), the QwkSearch chat/search UI as a drop-in package — the two entry points (chat-only root vs `/workspace` with the REASON editor), QwkSearchApp and the QwkSearchProviders stack, configureResearchAgentUI, the ChatProvider / SessionProvider / ExtractPanelProvider contexts, the article reader, voice and TTS hooks, and the `/api` dependency-injected route-handler factories. Use when changing anything in the chat window, message composer, search config, article reader, file upload or chat history, when wiring the package into a host app's auth and API routes, or when the editor's dependency tree leaks into a chat-only bundle.
+---
+
+# Working With research-agent-ui
+
+`packages/research-agent-ui`, published as **research-agent-ui**. This is where the
+product's UI actually lives — `apps/qwksearch-web` mostly mounts it. If the request is
+"change how search results look" or "add a button to the chat toolbar", it belongs here.
+Full export map: [API.md](API.md).
+
+## The two entries — pick deliberately
+
+| Import | Contains | Extra peers |
+| --- | --- | --- |
+| `research-agent-ui` | Chat, article reader, history, voice, app shell — **no editor** | `next`, `react`, `react-dom` |
+| `research-agent-ui/workspace` | All of the above **plus** `QwkSearchWorkspaceApp` and `ResearchWorkspaceView` | also `react-reason-editor`, `react-reason-editor-sidebar` |
+
+`/workspace` re-exports the whole root entry, so a host that wants documents imports
+that one path only. The split exists so a chat-only host never pulls the Tiptap/Plate
+tree; adding an editor import to the root entry silently undoes that for everyone.
+
+There are two more subpaths: `research-agent-ui/config` (config types alone) and
+`research-agent-ui/api` (server-side handler factories).
+
+## Setup
+
+Mount the whole app:
+
+```tsx
+import { QwkSearchApp } from "research-agent-ui";
+<QwkSearchApp authClient={myAuthClient} config={{ appName: "MyApp" }} />
+```
+
+Or compose the pieces:
+
+```tsx
+configureResearchAgentUI({ appName: "MyApp", authClient });
+<SessionProvider authClient={authClient}>
+  <ExtractPanelProvider><ChatProvider><ChatWindow /></ChatProvider></ExtractPanelProvider>
+</SessionProvider>
+```
+
+`QwkSearchApp` is just `QwkSearchProviders` + `ChatWindow`, so its props are
+`QwkSearchProvidersProps` minus `children` and `docsEnabled` — `authClient` (required),
+`config`, `googleOneTap` (`'auto'` by default: it asks the backend whether Google is
+configured before prompting), `ChromeProvider`, `showDock`, `showCookieConsent`,
+`showToaster`. `docsEnabled` is set by the entry point, not by the host.
+
+## Where things live
+
+| Change | Directory |
+| --- | --- |
+| Conversation rendering, message list | `src/components/ChatConversation/` |
+| Input box, attachments, toolbar | `src/components/MessageComposer/` |
+| Search category/engine pickers | `src/components/SearchConfig/` |
+| Result cards | `src/components/SearchResults/` |
+| Reader panel, extraction UI | `src/components/ArticleReader/` |
+| Copy/share/export actions | `src/components/MessageActions/` |
+| Upload flow, Drive picker | `src/components/FileUpload/` |
+| History dropdown and dialogs | `src/components/ChatHistoryDropdown/` |
+| Voice settings, Kokoro voices | `src/components/VoiceSettings/`, `src/hooks/voice/` |
+| Send/stream logic, chat state | `src/hooks/useChat/` (`sendMessage.ts`, `chatMessages.ts`, `buildSections.ts`) |
+| Shell: dock, providers, view switch, tabs | `src/app/` |
+| Editor-bearing surfaces | `src/workspace/` |
+| Server route handlers | `src/api/handlers/` |
+
+## Recipes
+
+**Configure branding and callbacks.** `configureResearchAgentUI(partial)` mutates the
+module-level `researchAgentUIConfig`, or pass `config` to the providers (preferred — it
+keeps configuration with the mount). Notable fields: `appName`, `appIconUrl`,
+`footerLinks`, `defaultSummarizePrompt`, `maxArticleLength`, `getAutoMediaSearch()`,
+`onOpenSettings(section?)` and `onOpenChat(chatId)` — the last two return `true` when the
+host handled the request in place, and `false`/`undefined` to fall back to navigating to
+`/settings` or `/c/<chatId>`.
+
+**Server routes.** `research-agent-ui/api` exports a handler factory per endpoint
+(`chats`, `messages`, `search`, `agents`, `voice`, `providers`, `mcpservers`, `rewrite`,
+`transcript`, …). Each takes a narrow `deps` object — `getDB`, `requireUserId`,
+`getUserId`, `getSession`, `getEnv`, schema references — so the same logic runs in any
+Next.js app. Add an endpoint by adding a handler plus its `*Deps` interface in
+`src/api/types.ts` and exporting it from `src/api/index.ts`.
+
+**Google Drive picker.** Set both `googleApiKey` and `googleAppId`. The connector holds
+the per-file `drive.file` scope, and Google only releases a picked file when the picker
+knows the app id — with it empty, files come back but downloading them 403s.
+
+## Troubleshooting
+
+| Symptom | Cause → fix |
+| --- | --- |
+| Chat-only bundle suddenly includes Tiptap/Plate | Something imported an editor surface from the root entry. Editor imports belong in `src/workspace/` and `workspace.ts` only. |
+| `QwkSearchWorkspaceApp` is not exported | You imported the root entry. Use `research-agent-ui/workspace`. |
+| Missing-peer errors for `react-reason-editor` | Those are optional peers of the `/workspace` entry — install them, or use the chat-only entry. |
+| Google One Tap never appears | `googleOneTap` defaults to `'auto'` and stays off unless the backend reports Google as a configured provider. Pass `true` to force it. |
+| Settings open as a route when a modal was wanted | `onOpenSettings` must return `true`; anything else falls through to route navigation. |
+| Drive picker returns a file that then 403s | `googleAppId` (the Google Cloud project number) is empty. |
+| Edits don't appear in `apps/qwksearch-web` | It consumes the built `dist/`. `bun run build` here, or run the repo's `scripts/build-workspace-packages.mjs`. |
+| A component looks right in Storybook but breaks in the app | Providers. Most components assume `SessionProvider` / `ChatProvider` / `ExtractPanelProvider` above them (`bun run storybook` to iterate). |
+| Type-check fails on editor types after a fresh clone | `react-reason-editor` has not been built, so its `exports → types` point at a missing `dist/`. Build siblings first. |

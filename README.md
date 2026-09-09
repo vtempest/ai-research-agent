@@ -149,6 +149,17 @@ bun i qwksearch-api-client
 - **write-language** — A multi-provider language generation toolkit using the Vercel AI SDK that generates text responses via 10+ LLM providers including OpenAI, Anthropic, Google, Groq, and more. Provides a unified interface for streaming and non-streaming text generation.
   <a href="https://www.npmjs.com/package/write-language"><img src="https://img.shields.io/npm/dm/write-language.svg" alt="Monthly Downloads"></a>
 
+## 🧠 Agent Skills
+
+Every package has a matching [Agent Skill](skills/) — setup, the calls worth knowing, recipes, and a troubleshooting table, written from the source rather than the README. Install all of them, or just the one you need:
+
+```bash
+npx skills@latest add https://github.com/OpenSourceAGI/qwksearch-research-agent
+npx skills@latest add https://github.com/OpenSourceAGI/qwksearch-research-agent --skill ask-search-web-api
+```
+
+See [skills/README.md](skills/README.md) for the full index.
+
 ## Further Research
 
 - [ThoughtSource Reasoning Datasets](https://github.com/OpenBioLink/ThoughtSource)
