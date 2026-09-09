@@ -25,7 +25,8 @@ import {
   PlaceholderPlugin,
   VideoPlugin,
 } from '@platejs/media/react';
-import { KEYS } from 'platejs';
+import { type AnySlatePlugin, KEYS } from 'platejs';
+import type { AnyPlatePlugin } from 'platejs/react';
 
 import { AlignKit } from './kits/align-kit';
 import { AutoformatKit } from './kits/autoformat-kit';
@@ -60,7 +61,14 @@ import { VideoElement } from './ui/media-video-node';
  * `media-kit`, whose upload toast and placeholder wiring is bound to
  * UploadThing; the node components and plugins are the starter's.
  */
-export const MediaKit = [
+/**
+ * The plugin arrays below mix React plugins (`platejs/react`) with the base
+ * Slate ones some kits still ship, so neither `AnyPlatePlugin[]` nor
+ * `AnySlatePlugin[]` describes them on its own.
+ */
+export type PlatePluginList = (AnyPlatePlugin | AnySlatePlugin)[];
+
+export const MediaKit: PlatePluginList = [
   ImagePlugin.withComponent(ImageElement),
   VideoPlugin.withComponent(VideoElement),
   AudioPlugin.withComponent(AudioElement),
@@ -76,8 +84,15 @@ export const MediaKit = [
   PlaceholderPlugin,
 ];
 
-/** Everything except collaboration, which is layered on per document. */
-export const platePlugins = [
+/**
+ * Everything except collaboration, which is layered on per document.
+ *
+ * Annotated rather than inferred for the same reason as `MarkdownKit` (which
+ * this spreads): the inferred type reaches `remark-stringify`'s `Options`
+ * through a bun-internal `.bun/...` path that declaration emit cannot name
+ * (TS2883).
+ */
+export const platePlugins: PlatePluginList = [
   // 1. Basic text, headings, inline marks.
   ...BasicNodesKit,
 

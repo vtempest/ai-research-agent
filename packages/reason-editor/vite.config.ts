@@ -185,6 +185,18 @@ export default defineConfig(async ({ mode }) => {
         skipLibCheck: true,
         skipDefaultLibCheck: true,
       },
+      // unplugin-dts prints its type errors and carries on, so a build with
+      // broken declarations still exits 0 -- which is how a tree carrying nine
+      // declaration errors (TS2883 on the Plate kits, an undefined `dragEntry`,
+      // a stale `docx-preview` call signature) still packed a tarball and still
+      // reached `npm publish`. The declarations are this package's public
+      // contract, so treat any diagnostic as fatal.
+      afterDiagnostic: (diagnostics) => {
+        if (diagnostics.length === 0) return;
+        throw new Error(
+          `Declaration build reported ${diagnostics.length} TypeScript error(s); see the diagnostics above.`,
+        );
+      },
     })],
     resolve: {
       alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
