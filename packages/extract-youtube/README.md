@@ -245,17 +245,21 @@ extract-youtube --help
 - `--webshare-user <username>` - Webshare proxy username
 - `--webshare-pass <password>` - Webshare proxy password
 
-## React Popout Modal (Video + Synced Subtitles)
+## React Components (Floating Player + Transcript Modal)
 
-`extract-youtube/react` ships a self-contained popout modal component:
-click a trigger, and it opens a YouTube player next to a transcript panel
-that scrolls and highlights in sync with playback — click any line to seek
-the video there. It has no dependency on any particular design system (it
-injects its own minimal, scoped styles), so it drops into any React app.
-It was ported from the video transcript modal used in production on
-[debate-ai.com](https://debate-ai.com). The layout: player on the left,
-a "Transcript" panel on the right (stacks below the player on narrow
-screens) — see the `demo/` app below to try it live.
+`extract-youtube/react` is the package's UI half — two self-contained
+components, both ported from the video player used in production on
+[debate-ai.com](https://debate-ai.com), with everything app-specific
+stripped out. Neither depends on a design system, a state library, or a CSS
+framework: they inject their own minimal scoped styles and drop into any
+React app.
+
+- **`<FloatingYouTubePlayer />`** — a floating, draggable, resizable player
+  that keeps playing while the user moves around your app. Mount it once;
+  drive it from anywhere with `youtubePlayer.play({ videoId })`.
+- **`<YouTubeTranscriptModal />`** — a popout modal with the video on the
+  left and a transcript panel on the right that scrolls and highlights in
+  sync with playback; click any line to seek.
 
 ### Why it's a separate entry point
 
@@ -263,22 +267,145 @@ screens) — see the `demo/` app below to try it live.
 browser dependency at all — that's the whole point of the package.
 `extract-youtube/react` is a second, independent entry point that only
 exports UI: it never imports the transcript-fetching code, and the main
-entry never imports React. Import only the one you need and the other
-never ends up in your bundle. React, ReactDOM, and `lucide-react` (used
-for the modal's icons) are peer dependencies — install them yourself if
-you don't already have them:
+entry never imports React. Import only the one you need and the other never
+ends up in your bundle. React, ReactDOM, and `lucide-react` (used for the
+icons) are peer dependencies — install them yourself if you don't already
+have them:
 
 ```bash
 npm install extract-youtube react react-dom lucide-react
 ```
 
+### The floating player
+
+Mount it once, near the root of your app. It renders through a portal into
+`document.body`, so nothing in the tree around it can clip it, hide it, or
+remount the playing video on a route change. It renders nothing at all until
+something asks it to play.
+
+```tsx
+// app/layout.tsx (or wherever your app root lives)
+import { FloatingYouTubePlayer } from 'extract-youtube/react';
+
+export default function RootLayout({ children }) {
+  return (
+    <>
+      {children}
+      <FloatingYouTubePlayer transcriptUrl="/api/transcript" />
+    </>
+  );
+}
+```
+
+Then play something from anywhere — a grid, a search result, a keyboard
+shortcut. No context provider, no prop drilling:
+
+```tsx
+import { youtubePlayer, usePlayerState, thumbnailUrl } from 'extract-youtube/react';
+
+function VideoCard({ videoId, title }: { videoId: string; title: string }) {
+  const { activeVideo } = usePlayerState();
+
+  return (
+    <button onClick={() => youtubePlayer.play({ videoId, title })}>
+      <img src={thumbnailUrl(videoId)} alt="" />
+      {title} {activeVideo?.videoId === videoId && '(playing)'}
+    </button>
+  );
+}
+```
+
+What you get, without wiring any of it up yourself:
+
+| | |
+| --- | --- |
+| **Drag & resize** | Drag by the title bar, resize from either side edge or a bottom corner, clamped to the viewport. Mouse and touch. |
+| **Minimize** | Collapses to the title bar. The iframe is hidden with CSS, never unmounted, so playback isn't interrupted. |
+| **Picture-in-picture** | Pops the video into an always-on-top OS window via the Document Picture-in-Picture API, where the browser supports it. The node is *moved*, not cloned, so playback continues. |
+| **Queue** | `addToQueue` / `setQueue` / `playNext`, with an "Up next" strip under the video. |
+| **Synced captions** | Optional subtitles panel above the video — the spoken line highlights and auto-scrolls, and clicking a line seeks. Needs `transcriptUrl` or `fetchTranscript` (see below). |
+| **Resume** | Remembers what was playing, and how far into it, across a reload — plus a per-video position for the last 50 videos, for 24 hours. `storageKey={null}` turns it off. |
+| **Error recovery** | Reads the IFrame API's error codes, explains them ("this video is private", "the owner doesn't allow embedding"), and offers Retry or Watch on YouTube from the same spot. |
+| **Theming** | Colours are CSS custom properties on `.eytp-root` and follow `prefers-color-scheme` by default. Override them to match your app. |
+
+#### Custom controls belong to your app, not the package
+
+The built-in control strip only holds buttons that mean the same thing for
+any YouTube video: play/pause, skip, captions, picture-in-picture, minimize,
+close. Anything specific to *your* product — a bookmark, a share menu, a
+speed control framed for your users — is yours to render, through
+`extraControls`:
+
+```tsx
+import { Gauge } from 'lucide-react';
+import { FloatingYouTubePlayer } from 'extract-youtube/react';
+
+<FloatingYouTubePlayer
+  transcriptUrl="/api/transcript"
+  extraControls={({ playbackRate, player }) => (
+    <button
+      // The player's own control classes, so custom buttons match the built-ins.
+      className={`eytp-btn${playbackRate !== 1 ? ' eytp-btn-active' : ''}`}
+      onClick={() => player.setPlaybackRate(playbackRate !== 1 ? 1 : 0.65)}
+      title="Slow it down"
+    >
+      <Gauge size={13} />
+    </button>
+  )}
+/>
+```
+
+debate-ai.com uses exactly this seam for its "slow the debate spread down"
+button — its own label, icon and rate, sitting in the same strip. The
+package stays generic: it exposes `player.setPlaybackRate()` and reports the
+current `playbackRate`, and the host decides what the button says and does.
+`renderTitle` is the same idea for the title bar, if you want badges or
+links instead of a plain video title.
+
+#### The imperative API
+
+Everything the player can do is on `youtubePlayer`, importable anywhere:
+
+```ts
+import { youtubePlayer, usePlayerState, getPlayerState } from 'extract-youtube/react';
+
+youtubePlayer.play({ videoId, title, meta });  // meta is yours; passed back untouched
+youtubePlayer.play({ videoId }, { startSeconds: 120 });
+youtubePlayer.togglePlay();
+youtubePlayer.seekTo(90);
+youtubePlayer.setPlaybackRate(1.5);
+youtubePlayer.addToQueue({ videoId, title });
+youtubePlayer.setQueue(videos);                // e.g. "play all" over a grid
+youtubePlayer.playNext();
+youtubePlayer.getCurrentTime();                // seconds
+youtubePlayer.close();
+
+usePlayerState();   // in a component: { activeVideo, isPlaying, isMinimized, playbackRate, queue, startTime }
+getPlayerState();   // the same, outside React
+```
+
+#### Floating player props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `transcriptUrl` | `string` | Your captions endpoint (see below). Enables the subtitles button. |
+| `fetchTranscript` | `(videoId: string) => Promise<{ snippets, error? }>` | Custom caption loader, instead of `transcriptUrl`. |
+| `extraControls` | `ReactNode \| (ctx: PlayerControlContext) => ReactNode` | Your own buttons, rendered in the control strip. |
+| `renderTitle` | `(ctx: PlayerControlContext) => ReactNode` | Custom title-bar content. Defaults to the video title. |
+| `showSubtitles` | `boolean` | Force the captions button on or off. Defaults to on when a transcript source is given. |
+| `showPictureInPicture` | `boolean` | Show the PiP button where supported. Default `true`. |
+| `storageKey` | `string \| null` | localStorage key for resume-after-reload. `null` disables persistence entirely. |
+| `className` | `string` | Extra class on the player root, for host-side positioning or theming. |
+| `onClose` | `() => void` | Called when the user closes the player. |
+| `minWidth` / `maxWidth` | `number` | Resize bounds in px. Default 256 / 800. |
+
 ### Setup: video captions still have to be fetched server-side
 
-The modal itself never talks to YouTube's caption endpoints directly —
-browsers can't (no CORS, and it would leak this package's whole fetching
-strategy client-side for no benefit). Instead, you expose one small
-backend endpoint that calls this package's `YouTubeTranscriptApi`, and
-point the modal at it with `transcriptUrl`.
+Neither component talks to YouTube's caption endpoints directly — browsers
+can't (no CORS, and it would leak this package's whole fetching strategy
+client-side for no benefit). Instead, you expose one small backend endpoint
+that calls this package's `YouTubeTranscriptApi`, and point the components
+at it with `transcriptUrl`.
 
 **1. Add a backend endpoint** (any framework works — this is a Next.js
 route handler, following the same pattern as the Vercel Edge example
@@ -303,7 +430,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ videoId, snippets: transcript.toRawData() });
   } catch (error) {
     // 200 + an `error` field, not a 4xx/5xx — "no captions for this video"
-    // isn't a server failure, and the modal checks this field either way.
+    // isn't a server failure, and the components check this field either way.
     return NextResponse.json({
       videoId,
       snippets: [],
@@ -313,32 +440,27 @@ export async function GET(req: NextRequest) {
 }
 ```
 
-**2. Render the modal**, pointing it at that endpoint:
+**2. Point the components at it** with `transcriptUrl="/api/transcript"`.
+The `videoId` query param is appended for you, and one request is shared
+per video across every component asking for it.
+
+`extractVideoId` (exported from the main entry, since it runs fine in Node)
+accepts any of the URL shapes YouTube uses — watch, youtu.be, embed, shorts,
+live — so you can pass what a user pastes in straight through.
+
+### Transcript modal
 
 ```tsx
 import { YouTubeTranscriptModal } from 'extract-youtube/react';
 import { extractVideoId } from 'extract-youtube';
 
 function VideoCard({ url, title }: { url: string; title: string }) {
-  const videoId = extractVideoId(url); // handles watch/youtu.be/embed/shorts/live URLs, or a bare ID
+  const videoId = extractVideoId(url);
   if (!videoId) return null;
 
-  return (
-    <YouTubeTranscriptModal
-      videoId={videoId}
-      title={title}
-      transcriptUrl="/api/transcript"
-    />
-  );
+  return <YouTubeTranscriptModal videoId={videoId} title={title} transcriptUrl="/api/transcript" />;
 }
 ```
-
-That's the whole setup — one endpoint, one component. `extractVideoId`
-(exported from the main entry, since it runs fine in Node) also accepts
-any of the URL shapes YouTube uses, so you can pass what a user pastes in
-straight through.
-
-### Props
 
 | Prop | Type | Description |
 | --- | --- | --- |
@@ -350,11 +472,12 @@ straight through.
 | `trigger` | `ReactNode` | Custom element that opens the modal on click. Defaults to a small captions-icon button. |
 | `onOpenChange` | `(open: boolean) => void` | Called whenever the modal opens or closes. |
 
-### Demo: video player + subtitle sidebar, for any video
+### Demo: a video library, a floating player, synced subtitles
 
 The `demo/` folder is a small standalone app — an Express server for the
-transcript endpoint plus a Vite/React page with a "paste any YouTube URL"
-input — that puts the whole flow together end to end.
+transcript endpoint plus a Vite/React page — that puts the whole thing
+together: a **grid of saved favorite videos** to pick from, the floating
+player they open in, a queue, and per-card transcripts.
 
 ```bash
 cd packages/extract-youtube
@@ -365,9 +488,11 @@ npm run demo           # installs the demo's own deps and starts it
 `npm run demo` runs `cd demo && npm install && npm run dev`, which starts
 both the Express transcript API (port 8787) and the Vite dev server
 (port 5173, proxying `/api` to 8787) together. Open
-**http://localhost:5173**, paste any YouTube URL (or leave the default),
-click **Load**, then **▶ Open video + subtitles** — the player opens with
-the transcript loading in the side panel, synced to playback.
+**http://localhost:5173** and click any video in the grid: it opens in the
+floating player, which you can drag, resize, minimize or pop out while you
+keep browsing. Star videos to favorite them, queue more up, hit **Play all**
+to run the grid as a playlist, or turn on the captions button to follow a
+synced transcript.
 
 Run the two halves separately if you'd rather:
 
@@ -378,8 +503,9 @@ npm run server   # Express API on :8787
 npm run dev      # in another terminal — Vite dev server on :5173
 ```
 
-See `demo/server.js` for the Express endpoint and `demo/src/App.jsx` for
-the page that wires the input box up to the modal.
+See `demo/README.md` for what each file does — including
+`demo/src/SpeedButton.jsx`, the worked example of an app-supplied custom
+control.
 
 ## Features
 
