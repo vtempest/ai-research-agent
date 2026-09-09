@@ -993,7 +993,7 @@
   "pnpm": {
     "overrides": {
       "esbuild": "0.25.12",
-      "prosemirror-view": "1.41.1"
+      "prosemirror-view": "1.42.3"
     }
   }
 }

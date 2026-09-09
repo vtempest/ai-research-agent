@@ -76,7 +76,12 @@ function needsLeadingSpace(editor: PlateEditor, point: Point): boolean {
   return text.length > 0 && !/\s/.test(text);
 }
 
-function currentPoint(editor: PlateEditor): Point {
+/**
+ * Where the next dictated text goes. `undefined` when the document holds no
+ * node to write into at all — `editor.api.end([])` has nothing to point at —
+ * in which case callers must not try to select or insert.
+ */
+function currentPoint(editor: PlateEditor): Point | undefined {
   if (editor.selection) return Range.end(editor.selection);
   return editor.api.end([]);
 }
@@ -116,6 +121,10 @@ function createController(
   function writeInterim(text: string): void {
     editor.tf.withoutSaving(() => {
       const at = interim ? interim.anchor : currentPoint(editor);
+      if (!at) {
+        interim = null;
+        return;
+      }
       const prefix = interim ? interim.prefix : needsLeadingSpace(editor, at) ? ' ' : '';
 
       if (interim) {
@@ -144,6 +153,9 @@ function createController(
     const at = existing
       ? existing.anchor
       : currentPoint(editor);
+    // No `existing` and no point means there is nowhere to write; nothing was
+    // inserted for this phrase, so there is also nothing to clean up.
+    if (!at) return;
     const prefix = existing ? existing.prefix : needsLeadingSpace(editor, at) ? ' ' : '';
 
     if (existing) {

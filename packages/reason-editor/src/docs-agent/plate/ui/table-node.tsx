@@ -1171,7 +1171,10 @@ export function TableRowElement({
   const { isDragging, nodeRef, previewRef, handleRef } = useDraggable({
     element,
     type: element.type,
+    // Rows only reorder among their own siblings. Without a drag entry there
+    // is no parent to compare, so refuse the drop rather than guess.
     canDropNode: ({ dragEntry, dropEntry }) =>
+      !!dragEntry &&
       PathApi.equals(
         PathApi.parent(dragEntry[1]),
         PathApi.parent(dropEntry[1])

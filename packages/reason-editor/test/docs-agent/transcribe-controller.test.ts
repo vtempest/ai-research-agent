@@ -141,6 +141,22 @@ describe('plate transcribe controller', () => {
     expect(editor.api.string([])).toBe('Hello world ');
   });
 
+  it('writes nothing when the document offers no point to write at', () => {
+    // With no selection the controller falls back to `editor.api.end([])`,
+    // which returns `undefined` for a document holding no node. That
+    // `undefined` used to be handed straight to `editor.tf.select`.
+    const editor = createEditor();
+    editor.tf.deselect();
+    vi.spyOn(editor.api, 'end').mockReturnValue(undefined);
+
+    const controller = getTranscribeController(editor);
+    controller.start();
+
+    expect(() => constructorCalls[0]!.options.onPartial('hello')).not.toThrow();
+    expect(() => constructorCalls[0]!.options.onCommit('hello world')).not.toThrow();
+    expect(editor.api.string([])).toBe('');
+  });
+
   it('toggles between start and stop', () => {
     const editor = createEditor();
     const controller = getTranscribeController(editor);
