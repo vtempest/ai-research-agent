@@ -14,7 +14,6 @@ import {
   PenLine,
   Search,
   Sparkles,
-  Terminal,
   X,
 } from "lucide-react";
 
@@ -32,13 +31,11 @@ import {
 } from "@/components/features/effects";
 import {
   APP_SCREENSHOT,
-  CLAUDE_SKILL,
   COMPARISON_COLUMNS,
   COMPARISON_ROWS,
   ENGINE_NAMES,
   FEATURE_TABS,
   PIPELINE,
-  PLATFORMS,
   PROJECT_BADGES,
   PROVIDERS,
   SEARCH_CATEGORIES,
@@ -46,7 +43,6 @@ import {
   faviconUrl,
   type ComparisonStatus,
 } from "@/components/features/data";
-import { CopyCommand } from "@/components/features/copy-command";
 import { config } from "@/lib/config/site";
 import { cn } from "@/lib/utils";
 
@@ -643,101 +639,6 @@ function FeatureExplorer() {
   );
 }
 
-function Platforms() {
-  return (
-    <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Everywhere"
-          title="Four ways to run it"
-          blurb="Every client talks to the same documented API, so your history, keys, and documents follow you between them."
-        />
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PLATFORMS.map((platform, index) => {
-            const card = (
-              <SpotlightCard className="h-full">
-                <div className="flex h-full flex-col p-6">
-                  <div className="qs-accent-soft mb-4 inline-flex size-11 items-center justify-center rounded-xl border">
-                    <platform.icon className="size-5" />
-                  </div>
-                  <h3 className="text-lg font-semibold">{platform.name}</h3>
-                  <p className="qs-accent-text mt-0.5 text-xs font-medium tracking-wide uppercase">
-                    {platform.tagline}
-                  </p>
-                  <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
-                    {platform.detail}
-                  </p>
-                </div>
-              </SpotlightCard>
-            );
-
-            return (
-              <Reveal key={platform.name} delay={index * 70}>
-                {platform.href ? (
-                  <Link href={platform.href} className="block h-full">
-                    {card}
-                  </Link>
-                ) : (
-                  card
-                )}
-              </Reveal>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * The Claude Code skill this repo ships, as a one-line copy. It is the same
- * `.claude/skills/qwksearch-customize` Claude reads when working in this
- * monorepo, so a fork starts with the same map of which package owns what.
- */
-function ClaudeSkillSection() {
-  return (
-    <section className="relative px-4 py-16 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Fork it"
-        title={
-          <>
-            Hand your agent the{" "}
-            <span className="qs-shimmer-text bg-gradient-to-r from-sky-500 via-violet-500 to-sky-500 bg-clip-text text-transparent">
-              codebase map
-            </span>
-          </>
-        }
-        blurb="Drop this repo's Claude Code skill into your own setup, and Claude already knows which of the ~20 packages a change belongs in."
-      />
-
-      <Reveal className="mx-auto max-w-3xl">
-        <SpotlightCard className="bg-card/90 rounded-3xl border px-6 py-7 backdrop-blur-sm sm:px-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <Pill>
-              <Terminal className="size-3.5" />
-              Claude Code skill
-            </Pill>
-            <code className="font-mono text-sm font-semibold">
-              {CLAUDE_SKILL.name}
-            </code>
-          </div>
-
-          <p className="text-muted-foreground mt-4 text-sm leading-relaxed text-pretty">
-            {CLAUDE_SKILL.blurb}
-          </p>
-
-          <CopyCommand
-            className="mt-5"
-            command={CLAUDE_SKILL.command}
-            label={`Copy the ${CLAUDE_SKILL.name} install command`}
-          />
-        </SpotlightCard>
-      </Reveal>
-    </section>
-  );
-}
-
 function ClosingCta() {
   return (
     <section className="relative px-4 pt-10 pb-28 sm:px-6 lg:px-8">
@@ -793,8 +694,6 @@ export function FeaturesView() {
       <Comparison />
       <Pipeline />
       <FeatureExplorer />
-      <Platforms />
-      <ClaudeSkillSection />
       <ClosingCta />
     </div>
   );

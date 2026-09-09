@@ -598,40 +598,6 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
   },
 ];
 
-export const PLATFORMS: {
-  icon: React.ElementType;
-  name: string;
-  tagline: string;
-  detail: string;
-  href?: string;
-}[] = [
-  {
-    icon: Globe,
-    name: "Web",
-    tagline: "Next.js on Cloudflare Workers",
-    detail: "The full research agent and REASON editor in the browser, no install.",
-    href: "/",
-  },
-  {
-    icon: Monitor,
-    name: "Desktop",
-    tagline: "Tauri",
-    detail: "Select text anywhere, press ` , get an answer over whatever you were doing.",
-  },
-  {
-    icon: Puzzle,
-    name: "Browser",
-    tagline: "Tab Manager AI",
-    detail: "An extension that turns a wall of open tabs into an organized reading queue.",
-  },
-  {
-    icon: Terminal,
-    name: "Editor",
-    tagline: "VS Code",
-    detail: "Cited answers in a sidebar, next to the code that raised the question.",
-  },
-];
-
 export const PACKAGES: { name: string; blurb: string }[] = [
   { name: "search-web-api", blurb: "70+ engines across 13 categories behind one Hono API." },
   { name: "extract-webpage", blurb: "Search, extract, cite, and outline any page." },
@@ -767,15 +733,3 @@ export const APP_SCREENSHOT = {
     "Search, the extracted article with its cites, and the REASON editor — one screen.",
 };
 
-/**
- * The Claude Code skill checked into `.claude/skills/`, offered here as a
- * one-line copy so anyone forking the repo starts with the same orientation
- * Claude gets: which package owns which surface.
- */
-export const CLAUDE_SKILL = {
-  name: "qwksearch-customize",
-  blurb:
-    "Teaches Claude Code where every surface lives — the web app, the chat UI, the REASON editor, the extension, and the ~20 packages behind them — so a change lands in the right layer instead of being re-implemented in the wrong one.",
-  command:
-    "npx degit OpenSourceAGI/qwksearch-research-agent/.claude/skills/qwksearch-customize ~/.claude/skills/qwksearch-customize",
-};
