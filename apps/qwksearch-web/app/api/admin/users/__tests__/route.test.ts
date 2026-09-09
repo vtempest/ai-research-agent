@@ -16,9 +16,14 @@ import { PATCH, DELETE } from '../[id]/route'
 const mockGetDB = getDB as unknown as ReturnType<typeof vi.fn>
 const mockAssertAdmin = assertAdmin as unknown as ReturnType<typeof vi.fn>
 
-/** The list route runs two selects: the page of rows, then the total count. */
+/**
+ * The list route runs the page of rows, then the matched-user count, then one
+ * count per table in the site-wide totals strip.
+ */
 function setupList(rows: unknown[], total = rows.length): FakeDb {
-  const db = createFakeDb({ select: (i) => (i === 0 ? rows : [{ total }]) })
+  const db = createFakeDb({
+    select: (i) => (i === 0 ? rows : i === 1 ? [{ value: total }] : [{ value: 0 }]),
+  })
   mockGetDB.mockReturnValue(db)
   return db
 }
@@ -56,7 +61,65 @@ describe('GET /api/admin/users', () => {
     const data = await (await GET(listRequest())).json()
 
     expect(data.users).toHaveLength(2)
-    expect(data).toMatchObject({ total: 42, page: 1, limit: 25, pages: 2 })
+    expect(data).toMatchObject({
+      matchedUsers: 42,
+      page: 1,
+      limit: 25,
+      pageCount: 2,
+      // Legacy aliases for the same numbers.
+      total: 42,
+      pages: 2,
+    })
+  })
+
+  it('returns the site-wide totals strip alongside the page', async () => {
+    setupList([], 0)
+
+    const { totals } = await (await GET(listRequest())).json()
+
+    expect(totals).toMatchObject({ users: 0, sessions: 0, docs: 0, chats: 0, activity: 0 })
+  })
+
+  it('converts the last-session timestamp into an ISO string', async () => {
+    setupList([{ id: 'u1', lastActiveSeconds: 1_700_000_000 }], 1)
+
+    const { users } = await (await GET(listRequest())).json()
+
+    expect(users[0].lastActiveAt).toBe(new Date(1_700_000_000_000).toISOString())
+    expect(users[0]).not.toHaveProperty('lastActiveSeconds')
+  })
+
+  it('reports a never-signed-in account as null rather than the epoch', async () => {
+    setupList([{ id: 'u1', lastActiveSeconds: null }], 1)
+
+    const { users } = await (await GET(listRequest())).json()
+
+    expect(users[0].lastActiveAt).toBeNull()
+  })
+
+  it('filters out anonymous accounts when asked', async () => {
+    const db = setupList([], 0)
+
+    await GET(listRequest('?hideAnonymous=true'))
+
+    expect(db.calls.where[0][0]).toBeDefined()
+  })
+
+  it('orders by the requested column and direction', async () => {
+    const db = setupList([], 0)
+
+    await GET(listRequest('?sort=docs&dir=asc'))
+
+    // The tie-breaker on user id is always appended after the sort column.
+    expect(db.calls.orderBy[0]).toHaveLength(2)
+  })
+
+  it('falls back to the default sort for an unknown column', async () => {
+    const db = setupList([], 0)
+
+    await GET(listRequest('?sort=; drop table user'))
+
+    expect(db.calls.orderBy[0]).toHaveLength(2)
   })
 
   it('honours the page and limit parameters', async () => {
