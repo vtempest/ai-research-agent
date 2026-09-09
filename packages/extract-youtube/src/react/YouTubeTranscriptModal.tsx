@@ -29,11 +29,11 @@ import {
 } from 'react';
 import { Captions, Loader2, AlertCircle, X } from 'lucide-react';
 
-export interface TranscriptSnippet {
-  text: string;
-  start: number;
-  duration: number;
-}
+import { formatTime, loadTranscript, type TranscriptSnippet } from './transcript';
+
+// Re-exported so existing deep imports of this module keep working; the type
+// itself now lives in `./transcript`, shared with the floating player.
+export type { TranscriptSnippet };
 
 export interface YouTubeTranscriptModalProps {
   /** The YouTube video ID (not a full URL — use `extractVideoId` first if needed). */
@@ -55,16 +55,6 @@ export interface YouTubeTranscriptModalProps {
   trigger?: ReactNode;
   /** Called whenever the modal opens or closes. */
   onOpenChange?: (open: boolean) => void;
-}
-
-function formatTime(seconds: number): string {
-  const total = Math.max(0, Math.floor(seconds));
-  const h = Math.floor(total / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  const s = total % 60;
-  const mm = h > 0 ? m.toString().padStart(2, '0') : m.toString();
-  const ss = s.toString().padStart(2, '0');
-  return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
 }
 
 const TranscriptLine = forwardRef<
@@ -146,21 +136,9 @@ export function YouTubeTranscriptModal({
     setSnippets(null);
     setCurrentTime(0);
 
-    const load = fetchTranscript
-      ? fetchTranscript(videoId)
-      : transcriptUrl
-        ? fetch(transcriptUrl.includes('videoId=') ? transcriptUrl : `${transcriptUrl}${transcriptUrl.includes('?') ? '&' : '?'}videoId=${encodeURIComponent(videoId)}`)
-            .then((res) => res.json() as Promise<{ snippets: TranscriptSnippet[]; error?: string }>)
-        : Promise.resolve({ snippets: [], error: 'No transcriptUrl or fetchTranscript provided' });
-
-    load
-      .then((data) => {
-        if (cancelled) return;
-        if (!data || data.error) {
-          setError(data?.error || 'Failed to load transcript');
-          return;
-        }
-        setSnippets(data.snippets ?? []);
+    loadTranscript(videoId, { transcriptUrl, fetchTranscript })
+      .then((result) => {
+        if (!cancelled) setSnippets(result);
       })
       .catch((err: unknown) => {
         if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load transcript');

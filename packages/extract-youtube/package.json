@@ -1,7 +1,7 @@
 {
   "name": "extract-youtube",
   "version": "1.0.275",
-  "description": "Fast, no-browser serverless-optimized YouTube transcript extractor",
+  "description": "Fast, no-browser serverless-optimized YouTube transcript extractor, with optional React UI: a floating YouTube player and a synced-transcript modal",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -58,7 +58,13 @@
     "video",
     "parsing",
     "extraction",
-    "optimized"
+    "optimized",
+    "react",
+    "floating-player",
+    "picture-in-picture",
+    "video-player",
+    "youtube-player",
+    "playlist"
   ],
   "author": "",
   "license": "rights.institute/PROSPER",

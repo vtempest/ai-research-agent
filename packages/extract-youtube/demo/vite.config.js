@@ -6,6 +6,13 @@ export default defineConfig({
   esbuild: {
     jsx: "automatic",
   },
+  resolve: {
+    // `extract-youtube` is linked in with `file:..`, so it brings its own
+    // node_modules/react. Without deduping, Vite bundles two copies of React
+    // and the hooks inside the floating player run against the wrong one
+    // ("Cannot read properties of null (reading 'useSyncExternalStore')").
+    dedupe: ["react", "react-dom"],
+  },
   server: {
     proxy: {
       // Forwards to server.js so the browser never needs to know about

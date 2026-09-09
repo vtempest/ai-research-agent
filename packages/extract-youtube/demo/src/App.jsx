@@ -1,122 +1,117 @@
-import { useState } from "react";
-import { YouTubeTranscriptModal } from "extract-youtube/react";
+/**
+ * extract-youtube demo: a saved video library you pick from, and a floating
+ * player that keeps playing while you browse.
+ *
+ * The two pieces of `extract-youtube/react` on show:
+ *   - `<FloatingYouTubePlayer />` — mounted once, here. Drag it, resize it,
+ *     minimize it, pop it out; it survives a page reload still playing.
+ *   - `<YouTubeTranscriptModal />` — one per card, in `VideoGrid.jsx`.
+ * Both read captions from the same `/api/transcript` endpoint (`server.js`).
+ */
 
-// "Me at the zoo" — the first video ever uploaded to YouTube. Has captions,
-// so the demo works out of the box.
-const DEFAULT_VIDEO = "jNQXAC9IVRw";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { FloatingYouTubePlayer, youtubePlayer } from "extract-youtube/react";
 
-// A browser-safe stand-in for the package's own `extractVideoId` (which
-// lives in the main, Node-oriented entry point alongside the transcript
-// fetcher — importing it here would pull that into the client bundle).
-function parseVideoId(input) {
-  const trimmed = input.trim();
-  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
-  try {
-    const url = new URL(trimmed);
-    if (url.hostname.includes("youtu.be")) {
-      return url.pathname.slice(1).split("/")[0] || null;
-    }
-    const v = url.searchParams.get("v");
-    if (v) return v;
-    const match = url.pathname.match(/(?:embed|shorts|live)\/([a-zA-Z0-9_-]{11})/);
-    return match ? match[1] : null;
-  } catch {
-    return null;
-  }
-}
+import { SpeedButton } from "./SpeedButton.jsx";
+import { VideoGrid } from "./VideoGrid.jsx";
+import { loadLibrary, parseVideoId, saveLibrary } from "./library.js";
 
 export default function App() {
-  const [videoId, setVideoId] = useState(DEFAULT_VIDEO);
-  const [input, setInput] = useState(DEFAULT_VIDEO);
-  const [modalKey, setModalKey] = useState(0);
+  const [videos, setVideos] = useState(loadLibrary);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [input, setInput] = useState("");
+  const [addError, setAddError] = useState(null);
 
-  const loadVideo = () => {
-    const id = parseVideoId(input);
-    if (!id) {
-      window.alert("Couldn't find a video ID in that input — paste a YouTube URL or an 11-character video ID.");
+  useEffect(() => saveLibrary(videos), [videos]);
+
+  const visible = useMemo(
+    () => (showFavoritesOnly ? videos.filter((video) => video.favorite) : videos),
+    [videos, showFavoritesOnly],
+  );
+
+  const favoriteCount = videos.filter((video) => video.favorite).length;
+
+  const toggleFavorite = useCallback((videoId) => {
+    setVideos((current) =>
+      current.map((video) => (video.videoId === videoId ? { ...video, favorite: !video.favorite } : video)),
+    );
+  }, []);
+
+  const remove = useCallback((videoId) => {
+    setVideos((current) => current.filter((video) => video.videoId !== videoId));
+    youtubePlayer.removeFromQueue(videoId);
+  }, []);
+
+  const addVideo = useCallback(() => {
+    const videoId = parseVideoId(input);
+    if (!videoId) {
+      setAddError("Paste a YouTube URL or an 11-character video ID.");
       return;
     }
-    setVideoId(id);
-    // Remount the modal so a freshly-opened dialog re-fetches this video's transcript.
-    setModalKey((k) => k + 1);
-  };
+    setAddError(null);
+    setInput("");
+    setVideos((current) =>
+      current.some((video) => video.videoId === videoId)
+        ? current
+        : [{ videoId, title: `Video ${videoId}`, channel: "Added by you", favorite: true }, ...current],
+    );
+  }, [input]);
+
+  /** Start the first video and line the rest of the visible grid up behind it. */
+  const playAll = useCallback(() => {
+    const [first, ...rest] = visible;
+    if (!first) return;
+    youtubePlayer.play(first);
+    youtubePlayer.setQueue(rest);
+  }, [visible]);
 
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>extract-youtube — popout modal demo</h1>
-      <p style={styles.p}>
-        Paste any YouTube URL or video ID below, then open the player. The video plays on the
-        left and its transcript loads on the side, synced to playback — click any line to seek.
-      </p>
+    <main className="page">
+      <header className="header">
+        <h1>extract-youtube — floating player demo</h1>
+        <p>
+          Pick anything from the grid and it starts playing in a floating window you can drag, resize,
+          minimize or pop out — and it keeps playing while you browse the rest of the library. Toggle
+          the captions button on the player to follow along with a synced, clickable transcript.
+        </p>
+      </header>
 
-      <div style={styles.row}>
+      <div className="toolbar">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && loadVideo()}
-          placeholder="https://www.youtube.com/watch?v=... or a video ID"
-          style={styles.input}
+          onKeyDown={(e) => e.key === "Enter" && addVideo()}
+          placeholder="Add a YouTube URL or video ID…"
+          aria-label="Add a YouTube URL or video ID"
         />
-        <button type="button" onClick={loadVideo} style={styles.button}>
-          Load
+        <button type="button" onClick={addVideo}>
+          Add
+        </button>
+        <button
+          type="button"
+          className={showFavoritesOnly ? "on" : undefined}
+          onClick={() => setShowFavoritesOnly((only) => !only)}
+        >
+          {showFavoritesOnly ? `Favorites (${favoriteCount})` : `All (${videos.length})`}
+        </button>
+        <button type="button" onClick={playAll} disabled={visible.length === 0}>
+          Play all
         </button>
       </div>
 
-      <p style={styles.meta}>
-        Current video: <code>{videoId}</code>
-      </p>
+      {addError && <p className="error">{addError}</p>}
 
-      <YouTubeTranscriptModal
-        key={modalKey}
-        videoId={videoId}
-        title={`Video ${videoId}`}
+      <VideoGrid videos={visible} onToggleFavorite={toggleFavorite} onRemove={remove} />
+
+      {/*
+        Mounted once for the whole app. It renders nothing until something calls
+        `youtubePlayer.play(...)`, so it is safe to leave at the root of a layout.
+        `extraControls` is the seam for app-specific chrome — see SpeedButton.jsx.
+      */}
+      <FloatingYouTubePlayer
         transcriptUrl="/api/transcript"
-        trigger={
-          <button type="button" style={styles.trigger}>
-            ▶ Open video + subtitles
-          </button>
-        }
+        extraControls={({ playbackRate, player }) => <SpeedButton playbackRate={playbackRate} player={player} />}
       />
     </main>
   );
 }
-
-const styles = {
-  main: {
-    fontFamily: "system-ui, -apple-system, sans-serif",
-    maxWidth: 640,
-    margin: "48px auto",
-    padding: "0 16px",
-    color: "#111827",
-  },
-  h1: { fontSize: 22, marginBottom: 8 },
-  p: { color: "#4b5563", lineHeight: 1.5 },
-  row: { display: "flex", gap: 8, marginTop: 16 },
-  input: {
-    flex: 1,
-    padding: "8px 10px",
-    fontSize: 14,
-    border: "1px solid #d1d5db",
-    borderRadius: 6,
-  },
-  button: {
-    padding: "8px 16px",
-    fontSize: 14,
-    border: "1px solid #d1d5db",
-    borderRadius: 6,
-    background: "#f9fafb",
-    cursor: "pointer",
-  },
-  meta: { fontSize: 13, color: "#6b7280", marginTop: 12 },
-  trigger: {
-    marginTop: 8,
-    padding: "10px 18px",
-    fontSize: 14,
-    fontWeight: 600,
-    border: "none",
-    borderRadius: 8,
-    background: "#111827",
-    color: "#fff",
-    cursor: "pointer",
-  },
-};
