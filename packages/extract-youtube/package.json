@@ -17,7 +17,10 @@
       "require": "./dist/react/index.cjs"
     }
   },
-  "bin": "dist/cli.js",
+  "//bin": "Spelled out as an object with a relative path. npm normalizes the string form itself and prints a notice for it on every publish.",
+  "bin": {
+    "extract-youtube": "dist/cli.js"
+  },
   "//files": "Publish only what consumers resolve. Without this the tarball also carries test/, jest.config.js, tsconfig*.json and vite.config.ts. Matches extract-webpage and extract-pdf.",
   "files": [
     "dist",

@@ -155,6 +155,10 @@ jobs:
           set -uo pipefail
           set +e
 
+          # The per-package subshell below `cd`s into the package directory, so
+          # capture the repo root while we are still at it.
+          repo_root="$PWD"
+
           failed_packages=""
           skipped_builds=""
           unauthorized_packages=""
@@ -293,15 +297,15 @@ jobs:
                   exit 0
                 fi
 
-                # Content changed since the last release: bump a patch above
-                # whichever is higher — the local version or the latest on npm —
-                # so the new version is guaranteed to be free.
-                next=$(node -e "
-                  const bump = v => { const a = v.split('.').map(Number); a[2] += 1; return a.join('.'); };
-                  const cmp = (x, y) => { const a = x.split('.').map(Number), b = y.split('.').map(Number); for (let i = 0; i < 3; i++) { if ((a[i]||0) !== (b[i]||0)) return (a[i]||0) - (b[i]||0); } return 0; };
-                  const local = '$version', latest = '$latest' || local;
-                  console.log(bump(cmp(local, latest) >= 0 ? local : latest));
-                ")
+                # Content changed since the last release: take the next
+                # version the registry has not already spent. Bumping one patch
+                # above `latest` is not enough — the `latest` dist-tag lags any
+                # version that was staged by an interrupted publish, and npm
+                # answers a PUT for one of those with
+                # `E409 ... Cannot publish over previously staged version`.
+                # next-free-version.mjs reads the full version list *and* the
+                # release timeline, which is where those numbers show up.
+                next=$(node "$repo_root/scripts/next-free-version.mjs" "$name" "$version")
                 echo "🔼 $name content changed since $version — bumping to $next"
                 # --no-workspaces prevents npm from doing workspace-aware processing
                 # when bun's workspace symlinks are present in node_modules (e.g.
@@ -311,20 +315,47 @@ jobs:
                 version="$next"
               fi
 
-              echo "Publishing $name@$version"
               # Already built above; skip prepare/prepublish hooks re-running it.
               # Exit 43 for an authorization failure so the loop can stop early:
               # npm reports "no write access" as E404 on the PUT, which reads as
               # if the package did not exist.
+              #
+              # A version the registry has reserved but does not list is still
+              # possible (the reservation can land between the version query
+              # above and the PUT), so an E409 "cannot publish over" is retried
+              # at the next free version rather than failing the package. The
+              # attempt cap keeps a registry that rejects everything from
+              # looping: five refusals is a problem no amount of bumping fixes.
               log="$RUNNER_TEMP/npm-publish.log"
-              if npm publish --provenance --access public --ignore-scripts 2>&1 | tee "$log"; then
-                exit 0
-              fi
-              if grep -qE "npm error code (E401|E404|ENEEDAUTH|EAUTHUNKNOWN|EOTP)" "$log" ||
-                 { grep -q "npm error code E403" "$log" && ! grep -qi "cannot publish over" "$log"; }; then
-                exit 43
-              fi
-              exit 1
+              attempt=1
+
+              while :; do
+                echo "Publishing $name@$version"
+                if npm publish --provenance --access public --ignore-scripts 2>&1 | tee "$log"; then
+                  exit 0
+                fi
+
+                if grep -qE "npm error code (E401|E404|ENEEDAUTH|EAUTHUNKNOWN|EOTP)" "$log"; then
+                  exit 43
+                fi
+                if grep -q "npm error code E403" "$log" && ! grep -qi "cannot publish over" "$log"; then
+                  exit 43
+                fi
+
+                if ! grep -qi "cannot publish over" "$log"; then
+                  exit 1
+                fi
+                if [ "$attempt" -ge 5 ]; then
+                  echo "⚠ npm refused $attempt versions in a row for $name — giving up"
+                  exit 1
+                fi
+
+                next=$(node "$repo_root/scripts/next-free-version.mjs" "$name" "$version")
+                echo "↩ npm has $name@$version reserved — retrying as $next"
+                npm version "$next" --no-git-tag-version --no-workspaces
+                version="$next"
+                attempt=$((attempt + 1))
+              done
             )
             rc=$?
 
