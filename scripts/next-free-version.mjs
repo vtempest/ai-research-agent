@@ -130,8 +130,8 @@ export function nextFreeVersion(local, taken) {
  * Ask npm for a package's published versions and its full release timeline.
  *
  * A package that has never been published (E404) and an unreachable registry
- * look the same from here: both yield an empty packument, which leaves the
- * local version untouched.
+ * look the same from here: both yield an empty packument, so the answer comes
+ * from the local version alone.
  *
  * @param {string} name
  * @param {(cmd: string, args: string[]) => string} [run] injection point for tests
