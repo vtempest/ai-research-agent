@@ -24,9 +24,7 @@ vi.mock('@/lib/config', () => ({
 }))
 
 vi.mock('chat-agent-toolkit/models/registry', () => ({
-  default: vi.fn().mockImplementation(() => ({
-    getActiveProviders: vi.fn().mockResolvedValue([]),
-  })),
+  default: vi.fn(),
 }))
 
 vi.mock('@/lib/config/env', () => ({
@@ -52,6 +50,16 @@ const mockUpdateConfig = configManager.updateConfig as ReturnType<typeof vi.fn>
 const mockGetEnv = getEnv as ReturnType<typeof vi.fn>
 const mockModelRegistry = ModelRegistry as unknown as ReturnType<typeof vi.fn>
 
+/**
+ * Point the mocked ModelRegistry constructor at a fixed set of active
+ * providers. Uses a `function` implementation so `new ModelRegistry()` works.
+ */
+function stubModelRegistry(providers: unknown[]) {
+  mockModelRegistry.mockImplementation(function () {
+    return { getActiveProviders: vi.fn().mockResolvedValue(providers) }
+  })
+}
+
 const baseConfig = () => ({
   modelProviders: [],
   search: { tavilyApiKey: '' },
@@ -63,10 +71,11 @@ beforeEach(() => {
   mockGetUIConfigSections.mockReturnValue([])
   mockGetEnv.mockReturnValue(undefined)
   // restoreMocks (vitest config) wipes the factory implementation before each
-  // test, so re-establish the default ModelRegistry behavior here.
-  mockModelRegistry.mockImplementation(() => ({
-    getActiveProviders: vi.fn().mockResolvedValue([]),
-  }))
+  // test, so re-establish the default ModelRegistry behavior here. The route
+  // calls `new ModelRegistry()`, and vitest only lets a mock stand in for a
+  // constructor when its implementation is a `function` (an arrow throws
+  // "is not a constructor"), so keep these implementations non-arrow.
+  stubModelRegistry([])
   // null = authorized; tests for the guard override this per-case.
   ;(assertAdmin as ReturnType<typeof vi.fn>).mockResolvedValue(null)
 })
@@ -93,11 +102,7 @@ describe('GET /api/config', () => {
       modelProviders: [{ id: 'openai', chatModels: [] }],
       search: { tavilyApiKey: '' },
     })
-    mockModelRegistry.mockImplementation(() => ({
-      getActiveProviders: vi.fn().mockResolvedValue([
-        { id: 'openai', chatModels: [{ key: 'gpt-4o' }] },
-      ]),
-    }))
+    stubModelRegistry([{ id: 'openai', chatModels: [{ key: 'gpt-4o' }] }])
 
     const res = await GET(makeRequest())
     const data = await res.json()

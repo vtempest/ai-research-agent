@@ -51,6 +51,7 @@ const CHAIN_METHODS = [
   'leftJoin',
   'onConflictDoNothing',
   'onConflictDoUpdate',
+  'execute',
 ] as const;
 
 export interface FakeDb {
