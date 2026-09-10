@@ -91,6 +91,8 @@ export enum SettingsTabs {
   Provider = 'provider',
   Proxy = 'proxy',
   Referral = 'referral',
+  /** QwkSearch: per-user web-search preferences. */
+  Search = 'search',
   Security = 'security',
   ServiceModel = 'service-model',
   Skill = 'skill',

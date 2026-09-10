@@ -23,8 +23,8 @@ Last updated: 2026-09-10.
 | Phase | State |
 |---|---|
 | 0. Baseline — LobeHub builds and deploys on Workers | ✅ |
-| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer; parity open |
-| 2. Settings as the single system of record | 🚧 Extraction shipped end to end; Search & Sources has resolution + storage + API, needs only the pane |
+| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer and a pane; parity open |
+| 2. Settings as the single system of record | 🚧 Both panes shipped end to end (2.2 done); key migration and retiring the old surface remain |
 | 3. REASON docs inside the engine | ⬜ |
 | 4. Public cutover | 🔒 needs the license answer |
 | 5. Decommission + satellites + ops gaps | ⬜ |
@@ -297,10 +297,10 @@ Follow-ups:
 - ⬜ **`tiers` is a plain multi-select**, so the execution order is the order the
   user happened to click. It is *stored* in that order and it matters — the
   control should be drag-to-reorder.
-- ⬜ **A 401 shows the raw error text.** The pane needs sign-in and says
-  "could not load your extraction settings"; it should recognise the 401 that
-  `ExtractionSettingsApiError` already carries and prompt to sign in, the way
-  `article.error.loginRequired` does.
+- ✅ **A 401 now prompts to sign in.** Closed in 1.10, which hit the same bug in
+  its own pane: both forms recognise the 401 their API error already carried and
+  say `*.error.loginRequired` instead of printing the status text, on load and on
+  save alike.
 
 ### 1.8 Search settings resolution ✅
 
@@ -423,16 +423,57 @@ Follow-ups:
   drizzle calls are verified against a fake that reproduces the three chains the
   module uses, and never against SQLite.
 
-### 1.10 Search & Sources settings pane ⬜
+### 1.10 Search & Sources settings pane ✅
 
-1.7's equivalent, and the last of the three steps. `GET /api/doc/search-settings`
-now ships `options` — the category list, the recency filters and the numeric
-bounds — for exactly the reason extraction's route does: so a new category never
-needs a matching edit in the UI. Follow 1.7's five-file shape
-(`api.ts`, `formState.ts`, `features/SearchForm.tsx`, `index.tsx`, plus the
-`SettingsTabs` enum member and `componentMap.ts` registration), and inherit its
-three open follow-ups — the 401 that shows raw error text is the same bug in both
-panes.
+1.7's equivalent, shipped, and the last of the three steps. `/settings/search` is
+a form over the one JSON document 1.9 serves, built to 1.7's five-file shape and
+registered at 1.7's same five points. The full contract is §F5c of the
+integrations reference. **This closes 2.2** — both panes it asked for now exist.
+
+```
+src/features/Settings/search/
+  index.tsx           SettingHeader + the form
+  api.ts              GET/PUT/DELETE, and the response types
+  formState.ts        form values ⇄ UserSearchOverrides (pure, no React)
+  features/SearchForm.tsx
+```
+
+Everything 1.7 recorded holds here — an unset field is absent from the PUT body,
+the inputs seed from `overrides` and never from `effective`, and the pane renders
+the response rather than what it sent. Three things are specific to this pane:
+
+- **Trimming has two different outcomes here, and the form has to survive both.**
+  An unknown category is *dropped*; an out-of-range `maxCategories` is *clamped*
+  to the ten categories that exist. `contract.test.ts` asserts both against the
+  real `normalizeSearchOverrides`, which is how the difference was found — the
+  first draft of that test assumed the cap was dropped like the category.
+- **The stored category list can be longer than the list in force.** It is the
+  fan-out order and `maxCategories` keeps the first N, so the pane shows all of
+  what the user chose while `effective.categories` shows what actually runs. The
+  two are deliberately different numbers on screen.
+- **`language` is trimmed client-side** — the only client-side normalization in
+  either pane. The server's tag pattern rejects a trailing space and would drop
+  the whole field for it, silently.
+
+Upstream edits are 1.7's five registration points and no logic: the
+`SettingsTabs.Search` enum member, both `componentMap`s, the sidebar item in
+`useCategory.tsx` (beside Extraction, under AI config), and the compact-header
+title map in `SettingsContent.tsx`.
+
+54 locale keys in en-US and zh-CN, and 36 new tests — 8 on the client, 15 on the
+form state, 13 through the real resolver in `contract.test.ts` — plus 13 on the
+rendered form.
+
+Follow-ups, all inherited from 1.7 and all still open except the third:
+
+- ⬜ **`categories` is a plain multi-select**, so the fan-out order is the order
+  the user happened to click. 1.7's tier list has the same problem and the same
+  fix: drag-to-reorder.
+- ⬜ **`language` is a free-text input.** A tag the server's pattern rejects
+  disappears silently rather than being flagged; a language picker is the fix,
+  and it is the same fix 1.7 wants for `languages`.
+- ✅ **The 401 now prompts to sign in** rather than printing the status text, in
+  *both* panes — it was the same bug in each, so it was fixed in each.
 
 ### 1.4 Agent parity checklist ⬜
 
@@ -453,7 +494,7 @@ Reproduce today's chat-mode behavior on the engine and record each gap:
   to its engine equivalent: models → `Settings/provider` + `service-model`;
   mcpservers → `features/MCP/MCPSettings`; voice → `tts`; skills-memory →
   `skill` + `memory`; account/storage → `profile` / `storage`.
-- 🚧 **2.2 Add the two missing panes**, following the existing tab conventions
+- ✅ **2.2 Add the two missing panes**, following the existing tab conventions
   (`src/features/Settings/<tab>/` + route segment + keys in
   `packages/locales/src/default/qwksearch.ts`): **Search & Sources** (engine and
   category selection, per-category defaults, time range, SearXNG URL — now that
@@ -463,13 +504,14 @@ Reproduce today's chat-mode behavior on the engine and record each gap:
   ✅ **Extraction is done** — 1.5 (resolution), 1.6 (storage + API) and 1.7 (the
   pane). It is a client of `GET`/`PUT`/`DELETE /api/doc/extraction-settings` and
   has no slice in `src/store/user/slices/settings/`; 1.6 records why.
-  🚧 **Search & Sources** is two of the same three steps in: the resolution
-  layer landed as 1.8, and storage plus `GET`/`PUT`/`DELETE
-  /api/doc/search-settings` as 1.9. Only the pane (1.7's equivalent, tracked as
-  1.10) remains. The asymmetry 1.8 flagged — the search impl being built by a
-  factory with no request in scope — is resolved: `userId` is threaded from the
-  tool-execution context through `SearchService` to the impl, and 1.9 records
-  why that beat a per-request factory.
+  ✅ **Search & Sources is done too** — the same three steps: 1.8 (resolution),
+  1.9 (storage + API) and 1.10 (the pane). The asymmetry 1.8 flagged — the search
+  impl being built by a factory with no request in scope — was resolved by
+  threading `userId` from the tool-execution context through `SearchService` to
+  the impl; 1.9 records why that beat a per-request factory.
+  Both panes are clients of their route and neither has a slice in
+  `src/store/user/slices/settings/`; 1.6 records why. What is left of Phase 2 is
+  the key migration and retiring the old surface, below — not UI.
 - ⬜ **2.3 Key migration.** Server env keys stay Worker secrets. Per-user keys
   live in `localStorage` today and have no server copy — announce a one-time
   re-entry into the engine's key vault; do not build a migrator.
@@ -551,25 +593,30 @@ Blocked on the LobeHub Community License answer, recorded in
 **Suggested next, in order** — all code-only, all testable without Cloudflare
 credentials:
 
-1. **The Search & Sources pane (1.10)** — 1.7's equivalent, and the last step of
-   2.2. Its backend is complete as of 1.9: `GET /api/doc/search-settings` already
-   ships the `options` metadata the form needs, so this is a five-file UI change
-   against a settled contract, with 1.7 as a line-by-line template. Largest
-   remaining user-visible win, and testable without Cloudflare credentials.
+1. **The two shared pane follow-ups**, now that both panes exist and both want
+   the same two controls. A **drag-to-reorder list** would serve extraction's
+   `tiers` and search's `categories` at once — in both, the stored order is
+   execution order and a plain multi-select loses it. A **language picker** would
+   serve extraction's `languages` and search's `language` at once — in both, a
+   tag the server's pattern rejects disappears silently. Build each once, in a
+   place both panes can import; that shared home does not exist yet and choosing
+   it is most of the work. Small, user-visible, no Cloudflare credentials.
 2. **1.3's open question — two chains in `extract.ts`.** `defaultTiersFor`,
    `extractViaYouTube`, `extractViaPdf`, `loadCiteExtractor` and
    `articleViaCiteExtractor` have never been on a request path, and lint reports
    two of them as unused. It is a decision, not a discovery: adopt or delete.
    Small, and it removes the only known dead code in the Worker.
-3. **1.7's follow-ups**, all small and all user-visible: a language picker
-   instead of free-text tags, a drag-to-reorder tier list, and a sign-in prompt
-   on the 401 the pane currently shows as raw error text.
+3. **1.4's agent parity checklist**, now that both settings features are done and
+   Phase 1's remaining work is parity rather than plumbing. Start with the two
+   items that are pure verification against the wired-up engine — search-cited
+   answers with follow-ups, and file-upload Q&A — and record each gap before
+   deciding to adopt or port.
 4. **5.4's bundle budget in CI.** The measurement exists (`bun run cf:budget`);
    what is missing is a workflow that runs it. That needs a job that installs and
    builds `packages-lobe`, which no workflow does yet — a CI-minutes decision as
    much as a code one, which is why it sits below the items above.
-5. **2.1's settings map**, which the Search & Sources pane needs anyway and
-   which is pure reading.
+5. **2.1's settings map**, which is pure reading, and which 2.4 needs before
+   anything in the old surface can be deleted.
 
 Then, for whichever you pick:
 

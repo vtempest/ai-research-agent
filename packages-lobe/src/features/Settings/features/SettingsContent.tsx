@@ -39,6 +39,7 @@ const COMPACT_HEADER_TABS = [
   SettingsTabs.Plans,
   SettingsTabs.Profile,
   SettingsTabs.Referral,
+  SettingsTabs.Search,
   SettingsTabs.ServiceModel,
   SettingsTabs.Stats,
   SettingsTabs.Storage,
@@ -65,6 +66,7 @@ const SettingsContent = ({ mobile, activeTab }: SettingsContentProps) => {
     // QwkSearch tabs name themselves from the `qwksearch` namespace, the way
     // Labs names itself from `labs` — there is no `setting:tab.*` entry.
     [SettingsTabs.Extraction]: tQwkSearch('extraction.title'),
+    [SettingsTabs.Search]: tQwkSearch('search.title'),
     [SettingsTabs.Hotkey]: t('setting:tab.hotkey'),
     [SettingsTabs.Labels]: t('setting:tab.labels'),
     // Labs has no `setting:tab.*` entry — the nav label comes from the labs namespace.

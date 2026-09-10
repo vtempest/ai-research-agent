@@ -1,11 +1,13 @@
 /**
  * @vitest-environment happy-dom
  */
+import type * as BaseUi from '@lobehub/ui/base-ui';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { ExtractionSettingsResponse } from '../api';
+import type * as ExtractionApi from '../api';
+import { ExtractionSettingsApiError, type ExtractionSettingsResponse } from '../api';
 import ExtractionForm from './ExtractionForm';
 
 const fetchSettingsMock = vi.hoisted(() => vi.fn());
@@ -15,14 +17,14 @@ const toastErrorMock = vi.hoisted(() => vi.fn());
 const toastSuccessMock = vi.hoisted(() => vi.fn());
 
 vi.mock('../api', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../api')>()),
+  ...(await importOriginal<typeof ExtractionApi>()),
   fetchExtractionSettings: fetchSettingsMock,
   resetExtractionSettings: resetSettingsMock,
   saveExtractionSettings: saveSettingsMock,
 }));
 
 vi.mock('@lobehub/ui/base-ui', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@lobehub/ui/base-ui')>()),
+  ...(await importOriginal<typeof BaseUi>()),
   toast: { error: toastErrorMock, success: toastSuccessMock },
 }));
 
@@ -93,6 +95,17 @@ describe('ExtractionForm', () => {
     await waitFor(() => expect(screen.getByText('extraction.error.load')).toBeTruthy());
     expect(screen.getByText('Unauthorized')).toBeTruthy();
     expect(screen.queryByText('extraction.group.preferences')).toBeNull();
+  });
+
+  it('asks a signed-out visitor to sign in rather than showing the raw 401', async () => {
+    fetchSettingsMock.mockRejectedValue(new ExtractionSettingsApiError('Unauthorized', 401));
+
+    await renderForm();
+
+    await waitFor(() => expect(screen.getByText('extraction.error.loginRequired')).toBeTruthy());
+    // The status text is the API's, not something to put in front of a user.
+    expect(screen.queryByText('Unauthorized')).toBeNull();
+    expect(screen.queryByText('extraction.error.load')).toBeNull();
   });
 
   it('starts with Save disabled — an untouched form has nothing to write', async () => {

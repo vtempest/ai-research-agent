@@ -57,6 +57,9 @@ export const componentMap = {
   [SettingsTabs.Extraction]: dynamic(() => import('../extraction'), {
     loading: loading('Settings > Extraction'),
   }),
+  [SettingsTabs.Search]: dynamic(() => import('../search'), {
+    loading: loading('Settings > Search'),
+  }),
   [SettingsTabs.Labels]: dynamic(() => import('../labels'), {
     loading: loading('Settings > Labels'),
   }),

@@ -1,5 +1,220 @@
 ## In Progress
 
+## Triage the 7 open pull requests: merge or close as superseded
+
+**Status:** In Progress
+**Source:** Direct request — merge the repository's open pull requests and
+resolve their conflicts.
+**Branch:** `claude/merge-open-prs-conflicts-tupoxk`
+**PR:** Not created yet
+**Started:** 2026-08-18
+
+### Goal
+Get the 7 open PRs (#223, #234, #236, #243, #245, #260, #264) off the open
+list by determining, for each, whether it still carries content `master`
+lacks — and merging it if so, or recording it as superseded if not.
+
+### Scope
+- Read-only analysis of every open PR against `master` (`3e67bb4`).
+- This tracker entry recording the finding and the recommended disposition.
+
+### Non-goals
+- Closing the PRs on GitHub — that is an outward-facing, owner-visible
+  action; it is left for explicit approval (see Remaining work).
+- Re-landing any of the PRs' feature work. All of it is already in `master`;
+  see Verification.
+- Repairing the truncated `master` history that orphaned five of the PRs.
+  The truncation predates this task and nothing in the current tree depends
+  on the missing ancestry.
+
+### Finding
+All 7 open PRs are fully superseded by `master`. Every one is a TODO.md
+bookkeeping follow-up whose paired feature commit was already squash-merged,
+and in each case `master`'s TODO.md already carries the same entry in a
+*more* advanced state than the PR would set it to.
+
+The 7 PRs split into two groups:
+
+**Group A — no common ancestor with `master` (#223, #234, #236, #243, #245).**
+`git merge-base master pr-N` is empty for all five; `git merge` refuses with
+`fatal: refusing to merge unrelated histories`. `master`'s history is only 50
+commits deep, rooted at `907aad1f` ("Add a Favorites tab to the qwksearch-ext
+side panel (#248)"), so every commit these five branches descend from is gone
+from `master`'s ancestry. Their apparent 9,000–12,000-line diffs are an
+artifact of that missing base, not real content.
+
+**Group B — shared ancestry, real conflicts (#260, #264).** These merge-base
+cleanly onto `bf8dc7ae` and `245a0533` respectively but conflict in TODO.md
+(both) and `apps/qwksearch-ext/components/BookmarksList.tsx` (#260).
+
+### Per-PR disposition
+| PR | Paired feature | Feature merged as | TODO entry in `master` |
+| --- | --- | --- | --- |
+| #223 | Typo fixes in AI prompt templates | #222 | Completed, `#222 (merged)` |
+| #234 | Article panel Share button | #233 | Completed, `#233 (merged)` |
+| #236 | Follow-up-suggestions test coverage | #235 | Completed, `#235 (merged)` |
+| #243 | Extension Downloads tab | #242 | Completed, `#242 (merged)` |
+| #245 | Extension History tab | #244 | Completed, `#244 (merged)` |
+| #260 | Edit a bookmark's URL | #259 | Completed, `#259 (merged)` |
+| #264 | Keyphrase completions for tab search | #263 | Completed, `#263 (merged)` |
+
+Each PR's own commit would only flip its entry from `In Progress` /
+`PR: Not created yet` to `Completed` with the PR link — a state `master`
+already reached, and then went past by appending the `(merged)` marker.
+
+### Merging any of them would regress `master`
+- **#260 would revert a shipped feature.** `master` gained folder browsing in
+  the Favorites tab via `5a32ab71` ("Browse bookmarks by folder in the
+  Favorites tab (#261)"), which landed *after* #260's branch point. Merging
+  #260's side of the `BookmarksList.tsx` conflict deletes `isFolderNode`,
+  `folderDisplayTitle`, the Recent/Folders view toggle, the folder stack and
+  its Back navigation, and the `onMoved` listener, along with their Vitest
+  coverage in `test/bookmarks.test.ts`.
+- **All 7 would resurrect a deleted file.** `packages/reason-editor/index.html`
+  is the only path present in any PR tree and absent from `master`; `49abcf88`
+  ("Reconstruct the `packages/reason-editor/demo/` app source (#280)")
+  deliberately replaced it with `packages/reason-editor/demo/index.html`.
+- **All 7 would roll back TODO.md**, replacing entries that record the merged
+  PR links with the pre-merge `In Progress` text.
+
+### Verification
+- [x] Fetched all 7 PR heads (`refs/pull/N/head`) and diffed each against
+      `master`.
+- [x] Confirmed Group A's unrelated histories — `git merge-base master pr-N`
+      returns empty for #223, #234, #236, #243 and #245.
+- [x] Confirmed every PR's feature code is present in `master`'s tree, by
+      symbol: `shareArticle`, `relatedDocuments`, `extractKeyphrases`,
+      `sanitizeBookmarkUrl`, `folderDisplayTitle`, `formatLastVisit` — each
+      resolves to 3 files (source, test, and re-export/consumer).
+- [x] Confirmed the #222 typo fix is in `master`: a repo-wide grep for
+      `relevent|consits|unbaised` over `.ts`/`.tsx` returns nothing.
+- [x] Confirmed all 7 TODO.md entries exist exactly once in `master`, each
+      with `**Status:** Completed` and a `(merged)` PR link.
+- [x] Confirmed `packages/reason-editor/index.html` is the sole path in any
+      PR tree missing from `master`, and that its deletion was intentional.
+- [x] No source files changed by this task, so no lint/typecheck/test/build
+      run is applicable — the change is this tracker entry alone.
+
+### Remaining work
+- **Decision needed:** close #223, #234, #236, #243, #245, #260 and #264 as
+  superseded, each with a comment naming the PR that already landed its
+  content. Nothing in them can be merged without reverting `master`.
+- Optional follow-up: the five Group A branches descend from an ancestry
+  `master` no longer has. If those orphaned branches are not needed for
+  history, deleting them alongside closing the PRs would stop future runs
+  from re-triaging them.
+
+## Completed
+
+## Build the Search & Sources settings pane inside the LobeHub engine
+
+**Status:** Completed
+**Source:** Scheduled task — "merge lobehub and qwksearch.com so that lobehub is
+the core engine but the elements of qwksearch are then added". Picked up the
+LobeHub Migration To-Do's own #1 suggested next: §1.10, the Search & Sources
+pane, whose backend 1.9 had just completed.
+**Branch:** `claude/magical-bohr-dwq9sp`
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+1.8 gave the search fan-out a settings resolver and 1.9 gave its user layer
+storage and an API, so `GET /api/doc/search-settings` already served the whole
+document — the user's overrides, what is in force, and the `options` metadata a
+form needs — with nothing reading it. Give it a client: `/settings/search`,
+1.7's Extraction pane pointed at the other resolver. That closes §2.2 of the
+migration to-do, the two settings panes it asked for.
+
+### Scope
+Four new source files and four tests under `src/features/Settings/search/`, the
+same five upstream registration points 1.7 used, 54 locale keys in three files,
+and a documented follow-up closed in the *other* pane. No backend change — the
+contract was settled by 1.9.
+
+- `src/features/Settings/search/api.ts` (new) — the client and its restated
+  response types.
+- `.../formState.ts` (new) — form values ⇄ `UserSearchOverrides`, pure.
+- `.../features/SearchForm.tsx` (new) — three field groups over `@lobehub/ui`'s
+  `Form`.
+- `.../index.tsx` (new) — `SettingHeader` + the form.
+- `.../{api,formState,contract}.test.ts` and `features/SearchForm.test.tsx`
+  (new, 49 cases).
+- Registration, one line each: `SettingsTabs.Search` in
+  `store/global/initialState.ts`, both `componentMap`s, `useCategory.tsx`,
+  `SettingsContent.tsx`.
+- Locales: 54 new keys in `packages/locales/src/default/qwksearch.ts` and both
+  `locales/{en-US,zh-CN}/qwksearch.json`.
+- Also closes 1.7's third follow-up — the 401 that showed raw error text — in
+  **both** panes, since it was the same bug in each, and clears the two lint
+  errors the extraction pane's two touched files were already carrying.
+- Docs: §1.10 and the Phase-2/Snapshot rows in the migration to-do, §F5c plus
+  three table rows in the integrations reference, and a features bullet, an
+  upstream-diff bullet and a test command in `packages-lobe/README.md`.
+
+### Non-goals
+- **Any backend change.** The route, its validation and its `options` payload
+  are 1.9's and were not touched.
+- **The two shared controls.** A drag-to-reorder list and a language picker are
+  each wanted by *both* panes now; building them once, somewhere both can
+  import, is the recorded next item rather than a second copy here.
+
+### What changed
+Three things are worth carrying forward:
+
+- **1.7 was a line-by-line template, and that is the point.** The pane is
+  deliberately the same five files, the same five registration points and the
+  same four invariants — omit what is unset, seed from `overrides` never
+  `effective`, render the response not the request, and never show a host or a
+  credential. Two panes that read the same way cost less than two panes that are
+  each locally optimal, and the next one is now nearly mechanical.
+- **Trimming has two different outcomes on this route, and the test found it.**
+  An unknown category is dropped; an out-of-range `maxCategories` is *clamped*.
+  `contract.test.ts` was written assuming both were dropped, failed, and was
+  corrected against the real `normalizeSearchOverrides` — which is exactly what a
+  drift guard that imports the real resolver is for. The rendered-form test now
+  covers the clamp path too.
+- **The stored category list can be longer than the list in force**, because it
+  is the fan-out order and `maxCategories` keeps the first N. The pane shows all
+  of what the user chose while the hint under it shows what actually runs, so the
+  two are different numbers on screen by design.
+
+The one client-side normalization in either pane is trimming `language`: the
+server's tag pattern rejects a trailing space and would drop the whole field for
+it, silently.
+
+### Verification
+- [x] `bunx vitest run src/features/Settings/search src/features/Settings/extraction`
+      — 98 passed, 8 files. That includes the extraction suite, which is the
+      regression signal for the shared 401 change.
+- [x] `bun run check --lint` over all 16 changed source files — clean. The new
+      files avoid two rules the extraction pane was tripping (`Skeleton` from the
+      deprecated `@lobehub/ui` wrapper, and `typeof import()` type annotations in
+      its test); since the same two files were already open for the 401 change,
+      they were fixed the same way — `Skeleton.Text` from `@lobehub/ui/base-ui`
+      and namespace type imports for `importOriginal` — so both panes now lint
+      clean rather than one.
+- [x] `bun run check --test` over the five registration files — 9 passed,
+      including `componentMap.sync.test.ts`, which is what catches a tab added to
+      one `componentMap` and not the other.
+- [x] Type check: **scoped**, per the to-do's OOM warning. Zero errors in any
+      changed file; the 347 the scoped project reports are all pre-existing
+      `apps/desktop`, `packages/builtin-skills` and `worker/cf/env.ts`.
+
+### Notes for the next run
+- **`pnpm install --ignore-scripts` inside `packages-lobe` took 1m39s here**, not
+  the ~3 minutes the to-do records. Anything under `src/` needs it.
+- **The `qwksearch` locale namespace lives in three files that must agree**:
+  `packages/locales/src/default/qwksearch.ts` (the source) and
+  `locales/{en-US,zh-CN}/qwksearch.json` (hand-shipped, per `AGENTS.md`). All
+  three are flat and alphabetically sorted, and the JSON pair round-trips exactly
+  through `json.dumps(..., ensure_ascii=False, indent=2)` — so they can be edited
+  by script without churning the diff. Every other locale is left to the daily
+  auto-i18n workflow.
+- **`bun run check --lint <dir>` does not expand a directory.** Pass the files.
+  The first lint pass here reported "9 files" and silently covered none of the
+  new pane, which read as clean until the files were named explicitly.
+- CI still cannot see `packages-lobe`, and PRs here still auto-merge.
+
 ## Store the search fan-out's user preferences inside the LobeHub engine
 
 **Status:** Completed
@@ -373,112 +588,6 @@ server and not in `api.ts` fails it.
 - **Not seen in a browser.** No Cloudflare credentials in this environment, so
   the pane is verified by tests and never by eye. `bun run cf:dev` under
   `packages-lobe` is the check.
-
-## Triage the 7 open pull requests: merge or close as superseded
-
-**Status:** In Progress
-**Source:** Direct request — merge the repository's open pull requests and
-resolve their conflicts.
-**Branch:** `claude/merge-open-prs-conflicts-tupoxk`
-**PR:** Not created yet
-**Started:** 2026-08-18
-
-### Goal
-Get the 7 open PRs (#223, #234, #236, #243, #245, #260, #264) off the open
-list by determining, for each, whether it still carries content `master`
-lacks — and merging it if so, or recording it as superseded if not.
-
-### Scope
-- Read-only analysis of every open PR against `master` (`3e67bb4`).
-- This tracker entry recording the finding and the recommended disposition.
-
-### Non-goals
-- Closing the PRs on GitHub — that is an outward-facing, owner-visible
-  action; it is left for explicit approval (see Remaining work).
-- Re-landing any of the PRs' feature work. All of it is already in `master`;
-  see Verification.
-- Repairing the truncated `master` history that orphaned five of the PRs.
-  The truncation predates this task and nothing in the current tree depends
-  on the missing ancestry.
-
-### Finding
-All 7 open PRs are fully superseded by `master`. Every one is a TODO.md
-bookkeeping follow-up whose paired feature commit was already squash-merged,
-and in each case `master`'s TODO.md already carries the same entry in a
-*more* advanced state than the PR would set it to.
-
-The 7 PRs split into two groups:
-
-**Group A — no common ancestor with `master` (#223, #234, #236, #243, #245).**
-`git merge-base master pr-N` is empty for all five; `git merge` refuses with
-`fatal: refusing to merge unrelated histories`. `master`'s history is only 50
-commits deep, rooted at `907aad1f` ("Add a Favorites tab to the qwksearch-ext
-side panel (#248)"), so every commit these five branches descend from is gone
-from `master`'s ancestry. Their apparent 9,000–12,000-line diffs are an
-artifact of that missing base, not real content.
-
-**Group B — shared ancestry, real conflicts (#260, #264).** These merge-base
-cleanly onto `bf8dc7ae` and `245a0533` respectively but conflict in TODO.md
-(both) and `apps/qwksearch-ext/components/BookmarksList.tsx` (#260).
-
-### Per-PR disposition
-| PR | Paired feature | Feature merged as | TODO entry in `master` |
-| --- | --- | --- | --- |
-| #223 | Typo fixes in AI prompt templates | #222 | Completed, `#222 (merged)` |
-| #234 | Article panel Share button | #233 | Completed, `#233 (merged)` |
-| #236 | Follow-up-suggestions test coverage | #235 | Completed, `#235 (merged)` |
-| #243 | Extension Downloads tab | #242 | Completed, `#242 (merged)` |
-| #245 | Extension History tab | #244 | Completed, `#244 (merged)` |
-| #260 | Edit a bookmark's URL | #259 | Completed, `#259 (merged)` |
-| #264 | Keyphrase completions for tab search | #263 | Completed, `#263 (merged)` |
-
-Each PR's own commit would only flip its entry from `In Progress` /
-`PR: Not created yet` to `Completed` with the PR link — a state `master`
-already reached, and then went past by appending the `(merged)` marker.
-
-### Merging any of them would regress `master`
-- **#260 would revert a shipped feature.** `master` gained folder browsing in
-  the Favorites tab via `5a32ab71` ("Browse bookmarks by folder in the
-  Favorites tab (#261)"), which landed *after* #260's branch point. Merging
-  #260's side of the `BookmarksList.tsx` conflict deletes `isFolderNode`,
-  `folderDisplayTitle`, the Recent/Folders view toggle, the folder stack and
-  its Back navigation, and the `onMoved` listener, along with their Vitest
-  coverage in `test/bookmarks.test.ts`.
-- **All 7 would resurrect a deleted file.** `packages/reason-editor/index.html`
-  is the only path present in any PR tree and absent from `master`; `49abcf88`
-  ("Reconstruct the `packages/reason-editor/demo/` app source (#280)")
-  deliberately replaced it with `packages/reason-editor/demo/index.html`.
-- **All 7 would roll back TODO.md**, replacing entries that record the merged
-  PR links with the pre-merge `In Progress` text.
-
-### Verification
-- [x] Fetched all 7 PR heads (`refs/pull/N/head`) and diffed each against
-      `master`.
-- [x] Confirmed Group A's unrelated histories — `git merge-base master pr-N`
-      returns empty for #223, #234, #236, #243 and #245.
-- [x] Confirmed every PR's feature code is present in `master`'s tree, by
-      symbol: `shareArticle`, `relatedDocuments`, `extractKeyphrases`,
-      `sanitizeBookmarkUrl`, `folderDisplayTitle`, `formatLastVisit` — each
-      resolves to 3 files (source, test, and re-export/consumer).
-- [x] Confirmed the #222 typo fix is in `master`: a repo-wide grep for
-      `relevent|consits|unbaised` over `.ts`/`.tsx` returns nothing.
-- [x] Confirmed all 7 TODO.md entries exist exactly once in `master`, each
-      with `**Status:** Completed` and a `(merged)` PR link.
-- [x] Confirmed `packages/reason-editor/index.html` is the sole path in any
-      PR tree missing from `master`, and that its deletion was intentional.
-- [x] No source files changed by this task, so no lint/typecheck/test/build
-      run is applicable — the change is this tracker entry alone.
-
-### Remaining work
-- **Decision needed:** close #223, #234, #236, #243, #245, #260 and #264 as
-  superseded, each with a comment naming the PR that already landed its
-  content. Nothing in them can be merged without reverting `master`.
-- Optional follow-up: the five Group A branches descend from an ancestry
-  `master` no longer has. If those orphaned branches are not needed for
-  history, deleting them alongside closing the PRs would stop future runs
-  from re-triaging them.
-
-## Completed
 
 ## Homepage: the README's badges, a screenshot, and the Claude skill to copy
 

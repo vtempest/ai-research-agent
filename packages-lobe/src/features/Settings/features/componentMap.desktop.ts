@@ -23,6 +23,7 @@ import OAuthApps from '../oauth-apps';
 import Profile from '../profile';
 import Provider from '../provider';
 import Proxy from '../proxy';
+import Search from '../search';
 import Security from '../security';
 import ServiceModel from '../service-model';
 import Skill from '../skill';
@@ -47,6 +48,7 @@ export const componentMap = {
   [SettingsTabs.Devices]: Devices,
   // QwkSearch
   [SettingsTabs.Extraction]: Extraction,
+  [SettingsTabs.Search]: Search,
   [SettingsTabs.Labels]: Labels,
   // Profile related tabs
   [SettingsTabs.Profile]: Profile,
