@@ -669,18 +669,49 @@ Then, for whichever you pick:
 
 ## What CI will and will not tell you
 
-Two things about this repo's CI are worth knowing before you read a red check
-on a `packages-lobe` change, both observed on #393:
+Three things about this repo's CI are worth knowing before you read a red check
+on a `packages-lobe` change:
 
+- **🔴 Every CI job in the repo is currently red, for one reason that is nobody's
+  diff.** `bun install --frozen-lockfile` cannot resolve two specifiers that
+  #422 (`d81427c7`) introduced in `packages/qwksearch-api-client/package.json`,
+  because neither version was ever published:
+
+  | Specifier | Latest actually on npm |
+  |---|---|
+  | `api2client: ^1.0.1` | 1.0.0 |
+  | `grab-url: ^1.6.23` | 1.6.22 |
+
+  The install step fails before compiling a line, so all 24 Coverage jobs, Test
+  Reports, Publish to npm, Lockfile and the Cloudflare Workers build go down
+  with it, on `master` and on every branch. Observed on #423's base and on #424.
+
+  **Do not "fix" it by downgrading the two specifiers** — that was tried on #424
+  and does not work. `api2client@1.0.0` is published broken: its tarball ships
+  only `README.md`, `package.json` and `src/`, while `main`, `module`, `types`,
+  `exports` and `bin` all point into a `dist/` that is not in the package, so
+  Vite fails with "Failed to resolve entry for package". The root install
+  succeeds with the downgrade and the package's own suite then fails to collect
+  3 of its 4 files. `^1.6.23` is likewise a real requirement, not caution:
+  #422's message records that it is the first `grab-url` carrying
+  `onRawResponse`, which is what puts the HTTP status on a failed result, and
+  `error-result-shape.test.ts` exists to protect exactly that.
+
+  Both packages live outside this repo, so nothing here can publish them and
+  there is no fix to port. Until `api2client@1.0.1` and `grab-url@1.6.23` are
+  published, **read every red check on your base commit first** — right now it
+  will be red there too, and the signal for your own change has to come from
+  running its tests locally.
 - **Nothing in CI builds or tests `packages-lobe`.** The root `workspaces` are
   `packages/*`, `packages/render-url-to-html/*` and `apps/*`; `packages-lobe` is
   a separate pnpm workspace outside that graph, so no job installs it. A green
   run says nothing about a change made there, and a red one is almost certainly
   not yours. Your own `bunx vitest run` under `packages-lobe` is the only
   signal — which is why 5.4's "bundle budget in CI" needs a whole new job.
-- **The Coverage workflow is already red on `master`.** As of `52eb7cce`
-  (#412, run 34445607248) **four** jobs fail with nothing of this work in them:
-  `chat-agent-toolkit`, `extract-youtube`, `search-web-api` and
+- **The Coverage workflow was already red on `master` before that**, for
+  unrelated reasons that will resurface once the install is fixed. As of
+  `52eb7cce` (#412, run 34445607248) **four** jobs failed with nothing of this
+  work in them: `chat-agent-toolkit`, `extract-youtube`, `search-web-api` and
   `shadcn-settings`. Two more — `extract-pdf` and `qwksearch-web` — were on this
   list and have since been fixed (#409 was the `extract-pdf` one), so **do not
   treat the list as fixed**: read the same job on your own base commit before
