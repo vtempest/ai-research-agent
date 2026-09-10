@@ -75,12 +75,11 @@
     "shadcn",
     "react"
   ],
+  "//peerDependencies": "react-reason-editor and react-reason-editor-sidebar back the ./workspace export but are deliberately not peers. Naming a sibling workspace package as a peer makes bun install non-convergent — it reads the merged peer+dev entry back differently than it writes it, so `bun install --frozen-lockfile` reports \"lockfile had changes\" however freshly bun.lock was generated. They stay workspace:* devDependencies, which is also what keeps turbo building them before this package.",
   "peerDependencies": {
     "next": ">=14",
     "react": ">=18",
-    "react-dom": ">=18",
-    "react-reason-editor": ">=1",
-    "react-reason-editor-sidebar": ">=0.1"
+    "react-dom": ">=18"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
@@ -149,13 +148,5 @@
     "vitest": "^5.0.0",
     "wrangler": "^4.130.0"
   },
-  "license": "rights.institute/PROSPER",
-  "peerDependenciesMeta": {
-    "react-reason-editor": {
-      "optional": true
-    },
-    "react-reason-editor-sidebar": {
-      "optional": true
-    }
-  }
+  "license": "rights.institute/PROSPER"
 }

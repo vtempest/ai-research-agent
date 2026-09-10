@@ -422,5 +422,14 @@ jobs:
           "
           git add packages/*/package.json
           git diff --staged --quiet && echo "No version changes to commit" && exit 0
+
+          # bun.lock records every workspace package's own "version", so a bump
+          # committed without it leaves the lockfile stale the moment it lands.
+          # The next Cloudflare build then dies on
+          #   error: lockfile had changes, but lockfile is frozen
+          # before it compiles a line. Refresh the lockfile in the same commit.
+          bun install --lockfile-only
+          git add bun.lock
+
           git commit -m "chore: bump published package versions [skip ci]"
           git push
