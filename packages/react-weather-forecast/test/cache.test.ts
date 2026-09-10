@@ -2,11 +2,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   clearWeatherForecastCache,
   readCachedForecast,
+  readStaleForecast,
   writeCachedForecast,
 } from '../src/lib/cache';
 
 const CACHE_PREFIX = 'weather-forecast-cache:';
 const TTL_MS = 30 * 60 * 1000;
+const STALE_TTL_MS = 24 * 60 * 60 * 1000;
 
 describe('forecast cache', () => {
   beforeEach(() => {
@@ -44,15 +46,43 @@ describe('forecast cache', () => {
     expect(readCachedForecast('key-a')).toBe('fresh');
   });
 
-  it('expires and evicts entries older than the TTL', () => {
+  it('stops serving entries older than the TTL', () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
     writeCachedForecast('key-a', 'stale');
 
     vi.setSystemTime(Date.now() + TTL_MS + 1);
     expect(readCachedForecast('key-a')).toBeNull();
-    // The expired entry is removed rather than left to accumulate.
+  });
+
+  it('keeps an expired entry so it can still be served as a stale fallback', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    writeCachedForecast('key-a', 'stale');
+
+    vi.setSystemTime(Date.now() + TTL_MS + 1);
+    expect(readCachedForecast('key-a')).toBeNull();
+    expect(readStaleForecast('key-a')).toBe('stale');
+  });
+
+  it('evicts and stops serving an entry once it is a day old', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    writeCachedForecast('key-a', 'ancient');
+
+    vi.setSystemTime(Date.now() + STALE_TTL_MS + 1);
+    expect(readStaleForecast('key-a')).toBeNull();
+    // Past the stale window the entry is removed rather than left to accumulate.
     expect(window.localStorage.getItem(CACHE_PREFIX + 'key-a')).toBeNull();
+  });
+
+  it('honours a custom stale window', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    writeCachedForecast('key-a', 'stale');
+
+    vi.setSystemTime(Date.now() + 2 * TTL_MS);
+    expect(readStaleForecast('key-a', TTL_MS)).toBeNull();
   });
 
   it('returns null instead of throwing on corrupted JSON', () => {

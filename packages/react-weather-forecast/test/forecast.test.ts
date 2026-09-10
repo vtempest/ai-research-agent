@@ -50,6 +50,17 @@ function requestedUrl(fetchMock: typeof mockGrab, call = 0): URL {
   return new URL(fetchMock.mock.calls[call][0] as unknown as string);
 }
 
+/**
+ * Failures fan out across the whole provider chain by design, so the tests
+ * that assert on one upstream's error pin the chain to Open-Meteo alone and
+ * drop the backoff.
+ */
+const onlyOpenMeteo = {
+  weatherProviders: ['open-meteo'] as const,
+  retryDelay: 0,
+  allowStaleCache: false,
+};
+
 describe('getWeatherForecast', () => {
   beforeEach(() => {
     clearWeatherForecastCache();
@@ -210,16 +221,16 @@ describe('getWeatherForecast', () => {
   it('throws with status and status text on a failed request', async () => {
     mockFetch({ error: 'HTTP error: 503 Service Unavailable' });
 
-    await expect(getWeatherForecast({ latitude: 1, longitude: 2 })).rejects.toThrow(
-      'Weather request failed: 503 Service Unavailable'
+    await expect(getWeatherForecast({ ...onlyOpenMeteo, latitude: 1, longitude: 2 })).rejects.toThrow(
+      'Weather request failed: Open-Meteo: 503 Service Unavailable'
     );
   });
 
   it('throws with the reason when Open-Meteo answers 200 with an error flag', async () => {
     mockFetch({ error: true, reason: 'Cannot initialize WeatherVariable from invalid String value' });
 
-    await expect(getWeatherForecast({ latitude: 1, longitude: 2 })).rejects.toThrow(
-      'Weather request failed: Cannot initialize WeatherVariable from invalid String value'
+    await expect(getWeatherForecast({ ...onlyOpenMeteo, latitude: 1, longitude: 2 })).rejects.toThrow(
+      'Cannot initialize WeatherVariable from invalid String value'
     );
   });
 
@@ -230,9 +241,163 @@ describe('getWeatherForecast', () => {
       delete payload[missing];
       mockFetch(payload);
 
-      await expect(getWeatherForecast({ latitude: 1, longitude: 2 })).rejects.toThrow(
+      await expect(getWeatherForecast({ ...onlyOpenMeteo, latitude: 1, longitude: 2 })).rejects.toThrow(
         'Invalid weather response'
       );
     }
   );
+});
+
+describe('getWeatherForecast fallbacks', () => {
+  beforeEach(() => {
+    clearWeatherForecastCache();
+    vi.resetAllMocks();
+  });
+
+  /** met.no's compact payload, enough of it for one hour and one day. */
+  function metNoResponse() {
+    return {
+      properties: {
+        timeseries: Array.from({ length: 4 }, (_, index) => ({
+          time: new Date(Date.UTC(2024, 0, 1, index)).toISOString(),
+          data: {
+            instant: { details: { air_temperature: 20, wind_speed: 3 } },
+            next_1_hours: { summary: { symbol_code: 'clearsky_day' }, details: { precipitation_amount: 0 } },
+          },
+        })),
+      },
+    };
+  }
+
+  it('never sends coordinates Open-Meteo would reject as a 400', async () => {
+    // A geolocation upstream answering 200 with no coordinates used to become
+    // `latitude=NaN` in the forecast URL.
+    const fetchMock = mockGrab.mockImplementation(async (input: string) => {
+      if (input.includes('ipapi.co')) return { city: 'Nowhere' };
+      if (input.includes('ipwho.is')) return { latitude: 30.27, longitude: -97.74, city: 'Austin' };
+      return openMeteoResponse();
+    });
+
+    const result = await getWeatherForecast({ retryDelay: 0 });
+
+    const weatherCall = fetchMock.mock.calls.find(([url]) => String(url).includes('open-meteo'));
+    expect(String(weatherCall?.[0])).not.toContain('NaN');
+    expect(result.location.city).toBe('Austin');
+  });
+
+  it('looks the location up by IP when the given coordinates are unusable', async () => {
+    const fetchMock = mockGrab.mockImplementation(async (input: string) => {
+      if (input.includes('ipapi.co')) return { latitude: 30.27, longitude: -97.74, city: 'Austin' };
+      return openMeteoResponse();
+    });
+
+    const result = await getWeatherForecast({ latitude: Number.NaN, longitude: -97.74, retryDelay: 0 });
+
+    expect(String(fetchMock.mock.calls[0][0])).toContain('ipapi.co');
+    expect(result.location.city).toBe('Austin');
+  });
+
+  it('clamps a forecast range no upstream would accept', async () => {
+    const fetchMock = mockFetch(openMeteoResponse());
+
+    await getWeatherForecast({ latitude: 1, longitude: 2, forecastDays: 99, forecastHours: 0 });
+
+    const params = requestedUrl(fetchMock).searchParams;
+    expect(params.get('forecast_days')).toBe('16');
+    expect(params.get('forecast_hours')).toBe('1');
+  });
+
+  it('drops a timezone the runtime does not recognise instead of sending it', async () => {
+    const fetchMock = mockFetch(openMeteoResponse());
+
+    await getWeatherForecast({ latitude: 1, longitude: 2, location: { timezone: 'Mars/Phobos' } });
+
+    expect(requestedUrl(fetchMock).searchParams.get('timezone')).toBe('auto');
+  });
+
+  it('falls back to met.no when both Open-Meteo endpoints fail', async () => {
+    mockGrab.mockImplementation(async (input: string) => {
+      if (input.includes('open-meteo')) return { error: 'HTTP error: 503 Service Unavailable' };
+      if (input.includes('met.no')) return metNoResponse();
+      return { error: 'HTTP error: 500 Internal Server Error' };
+    });
+
+    const result = await getWeatherForecast({ latitude: 30.27, longitude: -97.74, retryDelay: 0 });
+
+    expect(result.current.temperature).toBe(68); // 20C rendered as Fahrenheit
+    expect(result.daily.length).toBeGreaterThan(0);
+  });
+
+  it('reports what every provider said when the whole chain fails', async () => {
+    mockGrab.mockResolvedValue({ error: 'HTTP error: 503 Service Unavailable' } as never);
+
+    await expect(
+      getWeatherForecast({ latitude: 1, longitude: 2, retryDelay: 0 })
+    ).rejects.toThrow(
+      'Weather request failed: Open-Meteo: 503 Service Unavailable; Open-Meteo (GFS): 503 Service Unavailable; met.no: 503 Service Unavailable; wttr.in: 503 Service Unavailable'
+    );
+  });
+
+  it('notifies onProviderError as the chain moves on', async () => {
+    mockGrab.mockResolvedValue({ error: 'HTTP error: 503 Service Unavailable' } as never);
+    const onProviderError = vi.fn();
+
+    await expect(
+      getWeatherForecast({ latitude: 1, longitude: 2, retryDelay: 0, onProviderError })
+    ).rejects.toThrow();
+
+    expect(onProviderError.mock.calls.map(([info]) => info.provider)).toEqual([
+      'open-meteo',
+      'open-meteo-gfs',
+      'met-no',
+      'wttr',
+    ]);
+    expect(onProviderError.mock.calls[0][0].stage).toBe('forecast');
+  });
+
+  it('serves an expired cache entry rather than an error when everything is down', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    mockFetch(openMeteoResponse());
+    const fresh = await getWeatherForecast({ latitude: 1, longitude: 2 });
+
+    // Past the 30 minute TTL, with every provider failing.
+    vi.setSystemTime(new Date('2024-01-01T02:00:00Z'));
+    mockGrab.mockResolvedValue({ error: 'HTTP error: 503 Service Unavailable' } as never);
+
+    const stale = await getWeatherForecast({ latitude: 1, longitude: 2, retryDelay: 0 });
+
+    expect(stale).toEqual(fresh);
+    vi.useRealTimers();
+  });
+
+  it('throws instead of serving stale data when that is turned off', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    mockFetch(openMeteoResponse());
+    await getWeatherForecast({ latitude: 1, longitude: 2 });
+
+    vi.setSystemTime(new Date('2024-01-01T02:00:00Z'));
+    mockGrab.mockResolvedValue({ error: 'HTTP error: 503 Service Unavailable' } as never);
+
+    await expect(
+      getWeatherForecast({ latitude: 1, longitude: 2, retryDelay: 0, allowStaleCache: false })
+    ).rejects.toThrow('Weather request failed');
+    vi.useRealTimers();
+  });
+
+  it('caches a fallback provider\'s answer like the primary one\'s', async () => {
+    mockGrab.mockImplementation(async (input: string) => {
+      if (input.includes('open-meteo')) return { error: 'HTTP error: 503 Service Unavailable' };
+      if (input.includes('met.no')) return metNoResponse();
+      return { error: 'HTTP error: 500 Internal Server Error' };
+    });
+
+    const first = await getWeatherForecast({ latitude: 30.27, longitude: -97.74, retryDelay: 0 });
+    const callsAfterFirst = mockGrab.mock.calls.length;
+    const second = await getWeatherForecast({ latitude: 30.27, longitude: -97.74, retryDelay: 0 });
+
+    expect(second).toEqual(first);
+    expect(mockGrab.mock.calls.length).toBe(callsAfterFirst);
+  });
 });
