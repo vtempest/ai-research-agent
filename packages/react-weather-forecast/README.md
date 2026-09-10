@@ -72,6 +72,10 @@ This package no longer uses ipinfo.io. Instead:
   no mixed-content issues, though ipapi.co's free tier is rate-limited (1,000
   requests/day) — deploy the worker and pass `geoEndpoint` for higher-volume or
   production use.
+- A failed lookup is **repeated** before it throws: `getClientLocation` tries three
+  times by default, waiting 500ms, then 1s, so a single rate-limited or cold-start
+  response doesn't take the whole forecast down. Tune it with the third argument:
+  `getClientLocation(geoEndpoint, ip, { attempts: 5, retryDelay: 250 })`.
 
 ### Deploying the geo worker
 
@@ -96,3 +100,6 @@ in non-browser environments (SSR) or when `localStorage` is unavailable/full.
 
 - Open-Meteo powers the forecast data.
 - Cloudflare's `request.cf` and ipapi.co power IP geolocation (see above).
+- HTTP requests go through [`grab-url`](https://www.npmjs.com/package/grab-url), the
+  repo-wide client, rather than raw `fetch`. It is the package's only runtime
+  dependency.

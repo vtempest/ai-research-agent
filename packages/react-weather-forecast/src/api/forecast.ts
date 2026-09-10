@@ -1,6 +1,7 @@
 import type { WeatherForecastData, WeatherForecastOptions, WeatherLocation } from '../types';
 import { getWeatherIcon } from '../weatherCodes';
 import { getClientLocation } from './geolocation';
+import { grabJson } from './http';
 import { readCachedForecast, writeCachedForecast } from '../lib/cache';
 
 function buildUrl(latitude: number, longitude: number, options: WeatherForecastOptions) {
@@ -62,13 +63,10 @@ export async function getWeatherForecast(
   const cached = readCachedForecast<WeatherForecastData>(url);
   if (cached) return cached;
 
-  const response = await fetch(url, { headers: { 'Content-Type': 'application/json' } });
-
-  if (!response.ok) {
-    throw new Error(`Weather request failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
+  const data = await grabJson<any>(url, 'Weather request', {
+    headers: { 'Content-Type': 'application/json' },
+    retryAttempts: 1,
+  });
 
   if (!data?.current || !data?.hourly || !data?.daily) {
     throw new Error('Invalid weather response');

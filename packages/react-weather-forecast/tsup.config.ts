@@ -11,5 +11,5 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   splitting: false,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'grab-url'],
 });

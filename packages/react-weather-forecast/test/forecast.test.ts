@@ -1,6 +1,10 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi, type MockedFunction } from 'vitest';
 import { getWeatherForecast } from '../src/api/forecast';
 import { clearWeatherForecastCache } from '../src/lib/cache';
+import grab from 'grab-url';
+
+vi.mock('grab-url');
+const mockGrab = grab as MockedFunction<typeof grab>;
 
 /** A minimal but complete Open-Meteo response shape. */
 function openMeteoResponse(overrides: Record<string, unknown> = {}) {
@@ -36,25 +40,20 @@ function openMeteoResponse(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function mockFetch(payload: unknown, init: { ok?: boolean; status?: number; statusText?: string } = {}) {
-  const fetchMock = vi.fn(async () => ({
-    ok: init.ok ?? true,
-    status: init.status ?? 200,
-    statusText: init.statusText ?? 'OK',
-    json: async () => payload,
-  }));
-  vi.stubGlobal('fetch', fetchMock);
-  return fetchMock;
+/** grab-url resolves with the parsed body, or with `{ error }` when a request failed. */
+function mockFetch(payload: unknown) {
+  mockGrab.mockResolvedValue(payload as never);
+  return mockGrab;
 }
 
-function requestedUrl(fetchMock: ReturnType<typeof mockFetch>, call = 0): URL {
+function requestedUrl(fetchMock: typeof mockGrab, call = 0): URL {
   return new URL(fetchMock.mock.calls[call][0] as unknown as string);
 }
 
 describe('getWeatherForecast', () => {
   beforeEach(() => {
     clearWeatherForecastCache();
-    vi.unstubAllGlobals();
+    vi.resetAllMocks();
   });
 
   it('queries Open-Meteo with the supplied coordinates', async () => {
@@ -103,18 +102,12 @@ describe('getWeatherForecast', () => {
   });
 
   it('resolves the location by IP when no coordinates are given', async () => {
-    const fetchMock = vi.fn(async (input: string) => {
+    const fetchMock = mockGrab.mockImplementation(async (input: string) => {
       if (input.includes('ipapi.co')) {
-        return {
-          ok: true,
-          status: 200,
-          statusText: 'OK',
-          json: async () => ({ city: 'Austin', country_name: 'United States', latitude: 30.27, longitude: -97.74 }),
-        };
+        return { city: 'Austin', country_name: 'United States', latitude: 30.27, longitude: -97.74 };
       }
-      return { ok: true, status: 200, statusText: 'OK', json: async () => openMeteoResponse() };
+      return openMeteoResponse();
     });
-    vi.stubGlobal('fetch', fetchMock);
 
     const result = await getWeatherForecast();
 
@@ -215,10 +208,18 @@ describe('getWeatherForecast', () => {
   });
 
   it('throws with status and status text on a failed request', async () => {
-    mockFetch(null, { ok: false, status: 503, statusText: 'Service Unavailable' });
+    mockFetch({ error: 'HTTP error: 503 Service Unavailable' });
 
     await expect(getWeatherForecast({ latitude: 1, longitude: 2 })).rejects.toThrow(
       'Weather request failed: 503 Service Unavailable'
+    );
+  });
+
+  it('throws with the reason when Open-Meteo answers 200 with an error flag', async () => {
+    mockFetch({ error: true, reason: 'Cannot initialize WeatherVariable from invalid String value' });
+
+    await expect(getWeatherForecast({ latitude: 1, longitude: 2 })).rejects.toThrow(
+      'Weather request failed: Cannot initialize WeatherVariable from invalid String value'
     );
   });
 
