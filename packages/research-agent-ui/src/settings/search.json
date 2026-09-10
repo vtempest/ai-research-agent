@@ -84,6 +84,28 @@
     "scope": "client"
   },
   {
+    "name": "Follow-up Questions Prompt",
+    "key": "followUpQuestionsPrompt",
+    "type": "textarea",
+    "required": false,
+    "description": "Prompt used to generate the follow-up question suggestions shown after each answer. Use {maxQuestions} for the count set above and {chat_history} for the conversation. Clear the box to restore the built-in prompt.",
+    "placeholder": "Leave blank to use the built-in follow-up prompt.",
+    "default": "",
+    "rows": 14,
+    "scope": "client"
+  },
+  {
+    "name": "Query Expansion Prompt",
+    "key": "queryExpansionPrompt",
+    "type": "textarea",
+    "required": false,
+    "description": "Prompt that rewrites your message into a standalone web-search query before sources are fetched. Keep returning the query inside a <question> block, and any URLs inside a <links> block. Clear the box to restore the built-in prompt.",
+    "placeholder": "Leave blank to use the built-in query expansion prompt.",
+    "default": "",
+    "rows": 14,
+    "scope": "client"
+  },
+  {
     "name": "SearXNG URL",
     "key": "searxngURL",
     "type": "string",

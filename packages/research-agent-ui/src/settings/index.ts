@@ -10,6 +10,10 @@
  * reads/writes the values and the components that render them — means the list
  * of settings can change without touching rendering or persistence code.
  */
+import {
+  followUpSuggestionsPrompt,
+  webSearchRetrieverPrompt,
+} from "chat-agent-toolkit/prompts/search-prompts";
 import sectionsJson from "./sections.json";
 import searchJson from "./search.json";
 
@@ -52,6 +56,8 @@ export interface SettingsFieldSchema {
   env?: string;
   options?: SettingsFieldOption[];
   links?: SettingsFieldLink[];
+  /** Visible row count for `textarea` fields. Defaults to 4. */
+  rows?: number;
 }
 
 /** Metadata describing one entry in the settings sidebar/menu. */
@@ -72,9 +78,27 @@ export interface SettingsSectionSchema {
 export const settingsSections: SettingsSectionSchema[] =
   sectionsJson as unknown as SettingsSectionSchema[];
 
+/**
+ * Prompt-editing fields ship with an empty `default` in `search.json` so the
+ * prompt text itself has exactly one home: the toolkit's prompt module. The
+ * live template is spliced in here, which means the settings textarea shows
+ * the real prompt the agent runs, pre-filled and ready to edit. Clearing the
+ * box stores an empty string, and every consumer treats blank as "use the
+ * built-in template" — so the prompts stay in sync as the toolkit evolves.
+ */
+const PROMPT_FIELD_DEFAULTS: Record<string, string> = {
+  followUpQuestionsPrompt: followUpSuggestionsPrompt,
+  queryExpansionPrompt: webSearchRetrieverPrompt,
+};
+
 /** Field declarations for the "Search Settings" section. */
-export const searchSettingsFields: SettingsFieldSchema[] =
-  searchJson as unknown as SettingsFieldSchema[];
+export const searchSettingsFields: SettingsFieldSchema[] = (
+  searchJson as unknown as SettingsFieldSchema[]
+).map((field) =>
+  field.key in PROMPT_FIELD_DEFAULTS
+    ? { ...field, default: PROMPT_FIELD_DEFAULTS[field.key] }
+    : field,
+);
 
 /** Every field group keyed by the section `dataAdd` it belongs to. */
 export const settingsFieldsBySection: Record<string, SettingsFieldSchema[]> = {

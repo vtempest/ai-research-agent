@@ -20,6 +20,11 @@ import { useChat } from "../hooks/useChat"
 import { researchAgentUIConfig } from "../config"
 import { siteLinksForPath } from "../lib/site-links"
 import { useMainView } from "./MainViewProvider"
+// Both dock marks are SVGs, and next/image refuses to run SVG through the
+// optimizer unless `dangerouslyAllowSVG` is on — the request 400s and the dock
+// renders two broken-image glyphs. They are already tiny inline-able assets, so
+// every <Image> below opts out of optimization (same as `renderImage` does for
+// the app icon) and serves the file as-is.
 import iconRead from "../icons/icon-read.svg"
 import iconConfigure from "../icons/icon-configure.svg"
 
@@ -39,7 +44,16 @@ export function CategoryDock() {
           {
             href: "/workspace",
             label: "Docs",
-            icon: <Image src={iconRead} alt="Docs" width={24} height={24} className="w-full h-full" />,
+            icon: (
+              <Image
+                src={iconRead}
+                alt="Docs"
+                width={24}
+                height={24}
+                unoptimized
+                className="w-full h-full"
+              />
+            ),
           },
         ]
       : []),
@@ -89,7 +103,16 @@ export function CategoryDock() {
     {
       key: "settings",
       label: "Settings",
-      icon: <Image src={iconConfigure} alt="Settings" width={24} height={24} className="w-full h-full" />,
+      icon: (
+        <Image
+          src={iconConfigure}
+          alt="Settings"
+          width={24}
+          height={24}
+          unoptimized
+          className="w-full h-full"
+        />
+      ),
       menu: {
         renderContent: () => (
           <>

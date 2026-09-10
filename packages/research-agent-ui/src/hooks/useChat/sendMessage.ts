@@ -475,6 +475,10 @@ export async function sendMessage(
         sourceExtractionEnabled,
         thinkingTimeLimit,
         systemInstructions: localStorage.getItem("systemInstructions") ?? undefined,
+        // User-editable replacement for the built-in query-expansion prompt
+        // (Settings → Search Settings). Blank means "use the built-in one".
+        queryExpansionPrompt:
+          localStorage.getItem("queryExpansionPrompt") ?? undefined,
       },
       // A chat POST is not idempotent — retrying re-sends the message and
       // hammers the backend while the user sees nothing. Fail fast instead.

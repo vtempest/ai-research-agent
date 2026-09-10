@@ -294,6 +294,7 @@ export type AgentChatData = {
         sourceExtractionEnabled?: boolean;
         thinkingTimeLimit?: number;
         systemInstructions?: string;
+        queryExpansionPrompt?: string;
     };
     path?: never;
     query?: never;
@@ -643,6 +644,7 @@ export type GenerateSuggestionsData = {
         }>;
         chatModel: ModelWithProvider;
         maxQuestions?: number;
+        promptTemplate?: string;
     };
     path?: never;
     query?: never;
