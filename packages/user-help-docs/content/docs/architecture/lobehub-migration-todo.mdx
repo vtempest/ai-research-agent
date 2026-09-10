@@ -554,11 +554,14 @@ on a `packages-lobe` change, both observed on #393:
   run says nothing about a change made there, and a red one is almost certainly
   not yours. Your own `bunx vitest run` under `packages-lobe` is the only
   signal — which is why 5.4's "bundle budget in CI" needs a whole new job.
-- **The Coverage workflow is already red on `master`.** On `f10e1091` six jobs
-  failed before any of this work existed: `extract-youtube`, `extract-pdf`,
-  `qwksearch-web`, `shadcn-settings`, `search-web-api` and
-  `chat-agent-toolkit`. Check the same job on the base commit before treating a
-  failure as yours.
+- **The Coverage workflow is already red on `master`.** As of `52eb7cce`
+  (#412, run 34445607248) **four** jobs fail with nothing of this work in them:
+  `chat-agent-toolkit`, `extract-youtube`, `search-web-api` and
+  `shadcn-settings`. Two more — `extract-pdf` and `qwksearch-web` — were on this
+  list and have since been fixed (#409 was the `extract-pdf` one), so **do not
+  treat the list as fixed**: read the same job on your own base commit before
+  treating a failure as yours, or you will wave through a real one. The list
+  shrinks as packages get fixed, and every entry on it is someone's open bug.
 
 Also: **PRs here auto-merge.** `.github/workflows/auto-merge-claude.yml` merged
 #393 about ten seconds after it was opened, before its own checks finished. So
