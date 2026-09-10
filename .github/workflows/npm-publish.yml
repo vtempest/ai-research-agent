@@ -423,13 +423,24 @@ jobs:
           git add packages/*/package.json
           git diff --staged --quiet && echo "No version changes to commit" && exit 0
 
-          # bun.lock records every workspace package's own "version", so a bump
-          # committed without it leaves the lockfile stale the moment it lands.
-          # The next Cloudflare build then dies on
-          #   error: lockfile had changes, but lockfile is frozen
-          # before it compiles a line. Refresh the lockfile in the same commit.
+          # Refresh the lockfile in the same commit as the package.json edits.
+          # A bare version bump does not move it (bun neither rewrites nor
+          # checks a workspace package's own "version" field), but a bump that
+          # rides along with a dependency edit does, and a bun.lock left behind
+          # by one commit kills every deploy after it.
           bun install --lockfile-only
           git add bun.lock
+
+          # [skip ci] keeps every other workflow off this commit, so a
+          # Cloudflare build is the first thing that ever runs an install on
+          # it -- which is how a stale lockfile reached production as
+          #   error: lockfile had changes, but lockfile is frozen
+          # instead of as a failed check. Prove the commit installs before it
+          # is pushed.
+          if ! bun install --frozen-lockfile; then
+            echo "::error title=Version bump would leave bun.lock stale::'bun install --lockfile-only' did not converge the lockfile for this bump, so the commit was not pushed. Regenerate bun.lock by hand and commit it before publishing again."
+            exit 1
+          fi
 
           git commit -m "chore: bump published package versions [skip ci]"
           git push
