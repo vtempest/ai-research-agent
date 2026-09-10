@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/server/index.ts'],
   format: ['esm', 'cjs'],
   // Declarations come from `tsc -p tsconfig.build.json` (see the build
   // script). tsup bundles rollup-plugin-dts built against TypeScript 5,

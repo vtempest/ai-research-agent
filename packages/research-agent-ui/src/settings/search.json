@@ -234,7 +234,7 @@
     "key": "trendingNewsApiUrl",
     "type": "string",
     "required": false,
-    "description": "Enter the URL of your deployed trending-news-api Cloudflare Worker. Leave blank to hide the widget.",
+    "description": "Leave blank to use this app's built-in news endpoint (/api/news/trending). Set it to the URL of your own deployed trending-news-api Cloudflare Worker to read from that instead.",
     "placeholder": "https://trending-news-api.your-subdomain.workers.dev",
     "scope": "client",
     "default": ""

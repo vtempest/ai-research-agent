@@ -19,6 +19,12 @@ import QuantumWaveOrbital from 'quantum-sphere-loading-icon/react';
 // reset that would otherwise beat every Tailwind v4 utility in the app.
 
 /**
+ * Topics the widget shows once expanded — and therefore how many the endpoint
+ * is asked for, since every extra topic costs it one upstream news search.
+ */
+const TRENDING_NEWS_EXPANDED_TOPICS = 15;
+
+/**
  * Parses the `weatherLocations` setting (one location per line, formatted as
  * "Label, latitude, longitude") into structured entries for the weather
  * widget. Lines without valid coordinates fall back to a label-only entry
@@ -75,6 +81,10 @@ export default function ChatHomepage() {
   const footerLinks = researchAgentUIConfig.footerLinks.map((link) =>
     link.url === '/#downloads' ? { ...link, onClick: () => setDownloadsOpen(true) } : link,
   );
+  // The host app serves trending news itself (`/api/news/trending` by default,
+  // so the News API key stays on the server); the setting only has to be filled
+  // in to point the widget at a different deployment.
+  const trendingNewsEndpoint = trendingNewsApiUrl || researchAgentUIConfig.trendingNewsApiUrl;
   useEffect(() => {
     const readLocations = () => {
       setWeatherLocations(parseWeatherLocations(localStorage.getItem('weatherLocations')));
@@ -176,8 +186,10 @@ export default function ChatHomepage() {
                     compact
                     expandable
                     maxTopics={trendingNewsMaxTopics}
+                    expandedMaxTopics={TRENDING_NEWS_EXPANDED_TOPICS}
                     showImages={trendingNewsShowImages}
-                    apiEndpoint={trendingNewsApiUrl || undefined}
+                    apiEndpoint={trendingNewsEndpoint}
+                    limit={TRENDING_NEWS_EXPANDED_TOPICS}
                     className="rounded-2xl w-full"
                     style={{
                       background: 'rgba(255,255,255,0.08)',

@@ -40,9 +40,26 @@ function mapArticles(articles: WorkerArticle[] = []): NewsArticle[] {
   }));
 }
 
+/**
+ * Resolves `apiEndpoint` against the page it is running on, so a host app that
+ * serves the trending data from one of its own routes can configure it as a
+ * plain path (`/api/news/trending`) instead of a full origin.
+ */
+function resolveEndpoint(apiEndpoint: string): URL {
+  const base = typeof window !== 'undefined' ? window.location.href : undefined;
+  try {
+    return new URL(apiEndpoint, base);
+  } catch {
+    throw new Error(`trending-news-api: apiEndpoint "${apiEndpoint}" is not a valid URL`);
+  }
+}
+
 function buildUrl(apiEndpoint: string, options: TrendingNewsOptions) {
-  const url = new URL(apiEndpoint);
+  const url = resolveEndpoint(apiEndpoint);
   if (options.topic) url.searchParams.set('topic', options.topic);
+  // Ask the server for only as many topics as the caller keeps: each topic
+  // costs it one upstream news search.
+  if (options.limit && !options.topic) url.searchParams.set('limit', String(options.limit));
   return url.toString();
 }
 
