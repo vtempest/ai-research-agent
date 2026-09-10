@@ -21,7 +21,17 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-
+      // grab is the transport *and* the shared cache, mock server, rate
+      // limiter and request log. Bundling a second copy in here would give the
+      // SDK its own private one, so `grab.mock['/search']` set by the app would
+      // never reach these endpoints. Consumers install grab-url themselves.
+      external: ['grab-url', 'api2client'],
+      output: {
+        globals: {
+          'grab-url': 'grab',
+          api2client: 'api2client'
+        }
+      }
     }
   },
   plugins: [
