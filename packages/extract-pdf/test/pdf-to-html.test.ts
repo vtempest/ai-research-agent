@@ -1,8 +1,38 @@
-import { describe, it, expect } from "bun:test";
+import { afterAll, beforeAll, describe, it, expect } from "bun:test";
 import { convertPDFToHTML } from "../src/pdf-to-html";
 import { minimalPDFBuffer } from "./helpers/minimal-pdf";
 
 const TIMEOUT = 30_000;
+
+/**
+ * Serves the fixture PDF from localhost for the URL case below.
+ *
+ * That test used to fetch https://www.africau.edu/images/default/sample.pdf.
+ * The host now answers 403, so an unrelated third party going down turned the
+ * whole extract-pdf suite red on every branch. Serving our own bytes still
+ * drives the real URL branch of `convertPDFToHTML` — `grab()` fetches it as an
+ * arraybuffer and the result goes through the same parser — without depending
+ * on anything outside the repo.
+ */
+let pdfServer: ReturnType<typeof Bun.serve>;
+let pdfUrl: string;
+
+beforeAll(() => {
+  const pdf = minimalPDFBuffer();
+
+  // Port 0 asks the OS for a free port, so parallel test files cannot collide.
+  pdfServer = Bun.serve({
+    port: 0,
+    fetch: () =>
+      new Response(pdf, { headers: { "content-type": "application/pdf" } }),
+  });
+
+  pdfUrl = `http://localhost:${pdfServer.port}/sample.pdf`;
+});
+
+afterAll(() => {
+  pdfServer?.stop(true);
+});
 
 describe("convertPDFToHTML", () => {
   it("returns html and format fields from a buffer", async () => {
@@ -43,9 +73,13 @@ describe("convertPDFToHTML", () => {
   }, TIMEOUT);
 
   it("accepts a PDF by URL", async () => {
-    const url = "https://www.africau.edu/images/default/sample.pdf";
-    const result = (await convertPDFToHTML(url)) as any;
+    const result = (await convertPDFToHTML(pdfUrl)) as any;
     expect(result.error).toBeUndefined();
-    expect(result.html.length).toBeGreaterThan(100);
-  }, 60_000);
+
+    // Same assertions as the buffer case: fetching the bytes over HTTP must
+    // land in the parser identically to handing them over directly.
+    expect(result.format).toBe("pdf");
+    expect(result.html).toContain("Test Document");
+    expect(result.html).toContain("sample paragraph");
+  }, TIMEOUT);
 });
