@@ -106,6 +106,54 @@ already reached, and then went past by appending the `(merged)` marker.
 
 ## Completed
 
+## Clear the repo-wide install outage by reverting the grab transport
+
+**Status:** Completed
+**Source:** A Cloudflare Workers build log pasted into the session: `bun install
+--frozen-lockfile` failing on `api2client@^1.0.1` and `grab-url@^1.6.23`.
+**Branch:** `claude/trusting-cray-2naonn`
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+Make `bun install --frozen-lockfile` succeed again, on Cloudflare and in every
+GitHub Actions job, without waiting on an npm publish this repo does not own.
+
+### What was done
+Reverted #422 (`d81427c7`). `packages/qwksearch-api-client` is back on the
+generated Hey API fetch client and declares no runtime dependencies, so the two
+unresolvable specifiers are gone. `bun.lock` needed no edit — it never carried
+an entry for that workspace's dependencies, which is why the failure was a
+resolution error rather than a stale-lockfile error.
+
+The previous run's finding still stands and was re-verified against npm today:
+downgrading to `^1.0.0`/`^1.6.22` is not an option. `api2client@1.0.0` is
+published without its `dist/` (tarball: `README.md`, `package.json`, `src/`)
+while every entry point points into it, and `grab-url@1.6.22` predates
+`onRawResponse`, so a failed request would resolve with no `response` and
+`response.status` would throw.
+
+### Verification
+- `bun install --frozen-lockfile` at the repo root: 5533 packages, no error.
+- `bunx vitest run` in `packages/qwksearch-api-client`: 3 files, 22 passed,
+  2 skipped. `error-result-shape.test.ts` passes unchanged — it was written to
+  hold for both transports.
+- `bunx tsc --noEmit`: the two pre-existing errors only (`TS2578` in the
+  generated `client.gen.ts`, `outDir` in `vite.config.ts`), both byte-identical
+  to their state before #422.
+
+### Notes for the next run
+- **Re-landing #422 is a revert of this revert plus `bun install`**, and only
+  once `npm view api2client version` reports 1.0.1 and `npm view grab-url
+  version` reports 1.6.23. Both live in `vtempest/GRAB-URL`; upstream `master`
+  has `onRawResponse` implemented but unpublished, and its `api2client` is
+  still 1.0.0.
+- The four pre-existing red Coverage jobs (`chat-agent-toolkit`,
+  `extract-youtube`, `search-web-api`, `shadcn-settings`) are untouched by this
+  and will be the next thing CI reports.
+- The local `bun` is 1.3.11 while CI pins 1.4.0, so the lockfile was
+  deliberately left alone.
+
 ## Diagnose the repo-wide CI outage and record it for the next run
 
 **Status:** Completed
