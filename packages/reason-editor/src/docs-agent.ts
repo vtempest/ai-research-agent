@@ -104,6 +104,18 @@ export {
   ReasonPlaygroundEditor,
   type ReasonPlaygroundEditorProps,
 } from './docs-agent/plate/playground-editor';
+export {
+  AiPlugin,
+  DEFAULT_PLATE_AI_OPTIONS,
+  getPlateAiController,
+  type PlateAiController,
+  type PlateAiOptions,
+  type PlateAiPanel,
+  type PlateAiSuggestion,
+} from './docs-agent/plate/ai-controller';
+export { AiKit, createAiKit } from './docs-agent/plate/kits/ai-kit';
+export { AIMenu } from './docs-agent/plate/ui/ai-menu';
+export { AIToolbarButton } from './docs-agent/plate/ui/ai-toolbar-button';
 export { REASON_TOOLBAR_SKIN } from './docs-agent/plate/ui/reason-toolbar-skin';
 export { FixedToolbar } from './docs-agent/plate/ui/fixed-toolbar';
 export { FixedToolbarButtons } from './docs-agent/plate/ui/fixed-toolbar-buttons';

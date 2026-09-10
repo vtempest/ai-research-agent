@@ -14,6 +14,7 @@
  *   4. tables
  *   5. images/media
  *   6. slash menu, autoformat, emoji/mentions, floating controls
+ *   7. dictation and the AI writing assistant
  */
 
 import { CaptionPlugin } from '@platejs/caption/react';
@@ -28,6 +29,7 @@ import {
 import { type AnySlatePlugin, KEYS } from 'platejs';
 import type { AnyPlatePlugin } from 'platejs/react';
 
+import { AiKit } from './kits/ai-kit';
 import { AlignKit } from './kits/align-kit';
 import { AutoformatKit } from './kits/autoformat-kit';
 import { BasicNodesKit } from './kits/basic-nodes-kit';
@@ -132,6 +134,9 @@ export const platePlugins: PlatePluginList = [
 
   // 8. Voice commands — the Dictate toggle at the end of the toolbar.
   ...TranscribeKit,
+
+  // 9. The writing assistant behind the bubble menu's "Ask AI" button.
+  ...AiKit,
 ];
 
 /** A single empty paragraph — what a brand-new document starts from. */

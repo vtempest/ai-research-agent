@@ -65,6 +65,39 @@ demo transform) under Settings → Plugins → AI Writing.
 - Commands that rewrite a selection are hidden — and refuse to run — when the
   caret is collapsed, so they never answer confidently about nothing.
 
+## The Plate editor
+
+`src/docs-agent/plate` mounts the same assistant. Its `AiKit`
+(`src/docs-agent/plate/kits/ai-kit.tsx`) registers a Plate plugin keyed
+`KEYS.aiChat` whose panel opens from the bubble menu's ✨ **Ask AI** button or
+`⌘/Ctrl + J`, and it runs the command set, prompts and response sanitising from
+this directory — only the document half is re-implemented for Slate, in
+`src/docs-agent/plate/ai-controller.ts`.
+
+It is deliberately not Plate's own `@platejs/ai` `AIChatPlugin`: that needs the
+Vercel AI SDK in the bundle and a streaming chat route to talk to, neither of
+which a published editor library can bring with it, whereas `getCompletion`
+above is already the answer to that question. Configure it the same way:
+
+```ts
+import { createAiKit } from 'react-reason-editor/docs-agent';
+
+createPlateEditor({
+  plugins: [
+    ...otherPlugins,
+    ...createAiKit({
+      getCompletion: createStreamingCompletion({ endpoint: '/api/ai' }),
+      contextChars: 8000,
+    }),
+  ],
+});
+```
+
+One behavioural difference: on Plate the review surface is the panel's preview
+rather than an inline red/green diff, because Slate has no decoration layer to
+draw one with. What that preserves is the rule that matters — nothing reaches
+the document until the user accepts.
+
 ## Customising the commands
 
 ```ts
