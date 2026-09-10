@@ -16,8 +16,8 @@ vi.mock('@/server/services/comfyui/core/workflowBuilderService');
 vi.mock('@/server/services/comfyui/core/errorHandlerService');
 vi.mock('@/server/services/comfyui/utils/workflowDetector');
 
-// Mock sharp module for image processing
-vi.mock('sharp', () => ({
+// Mock the image codec used for metadata and resizing
+vi.mock('@lobechat/image-photon', () => ({
   default: vi.fn((buffer) => ({
     metadata: vi.fn().mockResolvedValue({ height: 1024, width: 1024 }),
     resize: vi.fn().mockReturnThis(),

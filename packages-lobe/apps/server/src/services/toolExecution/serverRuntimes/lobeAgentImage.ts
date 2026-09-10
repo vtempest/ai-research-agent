@@ -3,13 +3,13 @@ import { imageUrlToBase64 } from '@lobechat/utils';
 import { parseDataUri } from '@lobechat/utils/uriParser';
 import mime from 'mime';
 
-const SHARP_FORMAT_BY_MIME_TYPE = {
+const OUTPUT_FORMAT_BY_MIME_TYPE = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
   'image/webp': 'webp',
 } as const;
 
-type MultimodalImageMimeType = keyof typeof SHARP_FORMAT_BY_MIME_TYPE;
+type MultimodalImageMimeType = keyof typeof OUTPUT_FORMAT_BY_MIME_TYPE;
 
 const normalizeMimeType = (mimeType?: string | null) => {
   const normalized = mimeType?.toLowerCase();
@@ -42,12 +42,12 @@ const readImage = async (uri: string) => {
 
 /** Transcode images, using white for alpha pixels because JPEG cannot preserve transparency. */
 const transcodeImage = async (buffer: Buffer, targetMimeType: MultimodalImageMimeType) => {
-  const { default: sharp } = await import('sharp');
+  const { default: sharp } = await import('@lobechat/image-photon');
   const image = sharp(buffer).rotate();
 
   if (targetMimeType === 'image/jpeg') image.flatten({ background: '#fff' });
 
-  return image.toFormat(SHARP_FORMAT_BY_MIME_TYPE[targetMimeType]).toBuffer();
+  return image.toFormat(OUTPUT_FORMAT_BY_MIME_TYPE[targetMimeType]).toBuffer();
 };
 
 /** Convert only image formats that the configured visual fallback does not accept. */

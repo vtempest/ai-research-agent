@@ -8,9 +8,9 @@ import { pipeline } from 'node:stream/promises';
 import { promisify } from 'node:util';
 
 import { type LobeChatDatabase } from '@lobechat/database';
+import sharp from '@lobechat/image-photon';
 import debug from 'debug';
 import { nanoid } from 'nanoid';
-import sharp from 'sharp';
 
 import { FileService } from '@/server/services/file';
 import { calculateThumbnailDimensions } from '@/utils/number';

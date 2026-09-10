@@ -1,6 +1,6 @@
+import sharp from '@lobechat/image-photon';
 import debug from 'debug';
 import mime from 'mime';
-import sharp from 'sharp';
 
 import type { FileService } from '@/server/services/file';
 

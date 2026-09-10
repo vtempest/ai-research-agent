@@ -5,7 +5,8 @@
  * Node-only packages that cannot run under workerd are aliased to shims (see
  * `worker/shims`); Cloudflare-native replacements are wired in the Worker.
  */
-import { readFileSync } from 'node:fs';
+import { copyFileSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,6 +24,41 @@ const rawMdPlugin: Plugin = {
     return `export default ${JSON.stringify(readFileSync(filepath, 'utf8'))};`;
   },
   name: 'lobe-worker-raw-md',
+};
+
+/**
+ * `@cf-wasm/photon` — the image codec that replaced `sharp` — ships one entry
+ * per runtime. Its `node` entry inlines the binary and calls
+ * `new WebAssembly.Module(bytes)`, which workerd refuses outright ("Wasm code
+ * generation disallowed by embedder"); the `workerd` entry instead imports the
+ * binary as a module, which is the only shape that runs. This plugin pins that
+ * entry, because `ssr.target: 'node'` otherwise wins the condition.
+ *
+ * That leaves the import itself: Vite would turn `import wasm from
+ * './lib/photon_rs_bg.wasm'` into an asset URL string. Keep it external so it
+ * survives bundling and copy the binary next to the output, where wrangler's
+ * default `CompiledWasm` rule picks it up and compiles it at deploy time.
+ */
+const WASM_FILE_NAME = 'photon_rs_bg.wasm';
+
+const wasmModulePlugin: Plugin = {
+  enforce: 'pre',
+  name: 'lobe-worker-wasm-module',
+  async resolveId(source, importer, options) {
+    // Matched by name, so a second WASM dependency cannot silently inherit
+    // Photon's binary.
+    if (source.endsWith(WASM_FILE_NAME)) return { external: true, id: `./${WASM_FILE_NAME}` };
+    // `skipSelf` keeps this from matching its own replacement.
+    if (source === '@cf-wasm/photon') {
+      return this.resolve('@cf-wasm/photon/workerd', importer, { ...options, skipSelf: true });
+    }
+    return null;
+  },
+  writeBundle(options) {
+    const require = createRequire(import.meta.url);
+    const outDir = options.dir ?? path.dirname(options.file as string);
+    copyFileSync(require.resolve('@cf-wasm/photon/photon.wasm'), path.join(outDir, WASM_FILE_NAME));
+  },
 };
 
 /** Packages that must be replaced wholesale inside the Worker bundle. */
@@ -52,6 +88,10 @@ const unsupportedModules: Record<string, string> = {
   // from the dev-server template rewriter.
   'nodemailer': shim('nodemailer'),
   'oidc-provider': shim('oidc-provider'),
+  // `sharp` is aliased but NOT stubbed out: the shim forwards to
+  // `@lobechat/image-photon`, a WASM codec that runs on workerd. The alias is
+  // only here for third-party dependencies that still import `sharp` by name;
+  // the app's own code imports the package directly.
   'sharp': shim('sharp'),
   'undici': shim('undici'),
   'ws': shim('ws'),
@@ -243,6 +283,7 @@ export default defineConfig({
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
   plugins: [
+    wasmModulePlugin,
     unsupportedModulePlugin,
     rawMdPlugin,
     tsconfigPaths({ loose: true, projects: [path.resolve(root, 'tsconfig.json')] }),

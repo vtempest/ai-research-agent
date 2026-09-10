@@ -17,19 +17,19 @@ vi.mock('./publicUrlFetch', async () => ({
   }),
 }));
 
-const sharpMocks = vi.hoisted(() => ({
+const codecMocks = vi.hoisted(() => ({
   metadata: vi.fn(),
   toBuffer: vi.fn(),
 }));
 
-vi.mock('sharp', () => {
+vi.mock('@lobechat/image-photon', () => {
   const chain = {
     flatten: vi.fn(() => chain),
     jpeg: vi.fn(() => chain),
-    metadata: sharpMocks.metadata,
+    metadata: codecMocks.metadata,
     resize: vi.fn(() => chain),
     rotate: vi.fn(() => chain),
-    toBuffer: sharpMocks.toBuffer,
+    toBuffer: codecMocks.toBuffer,
   };
   return { default: vi.fn(() => chain) };
 });
@@ -47,22 +47,22 @@ const MB = 1024 * 1024;
 describe('compressImageToBudget', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    sharpMocks.metadata.mockResolvedValue({ pages: 1 });
+    codecMocks.metadata.mockResolvedValue({ pages: 1 });
   });
 
   it('returns the first ladder rung that fits the budget', async () => {
-    sharpMocks.toBuffer
+    codecMocks.toBuffer
       .mockResolvedValueOnce(Buffer.alloc(3 * MB))
       .mockResolvedValueOnce(Buffer.alloc(1 * MB));
 
     const result = await compressImageToBudget(Buffer.alloc(5 * MB), 2 * MB);
 
     expect(result?.length).toBe(1 * MB);
-    expect(sharpMocks.toBuffer).toHaveBeenCalledTimes(2);
+    expect(codecMocks.toBuffer).toHaveBeenCalledTimes(2);
   });
 
   it('returns undefined when no rung fits', async () => {
-    sharpMocks.toBuffer.mockResolvedValue(Buffer.alloc(3 * MB));
+    codecMocks.toBuffer.mockResolvedValue(Buffer.alloc(3 * MB));
 
     const result = await compressImageToBudget(Buffer.alloc(5 * MB), 2 * MB);
 
@@ -70,14 +70,14 @@ describe('compressImageToBudget', () => {
   });
 
   it('refuses an animated image instead of flattening it to one frame', async () => {
-    sharpMocks.metadata.mockResolvedValue({ pages: 24 });
+    codecMocks.metadata.mockResolvedValue({ pages: 24 });
 
     expect(await compressImageToBudget(Buffer.alloc(64), 1024)).toBeUndefined();
-    expect(sharpMocks.toBuffer).not.toHaveBeenCalled();
+    expect(codecMocks.toBuffer).not.toHaveBeenCalled();
   });
 
-  it('returns undefined when sharp cannot decode the source', async () => {
-    sharpMocks.toBuffer.mockRejectedValue(new Error('unsupported image format'));
+  it('returns undefined when the codec cannot decode the source', async () => {
+    codecMocks.toBuffer.mockRejectedValue(new Error('unsupported image format'));
 
     const result = await compressImageToBudget(Buffer.from('not an image'), 2 * MB);
 
@@ -91,7 +91,7 @@ describe('prepareAttachmentsForBudget', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.unstubAllGlobals();
-    sharpMocks.metadata.mockResolvedValue({ pages: 1 });
+    codecMocks.metadata.mockResolvedValue({ pages: 1 });
   });
 
   it('passes attachments within budget through untouched', async () => {
@@ -212,7 +212,7 @@ describe('prepareAttachmentsForBudget', () => {
   it('recompresses an over-budget image into inline data', async () => {
     const source = Buffer.alloc(3 * MB, 1);
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(source, { status: 200 })));
-    sharpMocks.toBuffer.mockResolvedValueOnce(Buffer.alloc(1 * MB, 2));
+    codecMocks.toBuffer.mockResolvedValueOnce(Buffer.alloc(1 * MB, 2));
 
     const result = await prepareAttachmentsForBudget(
       [
@@ -245,7 +245,7 @@ describe('prepareAttachmentsForBudget', () => {
       'fetch',
       vi.fn().mockResolvedValue(new Response(Buffer.alloc(3 * MB), { status: 200 })),
     );
-    sharpMocks.toBuffer.mockResolvedValue(Buffer.alloc(3 * MB));
+    codecMocks.toBuffer.mockResolvedValue(Buffer.alloc(3 * MB));
 
     const result = await prepareAttachmentsForBudget(
       [
@@ -286,7 +286,7 @@ describe('prepareAttachmentsForBudget', () => {
     );
 
     expect(fetchMock).not.toHaveBeenCalled();
-    expect(sharpMocks.toBuffer).not.toHaveBeenCalled();
+    expect(codecMocks.toBuffer).not.toHaveBeenCalled();
     expect(result.attachments).toEqual([]);
     expect(result.fallbackLines[0]).toContain('big.png');
     expect(result.fallbackLines[0]).toContain('https://example.com/f/big.png');
@@ -298,7 +298,7 @@ describe('prepareAttachmentsForBudget', () => {
       'fetch',
       vi.fn().mockResolvedValue(new Response(Buffer.alloc(3 * MB, 1), { status: 200 })),
     );
-    sharpMocks.toBuffer.mockResolvedValueOnce(Buffer.alloc(1 * MB, 2));
+    codecMocks.toBuffer.mockResolvedValueOnce(Buffer.alloc(1 * MB, 2));
 
     const result = await prepareAttachmentsForBudget(
       [

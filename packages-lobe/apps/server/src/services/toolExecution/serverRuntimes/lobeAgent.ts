@@ -71,9 +71,9 @@ const findInvalidInlineImageIndexes = async (urls: string[]) => {
   const hasInlineImages = urls.some((url) => /^data:image\//i.test(url));
   if (!hasInlineImages) return invalidIndexes;
 
-  // Keep the native image dependency out of server bundles that never validate
-  // inline images; the server runtime registry imports this module eagerly.
-  const { default: sharp } = await import('sharp');
+  // Keep the image codec out of server bundles that never validate inline
+  // images; the server runtime registry imports this module eagerly.
+  const { default: sharp } = await import('@lobechat/image-photon');
 
   for (const [index, url] of urls.entries()) {
     if (!/^data:image\//i.test(url)) continue;
