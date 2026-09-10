@@ -55,6 +55,15 @@ export interface ResearchAgentUIConfig {
    */
   appIconUrl: string;
   /**
+   * Endpoint serving the trending-news wire format (Wikipedia's daily ranking
+   * joined to headlines) for the homepage widget. Defaults to this app's own
+   * `/api/news/trending` route, which keeps the News API key server-side; a
+   * host without that route — the desktop app, the extension — should point
+   * this at an absolute URL, and the user's `trendingNewsApiUrl` setting
+   * overrides it either way.
+   */
+  trendingNewsApiUrl: string;
+  /**
    * Requests that the settings UI be opened. Lets the consuming app render
    * settings in a modal (e.g. on large desktop screens) instead of navigating
    * to the `/settings` route. Return `true` when the request was handled — the
@@ -86,6 +95,7 @@ export const researchAgentUIConfig: ResearchAgentUIConfig = {
   googleAppId: '',
   getAutoMediaSearch: () => true,
   appIconUrl: '/apple-touch-icon.png',
+  trendingNewsApiUrl: '/api/news/trending',
 };
 
 /**

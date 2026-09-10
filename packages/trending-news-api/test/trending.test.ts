@@ -125,6 +125,28 @@ describe('getTrendingNews', () => {
     expect(fetchMock.mock.calls[0][0]).toBe(`${ENDPOINT}?topic=Eclipse+%26+Sun`);
   });
 
+  it('asks the server for only the topics the caller keeps', async () => {
+    const fetchMock = mockFetch(workerTopics());
+
+    await getTrendingNews({ apiEndpoint: ENDPOINT, limit: 6 });
+
+    expect(fetchMock.mock.calls[0][0]).toBe(`${ENDPOINT}?limit=6`);
+  });
+
+  it('resolves a relative apiEndpoint against the current page', async () => {
+    const fetchMock = mockFetch(workerTopics());
+
+    await getTrendingNews({ apiEndpoint: '/api/news/trending' });
+
+    expect(fetchMock.mock.calls[0][0]).toBe(`${window.location.origin}/api/news/trending`);
+  });
+
+  it('rejects an apiEndpoint that is not a URL at all', async () => {
+    await expect(getTrendingNews({ apiEndpoint: 'http://' })).rejects.toThrow(
+      'trending-news-api: apiEndpoint "http://" is not a valid URL'
+    );
+  });
+
   it('throws on a non-ok response', async () => {
     mockFetch(null, { ok: false, status: 500, statusText: 'Internal Server Error' });
 

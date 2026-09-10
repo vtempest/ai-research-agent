@@ -34,6 +34,9 @@ export default defineConfig({
       'research-agent-ui': resolve(__dirname, '../../packages/research-agent-ui/src/index.ts'),
       'domain-rank': resolve(__dirname, '../../packages/domain-rank'),
       'search-web-api': resolve(__dirname, '../../packages/search-web-api/src'),
+      // Subpath exports resolve through the package's built `dist`, which CI
+      // does not build before running these tests — point them at the source.
+      'trending-news-api/server': resolve(__dirname, '../../packages/trending-news-api/src/server/index.ts'),
       'write-language': resolve(__dirname, '../../packages/write-language/src'),
       'chat-agent-toolkit/models/registry': resolve(__dirname, '../../packages/chat-agent-toolkit/src/models/registry.ts'),
     },

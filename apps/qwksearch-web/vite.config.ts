@@ -101,6 +101,8 @@ export default defineConfig(({ command }) => ({
       "shadcn-app-dock",
       "search-web-api",
       "research-agent-ui",
+      // `/api/news/trending` imports `trending-news-api/server`.
+      "trending-news-api",
     ],
   },
   plugins: [
