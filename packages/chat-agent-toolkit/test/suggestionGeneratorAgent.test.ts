@@ -80,4 +80,39 @@ describe('generateSuggestions', () => {
     const arg = generateTextMock.mock.calls[0][0] as Record<string, unknown>;
     expect(arg.prompt).toContain('generate 2 suggestions');
   });
+
+  it('uses a caller-supplied promptTemplate and interpolates both placeholders', async () => {
+    generateTextMock.mockResolvedValue({ text: '<suggestions>\nfoo\n</suggestions>' });
+
+    await generateSuggestions(
+      {
+        chat_history: [{ role: 'user', content: 'What is SpaceX?' }],
+        maxQuestions: 3,
+        promptTemplate:
+          'Write exactly {maxQuestions} spicy follow-ups.\n{chat_history}',
+      },
+      fakeLlm,
+    );
+
+    const arg = generateTextMock.mock.calls[0][0] as Record<string, unknown>;
+    expect(arg.prompt).toBe(
+      'Write exactly 3 spicy follow-ups.\nUser: What is SpaceX?',
+    );
+    expect(arg.prompt).not.toContain('AI suggestion generator');
+  });
+
+  it('falls back to the built-in template when promptTemplate is blank', async () => {
+    generateTextMock.mockResolvedValue({ text: '<suggestions>\nfoo\n</suggestions>' });
+
+    await generateSuggestions(
+      { chat_history: [{ role: 'user', content: 'hi' }], promptTemplate: '   \n  ' },
+      fakeLlm,
+    );
+
+    const arg = generateTextMock.mock.calls[0][0] as Record<string, unknown>;
+    expect(arg.prompt).toContain('AI suggestion generator');
+    expect(arg.prompt).toContain('generate 4 suggestions');
+    expect(arg.prompt).not.toContain('{maxQuestions}');
+    expect(arg.prompt).not.toContain('{chat_history}');
+  });
 });

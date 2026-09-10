@@ -424,12 +424,12 @@ function Comparison() {
           <div className="qs-border-beam relative isolate overflow-hidden rounded-3xl p-px">
             <div className="bg-card/80 relative z-10 overflow-hidden rounded-[calc(1.5rem-1px)] border backdrop-blur-sm">
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[1140px] border-collapse text-sm">
+                <table className="w-full min-w-[1080px] border-collapse text-sm">
                   <thead>
                     <tr className="border-b">
                       <th
                         scope="col"
-                        className="bg-card sticky left-0 z-10 w-56 border-r px-5 py-4 text-left align-bottom"
+                        className="bg-card sticky left-0 z-10 w-40 border-r px-4 py-4 text-left align-bottom"
                       >
                         <span className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                           Feature
@@ -487,7 +487,7 @@ function Comparison() {
                       >
                         <th
                           scope="row"
-                          className="bg-card sticky left-0 z-10 border-r px-5 py-4 text-left text-sm font-medium"
+                          className="bg-card sticky left-0 z-10 w-40 border-r px-4 py-4 text-left text-sm font-medium"
                         >
                           {row.feature}
                         </th>

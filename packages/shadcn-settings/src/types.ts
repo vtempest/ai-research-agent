@@ -44,6 +44,8 @@ export interface SettingsFieldSchema {
   default?: string | boolean;
   /** Options for `select` fields. */
   options?: SettingsFieldOption[];
+  /** Visible row count for `textarea` fields. Defaults to 4. */
+  rows?: number;
   /** Reference links rendered under the description. */
   links?: SettingsFieldLink[];
   /** Whether the field must be filled (advisory; not enforced here). */

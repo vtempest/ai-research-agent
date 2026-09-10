@@ -8,6 +8,10 @@ export const getSuggestions = async (chatHistory: Message[]) => {
   const chatModel = localStorage.getItem("chatModelKey");
   const chatModelProvider = localStorage.getItem("chatModelProviderId");
   const maxQuestions = parseInt(localStorage.getItem("maxFollowupQuestions") || "4");
+  // User-editable replacement for the built-in follow-up prompt
+  // (Settings → Search Settings). Blank means "use the built-in one".
+  const promptTemplate =
+    localStorage.getItem("followUpQuestionsPrompt")?.trim() || undefined;
 
   // Only send user/assistant messages — source messages contain large Document
   // objects that bloat the payload and are not needed for suggestion generation.
@@ -27,6 +31,7 @@ export const getSuggestions = async (chatHistory: Message[]) => {
             key: chatModel,
           },
           maxQuestions,
+          promptTemplate,
         }),
       },
     );

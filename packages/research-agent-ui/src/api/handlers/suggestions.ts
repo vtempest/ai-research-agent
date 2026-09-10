@@ -14,6 +14,11 @@ interface SuggestionsGenerationBody {
   chatHistory: any[];
   chatModel: ModelWithProvider;
   maxQuestions?: number;
+  /**
+   * Optional user-authored follow-up prompt from Settings → Search Settings.
+   * Blank or absent falls back to the toolkit's built-in template.
+   */
+  promptTemplate?: string;
 }
 
 export function createSuggestionsHandler() {
@@ -36,7 +41,11 @@ export function createSuggestionsHandler() {
     );
 
     const rawSuggestions = await generateSuggestions(
-      { chat_history: chatHistory, maxQuestions: body.maxQuestions },
+      {
+        chat_history: chatHistory,
+        maxQuestions: body.maxQuestions,
+        promptTemplate: body.promptTemplate,
+      },
       llm,
     );
 

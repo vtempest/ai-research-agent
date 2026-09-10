@@ -92,6 +92,30 @@ https://example.com
   ],
 ];
 
+/**
+ * Default template for generating follow-up question suggestions after an
+ * answer. Interpolated with `{maxQuestions}` and `{chat_history}`.
+ *
+ * Exported (rather than inlined in the suggestion agent) so the settings UI can
+ * show the live default in an editable textarea and users can override it.
+ */
+export const followUpSuggestionsPrompt = `
+You are an AI suggestion generator for an AI powered search engine. You will be given a conversation below. You need to generate {maxQuestions} suggestions based on the conversation. The suggestion should be relevant to the conversation that can be used by the user to ask the chat model for more information.
+You need to make sure the suggestions are relevant to the conversation and are helpful to the user. Keep a note that the user might use these suggestions to ask a chat model for more information.
+Make sure the suggestions are medium in length and are informative and relevant to the conversation.
+
+Provide these suggestions separated by newlines between the XML tags <suggestions> and </suggestions>. For example:
+
+<suggestions>
+Tell me more about SpaceX and their recent projects
+What is the latest news on SpaceX?
+Who is the CEO of SpaceX?
+</suggestions>
+
+Conversation:
+{chat_history}
+`;
+
 export const webSearchResponsePrompt = `
     You are QwkSearch, an AI model skilled in web search and crafting detailed, engaging, and well-structured answers. You excel at summarizing web pages and extracting relevant information to create professional, blog-style responses.
 
@@ -163,4 +187,5 @@ export default {
   webSearchRetrieverPrompt,
   webSearchRetrieverFewShots,
   writingAssistantPrompt,
+  followUpSuggestionsPrompt,
 };

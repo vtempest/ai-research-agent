@@ -56,7 +56,7 @@ function TextControl({
           onChange={(e) => handleChange(e.target.value)}
           onBlur={(e) => handleBlur(e.target.value)}
           placeholder={field.placeholder}
-          rows={4}
+          rows={typeof field.rows === "number" ? field.rows : 4}
           disabled={isDisabled}
           className={inputClass}
         />

@@ -462,9 +462,9 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Self-hostable (Cloudflare Workers, Docker)",
+    feature: "Self-hostable",
     cells: [
-      { status: "yes", note: "Yes" },
+      { status: "yes", note: "Cloudflare Workers or Docker" },
       { status: "no" },
       { status: "no" },
       { status: "no" },
@@ -474,7 +474,7 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Choice of LLM provider",
+    feature: "Choose any LLM",
     cells: [
       { status: "yes", note: "Claude, GPT, Gemini, Grok, Llama & more" },
       { status: "no", note: "Perplexity-controlled model selection" },
@@ -483,6 +483,18 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
       { status: "no", note: "Gemini only" },
       { status: "no", note: "Grok only" },
       { status: "yes", note: "Multiple open models (Llama, Qwen, DeepSeek…)" },
+    ],
+  },
+  {
+    feature: "Bring your own API keys",
+    cells: [
+      { status: "yes", note: "Your keys, your billing, no markup" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "partial", note: "Separate paid API, not in the chat app" },
     ],
   },
   {
@@ -501,7 +513,19 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Cited answers with APA formatting",
+    feature: "Pick your search sources",
+    cells: [
+      { status: "yes", note: "Enable or disable engines per category" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+      { status: "no" },
+    ],
+  },
+  {
+    feature: "Cited answers (APA)",
     cells: [
       { status: "yes", note: "Built-in citation extraction & formatting" },
       { status: "yes", note: "Yes" },
@@ -513,7 +537,7 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "PDF / YouTube / DOCX ingestion",
+    feature: "PDF / YouTube / DOCX",
     cells: [
       { status: "yes", note: "With transcript & structure extraction" },
       { status: "partial", note: "PDF only" },
@@ -525,7 +549,7 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Research writing / notes editor",
+    feature: "Writing & notes editor",
     cells: [
       { status: "yes", note: "Full Lexical-based editor with outline notation (REASON)" },
       { status: "no" },
@@ -533,6 +557,69 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
       { status: "no" },
       { status: "no" },
       { status: "no" },
+      { status: "no" },
+    ],
+  },
+  {
+    feature: "Editable AI prompts",
+    cells: [
+      {
+        status: "yes",
+        note: "Edit the answer, follow-up & query-expansion prompts",
+      },
+      { status: "no" },
+      { status: "partial", note: "Custom instructions only" },
+      { status: "partial", note: "Styles & project instructions" },
+      { status: "partial", note: "Gems only" },
+      { status: "partial", note: "Custom instructions only" },
+      { status: "partial", note: "System prompt only" },
+    ],
+  },
+  {
+    feature: "MCP connectors",
+    cells: [
+      { status: "yes", note: "Add any MCP server in settings" },
+      { status: "no" },
+      { status: "yes", note: "Connectors (paid tiers)" },
+      { status: "yes", note: "Yes" },
+      { status: "partial", note: "Extensions, not open MCP" },
+      { status: "no" },
+      { status: "no" },
+    ],
+  },
+  {
+    feature: "Skills & memory",
+    cells: [
+      { status: "yes", note: "Editable agent skills and stored memories" },
+      { status: "partial", note: "Memory only" },
+      { status: "yes", note: "Memory + custom GPTs" },
+      { status: "yes", note: "Skills + memory" },
+      { status: "partial", note: "Memory only" },
+      { status: "partial", note: "Memory only" },
+      { status: "no" },
+    ],
+  },
+  {
+    feature: "Cloud storage sync",
+    cells: [
+      { status: "yes", note: "S3, R2, B2, SSH, Google Docs, Turso" },
+      { status: "no" },
+      { status: "partial", note: "Drive & SharePoint connectors" },
+      { status: "partial", note: "Drive connector" },
+      { status: "yes", note: "Google Drive" },
+      { status: "no" },
+      { status: "no" },
+    ],
+  },
+  {
+    feature: "Read aloud (TTS)",
+    cells: [
+      { status: "yes", note: "On-device Kokoro.js or Cloudflare voices" },
+      { status: "yes", note: "Yes" },
+      { status: "yes", note: "Yes" },
+      { status: "no" },
+      { status: "yes", note: "Yes" },
+      { status: "yes", note: "Yes" },
       { status: "no" },
     ],
   },
@@ -561,7 +648,7 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Editor / IDE integration",
+    feature: "IDE integration",
     cells: [
       { status: "yes", note: "VS Code extension" },
       { status: "no" },
@@ -573,9 +660,9 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "Privacy mode (no saved history)",
+    feature: "Private mode",
     cells: [
-      { status: "yes", note: "Yes" },
+      { status: "yes", note: "Nothing saved to history" },
       { status: "partial", note: "Limited" },
       { status: "partial", note: "Limited" },
       { status: "partial", note: "Limited" },
