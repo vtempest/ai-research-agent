@@ -1,18 +1,24 @@
 /**
  * @fileoverview Scrollable, playback-synced captions panel shown above the
- * video when subtitles are toggled on. Clicking any line seeks the player
- * there; the active line auto-scrolls and gets an approximate karaoke-style
- * per-word sweep.
+ * video when subtitles are toggled on. Sentences are shown as prose (no
+ * timestamps) — clicking one seeks the player to where it starts, and the
+ * active one auto-scrolls and gets an approximate karaoke-style per-word
+ * sweep.
+ *
+ * The transcript itself is loaded by the player, which only offers the
+ * subtitles control for videos that turned out to have one — so this panel
+ * has no loading or error state of its own: given nothing to show, it
+ * renders nothing.
  */
 
 'use client';
 
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
-import { AlertCircle, Loader2 } from 'lucide-react';
-import { formatTime, useTranscript, type TranscriptSnippet, type TranscriptSource } from '../transcript';
+import type { TranscriptSnippet } from '../transcript';
 
-interface PlayerSubtitlesProps extends TranscriptSource {
-  videoId: string;
+interface PlayerSubtitlesProps {
+  /** The video's transcript, already regrouped into sentences. */
+  sentences: TranscriptSnippet[];
   currentTime: number;
   onSeek: (seconds: number) => void;
 }
@@ -43,37 +49,26 @@ const SubtitleLine = forwardRef<
       }}
       className={`eytp-line${isActive ? ' eytp-line-active' : ''}`}
     >
-      <span className="eytp-line-time">{formatTime(snippet.start)}</span>
-      <span>
-        {words.map((word, i) => (
-          <span key={i} className={i === activeWordIndex ? 'eytp-word-active' : undefined}>
-            {word}{' '}
-          </span>
-        ))}
-      </span>
+      {words.map((word, i) => (
+        <span key={i} className={i === activeWordIndex ? 'eytp-word-active' : undefined}>
+          {word}{' '}
+        </span>
+      ))}
     </button>
   );
 });
 
-export function PlayerSubtitles({
-  videoId,
-  currentTime,
-  onSeek,
-  transcriptUrl,
-  fetchTranscript,
-}: PlayerSubtitlesProps) {
-  const { snippets, loading, error } = useTranscript(videoId, true, { transcriptUrl, fetchTranscript });
+export function PlayerSubtitles({ sentences, currentTime, onSeek }: PlayerSubtitlesProps) {
   const lineRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const activeIndex = useMemo(() => {
-    if (!snippets || snippets.length === 0) return -1;
     let idx = -1;
-    for (let i = 0; i < snippets.length; i++) {
-      if (snippets[i].start <= currentTime) idx = i;
+    for (let i = 0; i < sentences.length; i++) {
+      if (sentences[i].start <= currentTime) idx = i;
       else break;
     }
     return idx;
-  }, [snippets, currentTime]);
+  }, [sentences, currentTime]);
 
   // Keep the active line in view as playback advances.
   useEffect(() => {
@@ -81,21 +76,11 @@ export function PlayerSubtitles({
     lineRefs.current[activeIndex]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }, [activeIndex]);
 
+  if (sentences.length === 0) return null;
+
   return (
     <div className="eytp-subtitles">
-      {loading && (
-        <div className="eytp-status">
-          <Loader2 size={14} className="eytp-spin" />
-          Loading captions...
-        </div>
-      )}
-      {error && !loading && (
-        <div className="eytp-status eytp-status-error">
-          <AlertCircle size={14} />
-          <span>{error}</span>
-        </div>
-      )}
-      {snippets?.map((snippet, index) => (
+      {sentences.map((snippet, index) => (
         <SubtitleLine
           key={index}
           ref={(el) => {

@@ -12,11 +12,12 @@
 
 import { useEffect, useState } from 'react';
 
-export interface TranscriptSnippet {
-  text: string;
-  start: number;
-  duration: number;
-}
+import type { TranscriptSnippet } from './sentences';
+
+// Re-exported so `./transcript` stays the one import site for the transcript
+// types, even though the snippet shape itself lives with the sentence
+// grouping that produces it.
+export type { TranscriptSnippet };
 
 export interface TranscriptResponse {
   snippets?: TranscriptSnippet[];

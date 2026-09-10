@@ -1,8 +1,9 @@
 /**
  * @fileoverview Popout modal: a YouTube player alongside its transcript, with
- * the transcript synced to playback — the currently spoken line is
- * highlighted and auto-scrolled, an approximate per-word sweep highlights
- * across the active line, and clicking any line seeks the player there.
+ * the transcript synced to playback — caption cues are regrouped into whole
+ * sentences and read as prose (no timestamps), the currently spoken sentence
+ * is highlighted and auto-scrolled, an approximate per-word sweep highlights
+ * across it, and clicking a sentence seeks the player to where it starts.
  *
  * Ported from debate-ai.com's `TranscriptModal` component. This version has
  * no dependency on any particular design system — it ships its own minimal,
@@ -27,12 +28,13 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { Captions, Loader2, AlertCircle, X } from 'lucide-react';
+import { Captions, Loader2, X } from 'lucide-react';
 
-import { formatTime, loadTranscript, type TranscriptSnippet } from './transcript';
+import { loadTranscript, type TranscriptSnippet } from './transcript';
+import { groupIntoSentences } from './sentences';
 
 // Re-exported so existing deep imports of this module keep working; the type
-// itself now lives in `./transcript`, shared with the floating player.
+// itself now lives in `./sentences`, shared with the floating player.
 export type { TranscriptSnippet };
 
 export interface YouTubeTranscriptModalProps {
@@ -88,14 +90,11 @@ const TranscriptLine = forwardRef<
       }}
       className={`eyt-line${isActive ? ' eyt-line-active' : ''}`}
     >
-      <span className="eyt-line-time">{formatTime(snippet.start)}</span>
-      <span className="eyt-line-text">
-        {words.map((word, i) => (
-          <span key={i} className={i === activeWordIndex ? 'eyt-word-active' : undefined}>
-            {word}{' '}
-          </span>
-        ))}
-      </span>
+      {words.map((word, i) => (
+        <span key={i} className={i === activeWordIndex ? 'eyt-word-active' : undefined}>
+          {word}{' '}
+        </span>
+      ))}
     </button>
   );
 });
@@ -110,9 +109,8 @@ export function YouTubeTranscriptModal({
   onOpenChange,
 }: YouTubeTranscriptModalProps) {
   const [open, setOpen] = useState(false);
-  const [snippets, setSnippets] = useState<TranscriptSnippet[] | null>(providedSnippets ?? null);
+  const [cues, setCues] = useState<TranscriptSnippet[] | null>(providedSnippets ?? null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
 
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -132,17 +130,16 @@ export function YouTubeTranscriptModal({
     if (!open || providedSnippets) return;
     let cancelled = false;
     setLoading(true);
-    setError(null);
-    setSnippets(null);
+    setCues(null);
     setCurrentTime(0);
 
     loadTranscript(videoId, { transcriptUrl, fetchTranscript })
       .then((result) => {
-        if (!cancelled) setSnippets(result);
+        if (!cancelled) setCues(result);
       })
-      .catch((err: unknown) => {
-        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load transcript');
-      })
+      // A transcript that can't be loaded is simply not shown — see
+      // `hasTranscript` below.
+      .catch(() => undefined)
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
@@ -201,6 +198,14 @@ export function YouTubeTranscriptModal({
     );
   }, []);
 
+  // Cues are cut for on-screen display and break mid-clause; read as prose
+  // instead by regrouping them into sentences.
+  const snippets = useMemo(() => (cues ? groupIntoSentences(cues) : null), [cues]);
+
+  // A video whose captions are missing or unreadable shows no transcript at
+  // all rather than an error: the modal is then just the player.
+  const hasTranscript = loading || (snippets?.length ?? 0) > 0;
+
   const activeIndex = useMemo(() => {
     if (!snippets || snippets.length === 0) return -1;
     let idx = -1;
@@ -248,7 +253,7 @@ export function YouTubeTranscriptModal({
               </button>
             </div>
 
-            <div className="eyt-body">
+            <div className={`eyt-body${hasTranscript ? ' eyt-body-split' : ''}`}>
               <div className="eyt-player">
                 <iframe
                   ref={iframeRef}
@@ -261,35 +266,31 @@ export function YouTubeTranscriptModal({
                 />
               </div>
 
-              <div className="eyt-sidebar">
-                <div className="eyt-sidebar-heading">Transcript</div>
-                <div className="eyt-sidebar-scroll">
-                  {loading && (
-                    <div className="eyt-status">
-                      <Loader2 size={16} className="eyt-spin" />
-                      Loading transcript...
-                    </div>
-                  )}
-                  {error && !loading && (
-                    <div className="eyt-status eyt-error">
-                      <AlertCircle size={16} />
-                      <span>{error}</span>
-                    </div>
-                  )}
-                  {snippets?.map((snippet, index) => (
-                    <TranscriptLine
-                      key={index}
-                      ref={(el) => {
-                        lineRefs.current[index] = el;
-                      }}
-                      snippet={snippet}
-                      isActive={index === activeIndex}
-                      currentTime={currentTime}
-                      onSeek={() => seekTo(snippet.start)}
-                    />
-                  ))}
+              {hasTranscript && (
+                <div className="eyt-sidebar">
+                  <div className="eyt-sidebar-heading">Transcript</div>
+                  <div className="eyt-sidebar-scroll">
+                    {loading && (
+                      <div className="eyt-status">
+                        <Loader2 size={16} className="eyt-spin" />
+                        Loading transcript...
+                      </div>
+                    )}
+                    {snippets?.map((snippet, index) => (
+                      <TranscriptLine
+                        key={index}
+                        ref={(el) => {
+                          lineRefs.current[index] = el;
+                        }}
+                        snippet={snippet}
+                        isActive={index === activeIndex}
+                        currentTime={currentTime}
+                        onSeek={() => seekTo(snippet.start)}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -312,7 +313,7 @@ const EYT_STYLES = `
 .eyt-close { border: none; background: transparent; color: #6b7280; cursor: pointer; padding: 4px; border-radius: 6px; display: flex; }
 .eyt-close:hover { background: rgba(0,0,0,0.05); color: #111827; }
 .eyt-body { display: grid; grid-template-columns: 1fr; flex: 1; min-height: 0; }
-@media (min-width: 1024px) { .eyt-body { grid-template-columns: 1fr 360px; } }
+@media (min-width: 1024px) { .eyt-body-split { grid-template-columns: 1fr 360px; } }
 .eyt-player { position: relative; width: 100%; background: #000; padding-top: 56.25%; }
 .eyt-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .eyt-sidebar { display: flex; flex-direction: column; min-height: 0; border-top: 1px solid #e5e7eb; }
@@ -321,12 +322,10 @@ const EYT_STYLES = `
 .eyt-sidebar-scroll { flex: 1; min-height: 280px; max-height: 280px; overflow-y: auto; padding: 8px; }
 @media (min-width: 1024px) { .eyt-sidebar-scroll { max-height: none; } }
 .eyt-status { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #6b7280; padding: 12px; }
-.eyt-error { color: #dc2626; align-items: flex-start; }
 .eyt-spin { animation: eyt-spin 1s linear infinite; }
 @keyframes eyt-spin { to { transform: rotate(360deg); } }
-.eyt-line { display: flex; gap: 8px; width: 100%; text-align: left; border: none; background: transparent; border-radius: 6px; padding: 6px 8px; font-size: 13px; cursor: pointer; color: inherit; }
+.eyt-line { display: block; width: 100%; text-align: left; border: none; background: transparent; border-radius: 6px; padding: 6px 8px; font-size: 13px; line-height: 1.5; cursor: pointer; color: inherit; }
 .eyt-line:hover { background: rgba(0,0,0,0.05); }
 .eyt-line-active { background: rgba(59,130,246,0.12); }
-.eyt-line-time { flex-shrink: 0; font-variant-numeric: tabular-nums; font-size: 11px; color: #9ca3af; padding-top: 2px; }
 .eyt-word-active { background: rgba(59,130,246,0.3); border-radius: 3px; padding: 0 2px; font-weight: 500; color: #1d4ed8; }
 `;

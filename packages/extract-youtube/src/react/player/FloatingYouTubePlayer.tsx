@@ -16,7 +16,7 @@
 
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AlertCircle } from 'lucide-react';
 
@@ -47,7 +47,8 @@ import {
   youtubePlayer,
   type PlayerVideo,
 } from './playerStore';
-import type { TranscriptSource } from '../transcript';
+import { useTranscript, type TranscriptSource } from '../transcript';
+import { groupIntoSentences } from '../sentences';
 
 /** What a host app's custom controls are handed when they render. */
 export interface PlayerControlContext {
@@ -72,7 +73,11 @@ export interface FloatingYouTubePlayerProps extends TranscriptSource {
   extraControls?: ReactNode | ((context: PlayerControlContext) => ReactNode);
   /** Custom title-bar content (badges, links, metadata). Defaults to the video title. */
   renderTitle?: (context: PlayerControlContext) => ReactNode;
-  /** Show the captions button. Needs `transcriptUrl` or `fetchTranscript`; off without one. */
+  /**
+   * Force the captions button on or off. By default it shows only for videos
+   * that turned out to have a transcript — needs `transcriptUrl` or
+   * `fetchTranscript` to check for one at all.
+   */
   showSubtitles?: boolean;
   /** Show the picture-in-picture button where the browser supports it. Default true. */
   showPictureInPicture?: boolean;
@@ -140,7 +145,20 @@ function FloatingPlayerWidget({
   });
 
   const hasTranscriptSource = Boolean(transcriptUrl || fetchTranscript);
-  const showSubtitles = showSubtitlesProp ?? hasTranscriptSource;
+
+  // Every video that plays gets checked for a transcript, whether or not the
+  // subtitles panel is open: that check is what decides whether the subtitles
+  // control is offered at all. A video without usable captions simply doesn't
+  // get the control — no error is surfaced for it.
+  const { snippets: cues } = useTranscript(activeVideo?.videoId ?? null, hasTranscriptSource, {
+    transcriptUrl,
+    fetchTranscript,
+  });
+
+  // Cues are cut for on-screen display and break mid-clause; read as prose
+  // instead by regrouping them into sentences.
+  const sentences = useMemo(() => (cues ? groupIntoSentences(cues) : []), [cues]);
+  const showSubtitles = showSubtitlesProp ?? sentences.length > 0;
 
   const setIframeRef = useCallback((el: HTMLIFrameElement | null) => {
     iframeRef.current = el;
@@ -423,13 +441,7 @@ function FloatingPlayerWidget({
       </div>
 
       {subtitlesOpen && !isMinimized && (
-        <PlayerSubtitles
-          videoId={activeVideo.videoId}
-          currentTime={subtitleTime}
-          onSeek={youtubePlayer.seekTo}
-          transcriptUrl={transcriptUrl}
-          fetchTranscript={fetchTranscript}
-        />
+        <PlayerSubtitles sentences={sentences} currentTime={subtitleTime} onSeek={youtubePlayer.seekTo} />
       )}
 
       {/* Hidden via CSS when minimized so playback is never interrupted. While

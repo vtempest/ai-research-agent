@@ -31,3 +31,5 @@ export {
 
 export { loadTranscript, useTranscript, formatTime } from './transcript';
 export type { TranscriptSnippet, TranscriptSource, TranscriptResponse } from './transcript';
+
+export { groupIntoSentences } from './sentences';
