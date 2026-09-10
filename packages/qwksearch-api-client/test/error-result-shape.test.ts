@@ -8,19 +8,31 @@
  * Reading `error.status` silently yields `undefined` and every branch on it is
  * dead code — which is how a stale-session fallback in research-agent-ui came
  * to never run.
+ *
+ * These assertions outlive the transport: they held when the bundled client
+ * called `fetch` directly and they have to keep holding now that grab sends
+ * the request. grab reaches for `globalThis.fetch` at call time, so the stub
+ * goes on the global rather than into the client config.
  */
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createClient } from '../src/client/client.gen';
 
 function respondWith(body: string, init: ResponseInit & { type?: string }) {
-  const fetchMock = vi.fn().mockResolvedValue(
-    new Response(body, {
-      ...init,
-      headers: { 'Content-Type': init.type ?? 'application/json' },
-    }),
+  vi.stubGlobal(
+    'fetch',
+    vi.fn().mockResolvedValue(
+      new Response(body, {
+        ...init,
+        headers: { 'Content-Type': init.type ?? 'application/json' },
+      }),
+    ),
   );
-  return createClient({ baseUrl: 'https://example.test', fetch: fetchMock as never });
+  return createClient({ baseUrl: 'https://example.test' });
 }
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe('generated client error result', () => {
   it('exposes the status on response, not on error', async () => {
@@ -56,5 +68,15 @@ describe('generated client error result', () => {
 
     expect(typeof result.error).toBe('string');
     expect((result.error as unknown as { message?: string }).message).toBeUndefined();
+  });
+
+  it('resolves a 2xx body as data with the response alongside it', async () => {
+    const client = respondWith(JSON.stringify({ chats: [] }), { status: 200 });
+
+    const result = await client.get({ url: '/agent/chats' });
+
+    expect(result.error).toBeUndefined();
+    expect(result.data).toEqual({ chats: [] });
+    expect(result.response.status).toBe(200);
   });
 });

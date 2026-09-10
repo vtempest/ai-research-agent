@@ -21,7 +21,7 @@
   },
   "scripts": {
     "ship": "npx standard-version --release-as patch; npm publish",
-    "build:api": " openapi-ts && vite build",
+    "build:api": "openapi-ts && api2client --rewire-only ./src && vite build",
     "test:api": "vitest",
     "test:coverage": "vitest run --coverage",
     "test": "vitest run"
@@ -30,6 +30,10 @@
     "dist",
     "qwksearch-openapi.json"
   ],
+  "dependencies": {
+    "api2client": "^1.0.1",
+    "grab-url": "^1.6.23"
+  },
   "devDependencies": {
     "@hey-api/client-fetch": "^0.13.1",
     "@hey-api/openapi-ts": "^0.99.0",
