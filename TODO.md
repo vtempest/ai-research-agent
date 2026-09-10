@@ -106,6 +106,60 @@ already reached, and then went past by appending the `(merged)` marker.
 
 ## Completed
 
+## Diagnose the repo-wide CI outage and record it for the next run
+
+**Status:** Completed
+**Source:** Followed up on #424's own CI: 25 of its 27 checks failed. Same
+scheduled task; this is the post-merge half of that run.
+**Branch:** `claude/magical-bohr-dwq9sp` (restarted from `master` after #424
+merged)
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+Establish whether #424 broke CI, and leave the answer somewhere the next run
+reads before it re-derives it.
+
+### What it is
+Not #424 — the same workflows are red on its base commit `cc5800f3`, and #424
+touches no `package.json` and no `bun.lock`. `bun install --frozen-lockfile`
+cannot resolve two specifiers #422 (`d81427c7`) introduced in
+`packages/qwksearch-api-client/package.json`: `api2client@^1.0.1` (npm has
+1.0.0) and `grab-url@^1.6.23` (npm has 1.6.22). The install dies before
+compiling anything, so all 24 Coverage jobs, Test Reports, Publish to npm,
+Lockfile and the Cloudflare Workers build die with it, repo-wide.
+
+### The finding worth keeping
+**Downgrading the two specifiers does not work, and it was tried rather than
+assumed.** With `^1.0.0`/`^1.6.22` the root install succeeds in ~20s, and
+`qwksearch-api-client`'s own suite then fails to collect 3 of its 4 files:
+`api2client@1.0.0` is *published broken* — its tarball contains only
+`README.md`, `package.json` and `src/`, while `main`, `module`, `types`,
+`exports` and `bin` all point into a `dist/` that is not in the package. So
+`^1.0.1` is waiting on a fixed publish, not being over-careful. `^1.6.23` is
+equally real: it is the first `grab-url` with `onRawResponse`, which is what
+puts the HTTP status on a failed result, and `error-result-shape.test.ts`
+exists to protect that.
+
+Both packages live outside this repo, so there is nothing here to publish and
+no fix to port. The experimental edit was reverted; this change is docs only.
+
+### Scope
+- The CI-health section of the migration to-do, rewritten from two items to
+  three, leading with the outage and with "do not try the downgrade" and why.
+- One comment on #424 recording the diagnosis.
+
+### Notes for the next run
+- **Expect red CI until `api2client@1.0.1` and `grab-url@1.6.23` are on npm.**
+  Read your base commit before believing a failure is yours; right now it is
+  red there too, so local test runs are the only signal.
+- **The local `bun` is 1.3.11 while CI pins 1.4.0** (`bun-version-file:
+  package.json`). Anything that rewrites `bun.lock` locally risks a lockfile
+  CI then calls stale — a reason to leave the lockfile alone unless the change
+  is actually about dependencies.
+- PRs here still auto-merge, and #424 was merged before its checks finished —
+  so this entry's own branch was restarted from the new `master`.
+
 ## Build the Search & Sources settings pane inside the LobeHub engine
 
 **Status:** Completed
