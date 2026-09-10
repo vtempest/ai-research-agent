@@ -19,7 +19,6 @@ import {
 import { SessionProvider } from '../hooks/useSession';
 import { ChatProvider } from '../hooks/useChat';
 import { ExtractPanelProvider } from '../components/ArticleReader/ExtractPanelContext';
-import { AppSidebar } from './AppSidebar';
 import { CategoryDock } from './CategoryDock';
 import { CookieConsent } from './CookieConsent';
 import { MainViewProvider } from './MainViewProvider';
@@ -142,12 +141,7 @@ export function QwkSearchProviders({
                     id="app-scroll-root"
                     className="w-screen h-screen overflow-y-auto overflow-x-hidden pb-[calc(60px+env(safe-area-inset-bottom,0px))] md:pb-0"
                   >
-                    {showDock && (
-                      <>
-                        <AppSidebar />
-                        <CategoryDock />
-                      </>
-                    )}
+                    {showDock && <CategoryDock />}
                     <main className="bg-light-primary dark:bg-dark-primary min-h-screen">
                       {children}
                     </main>
