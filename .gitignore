@@ -61,3 +61,11 @@ apps/qwksearch-web/.open-next
 yarn.lock
 .yarnrc.yml
 bun.lockb
+
+# Only the lockfile at the repo root is real: bun resolves every workspace
+# package from it, so a bun.lock inside one is never refreshed by an install
+# here, goes stale, and then fails its own `bun install --frozen-lockfile`
+# wherever that package is installed on its own.
+packages/*/bun.lock
+packages/render-url-to-html/*/bun.lock
+apps/*/bun.lock
