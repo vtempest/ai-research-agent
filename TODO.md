@@ -92,8 +92,17 @@ lookup restores that fallback explicitly, with a comment saying why.
 - **`bun run check <dir>` silently checks one file.** Pass explicit file paths;
   a directory argument reported "1 files · lint clean" while three others went
   unlinted.
-- CI still cannot see `packages-lobe`, and PRs here still auto-merge. Both
-  remain written up in the to-do.
+- CI still cannot see `packages-lobe`, and PRs here still auto-merge — #413
+  merged ten seconds after opening, before a single coverage job finished.
+- **The recorded list of already-red packages was stale**, and that is the
+  dangerous kind of stale: it named six, two of which (`extract-pdf`,
+  `qwksearch-web`) have since been fixed, so the next run would have waved
+  through a real failure in them. Verified against the base run for #412
+  (`52eb7cce`, run 34445607248): four fail there — `chat-agent-toolkit`,
+  `extract-youtube`, `search-web-api`, `shadcn-settings` — and #413's own run
+  failed a strict subset of exactly those. `user-help-docs`, the one root
+  package this change touched, passed on both. The to-do now says to read the
+  base run rather than trust the list.
 
 ### Remaining work
 - **The user layer has no storage**, so today every deployment resolves
