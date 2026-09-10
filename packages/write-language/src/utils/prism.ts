@@ -3,7 +3,9 @@
  * a small `highlightCode` helper used by markdown-to-html.ts for code-block syntax
  * highlighting.
  */
-import Prism from "prismjs";
+// Must precede every `prismjs/components/*` import: the grammar scripts read
+// `Prism` off the global object, which this module publishes (see its docs).
+import Prism from "./prism-global";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
 import "prismjs/components/prism-javascript";
