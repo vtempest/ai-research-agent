@@ -179,12 +179,18 @@ export class ImageService {
             target: { height: resizeResult.height, width: resizeResult.width },
           });
 
-          buffer = await sharp(buffer)
-            .resize(resizeResult.width, resizeResult.height, {
-              fit: 'inside', // Maintain aspect ratio, fit within bounds
-              withoutEnlargement: false, // Allow enlargement if needed
-            })
-            .toBuffer();
+          // `Buffer.from` is load-bearing, not decoration: `buffer` is a
+          // `Buffer<ArrayBuffer>` from the fetch above, while `toBuffer()`
+          // returns the wider `Buffer<ArrayBufferLike>`, which will not assign
+          // back into it.
+          buffer = Buffer.from(
+            await sharp(buffer)
+              .resize(resizeResult.width, resizeResult.height, {
+                fit: 'inside', // Maintain aspect ratio, fit within bounds
+                withoutEnlargement: false, // Allow enlargement if needed
+              })
+              .toBuffer(),
+          );
           log('Image resized successfully, new size:', buffer.length);
         } else {
           log('Image dimensions are within model limits, no resize needed');
