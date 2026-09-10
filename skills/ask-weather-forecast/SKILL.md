@@ -34,6 +34,11 @@ Option 3 is the default and is the usual source of trouble: ipapi.co rate-limits
 and calling it from the client exposes the visitor to a third party. Deploy the worker
 (`bun run worker:deploy`) and pass `geoEndpoint` for anything real.
 
+Either lookup is repeated before it throws — `getClientLocation(geoEndpoint, ip,
+{ attempts, retryDelay })`, 3 tries with a 500ms, then 1s wait by default — because
+ipapi.co answers a rate limit as HTTP 200 with `{ error: true, reason: 'RateLimited' }`
+and a worker can drop a request while it cold-starts. Only the last error is thrown.
+
 ## Options and shapes
 
 | Option | Default | Meaning |
@@ -76,7 +81,7 @@ falls back to the browser's zone when the string is missing or invalid.
 | --- | --- |
 | The package isn't found as `react-weather-forecast` | The npm name is `use-weather-forecast`. |
 | Wrong city, or the datacenter's location | IP geolocation resolved the server or a VPN exit. Pass explicit coordinates, or use `geoEndpoint` so Cloudflare's edge geo is used. |
-| `ipapi.co lookup failed: …` | Rate-limited or blocked. Deploy the geo worker and set `geoEndpoint`. |
+| `ipapi.co lookup failed: …` | Rate-limited or blocked, and every repeat failed too. Deploy the geo worker and set `geoEndpoint`. |
 | `Geolocation worker lookup failed: <status>` | The endpoint is wrong or not deployed. |
 | `Invalid weather response` | Open-Meteo replied without `current`/`hourly`/`daily` — usually invalid coordinates (only one of lat/lon given, so the pair was ignored). |
 | Stale data after changing units | Different units → different URL → different cache key, but an unchanged URL keeps its 30-minute entry. `clearWeatherForecastCache()`. |

@@ -16,8 +16,8 @@
     "build:editor": "turbo build --filter=react-reason-editor",
     "test": "vitest run",
     "test:ui": "vitest --ui",
-    "test:report": "vitest run --reporter=default --reporter=html --outputFile.html=apps/test-reports/dist/index.html",
-    "test:report:coverage": "vitest run --reporter=default --reporter=html --outputFile.html=apps/test-reports/dist/index.html --coverage",
+    "test:report": "VITEST_HTML_REPORT_DIR=apps/test-reports/dist vitest run",
+    "test:report:coverage": "VITEST_HTML_REPORT_DIR=apps/test-reports/dist vitest run --coverage",
     "deploy:test-reports": "cd apps/test-reports && wrangler deploy"
   },
   "devDependencies": {

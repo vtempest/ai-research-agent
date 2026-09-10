@@ -39,6 +39,7 @@ logs/
 /coverage/
 coverage/
 html/
+.vitest/
 test-report.junit.xml
 
 # Miscellaneous
