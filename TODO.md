@@ -1,5 +1,119 @@
 ## In Progress
 
+## Store the search fan-out's user preferences inside the LobeHub engine
+
+**Status:** Completed
+**Source:** Scheduled task — "merge lobehub and qwksearch.com so that lobehub is
+the core engine but the elements of qwksearch are then added". Picked up the
+LobeHub Migration To-Do's own #1 suggested next: search preferences' user layer,
+1.6's equivalent, which 1.8 had just unblocked by landing the resolver.
+**Branch:** `claude/magical-bohr-uxcws8`
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+1.8 gave `resolveSearchSettings` a user layer with a type and no storage:
+`UserSearchOverrides` was accepted by the resolver and by `QwkSearchImpl`'s
+constructor, and nothing ever produced one, so every deployment resolved
+defaults-under-env exactly as before. Give it storage, an API, and a path into a
+live search — and answer the question 1.8 recorded as unsolved: how the user id
+reaches an impl that a factory builds with no request in scope.
+
+### Scope
+One new storage module and its test, one new route and its test, one D1
+migration, four one-line upstream edits threading `userId`, and documentation.
+No UI — that is the recorded next item.
+
+- `apps/server/src/services/search/impls/qwksearch/searchPreferences.ts` (new) —
+  the `search_settings` table, its drizzle client, load/save/clear.
+- `.../searchPreferences.test.ts` (new, 18 cases).
+- `worker/routes/qwksearch/searchSettings.ts` (new) —
+  `GET`/`PUT`/`DELETE /api/doc/search-settings`.
+- `.../searchSettings.test.ts` (new, 13 cases).
+- `migrations/d1/0003_search_settings.sql` (new), added to both `cf:d1:migrate`
+  scripts in `package.json` — they name their files one by one.
+- `.../qwksearch/index.ts` — the constructor takes `{ userId, loadOverrides }`
+  and memoizes the read; `settingsFor` takes the resolved overrides.
+- Upstream, one line each: `impls/index.ts` (a `SearchImplOptions` argument),
+  `services/search/index.ts` (the `SearchService` constructor),
+  `serverRuntimes/webBrowsing.ts` (passes `context.userId`), and five assertions
+  in `services/search/index.test.ts`.
+- `worker/qwksearch/schema.ts` re-exports the table; `worker/app.ts` mounts the
+  route.
+- Docs: §1.9 and §1.10 in the migration to-do, §F5b in the integrations
+  reference, the feature list, env note and upstream-diff in
+  `packages-lobe/README.md`.
+
+### Non-goals
+- **The pane.** 1.7's equivalent, now tracked as 1.10 and the recorded next item.
+  Its backend contract is settled, including the `options` metadata it needs.
+- **Editing the endpoint or the API key.** They stay Worker secrets. The type
+  excludes them and the route's tests prove the runtime does too.
+
+### What changed
+Three decisions carry the design:
+
+- **The storage lives under `@/server/*`, not `worker/` — the one place the two
+  settings features could not be twins.** Extraction's preferences sit in
+  `worker/qwksearch/` because only Worker routes read them. Search preferences are
+  read by `QwkSearchImpl` as well, which is `@/server/*` code, and the dependency
+  runs worker → `@/server/*` and never back; only the `@/server/*` placement
+  serves both. `worker/qwksearch/schema.ts` re-exports the table rather than
+  declaring it, so it keeps one definition and still appears beside its siblings,
+  and the D1 handle comes from `@/database/core/cloudflare` — the bridge the
+  database package already uses — rather than from `worker/qwksearch/db.ts`, which
+  would have been the backwards import. Cost: a second thin drizzle wrapper over
+  the same `DB` binding.
+- **1.8's open question is answered by threading, not by a per-request factory.**
+  `webBrowsingRuntime`'s factory already receives a `ToolExecutionContext` carrying
+  `userId`, so it travels `SearchService` → `createSearchServiceImpl` →
+  `QwkSearchImpl` in four one-line changes with no lifecycle change. The
+  alternative — a per-request impl factory on `SearchService` — would rebuild all
+  twelve providers on every query to serve one of them.
+- **The row is read once per impl, and the promise is what is memoized.** An impl
+  is built per tool execution, so that is once per conversation turn even when the
+  turn fans out several searches, and concurrent queries collapse onto one read.
+  Reads resolve to `{}` on any failure — including no D1 binding at all, which is
+  the Node dev server and every non-Cloudflare deployment — so a preferences
+  outage degrades to the operator's configuration instead of failing a search.
+  Writes propagate, because the pane has to be able to say a preference was not
+  saved.
+
+### Verification
+- [x] `bun run check` over all 12 changed source files — lint clean, 104 tests
+      pass. The 4 reported warnings are pre-existing `no-empty` on the upstream
+      `services/search/index.ts` log guards, untouched by this change.
+- [x] `npx vitest run apps/server/src/services/search` — 208 passed, 7 skipped.
+      That includes the upstream `SearchService` suite, which is the regression
+      signal for the threaded constructor.
+- [x] `npx vitest run worker/` — 125 passed, 9 files. Covers the schema
+      re-export and the new mount.
+- [x] Type check: **scoped**, per the to-do's OOM warning. Zero errors in any
+      changed file; the 323 the scoped project reports are all pre-existing
+      `apps/desktop`, `packages/builtin-skills` and `worker/qwksearch/extract.ts`
+      (the latter being the known dead-code item, to-do §1.3).
+- [x] Worker bundle resolution: `build:worker:server` transformed 16242 modules
+      against 16240 on a stashed tree, so the new cross-boundary import resolves.
+      It then fails on `@napi-rs/canvas`'s native binding — identically on a clean
+      tree, so not this change; see "Notes".
+
+### Notes for the next run
+- **`bun run build:worker:server` cannot complete after
+  `pnpm install --ignore-scripts`.** It dies at `[UNLOADABLE_DEPENDENCY] …
+  skia.linux-x64-gnu.node` because the native binding is a stub when postinstall
+  never ran, and it fails the same way on a clean tree. It is still worth running
+  as a *resolution* check: the error comes after `✓ N modules transformed`, so an
+  unresolvable import fails earlier and differently. Compare the module count
+  against a stashed tree. This is now recorded in the to-do.
+- **`pnpm install --ignore-scripts` took about 3 minutes here.** Anything under
+  `apps/server/` needs it; the `worker/`-only scratch-vitest recipe does not
+  reach that tree.
+- **Both `cf:d1:migrate` scripts enumerate their `.sql` files by hand.** A new
+  migration that is not added to both never runs. Easy to miss — the directory is
+  not globbed.
+- CI still cannot see `packages-lobe`, and PRs here still auto-merge.
+
+
 ## Give the search fan-out a settings layer inside the LobeHub engine
 
 **Status:** Completed

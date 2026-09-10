@@ -40,7 +40,10 @@ export const webBrowsingRuntime: ServerRuntimeRegistration = {
             },
           }
         : undefined,
-      searchService: new SearchService(),
+      // `userId` is what carries the caller's stored search preferences into the
+      // QwkSearch fan-out; other providers ignore it. Anonymous tool calls have
+      // none and get the operator's configuration.
+      searchService: new SearchService({ userId }),
     });
   },
   identifier: WebBrowsingManifest.identifier,

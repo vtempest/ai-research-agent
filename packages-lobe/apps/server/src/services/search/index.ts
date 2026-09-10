@@ -5,7 +5,7 @@ import pMap from 'p-map';
 
 import { toolsEnv } from '@/envs/tools';
 
-import { type SearchImplType, type SearchServiceImpl } from './impls';
+import { type SearchImplOptions, type SearchImplType, type SearchServiceImpl } from './impls';
 import { createSearchServiceImpl } from './impls';
 
 const DEFAULT_CRAWL_CONCURRENCY = 3;
@@ -71,12 +71,18 @@ export class SearchService {
     return toolsEnv.CRAWLER_RETRY ?? DEFAULT_CRAWLER_RETRY;
   }
 
-  constructor() {
+  /**
+   * @param options Forwarded to every impl. `userId` is what lets the QwkSearch
+   *                provider apply the signed-in user's stored search preferences;
+   *                constructing the service without it keeps the previous
+   *                behaviour — the operator's configuration for everyone.
+   */
+  constructor(options: SearchImplOptions = {}) {
     const impls = this.searchImpls;
     this.searchImpList =
       impls.length > 0
-        ? impls.map((impl) => createSearchServiceImpl(impl))
-        : [createSearchServiceImpl()];
+        ? impls.map((impl) => createSearchServiceImpl(impl, options))
+        : [createSearchServiceImpl(undefined, options)];
   }
 
   async crawlPages(input: { impls?: CrawlImplType[]; urls: string[] }) {

@@ -24,7 +24,7 @@ Last updated: 2026-09-10.
 |---|---|
 | 0. Baseline — LobeHub builds and deploys on Workers | ✅ |
 | 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer; parity open |
-| 2. Settings as the single system of record | 🚧 Extraction shipped end to end; Search & Sources has its resolution layer, needs storage + pane |
+| 2. Settings as the single system of record | 🚧 Extraction shipped end to end; Search & Sources has resolution + storage + API, needs only the pane |
 | 3. REASON docs inside the engine | ⬜ |
 | 4. Public cutover | 🔒 needs the license answer |
 | 5. Decommission + satellites + ops gaps | ⬜ |
@@ -349,16 +349,90 @@ Four things worth knowing before building the pane on top of it:
 
 Follow-ups:
 
-- ⬜ **The user layer has no storage.** `QwkSearchImpl`'s constructor takes
-  `UserSearchOverrides` and the factory in
-  `apps/server/src/services/search/impls/index.ts` passes none, so today every
-  deployment resolves defaults-under-env exactly as before. This is 1.6's
-  equivalent and the next step: a `search_settings` D1 table and a
-  `/api/doc/search-settings` route, then the factory needs the request's user id
-  to reach the impl — which extraction did not have to solve, because its chain
-  runs inside a Worker route that already has the session.
+- ✅ **The user layer has storage** — 1.9 below.
 - ⬜ **`searchSettingsForClient` has no client**, the same gap 1.6 left before
-  1.7 closed it.
+  1.7 closed it. `GET /api/doc/search-settings` serves it now; the pane is 1.10.
+
+### 1.9 Search preferences: the user layer ✅
+
+The search-side mirror of 1.6, and the second of the three steps the Search &
+Sources pane needs. 1.8 gave `resolveSearchSettings` a user layer with no
+storage; this is the storage, the route that writes it, and the wiring that
+carries it to the fan-out.
+
+| Piece | File |
+|---|---|
+| `search_settings` table + load/save/clear | `apps/server/src/services/search/impls/qwksearch/searchPreferences.ts` |
+| D1 migration (idempotent, like 0001–0002) | `migrations/d1/0003_search_settings.sql` |
+| `GET`/`PUT`/`DELETE /api/doc/search-settings` | `worker/routes/qwksearch/searchSettings.ts` |
+| Table listed beside its siblings | `worker/qwksearch/schema.ts` (re-export) |
+
+**The open question 1.8 left — how the user id reaches the impl — is answered by
+threading it, not by a per-request factory.** `webBrowsingRuntime`'s factory
+already receives a `ToolExecutionContext` carrying `userId`; it now passes it to
+`new SearchService({ userId })`, which forwards it through
+`createSearchServiceImpl(type, options)` to `new QwkSearchImpl({ userId })`. Four
+one-line changes in a straight line, and no lifecycle change: the service is
+still built per tool execution and still holds its impls for its own lifetime.
+The rejected alternative — giving `SearchService` a per-request impl factory —
+would have rebuilt every provider on every query to serve one of twelve.
+
+Three decisions are worth knowing before building the pane:
+
+- **The storage lives under `@/server/*`, not `worker/`, and the schema file
+  re-exports it.** This is the one place the two features could not be twins.
+  Extraction's preferences sit in `worker/qwksearch/` because only Worker routes
+  read them; search preferences are read by `QwkSearchImpl` too, which is
+  `@/server/*` code, and the dependency runs worker → `@/server/*` and never
+  back. Only the `@/server/*` placement serves both, so `worker/qwksearch/schema.ts`
+  re-exports the table rather than declaring it — the table still has exactly one
+  definition and still appears beside its siblings. The D1 handle comes from
+  `@/database/core/cloudflare`, the bridge the database package already uses to
+  reach the bindings, so nothing imports `worker/` backwards. Cost: a second thin
+  drizzle wrapper over the same `DB` binding, which is a pointer, not a pool.
+- **The row is read once per impl, not once per query.** `overridesFor()` memoizes
+  the *promise*, so a turn that fans out several searches pays one D1 read and
+  concurrent queries collapse onto it. An impl is built per tool execution, so
+  "once per impl" is once per conversation turn — there is no staleness window to
+  invalidate.
+- **A preferences outage degrades, it does not fail.** `loadUserSearchOverrides`
+  resolves to `{}` on any read error and when there is no D1 binding at all, so a
+  Node dev server, a non-Cloudflare deployment and a D1 outage all search on the
+  operator's configuration. `overridesFor()` catches too, so an injected loader
+  cannot break that guarantee and a rejected promise is never what the memo
+  caches. Writes are the opposite and propagate, because the pane has to be able
+  to say a preference was not saved.
+
+The endpoint and the API key are excluded from the user layer at the type level
+and the route proves it at runtime: `PUT`ing an `apiKey` or `endpoint` stores
+neither, and `GET` reduces both to presence flags under `effective.configured`.
+`PUT` returns what was actually stored, so a value that failed validation is
+visible to the pane rather than silently dropped.
+
+Verified by 31 new tests — 18 on the storage module and 13 on the route, both
+running against the real resolver with only D1 and the session faked.
+
+Follow-ups:
+
+- ⬜ **`bun run cf:d1:migrate` must run before the route is useful.** Both migrate
+  scripts in `package.json` name their files one by one and now include 0003; the
+  table does not exist on `qwksearch-new` until someone with Cloudflare
+  credentials runs it. Until then `GET` answers from defaults-under-env and `PUT`
+  returns a 500.
+- ⬜ **Not seen against a real D1.** No Cloudflare credentials here, so the
+  drizzle calls are verified against a fake that reproduces the three chains the
+  module uses, and never against SQLite.
+
+### 1.10 Search & Sources settings pane ⬜
+
+1.7's equivalent, and the last of the three steps. `GET /api/doc/search-settings`
+now ships `options` — the category list, the recency filters and the numeric
+bounds — for exactly the reason extraction's route does: so a new category never
+needs a matching edit in the UI. Follow 1.7's five-file shape
+(`api.ts`, `formState.ts`, `features/SearchForm.tsx`, `index.tsx`, plus the
+`SettingsTabs` enum member and `componentMap.ts` registration), and inherit its
+three open follow-ups — the 401 that shows raw error text is the same bug in both
+panes.
 
 ### 1.4 Agent parity checklist ⬜
 
@@ -389,13 +463,13 @@ Reproduce today's chat-mode behavior on the engine and record each gap:
   ✅ **Extraction is done** — 1.5 (resolution), 1.6 (storage + API) and 1.7 (the
   pane). It is a client of `GET`/`PUT`/`DELETE /api/doc/extraction-settings` and
   has no slice in `src/store/user/slices/settings/`; 1.6 records why.
-  🚧 **Search & Sources** is one of the same three steps in: the resolution
-  layer landed as 1.8 above, mirroring 1.5. What remains is storage plus a
-  route (1.6's equivalent) and then the pane (1.7's). One asymmetry to plan
-  for: extraction's chain runs inside a Worker route that already has the
-  session, while the search impl is constructed by a factory with no request in
-  scope, so the storage step has to get the user id to `QwkSearchImpl` before
-  the pane can do anything.
+  🚧 **Search & Sources** is two of the same three steps in: the resolution
+  layer landed as 1.8, and storage plus `GET`/`PUT`/`DELETE
+  /api/doc/search-settings` as 1.9. Only the pane (1.7's equivalent, tracked as
+  1.10) remains. The asymmetry 1.8 flagged — the search impl being built by a
+  factory with no request in scope — is resolved: `userId` is threaded from the
+  tool-execution context through `SearchService` to the impl, and 1.9 records
+  why that beat a per-request factory.
 - ⬜ **2.3 Key migration.** Server env keys stay Worker secrets. Per-user keys
   live in `localStorage` today and have no server copy — announce a one-time
   re-entry into the engine's key vault; do not build a migrator.
@@ -477,17 +551,11 @@ Blocked on the LobeHub Community License answer, recorded in
 **Suggested next, in order** — all code-only, all testable without Cloudflare
 credentials:
 
-1. **Search preferences: the user layer** — 1.6's equivalent, now that 1.8 has
-   landed the resolution layer. A `search_settings` D1 table and a
-   `GET`/`PUT`/`DELETE /api/doc/search-settings` route, both close copies of
-   `extractionPreferences.ts` and `routes/qwksearch/extractionSettings.ts`.
-   The one thing that is genuinely new: the extraction chain runs inside a
-   Worker route that already has the session, but `QwkSearchImpl` is built by
-   `impls/index.ts` with no request in scope, so this step also has to decide
-   how the user id reaches the impl — resolve the overrides in the tool's
-   execution runtime and pass them to the constructor (the seam is already
-   there), or give `SearchService` a per-request factory. Pick that before
-   writing the table.
+1. **The Search & Sources pane (1.10)** — 1.7's equivalent, and the last step of
+   2.2. Its backend is complete as of 1.9: `GET /api/doc/search-settings` already
+   ships the `options` metadata the form needs, so this is a five-file UI change
+   against a settled contract, with 1.7 as a line-by-line template. Largest
+   remaining user-visible win, and testable without Cloudflare credentials.
 2. **1.3's open question — two chains in `extract.ts`.** `defaultTiersFor`,
    `extractViaYouTube`, `extractViaPdf`, `loadCiteExtractor` and
    `articleViaCiteExtractor` have never been on a request path, and lint reports
@@ -519,6 +587,15 @@ Then, for whichever you pick:
    + auto-discovered related tests in one pass) available, which is the workflow
    `packages-lobe/AGENTS.md` documents. Prefer it unless the change is
    `worker/`-only.
+
+   **`bun run build:worker:server` cannot finish after an `--ignore-scripts`
+   install.** It fails at `[UNLOADABLE_DEPENDENCY] … @napi-rs/canvas …
+   skia.linux-x64-gnu.node` — the native binding is a stub when postinstall never
+   ran — and it fails identically on a clean tree, so it is not a signal about
+   your change. It is still useful as a *resolution* check: the error comes after
+   `✓ N modules transformed`, so a new import that the Worker bundle cannot
+   resolve fails earlier and differently. Compare the module count against a
+   stashed tree to confirm your files were transformed.
 
    **Do not run `bun run check --type`.** The repo-wide type check reaches
    ~13.8 GB RSS and gets OOM-killed on a 15 GB box — twice observed now. Write a

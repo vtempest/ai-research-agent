@@ -32,10 +32,23 @@ export enum SearchImplType {
 }
 
 /**
+ * Caller context an impl may use, fixed for the impl's lifetime.
+ *
+ * Only the QwkSearch impl reads it today: `userId` is how the signed-in user's
+ * stored search preferences reach the fan-out (migration to-do § 1.9). Every
+ * other impl ignores it, and omitting it resolves the operator's configuration,
+ * so the options bag is additive for callers that do not have a session.
+ */
+export interface SearchImplOptions {
+  userId?: string;
+}
+
+/**
  * Create a search service implementation instance
  */
 export const createSearchServiceImpl = (
   type: SearchImplType = SearchImplType.SearXNG,
+  options: SearchImplOptions = {},
 ): SearchServiceImpl => {
   switch (type) {
     case SearchImplType.Anspire: {
@@ -71,7 +84,7 @@ export const createSearchServiceImpl = (
     }
 
     case SearchImplType.QwkSearch: {
-      return new QwkSearchImpl();
+      return new QwkSearchImpl({ userId: options.userId });
     }
 
     case SearchImplType.SearXNG: {

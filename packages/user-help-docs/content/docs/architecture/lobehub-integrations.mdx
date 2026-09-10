@@ -293,7 +293,7 @@ DEFAULT_SEARCH_SETTINGS              shipped behaviour
 | Empty is not a value | A normalizer that finds nothing valid returns `undefined`, not `[]`, so a typo in `QWKSEARCH_SEARCH_CATEGORIES` falls through to the layer above instead of searching nothing |
 | `searchTimeRange: 'anytime'` | The manifest's "no filter" value is not one the endpoint understands, so it drops out of the request layer and whatever the operator configured stands — `undefined`, no filter, unless they set one |
 | Diagnostics | `redactSearchSettings` replaces the credential with a boolean. `searchSettingsForClient` goes further for the future pane: it returns exactly the fields a user may change, reduces the endpoint and the key to presence flags under `configured` (an endpoint URL can carry basic-auth credentials in its userinfo), and serializes the two optional fields as `null` rather than omitting them, because absent means "inherit" everywhere else in this seam |
-| Where the user layer lives | Nowhere yet. `QwkSearchImpl`'s constructor takes `UserSearchOverrides` and nothing passes them — that is the storage step, the search-side mirror of F2b |
+| Where the user layer lives | On D1, as of F5b — the search-side mirror of F2b |
 
 Env vars, all optional and all defaulted: `QWKSEARCH_SEARCH_CATEGORIES`,
 `QWKSEARCH_SEARCH_MAX_CATEGORIES`, `QWKSEARCH_SEARCH_LANGUAGE`,
@@ -307,8 +307,54 @@ already defaulted to.
 
 The module lives beside its consumer in `impls/qwksearch/` rather than under
 `worker/` (where `extractSettings.ts` sits) because the dependency runs
-worker → `@/server/*` and never back: a future `/api/doc/search-settings` route
-in the Worker can import this, but this could not import from `worker/`.
+worker → `@/server/*` and never back: the `/api/doc/search-settings` route in the
+Worker imports this, and this could not have imported from `worker/`.
+
+### F5b — Search preferences contract
+
+F5a defined a user layer and gave it no storage. This is that storage, its API,
+and the path that carries it into a live search.
+
+```
+GET/PUT/DELETE /api/doc/search-settings   (worker/routes/qwksearch/searchSettings.ts)
+  → searchPreferences.ts
+    → D1 `search_settings` (userId PRIMARY KEY, overrides JSON, updatedAt)
+
+web_search tool call
+  → webBrowsingRuntime.factory({ userId, … })      ToolExecutionContext
+    → new SearchService({ userId })
+      → createSearchServiceImpl(type, { userId })
+        → new QwkSearchImpl({ userId })
+          → userSearchOverridesFor(userId)         ← the same table, once per impl
+            → resolveSearchSettings(env, userOverrides, callOverrides)
+```
+
+| Concern | Behavior |
+|---|---|
+| Storage | One row per LobeHub Better Auth user id, on the same D1 database as `extraction_settings`. A JSON blob, not a column per setting, for F2b's reason: the type is the schema |
+| Where it lives | `apps/server/src/services/search/impls/qwksearch/searchPreferences.ts`, under `@/server/*` — **the one place the two settings features are not twins.** Extraction's preferences sit in `worker/` because only Worker routes read them; these are read by `QwkSearchImpl` too, which is `@/server/*` code, and the dependency runs worker → `@/server/*` and never back. Only this placement serves both consumers |
+| Where the table is declared | Here, and re-exported by `worker/qwksearch/schema.ts` so that file stays the one list of QwkSearch D1 tables and the table keeps exactly one definition |
+| How it reaches D1 | `getCfEnv` from `@/database/core/cloudflare`, the bridge the database package already uses to reach the Worker bindings — not `worker/qwksearch/db.ts`, which would be the backwards import. Cost: a second thin drizzle wrapper over the same `DB` binding |
+| How the user id reaches the impl | Threaded through the four constructors above. F5a flagged this as the open question, since the impl is built by a factory with no request in scope; the answer is that the factory's `ToolExecutionContext` already carries `userId`. The rejected alternative, a per-request impl factory on `SearchService`, would rebuild all twelve providers per query to serve one |
+| Read frequency | Once per impl, not per query — `overridesFor()` memoizes the promise, so a turn that fans out several searches pays one D1 read and concurrent queries collapse onto it. An impl is built per tool execution, so there is no staleness window |
+| Validation | Twice — `normalizeSearchOverrides` on write and again on read, per F2b. The read pass is what keeps a row from an older build out of a live request |
+| Response shape | `{ overrides, effective, options }`, the same three parts F2b returns. `options` carries the ten categories, the four recency filters and the numeric bounds, so a new category never needs a matching UI edit |
+| What cannot be stored | `endpoint` and `apiKey`. `UserSearchOverrides` excludes them at the type level and the route proves it at runtime: `PUT`ing either stores neither, and `GET` reduces both to presence flags under `effective.configured` |
+| Write semantics | PUT replaces rather than merges and echoes what was stored; DELETE returns the user to the operator's configuration — F2b's semantics exactly |
+| Auth | All three verbs require a session. The anonymous equivalent is the `searchCategories` / `searchTimeRange` arguments the tool call already carries |
+| Anonymous cost | A search with no `userId` skips the read entirely rather than querying for a row that cannot exist |
+| Failure | Reads never throw: an unreadable row, unparseable JSON, a D1 outage, or no D1 binding at all resolves to `{}` and the search runs on the operator's configuration. The impl catches as well as the storage module, so an injected loader cannot break that guarantee and a rejection is never what the memo caches. Writes are the opposite and propagate, so the pane can say a preference was not saved |
+
+Precedence, lowest to highest: shipped default → Worker env → the user's saved
+overrides → the tool call's own arguments.
+
+Four upstream LobeHub files are edited, each by one line of signature or call:
+`services/search/index.ts` (the `SearchService` constructor takes options),
+`services/search/impls/index.ts` (`createSearchServiceImpl` forwards them),
+`services/toolExecution/serverRuntimes/webBrowsing.ts` (passes `userId`), and
+`services/search/index.test.ts` (five assertions on the factory's arity).
+`worker/app.ts` gains one mount line. The route, the preferences module and the
+migration are new.
 
 ## 3. Shared infrastructure
 
@@ -373,16 +419,21 @@ cd packages-lobe
 # and the D1-backed user layer)
 bunx vitest run worker/qwksearch
 
-# The preferences API and the article route that folds the user layer in
+# Both preferences APIs and the article route that folds the user layer in
 bunx vitest run worker/routes/qwksearch/extractionSettings.test.ts \
+  worker/routes/qwksearch/searchSettings.test.ts \
   worker/routes/qwksearch/article.test.ts
 
 # Worker, Cloudflare adapters, QwkSearch features, the search provider and its
-# settings layer (82 cases across index.test.ts and searchSettings.test.ts)
+# settings and preferences layers (118 cases across index.test.ts,
+# searchSettings.test.ts, searchPreferences.test.ts and the route test)
 bunx vitest run worker src/features/QwkSearch \
   src/libs/better-auth/utils/kvSecondaryStorage.test.ts \
   apps/server/src/services/email/impls/cloudflare \
   apps/server/src/services/search/impls/qwksearch
+
+# The upstream search service, whose constructor now forwards the user id
+bunx vitest run apps/server/src/services/search
 
 # Route/nav registration touched by /docs
 bunx vitest run src/spa/router/desktopRouter.sync.test.tsx src/features/NavPanel/routeKey.test.ts
@@ -394,6 +445,7 @@ cd packages/database && bunx vitest run src/core/cloudflare.test.ts
 ## 7. Not yet integrated
 
 Tracked with owners and next steps in [LobeHub Migration To-Do](./lobehub-migration-todo):
-the REASON editor inside `/docs`, the Search & Sources pane, the Extraction
-pane's **UI** (its backend is complete — see F2b), one login across both
-Workers, chat-history migration, and the OIDC/Redis/mobile-SPA ops gaps.
+the REASON editor inside `/docs`, the Search & Sources pane's **UI** (its backend
+is complete — see F5b), one login across both Workers, chat-history migration,
+and the OIDC/Redis/mobile-SPA ops gaps. The Extraction pane is now done end to
+end (F2c).

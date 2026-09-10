@@ -30,6 +30,7 @@ import { TRPCError } from '@trpc/server';
 import debug from 'debug';
 
 import { type SearchServiceImpl } from '../type';
+import { userSearchOverridesFor } from './searchPreferences';
 import {
   resolveSearchSettings,
   searchOverridesFromParams,
@@ -102,25 +103,60 @@ export class QwkSearchImpl implements SearchServiceImpl {
    */
   readonly useAutoSearchEngineSelection = true;
 
+  /** Memoized override read. One D1 round-trip per impl, not per query. */
+  private pendingOverrides?: Promise<UserSearchOverrides>;
+
   /**
-   * The signed-in user's preferences, if the caller has them.
-   *
-   * Nothing constructs the impl with them yet — that is the storage step of
-   * migration to-do § 2.2, the search-side mirror of extraction's 1.6. Until
-   * then every deployment resolves to defaults under the environment, exactly
-   * as before, and the seam is here for that step to fill.
+   * @param options.userId     The signed-in user whose preferences apply, if any.
+   *                           Absent for an anonymous search, which resolves to
+   *                           the operator's configuration — exactly what every
+   *                           deployment got before the user layer existed.
+   * @param options.loadOverrides Reads the stored overrides. Defaults to the D1
+   *                           table in `./searchPreferences`; injectable so a
+   *                           test (or a caller that already has the row) can
+   *                           supply them without a binding.
    */
-  constructor(private readonly overrides: UserSearchOverrides = {}) {}
+  constructor(
+    private readonly options: {
+      loadOverrides?: (userId?: string) => Promise<UserSearchOverrides>;
+      userId?: string;
+    } = {},
+  ) {}
+
+  /**
+   * The user layer, read once and reused.
+   *
+   * An impl is built per tool execution, so "once per impl" is once per
+   * conversation turn — and a single turn can fan out several queries. Caching
+   * the promise rather than the value also collapses concurrent queries onto one
+   * read.
+   *
+   * A preferences outage must never fail a search, so a rejection resolves to no
+   * overrides and the query runs on the operator's configuration. The default
+   * loader already swallows its own failures; the `catch` is here so an injected
+   * one cannot break that guarantee, and so a rejected promise is never what the
+   * memo caches.
+   */
+  private overridesFor(): Promise<UserSearchOverrides> {
+    this.pendingOverrides ??= (this.options.loadOverrides ?? userSearchOverridesFor)(
+      this.options.userId,
+    ).catch((error) => {
+      console.error('[QwkSearchImpl] search preferences read failed', error);
+      return {};
+    });
+
+    return this.pendingOverrides;
+  }
 
   /**
    * Resolved per query, not per instance: `SearchService` holds one impl for
    * the lifetime of the process, and reading the environment lazily is what
    * lets a test set `QWKSEARCH_SEARCH_URL` after construction.
    */
-  private settingsFor(params: SearchParams): SearchSettings {
+  private settingsFor(params: SearchParams, overrides: UserSearchOverrides): SearchSettings {
     return resolveSearchSettings(
       process.env as Record<string, string | undefined>,
-      this.overrides,
+      overrides,
       searchOverridesFromParams(params),
     );
   }
@@ -170,7 +206,7 @@ export class QwkSearchImpl implements SearchServiceImpl {
   }
 
   async query(query: string, params: SearchParams = {}): Promise<UniformSearchResponse> {
-    const settings = this.settingsFor(params);
+    const settings = this.settingsFor(params, await this.overridesFor());
     const categories = settings.categories;
     log('querying %o across categories %o', query, categories);
 

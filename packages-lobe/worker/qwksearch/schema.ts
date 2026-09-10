@@ -86,6 +86,18 @@ export const extractionSettings = sqliteTable('extraction_settings', {
   userId: text('userId').primaryKey(),
 });
 
+/**
+ * Per-user overrides for the search fan-out — the user layer of
+ * `apps/server/src/services/search/impls/qwksearch/searchSettings.ts`.
+ *
+ * Defined there rather than here, and re-exported so this file stays the one
+ * place that lists the QwkSearch D1 tables. The search impl is `@/server/*` code
+ * and the dependency runs worker → `@/server/*` and never back, so the table has
+ * to be declared on the side both consumers can reach — see that module's
+ * "Why it lives here" note.
+ */
+export { searchSettings } from '@/server/services/search/impls/qwksearch/searchPreferences';
+
 export const documents = sqliteTable(
   'documents',
   {
