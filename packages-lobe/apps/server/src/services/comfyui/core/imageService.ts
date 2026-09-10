@@ -138,26 +138,11 @@ export class ImageService {
         });
       }
 
-      // Get image metadata using sharp (only on server-side)
-      let originalWidth: number | undefined;
-      let originalHeight: number | undefined;
-
-      // Only use sharp on server-side (Node.js environment)
-      if (typeof window === 'undefined') {
-        const sharpModule = await import('sharp');
-        const sharp = sharpModule.default;
-        const sharpInstance = sharp(buffer);
-        const metadata = await sharpInstance.metadata();
-        originalWidth = metadata.width;
-        originalHeight = metadata.height;
-      } else {
-        // Sharp was incorrectly bundled to client-side - this is a build configuration error
-        throw new Error(
-          'FATAL: Sharp module was bundled to browser environment. This is a build configuration error. ' +
-            'Sharp is a native Node.js module and cannot run in the browser. ' +
-            'Please check your Next.js or webpack configuration.',
-        );
-      }
+      // Read the source dimensions. The codec is WASM, so unlike the native
+      // module it replaced there is no environment that cannot load it — the
+      // server-side guard this used to need is gone.
+      const { default: sharp } = await import('@lobechat/image-photon');
+      const { height: originalHeight, width: originalWidth } = await sharp(buffer).metadata();
 
       if (!originalWidth || !originalHeight) {
         throw new ServicesError(
@@ -194,22 +179,13 @@ export class ImageService {
             target: { height: resizeResult.height, width: resizeResult.width },
           });
 
-          // Resize image using sharp (only on server-side)
-          if (typeof window === 'undefined') {
-            const sharpModule = await import('sharp');
-            const sharp = sharpModule.default;
-            buffer = Buffer.from(
-              await sharp(buffer)
-                .resize(resizeResult.width, resizeResult.height, {
-                  fit: 'inside', // Maintain aspect ratio, fit within bounds
-                  withoutEnlargement: false, // Allow enlargement if needed
-                })
-                .toBuffer(),
-            );
-            log('Image resized successfully, new size:', buffer.length);
-          } else {
-            log('Warning: Cannot resize image in browser environment');
-          }
+          buffer = await sharp(buffer)
+            .resize(resizeResult.width, resizeResult.height, {
+              fit: 'inside', // Maintain aspect ratio, fit within bounds
+              withoutEnlargement: false, // Allow enlargement if needed
+            })
+            .toBuffer();
+          log('Image resized successfully, new size:', buffer.length);
         } else {
           log('Image dimensions are within model limits, no resize needed');
         }

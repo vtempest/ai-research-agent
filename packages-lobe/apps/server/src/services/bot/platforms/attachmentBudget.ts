@@ -133,11 +133,12 @@ const COMPRESSION_LADDER: Array<[number, number]> = [
 
 /**
  * Re-encode an image to fit `maxBytes`, or return undefined when it cannot
- * (not an image sharp can decode, or still over budget at the smallest rung).
+ * (not an image the codec can decode, or still over budget at the smallest
+ * rung).
  *
- * sharp is imported lazily: this module is reachable from the outbound push
- * path, which deliberately keeps heavy native dependencies out of its module
- * graph (see services/messenger/outbound.ts) — the import cost is only paid
+ * The codec is imported lazily: this module is reachable from the outbound
+ * push path, which deliberately keeps heavy dependencies out of its module
+ * graph (see services/messenger/outbound.ts) — the WASM binary is only loaded
  * when an over-budget image actually needs recompression.
  */
 export const compressImageToBudget = async (
@@ -145,7 +146,7 @@ export const compressImageToBudget = async (
   maxBytes: number,
 ): Promise<Buffer | undefined> => {
   try {
-    const { default: sharp } = await import('sharp');
+    const { default: sharp } = await import('@lobechat/image-photon');
 
     // An animated GIF or WebP re-encodes to a single static frame, silently
     // turning the user's animation into a still. There is no JPEG that can
@@ -178,7 +179,7 @@ export const compressImageToBudget = async (
     return undefined;
   } catch (error) {
     // Routine input, not a system fault: plenty of things a user attaches are
-    // not images sharp can decode. The caller records `compression-failed`
+    // not images the codec can decode. The caller records `compression-failed`
     // against the attachment, which is where the reason belongs.
     log('compressImageToBudget failed: %O', error);
     return undefined;
@@ -255,8 +256,8 @@ const resolveSize = async (attachment: BotMessageAttachment): Promise<number | u
  * sender can only report the symptom, and "the compression failed" stays a
  * guess. But a per-attachment print is the wrong carrier: it is unattributable
  * prose, it scales with attachment count, and it would put routine input (an
- * image sharp cannot decode) into the error stream. The reason travels with the
- * result instead, and the delivery boundary decides what to record.
+ * image the codec cannot decode) into the error stream. The reason travels
+ * with the result instead, and the delivery boundary decides what to record.
  */
 export type DegradationReason =
   /** Bytes downloaded, but no rung of the ladder produced a small enough JPEG. */

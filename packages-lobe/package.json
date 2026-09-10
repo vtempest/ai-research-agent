@@ -300,6 +300,7 @@
     "@lobechat/fetch-sse": "workspace:*",
     "@lobechat/file-loaders": "workspace:*",
     "@lobechat/heterogeneous-agents": "workspace:*",
+    "@lobechat/image-photon": "workspace:*",
     "@lobechat/llm-generation-tracing": "workspace:*",
     "@lobechat/local-file-shell": "workspace:*",
     "@lobechat/markdown-patch": "workspace:*",
@@ -464,7 +465,6 @@
     "resolve-accept-language": "^3.2.2",
     "rtl-detect": "^1.1.2",
     "semver": "^7.8.5",
-    "sharp": "^0.34.5",
     "shiki": "^4.4.3",
     "stripe": "^17.7.0",
     "superjson": "^2.2.6",
@@ -490,6 +490,7 @@
     "zustand-utils": "^2.1.1"
   },
   "devDependencies": {
+    "@cf-wasm/photon": "^0.4.0",
     "@cloudflare/workers-types": "^4.20260702.1",
     "@commitlint/cli": "^19.8.1",
     "@edge-runtime/vm": "^5.0.0",
@@ -580,6 +581,7 @@
     "require-in-the-middle": "^8.0.1",
     "s3rver": "3.7.1",
     "semantic-release": "^21.1.2",
+    "sharp": "^0.34.5",
     "stylelint": "^16.26.1",
     "tsx": "^4.23.12",
     "type-fest": "^5.8.0",

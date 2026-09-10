@@ -1,4 +1,5 @@
 import { type LobeChatDatabase } from '@lobechat/database';
+import sharp from '@lobechat/image-photon';
 import { parseDataUri } from '@lobechat/model-runtime';
 import { ssrfSafeFetch } from '@lobechat/ssrf-safe-fetch';
 import debug from 'debug';
@@ -6,7 +7,6 @@ import { sha256 } from 'js-sha256';
 import mime from 'mime';
 import { IMAGE_GENERATION_CONFIG } from 'model-bank';
 import { nanoid } from 'nanoid';
-import sharp from 'sharp';
 
 import { FileService } from '@/server/services/file';
 import { calculateThumbnailDimensions } from '@/utils/number';

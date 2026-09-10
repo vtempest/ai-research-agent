@@ -16,7 +16,7 @@ const mockChat = vi.hoisted(() => vi.fn());
 const mockInitModelRuntimeFromDB = vi.hoisted(() => vi.fn());
 const mockConsumeStreamUntilDone = vi.hoisted(() => vi.fn());
 const mockImageUrlToBase64 = vi.hoisted(() => vi.fn());
-const mockSharpOptions = vi.hoisted(() => vi.fn());
+const mockCodecOptions = vi.hoisted(() => vi.fn());
 const mockBuiltinModels = vi.hoisted(() => [
   {
     abilities: { audio: true, video: true, vision: true },
@@ -38,6 +38,24 @@ const mockBuiltinModels = vi.hoisted(() => [
 const VALID_PNG_BASE64 =
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 const VALID_PNG_DATA_URL = `data:image/png;base64,${VALID_PNG_BASE64}`;
+
+/** A 1x1 red GIF: a real image the model formats do not include, so it must be transcoded. */
+const RED_GIF = Buffer.from([
+  0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 1, 0, 1, 0, 0x80, 0, 0, 255, 0, 0, 0, 0, 255, 0x2c, 0, 0, 0,
+  0, 1, 0, 1, 0, 0, 0x02, 0x02, 0x44, 0x01, 0x00, 0x3b,
+]);
+
+/**
+ * An AVIF `ftyp` header. Only the brand matters: the codec rejects AVIF on the
+ * container it identifies, before any decoder runs, so a full file would take
+ * exactly this path.
+ */
+const MINIMAL_AVIF = Buffer.concat([
+  Buffer.from([0, 0, 0, 0x20]),
+  Buffer.from('ftypavif'),
+  Buffer.from([0, 0, 0, 0]),
+  Buffer.from('avifmif1miaf'),
+]);
 
 const createCorruptedPngDataUrl = () => {
   const bytes = Buffer.from(VALID_PNG_BASE64, 'base64');
@@ -85,13 +103,13 @@ vi.mock('model-bank', () => ({
   LOBE_DEFAULT_MODEL_LIST: mockBuiltinModels,
 }));
 
-vi.mock('sharp', async (importOriginal) => {
+vi.mock('@lobechat/image-photon', async (importOriginal) => {
   const actual = (await importOriginal()) as { default: (...args: any[]) => any };
 
   return {
     ...actual,
     default: (input: Buffer, options?: Record<string, unknown>) => {
-      mockSharpOptions(options);
+      mockCodecOptions(options);
       return actual.default(input, options);
     },
   };
@@ -143,23 +161,13 @@ describe('lobeAgentRuntime', () => {
   });
 
   it('should transcode unsupported images before calling the multimodal model', async () => {
-    const { default: sharp } = await import('sharp');
-    const avifBuffer = await sharp({
-      create: {
-        background: { alpha: 1, b: 0, g: 0, r: 255 },
-        channels: 4,
-        height: 1,
-        width: 1,
-      },
-    })
-      .avif()
-      .toBuffer();
+    const { default: codec } = await import('@lobechat/image-photon');
     mockImageUrlToBase64.mockResolvedValueOnce({
-      base64: avifBuffer.toString('base64'),
-      mimeType: 'image/avif',
+      base64: RED_GIF.toString('base64'),
+      mimeType: 'image/gif',
     });
     const runtime = lobeAgentRuntime.factory(baseContext);
-    const imageUrl = 'https://example.com/image.avif?signature=example';
+    const imageUrl = 'https://example.com/image.gif?signature=example';
 
     const result = await runtime.analyzeMedia({
       question: 'what is this?',
@@ -175,21 +183,37 @@ describe('lobeAgentRuntime', () => {
     expect(imagePart.image_url.url).toMatch(/^data:image\/png;base64,/);
 
     const convertedBuffer = Buffer.from(imagePart.image_url.url.split(',')[1], 'base64');
-    await expect(sharp(convertedBuffer).metadata()).resolves.toMatchObject({ format: 'png' });
+    await expect(codec(convertedBuffer).metadata()).resolves.toMatchObject({ format: 'png' });
+  });
+
+  // Photon has no AVIF or HEIF decoder — the libvips-backed sharp it replaced
+  // did. An image in one of those formats can no longer be transcoded for a
+  // model that will not take it, and fails preparation instead.
+  it('should fail preparation for formats the codec cannot decode', async () => {
+    mockImageUrlToBase64.mockResolvedValueOnce({
+      base64: MINIMAL_AVIF.toString('base64'),
+      mimeType: 'image/avif',
+    });
+    const runtime = lobeAgentRuntime.factory(baseContext);
+
+    const result = await runtime.analyzeMedia({
+      question: 'what is this?',
+      urls: ['https://example.com/image.avif'],
+    });
+
+    expect(result).toMatchObject({
+      error: { code: 'MULTIMODAL_IMAGE_PREPARATION_FAILED' },
+      success: false,
+    });
+    expect(mockChat).not.toHaveBeenCalled();
   });
 
   it('should flatten transparent images onto white when transcoding to JPEG', async () => {
-    const { default: sharp } = await import('sharp');
-    const transparentWebp = await sharp({
-      create: {
-        background: { alpha: 0, b: 0, g: 0, r: 0 },
-        channels: 4,
-        height: 1,
-        width: 1,
-      },
-    })
-      .webp({ lossless: true })
-      .toBuffer();
+    // The codec's own encoder, so the fixture needs no image library of its own.
+    const { PhotonImage } = await import('@cf-wasm/photon');
+    const source = new PhotonImage(new Uint8Array(8 * 8 * 4), 8, 8); // fully transparent
+    const transparentWebp = Buffer.from(source.get_bytes_webp());
+    source.free();
     mockToolsEnv.MULTIMODAL_UNDERSTANDING_IMAGE_FORMATS = ['image/jpeg', 'image/png'];
     mockImageUrlToBase64.mockResolvedValueOnce({
       base64: transparentWebp.toString('base64'),
@@ -210,8 +234,10 @@ describe('lobeAgentRuntime', () => {
     expect(imagePart.image_url.url).toMatch(/^data:image\/jpeg;base64,/);
 
     const convertedBuffer = Buffer.from(imagePart.image_url.url.split(',')[1], 'base64');
-    const pixel = await sharp(convertedBuffer).raw().toBuffer();
-    expect([...pixel.subarray(0, 3)]).toEqual([255, 255, 255]);
+    const decoded = PhotonImage.new_from_byteslice(convertedBuffer);
+    const pixels = decoded.get_raw_pixels();
+    decoded.free();
+    expect([...pixels.subarray(0, 3)]).toEqual([255, 255, 255]);
   });
 
   it('should detect suffixless images after downloading without transcoding supported formats', async () => {
@@ -224,7 +250,7 @@ describe('lobeAgentRuntime', () => {
 
     expect(result.success).toBe(true);
     expect(mockImageUrlToBase64).toHaveBeenCalledWith('https://example.com/image');
-    expect(mockSharpOptions).not.toHaveBeenCalled();
+    expect(mockCodecOptions).not.toHaveBeenCalled();
     const [payload] = mockChat.mock.calls[0];
     const imagePart = payload.messages[0].content.find(
       (part: { type: string }) => part.type === 'image_url',
