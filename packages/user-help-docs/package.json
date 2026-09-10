@@ -13,7 +13,7 @@
   "exports": {
     ".": "./src/source.ts",
     "./config": "./src/config.ts",
-    "./compiler": "./src/compiler.ts",
+    "./vite": "./src/vite.ts",
     "./search": "./src/search.ts",
     "./llms": "./src/llms.ts",
     "./layout.config": "./src/layout.config.tsx",
@@ -24,12 +24,13 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@fumadocs/mdx-remote": "^1.5.1",
+    "@mdx-js/rollup": "^3.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fumadocs-core": "^16.15.8",
     "fumadocs-ui": "^16.15.8",
     "lucide-react": "^1.43.0",
+    "remark-frontmatter": "^5.0.0",
     "shadcn-theme-menu": "^1.1.47",
     "tailwind-merge": "^3.6.0"
   },
@@ -40,10 +41,11 @@
   },
   "devDependencies": {
     "@types/mdx": "^2.0.14",
-    "@vitest/coverage-v8": "^5.0.0",
-    "@types/react": "^19.2.18",
-    "typescript": "^7.0.2",
     "@types/node": "^26.5.0",
+    "@types/react": "^19.2.18",
+    "@vitest/coverage-v8": "^5.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
     "vitest": "^5.0.0"
   },
   "scripts": {

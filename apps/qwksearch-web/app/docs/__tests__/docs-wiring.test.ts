@@ -39,6 +39,25 @@ describe('the docs package loads', () => {
     expect(source.getPages().length).toBeGreaterThan(0);
   });
 
+  it('compiles every page body in the bundler, not per request', () => {
+    // `helpDocsMdxPlugin` has to be registered in this app's vite.config.ts
+    // *and* vitest.config.ts. Dropping it from the build sends the docs back
+    // to compiling MDX per request through `new AsyncFunction(...)`, which
+    // workerd rejects with `EvalError: Code generation from strings disallowed
+    // for this context` — a 500 on every /docs page, deploy-only, with a green
+    // test run.
+    for (const page of source.getPages()) {
+      expect(page.data.body, page.url).toBeTypeOf('function');
+      expect(Array.isArray(page.data.toc), page.url).toBe(true);
+    }
+  });
+
+  it('registers the MDX plugin in the app build', () => {
+    // Vitest reads its own config, so a build config that lost the plugin
+    // would not show up in the assertion above.
+    expect(readAppFile('vite.config.ts')).toMatch(/helpDocsMdxPlugin\(\)/);
+  });
+
   it('serves every page from under the mounted base URL', () => {
     for (const page of source.getPages()) {
       expect(page.url, page.url).toMatch(new RegExp(`^${docsConfig.baseUrl}(/|$)`));

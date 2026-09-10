@@ -2,6 +2,7 @@ import vinext from "vinext";
 import { createLogger, defineConfig } from "vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import rsc from "@vitejs/plugin-rsc";
+import { helpDocsMdxPlugin } from "user-help-docs/vite";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 
@@ -103,6 +104,10 @@ export default defineConfig(({ command }) => ({
     ],
   },
   plugins: [
+    // Compiles the `/docs` help content (packages/user-help-docs) to modules at
+    // build time. Without it the docs would have to compile MDX per request,
+    // which needs `new Function` — workerd refuses, 500ing every docs page.
+    helpDocsMdxPlugin(),
     {
       // `kokoro-js` (transformers.js / onnxruntime-web) is a browser-only TTS
       // library. It must be BUNDLED into the client so the lazy-loaded voice

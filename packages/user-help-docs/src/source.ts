@@ -2,9 +2,9 @@
 /**
  * Fumadocs source for the help docs.
  *
- * The content is inlined at build time with `import.meta.glob(..., '?raw')`
- * instead of the `fumadocs-mdx` build-time collections pipeline, so this
- * package needs no codegen step wired into the consuming app's bundler.
+ * The content is inlined at build time with `import.meta.glob` instead of the
+ * `fumadocs-mdx` build-time collections pipeline, so this package needs no
+ * codegen step wired into the consuming app's bundler.
  *
  * It is inlined rather than read off disk because the consuming app
  * (`apps/qwksearch-web`) ships to a Cloudflare Worker: there is no filesystem
@@ -16,10 +16,28 @@
  *       at fileURLToPath (node-internal:internal_url)
  *
  * — which took down every route bundled into the same chunk, not just `/docs`.
+ *
+ * Each file is inlined twice, because the two halves of the site need it in
+ * different shapes:
+ *
+ *   * `?raw`, as the original Markdown, for the search index (`search.ts`) and
+ *     the plain-text `llms.mdx` views (`llms.ts`); and
+ *   * compiled, as a React component, for the rendered page. That compile
+ *     happens in the bundler (`helpDocsMdxPlugin`, see `vite.ts`) rather than
+ *     per request, because the request-time compiler ran the compiled module
+ *     through `new AsyncFunction(...)` and Cloudflare Workers forbid runtime
+ *     code generation:
+ *
+ *       EvalError: Code generation from strings disallowed for this context
+ *
+ *     which 500'd every `/docs` request in production while Node-hosted tests
+ *     kept passing.
  */
-import { parseFrontmatter } from '@fumadocs/mdx-remote';
+import { frontmatter as parseFrontmatter } from 'fumadocs-core/content/md/frontmatter';
 import { loader, type MetaData } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/plugins/lucide-icons';
+import type { TableOfContents } from 'fumadocs-core/toc';
+import type { FC } from 'react';
 
 import { docsConfig } from './config';
 
@@ -39,14 +57,37 @@ const rawFiles = import.meta.glob('../content/docs/**/*.{md,mdx,json}', {
   eager: true,
 });
 
+/** A page's renderable body: the default export of a compiled MDX module. */
+export type HelpDocBody = FC<{ components?: Record<string, unknown> }>;
+
+/** What `helpDocsMdxPlugin` turns each `.md`/`.mdx` file into. */
+interface CompiledDoc {
+  default: HelpDocBody;
+  /** Contributed by Fumadocs' `rehypeToc`. */
+  toc?: TableOfContents;
+}
+
+/**
+ * The same files again, compiled to modules by the bundler. Eager for the same
+ * reason as `rawFiles`, and so the Worker never has to resolve a chunk at
+ * request time.
+ */
+const compiledFiles = import.meta.glob<CompiledDoc>('../content/docs/**/*.{md,mdx}', {
+  eager: true,
+});
+
 export interface HelpDocPageData {
   title: string;
   description?: string;
   icon?: string;
   /** Render the page edge-to-edge, without a table of contents gutter. */
   full?: boolean;
-  /** Raw MDX body (frontmatter stripped), compiled at request time by the consuming app. */
+  /** Raw MDX body (frontmatter stripped), used for search and the LLM views. */
   content: string;
+  /** The compiled body, ready to render — no request-time MDX compile. */
+  body: HelpDocBody;
+  /** Headings collected while compiling, for the on-page outline. */
+  toc: TableOfContents;
 }
 
 type HelpDocFile =
@@ -78,7 +119,19 @@ function collectFiles(): HelpDocFile[] {
 
     if (!/\.mdx?$/.test(name)) continue;
 
-    const { frontmatter, content } = parseFrontmatter(raw);
+    const compiled = compiledFiles[key];
+
+    // The two globs cover the same extensions, so a page without a compiled
+    // module means the bundler ran without `helpDocsMdxPlugin` — better to say
+    // so here than to render `undefined` as a component.
+    if (!compiled) {
+      throw new Error(
+        `No compiled module for "${relativePath}". The host app must register ` +
+          `helpDocsMdxPlugin() from "user-help-docs/vite" in its Vite and Vitest configs.`,
+      );
+    }
+
+    const { data: frontmatter, content } = parseFrontmatter(raw);
     const data = frontmatter as {
       title?: string;
       description?: string;
@@ -96,6 +149,8 @@ function collectFiles(): HelpDocFile[] {
         icon: data.icon,
         full: data.full,
         content,
+        body: compiled.default,
+        toc: compiled.toc ?? [],
       },
     });
   }

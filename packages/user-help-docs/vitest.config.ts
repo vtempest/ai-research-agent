@@ -1,6 +1,11 @@
 import { defineConfig } from 'vitest/config';
 
+import { helpDocsMdxPlugin } from './src/vite.ts';
+
 export default defineConfig({
+  // The docs are compiled by the bundler, not per request, so the suite has to
+  // resolve `content/docs` the same way the host app's build does.
+  plugins: [helpDocsMdxPlugin()],
   test: {
     globals: true,
     environment: 'node',
