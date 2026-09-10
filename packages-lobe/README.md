@@ -102,6 +102,14 @@ data is reused as-is.
   host and credential reduced to a presence flag, never a value. This is the sink the Extraction
   settings pane writes to when it lands. Reads never fail an extraction: an unreadable row falls
   back to the operator's configuration, and a request with no session cookie skips the lookup.
+- **Search preferences** (`apps/server/src/services/search/impls/qwksearch/searchPreferences.ts`,
+  `GET`/`PUT`/`DELETE /api/doc/search-settings`): the same thing for the search fan-out, on the D1
+  `search_settings` table, with the same three-part response and the same never-fail reads. The
+  signed-in user's categories, language, recency, safe-search, fan-out bound and result cap sit
+  between the operator's environment and the tool call's own arguments; the endpoint and the API
+  key cannot be stored here at all. The user id reaches the fan-out from the tool-execution
+  context through `SearchService`, and the row is read once per tool execution rather than per
+  query.
 - **Branding**: `BRANDING_NAME`/`ORG_NAME` = QwkSearch, QwkSearch favicons under `public/`,
   support/social URLs point at qwksearch.com.
 
@@ -197,6 +205,10 @@ Search is tuned by the same kind of group, also all defaulted
 | `QWKSEARCH_SEARCH_PUBLIC_INSTANCES` | `false` | let the fan-out fall back to public SearXNG instances |
 | `QWKSEARCH_SEARCH_RESULT_LIMIT` | — | keep at most this many merged results (1–200) |
 
+Every row above is the operator's default. A signed-in user can override all seven through
+`/api/doc/search-settings`; `QWKSEARCH_SEARCH_URL` and `QWKSEARCH_API_KEY` are environment-only,
+since a user-supplied backend would leak the configured bearer token to a host of their choosing.
+
 Run
 LobeHub's Postgres migrations once against the database: `bun run db:migrate` with `DATABASE_URL` set.
 
@@ -223,8 +235,17 @@ Hyperdrive bridge, and rendered-component tests for the article panel and the do
 - `packages/database/src/core/web-server.ts`: Hyperdrive branch (`resolveHyperdriveConnectionString`).
 - `src/libs/better-auth/utils/config.ts`: KV-backed `secondaryStorage` (`createKVSecondaryStorage`).
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
-- `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`);
-  the factory switch and enum are the only edits to upstream files there.
+- `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
+  plus its settings resolver and D1-backed user preferences. Upstream edits there and around it
+  are all one-liners carrying the caller's user id to the provider, so the signed-in user's search
+  preferences apply: the factory switch and enum (`impls/index.ts`, which also gains a
+  `SearchImplOptions` argument), the `SearchService` constructor
+  (`services/search/index.ts`), the runtime that builds it
+  (`services/toolExecution/serverRuntimes/webBrowsing.ts`), and five assertions on the factory's
+  arity in `services/search/index.test.ts`.
+- `worker/qwksearch/schema.ts`: re-exports the `search_settings` table from the search impl rather
+  than declaring it, because the impl reads it too and the dependency runs worker → `@/server/*`
+  and never back. See §F5b of the integrations reference.
 - `packages/builtin-tool-web-browsing/`: new `src/searchCategories.ts`; `manifest.ts` swaps the
   hard-coded `searchCategories` enum for `resolveSearchCategories()` (import + expression) and
   `src/index.ts` gains one export line. No upstream file there changed for the search settings

@@ -38,28 +38,28 @@ describe('SearchService', () => {
 
   describe('constructor', () => {
     it('should create instance with default search implementation when no providers configured', () => {
-      expect(createSearchServiceImpl).toHaveBeenCalledWith();
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(undefined, {});
     });
 
     it('should create instances for all providers from SEARCH_PROVIDERS', () => {
       vi.mocked(toolsEnv).SEARCH_PROVIDERS = 'tavily,brave';
       searchService = new SearchService();
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily);
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave);
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily, {});
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave, {});
     });
 
     it('should handle full-width comma in SEARCH_PROVIDERS', () => {
       vi.mocked(toolsEnv).SEARCH_PROVIDERS = 'tavily，brave';
       searchService = new SearchService();
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily);
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave);
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily, {});
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave, {});
     });
 
     it('should trim whitespace in SEARCH_PROVIDERS', () => {
       vi.mocked(toolsEnv).SEARCH_PROVIDERS = '  tavily  ,  brave  ';
       searchService = new SearchService();
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily);
-      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave);
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Tavily, {});
+      expect(createSearchServiceImpl).toHaveBeenCalledWith(SearchImplType.Brave, {});
     });
   });
 

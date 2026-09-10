@@ -443,7 +443,9 @@ describe('QwkSearchImpl settings', () => {
     process.env.QWKSEARCH_SEARCH_CATEGORIES = 'news';
     process.env.QWKSEARCH_SEARCH_LANGUAGE = 'de-DE';
 
-    const impl = new QwkSearchImpl({ categories: ['music'], language: 'fr-FR' });
+    const impl = new QwkSearchImpl({
+      loadOverrides: async () => ({ categories: ['music'], language: 'fr-FR' }),
+    });
 
     await impl.query('q');
     expect(requestedUrls()[0].searchParams.get('cat')).toBe('music');
@@ -473,5 +475,93 @@ describe('QwkSearchImpl settings', () => {
     await new QwkSearchImpl().query('q');
 
     expect(requestedUrls()[0].origin).toBe('https://qwksearch.com');
+  });
+});
+
+describe('QwkSearchImpl user layer', () => {
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn());
+    vi.mocked(fetch).mockResolvedValue(
+      createMockResponse({ results: [{ title: 'A', url: 'https://a.example' }] }),
+    );
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    delete process.env.QWKSEARCH_SEARCH_LANGUAGE;
+  });
+
+  it('reads the stored overrides once, however many queries the impl serves', async () => {
+    const loadOverrides = vi.fn(async () => ({ language: 'fr-FR' }));
+    const impl = new QwkSearchImpl({ loadOverrides, userId: 'user_1' });
+
+    await impl.query('one');
+    await impl.query('two');
+
+    // An impl is built per tool execution and a single turn can fan out several
+    // queries; the row is worth exactly one D1 read.
+    expect(loadOverrides).toHaveBeenCalledTimes(1);
+    expect(loadOverrides).toHaveBeenCalledWith('user_1');
+    expect(requestedUrls().every((url) => url.searchParams.get('lang') === 'fr-FR')).toBe(true);
+  });
+
+  it('collapses concurrent queries onto a single read', async () => {
+    let resolveLoad: (value: { language: string }) => void = () => {};
+    const loadOverrides = vi.fn(
+      () => new Promise<{ language: string }>((resolve) => (resolveLoad = resolve)),
+    );
+    const impl = new QwkSearchImpl({ loadOverrides, userId: 'user_1' });
+
+    const queries = Promise.all([impl.query('one'), impl.query('two')]);
+    resolveLoad({ language: 'de-DE' });
+    await queries;
+
+    expect(loadOverrides).toHaveBeenCalledTimes(1);
+  });
+
+  it('searches on the operator configuration when nobody is signed in', async () => {
+    process.env.QWKSEARCH_SEARCH_LANGUAGE = 'de-DE';
+    const loadOverrides = vi.fn(async () => ({}));
+
+    await new QwkSearchImpl({ loadOverrides }).query('q');
+
+    expect(loadOverrides).toHaveBeenCalledWith(undefined);
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('de-DE');
+  });
+
+  it('still searches when the stored overrides cannot be read', async () => {
+    // `loadUserSearchOverrides` swallows its own failures, but an impl built with
+    // a different loader must not turn a preferences outage into a failed search
+    // either — so a rejection degrades to the operator's configuration.
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    process.env.QWKSEARCH_SEARCH_LANGUAGE = 'de-DE';
+    const loadOverrides = vi.fn(async () => {
+      throw new Error('D1 is down');
+    });
+    const impl = new QwkSearchImpl({ loadOverrides, userId: 'user_1' });
+
+    const { results } = await impl.query('q');
+
+    expect(results.length).toBeGreaterThan(0);
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('de-DE');
+
+    // And the rejection is not what the memo caches: a second query still works
+    // and still does not retry the read.
+    await expect(impl.query('q')).resolves.toBeDefined();
+    expect(loadOverrides).toHaveBeenCalledTimes(1);
+  });
+
+  it('lets the tool call narrow what the stored preferences chose', async () => {
+    const impl = new QwkSearchImpl({
+      loadOverrides: async () => ({ categories: ['music'], maxCategories: 1 }),
+      userId: 'user_1',
+    });
+
+    await impl.query('q', { searchCategories: ['videos', 'news'] });
+
+    // The call narrows the categories; `maxCategories` is the operator/user
+    // budget and still caps the list the call asked for.
+    expect(requestedUrls()).toHaveLength(1);
+    expect(requestedUrls()[0].searchParams.get('cat')).toBe('videos');
   });
 });
