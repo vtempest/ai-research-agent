@@ -139,7 +139,9 @@ export function convertURLToAbsoluteURL(base, relative) {
 }
 
 import { marked } from "marked";
-import Prism from "prismjs";
+// Must precede every `prismjs/components/*` import: the grammar scripts read
+// `Prism` off the global object, which this module publishes (see its docs).
+import Prism from "./prism-global";
 import "prismjs/components/prism-markup.js";
 import "prismjs/components/prism-css.js";
 import "prismjs/components/prism-javascript.js";
