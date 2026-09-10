@@ -9,6 +9,7 @@ export * from './components/AiMenu';
 export * from './components/RichTextAi';
 export { mockAiCompletion } from './lib/mockCompletion';
 export { createStreamingCompletion } from './lib/createStreamingCompletion';
+export { createRewriteCompletion, DEFAULT_AI_ENDPOINT } from './lib/rewriteEndpoint';
 export type { StreamingCompletionOptions } from './lib/createStreamingCompletion';
 export {
   buildAiInstruction,

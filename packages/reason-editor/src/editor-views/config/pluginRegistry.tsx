@@ -62,12 +62,7 @@ import { Twitter } from 'react-reason-editor/twitter';
 import { Video } from 'react-reason-editor/video';
 import { WordCount } from 'react-reason-editor/wordcount';
 
-import {
-  Ai,
-  buildAiUserPrompt,
-  createStreamingCompletion,
-  mockAiCompletion,
-} from '@/extensions/Ai';
+import { Ai, createRewriteCompletion, DEFAULT_AI_ENDPOINT } from '@/extensions/Ai';
 import { Comment } from '@/extensions/Comment';
 import { Drawio } from '@/extensions/Drawio';
 import { Harper } from '@/extensions/Harper';
@@ -141,37 +136,6 @@ const demoBase64Upload = (file: File) => {
     }, 300);
   });
 };
-
-/**
- * Default endpoint the AI writing assistant posts to. It matches the
- * `{ text, prompt } -> { rewrittenText }` contract the QwkSearch web app
- * serves at `/api/agent/rewrite`, which is where this editor is mounted.
- * Hosts without that route point the setting at their own (or clear it) —
- * an empty value falls back to the offline demo transform rather than
- * failing every action.
- */
-const DEFAULT_AI_ENDPOINT = '/api/agent/rewrite';
-
-/**
- * Builds the extension's `getCompletion`. The request carries the whole
- * instruction — the system rules, the surrounding context window and the text
- * to act on — as one prompt, so a plain rewrite route needs no changes to
- * serve every command in the menu.
- */
-const createAiCompletion = (endpoint: string) =>
-  endpoint
-    ? createStreamingCompletion({
-        endpoint,
-        body: (request) => ({
-          // `prompt` carries the real instruction; `text` is the field such
-          // routes validate as non-empty, so the generate commands (which run
-          // with no selection) fall back to their context and instruction.
-          text: request.selectedText || request.documentText || request.instruction,
-          prompt: `${request.systemPrompt}\n\n${buildAiUserPrompt(request)}`,
-          command: request.commandId,
-        }),
-      })
-    : mockAiCompletion;
 
 // ─── Registry ────────────────────────────────────────────────────────────────
 
@@ -742,7 +706,7 @@ export const PLUGIN_REGISTRY: PluginDefinition[] = [
     ],
     create: (s) =>
       Ai.configure({
-        getCompletion: createAiCompletion(String(s.endpoint ?? '').trim()),
+        getCompletion: createRewriteCompletion(String(s.endpoint ?? '').trim()),
         contextChars: Number.isFinite(Number(s.contextChars)) ? Number(s.contextChars) : 4000,
       }),
   },
