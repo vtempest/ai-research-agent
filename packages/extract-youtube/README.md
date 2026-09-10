@@ -181,6 +181,11 @@ const api = new YouTubeTranscriptApi({
 });
 ```
 
+See [docs/proxy.md](./docs/proxy.md) for the full guide: generic vs. Webshare
+proxies, the CLI flags, why `proxyConfig` does nothing on Cloudflare
+Workers/edge (and what to use there instead), and caching in front of the
+fetcher so a proxy request is only spent on a video you don't already have.
+
 ## Error Handling
 
 ```typescript
@@ -323,7 +328,7 @@ What you get, without wiring any of it up yourself:
 | **Minimize** | Collapses to the title bar. The iframe is hidden with CSS, never unmounted, so playback isn't interrupted. |
 | **Picture-in-picture** | Pops the video into an always-on-top OS window via the Document Picture-in-Picture API, where the browser supports it. The node is *moved*, not cloned, so playback continues. |
 | **Queue** | `addToQueue` / `setQueue` / `playNext`, with an "Up next" strip under the video. |
-| **Synced captions** | Optional subtitles panel above the video — the spoken line highlights and auto-scrolls, and clicking a line seeks. Needs `transcriptUrl` or `fetchTranscript` (see below). |
+| **Synced captions** | Optional subtitles panel above the video — caption cues are regrouped into whole sentences (no timestamps), the spoken one highlights and auto-scrolls, and clicking a sentence seeks. Needs `transcriptUrl` or `fetchTranscript` (see below). |
 | **Resume** | Remembers what was playing, and how far into it, across a reload — plus a per-video position for the last 50 videos, for 24 hours. `storageKey={null}` turns it off. |
 | **Error recovery** | Reads the IFrame API's error codes, explains them ("this video is private", "the owner doesn't allow embedding"), and offers Retry or Watch on YouTube from the same spot. |
 | **Theming** | Colours are CSS custom properties on `.eytp-root` and follow `prefers-color-scheme` by default. Override them to match your app. |
@@ -392,7 +397,7 @@ getPlayerState();   // the same, outside React
 | `fetchTranscript` | `(videoId: string) => Promise<{ snippets, error? }>` | Custom caption loader, instead of `transcriptUrl`. |
 | `extraControls` | `ReactNode \| (ctx: PlayerControlContext) => ReactNode` | Your own buttons, rendered in the control strip. |
 | `renderTitle` | `(ctx: PlayerControlContext) => ReactNode` | Custom title-bar content. Defaults to the video title. |
-| `showSubtitles` | `boolean` | Force the captions button on or off. Defaults to on when a transcript source is given. |
+| `showSubtitles` | `boolean` | Force the captions button on or off. By default it appears only for videos that turned out to have a transcript — every video played is checked, and one without captions gets no button and no error. |
 | `showPictureInPicture` | `boolean` | Show the PiP button where supported. Default `true`. |
 | `storageKey` | `string \| null` | localStorage key for resume-after-reload. `null` disables persistence entirely. |
 | `className` | `string` | Extra class on the player root, for host-side positioning or theming. |

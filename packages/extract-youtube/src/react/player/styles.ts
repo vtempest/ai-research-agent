@@ -128,15 +128,11 @@ export const PLAYER_STYLES = `
 .eytp-queue-rest { font-size: 10px; color: var(--eytp-muted); margin: 2px 0 0; }
 
 .eytp-subtitles { max-height: 190px; overflow-y: auto; border-bottom: 1px solid var(--eytp-border); padding: 6px; }
-.eytp-status { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--eytp-muted); padding: 8px; }
-.eytp-status-error { color: var(--eytp-danger); align-items: flex-start; }
-.eytp-spin { animation: eytp-spin 1s linear infinite; }
-@keyframes eytp-spin { to { transform: rotate(360deg); } }
 
 .eytp-line {
-  display: flex;
-  gap: 8px;
+  display: block;
   width: 100%;
+  line-height: 1.5;
   text-align: left;
   border: none;
   background: transparent;
@@ -148,7 +144,6 @@ export const PLAYER_STYLES = `
 }
 .eytp-line:hover { background: rgba(127, 127, 127, 0.14); }
 .eytp-line-active { background: rgba(59, 130, 246, 0.14); }
-.eytp-line-time { flex-shrink: 0; font-variant-numeric: tabular-nums; font-size: 10px; color: var(--eytp-muted); padding-top: 2px; }
 .eytp-word-active { background: rgba(59, 130, 246, 0.3); border-radius: 3px; padding: 0 2px; font-weight: 500; }
 
 .eytp-handle { position: absolute; }
