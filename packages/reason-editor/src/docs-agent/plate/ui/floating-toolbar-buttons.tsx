@@ -12,6 +12,7 @@ import {
 import { KEYS } from 'platejs';
 import { useEditorReadOnly } from 'platejs/react';
 
+import { AIToolbarButton } from './ai-toolbar-button';
 import { InlineEquationToolbarButton } from './equation-toolbar-button';
 import { LinkToolbarButton } from './link-toolbar-button';
 import { MarkToolbarButton } from './mark-toolbar-button';
@@ -19,7 +20,12 @@ import { MoreToolbarButton } from './more-toolbar-button';
 import { ToolbarGroup } from './toolbar';
 import { TurnIntoToolbarButton } from './turn-into-toolbar-button';
 
-/** The selection toolbar: the subset of `./fixed-toolbar-buttons.tsx` worth having under the caret. */
+/**
+ * The selection toolbar: the subset of `./fixed-toolbar-buttons.tsx` worth
+ * having under the caret, led by "Ask AI" — with text already highlighted,
+ * rewriting it is the action the bubble exists for, so it comes before the
+ * formatting controls (the Tiptap bubble orders it the same way).
+ */
 export function FloatingToolbarButtons() {
   const readOnly = useEditorReadOnly();
 
@@ -27,6 +33,10 @@ export function FloatingToolbarButtons() {
 
   return (
     <>
+      <ToolbarGroup>
+        <AIToolbarButton />
+      </ToolbarGroup>
+
       <ToolbarGroup>
         <TurnIntoToolbarButton />
       </ToolbarGroup>

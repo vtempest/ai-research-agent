@@ -106,6 +106,79 @@ already reached, and then went past by appending the `(merged)` marker.
 
 ## Completed
 
+## Bring the AI writing assistant to the Plate editor
+
+**Status:** Completed
+**Source:** Direct request — put AI in the Plate bubble menu, and in the other
+places an assistant belongs.
+**Branch:** `claude/youthful-wright-iu0fbh`
+**PR:** Not created yet
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+`ReasonDocs` mounts Plate by default, and Plate had no AI at all: the selection
+toolbar had no "Ask AI", the fixed toolbar's own comment said the AI menu was
+"left out on purpose, because their plugins are not installed", and the slash
+menu's AI item called `AIChatPlugin`, which was never registered — a dead entry.
+The Tiptap engine has had the assistant since `src/extensions/Ai`. Close the gap
+without forking the feature in two.
+
+### What landed
+- `src/extensions/Ai/lib/reasonEndpoint.ts` — the `/api/agent/rewrite` contract
+  and its default endpoint, lifted out of `pluginRegistry.tsx` so both engines
+  build their completion function from one definition.
+- `src/docs-agent/plate/ai-plugin.ts`, `ai-controller.ts`, `ui/ai-menu.tsx`,
+  `ui/ai-toolbar-button.tsx`, `kits/ai-kit.tsx` — the Plate front end, on the
+  shared engine-neutral core (`commands.ts`, `lib/prompt.ts`,
+  `lib/sanitizeCompletion.ts`, `lib/completionToContent.ts`).
+- Entry points: ✨ Ask AI leads the selection (bubble) toolbar and the fixed
+  toolbar, `/ai` in the slash menu now works, and `⌘J` opens the panel. The
+  panel itself is the plugin's `afterEditable`, so `PlateEditorWrapper`,
+  `ReasonPlateEditor` and the playground all get it from `platePlugins` alone.
+- `test/docs-agent/ai-controller.test.ts` — 15 cases mirroring
+  `test/ai-extension.test.ts`, the Tiptap counterpart — plus
+  `test/docs-agent/ai-menu.test.tsx`, which mounts the panel over a real editor.
+
+### The one deliberate difference from Tiptap
+Tiptap reviews a suggestion as an inline red/green diff over the selection.
+Slate decorations can only style text that is already in the document, so
+rendering text that has not been accepted yet would mean writing it first —
+which the feature's first rule forbids. The Plate panel shows the streamed
+result in the panel instead. Everything else is identical: same commands, same
+request, same sanitising, same accept / insert-below / try-again / discard, and
+nothing written until the user accepts.
+
+### Non-goals
+- An AI button in the shared `REASON_TOOLBAR` schema. It is the engine-parity
+  contract, and the Tiptap comparison surface (`ReasonTiptapEditor`, which
+  mounts `NovelEditor` directly) never renders `AiMenu`, so the button would be
+  dead on one of the two engines it declares.
+- Reading the Tiptap plugin registry's saved AI settings (endpoint,
+  `contextChars`) on the Plate side. That config is a Tiptap-extension store;
+  the Plate plugin defaults to the same endpoint, so out-of-the-box behaviour
+  matches, and hosts override it through `ReasonPlateEditor`'s `ai` prop or
+  `editor.setOption(AiPlugin, …)`.
+
+### Verification
+`bunx tsc --noEmit` clean, and `bunx vitest run` in `packages/reason-editor`
+green: 55 files, 607 tests, including the 18 new ones.
+
+Both of those need three builds first, or they fail on module resolution in
+ways that have nothing to do with the change under test — worth knowing before
+concluding a Plate edit broke something:
+- `packages/use-voice-control` and `packages/reason-editor-sidebar`, or
+  `transcribe-controller.test.ts`, `playground-editor.test.tsx` and the
+  `ReasonDocs` tests cannot collect, and `tsc` reports implicit `any`s in the
+  files that import them.
+- `packages/reason-editor` itself (`bun run build:lib`), or the three tests that
+  reach the plugin registry cannot resolve the package's *own* subpath exports
+  (`react-reason-editor/blockquote`, …), which point into `dist/`.
+
+The repo-wide `bun install` outage recorded below is still there; the two
+specifiers were downgraded locally to get a `node_modules` to test against and
+reverted before committing, exactly as that entry warns against shipping.
+
 ## Diagnose the repo-wide CI outage and record it for the next run
 
 **Status:** Completed

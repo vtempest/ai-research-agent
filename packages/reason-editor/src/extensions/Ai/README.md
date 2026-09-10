@@ -17,6 +17,32 @@ All four open the same floating panel (`AiMenu`): a filterable command palette
 plus a free-form prompt box. Typing filters the commands; `↑`/`↓` and `Enter`
 run one, `Enter` on an empty highlight submits the typed prompt instead.
 
+## On the Plate editor
+
+The Plate engine — `ReasonDocs`' default — has the same assistant, with the
+same four entry points: ✨ Ask AI leads the selection (bubble) toolbar and the
+fixed toolbar, `/ai` is in the slash menu, and `⌘/Ctrl + J` opens it anywhere.
+
+What it shares with this extension is everything that is not ProseMirror:
+`commands.ts`, `lib/prompt.ts`, `lib/sanitizeCompletion.ts`,
+`lib/completionToContent.ts` and `lib/reasonEndpoint.ts`. So both engines offer
+the same commands, send the same request to the same route, and clean the
+response the same way. What differs is the document API and one piece of the
+UX: Slate decorations can only style text that is already in the document, so
+the Plate panel reviews the streamed result in place of the inline red/green
+diff. Nothing is written until the user accepts, on either engine.
+
+The Plate side lives in `src/docs-agent/plate/`: `ai-plugin.ts` (options),
+`ai-controller.ts` (the state machine), `ui/ai-menu.tsx` (the panel),
+`ui/ai-toolbar-button.tsx` and `kits/ai-kit.tsx` (which registers all of it).
+Configure it through `ReasonPlateEditor`'s `ai` prop, or at runtime:
+
+```ts
+import { AiPlugin } from 'react-reason-editor/docs-agent';
+
+editor.setOption(AiPlugin, 'getCompletion', createStreamingCompletion({ endpoint: '/api/ai' }));
+```
+
 ## Review flow
 
 Nothing is applied automatically. While the answer streams the panel shows it

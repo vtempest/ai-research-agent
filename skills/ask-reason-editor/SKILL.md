@@ -82,6 +82,18 @@ remote embed regardless.
 `buildExtensions` already includes it; a host assembling its own array must add it or
 remapped combos stop working.
 
+**The AI writing assistant.** One feature, two front ends. Everything that is not
+engine-specific — the command list, the prompts, the response sanitiser, the
+Markdown-to-nodes conversion and the `/api/agent/rewrite` contract — lives in
+`src/extensions/Ai/lib/*` and `commands.ts` and is shared. Tiptap mounts it as the `Ai`
+extension (`src/extensions/Ai/Ai.ts`, configured through the plugin registry, so its
+endpoint is editable under Settings → Plugins → AI Writing); Plate mounts it as
+`AiKit` (`src/docs-agent/plate/ai-plugin.ts` + `ai-controller.ts` + `ui/ai-menu.tsx`),
+already in `platePlugins`, and configured with `ReasonPlateEditor`'s `ai` prop or
+`editor.setOption(AiPlugin, 'getCompletion', …)`. On both engines it opens from the
+selection bubble, the toolbar, `/ai` and `⌘J`, and writes nothing until the user
+accepts. Adding a command means editing `src/extensions/Ai/commands.ts` once.
+
 **Collaboration.** `@hocuspocus/provider` + the Tiptap collaboration extensions, against
 `apps/collaboration-server`.
 
@@ -101,4 +113,6 @@ remapped combos stop working.
 | Sidebar sections are missing | `onGenerateTips` / `onGenerateTopics` / `onSearchTopic` / `onSignIn` are optional, and omitting one hides its section. |
 | Closing several tabs at once collapses to one | Implement `onExtraTabsClose` — the fallback issues repeated `onExtraTabClose` calls against pre-close state. |
 | KaTeX/Mermaid fail offline | `externalLibsMode: 'cdn'`. Switch to `'bundled'`. |
+| Every AI action errors | The default endpoint is the web app's `/api/agent/rewrite`. Point `getCompletion` at your own route, or clear the endpoint (Tiptap) / pass `createReasonAiCompletion('')` (Plate) to fall back to the offline demo transform. |
+| An AI command is missing from the menu | Commands that rewrite a selection are hidden at a collapsed caret by design. `requiresSelection: false` makes one available anyway. |
 | Consumers get stale types | `bun run build` runs `vite build`; `build:lib` is the library target and `deploy` also builds the demo. |

@@ -15,6 +15,7 @@ import {
 import { KEYS } from 'platejs';
 import { useEditorReadOnly } from 'platejs/react';
 
+import { AIToolbarButton } from './ai-toolbar-button';
 import { AlignToolbarButton } from './align-toolbar-button';
 import { EmojiToolbarButton } from './emoji-toolbar-button';
 import { InlineEquationToolbarButton } from './equation-toolbar-button';
@@ -51,9 +52,13 @@ import { TurnIntoToolbarButton } from './turn-into-toolbar-button';
  * document-level actions. `ToolbarGroup` draws the dividers, so grouping here is
  * also the visual grouping.
  *
- * Left out on purpose, because their plugins are not installed: the AI menu and
- * Copilot, comments, suggestions and the review/edit mode switch, Excalidraw and
- * code drawings, dates and footnotes.
+ * "Ask AI" leads the row, ahead of history: it is the one control that acts on
+ * the whole document rather than the current mark, and the playground puts it
+ * in the same place.
+ *
+ * Left out on purpose, because their plugins are not installed: Copilot,
+ * comments, suggestions and the review/edit mode switch, Excalidraw and code
+ * drawings, dates and footnotes.
  */
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly();
@@ -62,6 +67,10 @@ export function FixedToolbarButtons() {
 
   return (
     <>
+      <ToolbarGroup>
+        <AIToolbarButton />
+      </ToolbarGroup>
+
       <ToolbarGroup>
         <UndoToolbarButton />
         <RedoToolbarButton />

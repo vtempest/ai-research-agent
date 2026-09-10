@@ -4,7 +4,6 @@ import * as React from 'react';
 
 import type { PlateEditor, PlateElementProps } from 'platejs/react';
 
-import { AIChatPlugin } from '@platejs/ai/react';
 import {
   CalendarIcon,
   ChevronRightIcon,
@@ -29,6 +28,7 @@ import {
 import { type TComboboxInputElement, KEYS } from 'platejs';
 import { PlateElement } from 'platejs/react';
 
+import { getAiController } from '@/docs-agent/plate/ai-controller';
 import {
   insertBlock,
   insertInlineElement,
@@ -64,10 +64,12 @@ const groups: Group[] = [
       {
         focusEditor: false,
         icon: <SparklesIcon />,
+        keywords: ['ask', 'write', 'rewrite', 'assistant'],
         value: 'AI',
-        onSelect: (editor) => {
-          editor.getApi(AIChatPlugin).aiChat.show();
-        },
+        // `InlineComboboxItem` has already removed the `/` trigger by the time
+        // this runs, so the panel opens on the caret left behind — not on the
+        // slash input. `focusEditor: false` leaves the focus for its prompt box.
+        onSelect: (editor) => getAiController(editor).open(),
       },
     ],
   },

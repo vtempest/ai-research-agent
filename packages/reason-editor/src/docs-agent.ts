@@ -29,6 +29,13 @@
  * because a ProseMirror document and a Slate document are not interchangeable;
  * they stay separate until there is an explicit conversion/export pipeline.
  *
+ * The AI writing assistant is shared the same way: the commands, prompts,
+ * response sanitising and endpoint contract in `src/extensions/Ai/lib/*` drive
+ * both engines, with the Tiptap extension and the Plate plugin
+ * (`./docs-agent/plate/ai-plugin.ts` and its controller) as the two front ends.
+ * On Plate it is reachable from the selection toolbar, the fixed toolbar, the
+ * slash menu and ⌘J.
+ *
  * `ReasonSidebar` (from `./docs-agent/shared`) is the third shared plugin: the
  * document navigation list both routes mount around their editor, backed by
  * the same document store the production file-tree uses.
@@ -104,6 +111,25 @@ export {
   ReasonPlaygroundEditor,
   type ReasonPlaygroundEditorProps,
 } from './docs-agent/plate/playground-editor';
+/**
+ * The AI writing assistant. `AiKit` is already in `platePlugins`, so every
+ * surface above has it; these exports are for hosts that need to *configure*
+ * it — most often `getCompletion`, either through `ReasonPlateEditor`'s `ai`
+ * prop or `editor.setOption(AiPlugin, 'getCompletion', …)` — or that drive the
+ * panel from chrome of their own through `getAiController`.
+ */
+export { AiPlugin, AI_PLUGIN_KEY, type AiPluginOptions } from './docs-agent/plate/ai-plugin';
+export { AiKit } from './docs-agent/plate/kits/ai-kit';
+export {
+  getAiController,
+  type AiController,
+  type AiControllerState,
+  type AiPanelState,
+  type AiPlateSuggestion,
+} from './docs-agent/plate/ai-controller';
+export { AiMenu } from './docs-agent/plate/ui/ai-menu';
+export { AIToolbarButton } from './docs-agent/plate/ui/ai-toolbar-button';
+
 export { REASON_TOOLBAR_SKIN } from './docs-agent/plate/ui/reason-toolbar-skin';
 export { FixedToolbar } from './docs-agent/plate/ui/fixed-toolbar';
 export { FixedToolbarButtons } from './docs-agent/plate/ui/fixed-toolbar-buttons';

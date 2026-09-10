@@ -13,10 +13,12 @@ import { useComposedRef } from '@udecode/cn';
 import { KEYS } from 'platejs';
 import {
   useEditorId,
+  useEditorRef,
   useEventEditorValue,
   usePluginOption,
 } from 'platejs/react';
 
+import { getAiController } from '@/docs-agent/plate/ai-controller';
 import { cn } from '@/lib/utils';
 
 import { Toolbar } from './toolbar';
@@ -32,12 +34,21 @@ export function FloatingToolbar({
   const editorId = useEditorId();
   const focusedEditorId = useEventEditorValue('focus');
   const isFloatingLinkOpen = !!usePluginOption({ key: KEYS.link }, 'mode');
-  const isAIChatOpen = usePluginOption({ key: KEYS.aiChat }, 'open');
+
+  // The AI panel anchors to the same selection this toolbar does, so they would
+  // otherwise stack on top of each other.
+  const editor = useEditorRef();
+  const aiController = React.useMemo(() => getAiController(editor), [editor]);
+  const isAiMenuOpen = React.useSyncExternalStore(
+    aiController.subscribe,
+    () => aiController.getState().panel.status !== 'closed',
+    () => false,
+  );
 
   const floatingToolbarState = useFloatingToolbarState({
     editorId,
     focusedEditorId,
-    hideToolbar: isFloatingLinkOpen || isAIChatOpen,
+    hideToolbar: isFloatingLinkOpen || isAiMenuOpen,
     ...state,
     floatingOptions: {
       middleware: [

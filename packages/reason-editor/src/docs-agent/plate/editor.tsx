@@ -32,6 +32,7 @@ import {
 } from '../collaboration/hocuspocus-client';
 import { createNullAdapter, type EditorToolbarAdapter } from '../shared/editor-types';
 import { ReasonToolbar } from '../shared/toolbar-renderer';
+import { AiPlugin, type AiPluginOptions } from './ai-plugin';
 import { createPlateAdapter } from './plate-adapter';
 import { EMPTY_PLATE_VALUE, platePlugins } from './plate-editor-config';
 import { RemoteCursorOverlay } from './remote-cursor-overlay';
@@ -58,6 +59,12 @@ export interface ReasonPlateEditorProps {
    * floating toolbars expect to sit so they can position against it.
    */
   overlays?: React.ReactNode;
+  /**
+   * Overrides for the AI writing assistant — most usefully `getCompletion`,
+   * for a host serving a route other than REASON's own. Omitted, the assistant
+   * posts to the same endpoint the Tiptap editor's plugin registry defaults to.
+   */
+  ai?: Partial<AiPluginOptions>;
 }
 
 export function ReasonPlateEditor({
@@ -68,16 +75,25 @@ export function ReasonPlateEditor({
   className,
   renderToolbar,
   overlays,
+  ai,
 }: ReasonPlateEditorProps) {
   const room = collaborationRoom('plate', documentId);
   const color = user.color ?? cursorColorFor(user.id);
   const collaborative = Boolean(authToken);
+
+  // A second `AiPlugin` entry overrides the one `platePlugins` registers: same
+  // key, later wins, so only the options given here change.
+  const aiOverride = React.useMemo(
+    () => (ai ? [AiPlugin.configure({ options: ai })] : []),
+    [ai],
+  );
 
   const editor = usePlateEditor(
     {
       plugins: collaborative
         ? [
             ...platePlugins,
+            ...aiOverride,
             YjsPlugin.configure({
               options: {
                 cursors: {
@@ -91,7 +107,7 @@ export function ReasonPlateEditor({
               render: { afterEditable: RemoteCursorOverlay },
             }),
           ]
-        : platePlugins,
+        : [...platePlugins, ...aiOverride],
       // Yjs owns the initial document once collaboration is on; seeding the
       // editor locally first would produce a duplicated document on sync.
       skipInitialization: collaborative,
@@ -99,7 +115,7 @@ export function ReasonPlateEditor({
     },
     // Rebuild when the room or the credential changes, so the editor never
     // keeps a provider pointed at a document the user no longer has open.
-    [room, collaborative],
+    [room, collaborative, aiOverride],
   );
 
   React.useEffect(() => {

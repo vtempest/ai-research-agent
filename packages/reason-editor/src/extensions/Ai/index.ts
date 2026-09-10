@@ -10,6 +10,7 @@ export * from './components/RichTextAi';
 export { mockAiCompletion } from './lib/mockCompletion';
 export { createStreamingCompletion } from './lib/createStreamingCompletion';
 export type { StreamingCompletionOptions } from './lib/createStreamingCompletion';
+export { createReasonAiCompletion, DEFAULT_AI_ENDPOINT } from './lib/reasonEndpoint';
 export {
   buildAiInstruction,
   buildAiUserPrompt,
