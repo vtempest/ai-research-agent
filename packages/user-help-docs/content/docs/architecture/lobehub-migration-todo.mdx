@@ -672,36 +672,39 @@ Then, for whichever you pick:
 Three things about this repo's CI are worth knowing before you read a red check
 on a `packages-lobe` change:
 
-- **🔴 Every CI job in the repo is currently red, for one reason that is nobody's
-  diff.** `bun install --frozen-lockfile` cannot resolve two specifiers that
-  #422 (`d81427c7`) introduced in `packages/qwksearch-api-client/package.json`,
-  because neither version was ever published:
+- **The repo-wide install outage is fixed by handing the SDK transport back to
+  fetch.** `bun install --frozen-lockfile` could not resolve two
+  specifiers #422 (`d81427c7`) introduced in
+  `packages/qwksearch-api-client/package.json`, because neither version was
+  ever published:
 
   | Specifier | Latest actually on npm |
   |---|---|
   | `api2client: ^1.0.1` | 1.0.0 |
   | `grab-url: ^1.6.23` | 1.6.22 |
 
-  The install step fails before compiling a line, so all 24 Coverage jobs, Test
-  Reports, Publish to npm, Lockfile and the Cloudflare Workers build go down
-  with it, on `master` and on every branch. Observed on #423's base and on #424.
+  The install died before compiling a line, so all 24 Coverage jobs, Test
+  Reports, Publish to npm, Lockfile and the Cloudflare Workers build went down
+  with it, on `master` and on every branch. Reverting #422 is what cleared it:
+  `qwksearch-api-client` sends its requests with the generated Hey API fetch
+  client again, the package declares no runtime dependencies, and the lockfile
+  needed no change — it never carried an entry for those two.
 
-  **Do not "fix" it by downgrading the two specifiers** — that was tried on #424
-  and does not work. `api2client@1.0.0` is published broken: its tarball ships
-  only `README.md`, `package.json` and `src/`, while `main`, `module`, `types`,
-  `exports` and `bin` all point into a `dist/` that is not in the package, so
-  Vite fails with "Failed to resolve entry for package". The root install
-  succeeds with the downgrade and the package's own suite then fails to collect
-  3 of its 4 files. `^1.6.23` is likewise a real requirement, not caution:
-  #422's message records that it is the first `grab-url` carrying
-  `onRawResponse`, which is what puts the HTTP status on a failed result, and
-  `error-result-shape.test.ts` exists to protect exactly that.
+  **Do not re-land the grab transport by downgrading the specifiers**, which is
+  the obvious-looking move and does not work: `api2client@1.0.0` is published
+  broken — its tarball ships only `README.md`, `package.json` and `src/`, while
+  `main`, `module`, `types`, `exports` and `bin` all point into a `dist/` that
+  is not in the package, so Vite fails with "Failed to resolve entry for
+  package". `^1.6.23` is equally real: it is the first `grab-url` carrying
+  `onRawResponse`, which is what puts the HTTP status and the parsed error body
+  on a failed result. Without it a failed request resolves with no `response`
+  at all and `response.status` throws — the exact status-branching that
+  `error-result-shape.test.ts` exists to protect.
 
-  Both packages live outside this repo, so nothing here can publish them and
-  there is no fix to port. Until `api2client@1.0.1` and `grab-url@1.6.23` are
-  published, **read every red check on your base commit first** — right now it
-  will be red there too, and the signal for your own change has to come from
-  running its tests locally.
+  Both packages live outside this repo (`vtempest/GRAB-URL`), so nothing here
+  can publish them. Re-landing #422 is a `git revert` of the revert plus a
+  `bun install` once `api2client@1.0.1` and `grab-url@1.6.23` are on npm —
+  check with `npm view api2client version` before trying.
 - **Nothing in CI builds or tests `packages-lobe`.** The root `workspaces` are
   `packages/*`, `packages/render-url-to-html/*` and `apps/*`; `packages-lobe` is
   a separate pnpm workspace outside that graph, so no job installs it. A green
@@ -709,7 +712,7 @@ on a `packages-lobe` change:
   not yours. Your own `bunx vitest run` under `packages-lobe` is the only
   signal — which is why 5.4's "bundle budget in CI" needs a whole new job.
 - **The Coverage workflow was already red on `master` before that**, for
-  unrelated reasons that will resurface once the install is fixed. As of
+  unrelated reasons that the install fix does not touch. As of
   `52eb7cce` (#412, run 34445607248) **four** jobs failed with nothing of this
   work in them: `chat-agent-toolkit`, `extract-youtube`, `search-web-api` and
   `shadcn-settings`. Two more — `extract-pdf` and `qwksearch-web` — were on this

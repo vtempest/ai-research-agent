@@ -338,58 +338,6 @@ npm install qwksearch-api-client
 
 ---
 
-## Transport: grab, not fetch
-
-Requests are sent by [grab](https://grab.js.org) through
-[`api2client`](https://www.npmjs.com/package/api2client), Hey API's client
-interface implemented over grab. The generated surface is unchanged — the same
-`searchWeb()`, `agentChat()` functions, the same types, the same
-`{ data, error, request, response }` result — but every endpoint now inherits
-grab's caching, retries, rate limiting, request dedupe, mock server and shared
-request log.
-
-`grab-url` is a peer of this package in practice: it is a real dependency, and
-apps that also use grab directly share the one instance, so a mock or a primed
-cache set by the app applies to these endpoints too.
-
-```js
-import { searchWeb } from 'qwksearch-api-client';
-
-// grab options work client-wide or per request
-const { data, error, response } = await searchWeb({
-  query: { q: 'quantum computing' },
-  cache: true,
-  cacheForTime: 60,
-  retryAttempts: 2,
-  timeout: 15,
-});
-
-if (error) console.log(response.status, error); // 401 { message: '...' }
-```
-
-Stub any endpoint without touching the network — `grab.mock` keys are request
-paths:
-
-```js
-import { grab } from 'grab-url';
-
-grab.mock['/search/engines'] = { response: { engines: ['google'] } };
-```
-
-Configure the whole SDK at once:
-
-```js
-import { client } from 'qwksearch-api-client';
-
-client.setConfig({ baseUrl: 'https://staging.example.com/api', rateLimit: 1 });
-```
-
-Requires `grab-url` ≥ 1.6.23, whose `onRawResponse` hook is what carries the
-HTTP status, headers and parsed error body onto the result. On 1.6.22 a failed
-request comes back with no `response` at all, so `response.status` throws.
-
----
-
 
 
 ## Links
