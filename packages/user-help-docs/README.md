@@ -8,8 +8,8 @@ a handful of thin route files; everything else lives here.
 
 ```
 content/docs/**        MDX pages + meta.json sidebar order
-src/source.ts          Fumadocs loader (scans content/docs at import time)
-src/compiler.ts        Shared @fumadocs/mdx-remote compiler
+src/source.ts          Fumadocs loader (inlines content/docs at import time)
+src/vite.ts            Vite plugin that compiles the MDX at build time
 src/config.ts          Branding, links, route config — start here
 src/search.ts          Static search index
 src/llms.ts            llms.txt / raw-Markdown routes and URL helpers
@@ -18,11 +18,17 @@ src/mdx-components.tsx Components MDX pages may use without importing
 src/components/**      Client components (breadcrumb, copy-for-LLM, Ask AI)
 ```
 
-Content is compiled **at request time** with
-[`@fumadocs/mdx-remote`](https://www.npmjs.com/package/@fumadocs/mdx-remote)
-rather than through `fumadocs-mdx`'s build-time collections. That's deliberate:
-the content lives in its own workspace package, so this way the consuming app
-needs no codegen step wired into its bundler.
+Content is inlined by `import.meta.glob` and compiled **by the host's bundler**,
+through `helpDocsMdxPlugin()` from `user-help-docs/vite`, rather than through
+`fumadocs-mdx`'s build-time collections. That's deliberate: the content lives in
+its own workspace package, so this way the consuming app needs no codegen step —
+just the one plugin, in its Vite config *and* its Vitest config.
+
+It is not compiled per request either. `@fumadocs/mdx-remote`, which this package
+used to use, instantiates a compiled page with `new AsyncFunction(...)`, and the
+Cloudflare Worker the app deploys to refuses to generate code from strings —
+`EvalError: Code generation from strings disallowed for this context`, a 500 on
+every docs page that no Node-hosted test reproduces.
 
 ## Writing a page
 
@@ -56,8 +62,7 @@ import { source } from 'user-help-docs';
 import { docsConfig } from 'user-help-docs/config';
 import { docsLayoutOptions } from 'user-help-docs/layout.config';
 
-// app/docs/[[...slug]]/page.tsx
-import { docsCompiler } from 'user-help-docs/compiler';
+// app/docs/[[...slug]]/page.tsx — page.data.body is the compiled component
 import { getMDXComponents } from 'user-help-docs/mdx-components';
 import { getGithubUrl, getMarkdownUrl } from 'user-help-docs/llms';
 import { Breadcrumb } from 'user-help-docs/components/breadcrumb';
@@ -65,6 +70,9 @@ import { DocsActions } from 'user-help-docs/components/docs-actions';
 
 // app/docs/api/docs-search/route.ts
 import { searchServer } from 'user-help-docs/search';
+
+// vite.config.ts and vitest.config.ts — both, or source.ts throws at startup
+import { helpDocsMdxPlugin } from 'user-help-docs/vite';
 ```
 
 The app must list `user-help-docs` in `next.config`'s `transpilePackages` (it
@@ -79,7 +87,7 @@ ships TypeScript sources, not a build), and import fumadocs' CSS preset:
 
 | Route | Backed by |
 |---|---|
-| `/docs/[[...slug]]` | `source` + `docsCompiler` |
+| `/docs/[[...slug]]` | `source` (`page.data.body` / `page.data.toc`) |
 | `/docs/api/docs-search` | `searchServer.staticGET` |
 | `/docs/llms.mdx/[[...slug]]` | `getLLMText`, `parseMarkdownSlug`, `getMarkdownParams` |
 | `/docs/llms-full.txt` | `getLLMFullText` |

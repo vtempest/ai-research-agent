@@ -9,10 +9,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { icons } from 'lucide-react';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import { docsCompiler } from '../src/compiler';
 import { docsConfig } from '../src/config';
+import { getMDXComponents } from '../src/mdx-components';
 import {
   getLLMFullText,
   getMarkdownParams,
@@ -21,6 +23,7 @@ import {
 } from '../src/llms';
 import { searchServer } from '../src/search';
 import { source } from '../src/source';
+import { helpDocsMdxPlugin } from '../src/vite';
 
 /**
  * `src/source.ts` deliberately no longer exposes a filesystem path — it has to
@@ -40,17 +43,39 @@ describe('content', () => {
     expect(pages.length).toBe(onDisk);
   });
 
-  it.each(pages.map((page) => [page.url, page] as const))(
-    'compiles %s',
-    async (_url, page) => {
-      const compiled = await docsCompiler.compile({
-        source: page.data.content,
-        filePath: page.path,
-      });
+  it.each(pages.map((page) => [page.url, page] as const))('renders %s', (_url, page) => {
+    // The body is compiled by `helpDocsMdxPlugin` during the build, so it is
+    // already a component here — nothing compiles MDX at request time. See the
+    // `worker compatibility` suite below for why that matters.
+    expect(page.data.body).toBeTypeOf('function');
 
-      expect(compiled.body).toBeTypeOf('function');
-    },
-  );
+    const html = renderToStaticMarkup(
+      createElement(page.data.body, { components: getMDXComponents() }),
+    );
+
+    // Every heading the outline links to has to exist in the body it came from
+    // — a cheap way to say "this rendered the real page", not an empty shell.
+    for (const item of page.data.toc) {
+      expect(html, `${page.url} ${item.url}`).toContain(`id="${item.url.slice(1)}"`);
+    }
+
+    expect(html.length, page.url).toBeGreaterThan(0);
+  });
+
+  it('gives every page a table of contents built at compile time', () => {
+    for (const page of pages) {
+      expect(Array.isArray(page.data.toc), page.url).toBe(true);
+
+      for (const item of page.data.toc) {
+        expect(item.url, page.url).toMatch(/^#/);
+        expect(item.depth, page.url).toBeGreaterThan(0);
+      }
+    }
+
+    // Not every page has to have headings, but the whole set having none would
+    // mean `rehypeToc` never ran.
+    expect(pages.some((page) => page.data.toc.length > 0)).toBe(true);
+  });
 
   it('gives every page a title and description', () => {
     for (const page of pages) {
@@ -185,6 +210,55 @@ describe('worker compatibility', () => {
     );
 
     expect(builtins).toEqual([]);
+  });
+
+  /**
+   * The bug this guards against: `/docs` compiled its MDX per request with
+   * `@fumadocs/mdx-remote`, whose renderer does
+   *
+   *   new AsyncFunction(...Object.keys(scope), compiled)
+   *
+   * Cloudflare Workers refuse to generate code from strings, so every request
+   * died with `EvalError: Code generation from strings disallowed for this
+   * context` — a 500 on every docs page in production, while this suite stayed
+   * green because Node allows `new Function`. The MDX is now compiled by the
+   * bundler (`src/vite.ts`), so nothing on the request path evaluates source.
+   */
+  it('keeps the eval-based MDX renderer off the request path', () => {
+    const srcDir = fileURLToPath(new URL('../src', import.meta.url));
+
+    const offenders = fs
+      .readdirSync(srcDir, { recursive: true, withFileTypes: true })
+      .filter((entry) => entry.isFile() && /\.tsx?$/.test(entry.name))
+      // `src/vite.ts` is bundler-side config, never shipped to the Worker.
+      .filter((entry) => entry.name !== 'vite.ts')
+      .filter((entry) => {
+        const source = fs
+          .readFileSync(path.join(entry.parentPath ?? srcDir, entry.name), 'utf-8')
+          // Several of these files explain the bug in prose; only code counts.
+          .replace(/\/\*[\s\S]*?\*\//g, '')
+          .replace(/(^|\s)\/\/.*$/gm, '$1');
+
+        return (
+          source.includes('@fumadocs/mdx-remote') ||
+          /\bnew\s+(?:Async)?Function\s*\(/.test(source) ||
+          /(?:^|[^.\w])eval\s*\(/.test(source)
+        );
+      })
+      .map((entry) => entry.name);
+
+    expect(offenders).toEqual([]);
+  });
+
+  /**
+   * vinext auto-injects its own `@mdx-js/rollup` unless it finds a plugin by
+   * that name (or `mdx`) already registered. Renaming ours puts two MDX
+   * compilers in the chain, and the second one chokes on the first one's
+   * output: "Unexpected `FunctionDeclaration` in code: only import/exports are
+   * supported", once per page, failing the app build.
+   */
+  it('keeps the plugin name vinext looks for', () => {
+    expect(helpDocsMdxPlugin().name).toBe('@mdx-js/rollup');
   });
 
   it('inlines every content file at build time', () => {

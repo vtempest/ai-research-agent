@@ -1,10 +1,13 @@
 import { defineConfig } from 'vitest/config'
+import { helpDocsMdxPlugin } from 'user-help-docs/vite'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
+  // Same MDX pipeline the build uses, so `app/docs` tests see real page bodies.
+  plugins: [helpDocsMdxPlugin()],
   test: {
     environment: 'node',
     globals: true,
