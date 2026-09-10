@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "generate": "cd ../.. && vitest run --reporter=default --reporter=html --outputFile.html=apps/test-reports/dist/index.html",
-    "generate:coverage": "cd ../.. && vitest run --reporter=default --reporter=html --outputFile.html=apps/test-reports/dist/index.html --coverage",
+    "generate": "cd ../.. && VITEST_HTML_REPORT_DIR=apps/test-reports/dist vitest run",
+    "generate:coverage": "cd ../.. && VITEST_HTML_REPORT_DIR=apps/test-reports/dist vitest run --coverage",
     "preview": "wrangler dev",
     "deploy": "wrangler deploy"
   },
