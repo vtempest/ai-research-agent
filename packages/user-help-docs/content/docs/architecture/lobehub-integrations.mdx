@@ -74,6 +74,9 @@ then LobeHub's tRPC/webapi/api, then the SPA catch-all.
 | F3 | **Docs** (`/docs`) — Markdown research documents, autosaved, write/preview | `worker/routes/qwksearch/documents.ts` | `src/features/QwkSearch/Docs/` (`DocsWorkspace.tsx`, `DocsSidebar.tsx`, `DocsLayout.tsx`, `store.ts`) | D1 `documents` — the same table `apps/qwksearch-web` writes |
 | F4 | **Favorites** | `worker/routes/qwksearch/favorites.ts` | inside F1 | D1 `favorites` |
 | F5 | **QwkSearch search provider** — LobeHub's web-browsing tool fans out over QwkSearch's 100+ engines | `apps/server/src/services/search/impls/qwksearch/` | LobeHub's existing search portal UI | none (stateless proxy) |
+| F5a | **Search settings** — one resolved value behind F5's knobs: categories, fan-out bound, language, recency, safe search, public-instance fallback, result cap | `apps/server/src/services/search/impls/qwksearch/searchSettings.ts` | — | none (per-request) |
+| F5b | **Search preferences** — storage and API for F5a's per-user layer | `worker/routes/qwksearch/searchSettings.ts`, `.../qwksearch/searchPreferences.ts` | — | D1 `search_settings` |
+| F5c | **Search & Sources pane** (`/settings/search`) — the form over F5b, inside LobeHub's own settings shell | — | `src/features/Settings/search/` (`index.tsx`, `api.ts`, `formState.ts`, `features/SearchForm.tsx`) | through F5b |
 | F6 | **Branding** | `packages/business/const/src/branding.ts`, `packages/const/src/url.ts`, `public/` favicons | — | — |
 | F7 | **Route + nav registration** for `/docs` and the article panel mount | `src/spa/router/desktopRouter.shared.tsx`, `src/features/NavPanel/routeKey.ts`, `src/routes/(main)/_layout/index.tsx` | — | — |
 | F8 | **i18n** | `packages/locales/src/default/qwksearch.ts` + `locales/{en-US,zh-CN}/qwksearch.json` | — | — |
@@ -214,7 +217,7 @@ src/features/Settings/extraction/
 | Seeded from `overrides`, not `effective` | Seeding the inputs from what is in force would turn every inherited field into an explicit override the moment the user saved anything, silently pinning them to today's server config. `effective` appears only as the `desc` text under each input and as the timeout's placeholder |
 | After a write | The form re-renders from the response, not from what it sent — `PUT` validates and trims (a sixth language, an unknown tier, a 99s timeout clamped to 60) and the response is the authority |
 | Server configuration group | The five `configured` booleans, read-only. They stay Worker secrets (2.3 of the to-do), so the pane shows status and never an input |
-| i18n | The `qwksearch` namespace, not `setting` — the nav label reads `tQwkSearch('extraction.title')` the way Labs reads `tLabs('title')`. 48 keys in en-US and zh-CN |
+| i18n | The `qwksearch` namespace, not `setting` — the nav label reads `tQwkSearch('extraction.title')` the way Labs reads `tLabs('title')`. 49 keys in en-US and zh-CN |
 
 Upstream edits are five registration points, no logic: the `SettingsTabs` enum
 member, an entry in `componentMap.ts` and `componentMap.desktop.ts` (kept in
@@ -356,6 +359,51 @@ Four upstream LobeHub files are edited, each by one line of signature or call:
 `worker/app.ts` gains one mount line. The route, the preferences module and the
 migration are new.
 
+### F5c — Search & Sources settings pane
+
+The client of F5b, and F2c's twin: the second QwkSearch surface inside
+LobeHub's own settings shell. `/settings/search`.
+
+```
+src/features/Settings/search/
+  index.tsx           SettingHeader + the form
+  api.ts              GET/PUT/DELETE /api/doc/search-settings
+  formState.ts        form values ⇄ UserSearchOverrides (pure)
+  features/SearchForm.tsx
+```
+
+Everything F2c's table says applies here unchanged — the registration shape, the
+`options`-driven inputs, the explicit inherit state, seeding from `overrides`
+rather than `effective`, and re-rendering from the response. What is specific to
+this pane:
+
+| Concern | Behavior |
+|---|---|
+| Field groups | **Sources** (categories, categories-per-search, public-instance fallback), **Results** (default recency, result language, result limit, safe search), and the read-only **Server configuration** pair |
+| Inherit spellings | `INHERIT` (`''`) for recency, an empty list for `categories`, an empty string for `language`, `null` for both numbers, and a three-way select for each of the two booleans — `safeSearch: false` pins the user to off while unset follows the operator, which a `Switch` cannot say |
+| Two fates for a trimmed value | An unknown category is **dropped**; an out-of-range `maxCategories` is **clamped** to the ten categories that exist. Both come back in the `PUT` response, which is why the form renders the response and not what it sent |
+| `categories` order is load-bearing | It is the fan-out order, and `maxCategories` keeps the first N of it — so the stored list can be longer than the list in force. The pane shows all of it; `effective.categories` shows what actually runs |
+| `language` is trimmed locally | The only client-side normalization in either pane. The server's tag pattern rejects a trailing space and would silently drop the whole field for it |
+| Result limit's placeholder | "No limit" rather than a number, because `effective.resultLimit` is `null` when no cap is in force — the one field whose inherited value is not a number |
+| Server configuration group | Two `configured` booleans: the fan-out endpoint and its bearer token. They stay Worker secrets, so the pane shows status and never an input |
+| i18n | The `qwksearch` namespace, 54 new keys in en-US and zh-CN |
+
+Upstream edits are F2c's same five registration points and no logic: the
+`SettingsTabs.Search` enum member, an entry in `componentMap.ts` and
+`componentMap.desktop.ts`, the sidebar item in `useCategory.tsx` (beside
+Extraction, under AI config), and the compact-header title map in
+`SettingsContent.tsx`.
+
+**The drift guard is `contract.test.ts`**, F2c's mechanism pointed at the other
+resolver: it imports the real `searchSettings.ts` through the `@/server/*`
+alias, rebuilds the exact document the route returns, and runs a load → edit →
+save cycle back through `normalizeSearchOverrides`. A category, recency filter
+or override field added on the server and not in `api.ts` fails it.
+
+Both panes now recognise the 401 the API error already carried and prompt the
+visitor to sign in instead of printing the status text — F2c's third recorded
+follow-up, closed here because it was the same bug in both.
+
 ## 3. Shared infrastructure
 
 Both Workers point at the **same** Cloudflare resources, which is what makes a
@@ -435,6 +483,10 @@ bunx vitest run worker src/features/QwkSearch \
 # The upstream search service, whose constructor now forwards the user id
 bunx vitest run apps/server/src/services/search
 
+# Both settings panes, including the two contract.test.ts drift guards that
+# rebuild each route's response from the real resolver (98 cases)
+bunx vitest run src/features/Settings/extraction src/features/Settings/search
+
 # Route/nav registration touched by /docs
 bunx vitest run src/spa/router/desktopRouter.sync.test.tsx src/features/NavPanel/routeKey.test.ts
 
@@ -445,7 +497,7 @@ cd packages/database && bunx vitest run src/core/cloudflare.test.ts
 ## 7. Not yet integrated
 
 Tracked with owners and next steps in [LobeHub Migration To-Do](./lobehub-migration-todo):
-the REASON editor inside `/docs`, the Search & Sources pane's **UI** (its backend
-is complete — see F5b), one login across both Workers, chat-history migration,
-and the OIDC/Redis/mobile-SPA ops gaps. The Extraction pane is now done end to
-end (F2c).
+the REASON editor inside `/docs`, one login across both Workers, chat-history
+migration, and the OIDC/Redis/mobile-SPA ops gaps. **Both settings features are
+now done end to end** — extraction through F2c and search through F5c — which
+closes § 2.2 of the to-do, the two panes it asked for.

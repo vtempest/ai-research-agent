@@ -16,6 +16,7 @@ import {
   FileSearchIcon,
   FlaskConical,
   Gift,
+  GlobeIcon,
   Info,
   KeyboardIcon,
   KeyIcon,
@@ -208,6 +209,14 @@ export const useCategory = () => {
         icon: FileSearchIcon,
         key: SettingsTabs.Extraction,
         label: tQwkSearch('extraction.title'),
+      },
+      // QwkSearch: which sources the web-browsing tool fans out to, and how it
+      // filters what comes back. Its twin — the pane above reads what a result
+      // becomes, this one reads where results come from.
+      {
+        icon: GlobeIcon,
+        key: SettingsTabs.Search,
+        label: tQwkSearch('search.title'),
       },
     ].filter(Boolean) as CategoryItem[];
 

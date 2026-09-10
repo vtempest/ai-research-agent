@@ -1,8 +1,8 @@
 'use client';
 
 import { type FormGroupItemType } from '@lobehub/ui';
-import { Flexbox, Form, InputNumber, Skeleton } from '@lobehub/ui';
-import { Button, Select, Text, toast } from '@lobehub/ui/base-ui';
+import { Flexbox, Form, InputNumber } from '@lobehub/ui';
+import { Button, Select, Skeleton, Text, toast } from '@lobehub/ui/base-ui';
 import { Form as AntdForm } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ import { FORM_STYLE } from '@/const/layoutTokens';
 import { SettingsSearchAnchor } from '@/features/SettingsSearch/anchor';
 
 import {
+  ExtractionSettingsApiError,
   type ExtractionSettingsResponse,
   fetchExtractionSettings,
   resetExtractionSettings,
@@ -29,12 +30,21 @@ import {
 const errorMessage = (error: unknown) =>
   error instanceof Error ? error.message : String(error ?? '');
 
+/**
+ * The pane needs a signed-in user, so a 401 is the expected first response for
+ * a signed-out visitor rather than a failure worth showing raw. Recognised here
+ * because `ExtractionSettingsApiError` already carries the status.
+ */
+const isUnauthorized = (error: unknown) =>
+  error instanceof ExtractionSettingsApiError && error.status === 401;
+
 const ExtractionForm = () => {
   const { t } = useTranslation('qwksearch');
   const [form] = AntdForm.useForm<ExtractionFormValues>();
 
   const [settings, setSettings] = useState<ExtractionSettingsResponse>();
   const [loadError, setLoadError] = useState<string>();
+  const [needsLogin, setNeedsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const values = AntdForm.useWatch([], form);
@@ -58,7 +68,9 @@ const ExtractionForm = () => {
         if (!cancelled) apply(response);
       })
       .catch((error) => {
-        if (!cancelled) setLoadError(errorMessage(error));
+        if (cancelled) return;
+        setNeedsLogin(isUnauthorized(error));
+        setLoadError(errorMessage(error));
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);
@@ -75,7 +87,11 @@ const ExtractionForm = () => {
       apply(await saveExtractionSettings(overridesFromFormValues(form.getFieldsValue())));
       toast.success(t('extraction.saved'));
     } catch (error) {
-      toast.error(t('extraction.saveFailed', { error: errorMessage(error) }));
+      toast.error(
+        isUnauthorized(error)
+          ? t('extraction.error.loginRequired')
+          : t('extraction.saveFailed', { error: errorMessage(error) }),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -87,7 +103,11 @@ const ExtractionForm = () => {
       apply(await resetExtractionSettings());
       toast.success(t('extraction.reset'));
     } catch (error) {
-      toast.error(t('extraction.saveFailed', { error: errorMessage(error) }));
+      toast.error(
+        isUnauthorized(error)
+          ? t('extraction.error.loginRequired')
+          : t('extraction.saveFailed', { error: errorMessage(error) }),
+      );
     } finally {
       setIsSaving(false);
     }
@@ -97,13 +117,15 @@ const ExtractionForm = () => {
     form.setFieldsValue(settings ? formValuesFromResponse(settings) : EMPTY_FORM_VALUES);
   }, [form, settings]);
 
-  if (isLoading) return <Skeleton active paragraph={{ rows: 8 }} title={false} />;
+  if (isLoading) return <Skeleton.Text rows={8} />;
 
   if (!settings) {
     return (
       <Flexbox gap={8} paddingBlock={24}>
-        <Text type={'danger'}>{t('extraction.error.load')}</Text>
-        {loadError && <Text type={'secondary'}>{loadError}</Text>}
+        <Text type={'danger'}>
+          {needsLogin ? t('extraction.error.loginRequired') : t('extraction.error.load')}
+        </Text>
+        {!needsLogin && loadError && <Text type={'secondary'}>{loadError}</Text>}
       </Flexbox>
     );
   }
@@ -181,11 +203,11 @@ const ExtractionForm = () => {
         children: (
           <Select
             mode={'multiple'}
+            placeholder={t('extraction.tiers.placeholder')}
             options={options.tiers.map((tier) => ({
               label: t(`extraction.tier.${tier}` as any, tier),
               value: tier,
             }))}
-            placeholder={t('extraction.tiers.placeholder')}
           />
         ),
         desc: t('extraction.tiers.desc', { value: effective.tiers.join(' → ') }),

@@ -100,7 +100,7 @@ data is reused as-is.
   between the operator's environment and the request's query parameters. The API returns what the
   user set, what is actually in force, and the enums and bounds a settings pane needs — with every
   host and credential reduced to a presence flag, never a value. This is the sink the Extraction
-  settings pane writes to when it lands. Reads never fail an extraction: an unreadable row falls
+  settings pane writes to. Reads never fail an extraction: an unreadable row falls
   back to the operator's configuration, and a request with no session cookie skips the lookup.
 - **Search preferences** (`apps/server/src/services/search/impls/qwksearch/searchPreferences.ts`,
   `GET`/`PUT`/`DELETE /api/doc/search-settings`): the same thing for the search fan-out, on the D1
@@ -110,6 +110,18 @@ data is reused as-is.
   key cannot be stored here at all. The user id reaches the fan-out from the tool-execution
   context through `SearchService`, and the row is read once per tool execution rather than per
   query.
+- **Settings panes** (`src/features/Settings/extraction/`, `src/features/Settings/search/`):
+  `/settings/extraction` and `/settings/search`, the two forms over the preferences APIs above,
+  living inside LobeHub's own settings shell rather than beside it. Both are built the same way and
+  the shape is worth knowing before touching either: the `GET` response's `options` block carries
+  every enum and bound, so a new category or citation style needs no UI edit; every input has an
+  explicit *inherit* state and the PUT body **omits** what the user has not set, because an absent
+  key is the only way to say "follow the operator's configuration"; the inputs seed from
+  `overrides` and never from `effective`, so saving one field cannot silently pin the rest to
+  today's server config; and the form re-renders from the response, because `PUT` validates and
+  trims. Hosts and credentials appear only as read-only "configured / not configured" rows. Each
+  pane's `contract.test.ts` is the drift guard — it imports the real resolver, rebuilds the exact
+  document its route returns, and fails if the client's restated types fall behind.
 - **Branding**: `BRANDING_NAME`/`ORG_NAME` = QwkSearch, QwkSearch favicons under `public/`,
   support/social URLs point at qwksearch.com.
 
@@ -219,6 +231,9 @@ LobeHub's Postgres migrations once against the database: `bun run db:migrate` wi
 bunx vitest run worker src/features/QwkSearch src/libs/better-auth/utils/kvSecondaryStorage.test.ts \
   apps/server/src/services/email/impls/cloudflare apps/server/src/services/search/impls/qwksearch
 
+# the two settings panes, including their contract drift guards
+bunx vitest run src/features/Settings/extraction src/features/Settings/search
+
 # routes/nav registration touched by /docs
 bunx vitest run src/spa/router/desktopRouter.sync.test.tsx src/features/NavPanel/routeKey.test.ts
 
@@ -228,7 +243,9 @@ cd packages/database && bunx vitest run src/core/cloudflare.test.ts
 
 Coverage includes SPA locale/device/route resolution, the extraction fallback chain, the article and
 docs stores, chat-link interception, KV secondary storage, the Cloudflare email provider, the
-Hyperdrive bridge, and rendered-component tests for the article panel and the docs editor.
+Hyperdrive bridge, rendered-component tests for the article panel and the docs editor, and both
+settings panes end to end — client, form state, rendered form, and a contract test per pane that
+rebuilds its route's response from the real resolver.
 
 ## What changed vs. upstream LobeHub
 
@@ -250,6 +267,13 @@ Hyperdrive bridge, and rendered-component tests for the article panel and the do
   hard-coded `searchCategories` enum for `resolveSearchCategories()` (import + expression) and
   `src/index.ts` gains one export line. No upstream file there changed for the search settings
   layer — only a doc comment in `searchCategories.ts`, which is a QwkSearch-added file.
+- Settings-tab registration for the two QwkSearch panes — five points, no logic, and the same five
+  for each: the `SettingsTabs.Extraction` / `SettingsTabs.Search` enum members
+  (`src/store/global/initialState.ts`), an entry in `src/features/Settings/features/componentMap.ts`
+  and `componentMap.desktop.ts` (kept in step by `componentMap.sync.test.ts`), the sidebar items in
+  `src/features/Settings/hooks/useCategory.tsx`, and the compact-header title map in
+  `src/features/Settings/features/SettingsContent.tsx`. No route file: `/settings/:tab` already
+  dispatches by enum value.
 - `packages/env/src/email.ts`: accepts `EMAIL_SERVICE_PROVIDER=cloudflare`.
 - `packages/business/const/src/branding.ts`, `packages/const/src/url.ts`: QwkSearch branding.
 - `packages/locales/src/default/{electron,qwksearch}.ts` + `locales/{en-US,zh-CN}`: new keys.
@@ -266,7 +290,8 @@ Hyperdrive bridge, and rendered-component tests for the article panel and the do
   is deleted. Cost: the Worker bundle goes from 7.39 MB to 7.93 MB gzipped against Cloudflare's
   10 MB limit (linkedom, plus the Prism grammars `extract-webpage` uses to highlight code blocks).
 
-Everything under `worker/` and `src/features/QwkSearch/` is new.
+Everything under `worker/`, `src/features/QwkSearch/`, `src/features/Settings/extraction/` and
+`src/features/Settings/search/` is new.
 
 ## Known gaps
 
