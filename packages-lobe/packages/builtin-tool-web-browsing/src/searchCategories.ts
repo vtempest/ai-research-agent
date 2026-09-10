@@ -9,9 +9,11 @@
  * QwkSearch's fan-out endpoint accepts five categories LobeHub's manifest does
  * not offer (`files`, `it`, `map`, `music`, `social+media`); its 13-name
  * registry aliases onto those in
- * `apps/server/src/services/search/impls/qwksearch/index.ts`, which is the file
- * to keep this list in step with. They are only safe to advertise when
- * QwkSearch is the *sole* configured provider, so that is the condition here.
+ * `apps/server/src/services/search/impls/qwksearch/searchSettings.ts`, whose
+ * `SEARCH_CATEGORIES` is the list to keep this one in step with —
+ * `searchSettings.test.ts` asserts the two are equal. They are only safe to
+ * advertise when QwkSearch is the *sole* configured provider, so that is the
+ * condition here.
  *
  * This file is new rather than inlined into `manifest.ts` on purpose: everything
  * under `packages/` is upstream LobeHub, and the edit there stays two lines.

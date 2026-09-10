@@ -1,5 +1,115 @@
 ## In Progress
 
+## Give the search fan-out a settings layer inside the LobeHub engine
+
+**Status:** Completed
+**Source:** Scheduled task — "merge lobehub and qwksearch.com so that lobehub is
+the core engine but the elements of qwksearch are then added". Picked up the
+LobeHub Migration To-Do's own #1 suggested next: a `searchSettings.ts` mirroring
+`extractSettings.ts`, the first of the three steps the Search & Sources pane
+needs.
+**Branch:** `claude/magical-bohr-4t8p0t`
+**PR:** #413
+**Started:** 2026-09-10
+**Completed:** 2026-09-10
+
+### Goal
+`QwkSearchImpl` read `process.env` inside a getter and hard-coded the rest: a
+`general` fallback category, three categories per query, and four query
+parameters the fan-out endpoint accepts that it never sent. Extraction stopped
+doing that in 1.5; search had not. Give it the same resolved-value layer, so
+2.2's Search & Sources pane has somewhere to write to.
+
+### Scope
+One new module and its test beside the impl, the impl rewired onto it, and
+documentation. No new route, no storage, no UI — those are the next two steps.
+
+- `apps/server/src/services/search/impls/qwksearch/searchSettings.ts` (new).
+- `.../searchSettings.test.ts` (new, 44 cases).
+- `.../index.ts` — the category/alias tables move out, the class takes the
+  resolved value; `normalizeCategories` is re-exported so its callers and the
+  manifest drift guard are untouched.
+- `.../index.test.ts` — 11 cases added, the 27 existing ones unchanged.
+- Docs: §F5a in the integrations reference, §1.8 in the migration to-do, the
+  env table and upstream-diff note in `packages-lobe/README.md`, and the
+  file pointer in `searchCategories.ts`.
+
+### Non-goals
+- **Storage and a route.** That is 1.6's equivalent and the recorded next item.
+  It has a genuinely new problem to solve first — see "Remaining work".
+- **The pane.** 1.7's equivalent, blocked on the above.
+- **Editing the endpoint or the API key.** They stay Worker secrets; the client
+  summary reduces them to presence flags and never a value.
+
+### What changed
+Four decisions carry the design:
+
+- **It lives beside its consumer, not under `worker/`.**
+  `extractSettings.ts` sits in `worker/qwksearch/` because the extraction chain
+  does. The search impl is `@/server/*` code, and the dependency runs
+  worker → `@/server/*` and never back — so a future
+  `/api/doc/search-settings` route can import this, while the mirror-image
+  placement would not have worked.
+- **The request layer is narrower than the user layer.** The tool call's
+  arguments are written by the model, so they may narrow only `categories` and
+  `timeRange`. `maxCategories` is withheld from it because it bounds how many
+  upstream requests one query costs.
+- **The category cap is applied once, at the end.** The list can arrive from the
+  request layer while the bound comes from the user layer, so the normalizers
+  return the full validated list and `resolveSearchSettings` truncates last.
+- **Empty is not a value.** A normalizer that finds nothing valid returns
+  `undefined`, so a typo in `QWKSEARCH_SEARCH_CATEGORIES` falls through to the
+  layer above instead of searching nothing.
+
+Three query parameters the endpoint always accepted are now actually sent:
+`lang`, `safesearch` and `publicInstances` were in
+`research-agent-ui/src/api/handlers/search.ts` the whole time. Only `lang`
+changes the default request, and it sends the value the endpoint already
+assumed (`en-US`).
+
+One latent bug surfaced while moving the alias table: `files` had no self-entry
+in it and survived only through an identity fallback in the old lookup. The new
+lookup restores that fallback explicitly, with a comment saying why.
+
+### Verification
+- [x] `bun run check` over all four changed source files — lint clean, 82 tests
+      pass (44 new in `searchSettings.test.ts`, 38 in `index.test.ts`).
+- [x] `npx vitest run apps/server/src/services/search` — 185 passed, 7 skipped,
+      11 files. The whole search service, not just this provider.
+- [x] The 27 pre-existing `index.test.ts` cases pass unmodified, which is the
+      real regression signal: the impl's observable behavior is unchanged
+      wherever no new var is set.
+- [x] Type check: **scoped**, not repo-wide, per the to-do's OOM warning. A
+      `tsconfig` extending the real one and narrowed to the impl directory
+      reports **zero** errors in any changed file. The errors it does report are
+      all pre-existing `apps/desktop`, `packages/builtin-skills` and
+      `worker/cf/env.ts` (missing Cloudflare globals in the scoped `types`).
+
+### Notes for the next run
+- **`pnpm install --ignore-scripts` in `packages-lobe` took 65 seconds here**,
+  not the "few minutes" the to-do records. Anything under `apps/server/` needs
+  it — the `worker/`-only scratch-vitest recipe does not cover that tree.
+- **`bun run check <dir>` silently checks one file.** Pass explicit file paths;
+  a directory argument reported "1 files · lint clean" while three others went
+  unlinted.
+- CI still cannot see `packages-lobe`, and PRs here still auto-merge. Both
+  remain written up in the to-do.
+
+### Remaining work
+- **The user layer has no storage**, so today every deployment resolves
+  defaults-under-env exactly as before. `QwkSearchImpl`'s constructor takes
+  `UserSearchOverrides` and the factory passes none.
+- **How the user id reaches the impl is unsolved.** Extraction never had to
+  answer this: its chain runs inside a Worker route that already has the
+  session. `impls/index.ts` builds the search impl with no request in scope.
+  Two candidates — resolve the overrides in the tool's execution runtime and
+  pass them to the constructor, or give `SearchService` a per-request factory.
+  Decide that before writing the D1 table.
+- **`searchSettingsForClient` has no client**, the same gap 1.6 left before 1.7.
+- **Not seen against the live endpoint.** No Cloudflare credentials here, so the
+  new `lang`/`safesearch`/`publicInstances` parameters are verified by asserting
+  the built URL and never by a real response.
+
 ## Build the Extraction settings pane inside the LobeHub engine
 
 **Status:** Completed
