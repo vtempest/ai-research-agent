@@ -14,6 +14,12 @@
  *
  * The endpoint takes one category per request, so multiple `searchCategories`
  * fan out in parallel and merge here, deduplicated by URL.
+ *
+ * Every knob the requests carry — the endpoint, the categories, the language,
+ * safe search, the recency filter and the result cap — is resolved by
+ * `./searchSettings`, which layers defaults under the environment under the
+ * user's preferences under this call's own arguments. This file only turns the
+ * resolved value into HTTP.
  */
 import {
   type SearchParams,
@@ -24,76 +30,17 @@ import { TRPCError } from '@trpc/server';
 import debug from 'debug';
 
 import { type SearchServiceImpl } from '../type';
+import {
+  resolveSearchSettings,
+  searchOverridesFromParams,
+  type SearchSettings,
+  type UserSearchOverrides,
+} from './searchSettings';
 import { type QwkSearchResponse, type QwkSearchResult } from './type';
 
 const log = debug('lobe-search:QwkSearch');
 
-const DEFAULT_ENDPOINT = 'https://qwksearch.com/api/agent/search';
-
-/** SearXNG category names the fan-out endpoint understands. */
-const SUPPORTED_CATEGORIES = new Set([
-  'files',
-  'general',
-  'images',
-  'it',
-  'map',
-  'music',
-  'news',
-  'science',
-  'social+media',
-  'videos',
-]);
-
-/**
- * QwkSearch's category registry (`search-web-api/registry`) names a few
- * categories differently from SearXNG, and LobeHub's tool manifest offers a
- * fifth set again. Normalize every spelling we might receive onto what the
- * endpoint accepts; anything unknown falls back to `general` rather than
- * returning an empty page.
- */
-const CATEGORY_ALIASES: Record<string, string> = {
-  'academic': 'science',
-  'apps': 'files',
-  'code': 'it',
-  'file': 'files',
-  'general': 'general',
-  'image': 'images',
-  'images': 'images',
-  'it': 'it',
-  'map': 'map',
-  'maps': 'map',
-  'music': 'music',
-  'news': 'news',
-  'science': 'science',
-  'shopping': 'general',
-  'social': 'social+media',
-  'social media': 'social+media',
-  'social+media': 'social+media',
-  'specialized': 'general',
-  'tech': 'it',
-  'torrents': 'files',
-  'video': 'videos',
-  'videos': 'videos',
-};
-
-const TIME_RANGES = new Set(['day', 'week', 'month', 'year']);
-
-/** Max categories fanned out per query, to bound the request budget. */
-const MAX_CATEGORIES = 3;
-
-export const normalizeCategories = (categories?: string[]): string[] => {
-  if (!categories?.length) return ['general'];
-
-  const normalized = categories
-    .map((category) => category?.trim().toLowerCase())
-    .filter(Boolean)
-    .map((category) => CATEGORY_ALIASES[category] ?? category)
-    .filter((category) => SUPPORTED_CATEGORIES.has(category));
-
-  const unique = [...new Set(normalized)];
-
-  return unique.length > 0 ? unique.slice(0, MAX_CATEGORIES) : ['general'];
-};
+export { normalizeCategories } from './searchSettings';
 
 const hostnameOf = (url: string): string => {
   try {
@@ -155,23 +102,40 @@ export class QwkSearchImpl implements SearchServiceImpl {
    */
   readonly useAutoSearchEngineSelection = true;
 
-  private get endpoint(): string {
-    return process.env.QWKSEARCH_SEARCH_URL || DEFAULT_ENDPOINT;
+  /**
+   * The signed-in user's preferences, if the caller has them.
+   *
+   * Nothing constructs the impl with them yet — that is the storage step of
+   * migration to-do § 2.2, the search-side mirror of extraction's 1.6. Until
+   * then every deployment resolves to defaults under the environment, exactly
+   * as before, and the seam is here for that step to fill.
+   */
+  constructor(private readonly overrides: UserSearchOverrides = {}) {}
+
+  /**
+   * Resolved per query, not per instance: `SearchService` holds one impl for
+   * the lifetime of the process, and reading the environment lazily is what
+   * lets a test set `QWKSEARCH_SEARCH_URL` after construction.
+   */
+  private settingsFor(params: SearchParams): SearchSettings {
+    return resolveSearchSettings(
+      process.env as Record<string, string | undefined>,
+      this.overrides,
+      searchOverridesFromParams(params),
+    );
   }
 
-  private get apiKey(): string | undefined {
-    return process.env.QWKSEARCH_API_KEY;
-  }
-
-  private buildUrl(query: string, category: string, params: SearchParams): URL {
-    const url = new URL(this.endpoint);
+  private buildUrl(query: string, category: string, settings: SearchSettings): URL {
+    const url = new URL(settings.endpoint);
     url.searchParams.set('q', query);
     url.searchParams.set('cat', category);
+    url.searchParams.set('lang', settings.language);
 
-    const timeRange = params.searchTimeRange;
-    if (timeRange && TIME_RANGES.has(timeRange)) {
-      url.searchParams.set('recency', timeRange);
-    }
+    if (settings.timeRange) url.searchParams.set('recency', settings.timeRange);
+    // Both are read by the endpoint as `=== 'true'`, so send them only when on
+    // rather than spelling out the default in every request.
+    if (settings.safeSearch) url.searchParams.set('safesearch', 'true');
+    if (settings.publicInstances) url.searchParams.set('publicInstances', 'true');
 
     return url;
   }
@@ -179,11 +143,11 @@ export class QwkSearchImpl implements SearchServiceImpl {
   private async queryCategory(
     query: string,
     category: string,
-    params: SearchParams,
+    settings: SearchSettings,
   ): Promise<UniformSearchResult[]> {
-    const url = this.buildUrl(query, category, params);
+    const url = this.buildUrl(query, category, settings);
     const headers: Record<string, string> = { Accept: 'application/json' };
-    if (this.apiKey) headers['Authorization'] = `Bearer ${this.apiKey}`;
+    if (settings.apiKey) headers['Authorization'] = `Bearer ${settings.apiKey}`;
 
     const response = await fetch(url, { headers });
 
@@ -206,7 +170,8 @@ export class QwkSearchImpl implements SearchServiceImpl {
   }
 
   async query(query: string, params: SearchParams = {}): Promise<UniformSearchResponse> {
-    const categories = normalizeCategories(params.searchCategories);
+    const settings = this.settingsFor(params);
+    const categories = settings.categories;
     log('querying %o across categories %o', query, categories);
 
     const startAt = Date.now();
@@ -214,7 +179,7 @@ export class QwkSearchImpl implements SearchServiceImpl {
     let lists: UniformSearchResult[][];
     try {
       lists = await Promise.all(
-        categories.map((category) => this.queryCategory(query, category, params)),
+        categories.map((category) => this.queryCategory(query, category, settings)),
       );
     } catch (error) {
       console.error('[QwkSearchImpl] query failed', error);
@@ -225,7 +190,10 @@ export class QwkSearchImpl implements SearchServiceImpl {
       });
     }
 
-    const results = mergeResults(lists);
+    const merged = mergeResults(lists);
+    // Capped after the merge, so the cap counts distinct URLs rather than
+    // per-category rows, and always keeps the highest-scoring ones.
+    const results = settings.resultLimit ? merged.slice(0, settings.resultLimit) : merged;
     log('got %d results in %dms', results.length, Date.now() - startAt);
 
     return {

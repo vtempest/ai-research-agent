@@ -246,10 +246,11 @@ LobeHub web-browsing tool
 |---|---|
 | Enable | `SEARCH_PROVIDERS=qwksearch` (set in `wrangler.jsonc` vars) |
 | Endpoint | `QWKSEARCH_SEARCH_URL`, default `https://qwksearch.com/api/agent/search`; optional `QWKSEARCH_API_KEY` sent as a bearer token |
-| Categories | Three vocabularies are normalized onto the endpoint's ten SearXNG names: LobeHub's manifest, QwkSearch's 13-category registry (`academic`, `social`, `tech`, `torrents`, …) and SearXNG's. Unknown names fall back to `general` rather than returning an empty page |
+| Configuration | Every knob the request carries is resolved by `searchSettings.ts` — see F5a. `index.ts` only turns the resolved value into HTTP |
+| Categories | Three vocabularies are normalized onto the endpoint's ten SearXNG names: LobeHub's manifest, QwkSearch's 13-category registry (`academic`, `social`, `tech`, `torrents`, …) and SearXNG's. A name none of them knows is dropped; a call left with nothing valid falls through to the configured default (`general` unless an operator set otherwise) rather than returning an empty page |
 | Advertised categories | The manifest enum is resolved at module evaluation by `packages/builtin-tool-web-browsing/src/searchCategories.ts`. With `SEARCH_PROVIDERS=qwksearch` and nothing else, the model is offered all ten (`files`, `it`, `map`, `music`, `social+media` on top of LobeHub's five); any other configuration keeps LobeHub's five, so no backend is asked for a category it cannot serve |
-| Fan-out | One request per category, capped at 3, issued in parallel |
-| Merge | Deduplicated by URL — highest score wins, engine lists union, a missing snippet is backfilled from the duplicate |
+| Fan-out | One request per category, issued in parallel, capped at `maxCategories` (3 by default, operator-raisable to 10) |
+| Merge | Deduplicated by URL — highest score wins, engine lists union, a missing snippet is backfilled from the duplicate. Capped after the merge when `resultLimit` is set, so the cap counts distinct URLs and keeps the highest-scoring ones |
 | Engines | Never forwarded. `useAutoSearchEngineSelection = true` tells `SearchService` not to retry by stripping engine restrictions, because QwkSearch already picks engines per category |
 | Failure | Any category request failing raises `TRPCError SERVICE_UNAVAILABLE`, so `SearchService` can fail over to the next configured provider |
 
@@ -264,6 +265,50 @@ Note that `packages/**` is excluded from the root Vitest config and the
 web-browsing tool package has no config of its own, so a test placed beside
 `searchCategories.ts` would never run. Its coverage lives in
 `impls/qwksearch/index.test.ts` instead, which imports the package by name.
+
+### F5a — Search settings contract
+
+The search-side mirror of F2a, and the first of the three steps the Search &
+Sources pane needs. `QwkSearchImpl` used to read `process.env` inside a getter
+and hard-code the rest: `general` as the fallback category, three categories per
+query, and four query parameters the fan-out endpoint accepts that it never
+sent. `searchSettings.ts` replaces all of it with one resolved `SearchSettings`,
+folded out of three layers.
+
+```
+DEFAULT_SEARCH_SETTINGS              shipped behaviour
+  ← searchSettingsFromEnv(env)       Worker vars + secrets   (operator)
+  ← UserSearchOverrides              persisted preferences   (signed-in user)
+  ← searchOverridesFromParams(p)     this tool call's args   (the model)
+      ↓
+  one GET per resolved category, carrying lang / recency / safesearch /
+  publicInstances, merged and then capped at `resultLimit`
+```
+
+| Concern | Behavior |
+|---|---|
+| Validation | Every value is normalized on the way in — categories aliased onto the endpoint's ten names, language tags matched against a BCP-47 shape and case-canonicalized (`EN-us` → `en-US`), numbers rounded and clamped, enums matched case-insensitively. A value that fails falls back to the layer below; nothing throws, because a bad preference must not turn a search into a 500 |
+| Layer asymmetry | `endpoint` and `apiKey` resolve **from the environment only** — a user-supplied backend URL would leak the configured bearer token to whatever host they chose. `RequestSearchOverrides` is narrower again: the tool call is written by the model, so it may narrow only `categories` and `timeRange`, the two fields the manifest offers it. `maxCategories` is withheld from it because it bounds how many upstream requests one query costs |
+| Where the cap is applied | `maxCategories` truncates the category list once, after every layer has resolved — the list can arrive from the request layer while the bound comes from the user layer, so capping inside a layer would use the wrong bound |
+| Empty is not a value | A normalizer that finds nothing valid returns `undefined`, not `[]`, so a typo in `QWKSEARCH_SEARCH_CATEGORIES` falls through to the layer above instead of searching nothing |
+| `searchTimeRange: 'anytime'` | The manifest's "no filter" value is not one the endpoint understands, so it drops out of the request layer and whatever the operator configured stands — `undefined`, no filter, unless they set one |
+| Diagnostics | `redactSearchSettings` replaces the credential with a boolean. `searchSettingsForClient` goes further for the future pane: it returns exactly the fields a user may change, reduces the endpoint and the key to presence flags under `configured` (an endpoint URL can carry basic-auth credentials in its userinfo), and serializes the two optional fields as `null` rather than omitting them, because absent means "inherit" everywhere else in this seam |
+| Where the user layer lives | Nowhere yet. `QwkSearchImpl`'s constructor takes `UserSearchOverrides` and nothing passes them — that is the storage step, the search-side mirror of F2b |
+
+Env vars, all optional and all defaulted: `QWKSEARCH_SEARCH_CATEGORIES`,
+`QWKSEARCH_SEARCH_MAX_CATEGORIES`, `QWKSEARCH_SEARCH_LANGUAGE`,
+`QWKSEARCH_SEARCH_TIME_RANGE`, `QWKSEARCH_SEARCH_SAFE`,
+`QWKSEARCH_SEARCH_PUBLIC_INSTANCES`, `QWKSEARCH_SEARCH_RESULT_LIMIT`. The
+existing `QWKSEARCH_SEARCH_URL` and `QWKSEARCH_API_KEY` keep their names, so no
+deployment needs to change; setting none of the new ones reproduces the
+behavior the impl had before the settings layer existed, with one deliberate
+addition — `lang=en-US` is now sent explicitly, which is the value the endpoint
+already defaulted to.
+
+The module lives beside its consumer in `impls/qwksearch/` rather than under
+`worker/` (where `extractSettings.ts` sits) because the dependency runs
+worker → `@/server/*` and never back: a future `/api/doc/search-settings` route
+in the Worker can import this, but this could not import from `worker/`.
 
 ## 3. Shared infrastructure
 
@@ -300,6 +345,12 @@ Optional extraction vars, all defaulted, are listed under §F2a and in
 OCR processor for scanned PDFs) and its companion `PDF_PROCESSOR`. Setting none
 of them reproduces the behavior the chain had before the settings layer existed.
 
+Optional search vars, likewise all defaulted, are listed under §F5a:
+`QWKSEARCH_SEARCH_CATEGORIES`, `QWKSEARCH_SEARCH_MAX_CATEGORIES`,
+`QWKSEARCH_SEARCH_LANGUAGE`, `QWKSEARCH_SEARCH_TIME_RANGE`,
+`QWKSEARCH_SEARCH_SAFE`, `QWKSEARCH_SEARCH_PUBLIC_INSTANCES`,
+`QWKSEARCH_SEARCH_RESULT_LIMIT`.
+
 Secrets (`wrangler secret put`): `KEY_VAULTS_SECRET`, `AUTH_SECRET`,
 `DATABASE_URL` (when not using Hyperdrive), `S3_*`, `TAVILY_API_KEY`,
 `SCRAPER_API_KEY`, `QWKSEARCH_API_KEY`, per-provider model keys, `QSTASH_*`.
@@ -326,7 +377,8 @@ bunx vitest run worker/qwksearch
 bunx vitest run worker/routes/qwksearch/extractionSettings.test.ts \
   worker/routes/qwksearch/article.test.ts
 
-# Worker, Cloudflare adapters, QwkSearch features, the search provider
+# Worker, Cloudflare adapters, QwkSearch features, the search provider and its
+# settings layer (82 cases across index.test.ts and searchSettings.test.ts)
 bunx vitest run worker src/features/QwkSearch \
   src/libs/better-auth/utils/kvSecondaryStorage.test.ts \
   apps/server/src/services/email/impls/cloudflare \

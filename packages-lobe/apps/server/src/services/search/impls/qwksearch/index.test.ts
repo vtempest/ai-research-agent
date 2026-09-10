@@ -323,3 +323,155 @@ describe('QwkSearchImpl', () => {
     });
   });
 });
+
+describe('QwkSearchImpl settings', () => {
+  const SEARCH_ENV = [
+    'QWKSEARCH_API_KEY',
+    'QWKSEARCH_SEARCH_CATEGORIES',
+    'QWKSEARCH_SEARCH_LANGUAGE',
+    'QWKSEARCH_SEARCH_MAX_CATEGORIES',
+    'QWKSEARCH_SEARCH_PUBLIC_INSTANCES',
+    'QWKSEARCH_SEARCH_RESULT_LIMIT',
+    'QWKSEARCH_SEARCH_SAFE',
+    'QWKSEARCH_SEARCH_TIME_RANGE',
+    'QWKSEARCH_SEARCH_URL',
+  ];
+
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn());
+    vi.mocked(fetch).mockResolvedValue(createMockResponse({ results: [] }));
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    for (const key of SEARCH_ENV) delete process.env[key];
+  });
+
+  it('sends the resolved language on every request', async () => {
+    await new QwkSearchImpl().query('q');
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('en-US');
+
+    vi.mocked(fetch).mockClear();
+    process.env.QWKSEARCH_SEARCH_LANGUAGE = 'ja-jp';
+    await new QwkSearchImpl().query('q');
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('ja-JP');
+  });
+
+  it('omits safesearch and publicInstances unless they are on', async () => {
+    await new QwkSearchImpl().query('q');
+
+    const url = requestedUrls()[0];
+    expect(url.searchParams.has('safesearch')).toBe(false);
+    expect(url.searchParams.has('publicInstances')).toBe(false);
+  });
+
+  it('sends safesearch and publicInstances when the operator turns them on', async () => {
+    process.env.QWKSEARCH_SEARCH_PUBLIC_INSTANCES = 'true';
+    process.env.QWKSEARCH_SEARCH_SAFE = 'true';
+
+    await new QwkSearchImpl().query('q');
+
+    const url = requestedUrls()[0];
+    expect(url.searchParams.get('safesearch')).toBe('true');
+    expect(url.searchParams.get('publicInstances')).toBe('true');
+  });
+
+  it('applies a configured default recency when the call asks for none', async () => {
+    process.env.QWKSEARCH_SEARCH_TIME_RANGE = 'month';
+
+    await new QwkSearchImpl().query('q');
+    expect(requestedUrls()[0].searchParams.get('recency')).toBe('month');
+
+    // …and the call still wins where it names a range the endpoint knows.
+    vi.mocked(fetch).mockClear();
+    await new QwkSearchImpl().query('q', { searchTimeRange: 'day' });
+    expect(requestedUrls()[0].searchParams.get('recency')).toBe('day');
+  });
+
+  it('searches the operator default categories when the call names none', async () => {
+    process.env.QWKSEARCH_SEARCH_CATEGORIES = 'news,science';
+
+    await new QwkSearchImpl().query('q');
+
+    expect(requestedUrls().map((u) => u.searchParams.get('cat'))).toEqual(['news', 'science']);
+  });
+
+  it('lets the operator widen the fan-out past three categories', async () => {
+    process.env.QWKSEARCH_SEARCH_MAX_CATEGORIES = '4';
+
+    await new QwkSearchImpl().query('q', {
+      searchCategories: ['general', 'news', 'images', 'videos', 'science'],
+    });
+
+    expect(fetch).toHaveBeenCalledTimes(4);
+  });
+
+  it('caps the merged results when a limit is configured', async () => {
+    process.env.QWKSEARCH_SEARCH_RESULT_LIMIT = '2';
+    vi.mocked(fetch).mockResolvedValue(
+      createMockResponse({
+        results: [
+          { score: 0.1, title: 'C', url: 'https://c.com' },
+          { score: 0.9, title: 'A', url: 'https://a.com' },
+          { score: 0.5, title: 'B', url: 'https://b.com' },
+        ],
+      }),
+    );
+
+    const { resultNumbers, results } = await new QwkSearchImpl().query('q');
+
+    // Capped after the merge, so it keeps the highest-scoring URLs.
+    expect(results.map((r) => r.url)).toEqual(['https://a.com', 'https://b.com']);
+    expect(resultNumbers).toBe(2);
+  });
+
+  it('returns every result when no limit is configured', async () => {
+    vi.mocked(fetch).mockResolvedValue(
+      createMockResponse({
+        results: [
+          { title: 'A', url: 'https://a.com' },
+          { title: 'B', url: 'https://b.com' },
+          { title: 'C', url: 'https://c.com' },
+        ],
+      }),
+    );
+
+    expect((await new QwkSearchImpl().query('q')).results).toHaveLength(3);
+  });
+
+  it('takes user preferences over the environment, and the call over both', async () => {
+    process.env.QWKSEARCH_SEARCH_CATEGORIES = 'news';
+    process.env.QWKSEARCH_SEARCH_LANGUAGE = 'de-DE';
+
+    const impl = new QwkSearchImpl({ categories: ['music'], language: 'fr-FR' });
+
+    await impl.query('q');
+    expect(requestedUrls()[0].searchParams.get('cat')).toBe('music');
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('fr-FR');
+
+    vi.mocked(fetch).mockClear();
+    await impl.query('q', { searchCategories: ['videos'] });
+    expect(requestedUrls()[0].searchParams.get('cat')).toBe('videos');
+    // The call may narrow the categories; it has no say over the language.
+    expect(requestedUrls()[0].searchParams.get('lang')).toBe('fr-FR');
+  });
+
+  it('reads the environment per query, not once at construction', async () => {
+    const impl = new QwkSearchImpl();
+    await impl.query('q');
+    expect(requestedUrls()[0].origin).toBe('https://qwksearch.com');
+
+    vi.mocked(fetch).mockClear();
+    process.env.QWKSEARCH_SEARCH_URL = 'https://staging.example/api/agent/search';
+    await impl.query('q');
+    expect(requestedUrls()[0].origin).toBe('https://staging.example');
+  });
+
+  it('ignores an endpoint that is not an http(s) URL', async () => {
+    process.env.QWKSEARCH_SEARCH_URL = 'file:///etc/passwd';
+
+    await new QwkSearchImpl().query('q');
+
+    expect(requestedUrls()[0].origin).toBe('https://qwksearch.com');
+  });
+});

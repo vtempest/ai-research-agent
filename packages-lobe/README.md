@@ -66,7 +66,9 @@ data is reused as-is.
   (`QWKSEARCH_SEARCH_URL`, default `https://qwksearch.com/api/agent/search`, optional
   `QWKSEARCH_API_KEY`). Requested categories are normalized across three vocabularies
   (LobeHub's manifest, QwkSearch's 13-category registry, SearXNG's), fanned out one request per
-  category (max 3) and merged by URL — highest score wins, engine lists union.
+  category (3 by default) and merged by URL — highest score wins, engine lists union. Everything
+  the request carries is resolved by `searchSettings.ts`, layering shipped defaults under Worker
+  env under the user's preferences under the tool call's own arguments; the vars are below.
 - **Extraction chain** (`worker/qwksearch/extract.ts`): QwkSearch's own `extract-webpage`
   → Cloudflare Puppeteer scraper (`SCRAPER_URL`, 8s deadline) → Tavily (`TAVILY_API_KEY`) →
   LobeHub's own `@lobechat/web-crawler` (fetch + readability). The chain is routed per URL kind
@@ -182,6 +184,19 @@ Extraction is tuned by an optional group of vars, all defaulted (`worker/qwksear
 | `QWKSEARCH_EXTRACT_PROXY` | — | outbound proxy for the extractor's own fetches |
 | `QWKSEARCH_EXTRACT_THIRD_PARTY_BACKUP` | `false` | let the extractor fall back to a third-party reader |
 
+Search is tuned by the same kind of group, also all defaulted
+(`apps/server/src/services/search/impls/qwksearch/searchSettings.ts`):
+
+| Var | Default | Meaning |
+| --- | --- | --- |
+| `QWKSEARCH_SEARCH_CATEGORIES` | `general` | categories searched when the tool call names none |
+| `QWKSEARCH_SEARCH_MAX_CATEGORIES` | `3` | most categories fanned out per query (1–10) |
+| `QWKSEARCH_SEARCH_LANGUAGE` | `en-US` | BCP-47 tag sent as `lang` |
+| `QWKSEARCH_SEARCH_TIME_RANGE` | — | default recency when the call names none: `day`, `week`, `month`, `year` |
+| `QWKSEARCH_SEARCH_SAFE` | `false` | ask the engines to filter adult content |
+| `QWKSEARCH_SEARCH_PUBLIC_INSTANCES` | `false` | let the fan-out fall back to public SearXNG instances |
+| `QWKSEARCH_SEARCH_RESULT_LIMIT` | — | keep at most this many merged results (1–200) |
+
 Run
 LobeHub's Postgres migrations once against the database: `bun run db:migrate` with `DATABASE_URL` set.
 
@@ -212,7 +227,8 @@ Hyperdrive bridge, and rendered-component tests for the article panel and the do
   the factory switch and enum are the only edits to upstream files there.
 - `packages/builtin-tool-web-browsing/`: new `src/searchCategories.ts`; `manifest.ts` swaps the
   hard-coded `searchCategories` enum for `resolveSearchCategories()` (import + expression) and
-  `src/index.ts` gains one export line.
+  `src/index.ts` gains one export line. No upstream file there changed for the search settings
+  layer — only a doc comment in `searchCategories.ts`, which is a QwkSearch-added file.
 - `packages/env/src/email.ts`: accepts `EMAIL_SERVICE_PROVIDER=cloudflare`.
 - `packages/business/const/src/branding.ts`, `packages/const/src/url.ts`: QwkSearch branding.
 - `packages/locales/src/default/{electron,qwksearch}.ts` + `locales/{en-US,zh-CN}`: new keys.

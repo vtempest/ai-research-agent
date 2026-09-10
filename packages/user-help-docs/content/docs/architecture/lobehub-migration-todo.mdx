@@ -16,15 +16,15 @@ The map of what already connects is
 
 **Legend** — ✅ done · 🚧 in progress · ⬜ not started · 🔒 blocked
 
-Last updated: 2026-09-09.
+Last updated: 2026-09-10.
 
 ## Snapshot
 
 | Phase | State |
 |---|---|
 | 0. Baseline — LobeHub builds and deploys on Workers | ✅ |
-| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired; parity open |
-| 2. Settings as the single system of record | 🚧 Extraction pane shipped end to end; Search & Sources pane open |
+| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer; parity open |
+| 2. Settings as the single system of record | 🚧 Extraction shipped end to end; Search & Sources has its resolution layer, needs storage + pane |
 | 3. REASON docs inside the engine | ⬜ |
 | 4. Public cutover | 🔒 needs the license answer |
 | 5. Decommission + satellites + ops gaps | ⬜ |
@@ -302,6 +302,64 @@ Follow-ups:
   `ExtractionSettingsApiError` already carries and prompt to sign in, the way
   `article.error.loginRequired` does.
 
+### 1.8 Search settings resolution ✅
+
+The search-side mirror of 1.5, and the first of the three steps the Search &
+Sources pane needs. `QwkSearchImpl` no longer reads `process.env` itself or
+hard-codes its knobs:
+`apps/server/src/services/search/impls/qwksearch/searchSettings.ts` owns one
+`SearchSettings` value and folds it out of three layers — shipped defaults, then
+Worker env, then the signed-in user's preferences, then this tool call's own
+arguments — validating every value on the way in. `index.ts` is left turning the
+resolved value into HTTP.
+
+| Setting | Env var | Reaches |
+|---|---|---|
+| Endpoint + bearer token | `QWKSEARCH_SEARCH_URL`, `QWKSEARCH_API_KEY` | the request URL and its `Authorization` header |
+| Default categories | `QWKSEARCH_SEARCH_CATEGORIES` | `cat`, one request per category |
+| Fan-out bound | `QWKSEARCH_SEARCH_MAX_CATEGORIES` | how many of them run (3 by default, up to 10) |
+| Result language | `QWKSEARCH_SEARCH_LANGUAGE` | `lang` — **newly sent**; the endpoint already defaulted to `en-US` |
+| Default recency | `QWKSEARCH_SEARCH_TIME_RANGE` | `recency`, when the call names none |
+| Safe search | `QWKSEARCH_SEARCH_SAFE` | `safesearch` — newly sent |
+| Public SearXNG fallback | `QWKSEARCH_SEARCH_PUBLIC_INSTANCES` | `publicInstances` — newly sent |
+| Result cap | `QWKSEARCH_SEARCH_RESULT_LIMIT` | applied after the URL merge |
+
+Four things worth knowing before building the pane on top of it:
+
+- **It lives beside its consumer, not under `worker/`.** `extractSettings.ts`
+  sits in `worker/qwksearch/` because the extraction chain does. The search impl
+  does not: it is `@/server/*` code. The dependency runs worker → `@/server/*`
+  and never back, so a future `/api/doc/search-settings` route can import this,
+  while the reverse placement would not have worked.
+- **The request layer is narrower than the user layer.** The tool call's
+  arguments are written by the model, so they may narrow only `categories` and
+  `timeRange` — the two fields the manifest offers it. `maxCategories` is
+  withheld from it deliberately: it bounds how many upstream requests one query
+  costs, which is the operator's budget and not a generated argument's to raise.
+  `searchEngines` is still never read at all.
+- **The cap is applied once, at the end.** The category list can arrive from the
+  request layer while `maxCategories` comes from the user layer, so each
+  normalizer returns the full validated list and `resolveSearchSettings`
+  truncates after every layer has resolved.
+- **Three query parameters the endpoint always accepted are now actually sent.**
+  `lang`, `safesearch` and `publicInstances` were in
+  `research-agent-ui/src/api/handlers/search.ts` the whole time and the impl
+  never used them. Only `lang` changes the default request, and it sends the
+  value the endpoint already assumed.
+
+Follow-ups:
+
+- ⬜ **The user layer has no storage.** `QwkSearchImpl`'s constructor takes
+  `UserSearchOverrides` and the factory in
+  `apps/server/src/services/search/impls/index.ts` passes none, so today every
+  deployment resolves defaults-under-env exactly as before. This is 1.6's
+  equivalent and the next step: a `search_settings` D1 table and a
+  `/api/doc/search-settings` route, then the factory needs the request's user id
+  to reach the impl — which extraction did not have to solve, because its chain
+  runs inside a Worker route that already has the session.
+- ⬜ **`searchSettingsForClient` has no client**, the same gap 1.6 left before
+  1.7 closed it.
+
 ### 1.4 Agent parity checklist ⬜
 
 Reproduce today's chat-mode behavior on the engine and record each gap:
@@ -331,12 +389,13 @@ Reproduce today's chat-mode behavior on the engine and record each gap:
   ✅ **Extraction is done** — 1.5 (resolution), 1.6 (storage + API) and 1.7 (the
   pane). It is a client of `GET`/`PUT`/`DELETE /api/doc/extraction-settings` and
   has no slice in `src/store/user/slices/settings/`; 1.6 records why.
-  ⬜ **Search & Sources** is what remains, and it is not symmetrical with
-  Extraction: it still has no resolution layer. `QwkSearchImpl` reads
-  `QWKSEARCH_SEARCH_URL` and its category normalizer straight from env, the way
-  the extraction tiers used to, so the same three steps apply in the same order
-  — a `searchSettings.ts`, then storage and a route, then the pane. Take 1.5–1.7
-  as the template; each is written up above.
+  🚧 **Search & Sources** is one of the same three steps in: the resolution
+  layer landed as 1.8 above, mirroring 1.5. What remains is storage plus a
+  route (1.6's equivalent) and then the pane (1.7's). One asymmetry to plan
+  for: extraction's chain runs inside a Worker route that already has the
+  session, while the search impl is constructed by a factory with no request in
+  scope, so the storage step has to get the user id to `QwkSearchImpl` before
+  the pane can do anything.
 - ⬜ **2.3 Key migration.** Server env keys stay Worker secrets. Per-user keys
   live in `localStorage` today and have no server copy — announce a one-time
   re-entry into the engine's key vault; do not build a migrator.
@@ -418,13 +477,17 @@ Blocked on the LobeHub Community License answer, recorded in
 **Suggested next, in order** — all code-only, all testable without Cloudflare
 credentials:
 
-1. **A `searchSettings.ts` for the Search & Sources pane**, mirroring
-   `extractSettings.ts`: one resolved value, layered defaults → env → user, with
-   the same rule that hosts and keys are environment-only. `QwkSearchImpl` reads
-   `QWKSEARCH_SEARCH_URL` and its category normalizer straight from env today,
-   the way the extraction tiers used to. Extraction took three passes to get
-   here (1.5 → 1.6 → 1.7) and this is the first of the three; doing them in that
-   order is what made each one testable on its own.
+1. **Search preferences: the user layer** — 1.6's equivalent, now that 1.8 has
+   landed the resolution layer. A `search_settings` D1 table and a
+   `GET`/`PUT`/`DELETE /api/doc/search-settings` route, both close copies of
+   `extractionPreferences.ts` and `routes/qwksearch/extractionSettings.ts`.
+   The one thing that is genuinely new: the extraction chain runs inside a
+   Worker route that already has the session, but `QwkSearchImpl` is built by
+   `impls/index.ts` with no request in scope, so this step also has to decide
+   how the user id reaches the impl — resolve the overrides in the tool's
+   execution runtime and pass them to the constructor (the seam is already
+   there), or give `SearchService` a per-request factory. Pick that before
+   writing the table.
 2. **1.3's open question — two chains in `extract.ts`.** `defaultTiersFor`,
    `extractViaYouTube`, `extractViaPdf`, `loadCiteExtractor` and
    `articleViaCiteExtractor` have never been on a request path, and lint reports
