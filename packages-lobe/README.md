@@ -180,12 +180,22 @@ Project settings for a Workers Builds deploy of this tree:
 | Setting | Value |
 | --- | --- |
 | Root directory | `packages-lobe` |
+| Install command | `pnpm install --no-frozen-lockfile` |
 | Build command | `pnpm run build:worker` |
 | Deploy command | `pnpm exec wrangler deploy` |
 
 The repo root's `packageManager` (`bun@1.4.0`) and this tree's
-(`pnpm@10.33.0`) are both detected, and both are installed — the LobeHub
-workspace still installs with pnpm, and `build:worker` shells out to bun.
+(`pnpm@10.33.0`) are both detected and both are installed, and the build image
+picks the repo root's bun unless the install command is set explicitly. Prefer
+pnpm here: `pnpm-workspace.yaml` carries the `overrides` (react 19.2.4, jose,
+pdfjs-dist) and the `@upstash/qstash` patch that bun does not read, so a bun
+install resolves a different tree than every other consumer of this workspace.
+
+Whichever installer runs, the `workspaces` list in `package.json` has to match
+the directories actually vendored here: bun fails the install outright on a
+literal entry with no directory behind it (`error: Workspace not found "e2e"`),
+where pnpm skips it. The upstream `e2e` tree is not vendored, so neither the
+workspace entry nor its scripts are kept.
 
 ### Required bindings / secrets
 

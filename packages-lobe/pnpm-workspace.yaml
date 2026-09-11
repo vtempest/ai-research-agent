@@ -2,7 +2,6 @@ lockfile: false
 packages:
   - packages/**
   - .
-  - e2e
   - apps/desktop/src/main
   - apps/server
   - apps/share
