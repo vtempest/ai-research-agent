@@ -166,6 +166,27 @@ Verified locally: `/api/version`, `/api/health`, `/api/auth/get-session`, `/trpc
 `/api/v1/docs`, `/api/doc/documents` (D1), `/signin` renders the sign-in SPA in headless Chromium, and
 protected pages redirect to `/signin`.
 
+### Cloudflare Workers Builds
+
+The build image resolves the Node version from `.nvmrc` and installs it by exact
+version, so an nvm alias such as `lts/krypton` fails at `Installing nodejs
+lts/krypton` before a single dependency is fetched. `packages-lobe/.nvmrc` pins
+`24.20.0` (the current Krypton LTS release, so local nvm users stay on the same
+runtime); bump it to another exact version, or override it with a `NODE_VERSION`
+build variable in the project settings.
+
+Project settings for a Workers Builds deploy of this tree:
+
+| Setting | Value |
+| --- | --- |
+| Root directory | `packages-lobe` |
+| Build command | `pnpm run build:worker` |
+| Deploy command | `pnpm exec wrangler deploy` |
+
+The repo root's `packageManager` (`bun@1.4.0`) and this tree's
+(`pnpm@10.33.0`) are both detected, and both are installed — the LobeHub
+workspace still installs with pnpm, and `build:worker` shells out to bun.
+
 ### Required bindings / secrets
 
 Bindings are declared in `wrangler.jsonc` (identical IDs to `apps/qwksearch-web/wrangler.jsonc` for
