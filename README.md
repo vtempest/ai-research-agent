@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://doi.org/10.5281/zenodo.20320687."><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20320687." alt="DOI"></a>
+    <a href="https://doi.org/10.5281/zenodo.20320687"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20320687" alt="DOI"></a>
     <a href="https://deepwiki.com/OpenSourceAGI/qwksearch-research-agent"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
         <a href="https://autoinvestment.broker" target="_blank" rel="noopener noreferrer"><img height="20px" src="https://img.shields.io/badge/App-blueviolet?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website" /></a>
     <a href="https://qwksearch.com/api/docs"><img src="https://img.shields.io/badge/Docs-blue?logo=ReadTheDocs&logoColor=white" alt="Documentation" /></a>
