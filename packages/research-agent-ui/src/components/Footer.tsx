@@ -116,7 +116,7 @@ export default function Footer({
             <div
                 className={`hidden md:flex absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-200 text-xs z-20 ${optionBackgroundColor} rounded-lg px-2 py-1 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex-wrap items-center justify-center gap-x-6 max-w-[90vw]`}
             >
-                <div className="max-w-4xl mx-auto grid grid-cols-3 gap-2">
+                <div className="max-w-4xl mx-auto grid grid-cols-4 gap-2">
                     {renderLinks()}
                 </div>
             </div>
