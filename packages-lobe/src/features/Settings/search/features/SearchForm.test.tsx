@@ -6,6 +6,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ORDER_HANDLE_TEST_ID } from '@/features/Settings/qwksearch';
+
 import type * as SearchApi from '../api';
 import { SearchSettingsApiError, type SearchSettingsResponse } from '../api';
 import SearchForm from './SearchForm';
@@ -242,5 +244,48 @@ describe('SearchForm', () => {
     await waitFor(() =>
       expect(screen.getByPlaceholderText('search.resultLimit.unlimited')).toBeTruthy(),
     );
+  });
+
+  it('stores the canonical spelling of a typed language tag', async () => {
+    // The field was a bare `Input`: `PT-br` went to the server as typed, and
+    // came back canonicalized or dropped with nothing said either way.
+    saveSettingsMock.mockResolvedValue(response({ language: 'pt-BR' }));
+    await renderForm();
+
+    const language = await waitFor(() => screen.getByPlaceholderText('en-US'));
+    await userEvent.type(language, 'PT-br');
+    await userEvent.tab();
+
+    const save = screen.getByRole('button', { name: 'search.actions.save' });
+    await waitFor(() => expect(save).toHaveProperty('disabled', false));
+    await userEvent.click(save);
+
+    await waitFor(() => expect(saveSettingsMock).toHaveBeenCalledWith({ language: 'pt-BR' }));
+  });
+
+  it('refuses a malformed language tag instead of sending it to be dropped', async () => {
+    await renderForm();
+
+    const language = await waitFor(() => screen.getByPlaceholderText('en-US'));
+    await userEvent.type(language, 'english');
+    await userEvent.tab();
+
+    await waitFor(() => expect(screen.getByText('controls.language.invalid')).toBeTruthy());
+    // Nothing to save: the form is still clean, because the server would have
+    // stored nothing for this input either.
+    expect(screen.getByRole('button', { name: 'search.actions.save' })).toHaveProperty(
+      'disabled',
+      true,
+    );
+  });
+
+  it('shows the categories in the order the fan-out tries them', async () => {
+    fetchSettingsMock.mockResolvedValue(response({ categories: ['news', 'general'] }));
+    await renderForm();
+
+    // The cap keeps the first N, so the order is the setting — and the ordered
+    // list is what makes it visible and changeable.
+    await waitFor(() => expect(screen.getAllByTestId(ORDER_HANDLE_TEST_ID)).toHaveLength(2));
+    expect(screen.getByText('controls.order.hint')).toBeTruthy();
   });
 });

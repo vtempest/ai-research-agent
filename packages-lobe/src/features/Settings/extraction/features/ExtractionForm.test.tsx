@@ -6,6 +6,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ORDER_HANDLE_TEST_ID } from '@/features/Settings/qwksearch';
+
 import type * as ExtractionApi from '../api';
 import { ExtractionSettingsApiError, type ExtractionSettingsResponse } from '../api';
 import ExtractionForm from './ExtractionForm';
@@ -250,5 +252,39 @@ describe('ExtractionForm', () => {
 
     // The two enum fields carry the same "currently X" hint under their label.
     expect(screen.getAllByText('extraction.inForce')).toHaveLength(2);
+  });
+
+  it('can set a transcript language at all, which the tags select could not', async () => {
+    // The pane shipped with a `mode="tags"` Select and no options. base-ui's
+    // Select never creates a value that is not already in `options`, so the
+    // field could be looked at and not filled in. This is the regression test
+    // for that: type a tag, add it, save it.
+    saveSettingsMock.mockResolvedValue(response({ languages: ['fr'] }));
+    await renderForm();
+
+    const box = await waitFor(() =>
+      screen.getByPlaceholderText('extraction.languages.placeholder'),
+    );
+    await userEvent.type(box, 'FR');
+    // base-ui marks the page outside an open popup inert, which hides Add.
+    await userEvent.keyboard('{Escape}');
+    await userEvent.click(screen.getByRole('button', { name: 'controls.language.add' }));
+
+    const save = screen.getByRole('button', { name: 'extraction.actions.save' });
+    await waitFor(() => expect(save).toHaveProperty('disabled', false));
+    await userEvent.click(save);
+
+    // Lowercased, because that is what `normalizeLanguages` would store.
+    await waitFor(() => expect(saveSettingsMock).toHaveBeenCalledWith({ languages: ['fr'] }));
+  });
+
+  it('shows the chain in the order it runs, not as an unordered set', async () => {
+    fetchSettingsMock.mockResolvedValue(response({ tiers: ['tavily', 'qwksearch'] }));
+    await renderForm();
+
+    // Two rows, numbered — the field's order is its execution order, and the
+    // ordered list is what says so.
+    await waitFor(() => expect(screen.getAllByTestId(ORDER_HANDLE_TEST_ID)).toHaveLength(2));
+    expect(screen.getByText('controls.order.hint')).toBeTruthy();
   });
 });

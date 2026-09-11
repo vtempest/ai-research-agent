@@ -16,15 +16,15 @@ The map of what already connects is
 
 **Legend** — ✅ done · 🚧 in progress · ⬜ not started · 🔒 blocked
 
-Last updated: 2026-09-10.
+Last updated: 2026-09-11.
 
 ## Snapshot
 
 | Phase | State |
 |---|---|
 | 0. Baseline — LobeHub builds and deploys on Workers | ✅ |
-| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer and a pane; parity open |
-| 2. Settings as the single system of record | 🚧 Both panes shipped end to end (2.2 done); key migration and retiring the old surface remain |
+| 1. Chat mode on the engine (staging) | 🚧 search and extraction wired, both with a settings layer, a pane and shared controls; parity open |
+| 2. Settings as the single system of record | 🚧 Both panes shipped end to end and their controls finished (2.2 done); key migration and retiring the old surface remain |
 | 3. REASON docs inside the engine | ⬜ |
 | 4. Public cutover | 🔒 needs the license answer |
 | 5. Decommission + satellites + ops gaps | ⬜ |
@@ -291,12 +291,13 @@ already dispatches by enum value.
 
 Follow-ups:
 
-- ⬜ **`languages` is a free-text tag input.** Any BCP-47-shaped tag is accepted
-  and the server drops what does not match, so a typo silently disappears rather
-  than being flagged. A language picker is the fix.
-- ⬜ **`tiers` is a plain multi-select**, so the execution order is the order the
-  user happened to click. It is *stored* in that order and it matters — the
-  control should be drag-to-reorder.
+- ✅ **`languages` has a language picker.** Closed in 1.11 with the search
+  pane's `language`, which had the same bug. It turned out to be worse than
+  "a typo silently disappears": the field could not be filled in at all, because
+  base-ui's `Select` never creates a value outside its `options` and this one was
+  given none. See 1.11 and §F5d.
+- ✅ **`tiers` is drag-to-reorder.** Closed in 1.11 with the search pane's
+  `categories`, which had the same bug.
 - ✅ **A 401 now prompts to sign in.** Closed in 1.10, which hit the same bug in
   its own pane: both forms recognise the 401 their API error already carried and
   say `*.error.loginRequired` instead of printing the status text, on load and on
@@ -464,16 +465,74 @@ title map in `SettingsContent.tsx`.
 form state, 13 through the real resolver in `contract.test.ts` — plus 13 on the
 rendered form.
 
-Follow-ups, all inherited from 1.7 and all still open except the third:
+Follow-ups, all inherited from 1.7 and all now closed:
 
-- ⬜ **`categories` is a plain multi-select**, so the fan-out order is the order
-  the user happened to click. 1.7's tier list has the same problem and the same
-  fix: drag-to-reorder.
-- ⬜ **`language` is a free-text input.** A tag the server's pattern rejects
-  disappears silently rather than being flagged; a language picker is the fix,
-  and it is the same fix 1.7 wants for `languages`.
+- ✅ **`categories` is drag-to-reorder**, closed in 1.11 together with 1.7's
+  tier list — it was the same problem and the same fix.
+- ✅ **`language` has a language picker**, closed in 1.11 together with 1.7's
+  `languages`.
 - ✅ **The 401 now prompts to sign in** rather than printing the status text, in
   *both* panes — it was the same bug in each, so it was fixed in each.
+
+### 1.11 The panes' shared controls ✅
+
+Both panes' remaining follow-ups were the same two problems twice over, so they
+were solved once, in `src/features/Settings/qwksearch/` — a home both panes
+import from, which did not exist before and which a third pane on the same
+resolver pattern now gets free. The full contract is §F5d of the integrations
+reference.
+
+```
+src/features/Settings/qwksearch/
+  index.ts                the barrel both panes import from
+  languageTags.ts         the client's mirror of the routes' BCP-47 rule (pure)
+  OrderedList.tsx         numbered, drag-sortable, removable rows
+  OrderedMultiSelect.tsx  closed-set Select + OrderedList
+  LanguageSelect.tsx      LanguageSelect (one tag) + LanguageListSelect (a list)
+```
+
+`tiers` and `categories` became `OrderedMultiSelect`; `languages` became
+`LanguageListSelect`; `language` became `LanguageSelect`. Three things are worth
+knowing before touching this:
+
+- **`languages` was not merely awkward — it could not be filled in.** base-ui's
+  `Select` accepts `mode="tags"` and `tokenSeparators`, but **it never creates a
+  value that is not already in `options`**: typing is a typeahead over the option
+  list and Enter commits whichever option it landed on. 1.7's field passed no
+  options, so there was nothing to commit and no transcript language could be
+  set at all. Adding options makes it worse, not better: typing a valid but
+  unlisted tag like `sw` (Swahili) commits the nearest highlight, `sv` (Swedish).
+  Both language fields are therefore built on base-ui's **`AutoComplete`**, which
+  is a real text input with a suggestion list. Anything else in this repo that
+  wants free-text tag entry will hit the same wall.
+- **The rejection is now visible at the moment of entry.** Both routes validate a
+  tag's shape and drop what fails rather than failing the write, which is right —
+  `en, klingon` should still get you English — but it meant a typo vanished under
+  a "saved" toast. `languageTags.ts` restates the rule so the pane can name what
+  it refused and show the canonical spelling that will be stored. Language names
+  come from `Intl.DisplayNames` in the reader's own locale, so the suggestions
+  need no translated string table and still cover every tag.
+- **`languageTags.contract.test.ts` is the drift guard**, the panes' own
+  `contract.test.ts` mechanism aimed at a rule that lives in two other files. One
+  corpus of 24 inputs goes through `normalizeSearchLanguage`, `normalizeLanguages`
+  and this module; if any of the three drifts, it fails. It also pins the one
+  deliberate difference between the routes — search canonicalizes case,
+  extraction lowercases, because that is what it deduplicates on.
+
+4 locale keys in en-US and zh-CN, and 133 tests under
+`src/features/Settings/qwksearch/`, plus 5 more on the two panes proving the
+controls are actually wired in — including the regression test for the
+unfillable languages field.
+
+Follow-ups:
+
+- ⬜ **Nothing tests an actual drag.** `moveItem` is covered as a pure function
+  and the rows are covered as rendering, but dnd-kit's pointer sequence is not
+  driven in happy-dom. The keyboard sensor is wired (`sortableKeyboardCoordinates`)
+  and unverified.
+- ⬜ **`AutoComplete` has no commit event**, so adding a language is an explicit
+  button rather than Enter. If base-ui grows an `onSelect`/`onPressEnter`, the
+  button can become a shortcut rather than the only way.
 
 ### 1.4 Agent parity checklist ⬜
 
@@ -593,29 +652,21 @@ Blocked on the LobeHub Community License answer, recorded in
 **Suggested next, in order** — all code-only, all testable without Cloudflare
 credentials:
 
-1. **The two shared pane follow-ups**, now that both panes exist and both want
-   the same two controls. A **drag-to-reorder list** would serve extraction's
-   `tiers` and search's `categories` at once — in both, the stored order is
-   execution order and a plain multi-select loses it. A **language picker** would
-   serve extraction's `languages` and search's `language` at once — in both, a
-   tag the server's pattern rejects disappears silently. Build each once, in a
-   place both panes can import; that shared home does not exist yet and choosing
-   it is most of the work. Small, user-visible, no Cloudflare credentials.
-2. **1.3's open question — two chains in `extract.ts`.** `defaultTiersFor`,
+1. **1.3's open question — two chains in `extract.ts`.** `defaultTiersFor`,
    `extractViaYouTube`, `extractViaPdf`, `loadCiteExtractor` and
    `articleViaCiteExtractor` have never been on a request path, and lint reports
    two of them as unused. It is a decision, not a discovery: adopt or delete.
    Small, and it removes the only known dead code in the Worker.
-3. **1.4's agent parity checklist**, now that both settings features are done and
+2. **1.4's agent parity checklist**, now that both settings features are done and
    Phase 1's remaining work is parity rather than plumbing. Start with the two
    items that are pure verification against the wired-up engine — search-cited
    answers with follow-ups, and file-upload Q&A — and record each gap before
    deciding to adopt or port.
-4. **5.4's bundle budget in CI.** The measurement exists (`bun run cf:budget`);
+3. **5.4's bundle budget in CI.** The measurement exists (`bun run cf:budget`);
    what is missing is a workflow that runs it. That needs a job that installs and
    builds `packages-lobe`, which no workflow does yet — a CI-minutes decision as
    much as a code one, which is why it sits below the items above.
-5. **2.1's settings map**, which is pure reading, and which 2.4 needs before
+4. **2.1's settings map**, which is pure reading, and which 2.4 needs before
    anything in the old surface can be deleted.
 
 Then, for whichever you pick:

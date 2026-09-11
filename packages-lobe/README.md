@@ -295,6 +295,11 @@ rebuilds its route's response from the real resolver.
   `src/features/Settings/hooks/useCategory.tsx`, and the compact-header title map in
   `src/features/Settings/features/SettingsContent.tsx`. No route file: `/settings/:tab` already
   dispatches by enum value.
+- `src/features/Settings/qwksearch/`: new, and entirely QwkSearch's — the controls both panes
+  share (an ordered drag-sortable list for `tiers`/`categories`, and BCP-47 language fields for
+  `languages`/`language`). No upstream file changed for it; the two panes are QwkSearch-added
+  files and import it through the barrel. See §F5d of the integrations reference, which also
+  records why the language fields use base-ui's `AutoComplete` and not a tags `Select`.
 - `packages/env/src/email.ts`: accepts `EMAIL_SERVICE_PROVIDER=cloudflare`.
 - `packages/business/const/src/branding.ts`, `packages/const/src/url.ts`: QwkSearch branding.
 - `packages/locales/src/default/{electron,qwksearch}.ts` + `locales/{en-US,zh-CN}`: new keys.

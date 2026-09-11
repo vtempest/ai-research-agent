@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FORM_STYLE } from '@/const/layoutTokens';
+import { LanguageListSelect, OrderedMultiSelect } from '@/features/Settings/qwksearch';
 import { SettingsSearchAnchor } from '@/features/SettingsSearch/anchor';
 
 import {
@@ -160,13 +161,7 @@ const ExtractionForm = () => {
         name: 'citationStyle',
       },
       {
-        children: (
-          <Select
-            mode={'tags'}
-            placeholder={t('extraction.languages.placeholder')}
-            tokenSeparators={[',', ' ']}
-          />
-        ),
+        children: <LanguageListSelect placeholder={t('extraction.languages.placeholder')} />,
         desc: t('extraction.languages.desc', { value: effective.languages.join(', ') }),
         label: (
           <SettingsSearchAnchor id={'extraction-languages'}>
@@ -201,8 +196,7 @@ const ExtractionForm = () => {
     children: [
       {
         children: (
-          <Select
-            mode={'multiple'}
+          <OrderedMultiSelect
             placeholder={t('extraction.tiers.placeholder')}
             options={options.tiers.map((tier) => ({
               label: t(`extraction.tier.${tier}` as any, tier),
