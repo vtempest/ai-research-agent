@@ -34,10 +34,28 @@ function TextControl({
   const { committing, commit } = useCommit(onCommit);
   const [showSecret, setShowSecret] = React.useState(false);
   const fallback = typeof field.default === "string" ? field.default : "";
-  const current = (value as string | undefined) ?? fallback;
+  const incoming = (value as string | undefined) ?? fallback;
+
+  // The box keeps its own draft so typing works whether or not the host wired
+  // up `onChange`: with only `onCommit` passed, a purely controlled input
+  // would snap back to `value` on every keystroke and blur would then commit
+  // the stale text. Adjusting during render (rather than in an effect) adopts
+  // a value the host changed underneath us — the commit it just saved, or a
+  // reset — without a frame of the old text.
+  const [draft, setDraft] = React.useState(incoming);
+  const [lastIncoming, setLastIncoming] = React.useState(incoming);
+  if (incoming !== lastIncoming) {
+    setLastIncoming(incoming);
+    setDraft(incoming);
+  }
+
+  const current = draft;
   const isDisabled = disabled || committing;
 
-  const handleChange = (next: string) => onChange?.(next as SettingsValue);
+  const handleChange = (next: string) => {
+    setDraft(next);
+    onChange?.(next as SettingsValue);
+  };
   const handleBlur = (next: string) => commit(next as SettingsValue);
 
   return (

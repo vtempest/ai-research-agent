@@ -26,7 +26,9 @@
     "dev": "bun --watch demo/index.ts",
     "start": "bun demo/index.ts",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:live": "RUN_LIVE_TESTS=1 vitest run",
+    "test:coverage": "vitest run --coverage",
+    "example:autocomplete": "bun examples/autocomplete-engines.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
