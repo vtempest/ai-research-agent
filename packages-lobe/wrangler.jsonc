@@ -61,7 +61,6 @@
   },
   "env": {
     "production": {
-      "keep_vars": true,
       "vars": {
         "APP_URL": "https://qwksearch.com",
         "DATABASE_DRIVER": "neon",

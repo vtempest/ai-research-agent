@@ -3,6 +3,9 @@
 // account; Postgres calls fail until DATABASE_URL points at a reachable database.
 {
   "name": "qwksearch-lobehub-local",
+  // Wrangler deletes plaintext Variables set in the Cloudflare dashboard on every
+  // deploy unless keep_vars is set. Secrets are never deleted either way.
+  "keep_vars": true,
   "main": "./dist/worker/index.js",
   "compatibility_date": "2026-03-10",
   "compatibility_flags": ["nodejs_compat"],
