@@ -2,14 +2,16 @@
 
 [![Coverage](https://codecov.io/gh/OpenSourceAGI/qwksearch-research-agent/graph/badge.svg?component=package-react-weather-forecast)](https://codecov.io/gh/OpenSourceAGI/qwksearch-research-agent)
 
-React weather forecast component using Open-Meteo for current, hourly, and daily forecasts and Cloudflare/ipapi.co for IP geolocation.
+React weather forecast component using Open-Meteo for current, hourly, and daily forecasts and Cloudflare/ipapi.co for IP geolocation, with a fallback chain behind both.
 
 ## Features
 
 - Current weather.
 - Next hours forecast.
 - Next days forecast.
-- IP geolocation fallback.
+- Four weather upstreams tried in order, four IP geolocation upstreams behind that.
+- Every request validated before it is sent, retried with backoff when it can recover.
+- Stale-cache fallback so a total outage still renders a widget.
 - Latitude/longitude override.
 - Split SVG weather icon components.
 - TypeScript + tsup library scaffold.
@@ -35,6 +37,66 @@ export default function App() {
     />
   );
 }
+```
+
+## Reliability
+
+Nothing here needs configuring -- these are the defaults -- but this is what
+the package does when an upstream misbehaves.
+
+### `Weather request failed: 400 Bad Request`
+
+Open-Meteo answers `400` for a query it cannot parse, and the usual way to
+build one is not a typo in your props: an IP geolocation upstream answers
+`200` with no coordinates in the body, `Number(undefined)` becomes `NaN`,
+`latitude=NaN` goes out on the wire. Everything that goes into a request is
+validated first now:
+
+| Input | What happens to it |
+| --- | --- |
+| `latitude` / `longitude` | Must be finite and on the globe, and are rounded to 4 decimals. A geolocation response without them counts as a failed lookup, so the next provider gets a turn. Unusable props fall back to IP geolocation. |
+| `location.timezone` | Canonicalized (`US/Pacific` becomes `America/Los_Angeles`); a zone the runtime cannot resolve is dropped rather than sent, and Open-Meteo resolves the zone from the coordinates instead. |
+| `forecastDays` / `forecastHours` | Clamped to the 1-16 days and 1-384 hours the API accepts. |
+| Variable list | A `400` from an endpoint that refused one of the optional variables is retried once with the minimal set the widget needs. |
+
+### Retries
+
+Requests go through [`grab-url`](https://www.npmjs.com/package/grab-url) rather
+than `fetch`. Each one is tried up to `retryAttempts` times (3 by default for a
+forecast, 2 per geolocation provider since that chain is longer) with
+exponential backoff from `retryDelay` (400ms, then 800ms, ...). A `429`, a
+`5xx`, a timeout or a dropped connection is repeated; a request the server
+called invalid (`400`, `404`) is not, since replaying it only burns the
+upstream's rate limit.
+
+### Fallback APIs
+
+| Order | Weather | IP geolocation |
+| --- | --- | --- |
+| 1 | `open-meteo` -- `api.open-meteo.com/v1/forecast` | `geoEndpoint` (the bundled worker), when given |
+| 2 | `open-meteo-gfs` -- the GFS model endpoint | `ipapi` -- ipapi.co |
+| 3 | `met-no` -- met.no, a different operator and model | `ipwho` -- ipwho.is |
+| 4 | `wttr` -- wttr.in, no key required | `geojs` -- get.geojs.io |
+| 5 | | `freeipapi` -- freeipapi.com |
+
+The fallbacks normalize their own condition codes, units and timestamps into
+the same shape Open-Meteo returns, so a failover is invisible in the rendered
+widget (wttr.in is 3-hourly rather than hourly). If every provider fails, a
+cached forecast up to a day old is served instead of throwing; only if there is
+no cache either does an error reach the widget, listing what each provider
+said.
+
+```tsx
+<WeatherForecast
+  weatherProviders={['open-meteo', 'met-no']}
+  geoProviders={['ipwho', 'geojs']}
+  retryAttempts={3}
+  retryDelay={400}
+  timeout={15}
+  fallbackLocation={{ city: 'Austin', latitude: 30.27, longitude: -97.74 }}
+  allowStaleCache
+  onProviderError={({ provider, stage, error }) => console.warn(stage, provider, error.message)}
+/>
 ```
 
 ## Direct API usage
@@ -72,10 +134,17 @@ This package no longer uses ipinfo.io. Instead:
   no mixed-content issues, though ipapi.co's free tier is rate-limited (1,000
   requests/day) — deploy the worker and pass `geoEndpoint` for higher-volume or
   production use.
-- A failed lookup is **repeated** before it throws: `getClientLocation` tries three
-  times by default, waiting 500ms, then 1s, so a single rate-limited or cold-start
-  response doesn't take the whole forecast down. Tune it with the third argument:
-  `getClientLocation(geoEndpoint, ip, { attempts: 5, retryDelay: 250 })`.
+- A failed lookup is **repeated** before the chain moves on: `getClientLocation`
+  tries each provider twice by default, waiting 500ms, then walks the rest of the
+  chain (ipapi.co, ipwho.is, get.geojs.io, freeipapi.com) so a single rate-limited
+  or cold-start response doesn't take the whole forecast down. Tune it with the
+  third argument: `getClientLocation(geoEndpoint, ip, { attempts: 5, retryDelay: 250, providers: ['ipwho'] })`.
+- A response **without usable coordinates counts as a failure** rather than being
+  passed on as `NaN`, and `fallbackLocation` covers the case where every provider
+  is down.
+- The bundled worker does the same on its side: it falls back to the IP lookups
+  when Cloudflare's own geolocation carries no coordinates, and answers `502` with
+  a reason instead of a body the caller cannot use.
 
 ### Deploying the geo worker
 
@@ -90,16 +159,20 @@ This deploys `worker/geo-worker.ts` via Wrangler. Use the resulting `*.workers.d
 ## Caching
 
 `getWeatherForecast` caches each response in `localStorage` for 30 minutes, keyed by
-the exact request URL (location + units + forecast range). Repeated calls for the same
+the request itself (location + units + forecast range + timezone), so a fallback
+provider's answer is reused exactly like the primary one's. Repeated calls for the same
 location/options within that window are served from the cache instead of hitting
-Open-Meteo again, which keeps the widget well under Open-Meteo's rate limits. Call
-`clearWeatherForecastCache()` to evict everything (e.g. in tests). The cache is a no-op
-in non-browser environments (SSR) or when `localStorage` is unavailable/full.
+Open-Meteo again, which keeps the widget well under Open-Meteo's rate limits. Past
+the 30 minutes an entry is kept for a day as the last-resort fallback described
+above, and evicted after that. Call `clearWeatherForecastCache()` to evict
+everything (e.g. in tests). The cache is a no-op in non-browser environments (SSR)
+or when `localStorage` is unavailable/full.
 
 ## Notes
 
-- Open-Meteo powers the forecast data.
-- Cloudflare's `request.cf` and ipapi.co power IP geolocation (see above).
+- Open-Meteo powers the forecast data, with met.no and wttr.in behind it.
+- Cloudflare's `request.cf`, ipapi.co, ipwho.is, get.geojs.io and freeipapi.com
+  power IP geolocation (see above).
 - HTTP requests go through [`grab-url`](https://www.npmjs.com/package/grab-url), the
   repo-wide client, rather than raw `fetch`. It is the package's only runtime
   dependency.

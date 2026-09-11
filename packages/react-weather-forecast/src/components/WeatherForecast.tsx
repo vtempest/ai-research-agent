@@ -219,7 +219,9 @@ function SingleWeatherForecast(props: Props) {
   // Keep showing the last forecast while a unit switch refetches in the
   // background; only suppress output on the very first load.
   if (loading && !data) return null;
-  if (error) return <div className={props.className} style={props.style}>Error: {error.message}</div>;
+  // A failed refetch (a rate limit, say) leaves the previous forecast on
+  // screen; the error only takes over when there is nothing to show.
+  if (error && !data) return <div className={props.className} style={props.style}>Error: {error.message}</div>;
   if (!data) return <div className={props.className} style={props.style}>No forecast available.</div>;
 
   const timezone = data.location?.timezone;

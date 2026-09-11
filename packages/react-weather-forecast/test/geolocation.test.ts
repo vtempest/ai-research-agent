@@ -147,20 +147,20 @@ describe('getClientLocation', () => {
       expect(location.city).toBe('Austin');
     });
 
-    it('repeats the lookup three times by default before giving up', async () => {
+    it('tries each provider twice by default before moving to the next one', async () => {
       mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
 
-      await expect(getClientLocation(undefined, undefined, noDelay)).rejects.toThrow(
-        'ipapi.co lookup failed: RateLimited'
-      );
-      expect(mockGrab).toHaveBeenCalledTimes(3);
+      await expect(
+        getClientLocation(undefined, undefined, { ...noDelay, providers: ['ipapi'] })
+      ).rejects.toThrow('ipapi.co lookup failed: RateLimited');
+      expect(mockGrab).toHaveBeenCalledTimes(2);
     });
 
     it('honours a custom attempt count', async () => {
       mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
 
       await expect(
-        getClientLocation(undefined, undefined, { attempts: 5, retryDelay: 0 })
+        getClientLocation(undefined, undefined, { attempts: 5, retryDelay: 0, providers: ['ipapi'] })
       ).rejects.toThrow('ipapi.co lookup failed: RateLimited');
       expect(mockGrab).toHaveBeenCalledTimes(5);
     });
@@ -172,6 +172,15 @@ describe('getClientLocation', () => {
 
       expect(mockGrab).toHaveBeenCalledTimes(2);
       expect(location.latitude).toBe(1);
+    });
+
+    it('does not repeat a lookup the provider rejected as invalid', async () => {
+      mockGrab.mockResolvedValue({ error: 'HTTP error: 404 Not Found' } as never);
+
+      await expect(
+        getClientLocation(undefined, undefined, { ...noDelay, providers: ['ipapi'] })
+      ).rejects.toThrow('ipapi.co lookup failed: 404 Not Found');
+      expect(mockGrab).toHaveBeenCalledTimes(1);
     });
 
     it('waits between tries when a delay is configured', async () => {
@@ -190,6 +199,135 @@ describe('getClientLocation', () => {
       await getClientLocation(undefined, undefined, noDelay);
 
       expect(mockGrab).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('falling back to the next provider', () => {
+    it('moves on to ipwho.is when ipapi.co stays rate-limited', async () => {
+      grabResolves(
+        { error: true, reason: 'RateLimited' },
+        { error: true, reason: 'RateLimited' },
+        { success: true, city: 'Berlin', timezone: { id: 'Europe/Berlin' }, latitude: 52.52, longitude: 13.4 }
+      );
+
+      const location = await getClientLocation(undefined, undefined, noDelay);
+
+      expect(mockGrab.mock.calls[2][0]).toBe('https://ipwho.is/');
+      expect(location).toEqual({
+        city: 'Berlin',
+        region: undefined,
+        country: undefined,
+        timezone: 'Europe/Berlin',
+        latitude: 52.52,
+        longitude: 13.4,
+      });
+    });
+
+    it('treats a 200 without coordinates as a failure instead of returning NaN', async () => {
+      // This is the response that used to become `latitude=NaN` in the
+      // forecast URL and surface as `Weather request failed: 400 Bad Request`.
+      grabResolves(
+        { city: 'Nowhere' },
+        { city: 'Nowhere' },
+        { success: true, city: 'Austin', latitude: 30.27, longitude: -97.74 }
+      );
+
+      const location = await getClientLocation(undefined, undefined, noDelay);
+
+      expect(location.latitude).toBe(30.27);
+      expect(Number.isFinite(location.latitude)).toBe(true);
+    });
+
+    it('rejects coordinates that are off the globe', async () => {
+      grabResolves({ latitude: 999, longitude: 0 }, { latitude: 999, longitude: 0 });
+
+      await expect(
+        getClientLocation(undefined, undefined, { ...noDelay, providers: ['ipapi'] })
+      ).rejects.toThrow('no coordinates in the response');
+    });
+
+    it('canonicalizes a legacy timezone alias', async () => {
+      grabResolves({ latitude: 1, longitude: 2, timezone: 'US/Pacific' });
+
+      const location = await getClientLocation(undefined, undefined, noDelay);
+
+      expect(location.timezone).toBe('America/Los_Angeles');
+    });
+
+    it('drops a timezone the runtime does not recognise', async () => {
+      grabResolves({ latitude: 1, longitude: 2, timezone: 'Mars/Phobos' });
+
+      const location = await getClientLocation(undefined, undefined, noDelay);
+
+      expect(location.timezone).toBeUndefined();
+    });
+
+    it('rounds coordinates to the precision every upstream accepts', async () => {
+      grabResolves({ latitude: 30.267_153_3, longitude: -97.743_057_9 });
+
+      const location = await getClientLocation(undefined, undefined, noDelay);
+
+      expect(location.latitude).toBe(30.2672);
+      expect(location.longitude).toBe(-97.7431);
+    });
+
+    it('tries the worker first and the public providers after it', async () => {
+      grabResolves(
+        { error: 'HTTP error: 502 Bad Gateway' },
+        { error: 'HTTP error: 502 Bad Gateway' },
+        { city: 'Austin', latitude: 30.27, longitude: -97.74 }
+      );
+
+      const location = await getClientLocation('https://geo.example.workers.dev', undefined, noDelay);
+
+      expect(mockGrab.mock.calls[0][0]).toBe('https://geo.example.workers.dev');
+      expect(mockGrab.mock.calls[2][0]).toBe('https://ipapi.co/json/');
+      expect(location.city).toBe('Austin');
+    });
+
+    it('reports every provider that failed', async () => {
+      mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
+
+      await expect(
+        getClientLocation(undefined, undefined, { ...noDelay, providers: ['ipapi', 'ipwho'] })
+      ).rejects.toThrow(
+        'Geolocation lookup failed: ipapi.co lookup failed: RateLimited; ipwho.is lookup failed: RateLimited'
+      );
+    });
+
+    it('notifies onProviderError for each failed provider', async () => {
+      mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
+      const onProviderError = vi.fn();
+
+      await expect(
+        getClientLocation(undefined, undefined, { ...noDelay, providers: ['ipapi', 'ipwho'], onProviderError })
+      ).rejects.toThrow();
+
+      expect(onProviderError.mock.calls.map(([info]) => info.provider)).toEqual(['ipapi', 'ipwho']);
+    });
+
+    it('falls back to the configured location when every provider fails', async () => {
+      mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
+
+      const location = await getClientLocation(undefined, undefined, {
+        ...noDelay,
+        providers: ['ipapi'],
+        fallbackLocation: { city: 'Austin', latitude: 30.27, longitude: -97.74 },
+      });
+
+      expect(location).toEqual({ city: 'Austin', timezone: undefined, latitude: 30.27, longitude: -97.74 });
+    });
+
+    it('still throws when the fallback location has no usable coordinates', async () => {
+      mockGrab.mockResolvedValue({ error: true, reason: 'RateLimited' } as never);
+
+      await expect(
+        getClientLocation(undefined, undefined, {
+          ...noDelay,
+          providers: ['ipapi'],
+          fallbackLocation: { city: 'Austin' },
+        })
+      ).rejects.toThrow('ipapi.co lookup failed: RateLimited');
     });
   });
 });
