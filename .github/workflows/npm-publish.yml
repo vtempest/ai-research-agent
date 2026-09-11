@@ -3,6 +3,9 @@ name: Publish to npm
 on:
   push:
     branches: [master]
+  # Lets a release be kicked off by hand from the Actions tab when nothing
+  # has been pushed to master (e.g. re-running a release after fixing a token).
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -215,11 +218,12 @@ jobs:
               set -e
               cd "$dir"
 
-              # npm keeps the literal "workspace:*" protocol in the tarball, which
-              # consumers cannot resolve. Replace each "workspace:*" with a real
-              # semver range ("^<version>") taken from the referenced local
-              # package so published packages keep depending on their siblings.
-              # A local package that isn't published is dropped instead.
+              # npm keeps a local dependency protocol -- bun's "workspace:*" and
+              # npm's "file:../sibling" alike -- literally in the tarball, where
+              # consumers cannot resolve it. Replace each with a real semver
+              # range ("^<version>") taken from the referenced local package so
+              # published packages keep depending on their siblings. A local
+              # package that isn't published is dropped instead.
               # (This edit is only committed back if the version gets bumped.)
               node -e "
                 const fs = require('fs');
@@ -238,13 +242,14 @@ jobs:
                 for (const s of ['dependencies', 'devDependencies', 'peerDependencies']) {
                   if (!p[s]) continue;
                   for (const [k, v] of Object.entries(p[s])) {
-                    if (typeof v !== 'string' || !v.startsWith('workspace:')) continue;
+                    if (typeof v !== 'string') continue;
+                    if (!v.startsWith('workspace:') && !v.startsWith('file:')) continue;
                     if (localVersions[k]) {
                       p[s][k] = '^' + localVersions[k];
-                      console.log('Pinned workspace dependency', k, '->', p[s][k]);
+                      console.log('Pinned local dependency', k, '->', p[s][k]);
                     } else {
                       delete p[s][k];
-                      console.log('Removed unresolved workspace dependency:', k);
+                      console.log('Removed unresolved local dependency:', k);
                     }
                   }
                 }
