@@ -308,3 +308,27 @@ app/
 │   └── engine-descriptions.ts
 └── index.ts          # Main entry point
 ```
+
+## Testing
+
+```bash
+bun run test           # the suites CI gates on — no network
+bun run test:coverage  # the same, with coverage (writes coverage/lcov.info)
+bun run test:live      # adds the suites that call the real search engines
+```
+
+`bun run test` runs only deterministic suites: `test/sources-unit.test.ts`
+exercises every engine against mocked responses, and
+`src/search/__tests__/public-searxng.test.ts` covers the SearXNG client.
+
+`test/api.test.ts`, `test/search.test.ts`, `test/sources.test.ts`,
+`test/engine-health-suite.test.ts` and `test/autocomplete-ai.test.ts` really do
+query the upstream engines, so whether they pass depends on third-party
+availability and on whether an engine feels like rate-limiting your IP. They
+are excluded unless `RUN_LIVE_TESTS=1` is set — which is what `test:live` does
+— and they are the right thing to run by hand when you change an engine, since
+a mock only proves the parser still matches the fixture.
+
+`examples/autocomplete-engines.ts` (`bun run example:autocomplete`) prints what
+each autocomplete backend answers. It asserts nothing, so it is an example
+rather than a suite.

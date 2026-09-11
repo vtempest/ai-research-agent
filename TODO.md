@@ -113,8 +113,9 @@ already reached, and then went past by appending the `(merged)` marker.
 the core engine…, every time it is run make more improvements". The LobeHub
 Migration To-Do's own #1 suggested next: the two shared pane follow-ups, now
 that both panes exist and both want the same two controls.
-**Branch:** `claude/magical-bohr-xu325m` (started from `master` at `7f0d12c9`)
-**PR:** Opened at the end of this run from the branch above
+**Branch:** `claude/magical-bohr-xu325m` (started from `master` at `7f0d12c9`;
+`master` reached `bda1400f` while the work was in flight and was merged in)
+**PR:** #435
 **Started:** 2026-09-11
 **Completed:** 2026-09-11
 
@@ -224,6 +225,98 @@ server accepts, or accept one it drops.
   benchmark's tags most likely cannot be entered either. They are upstream
   LobeHub files in a feature this migration does not touch, and editing them is
   merge cost, so this is recorded rather than fixed. It wants its own decision.
+
+## Turn the four chronically red Coverage jobs green
+
+**Status:** Completed
+**Source:** A `bun install --ignore-scripts` failure pasted into the session,
+followed by "qwksearch tests fix".
+**Branch:** `claude/lucid-rubin-lyfu3s`
+**Started:** 2026-09-11
+**Completed:** 2026-09-11
+
+### Goal
+Fix the four Coverage jobs that the previous two entries recorded as red and
+left for the next run: `chat-agent-toolkit`, `extract-youtube`,
+`search-web-api` and `shadcn-settings`.
+
+### The pasted install failure was already fixed
+`api2client@^1.0.1` / `grab-url@^1.6.23` are gone from the tree — #427
+(`7fe79abf`) removed them, and the log pasted in predates it. At
+`2fcf1f19` a clean `bun install --ignore-scripts` resolves 5533 packages with
+no error, and `bun install --frozen-lockfile` under bun 1.4.0 (the
+`packageManager` pin, fetched from npm since bun.sh is unreachable here)
+reports no changes. Nothing to do there; the real work was the four red jobs.
+
+### What was wrong, per job
+None of the four was flaky — each was a real defect.
+
+- **`extract-youtube`** — `typescript@^7.0.2` is the native (Go) compiler and
+  exposes no JavaScript compiler API, so `ts-jest` aborted before running
+  anything: 10 suites, 0 tests. The package now aliases
+  `"typescript": "npm:@typescript/typescript6@^6.0.2"`, the package the root
+  `package.json` already installed and nothing consumed. That surfaced two
+  more: `https-proxy-agent` and its `agent-base` / `proxy-agent-negotiate`
+  chain are ESM-only against CommonJS suites (fixed with
+  `transformIgnorePatterns: []` — only loaded modules get compiled, the run
+  still takes ~4s), and `api.test.ts` left two rejected promises floating from
+  `api.fetch()` / `api.list()`, which killed the worker outright.
+- **`chat-agent-toolkit`** — `openrouter-default-model.test.js` asserted a
+  default of `nvidia/nemotron-3-super-120b-a12b:free` and a model `type` of
+  `text-generation`. The database says `openrouter/free` and `text`, and the
+  rest of the codebase agrees: `useChat/chatConfig.ts` prefers
+  `openrouter/free` and names Nemotron only as the fallback, and
+  `text-generation` appears solely in the Cloudflare block, where it is
+  Workers AI task naming. The assertions were stale, not the data.
+- **`shadcn-settings`** — `TextControl` rendered a fully controlled `<input>`
+  off `value` with no draft state. `onChange` is optional in its own props, so
+  a host passing only `onCommit` got a box that could not be typed into: React
+  reset the DOM node on every keystroke and blur then committed the stale
+  value. It now keeps a draft, adopted from `value` during render when the
+  host changes it underneath.
+- **`search-web-api`** — three faults. `test/autocomplete-engines.test.ts` was
+  an examples script with no suite in it (and a `process.exit(1)` on error);
+  it moved to `examples/autocomplete-engines.ts` behind
+  `bun run example:autocomplete`. The mocked-fetch dispatcher tested
+  `search.yahoo.com/search` before `news.search.yahoo.com/search`, and the
+  latter contains the former, so `yahoo_news` was handed the general-search
+  page and parsed nothing — the same trap the `news.google.com` guard three
+  lines above already sidesteps. And four suites call the live engines.
+
+### The live-network split
+`api`, `autocomplete-ai`, `engine-health-suite`, `search` and `sources` all go
+out to real third parties; whether they pass is decided by engine availability
+and by whether the engine rate-limits the runner that minute, which is why the
+job had been red for weeks. They are now opt-in behind `RUN_LIVE_TESTS=1`
+(`bun run test:live`) and still collect and run under it. What gates CI is
+`test/sources-unit.test.ts`, which covers the same engines against mocked
+responses, plus `src/search/__tests__/public-searxng.test.ts`.
+
+Separately, `search-web-api` was the only package whose coverage reporters
+omitted `lcov`, so its Codecov step had always logged
+`not_found_files: packages/search-web-api/coverage/lcov.info`. Added.
+
+### Verification
+Every dir in the Coverage matrix, run locally with its own `test:coverage`:
+all 24 pass. The four that were red: `chat-agent-toolkit` 62/62,
+`shadcn-settings` 5/5, `search-web-api` 122/122, `extract-youtube` 144 passed
++ 15 skipped across 10 suites. The consumers of the changed
+`shadcn-settings` component are green too — `research-agent-ui` 145/145 and
+`qwksearch-web` 846/846 — as is `bunx turbo build` over the four dist-consumed
+libraries, which is what proves the TypeScript 6 alias did not break
+`extract-youtube`'s declaration emit. `bunx tsc --noEmit` is clean in
+`shadcn-settings`.
+
+### Notes for the next run
+- **`bun.lock` was regenerated with bun 1.4.0**, not the 1.3.11 on this box —
+  install it from npm (`@oven/bun-linux-x64`, the tarball direct from the
+  registry) because `bun.sh` is blocked. `bun install --frozen-lockfile`
+  passes with it. Beyond the aliased `typescript`, the diff syncs ~20 stale
+  workspace `version` strings that the `[skip ci]` version bumps had left
+  behind in the lockfile; bun rewrites those on any install.
+- The live suites in `search-web-api` are still worth running by hand
+  (`bun run test:live`) when touching an engine — they are excluded from CI,
+  not deleted.
 
 ## Clear the repo-wide install outage by reverting the grab transport
 

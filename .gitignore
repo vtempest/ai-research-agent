@@ -69,3 +69,8 @@ bun.lockb
 packages/*/bun.lock
 packages/render-url-to-html/*/bun.lock
 apps/*/bun.lock
+
+
+# Written by search-web-api's live engine-health suite on every run
+packages/search-web-api/test/engine-health-report.json
+packages/search-web-api/test/engine-health-summary.txt

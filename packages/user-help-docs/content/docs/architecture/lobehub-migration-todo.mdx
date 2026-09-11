@@ -763,14 +763,29 @@ on a `packages-lobe` change:
   not yours. Your own `bunx vitest run` under `packages-lobe` is the only
   signal — which is why 5.4's "bundle budget in CI" needs a whole new job.
 - **The Coverage workflow was already red on `master` before that**, for
-  unrelated reasons that the install fix does not touch. As of
-  `52eb7cce` (#412, run 34445607248) **four** jobs failed with nothing of this
-  work in them: `chat-agent-toolkit`, `extract-youtube`, `search-web-api` and
-  `shadcn-settings`. Two more — `extract-pdf` and `qwksearch-web` — were on this
-  list and have since been fixed (#409 was the `extract-pdf` one), so **do not
-  treat the list as fixed**: read the same job on your own base commit before
-  treating a failure as yours, or you will wave through a real one. The list
-  shrinks as packages get fixed, and every entry on it is someone's open bug.
+  unrelated reasons the install fix did not touch. As of `52eb7cce` (#412, run
+  34445607248) and still at `c67266af` (#430, run 34540292102) **four** jobs
+  failed with nothing of that work in them: `chat-agent-toolkit`,
+  `extract-youtube`, `search-web-api` and `shadcn-settings`. All four are now
+  fixed, and none of them was a flake — each was a real defect:
+
+  | Job | What was actually wrong |
+  |---|---|
+  | `extract-youtube` | `typescript@^7.0.2` is the native compiler and exposes no JS API, so `ts-jest` refused to start and all 10 suites reported 0 tests. The package now aliases `typescript` to `@typescript/typescript6`, which the root already installed but nothing consumed. |
+  | `chat-agent-toolkit` | `openrouter-default-model.test.js` asserted a default of `nvidia/nemotron-3-super-120b-a12b:free` and a model `type` of `text-generation`; the database says `openrouter/free` (the auto-router every consumer prefers) and `text`. The assertions were stale, not the data. |
+  | `shadcn-settings` | `TextControl` rendered a fully controlled `<input>` with no draft state, so a host passing only `onCommit` — which the optional `onChange` advertises as supported — could not type at all, and blur committed the stale value. |
+  | `search-web-api` | Three separate faults: an autocomplete *example* was named `*.test.ts` and Vitest fails a test file that declares no suite; the mocked-fetch dispatcher matched `search.yahoo.com/search` before `news.search.yahoo.com/search`, so `yahoo_news` parsed the general-search page; and four suites call the live engines, whose rate limits decided the job. |
+
+  Live-network suites are now opt-in behind `RUN_LIVE_TESTS=1`
+  (`bun run test:live` in `packages/search-web-api`), so what gates CI is the
+  mocked `sources-unit.test.ts` that covers the same engines deterministically.
+  `search-web-api` was also the only package whose coverage reporters omitted
+  `lcov`, which is why its Codecov upload had always logged
+  `not_found_files: packages/search-web-api/coverage/lcov.info`.
+
+  **Do not treat the list as permanently fixed**: read the same job on your own
+  base commit before treating a failure as yours, or you will wave through a
+  real one.
 
 Also: **PRs here auto-merge.** `.github/workflows/auto-merge-claude.yml` merged
 #393 about ten seconds after it was opened, before its own checks finished. So
