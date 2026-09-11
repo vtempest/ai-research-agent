@@ -1,0 +1,2 @@
+Adapted from PredictOS by PredictionXBT (https://github.com/PredictionXBT/PredictOS), MIT licensed.
+Refactored from Deno/Supabase edge functions to Node/TypeScript ESM for use in packages/investing.
