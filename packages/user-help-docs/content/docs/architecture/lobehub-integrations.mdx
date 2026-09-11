@@ -77,6 +77,7 @@ then LobeHub's tRPC/webapi/api, then the SPA catch-all.
 | F5a | **Search settings** — one resolved value behind F5's knobs: categories, fan-out bound, language, recency, safe search, public-instance fallback, result cap | `apps/server/src/services/search/impls/qwksearch/searchSettings.ts` | — | none (per-request) |
 | F5b | **Search preferences** — storage and API for F5a's per-user layer | `worker/routes/qwksearch/searchSettings.ts`, `.../qwksearch/searchPreferences.ts` | — | D1 `search_settings` |
 | F5c | **Search & Sources pane** (`/settings/search`) — the form over F5b, inside LobeHub's own settings shell | — | `src/features/Settings/search/` (`index.tsx`, `api.ts`, `formState.ts`, `features/SearchForm.tsx`) | through F5b |
+| F5d | **The panes' shared controls** — ordered drag-sortable lists for `tiers`/`categories`, BCP-47 language fields for `languages`/`language` | — | `src/features/Settings/qwksearch/` (`languageTags.ts`, `OrderedList.tsx`, `OrderedMultiSelect.tsx`, `LanguageSelect.tsx`) | — |
 | F6 | **Branding** | `packages/business/const/src/branding.ts`, `packages/const/src/url.ts`, `public/` favicons | — | — |
 | F7 | **Route + nav registration** for `/docs` and the article panel mount | `src/spa/router/desktopRouter.shared.tsx`, `src/features/NavPanel/routeKey.ts`, `src/routes/(main)/_layout/index.tsx` | — | — |
 | F8 | **i18n** | `packages/locales/src/default/qwksearch.ts` + `locales/{en-US,zh-CN}/qwksearch.json` | — | — |
@@ -404,6 +405,79 @@ Both panes now recognise the 401 the API error already carried and prompt the
 visitor to sign in instead of printing the status text — F2c's third recorded
 follow-up, closed here because it was the same bug in both.
 
+### F5d — The panes' shared controls
+
+F2c and F5c are separate features, but three of their fields are the same two
+problems. Both were solved once, in a home both panes import, and a third pane
+on the same resolver pattern gets them free.
+
+```
+src/features/Settings/qwksearch/
+  index.ts              the barrel both panes import from
+  languageTags.ts       the client's mirror of the routes' BCP-47 rule (pure)
+  OrderedList.tsx       numbered, drag-sortable, removable rows
+  OrderedMultiSelect.tsx  closed-set Select + OrderedList
+  LanguageSelect.tsx    LanguageSelect (one tag) + LanguageListSelect (a list)
+```
+
+| Field | Pane | Control |
+|---|---|---|
+| `tiers` | Extraction | `OrderedMultiSelect` over `options.tiers` |
+| `categories` | Search | `OrderedMultiSelect` over `options.categories` |
+| `languages` | Extraction | `LanguageListSelect`, lowercased, capped at five |
+| `language` | Search | `LanguageSelect`, one tag, canonically cased |
+
+**Problem 1 — the order was invisible and unchangeable.** All three list fields
+store a sequence: `tiers` is the chain's execution order, `categories` is the
+fan-out order that `maxCategories` keeps the first N of, and `languages` is a
+transcript preference order. A row of tags says none of that, and antd appends
+each new selection at the end, so the only way to promote the fourth entry was
+to clear the field and re-pick everything. `OrderedList` mirrors the chosen
+values as numbered rows with a drag handle; the numbers are what say the field
+has an order at all.
+
+**Problem 2 — a malformed tag vanished on save.** Both routes validate a
+language tag's *shape* and drop what fails rather than rejecting the write, so
+`en, klingon` still gets you English. The cost was that a typo disappeared
+silently: you typed `english`, the toast said "saved", and the field came back
+empty. `languageTags.ts` restates the rule so the pane can apply it at the
+moment of entry, name what it refused, and show the canonical spelling that will
+actually be stored (`EN-us` → `en-US`). Language names come from
+`Intl.DisplayNames` in the reader's own locale, so the suggestion list needs no
+translated string table and still covers every tag.
+
+The two routes differ in one respect, preserved rather than smoothed over:
+`normalizeSearchLanguage` canonicalizes case (`EN-us` → `en-US`) while
+`normalizeLanguages` lowercases, because that is what it deduplicates on.
+
+**The drift guard is `languageTags.contract.test.ts`** — the panes' own
+`contract.test.ts` mechanism applied to a rule that lives in two other places.
+It runs one corpus of 24 inputs through `normalizeSearchLanguage` (via the
+`@/server/*` alias) and `normalizeLanguages` (via a relative import into
+`worker/`) and through this module, and fails if any of the three drifts. A
+restatement that quietly stops matching would be worse than no restatement:
+the pane would reject a tag the server accepts, or accept one it drops.
+
+**A `@lobehub/ui` finding worth keeping.** The language fields are built on
+base-ui's `AutoComplete`, not on a tags `Select`, and the reason is not
+preference. base-ui's `Select` accepts `mode="tags"` and `tokenSeparators` but
+**never creates a value that is not already in `options`**: typing is a
+typeahead over the option list and Enter commits whichever option it landed on.
+With no options nothing commits — which is why F2c's transcript-languages field
+could be looked at and not filled in, a bug that shipped in #393 and is fixed
+here. With options, typing a valid-but-unlisted tag like `sw` (Swahili) selects
+the nearest highlight (`sv`, Swedish) instead, which is worse. `tokenSeparators`
+is accepted and does nothing, so the `en, fr, pt-BR` the placeholder promised
+never worked either; `LanguageListSelect` parses the list itself.
+
+Anything else in this repo reaching for free-text tag entry from a base-ui
+`Select` will hit the same wall — use `AutoComplete`. Two upstream files already
+have: `src/routes/(main)/eval/features/{BenchmarkEditModal,CreateBenchmarkModal}/Content.tsx`
+each render `<Select mode="tags" open={false} tokenSeparators={…} />` with no
+`options`. They are upstream LobeHub, in a feature this migration does not
+touch, so they are recorded here and not changed — editing them is merge cost
+against upstream and wants its own decision.
+
 ## 3. Shared infrastructure
 
 Both Workers point at the **same** Cloudflare resources, which is what makes a
@@ -484,8 +558,12 @@ bunx vitest run worker src/features/QwkSearch \
 bunx vitest run apps/server/src/services/search
 
 # Both settings panes, including the two contract.test.ts drift guards that
-# rebuild each route's response from the real resolver (98 cases)
+# rebuild each route's response from the real resolver (103 cases)
 bunx vitest run src/features/Settings/extraction src/features/Settings/search
+
+# The panes' shared controls (F5d), including the language drift guard that
+# runs one corpus through both routes' normalizers and this module (133 cases)
+bunx vitest run src/features/Settings/qwksearch
 
 # Route/nav registration touched by /docs
 bunx vitest run src/spa/router/desktopRouter.sync.test.tsx src/features/NavPanel/routeKey.test.ts

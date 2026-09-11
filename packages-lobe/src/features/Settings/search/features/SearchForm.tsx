@@ -1,13 +1,14 @@
 'use client';
 
 import { type FormGroupItemType } from '@lobehub/ui';
-import { Flexbox, Form, Input, InputNumber } from '@lobehub/ui';
+import { Flexbox, Form, InputNumber } from '@lobehub/ui';
 import { Button, Select, Skeleton, Text, toast } from '@lobehub/ui/base-ui';
 import { Form as AntdForm } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FORM_STYLE } from '@/const/layoutTokens';
+import { LanguageSelect, OrderedMultiSelect } from '@/features/Settings/qwksearch';
 import { SettingsSearchAnchor } from '@/features/SettingsSearch/anchor';
 
 import {
@@ -145,8 +146,7 @@ const SearchForm = () => {
     children: [
       {
         children: (
-          <Select
-            mode={'multiple'}
+          <OrderedMultiSelect
             placeholder={t('search.categories.placeholder')}
             options={options.categories.map((category) => ({
               label: t(`search.category.${category}` as any, category),
@@ -224,7 +224,7 @@ const SearchForm = () => {
         name: 'timeRange',
       },
       {
-        children: <Input placeholder={effective.language} style={{ width: 140 }} />,
+        children: <LanguageSelect placeholder={effective.language} />,
         desc: t('search.language.desc', { value: effective.language }),
         label: (
           <SettingsSearchAnchor id={'search-language'}>

@@ -106,6 +106,125 @@ already reached, and then went past by appending the `(merged)` marker.
 
 ## Completed
 
+## Build the settings panes' shared controls inside the LobeHub engine
+
+**Status:** Completed
+**Source:** Scheduled task — "merge lobehub and qwksearch.com so that lobehub is
+the core engine…, every time it is run make more improvements". The LobeHub
+Migration To-Do's own #1 suggested next: the two shared pane follow-ups, now
+that both panes exist and both want the same two controls.
+**Branch:** `claude/magical-bohr-xu325m` (started from `master` at `7f0d12c9`)
+**PR:** Opened at the end of this run from the branch above
+**Started:** 2026-09-11
+**Completed:** 2026-09-11
+
+### Goal
+Close the four remaining follow-ups on §1.7 and §1.10 of the migration to-do by
+building each of the two controls once, in a place both panes can import — the
+shared home the to-do said did not exist and that choosing it was most of the
+work.
+
+### The finding worth keeping
+**The extraction pane's transcript-languages field could not be filled in at
+all**, and had not been since #393 shipped it. `@lobehub/ui`'s base-ui `Select`
+accepts `mode="tags"` and `tokenSeparators`, but it **never creates a value that
+is not already in `options`**: typing is a typeahead over the option list, and
+Enter commits whichever option the typeahead landed on. That pane passed no
+options, so the dropdown read "No data" and nothing a user typed ever committed.
+
+Adding options is not the fix — it is worse. With a suggestion list, typing a
+well-formed but unlisted tag like `sw` (Swahili) commits the nearest highlight,
+`sv` (Swedish): a wrong value, silently, which is a worse failure than the
+silent drop this task set out to remove. Both language fields are therefore
+built on base-ui's **`AutoComplete`**, a real text input with a suggestion list.
+This was established by probing the component in happy-dom, not assumed.
+
+`tokenSeparators` is likewise accepted and does nothing, so the `en, fr, pt-BR`
+the placeholder has always promised never worked; `LanguageListSelect` parses
+the list itself.
+
+### Scope
+- New `packages-lobe/src/features/Settings/qwksearch/` — the shared home:
+  - `languageTags.ts` — the client's mirror of the two routes' BCP-47 rule.
+  - `OrderedList.tsx` — numbered, drag-sortable, removable rows (`@dnd-kit`).
+  - `OrderedMultiSelect.tsx` — closed-set `Select` + `OrderedList`.
+  - `LanguageSelect.tsx` — `LanguageSelect` (one tag) and `LanguageListSelect`.
+  - `index.ts` — the barrel both panes import from.
+- Both panes rewired: `tiers` and `categories` to `OrderedMultiSelect`,
+  `languages` to `LanguageListSelect`, `language` to `LanguageSelect`.
+- 4 locale keys in the `qwksearch` namespace, hand-written in en-US and zh-CN.
+- Docs: §F5d in the integrations reference (new), §1.11 in the migration to-do
+  (new) plus the §1.7/§1.10 follow-ups it closes, the Snapshot row, the
+  re-ranked "suggested next", and `packages-lobe/README.md` § What changed.
+
+### Non-goals
+- Touching the two routes. The rule they enforce is right; what was missing was
+  the client saying it out loud before the write.
+- A closed language list. The server checks the tag's *shape*, so the field
+  accepts any well-formed tag and the 28 suggestions are a convenience.
+- Translating language names. `Intl.DisplayNames` names every tag in the
+  reader's own locale, so no string table was added for them.
+
+### What changed
+Three fields across the two panes were the same two problems:
+
+- **The order was invisible and unchangeable.** `tiers` is the extraction
+  chain's execution order, `categories` is the fan-out order whose first N the
+  cap keeps, and `languages` is a transcript preference order. A row of tags
+  says none of that, and antd appends each new selection at the end — so the
+  only way to promote the fourth entry was to clear the field and re-pick
+  everything. `OrderedList` mirrors the values as numbered, draggable rows.
+- **A malformed tag vanished on save.** Both routes validate a tag's shape and
+  drop what fails rather than failing the write — right, so `en, klingon` still
+  gets you English, but it meant a typo disappeared under a "saved" toast.
+  `languageTags.ts` applies the rule at entry, names what it refused, and shows
+  the canonical spelling that will be stored (`EN-us` → `en-US`).
+
+The two routes differ in one respect, preserved rather than smoothed over:
+`normalizeSearchLanguage` canonicalizes case while `normalizeLanguages`
+lowercases, because that is what it deduplicates on.
+
+### The drift guard
+`languageTags.contract.test.ts` is the panes' own `contract.test.ts` mechanism
+aimed at a rule that now lives in three files. One corpus of 24 inputs runs
+through `normalizeSearchLanguage` (via the `@/server/*` alias),
+`normalizeLanguages` (via a relative import into `worker/`) and this module; if
+any of the three drifts, it fails. A restatement that quietly stops matching
+would be worse than no restatement at all — the pane would reject a tag the
+server accepts, or accept one it drops.
+
+### Verification
+- `bunx vitest run src/features/Settings/qwksearch`: 5 files, 133 passed.
+- `bunx vitest run src/features/Settings/extraction src/features/Settings/search`:
+  8 files, 103 passed — the panes' own suites, plus 5 new cases proving the
+  controls are wired in, including the regression test for the unfillable
+  languages field.
+- `bunx vitest run src/features/Settings`: 39 files, 379 passed, 1 failed —
+  `ApiKey > edits a key scope in place and refreshes the list`, which fails
+  identically on a stashed tree and is not this change.
+- `bun run check --lint` over every changed file: lint clean.
+- `npx tsgo --noEmit` against a scoped `tsconfig` narrowed to the three feature
+  directories: 0 errors.
+- Not run: `bun run check --type` (OOMs on this box, per the migration to-do)
+  and `bun run build:worker:server` (cannot finish after `--ignore-scripts`,
+  same source). Nothing in CI installs or tests `packages-lobe`, so the local
+  runs above are the whole signal.
+
+### Remaining work
+- **Nothing tests an actual drag.** `moveItem` is covered as a pure function and
+  the rows as rendering, but dnd-kit's pointer sequence is not driven in
+  happy-dom, and the keyboard sensor is wired and unverified.
+- **Adding a language is a button, not Enter**, because `AutoComplete` has no
+  commit event. If base-ui grows one, the button can become a shortcut rather
+  than the only way.
+- **Two upstream files have the same bug and were left alone.**
+  `src/routes/(main)/eval/features/{BenchmarkEditModal,CreateBenchmarkModal}/Content.tsx`
+  each render `<Select mode="tags" open={false} tokenSeparators={…} />` with no
+  `options`, which is the exact shape that cannot commit a value — so a
+  benchmark's tags most likely cannot be entered either. They are upstream
+  LobeHub files in a feature this migration does not touch, and editing them is
+  merge cost, so this is recorded rather than fixed. It wants its own decision.
+
 ## Clear the repo-wide install outage by reverting the grab transport
 
 **Status:** Completed
