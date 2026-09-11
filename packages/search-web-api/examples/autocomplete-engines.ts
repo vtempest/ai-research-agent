@@ -3,6 +3,10 @@
  *
  * Demonstrates how to use the autocomplete functionality
  * to get search query suggestions from various search engines.
+ *
+ * Run it with `bun run example:autocomplete`. It calls the live engines and
+ * prints what they answer; it asserts nothing, which is why it lives here and
+ * not in `test/` — Vitest fails a `*.test.ts` file that declares no suite.
  */
 
 import {
