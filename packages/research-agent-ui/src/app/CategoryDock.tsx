@@ -110,7 +110,7 @@ export function CategoryDock() {
                 the one pointer-reachable way in — and advertises the chord. */}
             <DropdownMenuItem onClick={() => openSpotlight()} className="cursor-pointer py-1 h-7">
               <Search className="mr-2 h-3.5 w-3.5" />
-              <span className="text-sm">Search everything</span>
+              <span className="text-sm">Search</span>
               <span className="ml-auto pl-3 text-[10px] text-muted-foreground">Ctrl Space</span>
             </DropdownMenuItem>
             <DropdownMenuItem

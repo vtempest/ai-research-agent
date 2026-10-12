@@ -70,7 +70,7 @@ import { QwkSearchProviders, openSpotlight } from 'research-agent-ui';
 </QwkSearchProviders>;
 
 // …and from a button somewhere in your own chrome:
-<button onClick={() => openSpotlight()}>Search everything</button>;
+<button onClick={() => openSpotlight()}>Search </button>;
 ```
 
 Rows that open a chat or a settings section go through `onOpenChat` /
