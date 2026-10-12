@@ -362,6 +362,19 @@
         "vitest": "^5.0.0",
       },
     },
+    "packages/extract-human-name": {
+      "name": "extract-human-name",
+      "version": "1.0.0",
+      "devDependencies": {
+        "@types/node": "^26.5.0",
+        "@vitest/coverage-v8": "^5.0.0",
+        "terser": "^5.51.2",
+        "typescript": "^7.0.2",
+        "vite": "^8.2.2",
+        "vite-plugin-dts": "^5.1.0",
+        "vitest": "^5.0.0",
+      },
+    },
     "packages/extract-pdf": {
       "name": "extract-pdf",
       "version": "0.1.409",
@@ -398,9 +411,9 @@
         "@radix-ui/react-slot": "^1.2.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "extract-cite": "workspace:*",
-        "extract-pdf": "workspace:*",
-        "extract-webpage": "workspace:*",
+        "extract-cite": "^1.0.21",
+        "extract-pdf": "^0.1.461",
+        "extract-webpage": "^1.2.420",
         "fumadocs-core": "^16.15.17",
         "fumadocs-mdx": "^15.4.5",
         "fumadocs-ui": "^16.15.17",
@@ -4738,6 +4751,8 @@
 
     "extract-cite": ["extract-cite@workspace:packages/extract-cite"],
 
+    "extract-human-name": ["extract-human-name@workspace:packages/extract-human-name"],
+
     "extract-pdf": ["extract-pdf@workspace:packages/extract-pdf"],
 
     "extract-pdf-site": ["extract-pdf-site@workspace:packages/extract-pdf/site"],
@@ -7969,6 +7984,10 @@
     "evp_bytestokey/safe-buffer": ["safe-buffer@5.2.1", "", {}, "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="],
 
     "extract-pdf-site/@types/node": ["@types/node@24.19.0", "", { "dependencies": { "undici-types": ">=7.24.0 <7.24.7" } }, "sha512-zY+5tKxXdhGh1PYI0ac+7juvEu4OI6vWtVVoj5i2m42jxAY1U+zHGt6QCyOFwykdP62sM3MJ9stoYYUw5aCWew=="],
+
+    "extract-pdf-site/extract-cite": ["extract-cite@1.0.31", "", { "dependencies": { "chrono-node": "^2.10.1", "linkedom": "^0.18.13" } }, "sha512-yw+/xlXqKdHW6+PKx/FNNtWDe1BjKeTePNGMAkltaSao8snGLp+GvufjPKiD+eG5VHU8HhOzqV5ZDLN5g3Hl7w=="],
+
+    "extract-pdf-site/extract-pdf": ["extract-pdf@0.1.471", "", { "dependencies": { "grab-url": "^1.6.22" }, "optionalDependencies": { "@hono/node-server": "^2.1.1", "@hono/swagger-ui": "^0.6.1", "@hono/zod-openapi": "^1.6.3", "@huggingface/transformers": "^4.2.0", "@llamaindex/liteparse": "^2.14.4", "@llamaindex/liteparse-wasm": "^2.14.4", "@napi-rs/canvas": "^1.0.8", "hono": "^4.13.7", "pdfjs-serverless": "^1.3.1", "zod": "^4.5.4" } }, "sha512-OVrP+kFzG+oqn8Ttx6QENPA+qiGj1DAcFJDfRtDBpw6IsKO4kKY2REP98AjH3Qn4CczRtaB+RbV08hs9Dn/tRg=="],
 
     "extract-pdf-site/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
