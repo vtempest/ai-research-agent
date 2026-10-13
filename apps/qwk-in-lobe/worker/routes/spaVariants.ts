@@ -152,8 +152,9 @@ const publicRouteRegexes = PUBLIC_ROUTE_PATTERNS.map((pattern) => {
 });
 
 /**
- * SPA pages a visitor may open without a session. Everything else redirects
- * to `/signin` (same policy as the Next middleware's `isPublicRoute`).
+ * SPA pages a visitor may open without a session. Everything else needs one,
+ * which `resolvePageSession` creates as a guest session when missing (same
+ * policy as the Next middleware's `isPublicRoute`).
  */
 export const isPublicSpaRoute = (pathname: string) =>
   publicRouteRegexes.some((regex) => regex.test(pathname));

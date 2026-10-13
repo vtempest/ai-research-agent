@@ -162,25 +162,34 @@ const renderMainSpa = async (c: Context) => {
 };
 
 /**
- * Session gate for protected SPA pages. Mirrors `betterAuthMiddleware`: only
- * the public allowlist is reachable anonymously, everything else bounces to
- * `/signin` with a callback URL.
+ * Session gate for protected SPA pages. Only the public allowlist skips it.
+ * Nobody is sent to sign in: a visitor without a session gets a guest
+ * session on this response (`startGuestSession`), and crawlers get the page
+ * without one. Only when a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS`
+ * restricts sign-ups) does the visitor go to this deployment's own `/signin` —
+ * never to `APP_URL`'s, which may be a different site.
  */
-const requireSessionForProtectedPage = async (c: Context): Promise<Response | undefined> => {
+export const resolvePageSession = async (
+  c: Context,
+): Promise<{ redirect?: Response; setCookies?: string[] }> => {
+  const { pathname, origin } = new URL(c.req.url);
+  if (isPublicSpaRoute(pathname) || isAuthSpaRoute(pathname)) return {};
+
   const { auth } = await import('@/auth');
-  const { appEnv } = await import('@/envs/app');
-
-  const { pathname } = new URL(c.req.url);
-  if (isPublicSpaRoute(pathname) || isAuthSpaRoute(pathname)) return undefined;
-
   try {
     const session = await auth.api.getSession({ headers: c.req.raw.headers });
-    if (session?.user) return undefined;
+    if (session?.user) return {};
   } catch (error) {
     console.error('[spa] session lookup failed, treating as anonymous:', error);
   }
 
-  return c.redirect(buildSignInRedirect(c.req.raw, appEnv.APP_URL), 302);
+  const { isLikelyBot, startGuestSession } = await import('@/libs/better-auth/guest');
+  if (isLikelyBot(c.req.header('user-agent'))) return {};
+
+  const setCookies = await startGuestSession(c.req.raw.headers);
+  if (setCookies) return { setCookies };
+
+  return { redirect: c.redirect(buildSignInRedirect(c.req.raw, origin), 302) };
 };
 
 interface AuthSPAServerConfig {
@@ -213,8 +222,10 @@ spaApp.get('*', async (c) => {
   if (isBackendPath(pathname)) return c.notFound();
   if (isAuthSpaRoute(pathname)) return renderAuthSpa(c);
 
-  const redirect = await requireSessionForProtectedPage(c);
+  const { redirect, setCookies } = await resolvePageSession(c);
   if (redirect) return redirect;
 
-  return renderMainSpa(c);
+  const response = await renderMainSpa(c);
+  for (const cookie of setCookies ?? []) response.headers.append('set-cookie', cookie);
+  return response;
 });
