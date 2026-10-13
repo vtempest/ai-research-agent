@@ -36,6 +36,9 @@ export const DEFAULT_CONNECT_ORIGINS = [
   // Debate AI's short-domain rebrand; it serves the same app.
   "https://ebate.app",
   "https://*.ebate.app",
+  // AI Broker embeds the same research agent (its /research page).
+  "https://autoinvestment.broker",
+  "https://*.autoinvestment.broker",
   "http://localhost:*",
 ];
 
@@ -43,6 +46,7 @@ export const DEFAULT_CONNECT_ORIGINS = [
 const KNOWN_CLIENTS: Record<string, string> = {
   "debate-ai.com": "Debate AI",
   "ebate.app": "Debate AI",
+  "autoinvestment.broker": "AI Broker",
 };
 
 export interface ConnectClient {

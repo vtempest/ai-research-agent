@@ -26,6 +26,15 @@ describe('resolveConnectClient', () => {
     expect(resolveConnectClient('https://ebate.app/api/qwksearch/callback')?.name).toBe('Debate AI')
   })
 
+  it('accepts autoinvestment.broker and its subdomains, named "AI Broker"', () => {
+    expect(resolveConnectClient('https://autoinvestment.broker/api/qwksearch/callback')).toEqual({
+      origin: 'https://autoinvestment.broker',
+      name: 'AI Broker',
+    })
+    expect(resolveConnectClient('https://www.autoinvestment.broker/cb')?.name).toBe('AI Broker')
+    expect(resolveConnectClient('https://autoinvestment.broker.evil.com/cb')).toBeNull()
+  })
+
   it('accepts localhost on any port over http', () => {
     expect(resolveConnectClient('http://localhost:3000/cb')?.origin).toBe('http://localhost:3000')
   })
