@@ -2,13 +2,7 @@ import { APIError, createAuthEndpoint, getSessionFromCtx } from 'better-auth/api
 import { setSessionCookie } from 'better-auth/cookies';
 import { type BetterAuthPlugin } from 'better-auth/types';
 
-/**
- * Reserved TLD (RFC 2606), so a guest address can never reach a real mailbox.
- */
-export const GUEST_EMAIL_DOMAIN = 'guest.invalid';
-
-export const isGuestEmail = (email?: string | null) =>
-  !!email && email.endsWith(`@${GUEST_EMAIL_DOMAIN}`);
+import { GUEST_EMAIL_DOMAIN } from '../guestEmail';
 
 const randomGuestId = () => crypto.randomUUID().replaceAll('-', '');
 

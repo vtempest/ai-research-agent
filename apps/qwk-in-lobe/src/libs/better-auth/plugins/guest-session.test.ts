@@ -3,7 +3,8 @@ import { memoryAdapter } from 'better-auth/adapters/memory';
 import { betterAuth } from 'better-auth/minimal';
 import { describe, expect, it } from 'vitest';
 
-import { GUEST_EMAIL_DOMAIN, guestSession, isGuestEmail } from './guest-session';
+import { GUEST_EMAIL_DOMAIN, isGuestEmail } from '../guestEmail';
+import { guestSession } from './guest-session';
 
 const createAuth = () => {
   const db = { account: [], session: [], user: [], verification: [] } as Record<string, any[]>;
