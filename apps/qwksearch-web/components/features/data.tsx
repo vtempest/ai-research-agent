@@ -455,7 +455,7 @@ export const COMPARISON_COLUMNS: {
     { name: "Venice", href: "https://venice.ai", domain: "venice.ai" },
     { name: "Notion", href: "https://notion.com", domain: "notion.so" },
     {
-      name: "Open WebUI",
+      name: "OpenWeb",
       href: "https://openwebui.com",
       domain: "openwebui.com",
     },
