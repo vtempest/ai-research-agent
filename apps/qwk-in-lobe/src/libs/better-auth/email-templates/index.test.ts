@@ -1,3 +1,4 @@
+import { BRANDING_EMAIL } from '@lobechat/business-const';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -41,9 +42,9 @@ describe('email templates', () => {
   it.each(templates)(
     'includes support email and Discord links in HTML and plain text',
     (template) => {
-      expect(template.html).toContain('href="mailto:support@lobehub.com"');
+      expect(template.html).toContain(`href="mailto:${BRANDING_EMAIL.support}"`);
       expect(template.html).toContain('https://discord.gg/');
-      expect(template.text).toContain('support@lobehub.com');
+      expect(template.text).toContain(BRANDING_EMAIL.support);
       expect(template.text).toContain('https://discord.gg/');
     },
   );

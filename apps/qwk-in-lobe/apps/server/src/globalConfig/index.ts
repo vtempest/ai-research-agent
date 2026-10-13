@@ -20,6 +20,7 @@ import {
   genServerAiProvidersConfig,
   type ProviderSpecificConfig,
 } from './genServerAiProviderConfig';
+import { resolveDefaultAgentConfigEnv, resolveSystemAgentEnv } from './openRouterDefaults';
 import { parseAgentConfig } from './parseDefaultAgent';
 import { parseFilesConfig } from './parseFilesConfig';
 import { getPublicMemoryExtractionConfig } from './parseMemoryExtractionConfig';
@@ -100,7 +101,7 @@ export const getServerGlobalConfig = async () => {
   const config: GlobalServerConfig = {
     aiProvider: await genServerAiProvidersConfig(aiProviderSpecificConfig),
     defaultAgent: {
-      config: parseAgentConfig(DEFAULT_AGENT_CONFIG),
+      config: parseAgentConfig(resolveDefaultAgentConfigEnv(DEFAULT_AGENT_CONFIG)),
     },
     disableEmailPassword: authEnv.AUTH_DISABLE_EMAIL_PASSWORD,
     enableBusinessFeatures: ENABLE_BUSINESS_FEATURES,
@@ -136,7 +137,7 @@ export const getServerGlobalConfig = async () => {
       userMemory: cleanObject(getPublicMemoryExtractionConfig()),
     },
     oAuthSSOProviders: getBetterAuthSSOProviders(),
-    systemAgent: parseSystemAgent(appEnv.SYSTEM_AGENT),
+    systemAgent: parseSystemAgent(resolveSystemAgentEnv(appEnv.SYSTEM_AGENT)),
     telemetry: {
       langfuse: langfuseEnv.ENABLE_LANGFUSE,
     },
@@ -154,7 +155,7 @@ export const getServerGlobalConfig = async () => {
 export const getServerDefaultAgentConfig = () => {
   const { DEFAULT_AGENT_CONFIG } = getAppConfig();
 
-  return parseAgentConfig(DEFAULT_AGENT_CONFIG) || {};
+  return parseAgentConfig(resolveDefaultAgentConfigEnv(DEFAULT_AGENT_CONFIG)) || {};
 };
 
 export const getServerDefaultFilesConfig = () => {

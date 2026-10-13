@@ -26,6 +26,29 @@ apps/qwk-in-lobe/
 └── scripts/buildWorkerAssets.mts
 ```
 
+## Core mode (default) and OpenRouter
+
+Out of the box this tree runs as **plain LobeHub**: every QwkSearch add-on below (article side
+panel and its chat-link interception, `/docs`, the Extraction and Search settings panes, the
+`qwksearch` search provider) sits behind the `qwksearch` feature flag, which defaults to off. The
+Worker does not mount the add-ons' `/api/doc/*` routes either. Turn the UI add-ons back on with
+`FEATURE_FLAGS=+qwksearch`.
+
+Chat works with nothing but an OpenRouter key:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...                  # enables the OpenRouter provider server-side
+# optional
+OPENROUTER_DEFAULT_MODEL=openai/gpt-4o-mini   # default: openrouter/auto
+```
+
+When `OPENROUTER_API_KEY` is set and the operator has not set `DEFAULT_AGENT_CONFIG` or
+`SYSTEM_AGENT`, new agents and the system agents (topic titles, translation, history compression, …)
+default to `openrouter` / `OPENROUTER_DEFAULT_MODEL`
+(`apps/server/src/globalConfig/openRouterDefaults.ts`). Explicit `DEFAULT_AGENT_CONFIG` /
+`SYSTEM_AGENT` values always win, and other provider keys (`OPENAI_API_KEY`, …) keep working as in
+upstream LobeHub. Users can still add their own keys under Settings → Providers.
+
 ## How it runs on Workers
 
 | Concern | LobeHub default | On Cloudflare (this tree) |

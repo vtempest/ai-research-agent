@@ -55,7 +55,7 @@ const SettingsContent = ({ mobile, activeTab }: SettingsContentProps) => {
   const { t } = useTranslation(['auth', 'labs', 'setting', 'subscription']);
   const { t: tQwkSearch } = useTranslation('qwksearch');
   const enableBusinessFeatures = useServerConfigStore(serverConfigSelectors.enableBusinessFeatures);
-  const enableQwkSearch = useServerConfigStore(featureFlagsSelectors.enableQwkSearch);
+  const enableQwkSearch = useServerConfigStore((s) => featureFlagsSelectors(s).enableQwkSearch);
   const navigate = useWorkspaceAwareNavigate();
 
   const compactHeaderTitles: Partial<Record<SettingsTabs, string>> = {

@@ -87,7 +87,10 @@ export const DEFAULT_FEATURE_FLAGS: IFeatureFlags = {
   token_counter: true,
 
   knowledge_base: true,
-  qwksearch: isDev,
+  // QwkSearch add-ons (article panel, Docs, extraction/search settings, the
+  // qwksearch search provider) are off by default so the app runs as plain
+  // LobeHub. Turn them on with FEATURE_FLAGS=+qwksearch.
+  qwksearch: false,
   rag_eval: false,
 
   agent_self_iteration: isDev,
