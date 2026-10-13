@@ -8,6 +8,7 @@ import { auth } from '@/auth';
 import { LOBE_LOCALE_COOKIE } from '@/const/locale';
 import { appEnv } from '@/envs/app';
 import { authEnv } from '@/envs/auth';
+import { isLikelyBot, startGuestSession } from '@/libs/better-auth/guest';
 import { type Locales } from '@/locales/resources';
 import { parseBrowserLanguage } from '@/utils/locale';
 import { DEFAULT_LANG, locales, RouteVariants } from '@/utils/server/routeVariants';
@@ -283,28 +284,36 @@ export function defineConfig() {
     });
 
     if (!isLoggedIn) {
-      // If request a protected route, redirect to sign-in page
-      if (isProtected) {
-        logBetterAuth('Request a protected route, redirecting to sign-in page');
+      // Nobody is sent to sign in: give the visitor a guest session instead.
+      // Crawlers get the page without one; only when a guest cannot be created
+      // (e.g. AUTH_ALLOWED_EMAILS restricts sign-ups) fall back to sign-in.
+      if (isLikelyBot(req.headers.get('user-agent'))) return response;
 
-        const callbackUrl = `${appEnv.APP_URL}${req.nextUrl.pathname}${req.nextUrl.search}`;
-        const signInUrl = new URL('/signin', appEnv.APP_URL);
-        signInUrl.searchParams.set('callbackUrl', callbackUrl);
-        const hl = req.nextUrl.searchParams.get('hl');
-        if (hl) {
-          signInUrl.searchParams.set('hl', hl);
-          logBetterAuth('Preserving locale to sign-in: hl=%s', hl);
-        }
-        // Preserve marketing attribution (e.g. sign-ups originating from Market)
-        // so it survives the auth detour and reaches the sign-up page.
-        const utmSource = req.nextUrl.searchParams.get('utm_source');
-        if (utmSource) {
-          signInUrl.searchParams.set('utm_source', utmSource);
-          logBetterAuth('Preserving utm_source to sign-in: %s', utmSource);
-        }
-        return Response.redirect(signInUrl);
+      const guestCookies = await startGuestSession(req.headers);
+      if (guestCookies) {
+        logBetterAuth('Started a guest session for a protected route');
+        for (const cookie of guestCookies) response.headers.append('set-cookie', cookie);
+        return response;
       }
-      logBetterAuth('Request a free route but not login, allow visit without auth header');
+
+      logBetterAuth('Request a protected route, redirecting to sign-in page');
+
+      const callbackUrl = `${appEnv.APP_URL}${req.nextUrl.pathname}${req.nextUrl.search}`;
+      const signInUrl = new URL('/signin', appEnv.APP_URL);
+      signInUrl.searchParams.set('callbackUrl', callbackUrl);
+      const hl = req.nextUrl.searchParams.get('hl');
+      if (hl) {
+        signInUrl.searchParams.set('hl', hl);
+        logBetterAuth('Preserving locale to sign-in: hl=%s', hl);
+      }
+      // Preserve marketing attribution (e.g. sign-ups originating from Market)
+      // so it survives the auth detour and reaches the sign-up page.
+      const utmSource = req.nextUrl.searchParams.get('utm_source');
+      if (utmSource) {
+        signInUrl.searchParams.set('utm_source', utmSource);
+        logBetterAuth('Preserving utm_source to sign-in: %s', utmSource);
+      }
+      return Response.redirect(signInUrl);
     }
 
     return response;

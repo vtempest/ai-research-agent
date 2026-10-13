@@ -2,6 +2,7 @@ import { Flexbox } from '@lobehub/ui';
 import { type FC } from 'react';
 
 import HomePageTracker from '@/components/Analytics/HomePageTracker';
+import GuestKeyBanner from '@/features/GuestOpenRouter/GuestKeyBanner';
 import HomeContent from '@/features/Home';
 import { useHomeMinimalLayout } from '@/features/Home/CustomizeModal/useHomeCustomization';
 import HomeNavHeader from '@/features/Home/HomeNavHeader';
@@ -31,7 +32,10 @@ const Home: FC = () => {
           style={{ marginInline: 'auto', maxWidth: 1240 }}
           wrapperStyle={{ flex: 'none', marginBlock: minimal ? 'auto' : undefined }}
         >
-          <HomeContent />
+          <Flexbox gap={16}>
+            <GuestKeyBanner />
+            <HomeContent />
+          </Flexbox>
         </WideScreenContainer>
       </Flexbox>
     </>

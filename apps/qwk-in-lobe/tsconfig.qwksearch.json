@@ -16,11 +16,14 @@
   "include": [
     "worker/**/*.ts",
     "src/**/*.d.ts",
-    // Everything under these four is QwkSearch's own; nothing upstream is in
+    // Everything under these is QwkSearch's own; nothing upstream is in
     // the scope, which is what lets `typeCheckScoped.mts` fail the run on any
     // error inside them. `src/features/Settings/{extraction,search}` are the
     // two panes and `.../qwksearch` is the controls they share.
     "src/features/QwkSearch/**/*",
+    // The guest demo chat that runs on a visitor's own OpenRouter key.
+    "src/features/GuestOpenRouter/**/*",
+    "src/routes/demo/**/*",
     "src/features/Settings/extraction/**/*",
     "src/features/Settings/search/**/*",
     "src/features/Settings/qwksearch/**/*"
