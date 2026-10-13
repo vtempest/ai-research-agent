@@ -218,6 +218,56 @@ describe('MenuBar', () => {
   it('shows the proofing status', () => {
     expect(container.textContent).toContain('Proofing off');
   });
+
+  const trigger = (label: string) =>
+    Array.from(container.querySelectorAll<HTMLButtonElement>('[role="menubar"] > button')).find(
+      (el) => el.textContent === label,
+    )!;
+  const openMenu = () => document.querySelector<HTMLElement>('[role="menu"]');
+  const press = (target: Element, key: string) =>
+    act(() => {
+      target.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+    });
+
+  it('opens menus as shadcn-styled panels with padded items and right-aligned hints', () => {
+    press(trigger('Insert'), 'Enter');
+    const menu = openMenu()!;
+    expect(menu).not.toBeNull();
+    expect(menu.className).toEqual(expect.stringContaining('rounded-md'));
+    expect(menu.className.split(' ')).toEqual(expect.arrayContaining(['border', 'bg-popover', 'p-1', 'shadow-md']));
+
+    const link = Array.from(menu.querySelectorAll('[role="menuitem"]')).find((el) =>
+      el.textContent?.startsWith('Link'),
+    )!;
+    expect(link.className.split(' ')).toEqual(expect.arrayContaining(['px-2', 'py-1.5', 'focus:bg-accent']));
+    expect(link.querySelector('span')!.className.split(' ')).toEqual(expect.arrayContaining(['ml-auto']));
+
+    const sub = Array.from(menu.querySelectorAll('[role="menuitem"]')).find(
+      (el) => el.getAttribute('aria-haspopup') === 'menu',
+    )!;
+    expect(sub.className).toContain('[&>svg:last-child]:ml-auto');
+    expect(menu.querySelector('[role="separator"]')!.className.split(' ')).toEqual(
+      expect.arrayContaining(['-mx-1', 'my-1', 'bg-border']),
+    );
+  });
+
+  it('moves between top-level menus with the arrow keys, wrapping at the ends', () => {
+    press(trigger('Insert'), 'Enter');
+    expect(trigger('Insert').getAttribute('data-state')).toBe('open');
+
+    press(openMenu()!, 'ArrowRight');
+    expect(trigger('Insert').getAttribute('data-state')).toBe('closed');
+    expect(trigger('Format').getAttribute('data-state')).toBe('open');
+
+    press(openMenu()!, 'ArrowLeft');
+    press(openMenu()!, 'ArrowLeft');
+    expect(trigger('View').getAttribute('data-state')).toBe('open');
+
+    press(trigger('View'), 'Escape');
+    press(trigger('File'), 'Enter');
+    press(openMenu()!, 'ArrowLeft');
+    expect(trigger('Help').getAttribute('data-state')).toBe('open');
+  });
 });
 
 describe('formatShortcut', () => {
