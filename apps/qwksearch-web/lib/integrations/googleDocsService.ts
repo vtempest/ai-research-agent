@@ -72,7 +72,23 @@ export class GoogleDocsService {
     'https://www.googleapis.com/auth/drive.file',
   ];
 
-  static getAuthUrl(config: GoogleDocsConfig): string {
+  /**
+   * Scopes requested when the user adds a Google Drive folder as a storage
+   * source. Syncing a folder means listing it and reading the files in it,
+   * which `drive.file` cannot do (it only reaches files handed over one at a
+   * time), so this adds `drive.readonly`. It is asked for incrementally, the
+   * first time a folder is connected — never at sign-in and never for the
+   * plain Picker flow above.
+   */
+  static readonly FOLDER_SYNC_SCOPES: readonly string[] = [
+    ...GoogleDocsService.AUTH_SCOPES,
+    'https://www.googleapis.com/auth/drive.readonly',
+  ];
+
+  static getAuthUrl(
+    config: GoogleDocsConfig,
+    scopes: readonly string[] = GoogleDocsService.AUTH_SCOPES,
+  ): string {
     const params = new URLSearchParams({
       client_id: config.clientId,
       redirect_uri: config.redirectUri,
@@ -83,7 +99,7 @@ export class GoogleDocsService {
       // identity scopes from sign-in) instead of replacing it, so connecting
       // Drive never silently drops the sign-in grant.
       include_granted_scopes: 'true',
-      scope: GoogleDocsService.AUTH_SCOPES.join(' '),
+      scope: scopes.join(' '),
     });
     return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
   }
@@ -91,7 +107,7 @@ export class GoogleDocsService {
   static async getTokensFromCode(
     config: GoogleDocsConfig,
     code: string,
-  ): Promise<{ accessToken: string; refreshToken: string }> {
+  ): Promise<{ accessToken: string; refreshToken: string; scope?: string }> {
     const res = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -107,10 +123,12 @@ export class GoogleDocsService {
     const tokens = (await res.json()) as {
       access_token: string;
       refresh_token?: string;
+      scope?: string;
     };
     return {
       accessToken: tokens.access_token,
       refreshToken: tokens.refresh_token!,
+      scope: tokens.scope,
     };
   }
 

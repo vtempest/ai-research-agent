@@ -17,6 +17,7 @@ import { Menu, PanelRight } from 'lucide-react';
 import type { OpenTabItem, SidebarProps, SidebarContentProps, Document } from 'react-reason-editor-sidebar';
 import { useDocumentAccessRequest } from '../app-hooks/useDocumentAccessRequest';
 import { DocumentAccessDialog } from '../dialogs/DocumentAccessDialog';
+import type { FileSourceProvider } from './fileSourceProvider';
 import '../app-styles/split-pane.css';
 
 // Loaded on demand, like the editor in `EditorArea`: the dialogs (settings,
@@ -131,6 +132,14 @@ interface ReasonDocsProps {
    * viewer isn't authenticated). Omitted hides that action.
    */
   onSignIn?: () => void;
+  /**
+   * Lists external storage sources (e.g. synced Google Drive folders) for the
+   * file tree. While the sidebar's active storage source is one this provider
+   * can list, the tree shows that source's files instead of local notes, and
+   * opening one shows it read-only: Google Docs in the editor, PDFs and images
+   * in a viewer. Omitted, every non-local source is a no-op as before.
+   */
+  fileSourceProvider?: FileSourceProvider;
 }
 
 /**
@@ -159,9 +168,10 @@ const Index = ({
   onSearchTopic,
   onSignIn,
   settingsHref,
+  fileSourceProvider,
 }: ReasonDocsProps) => {
   const { theme, setTheme } = useTheme();
-  const state = useReasonDocsState(openFilesSidebarSignal);
+  const state = useReasonDocsState(openFilesSidebarSignal, fileSourceProvider);
 
   // The dialogs mount the first time any of them opens and then stay mounted,
   // so their close animations and their own state behave exactly as before.
@@ -269,7 +279,7 @@ const Index = ({
   const tabItems: OpenTabItem[] = useMemo(() => {
     const fileItems: OpenTabItem[] = state.openTabs.map((id) => ({
       id,
-      title: state.documents.find((d) => d.id === id)?.title || 'Untitled',
+      title: state.findDocument(id)?.title || 'Untitled',
       kind: 'file' as const,
     }));
     const chatItems: OpenTabItem[] = (extraTabs ?? []).map((t) => ({
@@ -278,7 +288,7 @@ const Index = ({
       kind: t.kind,
     }));
     return [...fileItems, ...chatItems];
-  }, [state.openTabs, state.documents, extraTabs]);
+  }, [state.openTabs, state.allDocuments, extraTabs]);
 
   const activeTabId = activeExtraTabId ?? state.activeDocId;
 
@@ -336,7 +346,8 @@ const Index = ({
   };
 
   const sidebarProps = {
-    documents: state.documents,
+    // The active external source's files when one is selected, else local notes.
+    documents: state.treeDocuments,
     activeId: state.activeDocId,
     activeDocument: state.activeDocument,
     onSelect: handleSelect,
@@ -396,7 +407,7 @@ const Index = ({
   const editorProps = {
     activeDocument: state.activeDocument,
     engine: editorEngine,
-    documents: state.documents,
+    documents: state.allDocuments,
     splitViewDocId: state.splitViewDocId,
     activeDocId: state.activeDocId,
     isMobile: state.isMobile,
@@ -412,13 +423,15 @@ const Index = ({
     onAiRegenerate: state.handleAIRegenerate,
     onInviteClick: () => state.setIsInviteModalOpen(true),
     onShareClick: () => state.setIsInviteModalOpen(true),
+    externalContentError: state.activeDocId ? state.externalContentErrors[state.activeDocId] : undefined,
+    onRetryExternalContent: () => state.activeDocId && state.retryExternalContent(state.activeDocId),
   };
 
 
   const rightPanel = state.rightPanels.length > 0 && (
     <RightPanel
       panels={state.rightPanels}
-      documents={state.documents}
+      documents={state.treeDocuments}
       activeId={state.activeDocId}
       activeDocument={state.activeDocument}
       onSelect={handleSelect}

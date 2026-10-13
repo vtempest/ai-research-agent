@@ -12,6 +12,8 @@ export async function GET(request: NextRequest) {
     const accessToken = cookieStore.get('google_access_token')?.value;
     const refreshToken = cookieStore.get('google_refresh_token')?.value;
 
+    const scope = cookieStore.get('google_drive_scope')?.value ?? '';
+
     const isConnected = !!(accessToken || refreshToken);
 
     return NextResponse.json({
@@ -19,6 +21,9 @@ export async function GET(request: NextRequest) {
       isConnected,
       hasAccessToken: !!accessToken,
       hasRefreshToken: !!refreshToken,
+      // Whether the grant covers folder sync (drive.readonly or full drive),
+      // not just files picked one at a time.
+      canReadFolders: isConnected && /auth\/drive(\.readonly)?(\s|$)/.test(scope),
     });
   } catch (error: any) {
     return NextResponse.json(

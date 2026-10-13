@@ -41,6 +41,9 @@
       "research-agent-ui/file-sources": [
         "../../packages/research-agent-ui/src/lib/file-sources.ts"
       ],
+      "research-agent-ui/google-drive": [
+        "../../packages/research-agent-ui/src/lib/google-drive-source.ts"
+      ],
       "research-agent-ui/*": [
         "../../packages/research-agent-ui/src/*"
       ],

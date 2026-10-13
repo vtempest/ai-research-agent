@@ -74,6 +74,14 @@ const nextConfig = {
           { key: "Content-Security-Policy", value: "frame-ancestors *;" },
         ],
       },
+      {
+        // Files from a user's Google Drive, served from this origin for the
+        // PDF and image viewers. Must come after the rule above: for the same
+        // key the last matching rule wins, and without `sandbox` an HTML or
+        // SVG file opened directly from here would run script as this site.
+        source: "/api/doc/google-docs/content",
+        headers: [{ key: "Content-Security-Policy", value: "sandbox; frame-ancestors *;" }],
+      },
     ];
   },
 };

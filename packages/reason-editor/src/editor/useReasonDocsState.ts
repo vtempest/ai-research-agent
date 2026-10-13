@@ -22,6 +22,8 @@ import { useIsMobile } from "../app-hooks/use-mobile";
 import { useDocumentSync } from "../app-hooks/useDocumentSync";
 import { toast } from "sonner";
 import { nextDocumentId, readUploadedFile } from "./fileUpload";
+import { useSourceDocuments } from "./useSourceDocuments";
+import type { FileSourceProvider } from "./fileSourceProvider";
 
 /**
  * Aggregates all Reason Docs application state into a single hook.
@@ -29,10 +31,15 @@ import { nextDocumentId, readUploadedFile } from "./fileUpload";
  * @param openFilesSidebarSignal - Optional value from the host app; changing
  * it (e.g. bumping a counter) opens the files sidebar. Lets chrome mounted
  * outside this component (like an app dock icon) request the sidebar open.
+ * @param fileSourceProvider - Optional host provider that lists external
+ * storage sources (e.g. synced Google Drive folders) for the file tree.
  * @returns An object containing reactive state values and handler callbacks
  * consumed by {@link Index} and its child components.
  */
-export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
+export function useReasonDocsState(
+  openFilesSidebarSignal?: number | string,
+  fileSourceProvider?: FileSourceProvider,
+) {
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
@@ -103,6 +110,21 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     false,
   );
 
+  // Documents of the active external source (a synced Google Drive folder),
+  // kept apart from `documents` so they never reach local storage or sync.
+  const sourceDocs = useSourceDocuments(activeFileSourceId, fileSourceProvider);
+
+  /** Whether `id` names a read-only document from an external source. */
+  const isExternal = (id: string | null | undefined) =>
+    !!id && sourceDocs.isExternalId(id) && !documents.some((doc) => doc.id === id);
+
+  /** Explains why an external document can't be changed. */
+  const notifyReadOnly = () => {
+    toast.info(
+      `${sourceDocs.activeSource?.name ?? "This storage source"} is read-only here. Switch the storage source to Local Files to create or edit notes.`,
+    );
+  };
+
   const {
     isSyncing,
     lastSyncTime,
@@ -143,7 +165,28 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
   };
 
   const documentTree = useMemo(() => buildTree(documents), [documents]);
-  const activeDocument = documents.find((doc) => doc.id === activeDocId);
+  const activeDocument =
+    documents.find((doc) => doc.id === activeDocId) ??
+    sourceDocs.findDocument(activeDocId);
+
+  /** Looks a document up in the local store, then in the external sources. */
+  const findDocument = (id: string | null | undefined) =>
+    id ? documents.find((doc) => doc.id === id) ?? sourceDocs.findDocument(id) : undefined;
+
+  /** What the file tree shows: the active external source's files, or local notes. */
+  const treeDocuments = sourceDocs.isActive ? sourceDocs.treeDocuments : documents;
+
+  /** Every document a tab or split view can point at. */
+  const allDocuments = useMemo(
+    () => (sourceDocs.allDocuments.length ? [...documents, ...sourceDocs.allDocuments] : documents),
+    [documents, sourceDocs.allDocuments],
+  );
+
+  // An external Google Doc opens with an empty body; fetch it once it is the
+  // active document (on select, tab switch, or a reload that restored it).
+  useEffect(() => {
+    if (activeDocId) sourceDocs.ensureContent(activeDocId);
+  }, [activeDocId, sourceDocs.ensureContent]);
 
   // Update document title when active document changes
   useEffect(() => {
@@ -188,6 +231,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     selectedId: string | null,
     isFolder: boolean = false,
   ) => {
+    if (sourceDocs.isActive) {
+      notifyReadOnly();
+      return;
+    }
     let parentId: string | null = null;
 
     if (selectedId) {
@@ -259,6 +306,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     isFolder: boolean;
     file?: File;
   }) => {
+    if (sourceDocs.isActive) {
+      notifyReadOnly();
+      return;
+    }
     const title = name.trim() || (isFolder ? "New Folder" : "Untitled");
     const parentDoc = parentId
       ? documents.find((doc) => doc.id === parentId)
@@ -313,6 +364,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param id - ID of the document (or folder) to delete.
    */
   const handleDeleteDocument = async (id: string) => {
+    if (isExternal(id)) {
+      notifyReadOnly();
+      return;
+    }
     const collectDescendants = (docId: string): string[] => {
       const children = documents.filter((d) => d.parentId === docId);
       return [
@@ -357,6 +412,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param id - ID of the document to duplicate.
    */
   const handleDuplicateDocument = (id: string) => {
+    if (isExternal(id)) {
+      notifyReadOnly();
+      return;
+    }
     const doc = documents.find((d) => d.id === id);
     if (!doc) return;
 
@@ -381,6 +440,11 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param updates - Partial `Document` fields to merge in.
    */
   const handleUpdateDocument = (id: string, updates: Partial<Document>) => {
+    if (isExternal(id)) {
+      // The editor is read-only for these, so only a rename can get here.
+      if (updates.title !== undefined) notifyReadOnly();
+      return;
+    }
     setDocuments((docs) => {
       return docs.map((doc) => {
         if (doc.id === id) {
@@ -401,6 +465,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param id - ID of the document whose expand state should toggle.
    */
   const handleToggleExpand = (id: string) => {
+    if (isExternal(id)) {
+      sourceDocs.toggleExpand(id);
+      return;
+    }
     setDocuments((docs) =>
       docs.map((doc) =>
         doc.id === id ? { ...doc, isExpanded: !doc.isExpanded } : doc,
@@ -419,6 +487,12 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    *   folders are collapsed.
    */
   const handleSetExpandedFolders = (folderIds: string[]) => {
+    // The tree only knows the folders it is showing: while it shows an
+    // external source, applying its list to local notes would collapse them all.
+    if (sourceDocs.isActive) {
+      sourceDocs.setExpandedFolders(folderIds);
+      return;
+    }
     const expanded = new Set(folderIds);
     setDocuments((docs) =>
       docs.map((doc) => {
@@ -445,6 +519,10 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     position: "before" | "after" | "child",
   ) => {
     if (draggedId === targetId) return;
+    if (isExternal(draggedId) || isExternal(targetId)) {
+      notifyReadOnly();
+      return;
+    }
 
     if (
       targetId &&
@@ -563,13 +641,19 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param docId - ID of the document whose tags should be managed.
    */
   const handleManageTags = (docId: string) => {
+    if (isExternal(docId)) {
+      notifyReadOnly();
+      return;
+    }
     setTagManagementDocId(docId);
     setIsTagDialogOpen(true);
   };
 
   /**
-   * Switches the active file source and reloads documents from it.
-   * Currently, non-local source loading is not yet implemented.
+   * Switches the active file source. A source the host's provider can list
+   * (a synced Google Drive folder) replaces the tree with its documents —
+   * `useSourceDocuments` lists it as it becomes active. Other non-local
+   * source types have no loader yet.
    *
    * @param sourceId - ID of the file source to activate.
    */
@@ -578,18 +662,12 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     setActiveFileSourceId(sourceId);
 
     const source = getActiveFileSource();
-    try {
-      // For non-local sources, would need loadDocumentsFromSource
-      if (source.type !== "local") {
-        toast.info(
-          `Source switching for ${source.type} not yet implemented in standalone mode`,
-        );
-      } else {
-        toast.success("Switched to local storage");
-      }
-    } catch (error) {
-      console.error("Error loading documents from source:", error);
-      toast.error("Failed to load documents from source");
+    if (source.type === "local") {
+      toast.success("Switched to local storage");
+    } else if (!fileSourceProvider?.canList(source)) {
+      toast.info(
+        `Source switching for ${source.type} not yet implemented in standalone mode`,
+      );
     }
   };
 
@@ -724,7 +802,7 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     if (closedTabsHistory.length === 0) return;
 
     const [lastClosedId, ...restHistory] = closedTabsHistory;
-    const docExists = documents.find((d) => d.id === lastClosedId);
+    const docExists = findDocument(lastClosedId);
 
     if (docExists) {
       if (!openTabs.includes(lastClosedId)) {
@@ -758,7 +836,7 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
    * @param id - Document ID to select.
    */
   const handleSelectDocument = (id: string) => {
-    const doc = documents.find((d) => d.id === id);
+    const doc = findDocument(id);
 
     if (doc?.isFolder) {
       handleToggleExpand(id);
@@ -812,10 +890,12 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
 
   // Ensure active document exists
   useEffect(() => {
-    if (activeDocId && !documents.find((d) => d.id === activeDocId)) {
+    if (activeDocId && !findDocument(activeDocId)) {
       setActiveDocId(documents.length > 0 ? documents[0].id : null);
     }
-  }, [documents, activeDocId, setActiveDocId]);
+    // findDocument reads documents and the external listings.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [documents, sourceDocs.allDocuments, activeDocId, setActiveDocId]);
 
   return {
     // State
@@ -854,6 +934,14 @@ export function useReasonDocsState(openFilesSidebarSignal?: number | string) {
     setHeadings,
     documents,
     setDocuments,
+    treeDocuments,
+    allDocuments,
+    findDocument,
+    isExternalSourceActive: sourceDocs.isActive,
+    isSourceLoading: sourceDocs.isLoading,
+    externalContentErrors: sourceDocs.contentErrors,
+    retryExternalContent: sourceDocs.ensureContent,
+    refreshSource: sourceDocs.refresh,
     activeDocId,
     setActiveDocId,
     openTabs,

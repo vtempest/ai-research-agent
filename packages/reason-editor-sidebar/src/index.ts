@@ -52,7 +52,7 @@ export {
 export type { RewriteMode } from './features/ai-rewrite/rewriteModes';
 
 // Document type and the file manager modal.
-export type { Document } from './documents/DocumentTree';
+export type { Document, ExternalDocumentRef, ExternalDocumentView } from './documents/DocumentTree';
 export { defaultDocuments } from './documents/defaultDocuments';
 export type { TocEntry } from './app-types/toc';
 export { FileManagerModal } from './dialogs/FileManagerModal';
@@ -61,6 +61,7 @@ export { pathOf, getPathToNodeIdMap } from './dialogs/filemanager-data';
 // The file-source API: types and localStorage-backed CRUD helpers for every
 // supported storage backend (local, SSH, S3, R2, B2, Google Docs, Turso DB).
 export type * from './app-types/fileSource';
+export { FILE_SOURCES_CHANGED_EVENT } from './app-utils/file-sources/sources';
 export {
   getFileSources,
   saveFileSources,

@@ -140,6 +140,17 @@ wraps the palette in the provider itself.
 the per-file `drive.file` scope, and Google only releases a picked file when the picker
 knows the app id — with it empty, files come back but downloading them 403s.
 
+**Google Drive folders as a storage source.** `research-agent-ui/google-drive`
+exports `googleDriveSourceProvider`, which the workspace passes to `ReasonDocs` as its
+`fileSourceProvider`. It also exports the helpers the Settings folder picker uses:
+`connectGoogleDriveFolders`, `browseGoogleDriveFolders`, `getGoogleDriveStatus` and
+`parseDriveFolderInput`. A `gdocs` source lists each synced folder through the host's
+`/api/doc/google-docs/folder-tree`. Files are served through `/content`, which exports
+Docs as HTML for the editor, Sheets and Slides as PDF, and Drawings as PNG. Folder sync
+needs the `drive.readonly` scope (`/auth?access=folders`), which is broader than the
+picker's `drive.file`. It is a restricted scope, so a public deployment needs Google's
+OAuth verification.
+
 ## Troubleshooting
 
 | Symptom | Cause → fix |
@@ -153,6 +164,7 @@ knows the app id — with it empty, files come back but downloading them 403s.
 | A palette row navigates when the host wanted to handle it in place | `onOpenChat` / `onOpenSettings` must return `true`; the palette falls back to `/c/<id>` and `/settings/<section>` exactly like the history dropdown. |
 | Settings open as a route when a modal was wanted | `onOpenSettings` must return `true`; anything else falls through to route navigation. |
 | Drive picker returns a file that then 403s | `googleAppId` (the Google Cloud project number) is empty. |
+| A synced Drive folder 403s with `needsFolderAccess` | The account connected with `drive.file` only. Reconnect through "Allow folder access" (`/auth?access=folders`). |
 | Edits don't appear in `apps/qwksearch-web` | It consumes the built `dist/`. `bun run build` here, or run the repo's `.github/scripts/build-workspace-packages.mjs`. |
 | A component looks right in Storybook but breaks in the app | Providers. Most components assume `SessionProvider` / `ChatProvider` / `ExtractPanelProvider` above them (`bun run storybook` to iterate). |
 | Type-check fails on editor types after a fresh clone | `react-reason-editor` has not been built, so its `exports → types` point at a missing `dist/`. Build siblings first. |

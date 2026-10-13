@@ -51,6 +51,40 @@ export interface Document {
     /** Linked Google Docs file identifier. */
     googleDocId?: string;
   };
+  /**
+   * Set on documents listed from an external storage source (a synced
+   * Google Drive folder) instead of the local document store. They are
+   * read-only mirrors: never written to local storage or the database, and
+   * the tree refuses to move, rename or delete them.
+   */
+  external?: ExternalDocumentRef;
+}
+
+/**
+ * How a document mirrored from an external storage source opens: `editor`
+ * renders its HTML `content` (a Google Doc), `pdf` and `image` render the
+ * bytes at `contentUrl` in a viewer, `unsupported` offers only a link out.
+ */
+export type ExternalDocumentView = 'editor' | 'pdf' | 'image' | 'unsupported';
+
+/** Where an externally sourced {@link Document} lives and how to show it. */
+export interface ExternalDocumentRef {
+  /** ID of the file source (an `AnyFileSource`) it was listed from. */
+  sourceId: string;
+  /** The file's own ID in that source, e.g. a Google Drive file ID. */
+  fileId: string;
+  /** The file's MIME type in the source. */
+  mimeType: string;
+  /** How the document opens. */
+  view: ExternalDocumentView;
+  /** Extension used to pick the file-type icon (`pdf`, `docx`, `png`…). */
+  extension?: string;
+  /** URL the viewer (or the content loader) fetches the file from. */
+  contentUrl?: string;
+  /** The file's page in the source's own UI, opened in a new tab. */
+  webViewLink?: string;
+  /** For `editor` documents: whether `content` has been fetched yet. */
+  contentLoaded?: boolean;
 }
 
 /** Props for the {@link DocumentTree} component. */

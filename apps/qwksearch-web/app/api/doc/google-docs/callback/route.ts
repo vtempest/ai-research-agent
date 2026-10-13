@@ -7,8 +7,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleDocsService } from "@/lib/integrations/googleDocsService";
 import { cookies } from "next/headers";
 import { getEnv } from "@/lib/config/env";
+import { googleRedirectUri } from "@/lib/integrations/googleDrive";
 
-// GET /api/google-docs/callback - OAuth callback handler
+/** Embeds a value in an inline <script> as a JS string literal that cannot close the tag. */
+const scriptString = (value: string) =>
+  JSON.stringify(value).replace(/</g, "\\u003c");
+
+// GET /api/doc/google-docs/callback - OAuth callback handler
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -40,9 +45,7 @@ export async function GET(request: NextRequest) {
 
     const clientId = getEnv("GOOGLE_CLIENT_ID")!;
     const clientSecret = getEnv("GOOGLE_CLIENT_SECRET")!;
-    const redirectUri =
-      getEnv("GOOGLE_REDIRECT_URI") ||
-      "https://qwksearch.com/api/google-docs/callback";
+    const redirectUri = googleRedirectUri(request.url);
 
     const tokens = await GoogleDocsService.getTokensFromCode(
       { clientId, clientSecret, redirectUri },
@@ -57,6 +60,17 @@ export async function GET(request: NextRequest) {
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 7 days
     });
+
+    // The granted scopes, so the status route can tell a per-file grant from
+    // one that also covers folder sync. Not a secret: no token is in it.
+    if (tokens.scope) {
+      cookieStore.set("google_drive_scope", tokens.scope, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 30,
+      });
+    }
 
     if (tokens.refreshToken) {
       cookieStore.set("google_refresh_token", tokens.refreshToken, {
@@ -98,10 +112,10 @@ export async function GET(request: NextRequest) {
         <head><title>Authorization Failed</title></head>
         <body>
           <h1>Authorization Failed</h1>
-          <p>${error.message || "Failed to exchange authorization code"}</p>
+          <p>Failed to exchange the authorization code. Please try again.</p>
           <script>
             if (window.opener) {
-              window.opener.postMessage({ type: 'google-drive-error', error: '${error.message}' }, '*');
+              window.opener.postMessage({ type: 'google-drive-error', error: ${scriptString(error?.message || "Failed to exchange authorization code")} }, '*');
             }
           </script>
         </body>

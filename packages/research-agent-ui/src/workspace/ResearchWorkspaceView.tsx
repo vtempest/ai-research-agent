@@ -15,6 +15,7 @@ import { useMainView } from '../app/MainViewProvider';
 import { useChatTabs } from '../app/useChatTabs';
 import { getPageTips, htmlToPlainText } from './page-tips';
 import { getTopicSearches } from './topic-searches';
+import { googleDriveSourceProvider } from '../lib/google-drive-source';
 
 export interface ResearchWorkspaceViewProps {
   /**
@@ -179,6 +180,8 @@ export function ResearchWorkspaceView({
     onGenerateTopics: handleGenerateTopics,
     onSearchTopic: handleSearchTopic,
     onSignIn: signIn,
+    // A Google Drive storage source shows its synced folders in the tree.
+    fileSourceProvider: googleDriveSourceProvider,
   };
 
   return activeView === 'docs' ? (

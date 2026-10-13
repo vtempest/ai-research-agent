@@ -56,6 +56,8 @@ interface FileTreeItem {
   documentId: string;
   isFolder: boolean;
   name: string;
+  /** Icon extension for files whose title carries none (e.g. a Google Doc). */
+  extension?: string;
 }
 
 interface FileTreeProps {
@@ -149,6 +151,7 @@ function buildItems(documents: Document[]): Record<string, FileTreeItem> {
       documentId: doc.id,
       isFolder: !!doc.isFolder,
       name: doc.title || "Untitled",
+      extension: doc.external?.extension,
     };
   }
 
@@ -433,7 +436,7 @@ const FileTree = forwardRef<DocumentTreeHandle, FileTreeProps>(
                               <FolderIcon className="pointer-events-none size-4 shrink-0 text-muted-foreground" />
                             )
                           ) : (
-                            <FileTypeIcon filename={item.getItemName()} size={16} />
+                            <FileTypeIcon filename={item.getItemName()} extension={item.getItemData()?.extension} size={16} />
                           )}
                           <span className="flex-1 truncate">{item.getItemName()}</span>
                         </span>
