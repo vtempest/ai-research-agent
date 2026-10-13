@@ -6,6 +6,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  applyGuestKeyToAccount,
+  removeGuestKeyFromAccount,
+  useIsGuestSession,
+} from './accountSync';
+import {
   looksLikeOpenRouterKey,
   normalizeOpenRouterKey,
   OPENROUTER_KEYS_URL,
@@ -25,6 +30,8 @@ const GuestKeyForm = ({ onSaved }: GuestKeyFormProps) => {
     s.setKey,
     s.clearKey,
   ]);
+  // A guest session also hands the key to the main LobeHub chat.
+  const isGuestSession = useIsGuestSession();
 
   const [value, setValue] = useState('');
   const [verifying, setVerifying] = useState(false);
@@ -41,11 +48,20 @@ const GuestKeyForm = ({ onSaved }: GuestKeyFormProps) => {
     setError(undefined);
     try {
       await verifyOpenRouterKey(key);
-      setKey(key);
-      setValue('');
-      onSaved?.();
     } catch (e) {
       setError(t('guestKey.error.rejected', { message: (e as Error).message }));
+      setVerifying(false);
+      return;
+    }
+
+    setKey(key);
+    setValue('');
+    try {
+      if (isGuestSession) await applyGuestKeyToAccount(key);
+      onSaved?.();
+    } catch (e) {
+      // The key still works on /demo; only the main chat missed it.
+      setError(t('guestKey.error.account', { message: (e as Error).message }));
     } finally {
       setVerifying(false);
     }
@@ -58,7 +74,14 @@ const GuestKeyForm = ({ onSaved }: GuestKeyFormProps) => {
       {hasKey && (
         <Flexbox horizontal align={'center'} gap={8} justify={'space-between'}>
           <Text>{t('guestKey.current', { key: maskedKey })}</Text>
-          <Button danger size={'small'} onClick={clearKey}>
+          <Button
+            danger
+            size={'small'}
+            onClick={() => {
+              clearKey();
+              if (isGuestSession) void removeGuestKeyFromAccount().catch(console.error);
+            }}
+          >
             {t('guestKey.actions.remove')}
           </Button>
         </Flexbox>
@@ -87,7 +110,7 @@ const GuestKeyForm = ({ onSaved }: GuestKeyFormProps) => {
       </Flexbox>
 
       <Text fontSize={12} type={'secondary'}>
-        {t('guestKey.privacy')}
+        {isGuestSession ? t('guestKey.privacyAccount') : t('guestKey.privacy')}
       </Text>
     </Flexbox>
   );
