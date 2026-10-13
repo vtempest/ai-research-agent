@@ -1,5 +1,5 @@
 /**
- * @fileoverview Footer component that renders a single compact line of links (with optional Lucide icons) pinned to the bottom of the screen on desktop and mobile alike.
+ * @fileoverview Footer component that renders a single compact line of links (with optional Lucide icons) in the normal document flow, wherever its parent places it.
  */
 "use client";
 import type { ComponentType } from "react";
@@ -75,9 +75,9 @@ const LINK_CLASS =
 /**
  * Footer component that displays a list of links with optional icons.
  *
- * The links render as a single compact line at every width: pinned to the
- * bottom-center of the screen on desktop, and in normal flow on mobile so the
- * parent can place it above the app dock. Below the `sm` breakpoint the icons
+ * The links render as a single compact line at every width, in normal flow,
+ * so the parent decides where it sits (the homepage puts it directly under
+ * the weather widget). Below the `sm` breakpoint the icons
  * are dropped and the labels shrink so all of the links fit on one line on a
  * phone.
  *
@@ -138,7 +138,7 @@ export default function Footer({
     return (
         <nav
             aria-label="Footer"
-            className={`relative mt-2 md:mt-0 md:absolute md:bottom-1 md:left-1/2 md:-translate-x-1/2 z-20 flex flex-nowrap items-center justify-center gap-0 sm:gap-1 max-w-full md:w-max md:max-w-[90vw] text-slate-200 ${optionBackgroundColor} backdrop-blur-sm rounded-full px-1 sm:px-1.5 py-0.5 shadow-lg hover:shadow-xl transition-shadow duration-300`}
+            className={`relative z-20 mx-auto flex w-max flex-nowrap items-center justify-center gap-0 sm:gap-1 max-w-full text-slate-200 ${optionBackgroundColor} backdrop-blur-sm rounded-full px-1 sm:px-1.5 py-0.5 shadow-lg hover:shadow-xl transition-shadow duration-300`}
         >
             {renderLinks()}
         </nav>

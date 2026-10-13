@@ -6,8 +6,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Footer from './Footer';
 
 /**
- * `Footer` renders a compact bar of links (with optional Lucide icons) pinned
- * to the bottom of the screen on a single line at every width; below `sm` the
+ * `Footer` renders a compact bar of links (with optional Lucide icons) in the
+ * normal flow, on a single line at every width; below `sm` the
  * icons are hidden so the labels still fit. `icon` values are Lucide icon names.
  */
 const meta: Meta<typeof Footer> = {
