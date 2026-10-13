@@ -175,7 +175,7 @@ function ScrollCue({
         'md:right-6',
       )}
     >
-      <span className="hidden sm:inline">{isDown ? 'Features' : 'Top'}</span>
+      <span className="hidden sm:inline">{isDown ? 'Scroll for features' : 'Top'}</span>
       <ChevronDown
         aria-hidden
         className={cn(

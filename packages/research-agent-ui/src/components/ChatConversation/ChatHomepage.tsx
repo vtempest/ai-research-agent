@@ -429,7 +429,7 @@ export default function ChatHomepage() {
             sits just above the app dock with almost no gap */}
         <div className="flex flex-col items-center justify-end md:justify-center min-h-[calc(100dvh-64px)] md:min-h-screen max-w-screen-sm mx-auto p-2 pb-1 md:pb-2">
           <div
-            style={{ height: '200px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: '160px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             className={orbHoverGlow ? undefined : 'pointer-events-none'}
           >
             <QuantumWaveOrbital
@@ -439,7 +439,7 @@ export default function ChatHomepage() {
             />
           </div>
 
-          <div className="w-full max-w-2xl mt-8 space-y-2">
+          <div className="w-full max-w-2xl mt-2 space-y-2">
             <RecentHistoryChips />
             {/* The input leads the column; the Learn, news and weather widgets sit below it. */}
             <ChatInputBox />
@@ -505,10 +505,10 @@ export default function ChatHomepage() {
                 </div>
               </Suspense>
             )}
+            {/* In the column's flow at every width, directly under the weather
+                widget, so it can never overlap the widgets above it. */}
+            <Footer listFooterLinks={footerLinks} />
           </div>
-          {/* In the column's flow on mobile, so it sits between the input and
-              the app dock; pinned to the bottom of the screen on desktop. */}
-          <Footer listFooterLinks={footerLinks} />
         </div>
       </div>
 
