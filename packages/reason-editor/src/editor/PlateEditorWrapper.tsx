@@ -17,9 +17,16 @@
  * saves resolve a tick after the debounce fires — `onChange` is still called
  * exactly once per debounce window.
  *
- * Load/save arbitration is the same `useSyncStore` handshake the Tiptap wrapper
- * uses: a save marks the next incoming `content` as our own echo, and a
- * document switch is detected by `contentKey` rather than by content identity.
+ * A document switch mounts a fresh Plate editor rather than swapping the new
+ * document into the old one: the wrapper keys its editor by `contentKey` (or
+ * `documentId`), so each document gets its own editor instance and its own
+ * empty undo/redo history. `editor.tf.setValue` on a live editor records the
+ * swap as an operation, and Ctrl+Z after switching tabs would bring the previous
+ * document's content back into this one.
+ *
+ * Load/save arbitration within one document is the same `useSyncStore`
+ * handshake the Tiptap wrapper uses: a save marks the next incoming `content`
+ * as our own echo.
  *
  * Above the toolbar sits a Google Docs-style menu bar (`MenuBar`), whose
  * Tools → Spelling and grammar entries drive Harper through `HarperPlugin`.
@@ -89,6 +96,12 @@ const HEADING_LEVELS: Record<string, number> = {
 
 export type PlateEditorHandle = ReasonEditorHandle;
 
+/** The keyed per-document editor, plus the toolbar toggle its host keeps across documents. */
+type PlateDocumentEditorProps = ReasonEditorProps & {
+  showToolbar: boolean;
+  onShowToolbarChange: (show: boolean) => void;
+};
+
 /**
  * The editable surface, with the browser's own spell checker switched off
  * while Harper is proofreading so the two sets of underlines never stack.
@@ -119,28 +132,27 @@ export function extractTocHeadings(value: Value | undefined | null): TocEntry[] 
 }
 
 /**
- * Public, ref-forwarding Plate editor component.
- *
- * @example
- * ```tsx
- * const editorRef = useRef<PlateEditorHandle>(null);
- * <PlateEditorWrapper
- *   ref={editorRef}
- *   content={doc.content}
- *   onChange={(html) => updateDoc(html)}
- *   title={doc.title}
- *   onTitleChange={(t) => updateTitle(t)}
- * />
- * ```
+ * One document's Plate editor. Constructed from that document's `content` and
+ * never handed a different document: `PlateEditorWrapper` remounts it, with a
+ * new editor and a new history, when the document changes.
  */
-export const PlateEditorWrapper = forwardRef<PlateEditorHandle, ReasonEditorProps>(
-  ({ content, contentKey, onChange, onHeadingsChange, readOnly, title }, ref) => {
-    const [showToolbar, setShowToolbar] = useState(true);
+const PlateDocumentEditor = forwardRef<PlateEditorHandle, PlateDocumentEditorProps>(
+  ({
+    content,
+    contentKey,
+    onChange,
+    onHeadingsChange,
+    onShowToolbarChange,
+    readOnly,
+    showToolbar,
+    title,
+  }, ref) => {
     const syncStore = useSyncStore();
     const stableKey = contentKey ?? content.slice(0, 40);
 
-    // Only ever read at editor construction; later document switches go through
-    // the load effect below so the toolbar and floating controls stay mounted.
+    // Only ever read at editor construction. A switch to another document
+    // remounts this component (see `PlateEditorWrapper`), so the editor is
+    // never reused across documents.
     const initialContentRef = useRef(content);
 
     const initialValue = useMemo(() => htmlToPlateValue(initialContentRef.current), []);
@@ -203,9 +215,11 @@ export const PlateEditorWrapper = forwardRef<PlateEditorHandle, ReasonEditorProp
     /** False until the mount pass below has claimed the constructor's content. */
     const loadedInitialRef = useRef(false);
 
-    // Reload content when the document key changes (document switch). The first
-    // pass has nothing to apply — the editor was constructed from this very
-    // content — and only reports its headings.
+    // The first pass has nothing to apply — the editor was constructed from this
+    // very content — and only reports its headings. A later reload can only
+    // come from a host that passes neither `contentKey` nor `documentId`, where
+    // the key falls back to the content itself; keyed hosts get a fresh
+    // component per document instead.
     useEffect(() => {
       if (!syncStore.shouldLoadContent(stableKey)) return;
 
@@ -264,7 +278,7 @@ export const PlateEditorWrapper = forwardRef<PlateEditorHandle, ReasonEditorProp
             {!readOnly && (
               <MenuBar
                 documentTitle={title}
-                onShowToolbarChange={setShowToolbar}
+                onShowToolbarChange={onShowToolbarChange}
                 showToolbar={showToolbar}
               />
             )}
@@ -285,6 +299,40 @@ export const PlateEditorWrapper = forwardRef<PlateEditorHandle, ReasonEditorProp
           </div>
         </Plate>
       </div>
+    );
+  }
+);
+
+PlateDocumentEditor.displayName = 'PlateDocumentEditor';
+
+/**
+ * Public, ref-forwarding Plate editor component.
+ *
+ * @example
+ * ```tsx
+ * const editorRef = useRef<PlateEditorHandle>(null);
+ * <PlateEditorWrapper
+ *   ref={editorRef}
+ *   content={doc.content}
+ *   onChange={(html) => updateDoc(html)}
+ *   title={doc.title}
+ *   onTitleChange={(t) => updateTitle(t)}
+ * />
+ * ```
+ */
+export const PlateEditorWrapper = forwardRef<PlateEditorHandle, ReasonEditorProps>(
+  (props, ref) => {
+    // Held here so hiding the toolbar survives switching documents.
+    const [showToolbar, setShowToolbar] = useState(true);
+
+    return (
+      <PlateDocumentEditor
+        key={props.contentKey ?? props.documentId}
+        ref={ref}
+        {...props}
+        onShowToolbarChange={setShowToolbar}
+        showToolbar={showToolbar}
+      />
     );
   }
 );
