@@ -28,6 +28,7 @@ export const s = {
   list: { listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 4 } as CSSProperties,
   item: { display: 'flex', alignItems: 'flex-start', gap: 8, padding: '6px 4px', borderBottom: '1px solid rgba(127,127,127,0.15)' } as CSSProperties,
   link: { color: 'inherit', textDecoration: 'none', fontWeight: 500 } as CSSProperties,
+  textButton: { border: 'none', background: 'transparent', padding: 0, font: 'inherit', textAlign: 'left', cursor: 'pointer', minWidth: 0 } as CSSProperties,
   badge: { fontSize: 10, border: line, borderRadius: 4, padding: '0 5px', opacity: 0.8, whiteSpace: 'nowrap' } as CSSProperties,
   section: { display: 'flex', flexDirection: 'column', gap: 6 } as CSSProperties,
 } as const;

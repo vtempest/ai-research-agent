@@ -22,6 +22,9 @@ the answers into searches and the searches into a playlist.
   community list or AI search, and whether the URL has been verified.
 - **Quiz hook.** Pass a `quizGenerator` (for example NotebookLM over the item's
   material) and each item gets a "Quiz me" button.
+- **Open items in the host.** Pass `onOpenItem` and clicking an item calls it
+  instead of opening the page; a small ↗ beside the title still opens the page
+  in a new tab. qwksearch uses this to read the page and ask about it.
 
 The bundled catalog is a hand-curated seed of 28 MIT OpenCourseWare courses in
 11 playlists. Course pages link to their canonical `ocw.mit.edu/courses/…`

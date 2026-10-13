@@ -72,6 +72,15 @@ questions, catalog keyword search. The response says which (`mode`).
 "Quiz me" only when a host passes `quizGenerator`. Wire it to
 `notebooklm-api-client` (add the item as a source, ask with the prompt).
 
+## Opening an item
+
+Without `onOpenItem`, an item's title is a link that opens its page in a new
+tab. With it, the title is a button that hands the `PlaylistItem` to the host,
+and a ↗ link beside it keeps the page one click away. qwksearch-web passes
+`openPanel(item.url, '', { suggestQuestions: true })` on the homepage and
+`/learn`: the article reader extracts the page's text and writes questions
+about it, so a click lands on something to ask rather than on another site.
+
 ## In qwksearch-web
 
 - Homepage: `research-agent-ui`'s `ChatHomepage` lazy-loads

@@ -8,7 +8,7 @@
  * `compact` it is the full-page view.
  */
 import React, { useEffect, useMemo, useState } from 'react';
-import type { EducationCatalog, Playlist } from '../types';
+import type { EducationCatalog, Playlist, PlaylistItem } from '../types';
 import { filterPlaylists, getDefaultCatalog } from '../catalog';
 import { createProgressStore, toggleDone } from '../lib/progress';
 import { createLocalPlaylistStore, createPlaylist } from '../lib/playlists';
@@ -51,6 +51,13 @@ export interface EducationPlaylistsProps {
   playlistsEndpoint?: string;
   /** Turns on "Quiz me" for each item (NotebookLM or another quiz source). */
   quizGenerator?: QuizGenerator;
+  /**
+   * Called when the learner clicks an item, instead of opening its page. The
+   * host can read the page and start a conversation about it (qwksearch opens
+   * its article reader, which extracts the page's text and asks about it).
+   * Without it, items are plain links that open in a new tab.
+   */
+  onOpenItem?: (item: PlaylistItem) => void;
 }
 
 type Tab = 'browse' | 'mine' | 'plan';
@@ -101,6 +108,7 @@ export function EducationPlaylists({
   userId,
   playlistsEndpoint,
   quizGenerator,
+  onOpenItem,
 }: EducationPlaylistsProps) {
   const catalog = useMemo(() => catalogProp ?? getDefaultCatalog(), [catalogProp]);
   const progressStore = useMemo(() => createProgressStore(), []);
@@ -341,6 +349,7 @@ export function EducationPlaylists({
           minutesPerWeek={open.plan?.minutesPerWeek}
           shareBaseHref={shareBase}
           quizGenerator={quizGenerator}
+          onOpenItem={onOpenItem}
         />
       </div>
     );
