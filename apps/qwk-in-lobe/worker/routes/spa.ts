@@ -110,7 +110,8 @@ const withLocaleCookie = (response: Response, c: Context, locale?: string) => {
 };
 
 const renderAuthSpa = async (c: Context) => {
-  const { buildSeoMeta: buildAuthSeoMeta } = await import('@/app/spa-auth/[locale]/[[...path]]/seoMeta');
+  const { buildSeoMeta: buildAuthSeoMeta } =
+    await import('@/app/spa-auth/[locale]/[[...path]]/seoMeta');
   const { auth } = await import('@/auth');
   const { getServerFeatureFlagsValue } = await import('@/config/featureFlags');
   const { getServerAuthConfig } = await import('@/server/globalConfig/getServerAuthConfig');
@@ -125,9 +126,9 @@ const renderAuthSpa = async (c: Context) => {
   const authConfig: AuthSPAServerConfig = {
     analyticsConfig: buildAnalyticsConfig(),
     config: getServerAuthConfig(),
-    enableOIDC: authEnv.ENABLE_OIDC,
+    enableOIDC: authEnv.ENABLE_OIDC ?? false,
     featureFlags: getServerFeatureFlagsValue(),
-    globalCDN: appEnv.CDN_USE_GLOBAL,
+    globalCDN: appEnv.CDN_USE_GLOBAL ?? false,
   };
 
   const seoMeta = await buildAuthSeoMeta(locale, new URL(c.req.url).pathname);
@@ -184,9 +185,13 @@ const requireSessionForProtectedPage = async (c: Context): Promise<Response | un
 
 interface AuthSPAServerConfig {
   analyticsConfig: ReturnType<typeof import('@/libs/spaHtml').buildAnalyticsConfig>;
-  config: Awaited<ReturnType<typeof import('@/server/globalConfig/getServerAuthConfig').getServerAuthConfig>>;
+  config: Awaited<
+    ReturnType<typeof import('@/server/globalConfig/getServerAuthConfig').getServerAuthConfig>
+  >;
   enableOIDC: boolean;
-  featureFlags: Awaited<ReturnType<typeof import('@/config/featureFlags').getServerFeatureFlagsValue>>;
+  featureFlags: Awaited<
+    ReturnType<typeof import('@/config/featureFlags').getServerFeatureFlagsValue>
+  >;
   globalCDN: boolean;
 }
 
@@ -194,7 +199,9 @@ interface SPAServerConfig {
   analyticsConfig: ReturnType<typeof import('@/libs/spaHtml').buildAnalyticsConfig>;
   clientEnv: Awaited<ReturnType<typeof buildClientEnv>>;
   config: Awaited<ReturnType<typeof import('@/server/globalConfig').getServerGlobalConfig>>;
-  featureFlags: Awaited<ReturnType<typeof import('@/config/featureFlags').getServerFeatureFlagsValue>>;
+  featureFlags: Awaited<
+    ReturnType<typeof import('@/config/featureFlags').getServerFeatureFlagsValue>
+  >;
   isMobile: boolean;
 }
 

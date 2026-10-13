@@ -145,7 +145,7 @@ describe('defineConfig', () => {
   it('should revoke existing sessions after password reset by default', async () => {
     const { defineConfig } = await import('./define-config');
 
-    defineConfig({ plugins: [] });
+    defineConfig({ plugins: [] })();
 
     expect(mocks.betterAuth).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -159,7 +159,7 @@ describe('defineConfig', () => {
   it('should keep verification values in the database so an eventually consistent secondary storage miss can fall back', async () => {
     const { defineConfig } = await import('./define-config');
 
-    defineConfig({ plugins: [] });
+    defineConfig({ plugins: [] })();
 
     expect(mocks.betterAuth).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -172,7 +172,7 @@ describe('defineConfig', () => {
     const { defineConfig } = await import('./define-config');
     const context = { getCookie: vi.fn(), setCookie: vi.fn() };
 
-    defineConfig({ plugins: [] });
+    defineConfig({ plugins: [] })();
     const [options] = mocks.betterAuth.mock.lastCall!;
     await options.databaseHooks.session.create.before({ userId: 'user-b' }, context);
 
@@ -189,7 +189,7 @@ describe('defineConfig', () => {
     mocks.clearMismatchedOIDCSession.mockRejectedValueOnce(cleanupError);
     const { defineConfig } = await import('./define-config');
 
-    defineConfig({ plugins: [] });
+    defineConfig({ plugins: [] })();
     const [options] = mocks.betterAuth.mock.lastCall!;
 
     await expect(
@@ -235,7 +235,7 @@ describe('defineConfig', () => {
   it('should keep auth cookies host-only when no cookie domain is given', async () => {
     const { defineConfig } = await import('./define-config');
 
-    defineConfig({ plugins: [] });
+    defineConfig({ plugins: [] })();
     const [options] = mocks.betterAuth.mock.lastCall!;
 
     expect(options.advanced.crossSubDomainCookies).toBeUndefined();
@@ -244,7 +244,7 @@ describe('defineConfig', () => {
   it('should namespace every Better Auth cookie with the configured prefix', async () => {
     const { defineConfig } = await import('./define-config');
 
-    defineConfig({ cookiePrefix: 'example-app', plugins: [] });
+    defineConfig({ cookiePrefix: 'example-app', plugins: [] })();
     const [options] = mocks.betterAuth.mock.lastCall!;
 
     expect(options.advanced.cookiePrefix).toBe('example-app');
@@ -256,7 +256,7 @@ describe('defineConfig', () => {
       mocks.appEnv.APP_URL = appUrl;
       const { defineConfig } = await import('./define-config');
 
-      defineConfig({ cookieDomain: '.example.com', plugins: [] });
+      defineConfig({ cookieDomain: '.example.com', plugins: [] })();
       const [options] = mocks.betterAuth.mock.lastCall!;
 
       expect(options.advanced.crossSubDomainCookies).toEqual({
@@ -272,7 +272,7 @@ describe('defineConfig', () => {
       mocks.appEnv.APP_URL = appUrl;
       const { defineConfig } = await import('./define-config');
 
-      defineConfig({ cookieDomain: '.example.com', plugins: [] });
+      defineConfig({ cookieDomain: '.example.com', plugins: [] })();
       const [options] = mocks.betterAuth.mock.lastCall!;
 
       expect(options.advanced.crossSubDomainCookies).toBeUndefined();
@@ -288,7 +288,7 @@ describe('defineConfig', () => {
     );
     const { defineConfig } = await import('./define-config');
 
-    const auth = defineConfig({ cookieDomain: '.example.com', plugins: [] });
+    const auth = defineConfig({ cookieDomain: '.example.com', plugins: [] })();
     const response = await auth.handler(
       new Request('https://app.example.com/api/auth/get-session'),
     );
@@ -305,7 +305,7 @@ describe('defineConfig', () => {
     );
     const { defineConfig } = await import('./define-config');
 
-    const auth = defineConfig({ plugins: [] });
+    const auth = defineConfig({ plugins: [] })();
     const response = await auth.handler(
       new Request('https://app.example.com/api/auth/get-session'),
     );

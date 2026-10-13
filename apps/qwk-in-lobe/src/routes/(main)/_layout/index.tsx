@@ -46,7 +46,7 @@ const GlobalApprovalNotification = dynamic(() => import('@/features/GlobalApprov
 
 const Layout: FC = () => {
   const { isPWA } = usePlatform();
-  const { showCloudPromotion } = useServerConfigStore(featureFlagsSelectors);
+  const { enableQwkSearch, showCloudPromotion } = useServerConfigStore(featureFlagsSelectors);
 
   return (
     <HotkeysProvider initiallyActiveScopes={[HotkeyScopeEnum.Global]}>
@@ -89,9 +89,11 @@ const Layout: FC = () => {
                 <Outlet />
               </Suspense>
             </DesktopLayoutContainer>
-            <Suspense fallback={null}>
-              <ArticlePanel />
-            </Suspense>
+            {enableQwkSearch && (
+              <Suspense fallback={null}>
+                <ArticlePanel />
+              </Suspense>
+            )}
           </Flexbox>
         </DndContextWrapper>
         <Suspense fallback={null}>

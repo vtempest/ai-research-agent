@@ -15,6 +15,6 @@ export const getAuth = () => {
 
 export const auth = new Proxy({} as ReturnType<typeof getAuth>, {
   get(_target, prop) {
-    return getAuth()[prop];
+    return Reflect.get(getAuth(), prop);
   },
 });

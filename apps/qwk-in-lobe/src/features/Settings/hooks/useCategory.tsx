@@ -74,7 +74,8 @@ export const useCategory = () => {
   const { t: tQwkSearch } = useTranslation('qwksearch');
   const { t: tSubscription } = useTranslation('subscription');
   const mobile = useServerConfigStore((s) => s.isMobile);
-  const { hideDocs, showApiKeyManage, showProvider } = useServerConfigStore(featureFlagsSelectors);
+  const { enableQwkSearch, hideDocs, showApiKeyManage, showProvider } =
+    useServerConfigStore(featureFlagsSelectors);
   const [avatar, username] = useUserStore((s) => [
     userProfileSelectors.userAvatar(s),
     userProfileSelectors.nickName(s),
@@ -205,7 +206,7 @@ export const useCategory = () => {
       // QwkSearch: how the article side panel extracts a page. It sits with the
       // AI config rather than System because it is a per-user preference over
       // the same chain the web-browsing tool reads.
-      {
+      enableQwkSearch && {
         icon: FileSearchIcon,
         key: SettingsTabs.Extraction,
         label: tQwkSearch('extraction.title'),
@@ -213,7 +214,7 @@ export const useCategory = () => {
       // QwkSearch: which sources the web-browsing tool fans out to, and how it
       // filters what comes back. Its twin — the pane above reads what a result
       // becomes, this one reads where results come from.
-      {
+      enableQwkSearch && {
         icon: GlobeIcon,
         key: SettingsTabs.Search,
         label: tQwkSearch('search.title'),
@@ -297,6 +298,7 @@ export const useCategory = () => {
     enableBusinessFeatures,
     hideDocs,
     mobile,
+    enableQwkSearch,
     showApiKeyManage,
     showProvider,
     isDevMode,

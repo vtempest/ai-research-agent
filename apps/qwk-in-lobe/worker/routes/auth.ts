@@ -11,9 +11,10 @@ import { Hono } from 'hono';
 
 import { NextRequest } from '../shims/next-server';
 
-let authHandler: ReturnType<typeof import('@/auth').auth.handler> | undefined;
+let authHandler: (typeof import('@/auth'))['auth']['handler'] | undefined;
 let checkUser: typeof import('@/app/(backend)/api/auth/check-user/route').POST | undefined;
-let resolveUsername: typeof import('@/app/(backend)/api/auth/resolve-username/route').POST | undefined;
+let resolveUsername:
+  typeof import('@/app/(backend)/api/auth/resolve-username/route').POST | undefined;
 
 const getAuthHandler = async () => {
   if (!authHandler) {
@@ -62,7 +63,9 @@ const validateJsonBody = async (request: Request): Promise<Response | undefined>
 
 export const authApp = new Hono();
 
-authApp.post('/api/auth/check-user', async (c) => (await getCheckUser())(NextRequest.adapt(c.req.raw)));
+authApp.post('/api/auth/check-user', async (c) =>
+  (await getCheckUser())(NextRequest.adapt(c.req.raw)),
+);
 authApp.post('/api/auth/resolve-username', async (c) =>
   (await getResolveUsername())(NextRequest.adapt(c.req.raw)),
 );

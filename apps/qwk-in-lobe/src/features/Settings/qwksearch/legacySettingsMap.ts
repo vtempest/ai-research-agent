@@ -162,8 +162,8 @@ export const LEGACY_SETTINGS_SECTIONS: readonly LegacySection[] = [
     engineFeatures: ['search', 'extraction'],
     engineTabs: [SettingsTabs.Search, SettingsTabs.Extraction],
     gaps: [
-      'This section is 22 unrelated fields with four different destinations — see LEGACY_SEARCH_FIELDS, which maps each one. Only sourceScrapeTimeout lands on a shipped pane today.',
-      'Thirteen of the 22 are chrome of a shell the engine replaces: four animations (homepage background art, orb glow, cursor trail, result-card glow) and two homepage widgets (weather ×5, trending news ×4).',
+      'This section is 24 unrelated fields with four different destinations — see LEGACY_SEARCH_FIELDS, which maps each one. Only sourceScrapeTimeout lands on a shipped pane today.',
+      'Fifteen of the 24 are chrome of a shell the engine replaces: four animations (homepage background art, orb glow, cursor trail, result-card glow) and three homepage widgets (learn ×1, weather ×5, trending news ×5).',
       'Three are operator credentials on a global admin-only row (searxngURL, proxyURL, tavilyApiKey) and become Worker secrets (2.3).',
     ],
     key: 'search',
@@ -171,7 +171,7 @@ export const LEGACY_SETTINGS_SECTIONS: readonly LegacySection[] = [
     name: 'Search Settings',
     status: 'partial',
     stores:
-      'Worker A /api/config for the four scope:"server" fields (searxngURL, proxyURL, tavilyApiKey, sourceScrapeTimeout); localStorage for the other eighteen. Field list: packages/research-agent-ui/src/settings/search.json',
+      'Worker A /api/config for the four scope:"server" fields (searxngURL, proxyURL, tavilyApiKey, sourceScrapeTimeout); localStorage for the other twenty. Field list: packages/research-agent-ui/src/settings/search.json',
   },
   {
     engineFeatures: [],
@@ -240,13 +240,13 @@ export interface LegacySearchField {
 }
 
 /**
- * All 22 fields of `search.json`, which the legacy "Search Settings" section
+ * All 24 fields of `search.json`, which the legacy "Search Settings" section
  * renders as one flat list.
  *
  * The list is flat because the old surface had nowhere else to put things: it
  * mixes an operator's SearXNG host with a homepage animation toggle and the
  * agent's system prompt. Mapping it section-by-section is what made 2.1 look
- * finished when it was not — the section maps onto two panes, and eighteen of
+ * finished when it was not — the section maps onto two panes, and twenty of
  * its fields land somewhere else entirely.
  */
 export const LEGACY_SEARCH_FIELDS: readonly LegacySearchField[] = [
@@ -322,6 +322,11 @@ export const LEGACY_SEARCH_FIELDS: readonly LegacySearchField[] = [
     key: 'sourceScrapeTimeout',
     kind: 'covered',
   },
+  {
+    destination: 'QwkSearch homepage Learn (education playlists) widget.',
+    key: 'showEducationPlaylistsWidget',
+    kind: 'shell',
+  },
   { destination: 'QwkSearch homepage weather widget.', key: 'showWeatherWidget', kind: 'shell' },
   { destination: 'QwkSearch homepage weather widget.', key: 'weatherLocations', kind: 'shell' },
   { destination: 'QwkSearch homepage weather widget.', key: 'weatherForecastDays', kind: 'shell' },
@@ -349,6 +354,11 @@ export const LEGACY_SEARCH_FIELDS: readonly LegacySearchField[] = [
   {
     destination: 'QwkSearch homepage trending-news widget.',
     key: 'trendingNewsShowImages',
+    kind: 'shell',
+  },
+  {
+    destination: 'QwkSearch homepage trending-news widget.',
+    key: 'trendingNewsCustomTopics',
     kind: 'shell',
   },
 ];
