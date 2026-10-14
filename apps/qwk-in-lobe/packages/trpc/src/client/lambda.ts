@@ -77,7 +77,19 @@ const errorHandlingLink: TRPCLink<LambdaRouter> = () => {
                     // so skip the login redirect/notification there.
                     if (!isDesktop) {
                       const { getUserStoreState } = await import('@/store/user/store');
-                      const { isSignedIn, logout } = getUserStoreState();
+                      const { isSignedIn, logout, user } = getUserStoreState();
+                      const { isGuestEmail } = await import('@/libs/better-auth/guestEmail');
+                      // A guest (or a visitor with no session) is never sent to sign in on a
+                      // demo deployment: a fresh guest session replaces the lost one. Only
+                      // when the demo account is disabled does it fall through to /signin.
+                      if (!isSignedIn || isGuestEmail(user?.email)) {
+                        const { recoverGuestSession } =
+                          await import('@/features/Auth/DemoAccount/recoverGuestSession');
+                        if ((await recoverGuestSession()) !== 'unavailable') {
+                          err.meta = { ...err.meta, shouldRetry: false };
+                          break;
+                        }
+                      }
                       // If user is still marked as signed in but got 401,
                       // session is invalid - clear client state first
                       if (isSignedIn) {

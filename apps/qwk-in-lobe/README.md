@@ -393,6 +393,11 @@ writes nothing — are checked without spending a Worker build.
   `DemoAccountGate` (`src/features/Auth/DemoAccount`), which calls the plugin's HTTP `POST
   /api/auth/sign-in/demo`. On by default; set `AUTH_DISABLE_DEMO_ACCOUNT=1` to bring the sign-in and
   sign-up forms back (the endpoint then 404s).
+- No logout when a guest's request fails auth: a tRPC 401 for a guest (or a visitor with no session)
+  calls the same endpoint through `recoverGuestSession` (`packages/trpc/src/client/lambda.ts`)
+  instead of LobeHub's logout-to-`/signin`. A lost session is replaced and the page reloads; a session
+  the server still has is kept, so a stray 401 no longer throws away the guest's workspace. Real
+  accounts still go to `/signin`, and so does everyone when the demo account is disabled.
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
 - `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
   plus its settings resolver and D1-backed user preferences. Upstream edits there and around it

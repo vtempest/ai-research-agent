@@ -69,3 +69,89 @@ describe('lambdaClient large-input query transport', () => {
     },
   );
 });
+
+const userState = vi.hoisted(() => ({
+  isSignedIn: true,
+  logout: vi.fn(),
+  user: { email: 'guest-abc@guest.invalid' } as { email?: string } | undefined,
+}));
+const recoverGuestSession = vi.hoisted(() => vi.fn());
+
+vi.mock('@/store/user/store', () => ({ getUserStoreState: () => userState }));
+vi.mock('@/features/Auth/DemoAccount/recoverGuestSession', () => ({ recoverGuestSession }));
+
+describe('lambdaClient 401 handling', () => {
+  const fetchMock = vi.fn();
+  // The handler debounces 401s for 5 s; give every test its own clock tick.
+  let clock = 1_000_000;
+
+  const unauthorized = (input: RequestInfo | URL) => {
+    const error = superjson.serialize({
+      code: -32_001,
+      data: { code: 'UNAUTHORIZED', httpStatus: 401 },
+      message: 'UNAUTHORIZED',
+    });
+    const body = String(input).includes('batch=1') ? [{ error }] : { error };
+    return new Response(JSON.stringify(body), {
+      headers: { 'content-type': 'application/json' },
+      status: 401,
+    });
+  };
+
+  const queryOnce = () =>
+    lambdaClient.agent.getTransferJobStatus.query({ agentId: 'agt_test', topicIds: [] });
+
+  beforeEach(() => {
+    clock += 60_000;
+    vi.spyOn(Date, 'now').mockReturnValue(clock);
+    vi.stubGlobal('fetch', fetchMock);
+    vi.stubGlobal('location', new URL('http://localhost/chat'));
+    fetchMock.mockImplementation(async (input: RequestInfo | URL) => unauthorized(input));
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+    fetchMock.mockReset();
+    userState.logout.mockReset();
+    recoverGuestSession.mockReset();
+    userState.isSignedIn = true;
+    userState.user = { email: 'guest-abc@guest.invalid' };
+  });
+
+  it('gives a guest a new guest session instead of the sign-in page', async () => {
+    recoverGuestSession.mockResolvedValue('reloading');
+
+    await expect(queryOnce()).rejects.toThrow();
+
+    expect(recoverGuestSession).toHaveBeenCalledTimes(1);
+    expect(userState.logout).not.toHaveBeenCalled();
+  });
+
+  it('keeps a guest on the page when the server still has their session', async () => {
+    recoverGuestSession.mockResolvedValue('kept');
+
+    await expect(queryOnce()).rejects.toThrow();
+
+    expect(userState.logout).not.toHaveBeenCalled();
+  });
+
+  it('falls back to sign-in when the demo account is disabled', async () => {
+    recoverGuestSession.mockResolvedValue('unavailable');
+
+    await expect(queryOnce()).rejects.toThrow();
+
+    expect(userState.logout).toHaveBeenCalledWith({
+      redirectTo: expect.stringContaining('/signin?'),
+    });
+  });
+
+  it('still sends a real account to sign in when its session expires', async () => {
+    userState.user = { email: 'someone@example.com' };
+
+    await expect(queryOnce()).rejects.toThrow();
+
+    expect(recoverGuestSession).not.toHaveBeenCalled();
+    expect(userState.logout).toHaveBeenCalledTimes(1);
+  });
+});
