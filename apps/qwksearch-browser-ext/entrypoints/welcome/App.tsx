@@ -1,7 +1,5 @@
-import { CheckCircle2, LogIn, PanelRight } from "lucide-react"
+import { PanelRight } from "lucide-react"
 import { FEATURE_GROUPS } from "@/lib/welcome"
-import { signIn } from "@/lib/qwksearch-auth"
-import { useQwkSearchSession } from "@/components/useQwkSearchSession"
 
 function Keys({ keys }: { keys: string[] }) {
   return (
@@ -15,39 +13,6 @@ function Keys({ keys }: { keys: string[] }) {
         </kbd>
       ))}
     </span>
-  )
-}
-
-function LoginCard() {
-  const { user, loading } = useQwkSearchSession()
-  if (loading) return <div className="h-[116px]" aria-hidden />
-  if (user)
-    return (
-      <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-5">
-        <CheckCircle2 className="shrink-0 text-green-600" />
-        <p className="text-sm text-gray-800">
-          You're logged in to QwkSearch as <strong>{user.email || user.name}</strong>.
-        </p>
-      </div>
-    )
-  return (
-    <div className="flex flex-col gap-4 rounded-xl border border-orange-200 bg-orange-50 p-5 sm:flex-row sm:items-center">
-      <div className="flex-1">
-        <h2 className="font-semibold text-gray-900">Log in to QwkSearch</h2>
-        <p className="mt-1 text-sm text-gray-700">
-          Bring your account, saved chats and settings into the extension. Everything else works without an
-          account too.
-        </p>
-      </div>
-      <button
-        type="button"
-        onClick={signIn}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-800"
-      >
-        <LogIn size={16} />
-        Log in
-      </button>
-    </div>
   )
 }
 
@@ -68,10 +33,6 @@ export default function Welcome() {
           <Keys keys={["Ctrl+Q"]} /> (<Keys keys={["⌘B"]} /> on Mac)
         </p>
       </header>
-
-      <section className="mt-8">
-        <LoginCard />
-      </section>
 
       {FEATURE_GROUPS.map((group) => (
         <section key={group.heading} className="mt-10">

@@ -1,6 +1,5 @@
 'use client';
 
-import { BRANDING_NAME } from '@lobechat/business-const';
 import { Icon } from '@lobehub/ui';
 import { Button, Text } from '@lobehub/ui/base-ui';
 import { Form, Input, type InputRef } from 'antd';
@@ -59,7 +58,7 @@ const BetterAuthSignUpForm = ({ showDemoAccount }: BetterAuthSignUpFormProps) =>
   );
 
   return (
-    <AuthCard footer={footer} title={t('betterAuth.signup.cardTitle', { appName: BRANDING_NAME })}>
+    <AuthCard footer={footer} title="Continue without an account">
       {showDemoAccount && <DemoAccountButton />}
       <Form
         form={form}
