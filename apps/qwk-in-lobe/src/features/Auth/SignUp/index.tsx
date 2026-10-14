@@ -11,9 +11,13 @@ const SignUp = () => {
     (s) => s.serverConfig.disableEmailPassword || false,
   );
 
+  const enableDemoAccount = useAuthServerConfigStore(
+    (s) => s.serverConfig.enableDemoAccount || false,
+  );
+
   if (disableEmailPassword) return <Navigate replace to="/signin" />;
 
-  return <BetterAuthSignUpForm />;
+  return <BetterAuthSignUpForm showDemoAccount={enableDemoAccount} />;
 };
 
 export default SignUp;

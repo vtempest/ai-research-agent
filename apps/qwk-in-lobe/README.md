@@ -387,6 +387,10 @@ writes nothing — are checked without spending a Worker build.
   The Worker's page gate (`resolvePageSession` in `worker/routes/spa.ts`) and the Next proxy attach
   its cookie to the page response. Only if a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS` is
   set) does the Worker fall back to its own `/signin` — never `APP_URL`'s.
+- Demo account instead of account creation: `/signin` and `/signup` show "Continue with demo
+  account" (`src/features/Auth/DemoAccount`), which calls the plugin's HTTP `POST
+  /api/auth/sign-in/demo` to start the same private guest session and then opens the app. On by
+  default; set `AUTH_DISABLE_DEMO_ACCOUNT=1` to hide the button and 404 the endpoint.
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
 - `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
   plus its settings resolver and D1-backed user preferences. Upstream edits there and around it

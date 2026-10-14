@@ -24,6 +24,8 @@
     // The guest demo chat that runs on a visitor's own OpenRouter key.
     "src/features/GuestOpenRouter/**/*",
     "src/routes/demo/**/*",
+    // "Continue with demo account" on the sign-in / sign-up pages.
+    "src/features/Auth/DemoAccount/**/*",
     "src/features/Settings/extraction/**/*",
     "src/features/Settings/search/**/*",
     "src/features/Settings/qwksearch/**/*"
