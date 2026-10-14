@@ -1,11 +1,14 @@
 'use client';
 
+import DemoAccountGate from '@/features/Auth/DemoAccount/DemoAccountGate';
+import { useAuthServerConfigStore } from '@/features/AuthShell';
+
 import { SignInEmailSentStep } from './SignInEmailSentStep';
 import { SignInEmailStep } from './SignInEmailStep';
 import { SignInPasswordStep } from './SignInPasswordStep';
 import { useSignIn } from './useSignIn';
 
-const SignIn = () => {
+const SignInForm = () => {
   const {
     disableEmailPassword,
     email,
@@ -29,6 +32,9 @@ const SignIn = () => {
     socialLoading,
     step,
   } = useSignIn();
+  const enableDemoAccount = useAuthServerConfigStore(
+    (s) => s.serverConfig.enableDemoAccount || false,
+  );
 
   if (step === 'emailSent' && sentInfo)
     return (
@@ -64,6 +70,7 @@ const SignIn = () => {
       oAuthSSOProviders={oAuthSSOProviders}
       serverConfigInit={serverConfigInit}
       sessionExpired={sessionExpired}
+      showDemoAccount={enableDemoAccount}
       socialLoading={socialLoading}
       onCheckUser={handleCheckUser}
       onGoToSignup={handleGoToSignup}
@@ -72,6 +79,17 @@ const SignIn = () => {
       onSocialSignIn={handleSocialSignIn}
     />
   );
+};
+
+/** While the demo account is on there is no sign-in screen: the visitor goes straight into the app. */
+const SignIn = () => {
+  const enableDemoAccount = useAuthServerConfigStore(
+    (s) => s.serverConfig.enableDemoAccount || false,
+  );
+
+  if (enableDemoAccount) return <DemoAccountGate fallback={<SignInForm />} />;
+
+  return <SignInForm />;
 };
 
 export default SignIn;

@@ -9,13 +9,18 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 
+import DemoAccountButton from '@/features/Auth/DemoAccount';
 import { AuthCard } from '@/features/AuthCard';
 import { AuthAgreement, useAuthAgreement } from '@/features/AuthShell';
 import { trackLoginOrSignupClicked } from '@/features/User/UserLoginOrSignup/trackLoginOrSignupClicked';
 
 import { useSignUp } from './useSignUp';
 
-const BetterAuthSignUpForm = () => {
+interface BetterAuthSignUpFormProps {
+  showDemoAccount?: boolean;
+}
+
+const BetterAuthSignUpForm = ({ showDemoAccount }: BetterAuthSignUpFormProps) => {
   const { form, loading, onSubmit, businessElement } = useSignUp();
 
   const { t } = useTranslation('auth');
@@ -55,6 +60,7 @@ const BetterAuthSignUpForm = () => {
 
   return (
     <AuthCard footer={footer} title={t('betterAuth.signup.cardTitle', { appName: BRANDING_NAME })}>
+      {showDemoAccount && <DemoAccountButton />}
       <Form
         form={form}
         layout="vertical"

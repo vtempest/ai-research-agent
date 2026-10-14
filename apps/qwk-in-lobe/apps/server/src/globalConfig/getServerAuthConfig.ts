@@ -14,6 +14,7 @@ export const getServerAuthConfig = (): GlobalServerConfig => {
     aiProvider: {},
     disableEmailPassword: authEnv.AUTH_DISABLE_EMAIL_PASSWORD,
     enableBusinessFeatures: ENABLE_BUSINESS_FEATURES,
+    enableDemoAccount: !authEnv.AUTH_DISABLE_DEMO_ACCOUNT,
     enableEmailVerification: authEnv.AUTH_EMAIL_VERIFICATION,
     enableMagicLink: authEnv.AUTH_ENABLE_MAGIC_LINK,
     enableMarketTrustedClient: !!(

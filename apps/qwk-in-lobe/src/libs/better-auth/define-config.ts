@@ -337,7 +337,7 @@ export function defineConfig(customOptions: CustomBetterAuthOptions) {
     plugins: [
       ...customOptions.plugins,
       emailWhitelist(),
-      guestSession(),
+      guestSession({ demoSignIn: !authEnv.AUTH_DISABLE_DEMO_ACCOUNT }),
       expo(),
       admin(),
       // Email OTP plugin for mobile verification

@@ -99,6 +99,11 @@ export interface GlobalServerConfig {
   enableBusinessFeatures?: boolean;
   enableComposio?: boolean;
   /**
+   * Show "Continue with demo account" on the sign-in and sign-up pages, which
+   * starts a guest session instead of creating an account.
+   */
+  enableDemoAccount?: boolean;
+  /**
    * @deprecated
    */
   enabledOAuthSSO?: boolean;

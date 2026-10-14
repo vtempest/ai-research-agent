@@ -387,6 +387,12 @@ writes nothing — are checked without spending a Worker build.
   The Worker's page gate (`resolvePageSession` in `worker/routes/spa.ts`) and the Next proxy attach
   its cookie to the page response. Only if a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS` is
   set) does the Worker fall back to its own `/signin` — never `APP_URL`'s.
+- Demo account instead of sign-in: there is no sign-in or sign-up screen. `/signin` and `/signup`
+  redirect straight to their `callbackUrl` (same origin only, else `/`) with a private guest session
+  (`resolveDemoBypass` in `worker/routes/spa.ts`); in-app navigation to them does the same through
+  `DemoAccountGate` (`src/features/Auth/DemoAccount`), which calls the plugin's HTTP `POST
+  /api/auth/sign-in/demo`. On by default; set `AUTH_DISABLE_DEMO_ACCOUNT=1` to bring the sign-in and
+  sign-up forms back (the endpoint then 404s).
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
 - `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
   plus its settings resolver and D1-backed user preferences. Upstream edits there and around it

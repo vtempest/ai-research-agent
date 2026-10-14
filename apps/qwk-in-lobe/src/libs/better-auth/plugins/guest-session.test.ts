@@ -6,12 +6,12 @@ import { describe, expect, it } from 'vitest';
 import { GUEST_EMAIL_DOMAIN, isGuestEmail } from '../guestEmail';
 import { guestSession } from './guest-session';
 
-const createAuth = () => {
+const createAuth = (options?: Parameters<typeof guestSession>[0]) => {
   const db = { account: [], session: [], user: [], verification: [] } as Record<string, any[]>;
   const auth = betterAuth({
     baseURL: 'https://lobe.example.com',
     database: memoryAdapter(db),
-    plugins: [guestSession()],
+    plugins: [guestSession(options)],
     secret: 'test-secret-test-secret-test-secret-123',
   });
   return { auth, db };
@@ -67,6 +67,54 @@ describe('guestSession', () => {
     const res = await auth.handler(
       new Request('https://lobe.example.com/api/auth/sign-in/guest', { method: 'POST' }),
     );
+
+    expect(res.status).toBe(404);
+    expect(db.user).toHaveLength(0);
+  });
+});
+
+describe('guestSession demo sign-in', () => {
+  const postDemo = (auth: ReturnType<typeof createAuth>['auth'], cookie?: string) =>
+    auth.handler(
+      new Request('https://lobe.example.com/api/auth/sign-in/demo', {
+        headers: {
+          origin: 'https://lobe.example.com',
+          ...(cookie ? { cookie } : {}),
+        },
+        method: 'POST',
+      }),
+    );
+
+  it('starts a guest session over HTTP when enabled', async () => {
+    const { auth, db } = createAuth({ demoSignIn: true });
+
+    const res = await postDemo(auth);
+
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ created: true });
+    expect(db.user).toHaveLength(1);
+    expect(isGuestEmail(db.user[0].email)).toBe(true);
+    expect(res.headers.getSetCookie().some((c) => c.includes('session_token='))).toBe(true);
+  });
+
+  it('keeps an existing session', async () => {
+    const { auth, db } = createAuth({ demoSignIn: true });
+    const first = await postDemo(auth);
+    const cookie = first.headers
+      .getSetCookie()
+      .map((c) => c.split(';')[0])
+      .join('; ');
+
+    const second = await postDemo(auth, cookie);
+
+    expect(await second.json()).toMatchObject({ created: false });
+    expect(db.user).toHaveLength(1);
+  });
+
+  it('404s when disabled', async () => {
+    const { auth, db } = createAuth();
+
+    const res = await postDemo(auth);
 
     expect(res.status).toBe(404);
     expect(db.user).toHaveLength(0);

@@ -9,6 +9,7 @@ import { type CSSProperties, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import AuthIcons from '@/components/AuthIcons';
+import DemoAccountButton from '@/features/Auth/DemoAccount';
 import AuthCard from '@/features/AuthCard';
 import { AuthAgreement, useAuthAgreement } from '@/features/AuthShell';
 
@@ -50,6 +51,7 @@ export interface SignInEmailStepProps {
   onSocialSignIn: (provider: string) => void;
   serverConfigInit: boolean;
   sessionExpired?: boolean;
+  showDemoAccount?: boolean;
   socialLoading: string | null;
 }
 
@@ -62,6 +64,7 @@ export const SignInEmailStep = ({
   oAuthSSOProviders,
   serverConfigInit,
   sessionExpired,
+  showDemoAccount,
   socialLoading,
   onCheckUser,
   onGoToSignup,
@@ -107,6 +110,7 @@ export const SignInEmailStep = ({
           variant="filled"
         />
       )}
+      {showDemoAccount && <DemoAccountButton />}
       {serverConfigInit && oAuthSSOProviders.length > 0 && (
         <Flexbox gap={12}>
           {oAuthSSOProviders.map((provider) => {

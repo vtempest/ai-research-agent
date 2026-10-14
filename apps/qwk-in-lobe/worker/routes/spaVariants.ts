@@ -51,8 +51,10 @@ const matchLocale = (locale?: string): SupportedLocale | undefined => {
   if (lower.startsWith('cn') || lower.startsWith('zh-hans')) return 'zh-CN';
   if (lower.startsWith('zh-hant')) return 'zh-TW';
 
-  return SUPPORTED_LOCALES.find((l) => l.toLowerCase().startsWith(lower)) ??
-    SUPPORTED_LOCALES.find((l) => lower.startsWith(l.split('-')[0].toLowerCase()));
+  return (
+    SUPPORTED_LOCALES.find((l) => l.toLowerCase().startsWith(lower)) ??
+    SUPPORTED_LOCALES.find((l) => lower.startsWith(l.split('-')[0].toLowerCase()))
+  );
 };
 
 /**
@@ -102,7 +104,9 @@ export const resolveSpaVariant = (request: Request): SpaVariant => {
 
   const locale =
     explicitLocale ??
-    (cookieLocale ? toSafeLocale(cookieLocale) : parseAcceptLanguage(request.headers.get('accept-language')));
+    (cookieLocale
+      ? toSafeLocale(cookieLocale)
+      : parseAcceptLanguage(request.headers.get('accept-language')));
 
   const device = new UAParser(request.headers.get('user-agent') || '').getDevice();
 
@@ -171,6 +175,30 @@ export const buildSignInRedirect = (request: Request, appUrl: string): string =>
   if (utmSource) signInUrl.searchParams.set('utm_source', utmSource);
 
   return signInUrl.toString();
+};
+
+/** The sign-in / sign-up pages the demo account replaces. */
+export const DEMO_BYPASS_ROUTES = new Set(['/signin', '/signup']);
+
+/**
+ * Where to send a visitor who skipped `/signin` or `/signup`: their
+ * `callbackUrl` when it is on this origin, otherwise `/`. Never back to an auth
+ * page, which would loop.
+ */
+export const resolveDemoCallbackPath = (requestUrl: string): string => {
+  const url = new URL(requestUrl);
+  const raw = url.searchParams.get('callbackUrl');
+  if (!raw) return '/';
+
+  let target: URL;
+  try {
+    target = new URL(raw, url.origin);
+  } catch {
+    return '/';
+  }
+  if (target.origin !== url.origin || isAuthSpaRoute(target.pathname)) return '/';
+
+  return `${target.pathname}${target.search}${target.hash}`;
 };
 
 export const buildLocaleCookie = (locale: SupportedLocale, secure: boolean) =>

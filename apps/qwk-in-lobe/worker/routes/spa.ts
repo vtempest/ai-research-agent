@@ -15,9 +15,11 @@ import { getCfEnv } from '../cf/env';
 import {
   buildLocaleCookie,
   buildSignInRedirect,
+  DEMO_BYPASS_ROUTES,
   isAuthSpaRoute,
   isBackendPath,
   isPublicSpaRoute,
+  resolveDemoCallbackPath,
   resolveSpaVariant,
 } from './spaVariants';
 
@@ -192,6 +194,41 @@ export const resolvePageSession = async (
   return { redirect: c.redirect(buildSignInRedirect(c.req.raw, origin), 302) };
 };
 
+/**
+ * There is no sign-in or sign-up screen while the demo account is on
+ * (`AUTH_DISABLE_DEMO_ACCOUNT` unset): `/signin` and `/signup` send the visitor
+ * straight back to their `callbackUrl` (or `/`) with a guest session, keeping
+ * any session they already have. Returns `null` — render the auth page as
+ * before — when the demo account is off or a guest cannot be created (e.g.
+ * `AUTH_ALLOWED_EMAILS`), so the page gate's fallback still has somewhere to go.
+ */
+export const resolveDemoBypass = async (c: Context): Promise<Response | null> => {
+  const { pathname } = new URL(c.req.url);
+  if (!DEMO_BYPASS_ROUTES.has(pathname)) return null;
+
+  const { authEnv } = await import('@/envs/auth');
+  if (authEnv.AUTH_DISABLE_DEMO_ACCOUNT) return null;
+
+  const location = resolveDemoCallbackPath(c.req.url);
+  const { isLikelyBot, startGuestSession } = await import('@/libs/better-auth/guest');
+  if (isLikelyBot(c.req.header('user-agent'))) return c.redirect(location, 302);
+
+  const { auth } = await import('@/auth');
+  try {
+    const session = await auth.api.getSession({ headers: c.req.raw.headers });
+    if (session?.user) return c.redirect(location, 302);
+  } catch (error) {
+    console.error('[spa] session lookup failed, treating as anonymous:', error);
+  }
+
+  const setCookies = await startGuestSession(c.req.raw.headers);
+  if (!setCookies) return null;
+
+  const response = c.redirect(location, 302);
+  for (const cookie of setCookies) response.headers.append('set-cookie', cookie);
+  return response;
+};
+
 interface AuthSPAServerConfig {
   analyticsConfig: ReturnType<typeof import('@/libs/spaHtml').buildAnalyticsConfig>;
   config: Awaited<
@@ -220,7 +257,7 @@ spaApp.get('*', async (c) => {
   const { pathname } = new URL(c.req.url);
 
   if (isBackendPath(pathname)) return c.notFound();
-  if (isAuthSpaRoute(pathname)) return renderAuthSpa(c);
+  if (isAuthSpaRoute(pathname)) return (await resolveDemoBypass(c)) ?? renderAuthSpa(c);
 
   const { redirect, setCookies } = await resolvePageSession(c);
   if (redirect) return redirect;
