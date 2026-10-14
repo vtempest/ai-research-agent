@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { isChunkLoadError, reloadForChunkError } from 'research-agent-ui/chunk-error-reload';
 
 import { logSsrError, traceSsr } from '@/lib/debug/ssr-trace';
 
@@ -25,9 +26,12 @@ import { logSsrError, traceSsr } from '@/lib/debug/ssr-trace';
  * `document` exists — renders the workspace a moment later, so a DOM-only
  * dependency costs a flash of skeleton rather than the entire site.
  *
- * The error boundary above the Suspense is the second line: if the chunk fails
- * in the browser too (an offline navigation, a half-deployed asset), the reader
- * gets a reload prompt rather than a blank screen.
+ * The error boundary above the Suspense is the second line. If a chunk fails
+ * to load in the browser — almost always a tab (or cached script) from before
+ * the last deploy asking for a hash the new build no longer serves — it
+ * reloads the page once to pick up the current build, holding the skeleton
+ * meanwhile. Any other failure, or a chunk that is still missing after that
+ * reload, gets a reload prompt rather than a blank screen.
  */
 const ResearchWorkspaceView = React.lazy(() => {
   traceSsr('workspace:chunk:import:begin');
@@ -87,26 +91,38 @@ function WorkspaceUnavailable() {
 
 class WorkspaceErrorBoundary extends React.Component<
   { children: React.ReactNode },
-  { failed: boolean }
+  { failed: boolean; reloading: boolean }
 > {
-  state = { failed: false };
+  state = { failed: false, reloading: false };
 
   static getDerivedStateFromError(error: unknown) {
     // Unlike `componentDidCatch`, this runs during a server render too, so it
     // is the only hook that reports a workspace failure from inside the Worker.
     logSsrError('workspace:boundary:derived-state', error);
-    return { failed: true };
+    // A stale chunk is recovered by reloading (in `componentDidCatch`, since a
+    // reload is a side effect); keep the skeleton up rather than flash the
+    // error in between.
+    return {
+      failed: true,
+      reloading: typeof window !== 'undefined' && isChunkLoadError(error),
+    };
   }
 
   componentDidCatch(error: unknown) {
+    if (reloadForChunkError(error)) {
+      console.warn('[workspace] chunk failed to load, reloading for the current build', error);
+      return;
+    }
     // Surfaces in the browser console and in whatever error reporting the page
     // installs; the server-side attempt is already reported by React as a
     // recoverable error.
     console.error('[workspace] failed to mount', error);
+    if (this.state.reloading) this.setState({ reloading: false });
   }
 
   render() {
-    return this.state.failed ? <WorkspaceUnavailable /> : this.props.children;
+    if (!this.state.failed) return this.props.children;
+    return this.state.reloading ? <WorkspaceSkeleton /> : <WorkspaceUnavailable />;
   }
 }
 

@@ -41,6 +41,10 @@
       "types": "./src/lib/google-drive-source.ts",
       "import": "./src/lib/google-drive-source.ts"
     },
+    "./chunk-error-reload": {
+      "types": "./src/app/useChunkErrorReload.ts",
+      "import": "./src/app/useChunkErrorReload.ts"
+    },
     "./settings": {
       "types": "./src/settings/index.ts",
       "import": "./src/settings/index.ts"
@@ -52,6 +56,7 @@
   "files": [
     "dist",
     "src/settings",
+    "src/app/useChunkErrorReload.ts",
     "README.md"
   ],
   "sideEffects": [

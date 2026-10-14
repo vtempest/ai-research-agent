@@ -20,4 +20,8 @@ export {
   type MainViewMode,
 } from './MainViewProvider';
 export { useChatTabs, type ChatTab } from './useChatTabs';
-export { useChunkErrorReload } from './useChunkErrorReload';
+export {
+  useChunkErrorReload,
+  isChunkLoadError,
+  reloadForChunkError,
+} from './useChunkErrorReload';

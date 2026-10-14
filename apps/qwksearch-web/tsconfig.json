@@ -38,6 +38,9 @@
       "research-agent-ui": [
         "../../packages/research-agent-ui/src/index.ts"
       ],
+      "research-agent-ui/chunk-error-reload": [
+        "../../packages/research-agent-ui/src/app/useChunkErrorReload.ts"
+      ],
       "research-agent-ui/file-sources": [
         "../../packages/research-agent-ui/src/lib/file-sources.ts"
       ],
