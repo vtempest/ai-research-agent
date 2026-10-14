@@ -12,6 +12,7 @@ import {
   Layers,
   Minus,
   PenLine,
+  Play,
   Search,
   Sparkles,
   X,
@@ -35,6 +36,7 @@ import {
   APP_SCREENSHOT,
   COMPARISON_COLUMNS,
   COMPARISON_ROWS,
+  DEMO_VIDEO,
   ENGINE_NAMES,
   FEATURE_TABS,
   PIPELINE,
@@ -194,53 +196,58 @@ function Hero() {
 }
 
 /**
- * The README's product shot. A plain <img> at the source's own aspect ratio:
- * it's a remote asset the Worker's image optimizer won't proxy, and the
- * intrinsic size is what keeps the frame from collapsing before it loads.
+ * The README's product shot doubling as the demo video's poster. A plain <img>
+ * at the source's own aspect ratio (a remote asset the Worker's image
+ * optimizer won't proxy); clicking it swaps in the YouTube embed, autoplaying
+ * inline in the same frame, so the player isn't loaded until it's wanted.
  */
-function Screenshot() {
+function ScreenshotVideo() {
+  const [playing, setPlaying] = React.useState(false);
+
   return (
     <section className="relative px-4 pt-2 pb-6 sm:px-6 lg:px-8">
       <Reveal className="mx-auto max-w-5xl">
         <figure>
           <div className="qs-border-beam relative isolate overflow-hidden rounded-3xl p-px">
             <div className="bg-card/90 relative z-10 overflow-hidden rounded-[calc(1.5rem-1px)] border backdrop-blur-sm">
-              <img
-                src={APP_SCREENSHOT.src}
-                alt={APP_SCREENSHOT.alt}
-                loading="lazy"
-                className="block w-full"
-              />
+              {playing ? (
+                <div className="relative aspect-video bg-black">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${DEMO_VIDEO.id}?start=${DEMO_VIDEO.start}&autoplay=1&playsinline=1&rel=0`}
+                    title={DEMO_VIDEO.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="absolute inset-0 size-full"
+                  />
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setPlaying(true)}
+                  aria-label={`Play video: ${DEMO_VIDEO.title}`}
+                  className="group relative block w-full cursor-pointer focus-visible:outline-none"
+                >
+                  <img
+                    src={APP_SCREENSHOT.src}
+                    alt={APP_SCREENSHOT.alt}
+                    loading="lazy"
+                    className="block w-full"
+                  />
+                  <span className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/15" />
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-14 w-20 items-center justify-center rounded-2xl bg-[#ff0033] shadow-lg transition-transform group-hover:scale-110 group-focus-visible:ring-4 group-focus-visible:ring-white/70 sm:h-16 sm:w-24">
+                      <Play className="size-7 fill-white text-white sm:size-8" />
+                    </span>
+                  </span>
+                </button>
+              )}
             </div>
           </div>
           <figcaption className="text-muted-foreground mt-3 text-center text-xs">
             {APP_SCREENSHOT.caption}
           </figcaption>
         </figure>
-      </Reveal>
-    </section>
-  );
-}
-
-function VideoDemo() {
-  return (
-    <section className="relative px-4 pb-4 sm:px-6 lg:px-8">
-      <Reveal className="mx-auto max-w-4xl">
-        <div className="qs-border-beam relative isolate overflow-hidden rounded-3xl p-px">
-          <div className="bg-card/90 relative z-10 overflow-hidden rounded-[calc(1.5rem-1px)] border backdrop-blur-sm">
-            <div className="relative aspect-video">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/DzykBAdrw6s?start=367"
-                title={`${config.appName} demo video`}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="absolute inset-0 size-full"
-              />
-            </div>
-          </div>
-        </div>
       </Reveal>
     </section>
   );
@@ -872,8 +879,7 @@ export function FeaturesView({
   return (
     <div className="qs-features relative min-h-screen md:pl-20">
       <Hero />
-      <Screenshot />
-      <VideoDemo />
+      <ScreenshotVideo />
       <EngineMarquee />
       <Comparison />
       {showPipeline && <Pipeline />}
