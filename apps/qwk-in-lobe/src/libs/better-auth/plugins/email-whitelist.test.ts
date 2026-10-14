@@ -9,6 +9,7 @@ import { isEmailAllowed } from './email-whitelist';
 vi.mock('@/envs/auth', () => ({
   authEnv: {
     AUTH_ALLOWED_EMAILS: undefined as string | undefined,
+    AUTH_DISABLE_DEMO_ACCOUNT: false,
   },
 }));
 
@@ -116,5 +117,27 @@ describe('isEmailAllowed', () => {
       // split('@')[1] returns 'middle@example.com', which won't match 'example.com'
       expect(isEmailAllowed('user@middle@example.com')).toBe(false);
     });
+  });
+});
+
+describe('isEmailAllowed for guest accounts', () => {
+  const env = authEnv as { AUTH_ALLOWED_EMAILS?: string; AUTH_DISABLE_DEMO_ACCOUNT: boolean };
+
+  beforeEach(() => {
+    env.AUTH_ALLOWED_EMAILS = 'example.com';
+    env.AUTH_DISABLE_DEMO_ACCOUNT = false;
+  });
+
+  // Regression: with a whitelist set, every guest session failed and visitors
+  // were sent to /signin instead of into the app.
+  it('lets a guest through a whitelist while the demo account is on', () => {
+    expect(isEmailAllowed('guest-abc123@guest.invalid')).toBe(true);
+    expect(isEmailAllowed('user@other.com')).toBe(false);
+  });
+
+  it('applies the whitelist to guests when the demo account is disabled', () => {
+    env.AUTH_DISABLE_DEMO_ACCOUNT = true;
+
+    expect(isEmailAllowed('guest-abc123@guest.invalid')).toBe(false);
   });
 });

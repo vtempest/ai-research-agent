@@ -17,7 +17,7 @@ export const isLikelyBot = (userAgent: string | null | undefined) =>
  * Create a guest user + session for this request and return the `Set-Cookie`
  * values to attach to the page response. Returns `null` when the request
  * already has a session, comes from a bot, or the guest could not be created
- * (e.g. `AUTH_ALLOWED_EMAILS` restricts sign-ups).
+ * (e.g. a database error, or `AUTH_ALLOWED_EMAILS` with the demo account off).
  */
 export const startGuestSession = async (headers: Headers): Promise<string[] | null> => {
   if (isLikelyBot(headers.get('user-agent'))) return null;

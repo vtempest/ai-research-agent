@@ -286,7 +286,7 @@ export function defineConfig() {
     if (!isLoggedIn) {
       // Nobody is sent to sign in: give the visitor a guest session instead.
       // Crawlers get the page without one; only when a guest cannot be created
-      // (e.g. AUTH_ALLOWED_EMAILS restricts sign-ups) fall back to sign-in.
+      // (e.g. AUTH_ALLOWED_EMAILS with the demo account off) fall back to sign-in.
       if (isLikelyBot(req.headers.get('user-agent'))) return response;
 
       const guestCookies = await startGuestSession(req.headers);
