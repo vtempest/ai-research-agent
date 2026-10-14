@@ -944,3 +944,10 @@ export const APP_SCREENSHOT = {
   caption:
     "Search, the extracted article with its cites, and the REASON editor — one screen.",
 };
+
+/** The YouTube demo that plays inline when the product shot is clicked. */
+export const DEMO_VIDEO = {
+  id: "DzykBAdrw6s",
+  start: 367,
+  title: "QwkSearch.com Reimagines the Internet as Self-Organizing Mind Map",
+};
