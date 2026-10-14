@@ -38,6 +38,7 @@ export default defineConfig({
       'chat-agent-toolkit': resolve(__dirname, '../../packages/chat-agent-toolkit/src'),
       'extract-webpage': resolve(__dirname, '../../packages/extract-webpage/src'),
       'research-agent-ui/api': resolve(__dirname, '../../packages/research-agent-ui/src/api/index.ts'),
+      'research-agent-ui/chunk-error-reload': resolve(__dirname, '../../packages/research-agent-ui/src/app/useChunkErrorReload.ts'),
       'research-agent-ui/settings': resolve(__dirname, '../../packages/research-agent-ui/src/settings/index.ts'),
       'research-agent-ui/workspace': resolve(__dirname, '../../packages/research-agent-ui/src/workspace.ts'),
       'research-agent-ui': resolve(__dirname, '../../packages/research-agent-ui/src/index.ts'),
