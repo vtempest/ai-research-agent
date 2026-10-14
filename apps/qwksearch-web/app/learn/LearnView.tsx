@@ -5,19 +5,23 @@
  * (`/learn#invite=…`) opens. The widget itself lives in
  * `packages/education-playlists`; this mounts it and, for a signed-in user,
  * points it at `/api/learn/playlists` so their playlists live in the account.
- * Clicking an item opens it in the article reader, which reads the page and
- * writes questions about it, rather than leaving for the page.
+ * Clicking an item starts a new chat that extracts the course page, summarizes
+ * it and takes questions about it (`courseChatHref`), rather than leaving for
+ * the page; the arrow beside the title still opens the page itself.
  */
+import { useRouter } from 'next/navigation';
 import { EducationPlaylists } from 'education-playlists';
-import { ArticleReaderMount, useExtractPanel } from 'research-agent-ui';
+import { useChat } from 'research-agent-ui';
 import { authClient } from '@/lib/auth/client';
+import { courseChatHref } from '@/lib/learn/course-chat';
 
 export function LearnView() {
   const { data: session } = authClient.useSession();
   const user = (session as { user?: { id: string; isAnonymous?: boolean | null } } | null)?.user;
   // An anonymous guest session keeps playlists in this browser, as signed-out visitors do.
   const userId = user && !user.isAnonymous ? user.id : undefined;
-  const { openPanel } = useExtractPanel();
+  const router = useRouter();
+  const { newChat } = useChat();
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8">
@@ -31,10 +35,14 @@ export function LearnView() {
         playlistsEndpoint="/api/learn/playlists"
         userId={userId}
         importFromHash
-        onOpenItem={(item) => openPanel(item.url, '', { suggestQuestions: true })}
+        onOpenItem={(item) => {
+          // Clear the board first so the prompt lands in a fresh chat, as the
+          // spotlight palette's `ask` does.
+          newChat();
+          router.push(courseChatHref(item));
+        }}
         className="rounded-2xl border border-border bg-card"
       />
-      <ArticleReaderMount />
     </main>
   );
 }

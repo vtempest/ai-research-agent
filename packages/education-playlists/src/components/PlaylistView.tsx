@@ -103,13 +103,13 @@ function ItemRow({
       />
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
         {onOpenItem ? (
-          // The host reads the page and asks about it; the page itself is
+          // The host opens a chat about the page; the page itself is
           // still one click away on the arrow beside the title.
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, minWidth: 0 }}>
             <button
               type="button"
               onClick={() => onOpenItem(item)}
-              title="Read this page and ask questions about it"
+              title="Chat about this page: summarize it and ask questions"
               style={{ ...titleStyle, ...s.textButton }}
             >
               {item.title}

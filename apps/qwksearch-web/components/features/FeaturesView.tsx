@@ -164,11 +164,13 @@ function Hero() {
       {/* Search engines QwkSearch queries, orbiting the index. Deliberately
           outside the max-w-5xl column so the widest ring isn't clipped. */}
       <Reveal delay={320}>
-        <OrbitingCirclesGlobe className="-mx-4 mt-10 -mb-6 sm:-mx-6 sm:mt-14 lg:-mx-8" />
+        <OrbitingCirclesGlobe className="-mx-4 mt-10 sm:-mx-6 sm:mt-14 lg:-mx-8" />
       </Reveal>
 
       <div className="mx-auto max-w-5xl text-center">
-        <Reveal delay={380} className="mx-auto max-w-3xl">
+        {/* Sits clear of the orbit animation and above it, so every badge
+            stays clickable. */}
+        <Reveal delay={380} className="relative z-20 mx-auto mt-8 max-w-3xl">
           <BadgeWall />
         </Reveal>
 

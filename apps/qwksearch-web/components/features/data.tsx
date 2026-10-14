@@ -495,22 +495,6 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     ],
   },
   {
-    feature: "",
-    cells: [
-      { status: "yes", note: "Cloudflare Workers or Docker" },
-      { status: "no" },
-      { status: "no" },
-      { status: "no" },
-      { status: "no" },
-      { status: "no" },
-      { status: "no" },
-      { status: "no" },
-      { status: "yes", note: "Docker" },
-      { status: "yes", note: "Docker" },
-      { status: "yes", note: "Docker or Kubernetes" },
-    ],
-  },
-  {
     feature: "Choose any LLM",
     cells: [
       { status: "yes", note: "Claude, GPT, Gemini, Grok, Llama & more" },
