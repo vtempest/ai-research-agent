@@ -167,8 +167,8 @@ const renderMainSpa = async (c: Context) => {
  * Session gate for protected SPA pages. Only the public allowlist skips it.
  * Nobody is sent to sign in: a visitor without a session gets a guest
  * session on this response (`startGuestSession`), and crawlers get the page
- * without one. Only when a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS`
- * restricts sign-ups) does the visitor go to this deployment's own `/signin` —
+ * without one. Only when a guest cannot be created (e.g. the database
+ * is unreachable, or `AUTH_ALLOWED_EMAILS` is set with the demo account off) does the visitor go to this deployment's own `/signin` —
  * never to `APP_URL`'s, which may be a different site.
  */
 export const resolvePageSession = async (
@@ -199,8 +199,8 @@ export const resolvePageSession = async (
  * (`AUTH_DISABLE_DEMO_ACCOUNT` unset): `/signin` and `/signup` send the visitor
  * straight back to their `callbackUrl` (or `/`) with a guest session, keeping
  * any session they already have. Returns `null` — render the auth page as
- * before — when the demo account is off or a guest cannot be created (e.g.
- * `AUTH_ALLOWED_EMAILS`), so the page gate's fallback still has somewhere to go.
+ * before — when the demo account is off or a guest cannot be created (e.g. a
+ * database error), so the page gate's fallback still has somewhere to go.
  */
 export const resolveDemoBypass = async (c: Context): Promise<Response | null> => {
   const { pathname } = new URL(c.req.url);

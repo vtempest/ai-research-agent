@@ -385,8 +385,9 @@ writes nothing — are checked without spending a Worker build.
   server-only `signInGuest` endpoint that creates a `guest-…@guest.invalid` user and its session, no
   schema change) and `src/libs/better-auth/guest.ts` (`startGuestSession`, skipped for crawlers).
   The Worker's page gate (`resolvePageSession` in `worker/routes/spa.ts`) and the Next proxy attach
-  its cookie to the page response. Only if a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS` is
-  set) does the Worker fall back to its own `/signin` — never `APP_URL`'s.
+  its cookie to the page response. Only if a guest cannot be created (e.g. a database error;
+  `AUTH_ALLOWED_EMAILS` exempts guest addresses unless `AUTH_DISABLE_DEMO_ACCOUNT=1`) does the
+  Worker fall back to its own `/signin` — never `APP_URL`'s.
 - Demo account instead of sign-in: there is no sign-in or sign-up screen. `/signin` and `/signup`
   redirect straight to their `callbackUrl` (same origin only, else `/`) with a private guest session
   (`resolveDemoBypass` in `worker/routes/spa.ts`); in-app navigation to them does the same through
