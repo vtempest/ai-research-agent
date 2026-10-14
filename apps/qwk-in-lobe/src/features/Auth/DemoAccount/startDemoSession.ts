@@ -7,6 +7,9 @@ export const startDemoSession = async (
   fetcher: typeof fetch = fetch,
 ): Promise<{ created: boolean }> => {
   const res = await fetcher('/api/auth/sign-in/demo', {
+    // An empty body with a JSON content type is unparseable JSON, which the
+    // auth route used to answer with a 400
+    body: '{}',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',

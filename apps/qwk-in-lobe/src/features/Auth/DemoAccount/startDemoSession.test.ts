@@ -10,7 +10,7 @@ describe('startDemoSession', () => {
 
     expect(fetcher).toHaveBeenCalledWith(
       '/api/auth/sign-in/demo',
-      expect.objectContaining({ credentials: 'include', method: 'POST' }),
+      expect.objectContaining({ body: '{}', credentials: 'include', method: 'POST' }),
     );
   });
 

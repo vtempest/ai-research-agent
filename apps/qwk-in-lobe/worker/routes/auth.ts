@@ -43,13 +43,25 @@ const jsonContentTypeRegex = /^application\/(?:[a-z0-9.+-]*\+)?json/i;
 /**
  * better-call turns `Request.json()` SyntaxErrors into 500s; keep malformed
  * client payloads as 400s like the Next route does.
+ *
+ * An empty JSON body is read as `{}`: a `fetch(…, { method: 'POST' })` with a
+ * JSON content type and no body reaches a Worker as an empty stream, not a
+ * `null` body, so parsing it would otherwise fail every bodiless call (e.g.
+ * `POST /api/auth/sign-in/demo`).
  */
-const validateJsonBody = async (request: Request): Promise<Response | undefined> => {
+export const prepareJsonBody = async (request: Request): Promise<Request | Response> => {
   const contentType = request.headers.get('content-type') || '';
-  if (!request.body || !jsonContentTypeRegex.test(contentType)) return;
+  if (!request.body || !jsonContentTypeRegex.test(contentType)) return request;
+
+  const text = await request.clone().text();
+  if (!text.trim()) {
+    const headers = new Headers(request.headers);
+    headers.delete('content-length');
+    return new Request(request.url, { body: '{}', headers, method: request.method });
+  }
 
   try {
-    await request.clone().json();
+    JSON.parse(text);
   } catch (error) {
     if (error instanceof SyntaxError) {
       return Response.json(
@@ -59,6 +71,8 @@ const validateJsonBody = async (request: Request): Promise<Response | undefined>
     }
     throw error;
   }
+
+  return request;
 };
 
 export const authApp = new Hono();
@@ -71,10 +85,10 @@ authApp.post('/api/auth/resolve-username', async (c) =>
 );
 
 authApp.on(['GET', 'POST'], '/api/auth/*', async (c) => {
-  if (c.req.method === 'POST') {
-    const invalid = await validateJsonBody(c.req.raw);
-    if (invalid) return invalid;
-  }
+  if (c.req.method !== 'POST') return (await getAuthHandler())(c.req.raw);
 
-  return (await getAuthHandler())(c.req.raw);
+  const request = await prepareJsonBody(c.req.raw);
+  if (request instanceof Response) return request;
+
+  return (await getAuthHandler())(request);
 });
