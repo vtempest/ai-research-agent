@@ -2,6 +2,7 @@
 
 import { Navigate } from 'react-router';
 
+import DemoAccountGate from '@/features/Auth/DemoAccount/DemoAccountGate';
 import { useAuthServerConfigStore } from '@/features/AuthShell';
 
 import BetterAuthSignUpForm from './BetterAuthSignUpForm';
@@ -17,7 +18,12 @@ const SignUp = () => {
 
   if (disableEmailPassword) return <Navigate replace to="/signin" />;
 
-  return <BetterAuthSignUpForm showDemoAccount={enableDemoAccount} />;
+  const form = <BetterAuthSignUpForm showDemoAccount={enableDemoAccount} />;
+
+  // While the demo account is on there is no account creation: the visitor goes straight into the app.
+  if (enableDemoAccount) return <DemoAccountGate fallback={form} />;
+
+  return form;
 };
 
 export default SignUp;
