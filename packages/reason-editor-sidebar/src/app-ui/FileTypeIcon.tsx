@@ -13,11 +13,13 @@ function getExtension(filename: string): string {
 
 interface FileTypeIconProps {
   filename: string;
+  /** Overrides the extension read from `filename`. */
+  extension?: string;
   size?: keyof typeof SIZES | number;
 }
 
-export function FileTypeIcon({ filename, size = "sm" }: FileTypeIconProps) {
-  const ext = getExtension(filename);
+export function FileTypeIcon({ filename, extension, size = "sm" }: FileTypeIconProps) {
+  const ext = extension?.toLowerCase() || getExtension(filename);
   const px = typeof size === "number" ? size : SIZES[size];
   const styles = ext ? (defaultStyles as Record<string, object>)[ext] ?? {} : {};
 

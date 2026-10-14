@@ -37,6 +37,10 @@
       "types": "./src/lib/file-sources.ts",
       "import": "./src/lib/file-sources.ts"
     },
+    "./google-drive": {
+      "types": "./src/lib/google-drive-source.ts",
+      "import": "./src/lib/google-drive-source.ts"
+    },
     "./settings": {
       "types": "./src/settings/index.ts",
       "import": "./src/settings/index.ts"

@@ -13,6 +13,15 @@ export type { FileSourceType, SSHCredentials, S3Credentials, R2Credentials, B2Cr
 const STORAGE_KEY = 'REASON-file-sources';
 const ACTIVE_SOURCE_KEY = 'REASON-active-file-source';
 
+/**
+ * Dispatched on `window` whenever the saved source list changes, so a mounted
+ * sidebar picks up a source added in settings without a reload. The name is
+ * shared with the other copy of these helpers (research-agent-ui's
+ * `file-sources` and react-reason-editor-sidebar's) — both write the same
+ * localStorage key.
+ */
+export const FILE_SOURCES_CHANGED_EVENT = 'reason-file-sources-changed';
+
 const defaultLocalSource: FileSource = {
   id: 'local-default',
   name: 'Local Files',
@@ -42,6 +51,7 @@ export function getFileSources(): AnyFileSource[] {
 export function saveFileSources(sources: AnyFileSource[]): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(sources));
+    window.dispatchEvent(new Event(FILE_SOURCES_CHANGED_EVENT));
   } catch (error) {
     console.error('Error saving file sources:', error);
   }

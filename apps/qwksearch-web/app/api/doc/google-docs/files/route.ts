@@ -5,54 +5,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getEnv } from "@/lib/config/env";
-
-const DRIVE_BASE = "https://www.googleapis.com/drive/v3";
-const TOKEN_URL = "https://oauth2.googleapis.com/token";
-
-async function refreshAccessToken(refreshToken: string): Promise<string> {
-  const res = await fetch(TOKEN_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      client_id: getEnv("GOOGLE_CLIENT_ID")!,
-      client_secret: getEnv("GOOGLE_CLIENT_SECRET")!,
-      refresh_token: refreshToken,
-      grant_type: "refresh_token",
-    }).toString(),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    const err: any = new Error(text || "invalid_grant");
-    err.code = 401;
-    throw err;
-  }
-  const data = (await res.json()) as { access_token: string };
-  return data.access_token;
-}
-
-async function driveRequest(
-  url: string,
-  tokenRef: { token: string; refresh?: string; refreshed: boolean },
-): Promise<Response> {
-  let res = await fetch(url, {
-    headers: { Authorization: `Bearer ${tokenRef.token}` },
-  });
-  if (res.status === 401 && tokenRef.refresh) {
-    tokenRef.token = await refreshAccessToken(tokenRef.refresh);
-    tokenRef.refreshed = true;
-    res = await fetch(url, {
-      headers: { Authorization: `Bearer ${tokenRef.token}` },
-    });
-  }
-  if (!res.ok) {
-    const text = await res.text();
-    const err: any = new Error(text || `Request failed: ${res.status}`);
-    err.code = res.status;
-    throw err;
-  }
-  return res;
-}
+import { DRIVE_BASE, driveRequest } from "@/lib/integrations/googleDrive";
 
 function pickExportMime(mimeType: string): string {
   if (mimeType.includes("spreadsheet")) return "text/csv";

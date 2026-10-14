@@ -21,6 +21,7 @@ import {
   getVerificationOTPEmailTemplate,
 } from '@/libs/better-auth/email-templates';
 import { emailWhitelist } from '@/libs/better-auth/plugins/email-whitelist';
+import { guestSession } from '@/libs/better-auth/plugins/guest-session';
 import { initBetterAuthSSOProviders } from '@/libs/better-auth/sso';
 import { createSecondaryStorage, getTrustedOrigins } from '@/libs/better-auth/utils/config';
 import { expireLegacyHostOnlyCookies } from '@/libs/better-auth/utils/host-only-cookies';
@@ -336,6 +337,7 @@ export function defineConfig(customOptions: CustomBetterAuthOptions) {
     plugins: [
       ...customOptions.plugins,
       emailWhitelist(),
+      guestSession(),
       expo(),
       admin(),
       // Email OTP plugin for mobile verification

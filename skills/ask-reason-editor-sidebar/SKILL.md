@@ -76,6 +76,14 @@ The CRUD helpers are **localStorage-backed**, so
 they are per-browser and never reach a server; secrets entered in the file-source dialog
 live in the browser.
 
+**External documents.** A `Document` may carry `external: ExternalDocumentRef`
+(`sourceId`, `fileId`, `mimeType`, `view`, `extension`, `contentUrl`, `webViewLink`).
+Such a document is a read-only mirror of a file in a remote source. The tree takes its icon
+from `external.extension`, because Drive files often have no extension. `saveFileSources`
+dispatches `FILE_SOURCES_CHANGED_EVENT` on `window`, so the sidebar and `ReasonDocs` both
+pick up a source added in Settings without a reload. A `gdocs` source keeps its synced
+folders in `credentials.folders` (`{ id, name }[]`).
+
 **Open Tabs.** `OpenTabItem`/`OpenTabKind` cover both `"file"` and `"chat"` tabs, which
 is how a host merges its own non-document tabs (`extraTabs` on `ReasonDocs`) into the
 same panel.

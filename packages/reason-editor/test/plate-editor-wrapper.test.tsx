@@ -76,6 +76,36 @@ describe('PlateEditorWrapper', () => {
     expect(container.querySelectorAll('button').length).toBe(0);
   });
 
+  it('mounts a fresh editor with an empty history when the document changes', () => {
+    const editable = () => container.querySelector('[data-slate-editor="true"]')!;
+
+    mount({ content: '<p>First doc</p>', contentKey: 'doc-1' });
+    const first = editable();
+    expect(first.textContent).toContain('First doc');
+
+    mount({ content: '<p>Second doc</p>', contentKey: 'doc-2' });
+    const second = editable();
+
+    // A new editable, not the old one with its children swapped.
+    expect(second).not.toBe(first);
+    expect(second.textContent).toContain('Second doc');
+
+    // Undo on the new editor has nothing to bring the first document back from.
+    act(() => {
+      second.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, ctrlKey: true, key: 'z' }));
+    });
+    expect(editable().textContent).toContain('Second doc');
+    expect(editable().textContent).not.toContain('First doc');
+  });
+
+  it('keeps the same editor while the document stays the same', () => {
+    mount({ content: '<p>Same doc</p>', contentKey: 'doc-1' });
+    const first = container.querySelector('[data-slate-editor="true"]');
+
+    mount({ content: '<p>Same doc</p>', contentKey: 'doc-1', title: 'Renamed' });
+    expect(container.querySelector('[data-slate-editor="true"]')).toBe(first);
+  });
+
   it('resolves a heading key back to its element for scroll-to-heading', () => {
     const ref = { current: null } as React.RefObject<any>;
     act(() => {

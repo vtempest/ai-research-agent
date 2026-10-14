@@ -55,7 +55,7 @@ upstream LobeHub. Users can still add their own keys under Settings → Provider
 | --- | --- | --- |
 | HTTP shell | Next.js route handlers + middleware | One Hono app (`worker/app.ts`) mounting the same handlers: Better Auth, tRPC (lambda/tools/mobile/async), `/webapi/*`, `/api/v1` OpenAPI, agent/workflow/webhook Hono apps, `/f/:id`, SPA shells |
 | Database | Postgres via Neon serverless or `pg` | Same Postgres schema. `DATABASE_URL` by default (Neon serverless driver works natively on Workers); add a `HYPERDRIVE` binding to pool through Hyperdrive with `pg` instead |
-| Auth | Better Auth (Drizzle adapter) | Unchanged. Secondary storage uses the `KV` binding instead of Redis |
+| Auth | Better Auth (Drizzle adapter) | Secondary storage uses the `KV` binding instead of Redis. No sign-in is required: a visitor without a session gets a guest user + session on their first page view (see below) |
 | Email | nodemailer / Resend | New `cloudflare` provider on the `EMAIL` (Email Routing) binding; Resend still works |
 | Redis | ioredis | Not reachable from Workers → `DISABLE_REDIS=1`, in-memory fallbacks |
 | OIDC provider (CLI/desktop sign-in) | `oidc-provider` (Koa) | Not supported on workerd; `/oidc/*` answers 501. Browser sign-in is unaffected |
@@ -209,7 +209,7 @@ tables locally. The Worker needs `dist/client/_spa/index.html` to serve pages, s
 first. Postgres-backed routes need a reachable `DATABASE_URL` (set it in `wrangler.local.jsonc` vars).
 Verified locally: `/api/version`, `/api/health`, `/api/auth/get-session`, `/trpc/lambda/config.getGlobalConfig`,
 `/api/v1`, `/api/doc/documents` (D1), `/signin` renders the sign-in SPA in headless Chromium, and
-protected pages redirect to `/signin`.
+protected pages start a guest session instead of redirecting to `/signin`.
 
 ### Cloudflare Workers Builds
 
@@ -381,6 +381,12 @@ writes nothing — are checked without spending a Worker build.
   caches. Upstream's eager export fails any `next build` that runs without `KEY_VAULTS_SECRET`,
   while it is merely collecting a route's page data.
 - `src/libs/better-auth/utils/config.ts`: KV-backed `secondaryStorage` (`createKVSecondaryStorage`).
+- Guest sessions instead of a sign-in wall: `src/libs/better-auth/plugins/guest-session.ts` (a
+  server-only `signInGuest` endpoint that creates a `guest-…@guest.invalid` user and its session, no
+  schema change) and `src/libs/better-auth/guest.ts` (`startGuestSession`, skipped for crawlers).
+  The Worker's page gate (`resolvePageSession` in `worker/routes/spa.ts`) and the Next proxy attach
+  its cookie to the page response. Only if a guest cannot be created (e.g. `AUTH_ALLOWED_EMAILS` is
+  set) does the Worker fall back to its own `/signin` — never `APP_URL`'s.
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
 - `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
   plus its settings resolver and D1-backed user preferences. Upstream edits there and around it

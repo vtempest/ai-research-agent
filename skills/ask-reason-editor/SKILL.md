@@ -88,6 +88,18 @@ the Hocuspocus server inside the web app (`apps/qwksearch-web/collaboration/serv
 
 **i18n.** 21 locales in `src/locales/`. Add a key to `en.ts` first, then the others.
 
+**External storage sources.** Pass `fileSourceProvider` (a `FileSourceProvider`:
+`canList`, `listDocuments`, optional `loadDocumentContent`) to `ReasonDocs`. While the
+sidebar's active source is one the provider can list, the tree shows that source's
+documents instead of the local ones. They carry `external` (`view: 'editor' | 'pdf' |
+'image' | 'unsupported'`), are read-only (edits, moves and deletes are refused with a
+toast) and are never written to `REASON-documents`. Listings are cached under
+`localStorage["REASON-source-documents"]` without bodies; bodies load on first open.
+`pdf` and `image` documents open in the lazy `FileViewer`, which loads PDF.js 4.10.38
+from jsDelivr with a module `<script>` tag on first use. It does not use `import()`,
+because host bundlers rewrite that call in this package's minified `dist`. PDF.js is
+not a dependency.
+
 ## Troubleshooting
 
 | Symptom | Cause → fix |
@@ -102,4 +114,5 @@ the Hocuspocus server inside the web app (`apps/qwksearch-web/collaboration/serv
 | Sidebar sections are missing | `onGenerateTips` / `onGenerateTopics` / `onSearchTopic` / `onSignIn` are optional, and omitting one hides its section. |
 | Closing several tabs at once collapses to one | Implement `onExtraTabsClose` — the fallback issues repeated `onExtraTabClose` calls against pre-close state. |
 | KaTeX/Mermaid fail offline | `externalLibsMode: 'cdn'`. Switch to `'bundled'`. |
+| A PDF says "Could not load the PDF viewer" | jsDelivr is blocked (network or a `script-src` CSP). The host must allow `cdn.jsdelivr.net` for scripts and workers. |
 | Consumers get stale types | `bun run build` runs `vite build`; `build:lib` is the library target and `deploy` also builds the demo. |

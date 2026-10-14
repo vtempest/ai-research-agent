@@ -9,6 +9,8 @@ import RecentHistoryChips from './RecentHistoryChips';
 import Footer from '../Footer';
 import type { WeatherLocationInput } from 'use-weather-forecast';
 import { useChat } from '../../hooks/useChat';
+import { useOptionalExtractPanel } from '../ArticleReader/ExtractPanelContext';
+import ArticleReaderMount from '../ArticleReader/ArticleReaderMount';
 import {
   MAX_CACHED_BACKGROUNDS,
   cacheBackground,
@@ -139,6 +141,12 @@ function preloadBackground({ url, src }: Background): Promise<boolean> {
  */
 export default function ChatHomepage() {
   const { sendMessage } = useChat();
+  // A Learn playlist item opens in the article reader, which reads the page
+  // and writes questions about it, instead of leaving for the page itself.
+  const extractPanel = useOptionalExtractPanel();
+  const openPlaylistItem = extractPanel
+    ? (item: { url: string }) => extractPanel.openPanel(item.url, '', { suggestQuestions: true })
+    : undefined;
   const [background, setBackground] = useState<Background | null>(null);
   const [nextBackground, setNextBackground] = useState<Background | null>(null);
   const [fading, setFading] = useState(false);
@@ -456,6 +464,7 @@ export default function ChatHomepage() {
                       compact
                       planEndpoint={researchAgentUIConfig.educationPlaylistsApiUrl || undefined}
                       openHref={researchAgentUIConfig.educationPlaylistsPageUrl || undefined}
+                      onOpenItem={openPlaylistItem}
                       className="rounded-2xl w-full"
                       style={{
                         background: 'rgba(255,255,255,0.08)',
@@ -517,6 +526,8 @@ export default function ChatHomepage() {
           <DownloadsDialog open={downloadsOpen} onOpenChange={setDownloadsOpen} />
         </Suspense>
       )}
+
+      <ArticleReaderMount />
     </div>
   );
 }

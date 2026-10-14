@@ -15,11 +15,16 @@
  * import would put all of that in the shell's chunk; behind `lazy` it is
  * fetched the first time a document is actually opened, and only for the
  * engine in use.
+ *
+ * Documents from an external storage source (a synced Google Drive folder)
+ * carry `external`: a Google Doc opens in the same editor, read-only, once its
+ * body has been fetched; PDFs and images open in `./FileViewer`, which is
+ * lazy for the same reason the editors are.
  */
 import { forwardRef, lazy, Suspense } from 'react';
 import type { TocEntry, Document } from 'react-reason-editor-sidebar';
 import type { ReasonEditorHandle, ReasonEditorProps } from './editor-contract';
-import { FileText, X } from 'lucide-react';
+import { ExternalLink, FileText, X } from 'lucide-react';
 import { Button } from '../app-ui/button';
 import { SplitPane, Pane } from 'react-split-pane';
 
@@ -59,6 +64,8 @@ function lazyEditor(load: () => Promise<EditorComponent>): EditorComponent {
   return LazyEditor;
 }
 
+const FileViewer = lazy(() => import('./FileViewer'));
+
 const EDITORS: Record<ReasonEditorEngine, EditorComponent> = {
   plate: lazyEditor(() => import('./PlateEditorWrapper').then((mod) => mod.PlateEditorWrapper)),
   tiptap: lazyEditor(() => import('./TiptapEditorWrapper').then((mod) => mod.TiptapEditorWrapper)),
@@ -93,6 +100,31 @@ interface EditorAreaProps {
   onAiRegenerate?: (mode: any) => void;
   onInviteClick?: () => void;
   onShareClick?: () => void;
+  /** Why the active external document's body failed to load, if it did. */
+  externalContentError?: string;
+  /** Retries loading the active external document's body. */
+  onRetryExternalContent?: () => void;
+}
+
+/** Marks an external Google Doc as a read-only copy and links to the original. */
+function ExternalDocumentBanner({ document }: { document: Document }) {
+  const link = document.external?.webViewLink;
+  return (
+    <div className="flex items-center gap-2 px-4 py-1.5 border-b border-border bg-muted/40 text-xs text-muted-foreground shrink-0">
+      <span className="flex-1">Read-only copy from Google Drive. Changes here are not saved back.</span>
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 font-medium text-foreground hover:underline"
+        >
+          <ExternalLink className="h-3 w-3" />
+          Open in Google Docs
+        </a>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -120,6 +152,8 @@ export function EditorArea({
   onAiRegenerate,
   onInviteClick,
   onShareClick,
+  externalContentError,
+  onRetryExternalContent,
 }: EditorAreaProps) {
   const EditorWrapper = EDITORS[engine] ?? EDITORS.plate;
 
@@ -134,6 +168,56 @@ export function EditorArea({
           <p className="text-muted-foreground">
             {isMobile ? 'Tap the menu to select a note' : 'Select a note from the sidebar or create a new one'}
           </p>
+        </div>
+      </div>
+    );
+  }
+
+  const external = activeDocument.external;
+
+  if (external && external.view !== 'editor') {
+    return (
+      <Suspense fallback={<EditorLoading />}>
+        <FileViewer document={activeDocument} />
+      </Suspense>
+    );
+  }
+
+  if (external && !external.contentLoaded) {
+    return externalContentError ? (
+      <div className="flex h-full items-center justify-center bg-editor-bg p-6 text-center">
+        <div>
+          <p className="font-medium text-foreground">Couldn't open {activeDocument.title}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{externalContentError}</p>
+          {onRetryExternalContent && (
+            <Button variant="outline" size="sm" className="mt-3" onClick={onRetryExternalContent}>
+              Try again
+            </Button>
+          )}
+        </div>
+      </div>
+    ) : (
+      <EditorLoading />
+    );
+  }
+
+  if (external) {
+    return (
+      <div className="h-full flex flex-col">
+        <ExternalDocumentBanner document={activeDocument} />
+        <div className="flex-1 min-h-0">
+          <EditorWrapper
+            ref={editorRef}
+            contentKey={activeDocument.id}
+            content={activeDocument.content}
+            onChange={() => {}}
+            title={activeDocument.title}
+            onTitleChange={() => {}}
+            scrollToHeading={() => { }}
+            onHeadingsChange={onHeadingsChange}
+            readOnly
+            documentId={activeDocument.id}
+          />
         </div>
       </div>
     );

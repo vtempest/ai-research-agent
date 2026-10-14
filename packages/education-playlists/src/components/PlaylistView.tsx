@@ -58,6 +58,8 @@ export interface PlaylistViewProps {
   /** Saved to a server-side account, so invites reach the people invited. */
   inAccount?: boolean;
   quizGenerator?: QuizGenerator;
+  /** Called instead of following an item's link; see `EducationPlaylistsProps.onOpenItem`. */
+  onOpenItem?: (item: PlaylistItem) => void;
 }
 
 function ItemRow({
@@ -66,12 +68,14 @@ function ItemRow({
   onToggle,
   onRemove,
   quizGenerator,
+  onOpenItem,
 }: {
   item: PlaylistItem;
   checked: boolean;
   onToggle: () => void;
   onRemove?: () => void;
   quizGenerator?: QuizGenerator;
+  onOpenItem?: (item: PlaylistItem) => void;
 }) {
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [quizState, setQuizState] = useState<'idle' | 'loading' | 'error'>('idle');
@@ -86,6 +90,8 @@ function ItemRow({
     }
   };
 
+  const titleStyle = { ...s.link, textDecoration: checked ? 'line-through' : 'none', opacity: checked ? 0.6 : 1 };
+
   return (
     <li style={s.item}>
       <input
@@ -96,14 +102,27 @@ function ItemRow({
         style={{ marginTop: 3, cursor: 'pointer' }}
       />
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <a
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ ...s.link, textDecoration: checked ? 'line-through' : 'none', opacity: checked ? 0.6 : 1 }}
-        >
-          {item.title}
-        </a>
+        {onOpenItem ? (
+          // The host reads the page and asks about it; the page itself is
+          // still one click away on the arrow beside the title.
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, minWidth: 0 }}>
+            <button
+              type="button"
+              onClick={() => onOpenItem(item)}
+              title="Read this page and ask questions about it"
+              style={{ ...titleStyle, ...s.textButton }}
+            >
+              {item.title}
+            </button>
+            <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ ...s.link, ...s.muted }} aria-label={`Open "${item.title}" in a new tab`} title="Open the page">
+              ↗
+            </a>
+          </div>
+        ) : (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" style={titleStyle}>
+            {item.title}
+          </a>
+        )}
         <div style={{ ...s.row, ...s.muted }}>
           <span style={s.badge}>{KIND_LABEL[item.kind]}</span>
           <span title={item.estimateBasis}>
@@ -227,7 +246,7 @@ function SharingControls({ playlist, onChange, shareBaseHref, inAccount }: { pla
   );
 }
 
-export function PlaylistView({ playlist, done, onToggle, onChange, onSaveCopy, minutesPerWeek, shareBaseHref, canShare = true, inAccount = false, quizGenerator }: PlaylistViewProps) {
+export function PlaylistView({ playlist, done, onToggle, onChange, onSaveCopy, minutesPerWeek, shareBaseHref, canShare = true, inAccount = false, quizGenerator, onOpenItem }: PlaylistViewProps) {
   const time = playlistTime(playlist, done);
   const weeks = weeksToFinish(time.remainingMinutes, minutesPerWeek);
 
@@ -259,6 +278,7 @@ export function PlaylistView({ playlist, done, onToggle, onChange, onSaveCopy, m
               onToggle={() => onToggle(item.id)}
               onRemove={onChange ? () => onChange(removeItem(playlist, item.id)) : undefined}
               quizGenerator={quizGenerator}
+              onOpenItem={onOpenItem}
             />
           ))}
         </ul>

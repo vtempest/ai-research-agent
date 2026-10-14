@@ -19,6 +19,7 @@ import {
   addFileSource,
   updateFileSource,
   deleteFileSource,
+  setActiveFileSourceId,
   AnyFileSource,
   FileSourceType,
   SSHCredentials,
@@ -28,18 +29,20 @@ import {
   GoogleDocsCredentials,
   TursoDBCredentials,
 } from 'research-agent-ui/file-sources';
+import { sourceFolders } from 'research-agent-ui/google-drive';
+import GoogleDriveFolders from './GoogleDriveFolders';
 
 const SOURCE_TYPE_OPTIONS: { value: FileSourceType; label: string }[] = [
   { value: 'ssh', label: 'SSH' },
   { value: 's3', label: 'Amazon S3' },
   { value: 'r2', label: 'Cloudflare R2' },
   { value: 'b2', label: 'Backblaze B2' },
-  { value: 'gdocs', label: 'Google Docs' },
+  { value: 'gdocs', label: 'Google Drive (Docs, PDFs, images)' },
   { value: 'turso', label: 'Turso DB' },
 ];
 
 function sourceTypeLabel(type: FileSourceType) {
-  if (type === 'gdocs') return 'Google Docs';
+  if (type === 'gdocs') return 'Google Drive';
   if (type === 'turso') return 'Turso DB';
   if (type === 'b2') return 'Backblaze B2';
   return type.toUpperCase();
@@ -63,7 +66,7 @@ type SourceForm = {
 };
 
 const emptyForm = (type: FileSourceType = 'ssh'): SourceForm => ({
-  name: '',
+  name: type === 'gdocs' ? 'Google Drive' : '',
   type,
   credentials: type === 'gdocs' ? { isAuthenticated: false } : type === 'ssh' ? { port: 22 } : {},
 });
@@ -179,34 +182,11 @@ function B2Fields({ form, setForm }: { form: SourceForm; setForm: (f: SourceForm
 
 function GDocsFields({ form, setForm }: { form: SourceForm; setForm: (f: SourceForm) => void }) {
   const c = (form.credentials as GoogleDocsCredentials) || {};
-  const set = (patch: Partial<GoogleDocsCredentials>) =>
-    setForm({ ...form, credentials: { ...form.credentials, ...patch } });
   return (
-    <>
-      <Field label="Email">
-        <input className={inputCls} disabled value={c.email || ''} onChange={e => set({ email: e.target.value })} placeholder="user@gmail.com" />
-      </Field>
-      <Field label="Folder IDs (comma-separated)">
-        <textarea
-          className={inputCls}
-          rows={3}
-          value={c.folderIds?.join(', ') || ''}
-          onChange={e =>
-            set({ folderIds: e.target.value.split(',').map(id => id.trim()).filter(Boolean) })
-          }
-          placeholder="folder-id-1, folder-id-2"
-        />
-      </Field>
-      <div className="flex items-center justify-between rounded-lg border border-light-200 dark:border-dark-200 px-3 py-2">
-        <p className="text-sm text-black/70 dark:text-white/70">
-          {c.isAuthenticated ? 'Connected to Google' : 'Not authenticated'}
-        </p>
-        <button className="flex items-center gap-1.5 text-xs text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors">
-          <LogIn size={12} />
-          {c.isAuthenticated ? 'Reconnect' : 'Authenticate'}
-        </button>
-      </div>
-    </>
+    <GoogleDriveFolders
+      credentials={c}
+      onChange={patch => setForm({ ...form, credentials: { ...form.credentials, ...patch } })}
+    />
   );
 }
 
@@ -271,9 +251,19 @@ const FileSources = (_props: { fields?: any; values?: any }) => {
       toast.error('Please enter a source name');
       return;
     }
+    if (form.type === 'gdocs' && sourceFolders(form.credentials as GoogleDocsCredentials).length === 0) {
+      toast.error('Pick at least one Google Drive folder to sync');
+      return;
+    }
     if (editingId === 'new') {
-      addFileSource({ name: form.name, type: form.type, credentials: form.type !== 'local' ? form.credentials : undefined } as any);
-      toast.success('Source added');
+      const added = addFileSource({ name: form.name, type: form.type, credentials: form.type !== 'local' ? form.credentials : undefined } as any);
+      if (form.type === 'gdocs') {
+        // Show it straight away: the workspace file tree follows the active source.
+        setActiveFileSourceId(added.id);
+        toast.success(`${form.name} added. Its folders now show in the Files panel; switch back to Local Files from the storage menu there.`);
+      } else {
+        toast.success('Source added');
+      }
     } else if (editingId) {
       updateFileSource(editingId, { name: form.name, credentials: form.type !== 'local' ? form.credentials : undefined } as Partial<AnyFileSource>);
       toast.success('Source updated');
@@ -322,6 +312,11 @@ const FileSources = (_props: { fields?: any; values?: any }) => {
                 <span className="text-black/50 dark:text-white/50"><SourceIcon type={source.type} /></span>
                 <span className="text-sm font-medium text-black/80 dark:text-white/80 truncate">{source.name}</span>
                 <span className="text-[10px] rounded px-1.5 py-0.5 border border-light-200 dark:border-dark-200 text-black/50 dark:text-white/50 flex-shrink-0">{sourceTypeLabel(source.type)}</span>
+                {source.type === 'gdocs' && (
+                  <span className="text-xs text-black/50 dark:text-white/50 truncate">
+                    {sourceFolders(source.credentials as GoogleDocsCredentials).map(f => f.name).join(', ') || 'No folders'}
+                  </span>
+                )}
               </div>
               {source.id !== 'local-default' && (
                 <div className="flex gap-1 flex-shrink-0">
@@ -361,6 +356,16 @@ const FileSources = (_props: { fields?: any; values?: any }) => {
             <button onClick={cancelEdit} className={`${btnBase} border border-light-200 dark:border-dark-200 text-black/70 dark:text-white/70 hover:bg-light-200 dark:hover:bg-dark-200`}>Cancel</button>
           </div>
         </div>
+      )}
+
+      {editingId !== 'new' && (
+        <button
+          onClick={() => { setEditingId('new'); setForm(emptyForm('gdocs')); }}
+          className={`${btnBase} w-full justify-center bg-blue-500 text-white hover:bg-blue-600 py-2.5`}
+        >
+          <FileText size={13} />
+          Add Google Drive folders
+        </button>
       )}
 
       {editingId !== 'new' && (

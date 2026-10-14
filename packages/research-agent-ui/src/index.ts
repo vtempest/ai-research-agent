@@ -96,7 +96,10 @@ export type {
 export {
   ExtractPanelProvider,
   useExtractPanel,
+  useOptionalExtractPanel,
 } from './components/ArticleReader/ExtractPanelContext';
+export type { OpenPanelOptions } from './components/ArticleReader/ExtractPanelContext';
+export { default as ArticleReaderMount } from './components/ArticleReader/ArticleReaderMount';
 export * from './components/ArticleReader';
 
 // ============ Chat History ============

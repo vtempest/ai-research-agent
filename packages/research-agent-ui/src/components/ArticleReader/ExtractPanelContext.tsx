@@ -5,16 +5,27 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+/** How the reader should behave once the page is read. */
+export interface OpenPanelOptions {
+  /**
+   * Write questions about the page as soon as its text is in, when it has
+   * none cached — so opening it lands on something to ask, not a blank prompt.
+   */
+  suggestQuestions?: boolean;
+}
+
 interface ExtractPanelContextType {
   isOpen: boolean;
   url: string;
   searchText: string;
+  /** Set by the last `openPanel` call; see {@link OpenPanelOptions.suggestQuestions}. */
+  suggestQuestions: boolean;
   panelWidth: number;
   setIsOpen: (isOpen: boolean) => void;
   setUrl: (url: string) => void;
   setSearchText: (searchText: string) => void;
   setPanelWidth: (width: number) => void;
-  openPanel: (url: string, searchText?: string) => void;
+  openPanel: (url: string, searchText?: string, options?: OpenPanelOptions) => void;
   closePanel: () => void;
 }
 
@@ -32,15 +43,23 @@ export const useExtractPanel = () => {
   return context;
 };
 
+/**
+ * Like {@link useExtractPanel}, but `undefined` outside an
+ * `ExtractPanelProvider` instead of throwing — for components (the homepage
+ * widgets) that offer the reader when a host provides one and work without it.
+ */
+export const useOptionalExtractPanel = () => useContext(ExtractPanelContext);
+
 export const ExtractPanelProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [url, setUrl] = useState('');
   const [searchText, setSearchText] = useState('');
+  const [suggestQuestions, setSuggestQuestions] = useState(false);
   const [panelWidth, setPanelWidth] = useState(600);
 
-  const openPanel = (url: string, searchText: string = '') => {
+  const openPanel = (url: string, searchText: string = '', options: OpenPanelOptions = {}) => {
     console.log('[ExtractPanelContext] openPanel called with URL:', url);
 
     // Validate URL before opening
@@ -55,6 +74,7 @@ export const ExtractPanelProvider: React.FC<{ children: ReactNode }> = ({
 
     setUrl(url);
     setSearchText(searchText);
+    setSuggestQuestions(Boolean(options.suggestQuestions));
     setIsOpen(true);
 
     // Update URL parameter
@@ -86,6 +106,7 @@ export const ExtractPanelProvider: React.FC<{ children: ReactNode }> = ({
         isOpen,
         url,
         searchText,
+        suggestQuestions,
         panelWidth,
         setIsOpen,
         setUrl,

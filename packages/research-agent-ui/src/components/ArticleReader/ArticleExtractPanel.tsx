@@ -38,6 +38,7 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
     isOpen: contextIsOpen,
     url: contextUrl,
     searchText: contextSearchText,
+    suggestQuestions,
     panelWidth: contextPanelWidth,
     setPanelWidth: contextSetPanelWidth,
     closePanel,
@@ -202,6 +203,9 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
                 setExtractedArticle(fallbackArticle);
                 if (fallbackArticle.followUpQuestions?.length > 0) {
                   setFollowupQuestions(fallbackArticle.followUpQuestions);
+                } else if (suggestQuestions) {
+                  setFollowupQuestions([]);
+                  callLanguageAPI('suggest-followups', { source: fallbackArticle });
                 }
               }
               resolve();
@@ -214,6 +218,12 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
         setExtractedArticle(article);
         if (article?.followUpQuestions && article.followUpQuestions.length > 0) {
           setFollowupQuestions(article.followUpQuestions);
+        } else if (suggestQuestions && article) {
+          // Opened to ask about the page (e.g. from a Learn playlist): write
+          // questions now rather than waiting for a click on Suggest. Not
+          // awaited, so the page shows while they are written.
+          setFollowupQuestions([]);
+          callLanguageAPI('suggest-followups', { source: article });
         }
       }
 
@@ -297,12 +307,21 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
     return chatModelProvider;
   };
 
-  const callLanguageAPI = async (agent: 'question' | 'suggest-followups') => {
-    if (!extractedArticle) return;
+  /**
+   * `source` defaults to the article on screen and `question` to the prompt
+   * box. Callers that have just set either pass it here, because state has
+   * not caught up with it yet: extraction passes the article it fetched, and
+   * a click on a suggested question passes that question.
+   */
+  const callLanguageAPI = async (
+    agent: 'question' | 'suggest-followups',
+    { source = extractedArticle, question = userPrompt }: { source?: Article | null; question?: string } = {},
+  ) => {
+    if (!source) return;
 
     const chatModel = resolveChatModel();
 
-    const article = extractedArticle.html
+    const article = source.html
       ?.replace(/<[^>]*>?/g, '')
       .slice(0, researchAgentUIConfig.maxArticleLength);
 
@@ -316,7 +335,7 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
     try {
       if (isQuestion) {
         // Use the new article-qa endpoint for questions
-        const queryText = [searchText, userPrompt].filter(Boolean).join('\n');
+        const queryText = [searchText, question].filter(Boolean).join('\n');
 
         if (!article || article.length === 0) {
           throw new Error('Article content is empty');
@@ -341,12 +360,12 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
         setAiResponse(aiAnswer);
         setChatHistory((prev) => [
           ...prev,
-          { role: 'user', content: userPrompt, time: new Date().toISOString() },
+          { role: 'user', content: question, time: new Date().toISOString() },
           { role: 'assistant', content: aiAnswer, time: new Date().toISOString() },
         ]);
 
         try {
-          await updateArticle({ body: { url, question: userPrompt, answer: aiAnswer } });
+          await updateArticle({ body: { url, question, answer: aiAnswer } });
         } catch (error) {
           console.error('Error storing Q&A in cache:', error);
         }
@@ -398,7 +417,7 @@ const ArticleExtractPanel: React.FC<ArticleExtractPanelProps> = (props) => {
 
   const handleQuestionClick = (question: string) => {
     setUserPrompt(question);
-    callLanguageAPI('question');
+    callLanguageAPI('question', { question });
   };
 
   const handleCopyHTMLToClipboard = async () => {

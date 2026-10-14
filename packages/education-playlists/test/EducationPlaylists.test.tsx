@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { EducationPlaylists } from '../src/components/EducationPlaylists';
 import { encodeShareFragment } from '../src/lib/sharing';
@@ -26,6 +26,27 @@ describe('EducationPlaylists', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Calculus' }));
     expect(screen.getByRole('button', { name: /The Calculus Sequence/ })).toBeTruthy();
     expect(screen.queryByRole('button', { name: /CS Foundations/ })).toBeNull();
+  });
+
+  it('links items to their pages when the host does not handle them', () => {
+    render(<EducationPlaylists />);
+    fireEvent.click(screen.getByRole('button', { name: /CS Foundations/ }));
+    const link = screen.getByRole('link', { name: /6\.0001.*lecture videos/ });
+    expect(link.getAttribute('target')).toBe('_blank');
+  });
+
+  it('hands a clicked item to onOpenItem instead of opening its page', () => {
+    const onOpenItem = vi.fn();
+    render(<EducationPlaylists onOpenItem={onOpenItem} />);
+    fireEvent.click(screen.getByRole('button', { name: /CS Foundations/ }));
+    fireEvent.click(screen.getByRole('button', { name: /^6\.0001.*lecture videos/ }));
+    expect(onOpenItem).toHaveBeenCalledTimes(1);
+    expect(onOpenItem.mock.calls[0][0]).toMatchObject({
+      id: '6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016#videos',
+      url: expect.stringMatching(/^https:\/\//),
+    });
+    // The page itself is still one click away.
+    expect(screen.getByRole('link', { name: /Open "6\.0001.*lecture videos" in a new tab/ }).getAttribute('target')).toBe('_blank');
   });
 
   it('checks items off and remembers them', () => {

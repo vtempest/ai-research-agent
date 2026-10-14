@@ -12,7 +12,11 @@ const cookieStore = {
 vi.mock('next/headers', () => ({ cookies: vi.fn(async () => cookieStore) }))
 vi.mock('@/lib/config/env', () => ({ getEnv: vi.fn() }))
 vi.mock('@/lib/integrations/googleDocsService', () => ({
-  GoogleDocsService: { getAuthUrl: vi.fn() },
+  GoogleDocsService: {
+    getAuthUrl: vi.fn(),
+    AUTH_SCOPES: ['drive.file'],
+    FOLDER_SYNC_SCOPES: ['drive.file', 'drive.readonly'],
+  },
 }))
 vi.mock('@/lib/integrations/googleTokenRefresh', () => ({
   refreshGoogleAccessToken: vi.fn(),
@@ -73,12 +77,21 @@ describe('GET /api/doc/google-docs/auth', () => {
     expect(data.data.authUrl).toContain('accounts.google.com')
   })
 
-  it('falls back to the hosted redirect URI', async () => {
+  it("falls back to this deployment's own callback route", async () => {
     await AUTH_URL(bareRequest())
 
     expect(mockGetAuthUrl).toHaveBeenCalledWith(
-      expect.objectContaining({ redirectUri: 'https://qwksearch.com/api/google-docs/callback' }),
+      expect.objectContaining({ redirectUri: 'http://localhost/api/doc/google-docs/callback' }),
+      expect.anything(),
     )
+  })
+
+  it('asks for the per-file scope by default and folder access on request', async () => {
+    await AUTH_URL(bareRequest())
+    expect(mockGetAuthUrl.mock.calls[0][1]).toBe(GoogleDocsService.AUTH_SCOPES)
+
+    await AUTH_URL(new Request('http://localhost/api/doc/google-docs/auth?access=folders') as any)
+    expect(mockGetAuthUrl.mock.calls[1][1]).toBe(GoogleDocsService.FOLDER_SYNC_SCOPES)
   })
 
   it('honours a configured redirect URI', async () => {
@@ -95,6 +108,7 @@ describe('GET /api/doc/google-docs/auth', () => {
 
     expect(mockGetAuthUrl).toHaveBeenCalledWith(
       expect.objectContaining({ redirectUri: 'https://self.test/cb' }),
+      expect.anything(),
     )
   })
 
@@ -128,7 +142,19 @@ describe('GET /api/doc/google-docs/auth/status', () => {
       isConnected: false,
       hasAccessToken: false,
       hasRefreshToken: false,
+      canReadFolders: false,
     })
+  })
+
+  it('reports folder access only when the grant includes drive.readonly', async () => {
+    withCookies({ google_access_token: 'at', google_drive_scope: 'https://www.googleapis.com/auth/drive.file' })
+    expect((await (await AUTH_STATUS(bareRequest())).json()).canReadFolders).toBe(false)
+
+    withCookies({
+      google_access_token: 'at',
+      google_drive_scope: 'openid https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/drive.file',
+    })
+    expect((await (await AUTH_STATUS(bareRequest())).json()).canReadFolders).toBe(true)
   })
 
   it('reports a connected account holding both tokens', async () => {

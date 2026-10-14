@@ -72,6 +72,12 @@ export interface GoogleDocsCredentials {
   /** Connected Google account email. */
   email?: string;
   folderIds?: string[]; // Array of Google Drive folder IDs to sync
+  /**
+   * The synced folders with their display names, in the order they were
+   * added. `id` is a Drive folder ID, or `root` for all of My Drive.
+   * `folderIds` mirrors the IDs for older readers.
+   */
+  folders?: Array<{ id: string; name: string }>;
   /** Indicates whether the Google connection is active. */
   isAuthenticated: boolean;
 }

@@ -10,7 +10,7 @@ import type { OutlineViewHandle } from './search/OutlineView';
 import type { AnyFileSource } from './app-types/fileSource';
 import type { SidebarProps } from './layout/sidebar/types';
 import { Sheet, SheetContent } from './app-ui/sheet';
-import { getFileSources } from './app-utils/file-sources/sources';
+import { getFileSources, FILE_SOURCES_CHANGED_EVENT } from './app-utils/file-sources/sources';
 import { FileManagerModal } from './dialogs/FileManagerModal';
 import { cn } from './app-utils/utils';
 import { SidebarToolbar } from './SidebarToolbar';
@@ -87,8 +87,22 @@ export const Sidebar = ({
   // Ref for outline view
   const outlineRef = useRef<OutlineViewHandle>(null);
 
-  // File sources - memoize to prevent infinite loops
-  const [sources] = useState<AnyFileSource[]>(() => getFileSources());
+  // File sources - memoize to prevent infinite loops. Re-read only when the
+  // saved list actually changes: in this tab (a source added in settings) or
+  // in another one (the `storage` event).
+  const [sources, setSources] = useState<AnyFileSource[]>(() => getFileSources());
+  useEffect(() => {
+    const reload = () => setSources(getFileSources());
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === 'REASON-file-sources') reload();
+    };
+    window.addEventListener(FILE_SOURCES_CHANGED_EVENT, reload);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener(FILE_SOURCES_CHANGED_EVENT, reload);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, []);
   const [activeSource, setActiveSource] = useState<AnyFileSource | null>(() => {
     const loadedSources = getFileSources();
     return loadedSources.find((s) => s.id === activeFileSourceId) || loadedSources[0] || null;
