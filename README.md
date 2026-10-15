@@ -36,10 +36,6 @@
 </p>
 <!-- template-git-repo:badges:end -->
 
-<p align="center">
-    <img src="https://i.imgur.com/ZMY9Xy7.png" width="800px" />
-</p>
-
 ## 🧠💻 Reimagine the Internet as Self-Organizing Mind Map
 
 <p align="center">
