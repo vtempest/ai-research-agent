@@ -4,11 +4,8 @@ import { NextResponse } from 'next/server';
 import { UAParser } from 'ua-parser-js';
 import urlJoin from 'url-join';
 
-import { auth } from '@/auth';
 import { LOBE_LOCALE_COOKIE } from '@/const/locale';
 import { appEnv } from '@/envs/app';
-import { authEnv } from '@/envs/auth';
-import { isLikelyBot, startGuestSession } from '@/libs/better-auth/guest';
 import { type Locales } from '@/locales/resources';
 import { parseBrowserLanguage } from '@/utils/locale';
 import { DEFAULT_LANG, locales, RouteVariants } from '@/utils/server/routeVariants';
@@ -20,7 +17,6 @@ import { createRouteMatcher } from './createRouteMatcher';
 
 // Create debug logger instances
 const logDefault = debug('middleware:default');
-const logBetterAuth = debug('middleware:better-auth');
 
 // Dev-only debug proxy route should bypass all middleware rewrites.
 const dangerousLocalDevProxyRoute = '/_dangerous_local_dev_proxy';
@@ -223,24 +219,6 @@ export function defineConfig() {
     // after Composio-managed auth; only renders a popup-closing page, so it must
     // not be session-gated.
     '/api/composio/oauth/callback',
-    // better auth
-    '/signin',
-    '/signup',
-    '/auth-error',
-    '/verify-email',
-    '/reset-password',
-    // oauth
-    // Make only the consent view public (GET page), not other oauth paths
-    '/oauth/consent/(.*)',
-    // Custom connector OAuth callback — hit via a cross-site redirect from the
-    // provider, carries its own code+state, so it must not be session-gated.
-    '/oauth/connector/callback',
-    '/oidc/handoff',
-    '/oidc/device/auth',
-    '/oidc/token',
-    // Interaction details for the consent/login page — must be reachable
-    // before the user has a session, so it cannot be session-gated.
-    '/oidc/interaction/(.*)',
     // market
     '/market-auth-callback',
     // public share pages
@@ -258,68 +236,5 @@ export function defineConfig() {
     '/verify-im',
   ]);
 
-  const betterAuthMiddleware = async (req: NextRequest) => {
-    logBetterAuth('BetterAuth middleware processing request: %s %s', req.method, req.url);
-
-    const response = defaultMiddleware(req);
-
-    // when enable auth protection, only public route is not protected, others are all protected
-    const isProtected = !isPublicRoute(req);
-
-    logBetterAuth('Route protection status: %s, %s', req.url, isProtected ? 'protected' : 'public');
-
-    // Skip session lookup for public routes to reduce latency
-    if (!isProtected) return response;
-
-    // Get full session with user data (Next.js 15.2.0+ feature)
-    const session = await auth.api.getSession({
-      headers: req.headers,
-    });
-
-    const isLoggedIn = !!session?.user;
-
-    logBetterAuth('BetterAuth session status: %O', {
-      isLoggedIn,
-      userId: session?.user?.id,
-    });
-
-    if (!isLoggedIn) {
-      // Nobody is sent to sign in: give the visitor a guest session instead.
-      // Crawlers get the page without one; only when a guest cannot be created
-      // (e.g. AUTH_ALLOWED_EMAILS with the demo account off) fall back to sign-in.
-      if (isLikelyBot(req.headers.get('user-agent'))) return response;
-
-      const guestCookies = await startGuestSession(req.headers);
-      if (guestCookies) {
-        logBetterAuth('Started a guest session for a protected route');
-        for (const cookie of guestCookies) response.headers.append('set-cookie', cookie);
-        return response;
-      }
-
-      logBetterAuth('Request a protected route, redirecting to sign-in page');
-
-      const callbackUrl = `${appEnv.APP_URL}${req.nextUrl.pathname}${req.nextUrl.search}`;
-      const signInUrl = new URL('/signin', appEnv.APP_URL);
-      signInUrl.searchParams.set('callbackUrl', callbackUrl);
-      const hl = req.nextUrl.searchParams.get('hl');
-      if (hl) {
-        signInUrl.searchParams.set('hl', hl);
-        logBetterAuth('Preserving locale to sign-in: hl=%s', hl);
-      }
-      // Preserve marketing attribution (e.g. sign-ups originating from Market)
-      // so it survives the auth detour and reaches the sign-up page.
-      const utmSource = req.nextUrl.searchParams.get('utm_source');
-      if (utmSource) {
-        signInUrl.searchParams.set('utm_source', utmSource);
-        logBetterAuth('Preserving utm_source to sign-in: %s', utmSource);
-      }
-      return Response.redirect(signInUrl);
-    }
-
-    return response;
-  };
-
-  logDefault('Middleware configuration: %O', { enableOIDC: authEnv.ENABLE_OIDC });
-
-  return { middleware: betterAuthMiddleware };
+  return { middleware: defaultMiddleware };
 }
