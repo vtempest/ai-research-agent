@@ -92,17 +92,12 @@ export const clearUserExtractionOverrides = async (userId: string): Promise<void
 };
 
 /**
- * The overrides that apply to a request, or `{}` for an anonymous one.
- *
- * `/api/doc/article` serves signed-out callers too, so this resolves rather than
- * rejects: no cookie means no session lookup at all, which keeps the anonymous
- * path free of the auth round-trip it would otherwise pay on every extraction.
+ * The overrides that apply to a request, or `{}` when the local user cannot be
+ * resolved. There is no sign-in, so every request runs as the one local user.
  */
 export const userExtractionOverridesForRequest = async (
   headers: Headers,
 ): Promise<UserExtractionOverrides> => {
-  if (!headers.get('cookie')) return {};
-
   const userId = await getUserId(headers);
   return userId ? loadUserExtractionOverrides(userId) : {};
 };

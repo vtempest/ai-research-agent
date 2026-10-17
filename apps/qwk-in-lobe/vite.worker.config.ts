@@ -96,7 +96,6 @@ const unsupportedModules: Record<string, string> = {
   // every page with it. It used to be stubbed because LobeHub only reached it
   // from the dev-server template rewriter.
   'nodemailer': shim('nodemailer'),
-  'oidc-provider': shim('oidc-provider'),
   // `sharp` is aliased but NOT stubbed out: the shim forwards to
   // `@lobechat/image-photon`, a WASM codec that runs on workerd. The alias is
   // only here for third-party dependencies that still import `sharp` by name;
@@ -245,7 +244,7 @@ const workerRequireShimPlugin: Plugin = {
  */
 const requireForConfig = createRequire(path.resolve(root, 'package.json'));
 const findTslibEsm = (): string | null => {
-  const fs = require('fs');
+  const fs = require('node:fs');
   const candidates: string[] = [];
 
   // 1. Whatever the configured package manager's resolver sees.

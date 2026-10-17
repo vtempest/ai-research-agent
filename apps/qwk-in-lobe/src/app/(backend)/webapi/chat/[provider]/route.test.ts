@@ -4,26 +4,17 @@ import { ModelRuntime } from '@lobechat/model-runtime';
 import { ChatErrorType } from '@lobechat/types';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { auth } from '@/auth';
 import { initModelRuntimeFromDB } from '@/server/modules/ModelRuntime';
 
 import { POST } from './route';
 
-vi.mock('@/app/(backend)/middleware/auth/utils', () => ({
-  checkAuthMethod: vi.fn(),
+vi.mock('@/server/modules/LocalUser', () => ({
+  getLocalUserId: vi.fn().mockResolvedValue('test-user-id'),
 }));
 
 vi.mock('@/server/modules/ModelRuntime', () => ({
   initModelRuntimeFromDB: vi.fn(),
   createTraceOptions: vi.fn().mockReturnValue({}),
-}));
-
-vi.mock('@/auth', () => ({
-  auth: {
-    api: {
-      getSession: vi.fn().mockResolvedValue(null),
-    },
-  },
 }));
 
 // 模拟请求和响应
@@ -32,12 +23,6 @@ beforeEach(() => {
   request = new Request(new URL('https://test.com'), {
     method: 'POST',
     body: JSON.stringify({ model: 'test-model' }),
-  });
-
-  // Default: valid session
-  vi.mocked(auth.api.getSession).mockResolvedValue({
-    session: {} as any,
-    user: { id: 'test-user-id' } as any,
   });
 });
 
@@ -68,16 +53,6 @@ describe('POST handler', () => {
         'test-provider',
         undefined,
       );
-    });
-
-    it('should return Unauthorized error when no session exists', async () => {
-      vi.mocked(auth.api.getSession).mockResolvedValue(null);
-
-      const mockParams = Promise.resolve({ provider: 'test-provider' });
-
-      const response = await POST(request, { params: mockParams });
-
-      expect(response.status).toBe(401);
     });
   });
 

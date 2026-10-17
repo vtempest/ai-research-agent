@@ -16,8 +16,6 @@ dotenvExpand.expand(dotenv.config());
 const isDesktop = process.env.NEXT_PUBLIC_IS_DESKTOP_APP === '1';
 const isServerDB = !!process.env.DATABASE_URL;
 
-const AUTH_SECRET_DOC_URL =
-  'https://lobehub.com/docs/self-hosting/environment-variables/auth#auth-secret';
 const KEY_VAULTS_SECRET_DOC_URL =
   'https://lobehub.com/docs/self-hosting/environment-variables/basic#key-vaults-secret';
 
@@ -25,10 +23,6 @@ function checkRequiredEnvVars(): void {
   if (isDesktop || !isServerDB) return;
 
   const missingVars: { docUrl: string; name: string }[] = [];
-
-  if (!process.env.AUTH_SECRET) {
-    missingVars.push({ docUrl: AUTH_SECRET_DOC_URL, name: 'AUTH_SECRET' });
-  }
 
   if (!process.env.KEY_VAULTS_SECRET) {
     missingVars.push({ docUrl: KEY_VAULTS_SECRET_DOC_URL, name: 'KEY_VAULTS_SECRET' });
@@ -44,9 +38,6 @@ function checkRequiredEnvVars(): void {
       console.error(`    📖 Documentation: ${docUrl}\n`);
     }
     console.error('Please configure these environment variables and redeploy.');
-    console.error(
-      '\n💡 TIP: If you previously used NEXT_AUTH_SECRET, simply rename it to AUTH_SECRET.',
-    );
     console.error('═'.repeat(70) + '\n');
     process.exit(1);
   }
@@ -75,46 +66,13 @@ function printEnvInfo(): void {
   const pnpmVersion = getCommandVersion('pnpm');
   if (pnpmVersion) console.log(`  pnpm: ${pnpmVersion}`);
 
-  console.log('\n  Auth Environment Variables:');
+  console.log('\n  App URL Environment Variables:');
   console.log(`    APP_URL: ${process.env.APP_URL ?? '(not set)'}`);
   console.log(`    VERCEL_URL: ${process.env.VERCEL_URL ?? '(not set)'}`);
   console.log(`    VERCEL_BRANCH_URL: ${process.env.VERCEL_BRANCH_URL ?? '(not set)'}`);
   console.log(
     `    VERCEL_PROJECT_PRODUCTION_URL: ${process.env.VERCEL_PROJECT_PRODUCTION_URL ?? '(not set)'}`,
   );
-  console.log(`    AUTH_EMAIL_VERIFICATION: ${process.env.AUTH_EMAIL_VERIFICATION ?? '(not set)'}`);
-  console.log(`    AUTH_ENABLE_MAGIC_LINK: ${process.env.AUTH_ENABLE_MAGIC_LINK ?? '(not set)'}`);
-
-  const ssoProviders = process.env.AUTH_SSO_PROVIDERS;
-  console.log(`    AUTH_SSO_PROVIDERS: ${ssoProviders ?? '(not set)'}`);
-
-  if (ssoProviders) {
-    const getEnvPrefix = (provider: string) =>
-      `AUTH_${provider.toUpperCase().replaceAll('-', '_')}`;
-
-    const providers = ssoProviders
-      .split(/[,，]/)
-      .map((p) => p.trim())
-      .filter(Boolean);
-    const missingProviders: string[] = [];
-
-    for (const provider of providers) {
-      const envPrefix = getEnvPrefix(provider);
-      const hasEnvVar = Object.keys(process.env).some((key) => key.startsWith(envPrefix));
-      if (!hasEnvVar) {
-        missingProviders.push(provider);
-      }
-    }
-
-    if (missingProviders.length > 0) {
-      console.log('\n  ⚠️  SSO Provider Configuration Warning:');
-      for (const provider of missingProviders) {
-        console.log(
-          `    - "${provider}" is configured but no ${getEnvPrefix(provider)}_* env vars found`,
-        );
-      }
-    }
-  }
 
   console.log('─'.repeat(50));
 }

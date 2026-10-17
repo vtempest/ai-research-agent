@@ -6,12 +6,13 @@ import { RbacModel } from '@/database/models/rbac';
 import { hasActiveWorkspaceMembership } from '@/database/models/workspace';
 import { agentOperations } from '@/database/schemas';
 import type { LobeChatDatabase } from '@/database/type';
-import { assertOIDCUserActive } from '@/libs/oidc-provider/access-control';
 import type {
   HeteroOperationCapability,
   HeteroOperationJwtClaims,
 } from '@/libs/trpc/utils/internalJwt';
 import { getScopePermissions } from '@/utils/rbac';
+
+import { assertUserActive } from './userActive';
 
 export class HeteroOperationPrincipalError extends Error {
   constructor(
@@ -42,7 +43,7 @@ export const resolveActiveHeteroOperationPrincipal = async (params: {
     throw new HeteroOperationPrincipalError('Operation token does not grant this request', 403);
   }
 
-  await assertOIDCUserActive(db, claims.sub).catch(() => {
+  await assertUserActive(db, claims.sub).catch(() => {
     throw new HeteroOperationPrincipalError('Operation user is no longer active', 401);
   });
 

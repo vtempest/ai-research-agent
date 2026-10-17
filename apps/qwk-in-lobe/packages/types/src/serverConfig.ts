@@ -95,32 +95,23 @@ export interface GlobalServerConfig {
   agentGatewayUrl?: string;
   aiProvider: ServerLanguageModel;
   defaultAgent?: PartialDeep<UserDefaultAgent>;
-  disableEmailPassword?: boolean;
   enableBusinessFeatures?: boolean;
   enableComposio?: boolean;
-  /**
-   * Show "Continue with demo account" on the sign-in and sign-up pages, which
-   * starts a guest session instead of creating an account.
-   */
-  enableDemoAccount?: boolean;
   /**
    * @deprecated
    */
   enabledOAuthSSO?: boolean;
-  enableEmailVerification?: boolean;
   /**
    * Whether Gateway mode is available for app-level agent execution.
    */
   enableGatewayMode?: boolean;
   enableLobehubSkill?: boolean;
-  enableMagicLink?: boolean;
   enableMarketTrustedClient?: boolean;
   enableMultimodalUnderstanding?: boolean;
   enableUploadFileToServer?: boolean;
   image?: PartialDeep<UserImageConfig>;
   memory?: GlobalMemoryConfig;
   multimodalUnderstanding?: MultimodalUnderstandingConfig;
-  oAuthSSOProviders?: string[];
   systemAgent?: PartialDeep<UserServiceModelConfig>;
   telemetry: {
     langfuse?: boolean;

@@ -1,41 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { extractBearerToken, getUserAuth } from '../auth';
-
-vi.mock('next/headers', () => ({
-  headers: vi.fn(() => new Headers()),
-}));
-
-vi.mock('@/auth', () => ({
-  auth: {
-    api: {
-      getSession: vi.fn().mockResolvedValue({
-        user: {
-          id: 'better-auth-user-id',
-        },
-      }),
-    },
-  },
-}));
-
-describe('getUserAuth', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('should return better auth session', async () => {
-    const auth = await getUserAuth();
-
-    expect(auth).toEqual({
-      betterAuth: {
-        user: {
-          id: 'better-auth-user-id',
-        },
-      },
-      userId: 'better-auth-user-id',
-    });
-  });
-});
+import { extractBearerToken } from '../auth';
 
 describe('extractBearerToken', () => {
   it('should return the token when authHeader is valid', () => {

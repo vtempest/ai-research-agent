@@ -11,12 +11,10 @@ import {
 } from './items';
 
 const webContext: SettingsSearchContext = {
-  disableEmailPassword: false,
   enableBusinessFeatures: true,
   enableComposio: true,
   enableGatewayMode: true,
   enableSTT: true,
-  hasEmail: true,
   hideDocs: false,
   isDesktop: false,
   isLogin: true,

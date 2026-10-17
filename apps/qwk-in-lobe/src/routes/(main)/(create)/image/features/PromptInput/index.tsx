@@ -8,7 +8,6 @@ import { Images } from 'lucide-react';
 import { memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { loginRequired } from '@/components/Error/loginRequiredNotification';
 import Action from '@/features/ChatInput/ActionBar/components/Action';
 import ModelSwitchPanel from '@/features/ModelSwitchPanel';
 import PromptTransformAction from '@/features/PromptTransform/PromptTransformAction';
@@ -192,10 +191,8 @@ const PromptInput = ({ showTitle = false }: PromptInputProps) => {
   const handleGenerate = async () => {
     if (!canCreate) return;
 
-    if (!isLogin) {
-      loginRequired.redirect();
-      return;
-    }
+    // Wait for the local user's session before generating.
+    if (!isLogin) return;
 
     await createImage();
   };

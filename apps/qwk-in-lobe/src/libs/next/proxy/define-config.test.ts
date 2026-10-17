@@ -2,13 +2,9 @@
  * @vitest-environment node
  */
 import { NextRequest } from 'next/server';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { defineConfig } from './define-config';
-
-vi.mock('@/auth', () => ({
-  auth: { api: { getSession: vi.fn().mockResolvedValue({ user: { id: 'user-1' } }) } },
-}));
 
 const { middleware } = defineConfig();
 
@@ -23,26 +19,26 @@ const MOBILE_USER_AGENT =
   'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148 Safari/604.1';
 
 describe('defineConfig locale path-traversal hardening', () => {
-  it('rewrites a normal locale into /spa-auth/<locale>', async () => {
-    const rewrite = await run('http://localhost:3010/signin?hl=ja-JP');
-    expect(new URL(rewrite!).pathname).toBe('/spa-auth/ja-JP/signin');
+  it('rewrites a normal locale into /spa-share/<locale>', async () => {
+    const rewrite = await run('http://localhost:3010/share/t/topic-1?hl=ja-JP');
+    expect(new URL(rewrite!).pathname).toBe('/spa-share/ja-JP/share/t/topic-1');
   });
 
   it('falls back to en-US for a traversal locale (plain)', async () => {
-    const rewrite = await run('http://localhost:3010/signin?hl=../../api/dev/x');
+    const rewrite = await run('http://localhost:3010/share/t/topic-1?hl=../../api/dev/x');
     const { pathname } = new URL(rewrite!);
-    expect(pathname.startsWith('/spa-auth/')).toBe(true);
-    expect(pathname).toBe('/spa-auth/en-US/signin');
+    expect(pathname.startsWith('/spa-share/')).toBe(true);
+    expect(pathname).toBe('/spa-share/en-US/share/t/topic-1');
   });
 
   it('falls back to en-US for a traversal locale (percent-encoded)', async () => {
-    const rewrite = await run('http://localhost:3010/signin?hl=..%2F..%2Fapi%2Fdev%2Fx');
+    const rewrite = await run('http://localhost:3010/share/t/topic-1?hl=..%2F..%2Fapi%2Fdev%2Fx');
     const { pathname } = new URL(rewrite!);
-    expect(pathname.startsWith('/spa-auth/')).toBe(true);
-    expect(pathname).toBe('/spa-auth/en-US/signin');
+    expect(pathname.startsWith('/spa-share/')).toBe(true);
+    expect(pathname).toBe('/spa-share/en-US/share/t/topic-1');
   });
 
-  it('does not treat workspace slugs beginning with an auth route as auth SPA pages', async () => {
+  it('keeps workspace slugs that look like old auth routes in the main SPA', async () => {
     const rewrite = await run(
       'http://localhost:3010/oauth-preview-e2e-20260716/settings/oauth-apps?hl=en-US',
     );

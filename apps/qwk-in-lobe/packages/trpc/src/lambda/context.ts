@@ -6,18 +6,16 @@ import { parse } from 'cookie';
 import debug from 'debug';
 import { type NextRequest } from 'next/server';
 
-import { auth } from '@/auth';
 import { canUseWorkspaceApiKeys } from '@/business/server/workspaceApiKey';
 import { getServerDB } from '@/database/core/db-adaptor';
 import { ApiKeyModel } from '@/database/models/apiKey';
 import { hasActiveWorkspaceMembership } from '@/database/models/workspace';
-import { authEnv, LOBE_CHAT_OIDC_AUTH_HEADER } from '@/envs/auth';
+import { LOBE_CHAT_OIDC_AUTH_HEADER } from '@/envs/auth';
 import { extractTraceContext } from '@/libs/observability/traceparent';
-import { assertOIDCUserActive, isOIDCUserInactiveError } from '@/libs/oidc-provider/access-control';
-import { validateOIDCJWT } from '@/libs/oidc-provider/jwt';
+import { getLocalUserId } from '@/server/modules/LocalUser';
 import { isApiKeyExpired, validateApiKeyFormat } from '@/utils/apiKey';
 
-import { HETERO_OPERATION_JWT_PURPOSE } from '../utils/internalJwt';
+import { validateHeteroOperationJWT } from '../utils/internalJwt';
 
 // Create context logger namespace
 const log = debug('lobe-trpc:lambda:context');
@@ -271,103 +269,32 @@ export const createLambdaContext = async (request: NextRequest): Promise<LambdaC
     });
   }
 
-  let userId;
-  let oidcAuth;
-
-  // Prioritize checking for OIDC authentication (both standard Authorization and custom Oidc-Auth headers)
-  if (authEnv.ENABLE_OIDC) {
-    log('OIDC enabled, attempting OIDC authentication');
-    const oidcAuthToken = request.headers.get(LOBE_CHAT_OIDC_AUTH_HEADER);
-    log('Oidc-Auth header: %s', oidcAuthToken ? 'exists' : 'not found');
-
-    try {
-      if (oidcAuthToken) {
-        // Validate the stateless JWT first, then check the current user state
-        // so banned/deleted accounts cannot keep using an already-issued token.
-        const tokenInfo = await validateOIDCJWT(oidcAuthToken);
-
-        const operationClaims =
-          tokenInfo.tokenData.purpose === HETERO_OPERATION_JWT_PURPOSE
-            ? {
-                capabilities: tokenInfo.payload.capabilities,
-                iss: tokenInfo.payload.iss,
-                model: tokenInfo.payload.model,
-                operation_id: tokenInfo.payload.operation_id,
-                provider_id: tokenInfo.payload.provider_id,
-                workspace_id: tokenInfo.payload.workspace_id,
-              }
-            : undefined;
-        oidcAuth = {
-          payload: tokenInfo.tokenData,
-          ...tokenInfo.tokenData, // Spread payload into oidcAuth
-          ...operationClaims,
-          sub: tokenInfo.userId, // Use tokenData as payload
-        };
-        userId = tokenInfo.userId;
-        const db = await getServerDB();
-        await assertOIDCUserActive(db, userId);
-        log('OIDC authentication successful, userId: %s', userId);
-
-        const oidcClientId =
-          typeof tokenInfo.clientId === 'string' ? tokenInfo.clientId : undefined;
-
-        // If OIDC authentication is successful, return context immediately
-        log('OIDC authentication successful, creating context and returning');
-        return createContextInner({
-          oidcAuth,
-          oidcClientId,
-          ...commonContext,
-          traceContext,
-          userId,
-        });
-      }
-    } catch (error) {
-      if (isOIDCUserInactiveError(error)) {
-        log('OIDC user is inactive, rejecting request without fallback auth');
-        console.error('OIDC authentication failed for inactive user:', error);
-        return createContextInner({
-          ...commonContext,
-          traceContext,
-          userId: null,
-        });
-      }
-
-      // If OIDC authentication fails, log error and continue with other authentication methods
-      if (oidcAuthToken) {
-        log('OIDC authentication failed, error: %O', error);
-        console.error('OIDC authentication failed, trying other methods:', error);
-      }
-    }
-  }
-
-  // If OIDC is not enabled or validation fails, try Better Auth authentication
-  log('Attempting Better Auth authentication');
-  try {
-    const session = await auth.api.getSession({
-      headers: request.headers,
-    });
-
-    if (session && session?.user?.id) {
-      userId = session.user.id;
-      log('Better Auth authentication successful, userId: %s', userId);
-    } else {
-      log('Better Auth authentication failed, no valid session');
+  // Server-minted heterogeneous-agent operation tokens (sandbox / device runs)
+  // authenticate as the operation's user.
+  const operationToken = request.headers.get(LOBE_CHAT_OIDC_AUTH_HEADER)?.trim();
+  if (operationToken) {
+    const claims = await validateHeteroOperationJWT(operationToken);
+    if (!claims) {
+      log('Invalid operation token; rejecting request');
+      return createContextInner({ ...commonContext, traceContext, userId: null });
     }
 
     return createContextInner({
       ...commonContext,
+      oidcAuth: { ...claims, payload: claims, sub: claims.sub },
       traceContext,
-      userId,
+      userId: claims.sub,
     });
-  } catch (e) {
-    log('Better Auth authentication error: %O', e);
-    console.error('better auth err', e);
   }
 
-  // Final return, userId may be undefined
-  log(
-    'All authentication methods attempted, returning final context, userId: %s',
-    userId || 'not authenticated',
-  );
+  // There is no sign-in: every other request runs as the local user. A failed
+  // lookup leaves it unauthenticated so public procedures still answer.
+  let userId: string | null = null;
+  try {
+    userId = await getLocalUserId();
+  } catch (error) {
+    log('Local user lookup failed: %O', error);
+  }
+
   return createContextInner({ ...commonContext, traceContext, userId });
 };

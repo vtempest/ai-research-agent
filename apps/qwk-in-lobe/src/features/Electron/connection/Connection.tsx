@@ -4,7 +4,7 @@ import { cssVar } from 'antd-style';
 import { Suspense, useCallback } from 'react';
 
 import { BrandTextLoading } from '@/components/Loading';
-import LoginStep from '@/features/DesktopOnboarding/steps/LoginStep';
+import UserInfo from '@/features/User/UserInfo';
 import { useElectronStore } from '@/store/electron';
 import { isMacOS } from '@/utils/platform';
 
@@ -53,7 +53,8 @@ const Connection = () => {
         >
           <Center style={{ height: '100%', overflow: 'auto', padding: 24 }}>
             <Flexbox style={{ maxWidth: 560, width: '100%' }}>
-              <LoginStep mode={'status'} onBack={handleClose} onNext={handleClose} />
+              {/* There is no sign-in: the connection drawer just shows who the app runs as. */}
+              <UserInfo />
             </Flexbox>
           </Center>
         </Suspense>

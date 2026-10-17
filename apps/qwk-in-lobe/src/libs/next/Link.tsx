@@ -6,7 +6,7 @@
 import { type AnchorHTMLAttributes } from 'react';
 import { Link as RRLink } from 'react-router';
 
-import { authSpaRoutes, nextjsOnlyRoutes } from './nextjsOnlyRoutes';
+import { nextjsOnlyRoutes } from './nextjsOnlyRoutes';
 
 export interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   href: string;
@@ -15,13 +15,11 @@ export interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>,
   scroll?: boolean;
 }
 
-const hardNavRoutes = [...nextjsOnlyRoutes, ...authSpaRoutes];
-
 const isExternalOrNextOnly = (href: string) =>
   href.startsWith('http://') ||
   href.startsWith('https://') ||
   href.startsWith('//') ||
-  hardNavRoutes.some(
+  nextjsOnlyRoutes.some(
     (route) => href === route || href.startsWith(`${route}/`) || href.startsWith(`${route}?`),
   );
 

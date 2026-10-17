@@ -17,7 +17,6 @@ import DesktopBrowserGatewayBridge from '@/features/DesktopBrowserGatewayBridge'
 import DesktopFileMenuBridge from '@/features/DesktopFileMenuBridge';
 import DesktopLayoutContainer from '@/features/DesktopLayoutContainer';
 import DesktopNavigationBridge from '@/features/DesktopNavigationBridge';
-import AuthRequiredModal from '@/features/Electron/AuthRequiredModal';
 import OverlayCaptureUploader from '@/features/Electron/ScreenCapture/OverlayCaptureUploader';
 import OverlayMessageDispatcher from '@/features/Electron/ScreenCapture/OverlayMessageDispatcher';
 import OverlaySnapshotPublisher from '@/features/Electron/ScreenCapture/OverlaySnapshotPublisher';
@@ -35,7 +34,6 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 
 import DesktopHome from '../home';
 import DesktopHomeLayout from '../home/_layout';
-import DesktopAutoOidcOnFirstOpen from './DesktopAutoOidcOnFirstOpen';
 import RegisterHotkeys from './RegisterHotkeys';
 import { styles } from './style';
 
@@ -54,7 +52,6 @@ const Layout: FC = () => {
         <RouteMetaBridge />
         {isDesktop && <TabCacheBridges />}
         <Suspense fallback={null}>
-          {isDesktop && <DesktopAutoOidcOnFirstOpen />}
           {isDesktop && <DesktopNavigationBridge />}
           {isDesktop && <DesktopFileMenuBridge />}
           {isDesktop && <DesktopBrowserGatewayBridge />}
@@ -63,7 +60,6 @@ const Layout: FC = () => {
           {isDesktop && <OverlayMessageDispatcher />}
           {showCloudPromotion && <CloudBanner />}
         </Suspense>
-        {isDesktop && <AuthRequiredModal />}
         {isDesktop && <ZoomHUD />}
 
         <Suspense fallback={null}>{isDesktop && <TitleBar />}</Suspense>

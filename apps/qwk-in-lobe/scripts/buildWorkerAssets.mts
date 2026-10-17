@@ -3,7 +3,6 @@
  *
  *   public/            → dist/client/            (favicons, fonts, og images…)
  *   dist/desktop/      → dist/client/_spa/       (main SPA, base `/_spa/`)
- *   dist/auth/         → dist/client/_spa-auth/  (auth SPA, base `/_spa-auth/`)
  *   dist/mobile/       → dist/client/_spa-mobile/ (optional mobile SPA)
  *
  * The HTML shells stay inside those folders; the Worker fetches them through
@@ -31,5 +30,4 @@ const copy = (from: string, to: string, required: boolean) => {
 
 copy('public', '.', true);
 copy('dist/desktop', '_spa', true);
-copy('dist/auth', '_spa-auth', false);
 copy('dist/mobile', '_spa-mobile', false);

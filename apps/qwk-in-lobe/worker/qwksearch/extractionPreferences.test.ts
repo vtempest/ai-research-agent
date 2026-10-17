@@ -133,24 +133,17 @@ describe('clearUserExtractionOverrides', () => {
 });
 
 describe('userExtractionOverridesForRequest', () => {
-  it('skips the session lookup entirely when the request carries no cookie', async () => {
-    await expect(userExtractionOverridesForRequest(new Headers())).resolves.toEqual({});
-    expect(getUserId).not.toHaveBeenCalled();
-  });
-
-  it('returns {} for a cookie that resolves to no session', async () => {
+  it('returns {} when the local user cannot be resolved', async () => {
     getUserId.mockResolvedValue(null);
-    const headers = new Headers({ cookie: 'other=1' });
 
-    await expect(userExtractionOverridesForRequest(headers)).resolves.toEqual({});
+    await expect(userExtractionOverridesForRequest(new Headers())).resolves.toEqual({});
     expect(getUserId).toHaveBeenCalled();
   });
 
-  it('loads the signed-in user’s overrides', async () => {
+  it('loads the local user’s overrides without any cookie', async () => {
     await saveUserExtractionOverrides('user_1', { citationStyle: 'mla' });
-    const headers = new Headers({ cookie: 'better-auth.session_token=abc' });
 
-    await expect(userExtractionOverridesForRequest(headers)).resolves.toEqual({
+    await expect(userExtractionOverridesForRequest(new Headers())).resolves.toEqual({
       citationStyle: 'mla',
     });
   });

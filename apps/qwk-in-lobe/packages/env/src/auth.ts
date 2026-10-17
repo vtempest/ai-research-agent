@@ -41,8 +41,6 @@ declare global {
       // ===== Better Auth ===== //
       /** Namespace every Better Auth cookie. Defaults to `better-auth`. */
       AUTH_COOKIE_PREFIX?: string;
-      /** Set to `1` to hide "Continue with demo account" on the sign-in and sign-up pages. */
-      AUTH_DISABLE_DEMO_ACCOUNT?: string;
       AUTH_DISABLE_EMAIL_PASSWORD?: string;
 
       AUTH_EMAIL_VERIFICATION?: string;
@@ -124,7 +122,6 @@ export const getAuthConfig = () => {
       AUTH_ENABLE_MAGIC_LINK: z.boolean().optional().default(false),
       AUTH_ALLOWED_EMAILS: z.string().optional(),
       AUTH_DISABLE_EMAIL_PASSWORD: z.boolean().optional().default(false),
-      AUTH_DISABLE_DEMO_ACCOUNT: z.boolean().optional().default(false),
 
       AUTH_GOOGLE_ID: z.string().optional(),
       AUTH_GOOGLE_SECRET: z.string().optional(),
@@ -217,7 +214,6 @@ export const getAuthConfig = () => {
       AUTH_TRUSTED_ORIGINS: process.env.AUTH_TRUSTED_ORIGINS,
       AUTH_ALLOWED_EMAILS: process.env.AUTH_ALLOWED_EMAILS,
       AUTH_DISABLE_EMAIL_PASSWORD: process.env.AUTH_DISABLE_EMAIL_PASSWORD === '1',
-      AUTH_DISABLE_DEMO_ACCOUNT: process.env.AUTH_DISABLE_DEMO_ACCOUNT === '1',
 
       // Cognito provider specific env vars
       AUTH_COGNITO_DOMAIN: process.env.AUTH_COGNITO_DOMAIN,

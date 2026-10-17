@@ -1,24 +1,21 @@
 /**
  * Lets a guest's OpenRouter key drive the full LobeHub chat, not just `/demo`.
  *
- * Visitors get an automatic guest account (`src/libs/better-auth/guest.ts`),
- * so the key can be written to that account's OpenRouter provider config —
- * the same place Settings → Providers saves it, encrypted with the key-vault
- * secret. The main chat reads keys from there (`initModelRuntimeFromDB`).
- * The guest account lives only as long as the browser's session cookie.
+ * There is no sign-in: everyone runs as the one local user, so the key is
+ * written to that user's OpenRouter provider config — the same place
+ * Settings → Providers saves it, encrypted with the key-vault secret. The main
+ * chat reads keys from there (`initModelRuntimeFromDB`).
  */
-import { isGuestEmail } from '@/libs/better-auth/guestEmail';
 import { useAiInfraStore } from '@/store/aiInfra';
 import { useUserStore } from '@/store/user';
-import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
+import { authSelectors } from '@/store/user/selectors';
 
 import { GUEST_DEFAULT_MODEL } from './openrouter';
 
 export const OPENROUTER_PROVIDER_ID = 'openrouter';
 
-/** True when the visitor is signed in with an automatic guest account. */
-export const useIsGuestSession = () =>
-  useUserStore((s) => authSelectors.isLogin(s) && isGuestEmail(userProfileSelectors.email(s)));
+/** True once the local user's session is loaded, so the key can be saved to it. */
+export const useIsGuestSession = () => useUserStore(authSelectors.isLogin);
 
 /** Saves the key as the account's OpenRouter key, enables the provider and points new agents at it. */
 export const applyGuestKeyToAccount = async (apiKey: string) => {

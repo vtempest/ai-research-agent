@@ -144,55 +144,6 @@ try {
 }
 ```
 
-## Integration with Better-Auth
-
-Example integration for email verification:
-
-```typescript
-import { betterAuth } from 'better-auth';
-
-import { EmailService } from '@/server/services/email';
-
-export const auth = betterAuth({
-  emailAndPassword: {
-    enabled: true,
-    sendResetPasswordEmail: async ({ user, url }) => {
-      const emailService = new EmailService();
-
-      await emailService.sendMail({
-        from: 'noreply@lobechat.com',
-        to: user.email,
-        subject: 'Reset Your Password',
-        text: `Click here to reset your password: ${url}`,
-        html: `
-          <h1>Reset Your Password</h1>
-          <p>Click the link below to reset your password:</p>
-          <a href="${url}">Reset Password</a>
-        `,
-      });
-    },
-  },
-  emailVerification: {
-    enabled: true,
-    sendVerificationEmail: async ({ user, url }) => {
-      const emailService = new EmailService();
-
-      await emailService.sendMail({
-        from: 'noreply@lobechat.com',
-        to: user.email,
-        subject: 'Verify Your Email',
-        text: `Click here to verify your email: ${url}`,
-        html: `
-          <h1>Verify Your Email</h1>
-          <p>Click the link below to verify your email address:</p>
-          <a href="${url}">Verify Email</a>
-        `,
-      });
-    },
-  },
-});
-```
-
 ## Adding New Providers
 
 To add a new email provider (e.g., Resend, SendGrid):

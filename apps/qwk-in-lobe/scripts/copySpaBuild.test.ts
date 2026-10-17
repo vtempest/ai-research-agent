@@ -71,7 +71,7 @@ describe('copySpaBuild', () => {
   // these directories afterwards; a target whose publicDir escapes this list
   // ships its whole SPA inside the Electron asar.
   it('derives a public dir name for every copy target', () => {
-    expect(spaPublicDirNames.sort()).toEqual(['_spa', '_spa-auth', '_spa-share', '_spa-workbench']);
+    expect(spaPublicDirNames.sort()).toEqual(['_spa', '_spa-share', '_spa-workbench']);
     for (const name of spaPublicDirNames) {
       expect(name).toMatch(/^_spa/);
     }

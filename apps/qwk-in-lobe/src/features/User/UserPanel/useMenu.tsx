@@ -3,7 +3,7 @@ import { isDesktop } from '@lobechat/const';
 import { Flexbox, Hotkey, Icon } from '@lobehub/ui';
 import { Tag } from '@lobehub/ui/base-ui';
 import type { ItemType } from 'antd/es/menu/interface';
-import { BrainCircuit, Cloudy, Download, HardDriveDownload, LogOut, Settings2 } from 'lucide-react';
+import { BrainCircuit, Cloudy, Download, HardDriveDownload, Settings2 } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -48,12 +48,9 @@ const NewVersionBadge = memo(
 
 export const useMenu = () => {
   const hasNewVersion = useNewVersion();
-  const { t } = useTranslation(['common', 'setting', 'auth']);
+  const { t } = useTranslation(['common', 'setting']);
   const { showCloudPromotion, hideDocs } = useServerConfigStore(featureFlagsSelectors);
-  const [isLogin, isLoginWithAuth] = useUserStore((s) => [
-    authSelectors.isLogin(s),
-    authSelectors.isLoginWithAuth(s),
-  ]);
+  const isLogin = useUserStore(authSelectors.isLogin);
   const { userPanel } = useNavLayout();
   const businessMenuItems = useBusinessMenuItems(isLogin);
   const hasActiveWorkspace = useHasActiveWorkspace();
@@ -148,18 +145,5 @@ export const useMenu = () => {
       return !(isDivider(item) && isDivider(arr[index - 1]));
     }) as MenuProps['items'];
 
-  const logoutItems: MenuProps['items'] = isLoginWithAuth
-    ? [
-        {
-          icon: <Icon icon={LogOut} />,
-          key: 'logout',
-          label: <span>{t('signout', { ns: 'auth' })}</span>,
-        },
-        {
-          type: 'divider',
-        },
-      ]
-    : [];
-
-  return { logoutItems, mainItems };
+  return { mainItems };
 };

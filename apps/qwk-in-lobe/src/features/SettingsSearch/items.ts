@@ -2,13 +2,10 @@ import { LAB_FEATURES } from '@/features/Settings/labs/features';
 import { SettingsTabs } from '@/store/global/initialState';
 
 export interface SettingsSearchContext {
-  disableEmailPassword: boolean;
   enableBusinessFeatures: boolean;
   enableComposio: boolean;
   enableGatewayMode: boolean;
   enableSTT: boolean;
-  /** Whether the signed-in user has an email on their profile */
-  hasEmail: boolean;
   hideDocs: boolean;
   isDesktop: boolean;
   isLogin: boolean;
@@ -235,38 +232,6 @@ export const SETTINGS_SEARCH_ITEMS: SettingsSearchItem[] = [
     labelKey: 'profile.interests',
     ns: 'auth',
     tab: SettingsTabs.Profile,
-  },
-  {
-    anchor: 'profile-password',
-    keywords: ['password', 'change password', 'set password', 'reset password'],
-    labelKey: 'profile.password',
-    ns: 'auth',
-    tab: SettingsTabs.Profile,
-    visible: (ctx) => ctx.isLogin && !ctx.isDesktop && !ctx.disableEmailPassword,
-  },
-  {
-    anchor: 'profile-email',
-    keywords: ['email', 'email address', 'update email', 'change email'],
-    labelKey: 'profile.email',
-    ns: 'auth',
-    tab: SettingsTabs.Profile,
-    visible: (ctx) => ctx.isLogin && ctx.hasEmail,
-  },
-  {
-    anchor: 'profile-connected-accounts',
-    keywords: [
-      'connected accounts',
-      'linked accounts',
-      'sso',
-      'oauth',
-      'github',
-      'google',
-      'apple',
-    ],
-    labelKey: 'profile.sso.providers',
-    ns: 'auth',
-    tab: SettingsTabs.Profile,
-    visible: (ctx) => ctx.isLogin && !ctx.isDesktop,
   },
   {
     anchor: 'profile-authorizations',

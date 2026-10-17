@@ -14,8 +14,8 @@ const { mockAuthEnv } = vi.hoisted(() => ({
   },
 }));
 
-vi.mock('@/auth', () => ({
-  auth: { api: { getSession: vi.fn() } },
+vi.mock('@/server/modules/LocalUser', () => ({
+  getLocalUserId: vi.fn().mockResolvedValue('qwk-local-user'),
 }));
 
 vi.mock('@/business/server/workspaceApiKey', () => ({
@@ -42,11 +42,6 @@ vi.mock('@/envs/auth', () => ({
 vi.mock('@/libs/observability/traceparent', () => ({
   extractTraceContext: vi.fn(),
   injectSpanTraceHeaders: vi.fn(),
-}));
-
-vi.mock('@/libs/oidc-provider/access-control', () => ({
-  assertOIDCUserActive: vi.fn(),
-  isOIDCUserInactiveError: vi.fn().mockReturnValue(false),
 }));
 
 // Minimal router that exercises heteroOperationAuth

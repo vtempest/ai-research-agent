@@ -2,17 +2,12 @@
 import type { Context } from 'hono';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { auth } from '@/auth';
 import { issueOAuthState } from '@/server/services/messenger/oauth/stateStore';
 
 import { messengerInstall } from '../messengerInstall';
 
-vi.mock('@/auth', () => ({
-  auth: {
-    api: {
-      getSession: vi.fn(),
-    },
-  },
+vi.mock('@/server/modules/LocalUser', () => ({
+  getLocalUserId: vi.fn().mockResolvedValue('lobe-user-1'),
 }));
 
 vi.mock('@/server/services/messenger/oauth/stateStore', () => ({
@@ -57,10 +52,6 @@ const buildContext = (platform: string, path: string): Context => {
 };
 
 beforeEach(() => {
-  vi.mocked(auth.api.getSession).mockResolvedValue({
-    session: {} as any,
-    user: { id: 'lobe-user-1' } as any,
-  });
   vi.mocked(getMessengerSlackConfig).mockResolvedValue(VALID_SLACK_CONFIG);
   vi.mocked(getMessengerDiscordConfig).mockResolvedValue(VALID_DISCORD_CONFIG);
   vi.mocked(issueOAuthState).mockResolvedValue('state-nonce-1');
@@ -88,18 +79,6 @@ describe('GET /api/agent/messenger/:platform/install', () => {
   });
 
   describe('slack', () => {
-    it('redirects unauthenticated users to /signin with callbackUrl', async () => {
-      vi.mocked(auth.api.getSession).mockResolvedValue(null);
-
-      const res = await messengerInstall(
-        buildContext('slack', '/api/agent/messenger/slack/install'),
-      );
-      expect(res.status).toBe(302);
-      const parsed = new URL(res.headers.get('location')!);
-      expect(parsed.pathname).toBe('/signin');
-      expect(parsed.searchParams.get('callbackUrl')).toBe('/api/agent/messenger/slack/install');
-    });
-
     it('returns 503 when Slack OAuth env is not configured', async () => {
       vi.mocked(getMessengerSlackConfig).mockResolvedValue(null);
 

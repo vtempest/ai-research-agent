@@ -8,8 +8,6 @@
 import { parse as parseCookie } from 'cookie';
 import { UAParser } from 'ua-parser-js';
 
-import { authSpaRoutes } from '@/libs/next/nextjsOnlyRoutes';
-
 export const LOBE_LOCALE_COOKIE = 'LOBE_LOCALE';
 export const DEFAULT_LANG = 'en-US';
 
@@ -114,12 +112,6 @@ export const resolveSpaVariant = (request: Request): SpaVariant => {
 };
 
 /**
- * Routes rendered by the standalone auth SPA bundle (`/_spa-auth`).
- */
-export const isAuthSpaRoute = (pathname: string) =>
-  authSpaRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
-
-/**
  * Backend prefixes that must never fall through to the SPA HTML.
  */
 export const BACKEND_PREFIXES = ['/api', '/trpc', '/webapi', '/oidc', '/oauth/connector', '/f/'];
@@ -127,65 +119,30 @@ export const BACKEND_PREFIXES = ['/api', '/trpc', '/webapi', '/oidc', '/oauth/co
 export const isBackendPath = (pathname: string) =>
   BACKEND_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix));
 
-const PUBLIC_ROUTE_PATTERNS = [
+/**
+ * Pages of the removed sign-in flow. Links and bookmarks to them still exist,
+ * so they redirect into the app instead of rendering a blank SPA route.
+ */
+export const LEGACY_AUTH_ROUTES = [
   '/signin',
   '/signup',
   '/auth-error',
   '/verify-email',
   '/reset-password',
-  '/oauth/consent/(.*)',
-  '/oauth/connector/callback',
-  '/oidc/handoff',
-  '/oidc/device/auth',
-  '/oidc/token',
-  '/oidc/interaction/(.*)',
   '/market-auth-callback',
-  '/share(.*)',
-  '/verify/(.*)',
-  '/acceptance/(.*)',
-  '/verify-im',
-  // QwkSearch docs demo/share pages stay public like on qwksearch.com
-  '/docs/share/(.*)',
+  '/oauth/callback',
+  '/oauth/consent',
+  '/oauth/device',
 ];
 
-const publicRouteRegexes = PUBLIC_ROUTE_PATTERNS.map((pattern) => {
-  const regexStr = pattern
-    .replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&')
-    .replaceAll('\\(\\.\\*\\)', '.*');
-  return new RegExp(`^${regexStr}$`);
-});
+export const isLegacyAuthRoute = (pathname: string) =>
+  LEGACY_AUTH_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
 /**
- * SPA pages a visitor may open without a session. Everything else needs one,
- * which `resolvePageSession` creates as a guest session when missing (same
- * policy as the Next middleware's `isPublicRoute`).
+ * Where an old auth-page link lands: its `callbackUrl` when that is on this
+ * origin and not another auth page, otherwise `/`.
  */
-export const isPublicSpaRoute = (pathname: string) =>
-  publicRouteRegexes.some((regex) => regex.test(pathname));
-
-export const buildSignInRedirect = (request: Request, appUrl: string): string => {
-  const url = new URL(request.url);
-  const callbackUrl = `${appUrl.replace(/\/$/, '')}${url.pathname}${url.search}`;
-  const signInUrl = new URL('/signin', appUrl);
-  signInUrl.searchParams.set('callbackUrl', callbackUrl);
-
-  const hl = url.searchParams.get('hl');
-  if (hl) signInUrl.searchParams.set('hl', hl);
-  const utmSource = url.searchParams.get('utm_source');
-  if (utmSource) signInUrl.searchParams.set('utm_source', utmSource);
-
-  return signInUrl.toString();
-};
-
-/** The sign-in / sign-up pages the demo account replaces. */
-export const DEMO_BYPASS_ROUTES = new Set(['/signin', '/signup']);
-
-/**
- * Where to send a visitor who skipped `/signin` or `/signup`: their
- * `callbackUrl` when it is on this origin, otherwise `/`. Never back to an auth
- * page, which would loop.
- */
-export const resolveDemoCallbackPath = (requestUrl: string): string => {
+export const resolveAuthRedirectPath = (requestUrl: string): string => {
   const url = new URL(requestUrl);
   const raw = url.searchParams.get('callbackUrl');
   if (!raw) return '/';
@@ -196,7 +153,7 @@ export const resolveDemoCallbackPath = (requestUrl: string): string => {
   } catch {
     return '/';
   }
-  if (target.origin !== url.origin || isAuthSpaRoute(target.pathname)) return '/';
+  if (target.origin !== url.origin || isLegacyAuthRoute(target.pathname)) return '/';
 
   return `${target.pathname}${target.search}${target.hash}`;
 };

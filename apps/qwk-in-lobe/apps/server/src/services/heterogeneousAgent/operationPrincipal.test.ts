@@ -14,7 +14,7 @@ const { activeUser, hasMembership, hasPermission } = vi.hoisted(() => ({
   hasPermission: vi.fn(),
 }));
 
-vi.mock('@/libs/oidc-provider/access-control', () => ({ assertOIDCUserActive: activeUser }));
+vi.mock('./userActive', () => ({ assertUserActive: activeUser }));
 vi.mock('@/database/models/workspace', () => ({
   hasActiveWorkspaceMembership: hasMembership,
 }));
