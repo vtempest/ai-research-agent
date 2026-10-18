@@ -1,9 +1,7 @@
 'use client';
 
-import { isDesktop } from '@lobechat/const';
 import { Flexbox, FormGroup } from '@lobehub/ui';
 import { Divider } from 'antd';
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SettingsProfileRowSkeleton } from '@/components/Skeleton/Settings/Profile';
@@ -17,12 +15,9 @@ import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
 import AvatarRow from './features/AvatarRow';
 import ComposioAuthorizationList from './features/ComposioAuthorizationList';
-import EmailRow from './features/EmailRow';
 import FullNameRow from './features/FullNameRow';
 import InterestsRow from './features/InterestsRow';
-import PasswordRow from './features/PasswordRow';
 import ProfileRow from './features/ProfileRow';
-import SSOProvidersList from './features/SSOProvidersList';
 import UsernameRow from './features/UsernameRow';
 
 interface ProfileSettingProps {
@@ -35,10 +30,7 @@ const ProfileSetting = ({ showSettingHeader = true }: ProfileSettingProps) => {
     userProfileSelectors.userProfile(s),
     s.isLoaded,
   ]);
-  const isLoadedAuthProviders = useUserStore(authSelectors.isLoadedAuthProviders);
-  const fetchAuthProviders = useUserStore((s) => s.fetchAuthProviders);
   const enableComposio = useServerConfigStore(serverConfigSelectors.enableComposio);
-  const disableEmailPassword = useServerConfigStore(serverConfigSelectors.disableEmailPassword);
   const [servers, isServersInit, useFetchUserComposioConnections] = useToolStore((s) => [
     s.composioServers,
     s.isComposioServersInit,
@@ -54,12 +46,6 @@ const ProfileSetting = ({ showSettingHeader = true }: ProfileSettingProps) => {
   // sub-sections that render their own rows when ready — folding them into one
   // composite gate let a single slow/failed dependency skeleton the whole tab.
   const isLoading = !isUserLoaded;
-
-  useEffect(() => {
-    if (isLogin) {
-      fetchAuthProviders();
-    }
-  }, [isLogin, fetchAuthProviders]);
 
   const { t } = useTranslation('auth');
 
@@ -91,26 +77,9 @@ const ProfileSetting = ({ showSettingHeader = true }: ProfileSettingProps) => {
 
           <InterestsRow />
 
-          {!isDesktop && isLogin && !disableEmailPassword && (
-            <>
-              <Divider style={{ margin: 0 }} />
-              <PasswordRow />
-            </>
-          )}
-
           {isLogin && userProfile?.email && (
             <>
               <Divider style={{ margin: 0 }} />
-              <EmailRow />
-            </>
-          )}
-
-          {isLogin && !isDesktop && isLoadedAuthProviders && (
-            <>
-              <Divider style={{ margin: 0 }} />
-              <ProfileRow anchor={'profile-connected-accounts'} label={t('profile.sso.providers')}>
-                <SSOProvidersList />
-              </ProfileRow>
             </>
           )}
 
