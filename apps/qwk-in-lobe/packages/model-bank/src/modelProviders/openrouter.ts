@@ -6,6 +6,7 @@ const OpenRouter: ModelProviderCard = {
   checkModel: 'google/gemma-2-9b-it:free',
   description:
     'OpenRouter provides access to many frontier models from OpenAI, Anthropic, LLaMA, and more, letting users pick the best model and price for their use case.',
+  enabled: true,
   id: 'openrouter',
   modelList: { showModelFetcher: true },
   modelsUrl: 'https://openrouter.ai/models',

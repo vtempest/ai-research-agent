@@ -51,78 +51,78 @@ exports[`settingsSelectors > currentSettings > should merge DEFAULT_SETTINGS and
 exports[`settingsSelectors > currentSystemAgent > should merge DEFAULT_SYSTEM_AGENT_CONFIG and s.settings.systemAgent correctly 1`] = `
 {
   "agentMeta": {
-    "model": "deepseek-v4-flash",
-    "provider": "deepseek",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "enableAutoReply": true,
   "expertise": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "followUpAction": {
     "enabled": false,
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "generationTopic": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "goal": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "historyCompress": {
-    "model": "deepseek-v4-flash",
-    "provider": "deepseek",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "inputCompletion": {
     "enabled": false,
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "memoryAnalysisAgentConfig": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "onboardingTaskRecommender": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "onboardingUnderstanding": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "promptRewrite": {
     "enabled": true,
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "replyMessage": "Custom auto reply",
   "thread": {
-    "model": "deepseek-v4-flash",
-    "provider": "deepseek",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "topic": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "topicAutoSummary": {
     "enabled": false,
-    "model": "deepseek-v4-flash",
-    "provider": "deepseek",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "translation": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
   "userMemoryEmbedding": {
     "model": "text-embedding-3-small",
     "provider": "openai",
   },
   "userMemoryPersonaWriter": {
-    "model": "gpt-5.6-luna",
-    "provider": "openai",
+    "model": "openrouter/auto",
+    "provider": "openrouter",
   },
 }
 `;
@@ -151,8 +151,8 @@ exports[`settingsSelectors > defaultAgent > should merge DEFAULT_AGENT and s.set
       "historyCount": 20,
       "reasoningBudgetToken": 1024,
       "searchFCModel": {
-        "model": "deepseek-v4-flash",
-        "provider": "deepseek",
+        "model": "openrouter/auto",
+        "provider": "openrouter",
       },
       "searchMode": "auto",
       "selfIteration": {
@@ -168,7 +168,7 @@ exports[`settingsSelectors > defaultAgent > should merge DEFAULT_AGENT and s.set
       "top_p": 1,
     },
     "plugins": [],
-    "provider": "deepseek",
+    "provider": "openrouter",
     "systemRole": "user",
     "tts": {
       "showAllLocaleVoice": false,
@@ -198,8 +198,8 @@ exports[`settingsSelectors > defaultAgentConfig > should merge DEFAULT_AGENT_CON
     "historyCount": 20,
     "reasoningBudgetToken": 1024,
     "searchFCModel": {
-      "model": "deepseek-v4-flash",
-      "provider": "deepseek",
+      "model": "openrouter/auto",
+      "provider": "openrouter",
     },
     "searchMode": "auto",
     "selfIteration": {
@@ -215,7 +215,7 @@ exports[`settingsSelectors > defaultAgentConfig > should merge DEFAULT_AGENT_CON
     "top_p": 1,
   },
   "plugins": [],
-  "provider": "deepseek",
+  "provider": "openrouter",
   "systemRole": "custom role",
   "tts": {
     "showAllLocaleVoice": false,
