@@ -72,6 +72,20 @@ export default function KokoroVoiceSelector({ preloadOnMount = false }: KokoroVo
           </span>
         )}
 
+        {isLoading && progress && (progress.status === 'progress_total' || progress.status === 'progress' || progress.status === 'download') && (
+          <div className="flex items-center gap-2 flex-1 max-w-xs">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10 dark:bg-black/10">
+              <div
+                className="h-1.5 bg-blue-500 transition-all duration-200"
+                style={{ width: `${Math.round(progress.progress ?? 0)}%` }}
+              />
+            </div>
+            <span className="text-xs text-muted-foreground whitespace-nowrap tabular-nums">
+              {Math.round(progress.progress ?? 0)}%
+            </span>
+          </div>
+        )}
+
         {isError && (
           <Tooltip>
             <TooltipTrigger asChild>

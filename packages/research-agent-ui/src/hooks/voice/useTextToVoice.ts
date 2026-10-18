@@ -11,7 +11,7 @@ import { useState, useCallback, useRef } from "react";
 import grab from "grab-url";
 import { getKokoro, preloadKokoro, getVoiceList, KokoroLoadProgress } from "../../lib/kokoro";
 
-type SpeechStatus = "started" | "stopped";
+type SpeechStatus = "started" | "stopped" | "loading";
 
 interface TextToSpeechOptions {
   /** Enable mic-based interruption detection while TTS is playing. Only activates if mic permission is already granted. */
@@ -22,6 +22,7 @@ interface TextToSpeechOptions {
 
 export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
   const [status, setStatus] = useState<SpeechStatus>("stopped");
+  const [isLoading, setIsLoading] = useState(false);
   // const [wasInterrupted, setWasInterrupted] = useState(false); // VAD interruption
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -50,6 +51,15 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
     abortRef.current = null;
     // destroyVAD(); // VAD cleanup commented out
   }, []);
+
+  const stop = useCallback(() => {
+    cleanup();
+    utteranceRef.current = null;
+    window.speechSynthesis?.cancel();
+    setStatus("stopped");
+    setIsLoading(false);
+    // setWasInterrupted(false); // VAD state commented out
+  }, [cleanup]);
 
   // VAD-based interruption playback commented out
   // const interruptPlayback = useCallback(() => {
@@ -133,6 +143,7 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
     window.speechSynthesis?.cancel();
     utteranceRef.current = null;
     setStatus("started");
+    setIsLoading(true);
     // setWasInterrupted(false); // VAD state commented out
 
     const controller = new AbortController();
@@ -168,12 +179,17 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
             if (!fallbackStart()) setStatus("stopped");
           };
 
+          setIsLoading(false);
           await audioEl.play();
           return;
         } catch (err) {
           console.debug("Kokoro TTS unavailable, using server-side TTS:", err instanceof Error ? err.message : String(err));
+          setIsLoading(false);
         }
       }
+
+      setIsLoading(false);
+
 
       // Fallback to server-side TTS
       const res = await grab("agent/voice", {
@@ -219,13 +235,5 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
     }
   }, [text, cleanup, fallbackStart]);
 
-  const stop = useCallback(() => {
-    cleanup();
-    utteranceRef.current = null;
-    window.speechSynthesis?.cancel();
-    setStatus("stopped");
-    // setWasInterrupted(false); // VAD state commented out
-  }, [cleanup]);
-
-  return { speechStatus: status, start, stop };
+  return { speechStatus: status, isLoading, start, stop };
 }

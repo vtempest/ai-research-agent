@@ -67,7 +67,7 @@ const MessageBox = ({
   const speechMessage = section.speechMessage || '';
   const thinkingEnded = section.thinkingEnded;
 
-  const { speechStatus, start, stop } = useTextToSpeech(speechMessage, {
+  const { speechStatus, start, stop, isLoading } = useTextToSpeech(speechMessage, {
     enableInterrupt: true,
   });
 
@@ -209,6 +209,7 @@ const MessageBox = ({
                   <AssistantMessageActions
                     section={section}
                     speechStatus={speechStatus}
+                    isLoadingTTS={isLoading}
                     start={start}
                     stop={stop}
                     handleOpenInLLM={handleOpenInLLM}

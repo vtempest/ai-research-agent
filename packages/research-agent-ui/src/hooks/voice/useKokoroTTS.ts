@@ -17,7 +17,18 @@ export function useKokoroTTS(text: string, options?: UseKokoroTTSOptions) {
   const [status, setStatus] = useState<SpeechStatus>('idle');
   const [modelReady, setModelReady] = useState(false);
   const [voices, setVoices] = useState<string[]>([]);
+  const [selectedVoice, setSelectedVoice] = useState('af_heart');
+  const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState<KokoroLoadProgress | null>(null);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    if (options?.autoPreload && !modelReady) {
+      warmupModel();
+    }
+  }, [options?.autoPreload, modelReady]);
 
   useEffect(() => {
     const savedVoice = localStorage.getItem('kokoroVoice');

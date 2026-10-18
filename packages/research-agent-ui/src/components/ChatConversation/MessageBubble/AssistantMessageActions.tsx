@@ -12,7 +12,8 @@ import {
     FileType,
     FileDown,
     FileSpreadsheet,
-    ExternalLink
+    ExternalLink,
+    Loader2
 } from 'lucide-react';
 import { Section } from '../../../hooks/useChat';
 import {
@@ -29,6 +30,7 @@ import { exportAsMarkdown, exportAsDocx, exportAsPdf, exportToGoogleDocs } from 
 interface AssistantMessageActionsProps {
     section: Section;
     speechStatus: string;
+    isLoadingTTS?: boolean;
     start: () => void;
     stop: () => void;
     handleOpenInLLM: (platform: string) => void;
@@ -41,6 +43,7 @@ interface AssistantMessageActionsProps {
 const AssistantMessageActions = ({
     section,
     speechStatus,
+    isLoadingTTS = false,
     start,
     stop,
     handleOpenInLLM,
@@ -67,9 +70,12 @@ const AssistantMessageActions = ({
                                     start();
                                 }
                             }}
-                            className="p-2 text-muted-foreground rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 hover:bg-white/20 dark:hover:bg-black/20 transition duration-200 hover:text-foreground"
+                            disabled={isLoadingTTS}
+                            className="p-2 text-muted-foreground rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 hover:bg-white/20 dark:hover:bg-black/20 transition duration-200 hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {speechStatus === 'started' ? (
+                            {isLoadingTTS ? (
+                                <Loader2 size={18} className="animate-spin" />
+                            ) : speechStatus === 'started' ? (
                                 <StopCircle size={18} />
                             ) : (
                                 <Volume2 size={18} />
@@ -77,7 +83,7 @@ const AssistantMessageActions = ({
                         </button>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                        {speechStatus === 'started' ? 'Stop' : 'Read aloud'}
+                        {isLoadingTTS ? 'Loading TTS...' : speechStatus === 'started' ? 'Stop' : 'Read aloud'}
                     </TooltipContent>
                 </Tooltip>
 
