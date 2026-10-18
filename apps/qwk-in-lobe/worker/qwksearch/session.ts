@@ -1,27 +1,16 @@
 /**
  * Session helpers for the QwkSearch feature routes.
  *
- * QwkSearch's original routes used its own Better Auth instance; here the
- * LobeHub Better Auth session is the single source of truth, so favorites and
- * documents are keyed by the LobeHub user id.
+ * There is no sign-in: favorites and documents belong to the local user
+ * (`@/server/modules/LocalUser`), the same user every LobeHub request runs as.
  */
 
-let authPromise: Promise<typeof import('@/auth').auth> | undefined;
-
-const getAuth = () => {
-  if (!authPromise) {
-    authPromise = import('@/auth').then((m) => m.auth);
-  }
-  return authPromise;
-};
-
-export const getUserId = async (headers: Headers): Promise<string | null> => {
+export const getUserId = async (_headers: Headers): Promise<string | null> => {
   try {
-    const auth = await getAuth();
-    const session = await auth.api.getSession({ headers });
-    return session?.user?.id ?? null;
+    const { getLocalUserId } = await import('@/server/modules/LocalUser');
+    return await getLocalUserId();
   } catch (error) {
-    console.error('[qwksearch] session lookup failed:', error);
+    console.error('[qwksearch] local user lookup failed:', error);
     return null;
   }
 };

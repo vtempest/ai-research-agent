@@ -2,7 +2,7 @@
 
 This directory is a copy of the [LobeHub](https://github.com/lobehub/lobehub) monorepo used as the
 **foundation of qwksearch.com**, adapted to run entirely on the same Cloudflare infrastructure the
-QwkSearch Worker already uses: Workers, D1, KV, R2, Email Routing and Better Auth. The original
+QwkSearch Worker already uses: Workers, D1, KV, R2 and Email Routing. The original
 LobeHub `packages/*`, `src/`, `apps/server`, locales and public assets live here unchanged except for
 the deltas listed under [What changed](#what-changed).
 
@@ -15,7 +15,7 @@ apps/qwk-in-lobe/
 │   ├── index.ts               # fetch handler; installs the per-request context
 │   ├── app.ts                 # route composition
 │   ├── cf/                    # bindings bridge (env, request context)
-│   ├── routes/                # auth, trpc, webapi, api, spa, qwksearch/*
+│   ├── routes/                # trpc, webapi, api, spa, qwksearch/*
 │   ├── qwksearch/             # D1 schema + article extraction chain
 │   └── shims/                 # next/*, Node-only packages, unsupported builtins
 ├── src/features/QwkSearch/    # SPA features: ArticlePanel (extract side panel) and Docs
@@ -53,12 +53,12 @@ upstream LobeHub. Users can still add their own keys under Settings → Provider
 
 | Concern | LobeHub default | On Cloudflare (this tree) |
 | --- | --- | --- |
-| HTTP shell | Next.js route handlers + middleware | One Hono app (`worker/app.ts`) mounting the same handlers: Better Auth, tRPC (lambda/tools/mobile/async), `/webapi/*`, `/api/v1` OpenAPI, agent/workflow/webhook Hono apps, `/f/:id`, SPA shells |
+| HTTP shell | Next.js route handlers + middleware | One Hono app (`worker/app.ts`) mounting the same handlers: tRPC (lambda/tools/mobile/async), `/webapi/*`, `/api/v1` OpenAPI, agent/workflow/webhook Hono apps, `/f/:id`, SPA shells |
 | Database | Postgres via Neon serverless or `pg` | Same Postgres schema. `DATABASE_URL` by default (Neon serverless driver works natively on Workers); add a `HYPERDRIVE` binding to pool through Hyperdrive with `pg` instead |
-| Auth | Better Auth (Drizzle adapter) | Secondary storage uses the `KV` binding instead of Redis. No sign-in is required: a visitor without a session gets a guest user + session on their first page view (see below) |
+| Auth | Better Auth (Drizzle adapter) | Removed. There is no sign-in: every request runs as one local user (see below) |
 | Email | nodemailer / Resend | New `cloudflare` provider on the `EMAIL` (Email Routing) binding; Resend still works |
 | Redis | ioredis | Not reachable from Workers → `DISABLE_REDIS=1`, in-memory fallbacks |
-| OIDC provider (CLI/desktop sign-in) | `oidc-provider` (Koa) | Not supported on workerd; `/oidc/*` answers 501. Browser sign-in is unaffected |
+| OIDC provider (CLI/desktop sign-in) | `oidc-provider` (Koa) | Removed with sign-in; `/oidc/*` answers 501 |
 | Static SPA | Next.js serves `/_spa` | `ASSETS` binding; the Worker injects `window.__SERVER_CONFIG__` per request (`worker/routes/spa.ts`) |
 | Config | `process.env` | `nodejs_compat` mirrors vars/secrets to `process.env`; `worker/cf/globals.ts` does it eagerly for module-time reads |
 
@@ -125,7 +125,7 @@ data is reused as-is.
   user set, what is actually in force, and the enums and bounds a settings pane needs — with every
   host and credential reduced to a presence flag, never a value. This is the sink the Extraction
   settings pane writes to. Reads never fail an extraction: an unreadable row falls
-  back to the operator's configuration, and a request with no session cookie skips the lookup.
+  back to the operator's configuration.
 - **Search preferences** (`apps/server/src/services/search/impls/qwksearch/searchPreferences.ts`,
   `GET`/`PUT`/`DELETE /api/doc/search-settings`): the same thing for the search fan-out, on the D1
   `search_settings` table, with the same three-part response and the same never-fail reads. The
@@ -167,8 +167,7 @@ pnpm install                       # LobeHub workspace (pnpm, not bun)
 
 # 1. SPA bundles + static assets → dist/client
 bun run build:spa                  # dist/desktop  (main app, base /_spa/)
-bun run build:spa:auth             # dist/auth     (sign-in app, base /_spa-auth/)
-tsx scripts/buildWorkerAssets.mts  # public/ + dist/desktop + dist/auth → dist/client
+tsx scripts/buildWorkerAssets.mts  # public/ + dist/desktop → dist/client
 
 # 2. Worker bundle → dist/worker/index.js (single ES module, ~7.9 MB gzipped,
 #    against Cloudflare's 10 MB compressed Worker limit)
@@ -207,9 +206,8 @@ Local run: `bun run cf:dev` starts `wrangler dev --local` with `wrangler.local.j
 local D1/KV, no Cloudflare account needed); run `bun run cf:d1:migrate:dev` once to create the D1
 tables locally. The Worker needs `dist/client/_spa/index.html` to serve pages, so run the SPA build
 first. Postgres-backed routes need a reachable `DATABASE_URL` (set it in `wrangler.local.jsonc` vars).
-Verified locally: `/api/version`, `/api/health`, `/api/auth/get-session`, `/trpc/lambda/config.getGlobalConfig`,
-`/api/v1`, `/api/doc/documents` (D1), `/signin` renders the sign-in SPA in headless Chromium, and
-protected pages start a guest session instead of redirecting to `/signin`.
+Verified locally: `/api/version`, `/api/health`, `/trpc/lambda/config.getGlobalConfig`,
+`/api/v1` and `/api/doc/documents` (D1).
 
 ### Cloudflare Workers Builds
 
@@ -282,7 +280,6 @@ Secrets (`wrangler secret put …`):
 | Secret | Purpose |
 | --- | --- |
 | `KEY_VAULTS_SECRET` | encrypts stored provider keys (`openssl rand -base64 32`) |
-| `AUTH_SECRET` | Better Auth signing secret |
 | `DATABASE_URL` | the Postgres connection (e.g. Neon URL, `DATABASE_DRIVER=neon`); optional only when a `HYPERDRIVE` binding is bound |
 | `S3_*` | uploads — point at the `qwksearch-uploads` R2 bucket via its S3 API |
 | `TAVILY_API_KEY`, `SCRAPER_API_KEY` | article extraction fallbacks |
@@ -349,7 +346,7 @@ seam:
 
 ```bash
 # Worker + Cloudflare adapters + QwkSearch UI (root vitest config)
-bunx vitest run worker src/features/QwkSearch src/libs/better-auth/utils/kvSecondaryStorage.test.ts \
+bunx vitest run worker src/features/QwkSearch apps/server/src/modules/LocalUser \
   scripts/ensureWorkerBuild.test.ts \
   apps/server/src/services/email/impls/cloudflare apps/server/src/services/search/impls/qwksearch
 
@@ -380,25 +377,14 @@ writes nothing — are checked without spending a Worker build.
   connection pool. It resolves on first property access, to the one instance `getServerDB()`
   caches. Upstream's eager export fails any `next build` that runs without `KEY_VAULTS_SECRET`,
   while it is merely collecting a route's page data.
-- `src/libs/better-auth/utils/config.ts`: KV-backed `secondaryStorage` (`createKVSecondaryStorage`).
-- Guest sessions instead of a sign-in wall: `src/libs/better-auth/plugins/guest-session.ts` (a
-  server-only `signInGuest` endpoint that creates a `guest-…@guest.invalid` user and its session, no
-  schema change) and `src/libs/better-auth/guest.ts` (`startGuestSession`, skipped for crawlers).
-  The Worker's page gate (`resolvePageSession` in `worker/routes/spa.ts`) and the Next proxy attach
-  its cookie to the page response. Only if a guest cannot be created (e.g. a database error;
-  `AUTH_ALLOWED_EMAILS` exempts guest addresses unless `AUTH_DISABLE_DEMO_ACCOUNT=1`) does the
-  Worker fall back to its own `/signin` — never `APP_URL`'s.
-- Demo account instead of sign-in: there is no sign-in or sign-up screen. `/signin` and `/signup`
-  redirect straight to their `callbackUrl` (same origin only, else `/`) with a private guest session
-  (`resolveDemoBypass` in `worker/routes/spa.ts`); in-app navigation to them does the same through
-  `DemoAccountGate` (`src/features/Auth/DemoAccount`), which calls the plugin's HTTP `POST
-  /api/auth/sign-in/demo`. On by default; set `AUTH_DISABLE_DEMO_ACCOUNT=1` to bring the sign-in and
-  sign-up forms back (the endpoint then 404s).
-- No logout when a guest's request fails auth: a tRPC 401 for a guest (or a visitor with no session)
-  calls the same endpoint through `recoverGuestSession` (`packages/trpc/src/client/lambda.ts`)
-  instead of LobeHub's logout-to-`/signin`. A lost session is replaced and the page reloads; a session
-  the server still has is kept, so a stray 401 no longer throws away the guest's workspace. Real
-  accounts still go to `/signin`, and so does everyone when the demo account is disabled.
+- No sign-in at all: Better Auth, the OIDC provider, the auth SPA and every sign-in / sign-up page
+  are removed. Every request runs as one local user, `qwk-local-user`, created on first use
+  (`apps/server/src/modules/LocalUser`). tRPC, `/webapi/*`, `/api/v1` and the Worker's QwkSearch
+  routes all resolve to that user, so everyone who can reach the deployment shares one workspace.
+  API keys still authenticate as their owner, and an invalid API key or bearer token is still
+  rejected. The old auth URLs (`/signin`, `/signup`, `/oauth/*`, …) redirect to their same-origin
+  `callbackUrl`, else `/`. The Better Auth tables stay in the database schema so no migration is
+  needed.
 - `apps/server/src/services/email/*`: `cloudflare` provider (Email Routing binding), default on Workers.
 - `apps/server/src/services/search/impls/`: new `qwksearch` provider (`SearchImplType.QwkSearch`),
   plus its settings resolver and D1-backed user preferences. Upstream edits there and around it
@@ -494,7 +480,8 @@ Everything under `worker/`, `src/features/QwkSearch/`, `src/features/Settings/ex
 
 ## Known gaps
 
-- **OIDC / CLI & desktop sign-in**: `oidc-provider` cannot run on workerd → `/oidc/*` returns 501.
+- **No accounts**: there is one shared local user, so anyone who can reach the deployment sees the
+  same workspace. Put the Worker behind Cloudflare Access if it must be private.
 - **Redis-backed features** (agent runtime stream fan-out across isolates, edit locks, some rate
   limits) run on in-memory fallbacks; a single Worker isolate is not shared state. Add an
   HTTP Redis provider (Upstash) to `src/libs/redis` to restore multi-isolate coordination.

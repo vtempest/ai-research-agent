@@ -36,17 +36,14 @@ vi.mock('../../qwksearch/session', () => ({
   getUserId: async () => userId,
   requireUserId: async () => userId,
   UnauthorizedError: class UnauthorizedError extends Error {},
-  unauthorizedResponse: () => Response.json({ message: 'Authentication required' }, { status: 401 }),
+  unauthorizedResponse: () =>
+    Response.json({ message: 'Authentication required' }, { status: 401 }),
 }));
 
 const { articleApp, restyleCite } = await import('./article');
 
-/** Anonymous by default; `signedIn` adds the cookie the user layer looks for. */
-const get = (query: string, signedIn = false) =>
-  articleApp.request(
-    `/api/doc/article?${query}`,
-    signedIn ? { headers: { cookie: 'better-auth.session_token=abc' } } : undefined,
-  );
+/** The user layer comes from the mocked `getUserId` (`userId` below), not a cookie. */
+const get = (query: string) => articleApp.request(`/api/doc/article?${query}`);
 
 const row = {
   author: 'Ada Lovelace',
@@ -121,7 +118,7 @@ describe('GET /api/doc/article — the signed-in user layer', () => {
     userId = 'user_1';
     overridesRow = { overrides: { citationStyle: 'chicago' }, userId };
 
-    const body = await (await get('url=https://example.com/notes', true)).json();
+    const body = await (await get('url=https://example.com/notes')).json();
     expect(cite(body)).toContain('October 1, 1990');
   });
 
@@ -129,7 +126,7 @@ describe('GET /api/doc/article — the signed-in user layer', () => {
     userId = 'user_1';
     overridesRow = { overrides: { citationStyle: 'chicago' }, userId };
 
-    const body = await (await get('url=https://example.com/notes&cite=mla', true)).json();
+    const body = await (await get('url=https://example.com/notes&cite=mla')).json();
     expect(cite(body)).toContain('1 Oct. 1990');
   });
 
@@ -146,7 +143,7 @@ describe('GET /api/doc/article — the signed-in user layer', () => {
     userId = 'user_1';
     overridesRow = { overrides: '{not json', userId };
 
-    const res = await get('url=https://example.com/notes', true);
+    const res = await get('url=https://example.com/notes');
     expect(res.status).toBe(200);
     expect(cite(await res.json())).toBe(row.cite);
   });

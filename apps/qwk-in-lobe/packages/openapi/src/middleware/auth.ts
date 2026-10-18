@@ -4,9 +4,7 @@ import { HTTPException } from 'hono/http-exception';
 
 import { getServerDB } from '@/database/core/db-adaptor';
 import { ApiKeyModel } from '@/database/models/apiKey';
-import { authEnv } from '@/envs/auth';
-import { assertOIDCUserActive } from '@/libs/oidc-provider/access-control';
-import { validateOIDCJWT } from '@/libs/oidc-provider/jwt';
+import { getLocalUserId } from '@/server/modules/LocalUser';
 import { validateApiKeyFormat } from '@/utils/apiKey';
 import { extractBearerToken } from '@/utils/server/auth';
 
@@ -14,8 +12,9 @@ import { extractBearerToken } from '@/utils/server/auth';
 const log = debug('lobe-hono:auth-middleware');
 
 /**
- * Standard Hono authentication middleware
- * Supports both OIDC tokens and API keys via Bearer token
+ * Standard Hono authentication middleware.
+ * An API key in the Bearer token authenticates as its owner; a request with no
+ * Bearer token runs as the local user, since there is no sign-in.
  */
 export const userAuthMiddleware = async (c: Context, next: Next) => {
   // Development mode debug bypass
@@ -95,29 +94,17 @@ export const userAuthMiddleware = async (c: Context, next: Next) => {
       } catch (error) {
         log('API Key authentication failed: %O', error);
       }
-    } else if (authEnv.ENABLE_OIDC) {
-      // Try OIDC authentication
-      log('Bearer token does not match API Key format, attempting OIDC authentication');
-
-      try {
-        // Use direct JWT validation instead of OIDCService
-        const tokenInfo = await validateOIDCJWT(bearerToken);
-        if (tokenInfo.tokenData?.purpose === 'hetero-operation') {
-          throw new Error('Operation tokens are only accepted by heterogeneous model endpoints');
-        }
-        const db = await getServerDB();
-        await assertOIDCUserActive(db, tokenInfo.userId);
-
-        userId = tokenInfo.userId;
-        authType = 'oidc';
-        authData = tokenInfo.tokenData;
-
-        log('OIDC authentication successful, userId: %s', userId);
-      } catch (error) {
-        log('OIDC authentication failed: %O', error);
-      }
     } else {
-      log('Bearer token provided but does not match API Key format and OIDC is not enabled');
+      log('Bearer token provided but does not match API Key format');
+    }
+  } else {
+    // Public routes (docs, health) must keep working when the database is down,
+    // so a failed lookup leaves the request unauthenticated instead of failing it.
+    try {
+      userId = await getLocalUserId();
+      authType = 'local';
+    } catch (error) {
+      log('Local user lookup failed: %O', error);
     }
   }
 

@@ -18,7 +18,7 @@ import { type LambdaRouter } from '@/server/routers/lambda';
 
 const log = debug('lobe-image:lambda-client');
 
-// 401 error debouncing: prevent showing multiple login notifications in short time
+// 401 error debouncing: prevent repeated handling in a short time
 let last401Time = 0;
 let lastMarket401Time = 0;
 const MIN_401_INTERVAL = 5000; // 5 seconds
@@ -69,39 +69,12 @@ const errorHandlingLink: TRPCLink<LambdaRouter> = () => {
                     });
                   }
                 } else {
-                  // Non-market 401: handle as before (LobeChat session expired)
+                  // There is no sign-in, so a non-market 401 has nowhere to send the
+                  // user: surface it once instead of redirecting.
                   const now = Date.now();
                   if (now - last401Time > MIN_401_INTERVAL) {
                     last401Time = now;
-                    // Desktop app doesn't have the web auth routes like `/signin`,
-                    // so skip the login redirect/notification there.
-                    if (!isDesktop) {
-                      const { getUserStoreState } = await import('@/store/user/store');
-                      const { isSignedIn, logout, user } = getUserStoreState();
-                      const { isGuestEmail } = await import('@/libs/better-auth/guestEmail');
-                      // A guest (or a visitor with no session) is never sent to sign in on a
-                      // demo deployment: a fresh guest session replaces the lost one. Only
-                      // when the demo account is disabled does it fall through to /signin.
-                      if (!isSignedIn || isGuestEmail(user?.email)) {
-                        const { recoverGuestSession } =
-                          await import('@/features/Auth/DemoAccount/recoverGuestSession');
-                        if ((await recoverGuestSession()) !== 'unavailable') {
-                          err.meta = { ...err.meta, shouldRetry: false };
-                          break;
-                        }
-                      }
-                      // If user is still marked as signed in but got 401,
-                      // session is invalid - clear client state first
-                      if (isSignedIn) {
-                        const params = new URLSearchParams({ callbackUrl: location.toString() });
-                        params.set('reason', 'sessionExpired');
-                        await logout({ redirectTo: `/signin?${params.toString()}` });
-                      } else {
-                        const { loginRequired } =
-                          await import('@/components/Error/loginRequiredNotification');
-                        loginRequired.redirect({ reason: 'sessionExpired' });
-                      }
-                    }
+                    console.error(err);
                   }
                 }
                 // Mark error as non-retryable to prevent SWR infinite retry loop

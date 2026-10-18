@@ -1,8 +1,8 @@
 import debug from 'debug';
 import type { Context } from 'hono';
 
-import { auth } from '@/auth';
 import { appEnv } from '@/envs/app';
+import { getLocalUserId } from '@/server/modules/LocalUser';
 import { issueOAuthState } from '@/server/services/messenger/oauth/stateStore';
 import { messengerPlatformRegistry } from '@/server/services/messenger/platforms';
 
@@ -16,9 +16,8 @@ const log = debug('lobe-server:messenger:install');
  * `platforms/<id>/oauth.ts`.
  *
  * Always reached from the LobeHub web settings (the "Connect" modal does
- * `window.location.href`s here), so we require an authenticated session —
- * that's how we capture which LobeHub user owns this install
- * (`messenger_installations.installed_by_user_id`).
+ * `window.location.href`s here). There is no sign-in, so the install is
+ * owned by the local user (`messenger_installations.installed_by_user_id`).
  *
  * Manus's flow is the same shape: install starts on the product, NOT on a
  * public Marketplace deep link, so the install row is bound to a real user
@@ -42,18 +41,8 @@ export async function messengerInstall(c: Context): Promise<Response> {
     });
   }
 
-  // 2. Session check — unauth users get bounced through sign-in and back.
-  let session: Awaited<ReturnType<typeof auth.api.getSession>>;
-  try {
-    session = await auth.api.getSession({ headers: req.headers });
-  } catch (error) {
-    log('install: getSession failed: %O', error);
-    session = null;
-  }
-  if (!session?.user?.id) {
-    const callbackUrl = encodeURIComponent(`/api/agent/messenger/${platform}/install`);
-    return Response.redirect(new URL(`/signin?callbackUrl=${callbackUrl}`, url.origin), 302);
-  }
+  // 2. The user who owns this install.
+  const userId = await getLocalUserId();
 
   // 3. Config precondition — give a clear 503 instead of letting the upstream reject us.
   const config = await definition.oauth.getAppConfig();
@@ -74,7 +63,7 @@ export async function messengerInstall(c: Context): Promise<Response> {
 
   // 4. Mint an OAuth state, store the originating user → Redis (10-min TTL).
   const returnTo = url.searchParams.get('returnTo') || undefined;
-  const state = await issueOAuthState({ lobeUserId: session.user.id, returnTo });
+  const state = await issueOAuthState({ lobeUserId: userId, returnTo });
 
   // 5. Build the platform's authorize URL and 302. The redirect_uri must
   // match exactly at the callback — we generate it the same way both sides.
@@ -85,6 +74,6 @@ export async function messengerInstall(c: Context): Promise<Response> {
     state,
   });
 
-  log('install: redirecting user=%s to %s authorize', session.user.id, platform);
+  log('install: redirecting user=%s to %s authorize', userId, platform);
   return Response.redirect(authorizeUrl, 302);
 }

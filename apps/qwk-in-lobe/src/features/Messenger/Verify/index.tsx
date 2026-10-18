@@ -8,9 +8,10 @@ import { useSearchParams } from 'react-router';
 import useSWR from 'swr';
 
 import Loading from '@/components/Loading/BrandTextLoading';
-import { useSession } from '@/libs/better-auth/auth-client';
 import { messengerKeys } from '@/libs/swr/keys';
 import { messengerService } from '@/services/messenger';
+import { useUserStore } from '@/store/user';
+import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
 import { type MessengerPlatform } from '../constants';
 import { getMessengerErrorMessage } from '../i18n';
@@ -28,8 +29,10 @@ const MessengerVerifyPage = memo(() => {
   const imType = searchParams.get('im_type') ?? '';
   const platform = isSupportedPlatform(imType) ? imType : null;
 
-  const { data: session, isPending: sessionPending } = useSession();
-  const isSignedIn = !!session?.user;
+  // There is no sign-in: the local user's session is ready once the store loads.
+  const sessionPending = !useUserStore(authSelectors.isLoaded);
+  const isSignedIn = useUserStore(authSelectors.isLogin);
+  const user = useUserStore(userProfileSelectors.userProfile);
 
   // Used in the success state to deep-link the user back to the bot.
   const platformsSWR = useSWR(messengerKeys.availablePlatforms(), () =>
@@ -87,17 +90,18 @@ const MessengerVerifyPage = memo(() => {
     return <Loading debugId="MessengerVerify" />;
   }
 
-  const signInUrl = `/signin?callbackUrl=${encodeURIComponent(
-    `/verify-im?${searchParams.toString()}`,
-  )}`;
+  // With a single local account there is no other account to switch to, so
+  // the "switch account" action opens the messenger settings instead.
+  const signInUrl = platform ? `/settings/messenger/${platform}` : '/settings/messenger';
 
+  // Only reachable when the local user failed to load.
   if (!isSignedIn) {
     return (
       <Flexbox align="center" className={styles.card} gap={32}>
         {platform && <IconRow platform={platform} />}
-        <Heading subtitle={t('verify.signInRequired')} title={t('verify.confirm.title')} />
-        <Button block href={signInUrl} size="large" type="primary">
-          {t('verify.signInCta')}
+        <Heading title={t('verify.error.title')} />
+        <Button block size="large" type="primary" onClick={() => window.location.reload()}>
+          {t('retry', { ns: 'common' })}
         </Button>
       </Flexbox>
     );
@@ -157,8 +161,8 @@ const MessengerVerifyPage = memo(() => {
         consumedToken?.platform ??
         platform),
   );
-  const lobeAccount = session?.user?.email ?? session?.user?.name ?? '';
-  const userAvatar = session?.user?.image ?? undefined;
+  const lobeAccount = user?.email || user?.fullName || user?.username || '';
+  const userAvatar = user?.avatar || undefined;
 
   return (
     <Body

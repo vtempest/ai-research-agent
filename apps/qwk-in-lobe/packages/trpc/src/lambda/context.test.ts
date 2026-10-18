@@ -6,31 +6,15 @@ import { ApiKeyModel } from '@/database/models/apiKey';
 
 import { createContextInner, createLambdaContext } from './context';
 
-const {
-  mockAssertOIDCUserActive,
-  mockExtractTraceContext,
-  mockFindByKey,
-  mockGetSession,
-  mockIsOIDCUserInactiveError,
-  mockUpdateLastUsed,
-  mockValidateOIDCJWT,
-} = vi.hoisted(() => ({
-  mockAssertOIDCUserActive: vi.fn(),
-  mockExtractTraceContext: vi.fn(),
-  mockFindByKey: vi.fn(),
-  mockGetSession: vi.fn(),
-  mockIsOIDCUserInactiveError: vi.fn(),
-  mockUpdateLastUsed: vi.fn(),
-  mockValidateOIDCJWT: vi.fn(),
-}));
+const { mockExtractTraceContext, mockFindByKey, mockGetLocalUserId, mockUpdateLastUsed } =
+  vi.hoisted(() => ({
+    mockExtractTraceContext: vi.fn(),
+    mockFindByKey: vi.fn(),
+    mockGetLocalUserId: vi.fn(),
+    mockUpdateLastUsed: vi.fn(),
+  }));
 
-vi.mock('@/auth', () => ({
-  auth: {
-    api: {
-      getSession: mockGetSession,
-    },
-  },
-}));
+vi.mock('@/server/modules/LocalUser', () => ({ getLocalUserId: mockGetLocalUserId }));
 
 vi.mock('@/database/core/db-adaptor', () => ({
   getServerDB: vi.fn().mockResolvedValue({}),
@@ -47,25 +31,8 @@ vi.mock('@/database/models/apiKey', () => ({
   ),
 }));
 
-vi.mock('@/envs/auth', () => ({
-  LOBE_CHAT_AUTH_HEADER: 'X-lobe-chat-auth',
-  LOBE_CHAT_OIDC_AUTH_HEADER: 'Oidc-Auth',
-  authEnv: {
-    ENABLE_OIDC: true,
-  },
-}));
-
 vi.mock('@/libs/observability/traceparent', () => ({
   extractTraceContext: mockExtractTraceContext,
-}));
-
-vi.mock('@/libs/oidc-provider/jwt', () => ({
-  validateOIDCJWT: mockValidateOIDCJWT,
-}));
-
-vi.mock('@/libs/oidc-provider/access-control', () => ({
-  assertOIDCUserActive: mockAssertOIDCUserActive,
-  isOIDCUserInactiveError: mockIsOIDCUserInactiveError,
 }));
 
 vi.mock('@/utils/apiKey', async (importOriginal) => {
@@ -204,13 +171,7 @@ describe('createLambdaContext', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockExtractTraceContext.mockReturnValue(undefined);
-    mockGetSession.mockResolvedValue({ user: { id: 'session-user' } });
-    mockAssertOIDCUserActive.mockResolvedValue(undefined);
-    mockIsOIDCUserInactiveError.mockReturnValue(false);
-    mockValidateOIDCJWT.mockResolvedValue({
-      tokenData: { sub: 'oidc-user' },
-      userId: 'oidc-user',
-    });
+    mockGetLocalUserId.mockResolvedValue('qwk-local-user');
     mockUpdateLastUsed.mockResolvedValue(undefined);
   });
 
@@ -230,7 +191,7 @@ describe('createLambdaContext', () => {
     });
   });
 
-  it('should authenticate with API key and skip session fallback', async () => {
+  it('should authenticate with API key and skip the local user', async () => {
     const apiKeyRecord = {
       accessedAt: new Date(),
       createdAt: new Date(),
@@ -258,8 +219,7 @@ describe('createLambdaContext', () => {
     const context = await createLambdaContext(request);
 
     expect(context.userId).toBe('api-user');
-    expect(mockGetSession).not.toHaveBeenCalled();
-    expect(mockValidateOIDCJWT).not.toHaveBeenCalled();
+    expect(mockGetLocalUserId).not.toHaveBeenCalled();
   });
 
   const makeApiKeyRecord = (workspaceId: string | null) =>
@@ -293,7 +253,7 @@ describe('createLambdaContext', () => {
 
     expect(context.userId).toBeNull();
     expect(context.workspaceId).toBeUndefined();
-    expect(mockGetSession).not.toHaveBeenCalled();
+    expect(mockGetLocalUserId).not.toHaveBeenCalled();
   });
 
   it('should reject a workspace API key replayed against another workspace', async () => {
@@ -382,12 +342,11 @@ describe('createLambdaContext', () => {
     expect(context.workspaceId).toBe('ws-1');
   });
 
-  it('should reject invalid API key without falling back to OIDC or session', async () => {
+  it('should reject invalid API key without falling back to the local user', async () => {
     vi.mocked(ApiKeyModel.findByKey).mockResolvedValue(null);
 
     const request = new NextRequest('https://example.com/trpc/lambda', {
       headers: {
-        'Oidc-Auth': 'oidc-token',
         'X-API-Key': `${API_KEY_PREFIX}bbbbbbbbbbbbbbbb`,
       },
     });
@@ -395,72 +354,24 @@ describe('createLambdaContext', () => {
     const context = await createLambdaContext(request);
 
     expect(context.userId).toBeNull();
-    expect(mockValidateOIDCJWT).not.toHaveBeenCalled();
-    expect(mockGetSession).not.toHaveBeenCalled();
+    expect(mockGetLocalUserId).not.toHaveBeenCalled();
   });
 
-  it('should use session auth when no API key header is present', async () => {
+  it('runs as the local user when no API key header is present', async () => {
     const request = new NextRequest('https://example.com/trpc/lambda');
 
     const context = await createLambdaContext(request);
 
-    expect(context.userId).toBe('session-user');
-    expect(mockGetSession).toHaveBeenCalledOnce();
+    expect(context.userId).toBe('qwk-local-user');
+    expect(mockGetLocalUserId).toHaveBeenCalledOnce();
   });
 
-  it('should authenticate with active OIDC auth and skip session fallback', async () => {
-    const request = new NextRequest('https://example.com/trpc/lambda', {
-      headers: { 'Oidc-Auth': 'oidc-token' },
-    });
-
-    const context = await createLambdaContext(request);
-
-    expect(context.userId).toBe('oidc-user');
-    expect(context.oidcAuth?.sub).toBe('oidc-user');
-    expect(mockAssertOIDCUserActive).toHaveBeenCalledWith(expect.any(Object), 'oidc-user');
-    expect(mockGetSession).not.toHaveBeenCalled();
-  });
-
-  it('should carry oidcClientId from the validated OIDC JWT', async () => {
-    mockValidateOIDCJWT.mockResolvedValueOnce({
-      clientId: 'lca_dev_app_1',
-      tokenData: { client_id: 'lca_dev_app_1', sub: 'oidc-user' },
-      userId: 'oidc-user',
-    });
-
-    const request = new NextRequest('https://example.com/trpc/lambda', {
-      headers: { 'Oidc-Auth': 'oidc-token' },
-    });
-
-    const context = await createLambdaContext(request);
-
-    expect(context.oidcClientId).toBe('lca_dev_app_1');
-  });
-
-  it('should leave oidcClientId undefined when the JWT has no client_id', async () => {
-    const request = new NextRequest('https://example.com/trpc/lambda', {
-      headers: { 'Oidc-Auth': 'oidc-token' },
-    });
-
-    const context = await createLambdaContext(request);
-
-    expect(context.oidcClientId).toBeUndefined();
-  });
-
-  it('should reject inactive OIDC auth without falling back to session', async () => {
-    const inactiveError = new Error('OIDC user is no longer active');
-    mockAssertOIDCUserActive.mockRejectedValueOnce(inactiveError);
-    mockIsOIDCUserInactiveError.mockReturnValueOnce(true);
-
-    const request = new NextRequest('https://example.com/trpc/lambda', {
-      headers: { 'Oidc-Auth': 'oidc-token' },
-    });
+  it('leaves the request unauthenticated when the local user cannot be resolved', async () => {
+    mockGetLocalUserId.mockRejectedValueOnce(new Error('database unavailable'));
+    const request = new NextRequest('https://example.com/trpc/lambda');
 
     const context = await createLambdaContext(request);
 
     expect(context.userId).toBeNull();
-    expect(context.oidcAuth).toBeUndefined();
-    expect(mockValidateOIDCJWT).toHaveBeenCalledWith('oidc-token');
-    expect(mockGetSession).not.toHaveBeenCalled();
   });
 });

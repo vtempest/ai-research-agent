@@ -18,23 +18,19 @@ interface TestHonoEnv {
 const {
   mockApiKeyFindByKey,
   mockApiKeyUpdateLastUsed,
-  mockAssertOIDCUserActive,
-  mockAuthEnv,
+  mockGetLocalUserId,
   mockGetServerDB,
   mockExtractBearerToken,
   mockServerDB,
   mockValidateApiKeyFormat,
-  mockValidateOIDCJWT,
 } = vi.hoisted(() => ({
   mockApiKeyFindByKey: vi.fn(),
   mockApiKeyUpdateLastUsed: vi.fn(),
-  mockAssertOIDCUserActive: vi.fn(),
-  mockAuthEnv: { ENABLE_OIDC: true },
   mockExtractBearerToken: vi.fn(),
+  mockGetLocalUserId: vi.fn(),
   mockGetServerDB: vi.fn(),
   mockServerDB: {},
   mockValidateApiKeyFormat: vi.fn(),
-  mockValidateOIDCJWT: vi.fn(),
 }));
 
 vi.mock('@/database/core/db-adaptor', () => ({
@@ -48,16 +44,8 @@ vi.mock('@/database/models/apiKey', () => ({
   },
 }));
 
-vi.mock('@/envs/auth', () => ({
-  authEnv: mockAuthEnv,
-}));
-
-vi.mock('@/libs/oidc-provider/access-control', () => ({
-  assertOIDCUserActive: mockAssertOIDCUserActive,
-}));
-
-vi.mock('@/libs/oidc-provider/jwt', () => ({
-  validateOIDCJWT: mockValidateOIDCJWT,
+vi.mock('@/server/modules/LocalUser', () => ({
+  getLocalUserId: mockGetLocalUserId,
 }));
 
 vi.mock('@/utils/apiKey', () => ({
@@ -92,67 +80,42 @@ const createApp = () => {
 describe('OpenAPI auth middleware', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockAuthEnv.ENABLE_OIDC = true;
-    mockExtractBearerToken.mockReturnValue('oidc-token');
+    mockExtractBearerToken.mockReturnValue(null);
+    mockGetLocalUserId.mockResolvedValue('qwk-local-user');
     mockGetServerDB.mockResolvedValue(mockServerDB);
     mockApiKeyFindByKey.mockResolvedValue(null);
     mockApiKeyUpdateLastUsed.mockResolvedValue(undefined);
     mockValidateApiKeyFormat.mockReturnValue(false);
-    mockValidateOIDCJWT.mockResolvedValue({
-      tokenData: { sub: 'oidc-user' },
-      userId: 'oidc-user',
-    });
-    mockAssertOIDCUserActive.mockResolvedValue(undefined);
   });
 
-  it('should authenticate an active OIDC bearer token', async () => {
-    const app = createApp();
-
-    const response = await app.request('/protected', {
-      headers: { Authorization: 'Bearer oidc-token' },
-    });
+  it('runs a request without a Bearer token as the local user', async () => {
+    const response = await createApp().request('/protected');
 
     await expect(response.json()).resolves.toEqual({
       apiKeyWorkspaceId: null,
-      authType: 'oidc',
-      userId: 'oidc-user',
+      authType: 'local',
+      userId: 'qwk-local-user',
     });
     expect(response.status).toBe(200);
-    expect(mockValidateOIDCJWT).toHaveBeenCalledWith('oidc-token');
-    expect(mockAssertOIDCUserActive).toHaveBeenCalledWith(mockServerDB, 'oidc-user');
   });
 
-  it('does not accept an operation token on ordinary OpenAPI routes', async () => {
-    mockValidateOIDCJWT.mockResolvedValueOnce({
-      tokenData: { purpose: 'hetero-operation', sub: 'oidc-user' },
-      userId: 'oidc-user',
-    });
+  it('leaves the request unauthenticated when the local user cannot be resolved', async () => {
+    mockGetLocalUserId.mockRejectedValue(new Error('database unavailable'));
+
+    const response = await createApp().request('/protected');
+
+    expect(response.status).toBe(401);
+  });
+
+  it('rejects a Bearer token that is not a valid API key', async () => {
+    mockExtractBearerToken.mockReturnValue('not-an-api-key');
 
     const response = await createApp().request('/protected', {
-      headers: { Authorization: 'Bearer operation-token' },
+      headers: { Authorization: 'Bearer not-an-api-key' },
     });
 
     expect(response.status).toBe(401);
-    expect(mockAssertOIDCUserActive).not.toHaveBeenCalled();
-  });
-
-  it('should reject an inactive OIDC bearer token without authenticating the request', async () => {
-    const app = createApp();
-    const inactiveError = Object.assign(new Error('OIDC user is no longer active'), {
-      code: 'UNAUTHORIZED',
-    });
-    mockValidateOIDCJWT.mockResolvedValueOnce({
-      tokenData: { sub: 'banned-user' },
-      userId: 'banned-user',
-    });
-    mockAssertOIDCUserActive.mockRejectedValueOnce(inactiveError);
-
-    const response = await app.request('/protected', {
-      headers: { Authorization: 'Bearer oidc-token' },
-    });
-
-    expect(response.status).toBe(401);
-    expect(mockAssertOIDCUserActive).toHaveBeenCalledWith(mockServerDB, 'banned-user');
+    expect(mockGetLocalUserId).not.toHaveBeenCalled();
   });
 
   it('should expose the workspace scope of an API Key to downstream middleware', async () => {

@@ -10,10 +10,9 @@ import { type Locales } from '@/locales/resources';
 import { parseBrowserLanguage } from '@/utils/locale';
 import { DEFAULT_LANG, locales, RouteVariants } from '@/utils/server/routeVariants';
 
-import { authSpaRoutes, nextjsOnlyRoutes } from '../nextjsOnlyRoutes';
+import { nextjsOnlyRoutes } from '../nextjsOnlyRoutes';
 import { isShareSpaRoute } from '../shareRoutes';
 import { isAlwaysWorkbenchSpaRoute, isWorkbenchSpaRoute } from '../workbenchRoutes';
-import { createRouteMatcher } from './createRouteMatcher';
 
 // Create debug logger instances
 const logDefault = debug('middleware:default');
@@ -21,7 +20,7 @@ const logDefault = debug('middleware:default');
 // Dev-only debug proxy route should bypass all middleware rewrites.
 const dangerousLocalDevProxyRoute = '/_dangerous_local_dev_proxy';
 
-// The locale is embedded raw into rewrite paths (/spa-auth/${locale}, /spa/${route}).
+// The locale is embedded raw into rewrite paths (/spa-share/${locale}, /spa/${route}).
 // An unvalidated value (e.g. ?hl=../../api/dev) would let the URL parser collapse the
 // traversal and rewrite to a confused internal target, so allowlist it before use.
 const toSafeLocale = (locale: string): Locales =>
@@ -121,22 +120,6 @@ export function defineConfig() {
       return NextResponse.next();
     }
 
-    const isAuthSpaRoute = authSpaRoutes.some(
-      (route) => url.pathname === route || url.pathname.startsWith(`${route}/`),
-    );
-
-    // Auth SPA routes: rewrite to /spa-auth/[locale]/[[...path]] catch-all
-    if (isAuthSpaRoute) {
-      const authSpaPath = `/spa-auth/${safeLocale}${url.pathname}`;
-      logDefault('Auth SPA route, rewriting to: %s', authSpaPath);
-      url.pathname = authSpaPath;
-
-      const response = NextResponse.rewrite(url);
-      persistLocaleCookie(response, request, explicitlyLocale);
-
-      return response;
-    }
-
     // Share pages are responsive on their own, so they get one bundle for every
     // device rather than a mobile variant.
     if (isShareSpaRoute(url.pathname)) {
@@ -201,40 +184,6 @@ export function defineConfig() {
 
     return rewrite;
   };
-
-  const isPublicRoute = createRouteMatcher([
-    // backend api
-    '/api/v1(.*)', // OpenAPI routes should use OpenAPI auth (API Key/OIDC), not BetterAuth session
-    '/api/auth(.*)',
-    '/api/webhooks(.*)',
-    '/api/workflows(.*)',
-    '/api/agent(.*)',
-    '/api/dev(.*)',
-    '/webapi(.*)',
-    '/trpc(.*)',
-    // version
-    '/api/version',
-    '/api/desktop/(.*)',
-    // Composio OAuth callback — hit via a cross-site redirect from the provider
-    // after Composio-managed auth; only renders a popup-closing page, so it must
-    // not be session-gated.
-    '/api/composio/oauth/callback',
-    // market
-    '/market-auth-callback',
-    // public share pages
-    '/share(.*)',
-    // standalone verification report viewer — the run id in the URL is the
-    // read-only capability for viewing the report without a signed-in session.
-    '/verify/(.*)',
-    // acceptance decision page — same shape as /verify/:id: the id is the
-    // capability; the tRPC layer enforces the aggregate's `visibility` (a
-    // private aggregate 404s for anyone but the owner / workspace members).
-    '/acceptance/(.*)',
-    // messenger verify-im — page itself handles unauth (in-page sign-in CTA)
-    // and the random_id token is the actual capability check; no need for
-    // session-protected access at the middleware layer.
-    '/verify-im',
-  ]);
 
   return { middleware: defaultMiddleware };
 }

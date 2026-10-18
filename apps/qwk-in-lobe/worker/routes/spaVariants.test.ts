@@ -2,17 +2,15 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  buildSignInRedirect,
-  isAuthSpaRoute,
   isBackendPath,
-  isPublicSpaRoute,
+  isLegacyAuthRoute,
   parseAcceptLanguage,
+  resolveAuthRedirectPath,
   resolveSpaVariant,
   toSafeLocale,
 } from './spaVariants';
 
-const req = (url: string, headers: Record<string, string> = {}) =>
-  new Request(url, { headers });
+const req = (url: string, headers: Record<string, string> = {}) => new Request(url, { headers });
 
 describe('toSafeLocale', () => {
   it('keeps supported locales and falls back to en-US otherwise', () => {
@@ -69,39 +67,34 @@ describe('resolveSpaVariant', () => {
 });
 
 describe('route classification', () => {
-  it('routes auth pages to the auth SPA', () => {
-    expect(isAuthSpaRoute('/signin')).toBe(true);
-    expect(isAuthSpaRoute('/oauth/consent/abc')).toBe(true);
-    expect(isAuthSpaRoute('/agent')).toBe(false);
+  it('redirects the removed auth pages into the app', () => {
+    expect(isLegacyAuthRoute('/signin')).toBe(true);
+    expect(isLegacyAuthRoute('/oauth/consent/abc')).toBe(true);
+    expect(isLegacyAuthRoute('/agent')).toBe(false);
+    expect(isLegacyAuthRoute('/signinx')).toBe(false);
   });
 
   it('never serves the SPA shell for backend prefixes', () => {
-    expect(isBackendPath('/api/auth/get-session')).toBe(true);
     expect(isBackendPath('/trpc/lambda/user.getUserState')).toBe(true);
     expect(isBackendPath('/f/abc')).toBe(true);
     expect(isBackendPath('/agent/123')).toBe(false);
   });
-
-  it('gates protected pages and allows public ones', () => {
-    expect(isPublicSpaRoute('/share/topic/1')).toBe(true);
-    expect(isPublicSpaRoute('/verify/run-1')).toBe(true);
-    expect(isPublicSpaRoute('/agent/123')).toBe(false);
-    expect(isPublicSpaRoute('/')).toBe(false);
-  });
 });
 
-describe('buildSignInRedirect', () => {
-  it('preserves callback, locale and attribution', () => {
-    const url = buildSignInRedirect(
-      req('https://qwksearch.com/agent/1?hl=zh-CN&utm_source=market'),
-      'https://qwksearch.com',
-    );
-    const parsed = new URL(url);
-    expect(parsed.pathname).toBe('/signin');
-    expect(parsed.searchParams.get('callbackUrl')).toBe(
-      'https://qwksearch.com/agent/1?hl=zh-CN&utm_source=market',
-    );
-    expect(parsed.searchParams.get('hl')).toBe('zh-CN');
-    expect(parsed.searchParams.get('utm_source')).toBe('market');
+describe('resolveAuthRedirectPath', () => {
+  it('returns the same-origin callback', () => {
+    expect(
+      resolveAuthRedirectPath(
+        'https://lobe.example.com/signup?email=a%40b.com&callbackUrl=https%3A%2F%2Flobe.example.com%2Fagent%3Fx%3D1',
+      ),
+    ).toBe('/agent?x=1');
+  });
+
+  it('falls back to / for missing, off-site or auth-page callbacks', () => {
+    for (const callbackUrl of [null, 'https://evil.example/', '//evil.example/', '/signin?x=1']) {
+      const url = new URL('https://lobe.example.com/signin');
+      if (callbackUrl) url.searchParams.set('callbackUrl', callbackUrl);
+      expect(resolveAuthRedirectPath(url.toString())).toBe('/');
+    }
   });
 });

@@ -2,21 +2,12 @@
 import { ChatErrorType } from '@lobechat/types';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { auth } from '@/auth';
 import { AiProviderModel } from '@/database/models/aiProvider';
 
 import { GET } from './route';
 
-vi.mock('@/app/(backend)/middleware/auth/utils', () => ({
-  checkAuthMethod: vi.fn(),
-}));
-
-vi.mock('@/auth', () => ({
-  auth: {
-    api: {
-      getSession: vi.fn().mockResolvedValue(null),
-    },
-  },
+vi.mock('@/server/modules/LocalUser', () => ({
+  getLocalUserId: vi.fn().mockResolvedValue('test-user-id'),
 }));
 
 vi.mock('@/database/models/aiProvider', () => {
@@ -44,12 +35,6 @@ let request: Request;
 beforeEach(() => {
   request = new Request(new URL('https://test.com'), {
     method: 'GET',
-  });
-
-  // Default: valid session
-  vi.mocked(auth.api.getSession).mockResolvedValue({
-    session: {} as any,
-    user: { id: 'test-user-id' } as any,
   });
 });
 

@@ -53,13 +53,13 @@ describe('useMenu', () => {
     const { result } = renderHook(() => useMenu(), { wrapper });
 
     act(() => {
-      const { mainItems, logoutItems } = result.current;
+      const { mainItems } = result.current;
       // 'setting' is shown when logged in
       expect(mainItems?.some((item) => item?.key === 'setting')).toBe(true);
       // 'memory' is gated behind the showMemory nav-layout flag (defaults off)
       expect(mainItems?.some((item) => item?.key === 'memory')).toBe(false);
-      // 'logout' is shown when isLoginWithAuth is true
-      expect(logoutItems.some((item) => item?.key === 'logout')).toBe(true);
+      // there is no sign-in, so there is nothing to sign out of
+      expect(mainItems?.some((item) => item?.key === 'logout')).toBe(false);
     });
   });
 
@@ -71,11 +71,10 @@ describe('useMenu', () => {
     const { result } = renderHook(() => useMenu(), { wrapper });
 
     act(() => {
-      const { mainItems, logoutItems } = result.current;
+      const { mainItems } = result.current;
       // When not logged in, setting and memory should not be shown
       expect(mainItems?.some((item) => item?.key === 'setting')).toBe(false);
       expect(mainItems?.some((item) => item?.key === 'memory')).toBe(false);
-      expect(logoutItems.some((item) => item?.key === 'logout')).toBe(false);
     });
   });
 

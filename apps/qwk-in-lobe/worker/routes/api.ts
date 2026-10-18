@@ -40,14 +40,13 @@ apiApp.get('/f/:id', async (c) => {
   return GET(c.req.raw, { params: Promise.resolve({ id: c.req.param('id') }) });
 });
 
-// OIDC provider (CLI / desktop sign-in) relies on the Koa-based `oidc-provider`
-// package, which cannot run inside a Worker. Answer explicitly instead of
-// crashing the isolate; web sign-in goes through Better Auth at /api/auth.
+// There is no sign-in, so there is no OIDC provider either. Answer old CLI /
+// desktop clients explicitly rather than with the SPA shell.
 apiApp.all('/oidc/*', (c) =>
   c.json(
     {
       error: 'oidc_unavailable',
-      message: 'The OIDC provider is not available on the Cloudflare Workers deployment.',
+      message: 'This deployment has no sign-in, so there is no OIDC provider.',
     },
     501,
   ),

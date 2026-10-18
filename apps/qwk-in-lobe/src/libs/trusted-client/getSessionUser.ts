@@ -1,30 +1,23 @@
-import { headers } from 'next/headers';
-
 import { type TrustedClientUserInfo } from './index';
 
 /**
- * Get user info from the current session for trusted client authentication
+ * Get user info for trusted client authentication. There is no sign-in, so
+ * this is the local user, and only once it has an email on record.
  *
- * @returns User info or undefined if not authenticated
+ * @returns User info or undefined if the local user has no email
  */
 export const getSessionUser = async (): Promise<TrustedClientUserInfo | undefined> => {
   try {
-    // Dynamic import to avoid validator ESM/CJS issue during sitemap generation
-    const { auth } = await import('@/auth');
-    const headersList = await headers();
-    const session = await auth.api.getSession({
-      headers: headersList,
-    });
+    // Dynamic imports to avoid validator ESM/CJS issue during sitemap generation
+    const { getServerDB } = await import('@/database/core/db-adaptor');
+    const { UserModel } = await import('@/database/models/user');
+    const { getLocalUserId } = await import('@/server/modules/LocalUser');
 
-    if (!session?.user?.id || !session?.user?.email) {
-      return undefined;
-    }
+    const userId = await getLocalUserId();
+    const user = await UserModel.findById(await getServerDB(), userId);
+    if (!user?.email) return undefined;
 
-    return {
-      email: session.user.email,
-      name: session.user.name || undefined,
-      userId: session.user.id,
-    };
+    return { email: user.email, name: user.fullName || undefined, userId };
   } catch {
     return undefined;
   }

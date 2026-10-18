@@ -84,10 +84,6 @@ const mockGlobalConfigDependencies = (
     toolsEnv: { TOOL_NAME_MAX_LENGTH: options.toolNameMaxLengthEnv },
   }));
 
-  vi.doMock('@/libs/better-auth/utils/server', () => ({
-    parseSSOProviders: vi.fn(() => []),
-  }));
-
   vi.doMock('@/server/globalConfig/parseSystemAgent', () => ({
     parseSystemAgent: vi.fn(() => undefined),
   }));

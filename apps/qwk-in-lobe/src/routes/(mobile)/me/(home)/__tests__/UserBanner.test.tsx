@@ -1,7 +1,5 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-
-import { useUserStore } from '@/store/user';
 
 import UserBanner from '../features/UserBanner';
 
@@ -22,10 +20,6 @@ vi.mock('@/features/User/DataStatistics', () => ({
   default: vi.fn(() => <div>Mocked DataStatistics</div>),
 }));
 
-vi.mock('@/features/User/UserLoginOrSignup/Community', () => ({
-  default: vi.fn(() => <div>Mocked UserLoginOrSignup</div>),
-}));
-
 vi.mock('@/const/version', () => ({
   isDeprecatedEdition: false,
   isDesktop: false,
@@ -36,27 +30,10 @@ afterEach(() => {
 });
 
 describe('UserBanner', () => {
-  it('should render UserInfo and DataStatistics when user is logged in', () => {
-    act(() => {
-      useUserStore.setState({ isSignedIn: true });
-    });
-
+  it('always shows the local user, since there is no sign-in', () => {
     render(<UserBanner />);
 
     expect(screen.getByText('Mocked UserInfo')).toBeInTheDocument();
     expect(screen.getByText('Mocked DataStatistics')).toBeInTheDocument();
-    expect(screen.queryByText('Mocked UserLoginOrSignup')).not.toBeInTheDocument();
-  });
-
-  it('should render UserLoginOrSignup when user is not logged in', () => {
-    act(() => {
-      useUserStore.setState({ isSignedIn: false });
-    });
-
-    render(<UserBanner />);
-
-    expect(screen.getByText('Mocked UserLoginOrSignup')).toBeInTheDocument();
-    expect(screen.queryByText('Mocked UserInfo')).not.toBeInTheDocument();
-    expect(screen.queryByText('Mocked DataStatistics')).not.toBeInTheDocument();
   });
 });

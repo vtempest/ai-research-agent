@@ -1,20 +1,3 @@
-import { headers } from 'next/headers';
-
-import { auth } from '@/auth';
-
-export const getUserAuth = async () => {
-  const currentHeaders = await headers();
-  const requestHeaders = Object.fromEntries(currentHeaders.entries());
-
-  const session = await auth.api.getSession({
-    headers: requestHeaders,
-  });
-
-  const userId = session?.user?.id;
-
-  return { betterAuth: session, userId };
-};
-
 /**
  * Extract Bearer Token from authorization header
  * @param authHeader - Authorization header (e.g. "Bearer xxx")

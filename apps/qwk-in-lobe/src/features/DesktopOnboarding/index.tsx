@@ -13,7 +13,6 @@ import { resolveNextScreen, resolvePreviousScreen } from './flow';
 import OnboardingContainer from './Layout';
 import { resolveInitialScreen } from './resolveInitialScreen';
 import DataModeStep from './steps/DataModeStep';
-import LoginStep from './steps/LoginStep';
 import PermissionsStep from './steps/PermissionsStep';
 import WelcomeStep from './steps/WelcomeStep';
 import {
@@ -25,6 +24,14 @@ import {
   setDesktopOnboardingScreen,
 } from './storage';
 import { DesktopOnboardingScreen, isDesktopOnboardingScreen } from './types';
+
+/** Advances past a screen that has nothing to show. */
+const SkipStep = ({ onNext }: { onNext: () => void }) => {
+  useEffect(() => {
+    onNext();
+  }, [onNext]);
+  return null;
+};
 
 const DesktopOnboardingPage = memo(() => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -207,7 +214,8 @@ const DesktopOnboardingPage = memo(() => {
         return <DataModeStep onBack={goToPreviousStep} onNext={goToNextStep} />;
       }
       case DesktopOnboardingScreen.Login: {
-        return <LoginStep onBack={goToPreviousStep} onNext={goToNextStep} />;
+        // There is no sign-in: skip straight past the login screen.
+        return <SkipStep onNext={goToNextStep} />;
       }
       default: {
         return null;

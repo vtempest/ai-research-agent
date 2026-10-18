@@ -30,10 +30,7 @@ const entrySrc = (html: string) =>
 
 describe('dev SPA shells', () => {
   it('finds every route handler that fetches a named dev template', () => {
-    expect(devShells.map((shell) => shell.template)).toEqual([
-      '/index.auth.html',
-      '/index.workbench.html',
-    ]);
+    expect(devShells.map((shell) => shell.template)).toEqual(['/index.workbench.html']);
   });
 
   // Vite falls back to the main `index.html` for a missing root shell, so a typo

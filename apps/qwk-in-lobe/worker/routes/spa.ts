@@ -1,12 +1,15 @@
 /**
  * Serves the LobeHub SPA shells from the Worker.
  *
- * Replaces the Next.js `src/app/spa/[variants]/[[...path]]/route.ts` and
- * `src/app/spa-auth/...` handlers plus the locale/device middleware. Built HTML
- * templates are read from the static assets binding (`/_spa/index.html`,
- * `/_spa-auth/index.auth.html`, optional `/_spa-mobile/index.mobile.html`) and
- * the server config is injected into `window.__SERVER_CONFIG__` exactly as the
- * Next route does, so the client bootstrap is unchanged.
+ * Replaces the Next.js `src/app/spa/[variants]/[[...path]]/route.ts` handler
+ * plus the locale/device middleware. Built HTML templates are read from the
+ * static assets binding (`/_spa/index.html`, optional
+ * `/_spa-mobile/index.mobile.html`) and the server config is injected into
+ * `window.__SERVER_CONFIG__` exactly as the Next route does, so the client
+ * bootstrap is unchanged.
+ *
+ * There is no sign-in: every page renders for everyone, and the old auth pages
+ * (`/signin`, `/signup`, …) redirect into the app.
  */
 import type { Context } from 'hono';
 import { Hono } from 'hono';
@@ -14,17 +17,13 @@ import { Hono } from 'hono';
 import { getCfEnv } from '../cf/env';
 import {
   buildLocaleCookie,
-  buildSignInRedirect,
-  DEMO_BYPASS_ROUTES,
-  isAuthSpaRoute,
   isBackendPath,
-  isPublicSpaRoute,
-  resolveDemoCallbackPath,
+  isLegacyAuthRoute,
+  resolveAuthRedirectPath,
   resolveSpaVariant,
 } from './spaVariants';
 
 export const SPA_TEMPLATE_PATHS = {
-  auth: '/_spa-auth/index.auth.html',
   desktop: '/_spa/index.html',
   mobile: '/_spa-mobile/index.mobile.html',
 } as const;
@@ -111,33 +110,6 @@ const withLocaleCookie = (response: Response, c: Context, locale?: string) => {
   return response;
 };
 
-const renderAuthSpa = async (c: Context) => {
-  const { buildSeoMeta: buildAuthSeoMeta } =
-    await import('@/app/spa-auth/[locale]/[[...path]]/seoMeta');
-  const { auth } = await import('@/auth');
-  const { getServerFeatureFlagsValue } = await import('@/config/featureFlags');
-  const { getServerAuthConfig } = await import('@/server/globalConfig/getServerAuthConfig');
-  const { buildAnalyticsConfig, renderSpaHtml } = await import('@/libs/spaHtml');
-  const { authEnv } = await import('@/envs/auth');
-  const { appEnv } = await import('@/envs/app');
-
-  const { locale, explicitLocale } = resolveSpaVariant(c.req.raw);
-  const template = await loadTemplate('auth', c.req.url);
-  if (!template) return c.text('Auth SPA bundle is missing (build:spa:auth)', 503);
-
-  const authConfig: AuthSPAServerConfig = {
-    analyticsConfig: buildAnalyticsConfig(),
-    config: getServerAuthConfig(),
-    enableOIDC: authEnv.ENABLE_OIDC ?? false,
-    featureFlags: getServerFeatureFlagsValue(),
-    globalCDN: appEnv.CDN_USE_GLOBAL ?? false,
-  };
-
-  const seoMeta = await buildAuthSeoMeta(locale, new URL(c.req.url).pathname);
-  const response = renderSpaHtml(template, { seoMeta, serverConfig: authConfig });
-  return withLocaleCookie(response, c, explicitLocale);
-};
-
 const renderMainSpa = async (c: Context) => {
   const { getServerGlobalConfig } = await import('@/server/globalConfig');
   const { getServerFeatureFlagsValue } = await import('@/config/featureFlags');
@@ -163,84 +135,6 @@ const renderMainSpa = async (c: Context) => {
   return withLocaleCookie(response, c, explicitLocale);
 };
 
-/**
- * Session gate for protected SPA pages. Only the public allowlist skips it.
- * Nobody is sent to sign in: a visitor without a session gets a guest
- * session on this response (`startGuestSession`), and crawlers get the page
- * without one. Only when a guest cannot be created (e.g. the database
- * is unreachable, or `AUTH_ALLOWED_EMAILS` is set with the demo account off) does the visitor go to this deployment's own `/signin` —
- * never to `APP_URL`'s, which may be a different site.
- */
-export const resolvePageSession = async (
-  c: Context,
-): Promise<{ redirect?: Response; setCookies?: string[] }> => {
-  const { pathname, origin } = new URL(c.req.url);
-  if (isPublicSpaRoute(pathname) || isAuthSpaRoute(pathname)) return {};
-
-  const { auth } = await import('@/auth');
-  try {
-    const session = await auth.api.getSession({ headers: c.req.raw.headers });
-    if (session?.user) return {};
-  } catch (error) {
-    console.error('[spa] session lookup failed, treating as anonymous:', error);
-  }
-
-  const { isLikelyBot, startGuestSession } = await import('@/libs/better-auth/guest');
-  if (isLikelyBot(c.req.header('user-agent'))) return {};
-
-  const setCookies = await startGuestSession(c.req.raw.headers);
-  if (setCookies) return { setCookies };
-
-  return { redirect: c.redirect(buildSignInRedirect(c.req.raw, origin), 302) };
-};
-
-/**
- * There is no sign-in or sign-up screen while the demo account is on
- * (`AUTH_DISABLE_DEMO_ACCOUNT` unset): `/signin` and `/signup` send the visitor
- * straight back to their `callbackUrl` (or `/`) with a guest session, keeping
- * any session they already have. Returns `null` — render the auth page as
- * before — when the demo account is off or a guest cannot be created (e.g. a
- * database error), so the page gate's fallback still has somewhere to go.
- */
-export const resolveDemoBypass = async (c: Context): Promise<Response | null> => {
-  const { pathname } = new URL(c.req.url);
-  if (!DEMO_BYPASS_ROUTES.has(pathname)) return null;
-
-  const { authEnv } = await import('@/envs/auth');
-  if (authEnv.AUTH_DISABLE_DEMO_ACCOUNT) return null;
-
-  const location = resolveDemoCallbackPath(c.req.url);
-  const { isLikelyBot, startGuestSession } = await import('@/libs/better-auth/guest');
-  if (isLikelyBot(c.req.header('user-agent'))) return c.redirect(location, 302);
-
-  const { auth } = await import('@/auth');
-  try {
-    const session = await auth.api.getSession({ headers: c.req.raw.headers });
-    if (session?.user) return c.redirect(location, 302);
-  } catch (error) {
-    console.error('[spa] session lookup failed, treating as anonymous:', error);
-  }
-
-  const setCookies = await startGuestSession(c.req.raw.headers);
-  if (!setCookies) return null;
-
-  const response = c.redirect(location, 302);
-  for (const cookie of setCookies) response.headers.append('set-cookie', cookie);
-  return response;
-};
-
-interface AuthSPAServerConfig {
-  analyticsConfig: ReturnType<typeof import('@/libs/spaHtml').buildAnalyticsConfig>;
-  config: Awaited<
-    ReturnType<typeof import('@/server/globalConfig/getServerAuthConfig').getServerAuthConfig>
-  >;
-  enableOIDC: boolean;
-  featureFlags: Awaited<
-    ReturnType<typeof import('@/config/featureFlags').getServerFeatureFlagsValue>
-  >;
-  globalCDN: boolean;
-}
-
 interface SPAServerConfig {
   analyticsConfig: ReturnType<typeof import('@/libs/spaHtml').buildAnalyticsConfig>;
   clientEnv: Awaited<ReturnType<typeof buildClientEnv>>;
@@ -257,12 +151,7 @@ spaApp.get('*', async (c) => {
   const { pathname } = new URL(c.req.url);
 
   if (isBackendPath(pathname)) return c.notFound();
-  if (isAuthSpaRoute(pathname)) return (await resolveDemoBypass(c)) ?? renderAuthSpa(c);
+  if (isLegacyAuthRoute(pathname)) return c.redirect(resolveAuthRedirectPath(c.req.url), 302);
 
-  const { redirect, setCookies } = await resolvePageSession(c);
-  if (redirect) return redirect;
-
-  const response = await renderMainSpa(c);
-  for (const cookie of setCookies ?? []) response.headers.append('set-cookie', cookie);
-  return response;
+  return renderMainSpa(c);
 });
