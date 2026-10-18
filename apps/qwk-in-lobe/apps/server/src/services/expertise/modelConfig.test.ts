@@ -14,12 +14,12 @@ vi.mock('@/database/models/user', () => ({
 describe('resolveExpertiseModelConfig', () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it('defaults to GPT-5.6 Luna instead of the target agent model', async () => {
+  it('defaults to the OpenRouter mini model instead of the target agent model', async () => {
     getUserSettings.mockResolvedValue(undefined);
 
     await expect(resolveExpertiseModelConfig({} as never, 'user_1')).resolves.toEqual({
-      model: 'gpt-5.6-luna',
-      provider: 'openai',
+      model: 'openrouter/auto',
+      provider: 'openrouter',
     });
   });
 

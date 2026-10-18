@@ -1,12 +1,18 @@
 export const DEFAULT_EMBEDDING_PROVIDER = 'openai';
 
-export const DEFAULT_MODEL = 'deepseek-v4-flash';
-export const DEFAULT_PROVIDER = 'deepseek';
-export const DEFAULT_MINI_MODEL = 'gpt-5.6-luna';
-export const DEFAULT_MINI_PROVIDER = 'openai';
+/**
+ * QwkSearch routes every default model through OpenRouter, so the deployed
+ * Worker answers chats with one secret (`OPENROUTER_API_KEY`) instead of a key
+ * per vendor. `openrouter/auto` picks a model per prompt and is the one
+ * OpenRouter entry enabled in the model bank.
+ */
+export const DEFAULT_MODEL = 'openrouter/auto';
+export const DEFAULT_PROVIDER = 'openrouter';
+export const DEFAULT_MINI_MODEL = 'openrouter/auto';
+export const DEFAULT_MINI_PROVIDER = 'openrouter';
 
-export const DEFAULT_ONBOARDING_MODEL = 'gemini-3-flash-preview';
-export const DEFAULT_ONBOARDING_PROVIDER = 'google';
+export const DEFAULT_ONBOARDING_MODEL = 'openrouter/auto';
+export const DEFAULT_ONBOARDING_PROVIDER = 'openrouter';
 
 /**
  * The model Acceptance review predictions judge evidence screenshots with.

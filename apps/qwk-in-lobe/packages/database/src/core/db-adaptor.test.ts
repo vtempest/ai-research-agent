@@ -61,6 +61,11 @@ describe('serverDB', () => {
 
     expect(() => serverDB.select).toThrow(error);
     await expect(getServerDB()).rejects.toThrow(error);
+    // The reason is in the logged text, not only in the Error's stack.
+    expect(consoleError).toHaveBeenCalledWith(
+      '❌ Failed to initialize database: `KEY_VAULTS_SECRET` is not set',
+      error,
+    );
 
     consoleError.mockRestore();
   });
