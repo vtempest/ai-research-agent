@@ -16,7 +16,10 @@ const resolveDB = (): LobeChatDatabase => {
     cachedDB = getDBInstance();
     return cachedDB;
   } catch (error) {
-    console.error('❌ Failed to initialize database:', error);
+    // Put the reason in the message itself: Workers Logs renders an Error
+    // argument as its stack frames only, which hides what is misconfigured.
+    const reason = error instanceof Error ? error.message.trim() : String(error);
+    console.error(`❌ Failed to initialize database: ${reason}`, error);
     throw error;
   }
 };
