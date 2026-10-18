@@ -43,7 +43,17 @@ export function getRecommendedBackend(): Backend {
   return supportsWebGPU() ? WEBGPU_BACKEND : WASM_BACKEND;
 }
 
-async function loadModel(): Promise<any> {
+export type KokoroLoadProgress = {
+  status: 'initiate' | 'download' | 'progress' | 'progress_total' | 'done' | 'ready';
+  name?: string;
+  file?: string;
+  progress?: number;
+  loaded?: number;
+  total?: number;
+  files?: Record<string, { loaded: number; total: number }>;
+};
+
+async function loadModel(progressCallback?: (p: KokoroLoadProgress) => void): Promise<any> {
   const backends: Backend[] = [];
   if (await hasWorkingWebGPU()) backends.push(WEBGPU_BACKEND);
   backends.push(WASM_BACKEND);
@@ -56,6 +66,7 @@ async function loadModel(): Promise<any> {
       const tts = await KokoroTTS.from_pretrained(MODEL_ID, {
         device: backend.device,
         dtype: backend.dtype,
+        progress_callback: progressCallback as any,
       });
       chosenDevice = backend.device;
       return tts;
@@ -73,9 +84,9 @@ async function loadModel(): Promise<any> {
     : new Error('Failed to load Kokoro model');
 }
 
-export async function preloadKokoro() {
+export async function preloadKokoro(progressCallback?: (p: KokoroLoadProgress) => void) {
   if (!ttsPromise) {
-    ttsPromise = loadModel().catch((err) => {
+    ttsPromise = loadModel(progressCallback).catch((err) => {
       ttsPromise = null;
       throw err;
     });
@@ -84,8 +95,8 @@ export async function preloadKokoro() {
   return ttsPromise;
 }
 
-export async function getKokoro() {
-  return preloadKokoro();
+export async function getKokoro(progressCallback?: (p: KokoroLoadProgress) => void) {
+  return preloadKokoro(progressCallback);
 }
 
 export async function getVoiceList(): Promise<string[]> {

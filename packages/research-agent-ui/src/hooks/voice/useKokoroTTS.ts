@@ -5,7 +5,7 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { getKokoro, getVoiceList, preloadKokoro, getLoadedBackend } from '../../lib/kokoro';
+import { getKokoro, getVoiceList, preloadKokoro, getLoadedBackend, KokoroLoadProgress } from '../../lib/kokoro';
 
 type SpeechStatus = 'idle' | 'loading' | 'generating' | 'playing' | 'error';
 
@@ -17,17 +17,7 @@ export function useKokoroTTS(text: string, options?: UseKokoroTTSOptions) {
   const [status, setStatus] = useState<SpeechStatus>('idle');
   const [modelReady, setModelReady] = useState(false);
   const [voices, setVoices] = useState<string[]>([]);
-  const [selectedVoice, setSelectedVoice] = useState('af_heart');
-  const [error, setError] = useState<string | null>(null);
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
-
-  useEffect(() => {
-    if (options?.autoPreload && !modelReady) {
-      warmupModel();
-    }
-  }, [options?.autoPreload, modelReady]);
+  const [progress, setProgress] = useState<KokoroLoadProgress | null>(null);
 
   useEffect(() => {
     const savedVoice = localStorage.getItem('kokoroVoice');
@@ -61,7 +51,10 @@ export function useKokoroTTS(text: string, options?: UseKokoroTTSOptions) {
     try {
       setStatus('loading');
       setError(null);
-      await preloadKokoro();
+      setProgress(null);
+      await preloadKokoro((p) => {
+        setProgress(p);
+      });
       const list = await getVoiceList();
       setVoices(list);
       if (list.length && !list.includes(selectedVoice)) {
@@ -146,6 +139,7 @@ export function useKokoroTTS(text: string, options?: UseKokoroTTSOptions) {
     voices,
     selectedVoice,
     error,
+    progress,
     warmupModel,
     speak,
     stop,

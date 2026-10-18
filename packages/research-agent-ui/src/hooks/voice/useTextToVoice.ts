@@ -9,7 +9,7 @@ import { useState, useCallback, useRef } from "react";
 // VAD import commented out — switching to @huggingface/transformers
 // import type { MicVAD } from "@ricky0123/vad-web";
 import grab from "grab-url";
-import { getKokoro, preloadKokoro, getVoiceList } from "../../lib/kokoro";
+import { getKokoro, preloadKokoro, getVoiceList, KokoroLoadProgress } from "../../lib/kokoro";
 
 type SpeechStatus = "started" | "stopped";
 
@@ -143,7 +143,12 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
       const useKokoro = localStorage.getItem("useTTSKokoro") !== "false";
       if (useKokoro) {
         try {
-          const tts = await getKokoro();
+          const tts = await getKokoro((p) => {
+            // Could emit progress to parent via options if needed, but for now just console
+            if (p.status === 'progress_total' || p.status === 'progress' || p.status === 'download') {
+              console.log(`[Kokoro] Loading: ${Math.round(p.progress ?? 0)}%`);
+            }
+          });
           const voice = localStorage.getItem("kokoroVoice") || "af_heart";
           const audio = await tts.generate(text.slice(0, 5000), { voice });
           const wavBytes = audio.toWav();

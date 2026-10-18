@@ -24,7 +24,7 @@ const VOICE_DESCRIPTIONS: Record<string, string> = {
 };
 
 export default function KokoroVoiceSelector({ preloadOnMount = false }: KokoroVoiceSelectorProps) {
-  const { status, modelReady, voices, selectedVoice, error, warmupModel, changeVoice, backend } = useKokoroTTS('', { autoPreload: preloadOnMount });
+  const { status, modelReady, voices, selectedVoice, error, progress, warmupModel, changeVoice, backend } = useKokoroTTS('', { autoPreload: preloadOnMount });
   const [showFullPanel, setShowFullPanel] = useState(false);
 
   const isLoading = status === 'loading';
@@ -54,7 +54,15 @@ export default function KokoroVoiceSelector({ preloadOnMount = false }: KokoroVo
             </button>
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            {isLoading ? 'Loading Kokoro model...' : modelReady ? 'Model ready' : 'Preload Kokoro.js model'}
+            {isLoading
+              ? progress
+                ? progress.status === 'progress_total' || progress.status === 'progress'
+                  ? `Downloading Kokoro model... ${Math.round(progress.progress ?? 0)}%`
+                  : `Loading Kokoro model... ${progress.status}`
+                : 'Loading Kokoro model...'
+              : modelReady
+                ? 'Model ready'
+                : 'Preload Kokoro.js model'}
           </TooltipContent>
         </Tooltip>
 
