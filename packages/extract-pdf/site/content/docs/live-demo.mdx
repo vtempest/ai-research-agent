@@ -1,6 +1,6 @@
 ---
 title: Live demo
-description: The demo runs both packages on the same Cloudflare Worker as these docs, at /demo, with a JSON API at /api/*.
+description: The demo runs the packages on the same server as these docs (a Cloudflare Worker or Vercel), at /demo, with a JSON API at /api/*.
 icon: MonitorPlay
 ---
 
@@ -25,6 +25,8 @@ The site lives in the monorepo at `packages/extract-pdf/site`. It is one Cloudfl
 | `/api/health` | `{ status, maxPdfMb, ocr, cite }`. |
 
 `worker/index.ts` is the Worker's entry: it answers `/api/*` from `worker/api.ts` and hands every other request to the docs.
+
+The same site also deploys to Vercel as a plain Next.js app (`vercel.json`, `build-vercel.sh`): the docs and `/demo` are the same pages, and `app/api/[...path]/route.ts` answers every `/api/*` route with the same `worker/api.ts`. Set the variables below as Vercel environment variables; there is no KV there, so settings saved in `/admin` last only as long as one function instance.
 
 ## The PDF API
 

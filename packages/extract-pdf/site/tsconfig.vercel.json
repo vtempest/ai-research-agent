@@ -7,7 +7,6 @@
     ".vercel-backup",
     "aliases.ts",
     "vite.config.ts",
-    "worker/index.ts",
-    "lib/fumadocs/source.tsx"
+    "worker/index.ts"
   ]
 }
