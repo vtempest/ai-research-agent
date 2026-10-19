@@ -1,7 +1,7 @@
 # Vercel ignore file
 # Exclude Cloudflare-specific files
 wrangler.jsonc
-worker/
+worker/index.ts
 .cloudflare/
 .wrangler/
 

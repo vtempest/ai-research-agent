@@ -7,14 +7,36 @@ set -e
 
 SITE_DIR="$(dirname "$0")"
 APP_DOCS_DIR="$SITE_DIR/app/docs"
-APP_DOCS_BACKUP="$SITE_DIR/app/docs.vercel-backup"
+BACKUP_DIR="$SITE_DIR/.vercel-backup"
+APP_DOCS_BACKUP="$BACKUP_DIR/app-docs"
 CONTENT_DOCS_DIR="$SITE_DIR/content/docs"
-CONTENT_DOCS_BACKUP="$SITE_DIR/content/docs.vercel-backup"
+CONTENT_DOCS_BACKUP="$BACKUP_DIR/content-docs"
 DEMO_MOUNT="$SITE_DIR/components/demo/DemoMount.tsx"
 DEMO_MOUNT_BACKUP="$SITE_DIR/components/demo/DemoMount.tsx.backup"
 DEMO_MOUNT_VERCEL="$SITE_DIR/components/demo/DemoMount.vercel.tsx"
 
-# Move docs directories out of the way
+# Put everything back even if the build fails, so a local run never leaves
+# the docs or the Vercel DemoMount in place to be committed by accident.
+restore() {
+  if [ -d "$APP_DOCS_BACKUP" ]; then
+    echo "Restoring app/docs directory..."
+    mv "$APP_DOCS_BACKUP" "$APP_DOCS_DIR"
+  fi
+  if [ -d "$CONTENT_DOCS_BACKUP" ]; then
+    echo "Restoring content/docs directory..."
+    mv "$CONTENT_DOCS_BACKUP" "$CONTENT_DOCS_DIR"
+  fi
+  if [ -f "$DEMO_MOUNT_BACKUP" ]; then
+    echo "Restoring DemoMount..."
+    mv "$DEMO_MOUNT_BACKUP" "$DEMO_MOUNT"
+  fi
+  rmdir "$BACKUP_DIR" 2>/dev/null || true
+}
+trap restore EXIT
+
+# Move docs directories out of the way. They go outside app/ because Next
+# would still route (and type-check) anything left under it.
+mkdir -p "$BACKUP_DIR"
 if [ -d "$APP_DOCS_DIR" ]; then
   echo "Moving app/docs directory to backup..."
   mv "$APP_DOCS_DIR" "$APP_DOCS_BACKUP"
@@ -34,23 +56,6 @@ fi
 
 # Run Next.js build
 echo "Running Next.js build..."
-npx next build
-
-# Restore docs directories
-if [ -d "$APP_DOCS_BACKUP" ]; then
-  echo "Restoring app/docs directory..."
-  mv "$APP_DOCS_BACKUP" "$APP_DOCS_DIR"
-fi
-
-if [ -d "$CONTENT_DOCS_BACKUP" ]; then
-  echo "Restoring content/docs directory..."
-  mv "$CONTENT_DOCS_BACKUP" "$CONTENT_DOCS_DIR"
-fi
-
-# Restore DemoMount
-if [ -f "$DEMO_MOUNT_BACKUP" ]; then
-  echo "Restoring DemoMount..."
-  mv "$DEMO_MOUNT_BACKUP" "$DEMO_MOUNT"
-fi
+EXTRACT_PDF_VERCEL_BUILD=1 npx next build
 
 echo "Build complete!"

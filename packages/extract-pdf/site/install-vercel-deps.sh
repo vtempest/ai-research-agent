@@ -18,8 +18,12 @@ cp "$PKG_JSON_VERCEL" "$PKG_JSON"
 
 echo "Using deployment package.json for install"
 
-# Run npm install with published deps (not workspace:*)
-npm install --dangerously-allow-all-scripts
+# Run npm install with published deps (not workspace:*).
+# --prefix pins npm to this directory; without it npm walks up to the repo
+# root, sees the monorepo "workspaces" list and fails on other packages'
+# workspace:* deps (EUNSUPPORTEDPROTOCOL).
+SITE_ABS="$(cd "$SITE_DIR" && pwd)"
+npm install --prefix "$SITE_ABS" --dangerously-allow-all-scripts
 
 # Restore original package.json immediately (build script will handle the swap if needed)
 mv "$PKG_JSON_BACKUP" "$PKG_JSON"

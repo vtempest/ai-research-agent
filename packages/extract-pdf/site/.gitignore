@@ -10,3 +10,6 @@ next-env.d.ts
 storybook-static
 *.log
 .vercel
+.vercel-backup
+*.backup
+package-lock.json

@@ -14,6 +14,11 @@ const config: NextConfig = {
       },
     ];
   },
+  // build-vercel.sh sets this so the type check skips the Cloudflare-only
+  // files (Vite config, Worker entry) and the docs it moves out of the build.
+  typescript: process.env.EXTRACT_PDF_VERCEL_BUILD
+    ? { tsconfigPath: 'tsconfig.vercel.json' }
+    : undefined,
   reactStrictMode: false,
   images: {
     unoptimized: true,
