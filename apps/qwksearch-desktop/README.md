@@ -62,10 +62,8 @@ bunx tauri dev                    # run it
 bun run test                      # vitest
 ```
 
-> `tauri.conf.json` points `beforeDevCommand` and `beforeBuildCommand` at
-> `bun run dev` / `bun run build`, but `package.json` defines neither script.
-> Add them (`vite dev` / `vite build`) before relying on `tauri dev`, or run
-> Vite yourself on port 1420 alongside `tauri dev`.
+> `tauri.conf.json` runs `bun run dev` / `bun run build` (`vite dev` /
+> `vite build`) before `tauri dev` and `tauri build`.
 
 ## Building installers
 
@@ -94,12 +92,32 @@ Output lands in `dist/`. The Linux image is [`Dockerfile`](./Dockerfile)
 
 ## Releasing
 
-There is no store submission or auto-updater configured — `tauri.conf.json`
-declares no updater endpoint and no signing keys. Distribution is the bundles
-in `dist/`, attached to a GitHub release. Adding code signing or an updater
-means adding `bundle.createUpdaterArtifacts` and a `plugins.updater` block, and
-holding a signing key per platform; see
-[Tauri distribution](https://v2.tauri.app/distribute/).
+Installed apps update themselves. On launch, a release build fetches
+`latest.json` from the newest GitHub release
+(`plugins.updater.endpoints` in `tauri.conf.json`), and if it names a newer
+version it asks **Update and restart** or **Later** before downloading
+anything (`src-tauri/src/updater.rs`). Updates must be signed with the key
+whose public half is `plugins.updater.pubkey`; an unsigned or wrongly signed
+build is refused.
+
+To ship one:
+
+1. Bump `version` in `src-tauri/tauri.conf.json`.
+2. Run the **Desktop Release** workflow from the Actions tab
+   ([`desktop-release.yml`](../../.github/workflows/desktop-release.yml)).
+   It builds macOS (Apple Silicon and Intel), Windows and Linux, signs the
+   updater artifacts, and publishes the `desktop-v<version>` release with
+   `latest.json` attached.
+
+The workflow needs two repository secrets: `TAURI_SIGNING_PRIVATE_KEY` (the
+private key file's contents) and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`. Losing
+that key means installed apps can never be updated again, so keep a backup.
+To sign a local build, export the same two variables (`.env` files are not
+read for this) and run `bunx tauri build`.
+
+Linux updates only through the AppImage; `.deb` installs must be upgraded by
+hand. The updater reads `releases/latest`, so the desktop release must stay
+the repository's newest non-prerelease release.
 
 ## Things that bite
 

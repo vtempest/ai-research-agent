@@ -7,6 +7,8 @@
   "license": "rights.institute/PROSPER",
   "author": "QwkSearch <support@qwksearch.com>",
   "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
     "docker:linux": " sudo docker run -v \"$(pwd)/dist:/output\" qwksearch-linux",
     "docker:windows": "mkdir -p dist && sudo docker build -t qwksearch-windows -f Dockerfile.windows . && sudo docker run -v \"$(pwd)/dist:/output\" qwksearch-windows",
     "docker:build:linux": "mkdir -p dist && sudo docker build -t qwksearch-linux -f Dockerfile .",

@@ -11,12 +11,16 @@ extern crate simulate_key;
 extern crate tauri;
 extern crate tauri_plugin_autostart;
 extern crate tauri_plugin_clipboard_manager;
+extern crate tauri_plugin_dialog;
 extern crate tauri_plugin_global_shortcut;
+extern crate tauri_plugin_process;
+extern crate tauri_plugin_updater;
 extern crate urlencoding;
 
 mod hotkeys;
 mod selection;
 mod setup;
+mod updater;
 
 /// Application entry point. Delegates entirely to [`setup::launch`].
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

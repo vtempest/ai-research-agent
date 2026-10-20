@@ -13,6 +13,8 @@
     "clipboard-manager:allow-write-text",
     "clipboard-manager:default",
     "autostart:allow-enable", 
-    "autostart:default"
+    "autostart:default",
+    "updater:default",
+    "process:allow-restart"
   ]
-}
+}

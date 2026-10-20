@@ -2,6 +2,7 @@ use tauri::Manager;
 use tauri::window::WindowBuilder;
 
 use crate::hotkeys;
+use crate::updater;
 
 /// Builds and launches the Tauri application event loop.
 ///
@@ -17,6 +18,9 @@ use crate::hotkeys;
 /// | `tauri_plugin_clipboard_manager`| Clipboard read access for [`crate::selection`]    |
 /// | `tauri_plugin_autostart`        | Launch on login via macOS `LaunchAgent`           |
 /// | `tauri_plugin_shell`            | Shell command access for the frontend             |
+/// | `tauri_plugin_updater`          | Signed self-updates from the GitHub release feed  |
+/// | `tauri_plugin_process`          | `relaunch()` for the frontend after an update     |
+/// | `tauri_plugin_dialog`           | The "Update and restart" confirmation             |
 ///
 /// # Panics
 /// Panics with `"error while running tauri application"` if the Tauri event
@@ -37,6 +41,9 @@ pub fn launch() {
             Some(vec![]),
         ))
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_dialog::init())
         // Add the global-shortcut plugin to the builder chain so it
         // initialises with the other plugins — before the setup hook.
         .plugin(hotkeys::plugin())
@@ -51,6 +58,8 @@ pub fn launch() {
 
                 // Register shortcuts now that the plugin is ready.
                 hotkeys::register(app);
+
+                updater::spawn_check(app.handle().clone());
 
                 if let Some(window) = app.get_webview_window("main") {
                     let _ = window.hide();
