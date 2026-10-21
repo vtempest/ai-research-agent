@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 
@@ -9,24 +10,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { config } from "@/lib/config/site";
+import {
+  BUSINESS_TYPES,
+  MESSAGE_MAX_LENGTH,
+  TEAM_SIZES,
+} from "@/lib/enterprise-request";
 import { cn } from "@/lib/utils";
-
-const BUSINESS_TYPES = [
-  { value: "startup", label: "Startup" },
-  { value: "agency", label: "Agency" },
-  { value: "saas", label: "SaaS Company" },
-  { value: "enterprise", label: "Enterprise" },
-  { value: "ecommerce", label: "E-commerce" },
-  { value: "other", label: "Other" },
-];
-
-const TEAM_SIZES = [
-  { value: "1-10", label: "1-10 employees" },
-  { value: "11-50", label: "11-50 employees" },
-  { value: "51-200", label: "51-200 employees" },
-  { value: "201-1000", label: "201-1000 employees" },
-  { value: "1000+", label: "1000+ employees" },
-];
 
 // Matches `components/ui/input` so the two selects sit flush with the fields.
 const SELECT_CLASS =
@@ -51,14 +41,43 @@ export function EnterpriseSignupForm({ className }: { className?: string }) {
     const form = event.currentTarget;
     setLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const data = new FormData(form);
 
-    toast.success("Thank you for your interest!", {
-      description: "We'll be in touch within 24 hours to discuss your needs.",
-    });
+    try {
+      const response = await fetch("/api/enterprise-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          businessType: data.get("business-type"),
+          teamSize: data.get("team-size"),
+          message: data.get("message"),
+          consent: data.get("consent") === "on",
+        }),
+      });
 
-    setLoading(false);
-    form.reset();
+      if (!response.ok) {
+        const result = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(result?.error || "Something went wrong.");
+      }
+
+      toast.success("Thank you for your interest!", {
+        description: "We'll be in touch within 24 hours to discuss your needs.",
+      });
+      form.reset();
+    } catch (error) {
+      toast.error("Couldn't send your request", {
+        description:
+          error instanceof Error && error.message !== "Failed to fetch"
+            ? error.message
+            : `Please try again, or email us at ${config.appEmail}.`,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -127,6 +146,7 @@ export function EnterpriseSignupForm({ className }: { className?: string }) {
           id={`${id}-message`}
           name="message"
           placeholder="What challenges are you looking to solve? What are your main requirements?"
+          maxLength={MESSAGE_MAX_LENGTH}
           className="min-h-28"
         />
       </div>
@@ -137,8 +157,15 @@ export function EnterpriseSignupForm({ className }: { className?: string }) {
           htmlFor={`${id}-consent`}
           className="text-muted-foreground text-sm leading-snug"
         >
-          I agree to receive communications about Chat Agent UI and accept the
-          privacy policy *
+          I agree to receive communications about {config.appName} and accept
+          the{" "}
+          <Link
+            href="/legal/privacy"
+            className="hover:text-foreground underline underline-offset-2"
+          >
+            privacy policy
+          </Link>{" "}
+          *
         </label>
       </div>
 

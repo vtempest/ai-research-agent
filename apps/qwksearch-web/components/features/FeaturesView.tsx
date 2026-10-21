@@ -857,8 +857,8 @@ export interface FeaturesViewProps {
   showPipeline?: boolean;
   /**
    * Keep the "Start researching" / "See enterprise pricing" buttons and the
-   * enterprise contact form in the closing box. Default true; the homepage
-   * turns it off.
+   * enterprise request form in the closing box. Default true, including on
+   * the homepage.
    */
   showEnterpriseSignup?: boolean;
   /**
