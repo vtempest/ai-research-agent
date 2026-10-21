@@ -970,6 +970,7 @@ paths:
         - health
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -988,7 +989,6 @@ paths:
                   - status
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -1039,6 +1039,7 @@ paths:
         - agent-groups
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1060,7 +1061,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -1123,7 +1123,7 @@ paths:
                 - name
       responses:
         "200":
-          description: Response
+          description: Successful response
         "201":
           content:
             application/json:
@@ -1220,6 +1220,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1239,7 +1240,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -1307,7 +1307,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1324,6 +1323,7 @@ paths:
                     - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1343,7 +1343,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -1412,6 +1411,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1434,7 +1434,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -1510,6 +1509,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1540,7 +1540,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -1855,6 +1854,7 @@ paths:
                 - title
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1874,7 +1874,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -1944,6 +1943,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -1963,7 +1963,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -2031,7 +2030,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -2283,6 +2281,7 @@ paths:
                   minLength: 1
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2302,7 +2301,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -2371,6 +2369,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2393,7 +2392,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -2459,6 +2457,7 @@ paths:
         - api-keys
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2480,7 +2479,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -2574,7 +2572,7 @@ paths:
               additionalProperties: false
       responses:
         "200":
-          description: Response
+          description: Successful response
         "201":
           content:
             application/json:
@@ -2726,6 +2724,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2745,7 +2744,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -2814,7 +2812,6 @@ paths:
             maxLength: 16
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -2835,6 +2832,7 @@ paths:
               additionalProperties: false
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2854,7 +2852,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -2924,6 +2921,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -2946,7 +2944,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3078,6 +3075,7 @@ paths:
                 - messages
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3097,7 +3095,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3194,6 +3191,7 @@ paths:
                 - to
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3219,7 +3217,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3419,6 +3416,7 @@ paths:
                 - userMessage
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3444,7 +3442,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3511,6 +3508,8 @@ paths:
       tags:
         - eval
       responses:
+        "200":
+          description: Successful response
         "202":
           content:
             application/json:
@@ -3643,6 +3642,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3662,7 +3662,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3733,6 +3732,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3767,7 +3767,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3871,6 +3870,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3901,7 +3901,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -3990,6 +3989,7 @@ paths:
         - files
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4017,7 +4017,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -4072,6 +4071,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4099,7 +4099,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4167,7 +4166,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -4179,6 +4177,7 @@ paths:
                     - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4198,7 +4197,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4267,6 +4265,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4289,7 +4288,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4365,6 +4363,7 @@ paths:
               - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4385,7 +4384,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4461,6 +4459,7 @@ paths:
               - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4481,7 +4480,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4550,7 +4548,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -4562,6 +4559,7 @@ paths:
                   type: boolean
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4582,7 +4580,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4651,6 +4648,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4671,7 +4669,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -4763,6 +4760,7 @@ paths:
         - files
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4830,7 +4828,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -4893,6 +4890,7 @@ paths:
                 - fileIds
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -4950,7 +4948,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5026,6 +5023,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5056,7 +5054,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5137,6 +5134,7 @@ paths:
                 - name
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5156,7 +5154,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5226,6 +5223,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5245,7 +5243,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5313,7 +5310,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -5331,6 +5327,7 @@ paths:
                   maxLength: 255
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5350,7 +5347,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5419,6 +5415,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5441,7 +5438,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5529,6 +5525,7 @@ paths:
               - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5549,7 +5546,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5634,6 +5630,7 @@ paths:
                 - fileIds
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5654,7 +5651,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5738,6 +5734,7 @@ paths:
                 - fileIds
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5760,7 +5757,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5849,6 +5845,7 @@ paths:
                 - targetKnowledgeBaseId
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5869,7 +5866,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -5935,6 +5931,7 @@ paths:
         - mcp-servers
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -5956,7 +5953,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -6005,6 +6001,8 @@ paths:
       tags:
         - mcp-servers
       responses:
+        "200":
+          description: Successful response
         "201":
           content:
             application/json:
@@ -6171,6 +6169,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6190,7 +6189,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6259,7 +6257,6 @@ paths:
             pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -6331,6 +6328,7 @@ paths:
               additionalProperties: false
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6350,7 +6348,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6420,6 +6417,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6442,7 +6440,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6508,6 +6505,7 @@ paths:
         - mcp-servers
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6542,7 +6540,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6640,6 +6637,7 @@ paths:
                 - to
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6660,7 +6658,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6729,6 +6726,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6749,7 +6747,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6842,6 +6839,7 @@ paths:
                 - to
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6862,7 +6860,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -6931,6 +6928,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -6951,7 +6949,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7027,6 +7024,7 @@ paths:
               - "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7053,7 +7051,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7152,6 +7149,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7182,7 +7180,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7331,6 +7328,7 @@ paths:
                 - role
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7350,7 +7348,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7427,6 +7424,7 @@ paths:
                 - messageIds
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7449,7 +7447,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7519,6 +7516,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7538,7 +7536,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7607,6 +7604,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7629,7 +7627,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7775,6 +7772,7 @@ paths:
                 - role
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7796,7 +7794,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -7902,6 +7899,7 @@ paths:
               - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -7932,7 +7930,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8094,6 +8091,7 @@ paths:
                 - providerId
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8113,7 +8111,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8191,6 +8188,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8211,7 +8209,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8287,7 +8284,6 @@ paths:
             maxLength: 64
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -8376,6 +8372,7 @@ paths:
                     - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8396,7 +8393,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8485,6 +8481,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8515,7 +8512,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8606,6 +8602,7 @@ paths:
                 - name
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8625,7 +8622,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8696,6 +8692,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8715,7 +8712,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8784,7 +8780,6 @@ paths:
             maxLength: 16
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -8810,6 +8805,7 @@ paths:
                   minLength: 1
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8829,7 +8825,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -8899,6 +8894,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -8921,7 +8917,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9001,6 +8996,7 @@ paths:
             type: boolean
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9031,7 +9027,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9155,6 +9150,7 @@ paths:
                 - id
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9174,7 +9170,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9245,6 +9240,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9264,7 +9260,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9333,7 +9328,6 @@ paths:
             maxLength: 64
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -9393,6 +9387,7 @@ paths:
                     - custom
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9412,7 +9407,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9482,6 +9476,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9504,7 +9499,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9833,6 +9827,7 @@ paths:
               additionalProperties: {}
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9862,7 +9857,6 @@ paths:
             text/event-stream:
               schema:
                 type: string
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -9950,6 +9944,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -9980,7 +9975,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10072,6 +10066,7 @@ paths:
                 - name
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10091,7 +10086,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10161,6 +10155,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10180,7 +10175,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10248,7 +10242,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -10276,6 +10269,7 @@ paths:
                   minLength: 1
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10295,7 +10289,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10364,6 +10357,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10386,7 +10380,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10468,6 +10461,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10488,7 +10482,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10556,7 +10549,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -10578,6 +10570,7 @@ paths:
                     - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10598,7 +10591,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10667,6 +10659,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10689,7 +10682,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10793,6 +10785,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10823,7 +10816,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10909,6 +10901,7 @@ paths:
                 - title
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -10928,7 +10921,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -10998,6 +10990,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11017,7 +11010,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11085,7 +11077,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -11111,6 +11102,7 @@ paths:
                   minLength: 1
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11130,7 +11122,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11199,6 +11190,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11221,7 +11213,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11287,6 +11278,7 @@ paths:
         - users
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11314,7 +11306,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
@@ -11375,6 +11366,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11405,7 +11397,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11466,7 +11457,6 @@ paths:
     post:
       operationId: postApiV1Users
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -11516,6 +11506,7 @@ paths:
                     - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11535,7 +11526,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11605,6 +11595,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11624,7 +11615,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11692,7 +11682,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -11746,6 +11735,7 @@ paths:
                     - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11765,7 +11755,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11834,6 +11823,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11856,7 +11846,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -11926,6 +11915,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -11946,7 +11936,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -12014,7 +12003,6 @@ paths:
             minLength: 1
           required: true
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -12047,6 +12035,7 @@ paths:
                     - type: "null"
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -12067,7 +12056,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -12136,6 +12124,7 @@ paths:
           required: true
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -12158,7 +12147,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           description: Validation Error
           content:
@@ -12224,6 +12212,7 @@ paths:
         - usage
       responses:
         "200":
+          description: Successful response
           content:
             application/json:
               schema:
@@ -12243,7 +12232,6 @@ paths:
                   - success
                   - timestamp
                 type: object
-          description: Successful response
         "400":
           content:
             application/json:
