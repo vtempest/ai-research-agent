@@ -11,6 +11,7 @@ import { serverConfigSelectors } from '@/store/serverConfig/selectors';
 import { useToolStore } from '@/store/tool';
 import { ComposioServerStatus } from '@/store/tool/slices/composioStore';
 import { useUserStore } from '@/store/user';
+import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
 
 import AvatarRow from './features/AvatarRow';
 import ComposioAuthorizationList from './features/ComposioAuthorizationList';
