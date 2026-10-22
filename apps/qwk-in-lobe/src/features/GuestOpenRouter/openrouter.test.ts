@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  GUEST_FREE_MODEL,
+  GUEST_MODEL_SUGGESTIONS,
   looksLikeOpenRouterKey,
   normalizeOpenRouterKey,
   OpenRouterError,
@@ -122,5 +124,28 @@ describe('guest OpenRouter client', () => {
     await expect(
       streamOpenRouterChat({ apiKey: KEY, messages: [], model: 'x', onDelta: vi.fn() }),
     ).rejects.toThrow('Insufficient credits');
+  });
+
+  it('points a spent account at the credits page and the free model', async () => {
+    fetchMock.mockResolvedValueOnce(
+      Response.json({ error: { message: 'Insufficient credits' } }, { status: 402 }),
+    );
+
+    const error = await streamOpenRouterChat({
+      apiKey: KEY,
+      messages: [],
+      model: 'x',
+      onDelta: vi.fn(),
+    }).catch((e) => e);
+
+    expect(error).toBeInstanceOf(OpenRouterError);
+    expect(error.status).toBe(402);
+    expect(error.message).toContain('Insufficient credits');
+    expect(error.message).toContain('openrouter.ai/settings/credits');
+    expect(error.message).toContain(GUEST_FREE_MODEL);
+  });
+
+  it('offers the free model in the suggestions, since it answers without credits', () => {
+    expect(GUEST_MODEL_SUGGESTIONS).toContain(GUEST_FREE_MODEL);
   });
 });

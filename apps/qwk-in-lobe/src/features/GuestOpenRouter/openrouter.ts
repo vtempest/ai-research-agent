@@ -14,11 +14,20 @@ export const GUEST_DEFAULT_MODEL = 'openrouter/auto';
 /** Suggestions for the model field; any OpenRouter model id is accepted. */
 export const GUEST_MODEL_SUGGESTIONS = [
   'openrouter/auto',
+  'openrouter/free',
   'openai/gpt-4o-mini',
   'google/gemini-2.5-flash',
   'anthropic/claude-3.5-haiku',
-  'meta-llama/llama-3.3-70b-instruct:free',
 ];
+
+/**
+ * The model that answers without credits.
+ *
+ * `openrouter/auto` picks a paid model, so an account whose balance is spent
+ * gets a 402 on every message. `openrouter/free` routes to the free models,
+ * which ignore the balance.
+ */
+export const GUEST_FREE_MODEL = 'openrouter/free';
 
 export interface GuestChatMessage {
   content: string;
@@ -51,6 +60,11 @@ const readError = async (res: Response): Promise<OpenRouterError> => {
     if (typeof detail === 'string' && detail) message = detail;
   } catch {
     // keep the status line
+  }
+  // 402 is the balance, not the key: paid models are refused while the free
+  // ones still answer, so the message says which way out exists.
+  if (res.status === 402) {
+    message = `${message}. Add credits at https://openrouter.ai/settings/credits, or switch the model to ${GUEST_FREE_MODEL} to keep chatting for free.`;
   }
   return new OpenRouterError(message, res.status);
 };

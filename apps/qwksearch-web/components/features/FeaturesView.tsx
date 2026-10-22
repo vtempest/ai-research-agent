@@ -724,18 +724,7 @@ function ClosingCta({ showSignup = true }: { showSignup?: boolean }) {
                       Tell us about your business and we'll create a custom
                       solution tailored to your needs.
                     </p>
-                    <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-                      <Button asChild size="lg" variant="outline" className="group">
-                        <Link href="/">
-                          <Globe />
-                          Start researching
-                          <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                      </Button>
-                      <Button asChild size="lg" variant="ghost">
-                        <Link href="/enterprise">See enterprise pricing</Link>
-                      </Button>
-                    </div>
+                   
                   </>
                 )}
               </div>

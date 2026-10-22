@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { GUEST_DEFAULT_MODEL } from './openrouter';
+import { GUEST_DEFAULT_MODEL, GUEST_FREE_MODEL } from './openrouter';
 import {
   GUEST_OPENROUTER_STORAGE_KEY,
   guestOpenRouterSelectors,
@@ -103,7 +103,11 @@ describe('guest OpenRouter store', () => {
     await useGuestOpenRouterStore.getState().send('hello');
 
     const state = useGuestOpenRouterStore.getState();
-    expect(state.error).toBe('Insufficient credits');
+    // The 402 message names the credits page and the free model, which answers
+    // without credits.
+    expect(state.error).toContain('Insufficient credits');
+    expect(state.error).toContain('openrouter.ai/settings/credits');
+    expect(state.error).toContain(GUEST_FREE_MODEL);
     expect(state.messages).toEqual([{ content: 'hello', role: 'user' }]);
   });
 
