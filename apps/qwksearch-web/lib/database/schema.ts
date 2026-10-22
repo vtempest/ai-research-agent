@@ -572,3 +572,27 @@ export const learnPlaylistMembers = sqliteTable(
     emailIdx: index("idx_learn_playlist_members_email").on(table.email),
   }),
 );
+
+// Enterprise & white-label requests from the form on the homepage, the
+// features page and /enterprise. Public, so no user reference: anyone can
+// submit. `status` records whether the notification email reached the team.
+export const enterpriseRequests = sqliteTable(
+  "enterprise_requests",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    name: text("name").notNull(),
+    email: text("email").notNull(),
+    businessType: text("businessType").notNull(),
+    teamSize: text("teamSize").notNull(),
+    message: text("message"),
+    status: text("status", { enum: ["sent", "failed"] })
+      .notNull()
+      .default("sent"),
+    createdAt: text("createdAt")
+      .notNull()
+      .default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => ({
+    createdAtIdx: index("idx_enterprise_requests_createdAt").on(table.createdAt),
+  }),
+);

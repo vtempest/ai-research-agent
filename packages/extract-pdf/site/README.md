@@ -21,6 +21,18 @@ its behaviour, its Worker name (`extract-pdf-demo`) and its secret names. It is
 **not** part of the published package: `files` in `../package.json` ships only
 `dist`, `src` and `server`.
 
+## Vercel
+
+The same site also builds as a plain Next.js app for Vercel, docs and the
+full demo included. Set the Vercel project's root directory to
+`packages/extract-pdf/site`; `vercel.json` runs `install-vercel-deps.sh`
+(npm, with the published `extract-*` packages) and `build-vercel.sh`
+(`next build`). Every `/api/*` route is `app/api/[...path]/route.ts`, which
+calls the same `handleApi` from `worker/api.ts`, so the API matches the
+Worker. The variables in the table below are Vercel environment variables
+there. There is no KV on Vercel, so `/admin` settings live in memory per
+function instance; set them as environment variables instead.
+
 ## Commands
 
 Run from this directory, with bun:

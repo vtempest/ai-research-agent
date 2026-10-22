@@ -23,6 +23,10 @@
   "images": {
     "binding": "IMAGES",
   },
+  // Workers AI: text-to-speech for /api/agent/voice (Deepgram Aura).
+  "ai": {
+    "binding": "AI",
+  },
   "kv_namespaces": [
     {
       "binding": "KV",
@@ -53,6 +57,10 @@
     "production": {
       "images": {
         "binding": "IMAGES",
+      },
+      // Bindings aren't inherited by environments, so AI is repeated here.
+      "ai": {
+        "binding": "AI",
       },
       "kv_namespaces": [
         {

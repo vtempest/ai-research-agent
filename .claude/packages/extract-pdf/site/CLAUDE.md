@@ -42,3 +42,22 @@ bun run build        # Worker + assets → dist/
 bun run preview      # wrangler dev over the build
 bun run typecheck
 ```
+
+## The Vercel build
+
+The site also deploys to Vercel as plain Next.js (`vercel.json` →
+`install-vercel-deps.sh`, then `build-vercel.sh` = `next build`), with the
+docs and all three demo tabs. `next.config.ts` wires `fumadocs-mdx/next` for
+the MDX and `app/api/[...path]/route.ts` calls `handleApi` for every `/api/*`
+route, so there is one API implementation for both hosts.
+
+- **Turbopack follows tsconfig `paths`,** which point `extract-pdf`,
+  `extract-cite` and `extract-webpage/url-to-content/url-to-content` at the
+  `types/*.d.ts` shims. `turbopack.resolveAlias` in `next.config.ts` points
+  them back at the installed packages; without it every call is `undefined`
+  (`(void 0) is not a function`) while the build still passes.
+- extract-pdf's native/optional engines are `serverExternalPackages`; a new
+  one needs adding there too.
+- Test with `npm install --prefix . --ignore-scripts` (onnxruntime-node's
+  postinstall cannot download in the sandbox), `./build-vercel.sh`, then
+  `npx next start` and hit `/docs`, `/demo` and `/api/convert`.

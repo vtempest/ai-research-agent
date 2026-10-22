@@ -26,18 +26,22 @@ function resolveCloudflareAI(): any {
 }
 
 /**
- * Generate speech from text using Deepgram Aura via Cloudflare Workers AI
+ * Generate speech from text using Deepgram Aura via Cloudflare Workers AI.
+ *
+ * Pass the Worker's `AI` binding as `binding` when the host has it in hand;
+ * otherwise it is looked up on `globalThis` (see `resolveCloudflareAI`).
  */
 export async function generateDeepgramSpeech(
   text: string,
-  speaker: string = "angus"
+  speaker: string = "angus",
+  binding?: any
 ): Promise<TTSResult> {
   // Validate speaker
   const auraVoice = DEEPGRAM_SPEAKERS.includes(speaker as DeepgramSpeaker)
     ? (speaker as DeepgramSpeaker)
     : "angus";
 
-  const ai = resolveCloudflareAI();
+  const ai = binding ?? resolveCloudflareAI();
 
   if (!ai) {
     throw new Error("Cloudflare AI binding not available");

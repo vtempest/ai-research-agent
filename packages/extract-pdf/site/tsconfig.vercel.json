@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".wrangler",
+    ".vercel-backup",
+    "aliases.ts",
+    "vite.config.ts",
+    "worker/index.ts"
+  ]
+}
