@@ -10,9 +10,10 @@ import { isVoiceAutoStartEnabled, setVoiceAutoStartEnabled } from '../../lib/voi
 
 export default function VoiceSettingsPanel() {
   const [showSettings, setShowSettings] = useState(false);
-  const [useTTSKokoro, setUseTTSKokoro] = useState(() =>
-    localStorage.getItem('useTTSKokoro') !== 'false'
-  );
+  const [useTTSKokoro, setUseTTSKokoro] = useState(() => {
+    const v = localStorage.getItem('useTTSKokoro');
+    return v === null || v !== 'false';
+  });
   const [ttsSpeaker, setTtsSpeaker] = useState(() =>
     localStorage.getItem('ttsSpeaker') || 'angus'
   );

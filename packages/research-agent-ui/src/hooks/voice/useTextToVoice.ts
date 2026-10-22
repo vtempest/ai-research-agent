@@ -151,7 +151,8 @@ export function useTextToSpeech(text: string, options?: TextToSpeechOptions) {
 
     try {
       // Try Kokoro.js first (client-side, no latency)
-      const useKokoro = localStorage.getItem("useTTSKokoro") !== "false";
+      const useKokoroSetting = localStorage.getItem("useTTSKokoro");
+      const useKokoro = useKokoroSetting === null || useKokoroSetting !== "false";
       if (useKokoro) {
         try {
           const tts = await getKokoro((p) => {
