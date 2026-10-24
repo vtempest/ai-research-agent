@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Search } from "search-web-api/search/search-query-executor.js";
+import { MergedSearchEngine } from "@/lib/search/merged-engine";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -15,11 +15,11 @@ export const POST = async (req: NextRequest) => {
 
     const results: Record<string, { working: boolean; error?: string }> = {};
     const testQuery = "test";
-    const search = new Search();
+    const search = new MergedSearchEngine({ engineNames: engines });
 
     for (const engineName of engines) {
       try {
-        const result = await search.search(testQuery, 1, [engineName]);
+        const result = await search.search(testQuery, { engineNames: [engineName] });
 
         results[engineName] = {
           working: Array.isArray(result) && result.length > 0,
